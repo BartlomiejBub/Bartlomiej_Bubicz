@@ -141,6 +141,7 @@ h1 {
 h2 { margin: 0 0 4px; color: var(--ink); font-size: 1.5rem; line-height: 1.3; }
 
 .lead { max-width: 62ch; margin: 0; font-size: 1.125rem; }
+.note { max-width: 62ch; margin: 12px 0 0; color: var(--muted); font-size: 0.95rem; }
 
 .contact {
   display: flex;
