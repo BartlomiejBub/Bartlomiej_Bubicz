@@ -1,9 +1,64 @@
 <!DOCTYPE html>
-<html>
+<html lang="pl">
 <head>
-  <title>My Website</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bartłomiej Bubicz</title>
+  <meta name="description" content="Bartłomiej Bubicz – student Informatyki Technicznej na AGH. CV po polsku i angielsku oraz materiały do korepetycji z matematyki.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/style.css">
+  <script type="module" src="assets/cv.js"></script>
 </head>
 <body>
-  <h1>Hello, world!</h1>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="./"><span class="brand-mark" aria-hidden="true">BB</span><span class="brand-name">Bartłomiej Bubicz</span></a>
+      <nav class="nav" aria-label="Główna nawigacja">
+        <a href="./" aria-current="page">Start</a>
+        <a href="korepetycje.html">Korepetycje</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <p class="eyebrow">Informatyka Techniczna · AGH Kraków</p>
+      <h1>Bartłomiej Bubicz</h1>
+      <p class="lead">Jestem studentem III roku Informatyki Technicznej na AGH. Tworzę aplikacje webowe w Spring Boot i Angularze oraz mobilne w Kotlinie. Udzielam też korepetycji – materiały do matury z matematyki znajdziesz w zakładce <a href="korepetycje.html">Korepetycje</a>.</p>
+      <ul class="contact">
+        <li><a href="mailto:bartlomiej.bub@wp.pl"><span class="contact-label">E-mail</span> bartlomiej.bub@wp.pl</a></li>
+        <li><a href="https://github.com/BartlomiejBub" target="_blank" rel="noopener"><span class="contact-label">GitHub</span> BartlomiejBub</a></li>
+      </ul>
+    </section>
+
+    <section class="section" aria-labelledby="cv-title">
+      <h2 id="cv-title">CV</h2>
+      <p class="section-intro">Wybierz wersję językową, żeby zobaczyć podgląd.</p>
+      <div class="cv-choice">
+        <button class="cv-card" type="button" data-cv="pl" aria-pressed="false" aria-controls="cv-viewer">
+          <span class="cv-lang" aria-hidden="true">PL</span>
+          <span><strong>CV po polsku</strong><small>Podgląd i PDF</small></span>
+        </button>
+        <button class="cv-card" type="button" data-cv="en" aria-pressed="false" aria-controls="cv-viewer">
+          <span class="cv-lang" aria-hidden="true">EN</span>
+          <span><strong>CV in English</strong><small>Preview and PDF</small></span>
+        </button>
+      </div>
+
+      <div class="cv-viewer" id="cv-viewer" hidden>
+        <div class="cv-toolbar">
+          <h3 class="cv-title"></h3>
+          <a class="btn btn-primary cv-download" href="#" download>Pobierz PDF</a>
+          <a class="btn cv-open" href="#" target="_blank" rel="noopener">Otwórz w nowej karcie</a>
+          <button class="btn cv-close" type="button">Zamknij</button>
+        </div>
+        <div class="cv-pages" aria-live="polite"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">© 2026 Bartłomiej Bubicz · <a href="https://github.com/BartlomiejBub" target="_blank" rel="noopener">GitHub</a></div>
+  </footer>
 </body>
 </html>
