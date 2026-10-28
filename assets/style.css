@@ -18,6 +18,11 @@
   --b-probna: #6a3f8f;      --b-probna-bg: #efe6f7;
   --b-przykladowy: #4d5d59; --b-przykladowy-bg: #e8eeec;
 
+  --field-line: #9cb7ae;
+  --ok: #1d7a4c;    --ok-bg: #e2f4e9;
+  --zle: #b42318;   --zle-bg: #fdecea;
+  --uwaga: #85550f; --uwaga-bg: #f8ecd7;
+
   color-scheme: light;
 }
 
@@ -40,6 +45,11 @@
     --b-poprawka: #f0c27a;    --b-poprawka-bg: #3a2c14;
     --b-probna: #d0b2ef;      --b-probna-bg: #31233f;
     --b-przykladowy: #b9c6c2; --b-przykladowy-bg: #26302d;
+
+    --field-line: #43625a;
+    --ok: #7fd6a8;    --ok-bg: #16352a;
+    --zle: #ff9d91;   --zle-bg: #3b1d1a;
+    --uwaga: #f0c27a; --uwaga-bg: #3a2c14;
 
     color-scheme: dark;
   }
@@ -391,4 +401,299 @@ h2 { margin: 0 0 4px; color: var(--ink); font-size: 1.5rem; line-height: 1.3; }
   border-top: 1px solid var(--line);
   color: var(--muted);
   font-size: 14px;
+}
+
+/* --- Formularze */
+
+input[type="text"],
+textarea {
+  min-width: 0;
+  padding: 9px 12px;
+  border: 1px solid var(--field-line);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+}
+input[type="text"]:focus,
+textarea:focus {
+  border-color: var(--accent);
+  outline: 2px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  outline-offset: 0;
+}
+input[type="checkbox"],
+input[type="radio"] { width: 18px; height: 18px; margin: 0; accent-color: var(--accent); }
+
+.field { display: grid; gap: 6px; }
+.field-label { color: var(--ink); font-size: 0.95rem; font-weight: 600; }
+.field-hint { color: var(--muted); font-size: 0.85rem; }
+.form-error { margin: 0; color: var(--zle); font-weight: 600; }
+.form-ok { margin: 0; color: var(--ok); font-weight: 600; }
+
+.btn-small { padding: 5px 10px; font-size: 13px; }
+.btn:disabled { opacity: 0.6; cursor: default; }
+.tab[aria-pressed="true"] {
+  background: var(--surface);
+  box-shadow: 0 1px 3px rgb(0 0 0 / 10%);
+  color: var(--ink);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.muted { color: var(--muted); }
+
+/* --- Ćwiczenia: logowanie i panel ucznia */
+
+.login-card { display: grid; gap: 10px; max-width: 480px; }
+.login-row { display: flex; gap: 8px; }
+.login-row input { flex: 1; }
+
+.student-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.student-bar h2 { margin: 0; }
+#dzialy-wybor { margin: 20px 0 16px; }
+
+.blok { margin-top: 36px; }
+.blok h3 { margin: 0 0 4px; color: var(--ink); font-size: 1.25rem; }
+.blok-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 16px; }
+.blok-intro { margin: 0 0 16px; color: var(--muted); }
+.blok-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; margin-top: 14px; }
+.blok-sub { margin: 18px 0 8px; color: var(--muted); font-size: 0.85rem; letter-spacing: 0.06em; text-transform: uppercase; }
+
+/* Zadania z matur */
+.task-list { display: grid; gap: 12px; margin: 0; padding: 0; list-style: none; }
+.task-card {
+  padding: 16px 18px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+}
+.task-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 12px; }
+.task-topic { color: var(--ink); font-size: 1.05rem; }
+.task-meta { color: var(--muted); font-size: 0.9rem; }
+.task-desc { margin: 6px 0 14px; }
+.task-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.task-answer {
+  margin: 12px 0 0;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: var(--surface-2);
+  color: var(--ink);
+}
+
+/* Generator */
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+.chip {
+  padding: 6px 14px;
+  border: 1px solid var(--field-line);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.chip:hover { border-color: var(--accent); }
+.chip[aria-pressed="true"] { border-color: var(--accent); background: var(--accent); color: var(--accent-contrast); }
+.gen-count { color: var(--muted); font-size: 0.9rem; }
+
+.gen-card {
+  padding: 20px 22px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+.gen-tresc { color: var(--ink); font-size: 1.05rem; }
+.gen-tresc .katex { font-size: 1.15em; }
+.gen-tresc p { margin: 0 0 10px; }
+.gen-tresc:focus { outline: none; }
+.gen-form { margin-top: 14px; }
+.fields { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 16px 20px; }
+.field-set,
+.field-choice { min-width: 0; margin: 0; padding: 0; border: 0; }
+.field-set legend,
+.field-choice legend { margin-bottom: 6px; padding: 0; }
+.field-set .field-hint { display: block; margin-top: 4px; }
+.set-inputs { display: flex; flex-wrap: wrap; gap: 8px; }
+.num { width: 7.5em; font-variant-numeric: tabular-nums; }
+.field-choice { display: grid; gap: 6px; flex-basis: 100%; }
+.choice {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: fit-content;
+  max-width: 100%;
+  padding: 6px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  cursor: pointer;
+}
+.choice:has(input:checked) { border-color: var(--accent); background: var(--surface-2); }
+input.ok { border-color: var(--ok); background: var(--ok-bg); }
+input.zle { border-color: var(--zle); background: var(--zle-bg); }
+.field-choice.ok .choice:has(input:checked) { border-color: var(--ok); background: var(--ok-bg); }
+.field-choice.zle .choice:has(input:checked) { border-color: var(--zle); background: var(--zle-bg); }
+
+.keys { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin-top: 14px; }
+.keys-row { display: flex; gap: 6px; }
+.key {
+  width: 40px;
+  height: 36px;
+  border: 1px solid var(--field-line);
+  border-radius: 8px;
+  background: var(--surface-2);
+  color: var(--ink);
+  font: inherit;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.key:hover { border-color: var(--accent); }
+.gen-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+
+.feedback { margin: 14px 0 0; font-weight: 600; }
+.feedback:empty { display: none; }
+.feedback.ok { color: var(--ok); }
+.feedback.zle { color: var(--zle); }
+.feedback.uwaga { color: var(--uwaga); }
+
+.solution {
+  margin-top: 14px;
+  padding: 14px 18px;
+  border-radius: 12px;
+  background: var(--surface-2);
+}
+.solution h4 { margin: 0 0 6px; color: var(--ink); }
+.solution ol { margin: 0 0 10px; padding-left: 20px; }
+.solution li + li { margin-top: 4px; }
+.solution-answer { margin: 0; color: var(--ink); font-weight: 600; }
+
+/* Karty pracy – lista */
+.sheet-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.sheet-link {
+  display: grid;
+  gap: 2px;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--ink);
+  text-decoration: none;
+}
+.sheet-link:hover { border-color: var(--accent); }
+.sheet-link small { color: var(--muted); }
+
+/* --- Karta pracy (karta.html) */
+
+.sheet-page { padding: 24px 0 56px; }
+.sheet-toolbar { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+.sheet {
+  max-width: 820px;
+  padding: 32px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+.sheet-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+  padding-bottom: 14px;
+  border-bottom: 2px solid var(--ink);
+}
+.sheet-head h1 { margin: 4px 0 0; font-size: 1.7rem; }
+.sheet-code { margin: 4px 0 0; color: var(--muted); font-size: 0.85rem; }
+.sheet-fields { display: grid; gap: 12px; }
+.sheet-line { display: inline-block; width: 12em; border-bottom: 1px solid var(--text); }
+.sheet-line-short { width: 7em; }
+.sheet-tasks { margin: 0; padding-left: 1.6em; }
+.sheet-task { margin-bottom: 18px; break-inside: avoid; }
+.sheet-task::marker { color: var(--ink); font-weight: 700; }
+.sheet-topic {
+  margin: 0 0 2px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.sheet-text { color: var(--ink); }
+.sheet-text p { margin: 0 0 6px; }
+.sheet-space { height: 72px; border-bottom: 1px dashed var(--line); }
+.sheet-answers { margin-top: 36px; padding-top: 14px; border-top: 2px solid var(--ink); }
+.sheet-answers h2 { margin-bottom: 10px; }
+.sheet-answers ol { margin: 0; padding-left: 1.6em; columns: 2 240px; column-gap: 32px; }
+.sheet-answers li { margin-bottom: 6px; break-inside: avoid; }
+
+/* --- Strona nauczyciela */
+
+.teacher-form { display: grid; gap: 14px; max-width: 480px; }
+.table-wrap {
+  max-width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+}
+.access-table { width: 100%; min-width: 720px; border-collapse: collapse; font-size: 14px; }
+.access-table th,
+.access-table td { padding: 8px 10px; border-bottom: 1px solid var(--line); text-align: center; vertical-align: middle; }
+.access-table thead th { color: var(--ink); background: var(--surface-2); font-weight: 700; }
+.access-table tbody th { text-align: left; font-weight: 400; }
+.access-table tbody tr:last-child > * { border-bottom: 0; }
+.name-input { width: 11em; }
+.new-code { display: block; margin-top: 4px; color: var(--accent); font-size: 12px; font-weight: 700; letter-spacing: 0.04em; }
+.steps { margin: 0 0 16px; padding-left: 20px; }
+.steps li + li { margin-top: 4px; }
+.code-box {
+  display: block;
+  width: 100%;
+  min-height: 280px;
+  margin-top: 6px;
+  font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+  font-size: 13px;
+  line-height: 1.5;
+  resize: vertical;
+}
+
+/* --- Druk: tylko karta pracy, odpowiedzi na osobnej stronie */
+
+@page { margin: 15mm; }
+
+@media print {
+  :root {
+    --bg: #fff; --surface: #fff; --surface-2: #f2f2f2; --text: #111; --ink: #000; --muted: #444; --line: #bbb;
+    color-scheme: light;
+  }
+  body { background: #fff; color: #111; font-size: 12pt; }
+  .site-header, .site-footer, .sheet-toolbar { display: none !important; }
+  .wrap { width: auto; }
+  .sheet-page { padding: 0; }
+  .sheet { max-width: none; padding: 0; border: 0; box-shadow: none; }
+  .sheet-space { height: 28mm; border: 0; }
+  .sheet-answers { break-before: page; margin-top: 0; }
 }

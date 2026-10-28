@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Uczniowie i dostęp – Bartłomiej Bubicz</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/style.css">
+  <script type="module" src="assets/nauczyciel.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="./"><span class="brand-mark" aria-hidden="true">BB</span><span class="brand-name">Bartłomiej Bubicz</span></a>
+      <nav class="nav" aria-label="Główna nawigacja">
+        <a href="./">Start</a>
+        <a href="korepetycje.html">Korepetycje</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero hero-compact">
+      <p class="eyebrow">Dla nauczyciela</p>
+      <h1>Uczniowie i dostęp</h1>
+      <p class="lead">Tu dodajesz uczniów i ustawiasz, co każdy z nich widzi w ćwiczeniach. Ta strona niczego sama nie zapisuje – na końcu skopiuj gotowy plik i wklej go na GitHubie.</p>
+    </section>
+
+    <section class="section">
+      <h2>1. Dodaj ucznia</h2>
+      <p class="section-intro">Repozytorium jest publiczne, więc wpisz samo imię albo pseudonim, bez nazwiska.</p>
+      <form class="card teacher-form" id="nowy-uczen">
+        <div class="field">
+          <label class="field-label" for="imie">Imię lub pseudonim</label>
+          <input id="imie" name="imie" type="text" autocomplete="off" required>
+        </div>
+        <div class="field">
+          <label class="field-label" for="nowy-kod">Kod ucznia</label>
+          <div class="login-row">
+            <input id="nowy-kod" name="kod" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" required>
+            <button class="btn" type="button" id="losuj-kod">Losuj kod</button>
+          </div>
+        </div>
+        <button class="btn btn-primary" type="submit">Dodaj do listy</button>
+        <p class="form-error" id="blad-ucznia" role="alert" hidden></p>
+        <p class="form-ok" id="dodano" role="status" hidden></p>
+      </form>
+    </section>
+
+    <section class="section">
+      <h2>2. Ustaw dostęp</h2>
+      <p class="section-intro">„Wszystko” daje dostęp do wszystkich działów, także tych, które dojdą w przyszłości.</p>
+      <div class="table-wrap">
+        <table class="access-table">
+          <thead id="naglowek"></thead>
+          <tbody id="uczniowie"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>3. Skopiuj plik i wklej go na GitHubie</h2>
+      <ol class="steps">
+        <li>Kliknij „Kopiuj plik”.</li>
+        <li>Otwórz <a href="https://github.com/BartlomiejBub/Bartlomiej_Bubicz/edit/main/assets/uczniowie.js" target="_blank" rel="noopener">assets/uczniowie.js w edytorze GitHuba</a> (musisz być zalogowany na GitHubie).</li>
+        <li>Zaznacz całą treść pliku (Ctrl+A), wklej skopiowaną (Ctrl+V) i kliknij „Commit changes”.</li>
+        <li>Po kilku minutach zmiany działają na stronie (przeglądarki trzymają stary plik do około 10 minut). Jeśli uczeń nadal nie może się zalogować, niech odświeży stronę klawiszami Ctrl+F5.</li>
+      </ol>
+      <div class="blok-actions">
+        <button class="btn btn-primary" type="button" id="kopiuj">Kopiuj plik</button>
+        <span class="form-ok" id="skopiowano" role="status" hidden>Skopiowano.</span>
+      </div>
+      <label class="field-label" for="plik">Zawartość pliku assets/uczniowie.js</label>
+      <textarea id="plik" class="code-box" rows="14" readonly spellcheck="false"></textarea>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">© 2026 Bartłomiej Bubicz · <a href="https://github.com/BartlomiejBub" target="_blank" rel="noopener">GitHub</a></div>
+  </footer>
+</body>
+</html>

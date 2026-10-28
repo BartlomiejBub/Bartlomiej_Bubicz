@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Karta pracy – Bartłomiej Bubicz</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha512-fHwaWebuwA7NSF5Qg/af4UeDx9XqUpYpOGgubo3yWu+b2IQR4UeQwbb42Ti7gVAjNtVoI/I9TEoYeu9omwcC6g==" crossorigin="anonymous">
+  <link rel="stylesheet" href="assets/style.css">
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js" integrity="sha512-LQNxIMR5rXv7o+b1l8+N1EZMfhG7iFZ9HhnbJkTp4zjNr5Wvst75AqUeFDxeRUa7l5vEDyUiAip//r+EFLLCyA==" crossorigin="anonymous"></script>
+  <script type="module" src="assets/karta.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="./"><span class="brand-mark" aria-hidden="true">BB</span><span class="brand-name">Bartłomiej Bubicz</span></a>
+      <nav class="nav" aria-label="Główna nawigacja">
+        <a href="./">Start</a>
+        <a href="korepetycje.html" aria-current="page">Korepetycje</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap sheet-page">
+    <div class="sheet-toolbar" id="narzedzia">
+      <a class="btn" href="korepetycje.html#cwiczenia">← Wróć do ćwiczeń</a>
+      <button class="btn btn-primary" type="button" id="drukuj">Drukuj albo zapisz PDF</button>
+      <a class="btn" href="#" id="nowa">Wylosuj nową kartę</a>
+    </div>
+    <article class="sheet" id="karta" aria-live="polite"></article>
+  </main>
+</body>
+</html>

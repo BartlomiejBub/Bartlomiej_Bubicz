@@ -1,3 +1,4 @@
+import { el } from "./dom.js";
 import { MATURY } from "./matury.js";
 
 const TYPY = {
@@ -7,13 +8,6 @@ const TYPY = {
   probna: "Próbna CKE",
   przykladowy: "Przykładowy CKE",
 };
-
-function el(tag, attrs = {}, ...children) {
-  const node = document.createElement(tag);
-  for (const [name, value] of Object.entries(attrs)) node.setAttribute(name, value);
-  node.append(...children);
-  return node;
-}
 
 // --- Zakładki (Matury / Karty maturalne / Ćwiczenia), adres: korepetycje.html#karty itd.
 
