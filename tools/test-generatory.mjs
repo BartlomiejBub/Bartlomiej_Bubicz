@@ -5,9 +5,14 @@
 //   node tools/test-generatory.mjs liczby 1000  jeden dział, 1000 zadań na generator
 //
 // Jeśli zmienna KATEX wskazuje plik katex (np. node_modules/katex/dist/katex.mjs), sprawdza też składnię wzorów.
+import { readdir } from "node:fs/promises";
 import { losownik, sprawdz, czytajLiczbe, czesciTekstu, Q } from "../assets/generatory/wspolne.js";
 
-const DZIALY = process.argv[2] && isNaN(process.argv[2]) ? [process.argv[2]] : ["liczby", "funkcje"];
+const DZIALY = process.argv[2] && isNaN(process.argv[2])
+  ? [process.argv[2]]
+  : (await readdir(new URL("../assets/generatory/", import.meta.url)))
+      .filter((f) => f.endsWith(".js") && f !== "wspolne.js")
+      .map((f) => f.slice(0, -3));
 const ILE = Number([...process.argv.slice(2)].find((a) => !isNaN(a)) ?? 300);
 const katex = process.env.KATEX ? (await import(new URL(`file:///${process.env.KATEX.replace(/\\/g, "/")}`))).default : null;
 

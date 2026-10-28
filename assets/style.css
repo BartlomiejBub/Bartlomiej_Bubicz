@@ -471,25 +471,59 @@ input[type="radio"] { width: 18px; height: 18px; margin: 0; accent-color: var(--
 .blok-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; margin-top: 14px; }
 .blok-sub { margin: 18px 0 8px; color: var(--muted); font-size: 0.85rem; letter-spacing: 0.06em; text-transform: uppercase; }
 
-/* Zadania z matur */
-.task-list { display: grid; gap: 12px; margin: 0; padding: 0; list-style: none; }
-.task-card {
-  padding: 16px 18px;
+/* Zadania z matur (ABCD) */
+.abcd-list { display: grid; gap: 14px; margin: 0; padding: 0; list-style: none; }
+.abcd-card {
+  padding: 18px 20px;
   border: 1px solid var(--line);
   border-radius: 14px;
   background: var(--surface);
 }
-.task-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 12px; }
-.task-topic { color: var(--ink); font-size: 1.05rem; }
-.task-meta { color: var(--muted); font-size: 0.9rem; }
-.task-desc { margin: 6px 0 14px; }
-.task-actions { display: flex; flex-wrap: wrap; gap: 8px; }
-.task-answer {
-  margin: 12px 0 0;
-  padding: 10px 14px;
+.abcd-zrodlo {
+  margin: 0 0 8px;
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+.abcd-tresc { color: var(--ink); }
+.abcd-tresc p { margin: 0 0 10px; }
+.abcd-wstep { padding-bottom: 4px; }
+.abcd-opcje {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 8px;
+  margin-top: 4px;
+}
+.abcd-opcja {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
   border-radius: 10px;
-  background: var(--surface-2);
   color: var(--ink);
+  cursor: pointer;
+}
+.abcd-opcja:hover { border-color: var(--accent); }
+.abcd-opcja:has(input:checked) { border-color: var(--accent); background: var(--surface-2); }
+.abcd-opcje .abcd-opcja.ok { border-color: var(--ok); background: var(--ok-bg); }      /* wygrywa z :has(input:checked) */
+.abcd-opcje .abcd-opcja.zle { border-color: var(--zle); background: var(--zle-bg); }
+.abcd-litera { font-weight: 700; }
+.chip-count { opacity: 0.7; font-weight: 400; }
+
+/* Wzór wyśrodkowany i rysunek w treści zadania */
+.wzor { margin: 4px 0 12px; overflow-x: auto; overflow-y: hidden; }
+.wzor .katex-display { margin: 0; }
+.rysunek { margin: 6px 0 14px; }
+.rysunek img {
+  display: block;
+  width: auto;
+  max-width: min(100%, 420px);
+  max-height: 360px;
+  padding: 8px;
+  border-radius: 10px;
+  background: #fff;
 }
 
 /* Generator */

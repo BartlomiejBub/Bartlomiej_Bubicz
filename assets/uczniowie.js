@@ -6,7 +6,8 @@
 //
 // kod    – skrót SHA-256 kodu ucznia; samego kodu tu nie ma, więc nie da się go podejrzeć w repozytorium
 // dostep – "wszystko" albo lista dla działów: "zadania" (zadania z matur), "generator", "karty" (karty pracy);
-//          działy: liczby (Liczby i równania), funkcje (Funkcje i ciągi)
+//          działy: liczby (Liczby i równania), funkcje (Funkcje i ciągi), geometria (Geometria),
+//          statystyka (Prawdopodobieństwo i statystyka)
 //
 // Repozytorium jest publiczne – zamiast nazwisk wpisuj samo imię albo pseudonim.
 

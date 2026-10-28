@@ -1,8 +1,7 @@
 // Ćwiczenia dla zalogowanych uczniów: zadania z matur, generator zadań i karty pracy.
 import { el } from "./dom.js";
 import { zaloguj, zalogowany, wyloguj, ma } from "./dostep.js";
-import { DZIALY, KARTY } from "./dzialy.js";
-import { linkDoZadania } from "./zadania-maturalne.js";
+import { DZIALY, KARTY, maMaterialy } from "./dzialy.js";
 import { losownik, sprawdz } from "./generatory/wspolne.js";
 import { wstaw } from "./matematyka.js";
 
@@ -70,7 +69,8 @@ function pokazUcznia(uczen) {
   panel.hidden = false;
   panel.querySelector("[data-imie]").textContent = uczen.imie;
 
-  const dostepne = DZIALY.filter((d) => ["zadania", "generator", "karty"].some((r) => ma(uczen, d.id, r)));
+  const widzi = (d, r) => ma(uczen, d.id, r) && maMaterialy(d, r);
+  const dostepne = DZIALY.filter((d) => ["zadania", "generator", "karty"].some((r) => widzi(d, r)));
   if (!dostepne.length) {
     wyborDzialu.hidden = true;
     widok.replaceChildren(
@@ -96,45 +96,100 @@ function pokazUcznia(uczen) {
 function pokazDzial(uczen, d, przyciski) {
   pamietaj(KLUCZ_DZIALU, d.id);
   for (const b of przyciski) b.setAttribute("aria-pressed", String(b.dataset.dzial === d.id));
+  const widzi = (r) => ma(uczen, d.id, r) && maMaterialy(d, r);
   const bloki = [
-    ma(uczen, d.id, "zadania") && blokZadan(d),
-    ma(uczen, d.id, "generator") && blokGeneratora(d),
-    ma(uczen, d.id, "karty") && blokKart(d),
+    widzi("zadania") && blokZadan(d),
+    widzi("generator") && blokGeneratora(d),
+    widzi("karty") && blokKart(d),
   ];
   widok.replaceChildren(el("p", { class: "section-intro" }, d.opis), ...bloki.filter(Boolean));
 }
 
-// --- Zadania z matur
+// --- Zadania z matur: zadania zamknięte z arkuszy CKE, posortowane po tematach
 
 function blokZadan(d) {
+  const tematy = d.tematy.filter((t) => t.zadania.length);
+  let temat = tematy[0];
+  const wyniki = new Map();   // zadanie -> czy dobrze przy pierwszym sprawdzeniu
+  const licznik = el("span", { class: "gen-count", "aria-live": "polite" });
+  const lista = el("ol", { class: "abcd-list" });
+
+  const odswiezLicznik = () => {
+    const ocenione = temat.zadania.filter((z) => wyniki.has(z));
+    const dobrze = ocenione.filter((z) => wyniki.get(z)).length;
+    licznik.textContent = ocenione.length ? `Dobrze: ${dobrze} z ${ocenione.length}` : "";
+  };
+  const pokaz = () => {
+    lista.replaceChildren(...temat.zadania.map((z) => kartaABCD(z, (dobrze) => {
+      if (!wyniki.has(z)) wyniki.set(z, dobrze);
+      odswiezLicznik();
+    })));
+    odswiezLicznik();
+  };
+
+  const przyciski = tematy.map((t) => {
+    const b = el("button", { class: "chip", type: "button", "aria-pressed": String(t === temat) },
+      t.nazwa, el("span", { class: "chip-count" }, ` ${t.zadania.length}`));
+    b.addEventListener("click", () => {
+      temat = t;
+      for (const p of przyciski) p.setAttribute("aria-pressed", String(p === b));
+      pokaz();
+    });
+    return b;
+  });
+
+  pokaz();
   return el("section", { class: "blok" },
-    el("h3", {}, "Zadania z matur"),
-    el("p", { class: "blok-intro" }, "Prawdziwe zadania z arkuszy CKE. Rozwiąż zadanie w arkuszu, a potem sprawdź odpowiedź."),
-    el("ol", { class: "task-list" }, ...d.zadania.map(kartaZadania)),
+    el("div", { class: "blok-head" }, el("h3", {}, "Zadania z matur"), licznik),
+    el("p", { class: "blok-intro" }, "Zadania zamknięte z arkuszy CKE, posortowane według tematów. Zaznacz odpowiedź i kliknij „Sprawdź odpowiedź”."),
+    el("div", { class: "chips", role: "group", "aria-label": "Temat zadań" }, ...przyciski),
+    lista,
   );
 }
 
-function kartaZadania(z) {
-  const odpowiedz = wstaw(el("p", { class: "task-answer", hidden: true }), `Odpowiedź: ${z.odpowiedz}`, { akapity: false });
-  const pokaz = el("button", { class: "btn", type: "button", "aria-expanded": "false" }, "Pokaż odpowiedź");
-  pokaz.addEventListener("click", () => {
-    const pokazac = odpowiedz.hidden;
-    odpowiedz.hidden = !pokazac;
-    pokaz.setAttribute("aria-expanded", String(pokazac));
-    pokaz.textContent = pokazac ? "Ukryj odpowiedź" : "Pokaż odpowiedź";
+/** Zadanie ABCD jak w arkuszu; „Sprawdź odpowiedź” pokazuje poprawną literę z klucza CKE. */
+function kartaABCD(z, ocenione) {
+  const nazwa = `abcd-${++licznikPol}`;
+  const opcje = z.opcje.map((o, i) => {
+    const radio = el("input", { type: "radio", name: nazwa, value: String(i) });
+    const label = el("label", { class: "abcd-opcja" },
+      radio,
+      el("span", { class: "abcd-litera" }, `${"ABCD"[i]}.`),
+      wstaw(el("span", { class: "abcd-tekst" }), o, { akapity: false }),
+    );
+    return { radio, label };
   });
-  return el("li", { class: "task-card" },
-    el("div", { class: "task-head" },
-      el("strong", { class: "task-topic" }, z.temat),
-      el("span", { class: "task-meta" }, `${z.termin} · zadanie ${z.nr} · ${z.punkty} pkt`),
-    ),
-    wstaw(el("p", { class: "task-desc" }), z.opis, { akapity: false }),
-    el("div", { class: "task-actions" },
-      el("a", { class: "btn btn-primary", href: linkDoZadania(z), target: "_blank", rel: "noopener" },
-        `Otwórz zadanie (str. ${z.strona}) `, el("span", { "aria-hidden": "true" }, "↗")),
-      pokaz,
-    ),
-    odpowiedz,
+  const info = el("p", { class: "feedback", role: "status" });
+  const sprawdzPrzycisk = el("button", { class: "btn btn-primary", type: "button" }, "Sprawdź odpowiedź");
+
+  sprawdzPrzycisk.addEventListener("click", () => {
+    const wybrana = opcje.findIndex((o) => o.radio.checked);
+    opcje.forEach((o, i) => {
+      o.label.classList.toggle("ok", i === z.poprawna);
+      o.label.classList.toggle("zle", i === wybrana && i !== z.poprawna);
+    });
+    const litera = "ABCD"[z.poprawna];
+    if (wybrana < 0) {
+      info.className = "feedback";
+      info.textContent = `Poprawna odpowiedź: ${litera}.`;
+    } else if (wybrana === z.poprawna) {
+      info.className = "feedback ok";
+      info.textContent = `Dobrze! Poprawna odpowiedź: ${litera}.`;
+      ocenione(true);
+    } else {
+      info.className = "feedback zle";
+      info.textContent = `Niestety nie. Poprawna odpowiedź: ${litera}.`;
+      ocenione(false);
+    }
+  });
+
+  return el("li", { class: "abcd-card" },
+    el("p", { class: "abcd-zrodlo" }, z.zrodlo),
+    z.wstep && wstaw(el("div", { class: "abcd-tresc abcd-wstep" }), z.wstep, { rysunek: z.rysunek }),
+    wstaw(el("div", { class: "abcd-tresc" }), z.tresc, { rysunek: z.rysunek }),
+    el("div", { class: "abcd-opcje", role: "radiogroup", "aria-label": `Odpowiedzi do zadania: ${z.zrodlo}` }, ...opcje.map((o) => o.label)),
+    el("div", { class: "gen-actions" }, sprawdzPrzycisk),
+    info,
   );
 }
 
@@ -326,12 +381,12 @@ function blokKart(d) {
     el("p", { class: "blok-intro" }, "Zestawy do wydrukowania. Odpowiedzi są zawsze na ostatniej stronie."),
     d.pdf.length > 0 && el("h4", { class: "blok-sub" }, "Gotowe karty (PDF)"),
     d.pdf.length > 0 && el("ul", { class: "sheet-list" }, ...d.pdf.map((k) => link(k.plik, k.nazwa, k.opis))),
-    el("h4", { class: "blok-sub" }, "Karty z generatora"),
-    el("ul", { class: "sheet-list" },
+    d.generatory.length > 0 && el("h4", { class: "blok-sub" }, "Karty z generatora"),
+    d.generatory.length > 0 && el("ul", { class: "sheet-list" },
       ...Array.from({ length: KARTY.ile }, (_, i) =>
         link(`karta.html?dzial=${d.id}&nr=${i + 1}`, `Karta z generatora ${i + 1}`, `${ile} z odpowiedziami`)),
     ),
-    el("div", { class: "blok-actions" }, losowa),
+    d.generatory.length > 0 && el("div", { class: "blok-actions" }, losowa),
   );
 }
 

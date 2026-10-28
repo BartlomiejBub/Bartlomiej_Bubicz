@@ -1,15 +1,27 @@
-// Działy ćwiczeń: zadania z matur, generatory i karty pracy.
+// Działy ćwiczeń: zadania z matur (posortowane po tematach), generatory i karty pracy.
 import { GENERATORY as LICZBY } from "./generatory/liczby.js";
 import { GENERATORY as FUNKCJE } from "./generatory/funkcje.js";
 import { losownik, ziarno } from "./generatory/wspolne.js";
-import { ZADANIA_MATURALNE } from "./zadania-maturalne.js";
+import { ARKUSZE } from "./arkusze/index.js";
+import { TEMATY } from "./arkusze/tematy.js";
+
+/** Zadania z arkuszy w danym temacie, od najnowszych arkuszy, z podpisem źródła. */
+function zadaniaTematu(dzial, temat) {
+  return ARKUSZE.flatMap((a) =>
+    a.zadania
+      .filter((z) => z.dzial === dzial && z.temat === temat)
+      .map((z) => ({ ...z, zrodlo: `${a.nazwa}, zadanie ${z.nr}` })),
+  );
+}
+
+const tematy = (dzial) => TEMATY[dzial].map((t) => ({ ...t, zadania: zadaniaTematu(dzial, t.id) }));
 
 export const DZIALY = [
   {
     id: "liczby",
     nazwa: "Liczby i równania",
-    opis: "Potęgi, pierwiastki, logarytmy, procenty, równania i nierówności.",
-    zadania: ZADANIA_MATURALNE.liczby,
+    opis: "Potęgi, pierwiastki, logarytmy, procenty, wyrażenia algebraiczne, równania i nierówności.",
+    tematy: tematy("liczby"),
     generatory: LICZBY,
     pdf: [
       { nazwa: "Karta pracy: Liczby i równania", plik: "karty/liczby-i-rownania.pdf", opis: "17 zadań na 2 stronach + odpowiedzi" },
@@ -18,11 +30,31 @@ export const DZIALY = [
   {
     id: "funkcje",
     nazwa: "Funkcje i ciągi",
-    opis: "Funkcja liniowa i kwadratowa, ciąg arytmetyczny i geometryczny.",
-    zadania: ZADANIA_MATURALNE.funkcje,
+    opis: "Własności funkcji, funkcja liniowa i kwadratowa, ciągi arytmetyczne i geometryczne.",
+    tematy: tematy("funkcje"),
     generatory: FUNKCJE,
     pdf: [
       { nazwa: "Karta pracy: Funkcje i ciągi", plik: "karty/funkcje-i-ciagi.pdf", opis: "17 zadań na 2 stronach + odpowiedzi" },
+    ],
+  },
+  {
+    id: "geometria",
+    nazwa: "Geometria",
+    opis: "Trygonometria, planimetria, geometria analityczna i stereometria.",
+    tematy: tematy("geometria"),
+    generatory: [],
+    pdf: [
+      { nazwa: "Karta pracy: Geometria", plik: "karty/geometria.pdf", opis: "17 zadań na 2 stronach + odpowiedzi" },
+    ],
+  },
+  {
+    id: "statystyka",
+    nazwa: "Prawdopodobieństwo i statystyka",
+    opis: "Kombinatoryka, rachunek prawdopodobieństwa i statystyka.",
+    tematy: tematy("statystyka"),
+    generatory: [],
+    pdf: [
+      { nazwa: "Karta pracy: Prawdopodobieństwo i statystyka", plik: "karty/prawdopodobienstwo-i-statystyka.pdf", opis: "17 zadań na 2 stronach + odpowiedzi" },
     ],
   },
 ];
@@ -32,6 +64,13 @@ export const RODZAJE = [
   { id: "generator", nazwa: "Generator zadań", krotko: "Generator" },
   { id: "karty", nazwa: "Karty pracy", krotko: "Karty" },
 ];
+
+/** Czy dział ma jakieś materiały danego rodzaju (np. nowy dział może nie mieć jeszcze generatorów). */
+export function maMaterialy(d, rodzaj) {
+  if (rodzaj === "zadania") return d.tematy.some((t) => t.zadania.length);
+  if (rodzaj === "generator") return d.generatory.length > 0;
+  return d.pdf.length > 0 || d.generatory.length > 0;
+}
 
 /** Karty z generatora: ile stałych kart (1, 2, …) ma każdy dział i ile zadań z każdego generatora trafia na kartę.
  *  Gotowe karty w PDF (pole pdf działu) robi skrypt tools/zrob-karty.mjs. */
