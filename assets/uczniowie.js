@@ -8,6 +8,7 @@
 // dostep – "wszystko" albo lista dla działów: "zadania" (zadania z matur), "generator", "karty" (karty pracy);
 //          działy: liczby (Liczby i równania), funkcje (Funkcje i ciągi), geometria (Geometria),
 //          statystyka (Prawdopodobieństwo i statystyka), dowody (Dowody i optymalizacja)
+//          tekstowe (Zadania z treścią)
 //
 // Repozytorium jest publiczne – zamiast nazwisk wpisuj samo imię albo pseudonim.
 

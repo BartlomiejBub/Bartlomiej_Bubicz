@@ -36,4 +36,10 @@ export const TEMATY = {
     { id: "dowody-geometryczne", nazwa: "Dowody geometryczne" },
     { id: "optymalizacja", nazwa: "Optymalizacja" },
   ],
+  tekstowe: [
+    { id: "ruch-i-praca", nazwa: "Ruch i wspólna praca" },
+    { id: "procenty-i-pieniadze", nazwa: "Procenty i pieniądze" },
+    { id: "rownania-z-tresci", nazwa: "Równania z treści" },
+    { id: "ciagi-w-praktyce", nazwa: "Ciągi w praktyce" },
+  ],
 };

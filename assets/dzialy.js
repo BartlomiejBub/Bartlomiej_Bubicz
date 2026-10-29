@@ -4,6 +4,7 @@ import { GENERATORY as FUNKCJE } from "./generatory/funkcje.js";
 import { GENERATORY as GEOMETRIA } from "./generatory/geometria.js";
 import { GENERATORY as STATYSTYKA } from "./generatory/statystyka.js";
 import { GENERATORY as DOWODY } from "./generatory/dowody.js";
+import { GENERATORY as TEKSTOWE } from "./generatory/tekstowe.js";
 import { losownik, ziarno } from "./generatory/wspolne.js";
 import { ARKUSZE } from "./arkusze/index.js";
 import { TEMATY } from "./arkusze/tematy.js";
@@ -12,6 +13,7 @@ import { WZORY as WZORY_FUNKCJE } from "./wzory/funkcje.js";
 import { WZORY as WZORY_GEOMETRIA } from "./wzory/geometria.js";
 import { WZORY as WZORY_STATYSTYKA } from "./wzory/statystyka.js";
 import { WZORY as WZORY_DOWODY } from "./wzory/dowody.js";
+import { WZORY as WZORY_TEKSTOWE } from "./wzory/tekstowe.js";
 
 /** Zadania z arkuszy w danym temacie, od najnowszych arkuszy, z podpisem źródła. */
 function zadaniaTematu(dzial, temat) {
@@ -78,6 +80,17 @@ export const DZIALY = [
     generatory: DOWODY,
     pdf: [
       { nazwa: "Karta pracy: Dowody i optymalizacja", plik: "karty/dowody-i-optymalizacja.pdf", opis: "12 zadań na 2 stronach + rozwiązania" },
+    ],
+  },
+  {
+    id: "tekstowe",
+    nazwa: "Zadania z treścią",
+    opis: "Ruch i wspólna praca, procenty i pieniądze, równania z treści i ciągi w praktyce.",
+    tematy: tematy("tekstowe"),
+    wzory: WZORY_TEKSTOWE,
+    generatory: TEKSTOWE,
+    pdf: [
+      { nazwa: "Karta pracy: Zadania z treścią", plik: "karty/zadania-z-tresci.pdf", opis: "12 zadań na 2 stronach + rozwiązania" },
     ],
   },
 ];
