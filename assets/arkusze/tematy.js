@@ -31,4 +31,9 @@ export const TEMATY = {
     { id: "prawdopodobienstwo", nazwa: "Prawdopodobieństwo" },     // XII (prawdopodobieństwo)
     { id: "statystyka", nazwa: "Statystyka" },                     // XII (średnia, mediana, odchylenie)
   ],
+  dowody: [
+    { id: "dowody-algebraiczne", nazwa: "Dowody algebraiczne" },
+    { id: "dowody-geometryczne", nazwa: "Dowody geometryczne" },
+    { id: "optymalizacja", nazwa: "Optymalizacja" },
+  ],
 };

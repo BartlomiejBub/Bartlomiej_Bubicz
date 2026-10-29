@@ -529,6 +529,8 @@ input[type="radio"] { width: 18px; height: 18px; margin: 0; accent-color: var(--
 .wzor-tex { color: var(--ink); }
 .wzor-tex .wzor { margin: 0 0 4px; }
 .wzor-uwaga { margin: 0 0 4px; color: var(--muted); font-size: 0.85rem; }
+.wzor-slownie { margin: 2px 0 6px; color: var(--ink); }
+.wzor-przyklad { margin: 0 0 4px; padding: 6px 8px; border-radius: 6px; background: var(--chip-bg, rgba(127, 127, 127, 0.08)); font-size: 0.9rem; }
 .jak {
   margin-top: 12px;
   padding: 14px 18px;

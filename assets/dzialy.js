@@ -3,6 +3,7 @@ import { GENERATORY as LICZBY } from "./generatory/liczby.js";
 import { GENERATORY as FUNKCJE } from "./generatory/funkcje.js";
 import { GENERATORY as GEOMETRIA } from "./generatory/geometria.js";
 import { GENERATORY as STATYSTYKA } from "./generatory/statystyka.js";
+import { GENERATORY as DOWODY } from "./generatory/dowody.js";
 import { losownik, ziarno } from "./generatory/wspolne.js";
 import { ARKUSZE } from "./arkusze/index.js";
 import { TEMATY } from "./arkusze/tematy.js";
@@ -10,6 +11,7 @@ import { WZORY as WZORY_LICZBY } from "./wzory/liczby.js";
 import { WZORY as WZORY_FUNKCJE } from "./wzory/funkcje.js";
 import { WZORY as WZORY_GEOMETRIA } from "./wzory/geometria.js";
 import { WZORY as WZORY_STATYSTYKA } from "./wzory/statystyka.js";
+import { WZORY as WZORY_DOWODY } from "./wzory/dowody.js";
 
 /** Zadania z arkuszy w danym temacie, od najnowszych arkuszy, z podpisem źródła. */
 function zadaniaTematu(dzial, temat) {
@@ -65,6 +67,17 @@ export const DZIALY = [
     generatory: STATYSTYKA,
     pdf: [
       { nazwa: "Karta pracy: Prawdopodobieństwo i statystyka", plik: "karty/prawdopodobienstwo-i-statystyka.pdf", opis: "17 zadań na 2 stronach + odpowiedzi" },
+    ],
+  },
+  {
+    id: "dowody",
+    nazwa: "Dowody i optymalizacja",
+    opis: "Zadania otwarte: dowody algebraiczne i geometryczne oraz zadania na największą i najmniejszą wartość.",
+    tematy: tematy("dowody"),
+    wzory: WZORY_DOWODY,
+    generatory: DOWODY,
+    pdf: [
+      { nazwa: "Karta pracy: Dowody i optymalizacja", plik: "karty/dowody-i-optymalizacja.pdf", opis: "12 zadań na 2 stronach + rozwiązania" },
     ],
   },
 ];
