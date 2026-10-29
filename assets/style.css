@@ -1,59 +1,65 @@
-/* Kolory wzięte z CV (zieleń + morski), osobny zestaw dla trybu ciemnego. */
+/* Jasna paleta: indygo jako kolor przewodni, brzoskwinia jako ciepły akcent; osobny zestaw dla trybu ciemnego. */
 :root {
-  --bg: #f4f8f6;
+  --bg: #f6f7fd;
   --surface: #ffffff;
-  --surface-2: #e3f2ec;
-  --text: #263330;
-  --muted: #5b7a72;
-  --ink: #16403a;
-  --accent: #1d6f5c;
+  --surface-2: #eef0fd;
+  --text: #2d3150;
+  --muted: #6a7096;
+  --ink: #1d2145;
+  --accent: #5463e0;
+  --accent-2: #8a5cf0;
   --accent-contrast: #ffffff;
-  --line: #d3e6df;
-  --wzor-bg: #fff3e4;
-  --wzor-line: #f3c58f;
-  --link: #1b5e8a;
-  --shadow: 0 1px 2px rgb(22 64 58 / 6%), 0 8px 24px rgb(22 64 58 / 8%);
+  --line: #e2e5f6;
+  --glow-1: rgb(120 132 255 / 18%);
+  --glow-2: rgb(255 176 128 / 20%);
+  --wzor-bg: #fff4e9;
+  --wzor-line: #f6c99c;
+  --link: #3f4fd0;
+  --shadow: 0 1px 2px rgb(40 46 110 / 5%), 0 10px 28px rgb(40 46 110 / 8%);
 
-  --b-glowna: #1d6f5c;      --b-glowna-bg: #dcf0e9;
-  --b-dodatkowy: #1b5e8a;   --b-dodatkowy-bg: #e1edf7;
-  --b-poprawka: #85550f;    --b-poprawka-bg: #f8ecd7;
-  --b-probna: #6a3f8f;      --b-probna-bg: #efe6f7;
-  --b-przykladowy: #4d5d59; --b-przykladowy-bg: #e8eeec;
+  --b-glowna: #3f4fd0;      --b-glowna-bg: #e7e9fe;
+  --b-dodatkowy: #1f6f9e;   --b-dodatkowy-bg: #e2f1fa;
+  --b-poprawka: #9a5512;    --b-poprawka-bg: #fdeedd;
+  --b-probna: #7443c9;      --b-probna-bg: #f1e9fd;
+  --b-przykladowy: #555b78; --b-przykladowy-bg: #eceef6;
 
-  --field-line: #9cb7ae;
-  --ok: #1d7a4c;    --ok-bg: #e2f4e9;
-  --zle: #b42318;   --zle-bg: #fdecea;
-  --uwaga: #85550f; --uwaga-bg: #f8ecd7;
+  --field-line: #b5bbe0;
+  --ok: #17804f;    --ok-bg: #e3f6ec;
+  --zle: #c0352b;   --zle-bg: #fdecea;
+  --uwaga: #9a5512; --uwaga-bg: #fdeedd;
 
   color-scheme: light;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #0e1715;
-    --surface: #15211e;
-    --surface-2: #1c2f2a;
-    --text: #d6e5e0;
-    --muted: #93ada6;
-    --ink: #e8f4f0;
-    --accent: #5ec4a6;
-    --accent-contrast: #0b1412;
-    --line: #27413b;
-    --wzor-bg: #3a2410;
-    --wzor-line: #9a5b1f;
-    --link: #86c1ec;
-    --shadow: 0 1px 2px rgb(0 0 0 / 30%), 0 8px 24px rgb(0 0 0 / 35%);
+    --bg: #11132a;
+    --surface: #191c3a;
+    --surface-2: #23274c;
+    --text: #d8dbf3;
+    --muted: #9aa0c8;
+    --ink: #f2f3ff;
+    --accent: #8e9bff;
+    --accent-2: #b392ff;
+    --accent-contrast: #11132a;
+    --line: #2d3262;
+    --glow-1: rgb(110 120 255 / 16%);
+    --glow-2: rgb(255 150 100 / 9%);
+    --wzor-bg: #33241a;
+    --wzor-line: #96602f;
+    --link: #a9b3ff;
+    --shadow: 0 1px 2px rgb(0 0 0 / 30%), 0 10px 28px rgb(0 0 0 / 35%);
 
-    --b-glowna: #86dcc1;      --b-glowna-bg: #1b3a32;
-    --b-dodatkowy: #9ccbf0;   --b-dodatkowy-bg: #1a3042;
-    --b-poprawka: #f0c27a;    --b-poprawka-bg: #3a2c14;
-    --b-probna: #d0b2ef;      --b-probna-bg: #31233f;
-    --b-przykladowy: #b9c6c2; --b-przykladowy-bg: #26302d;
+    --b-glowna: #b3bbff;      --b-glowna-bg: #272c5c;
+    --b-dodatkowy: #9cd2f2;   --b-dodatkowy-bg: #1b3247;
+    --b-poprawka: #f3c48c;    --b-poprawka-bg: #3d2b18;
+    --b-probna: #d2b6ff;      --b-probna-bg: #33255a;
+    --b-przykladowy: #bfc3dc; --b-przykladowy-bg: #282b45;
 
-    --field-line: #43625a;
-    --ok: #7fd6a8;    --ok-bg: #16352a;
-    --zle: #ff9d91;   --zle-bg: #3b1d1a;
-    --uwaga: #f0c27a; --uwaga-bg: #3a2c14;
+    --field-line: #4a5088;
+    --ok: #7fd9ad;    --ok-bg: #17372b;
+    --zle: #ff9e93;   --zle-bg: #3d1e1d;
+    --uwaga: #f3c48c; --uwaga-bg: #3d2b18;
 
     color-scheme: dark;
   }
@@ -65,9 +71,13 @@ html { -webkit-text-size-adjust: 100%; }
 
 body {
   margin: 0;
-  background: var(--bg);
+  background:
+    radial-gradient(1100px 480px at 12% -120px, var(--glow-1), transparent 70%),
+    radial-gradient(900px 420px at 92% -80px, var(--glow-2), transparent 70%),
+    var(--bg);
+  background-repeat: no-repeat;
   color: var(--text);
-  font-family: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Roboto, Arial, sans-serif;
+  font-family: "Plus Jakarta Sans", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Roboto, Arial, sans-serif;
   font-size: 16px;
   line-height: 1.6;
 }
@@ -75,7 +85,7 @@ body {
 a { color: var(--link); }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
-.wrap { width: min(100% - 32px, 960px); margin-inline: auto; }
+.wrap { width: min(100% - 32px, 1200px); margin-inline: auto; }
 
 /* --- Nagłówek i nawigacja */
 
@@ -108,8 +118,8 @@ a { color: var(--link); }
   place-items: center;
   width: 34px;
   height: 34px;
-  border-radius: 9px;
-  background: var(--accent);
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
   color: var(--accent-contrast);
   font-size: 14px;
   letter-spacing: 0.02em;
@@ -148,6 +158,7 @@ a { color: var(--link); }
 h1 {
   margin: 8px 0 16px;
   color: var(--ink);
+  font-weight: 800;
   font-size: clamp(2rem, 6vw, 3rem);
   line-height: 1.1;
   letter-spacing: -0.01em;
@@ -208,7 +219,7 @@ h2 { margin: 0 0 4px; color: var(--ink); font-size: 1.5rem; line-height: 1.3; }
   cursor: pointer;
 }
 .btn:hover { border-color: var(--accent); }
-.btn-primary { border-color: var(--accent); background: var(--accent); color: var(--accent-contrast); }
+.btn-primary { border-color: transparent; background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: var(--accent-contrast); }
 .btn-primary:hover { filter: brightness(1.08); }
 
 /* --- Wybór i podgląd CV */
