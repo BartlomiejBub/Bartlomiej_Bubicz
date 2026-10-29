@@ -1,9 +1,15 @@
 // Działy ćwiczeń: zadania z matur (posortowane po tematach), generatory i karty pracy.
 import { GENERATORY as LICZBY } from "./generatory/liczby.js";
 import { GENERATORY as FUNKCJE } from "./generatory/funkcje.js";
+import { GENERATORY as GEOMETRIA } from "./generatory/geometria.js";
+import { GENERATORY as STATYSTYKA } from "./generatory/statystyka.js";
 import { losownik, ziarno } from "./generatory/wspolne.js";
 import { ARKUSZE } from "./arkusze/index.js";
 import { TEMATY } from "./arkusze/tematy.js";
+import { WZORY as WZORY_LICZBY } from "./wzory/liczby.js";
+import { WZORY as WZORY_FUNKCJE } from "./wzory/funkcje.js";
+import { WZORY as WZORY_GEOMETRIA } from "./wzory/geometria.js";
+import { WZORY as WZORY_STATYSTYKA } from "./wzory/statystyka.js";
 
 /** Zadania z arkuszy w danym temacie, od najnowszych arkuszy, z podpisem źródła. */
 function zadaniaTematu(dzial, temat) {
@@ -22,6 +28,7 @@ export const DZIALY = [
     nazwa: "Liczby i równania",
     opis: "Potęgi, pierwiastki, logarytmy, procenty, wyrażenia algebraiczne, równania i nierówności.",
     tematy: tematy("liczby"),
+    wzory: WZORY_LICZBY,
     generatory: LICZBY,
     pdf: [
       { nazwa: "Karta pracy: Liczby i równania", plik: "karty/liczby-i-rownania.pdf", opis: "17 zadań na 2 stronach + odpowiedzi" },
@@ -32,6 +39,7 @@ export const DZIALY = [
     nazwa: "Funkcje i ciągi",
     opis: "Własności funkcji, funkcja liniowa i kwadratowa, ciągi arytmetyczne i geometryczne.",
     tematy: tematy("funkcje"),
+    wzory: WZORY_FUNKCJE,
     generatory: FUNKCJE,
     pdf: [
       { nazwa: "Karta pracy: Funkcje i ciągi", plik: "karty/funkcje-i-ciagi.pdf", opis: "17 zadań na 2 stronach + odpowiedzi" },
@@ -42,7 +50,8 @@ export const DZIALY = [
     nazwa: "Geometria",
     opis: "Trygonometria, planimetria, geometria analityczna i stereometria.",
     tematy: tematy("geometria"),
-    generatory: [],
+    wzory: WZORY_GEOMETRIA,
+    generatory: GEOMETRIA,
     pdf: [
       { nazwa: "Karta pracy: Geometria", plik: "karty/geometria.pdf", opis: "17 zadań na 2 stronach + odpowiedzi" },
     ],
@@ -52,7 +61,8 @@ export const DZIALY = [
     nazwa: "Prawdopodobieństwo i statystyka",
     opis: "Kombinatoryka, rachunek prawdopodobieństwa i statystyka.",
     tematy: tematy("statystyka"),
-    generatory: [],
+    wzory: WZORY_STATYSTYKA,
+    generatory: STATYSTYKA,
     pdf: [
       { nazwa: "Karta pracy: Prawdopodobieństwo i statystyka", plik: "karty/prawdopodobienstwo-i-statystyka.pdf", opis: "17 zadań na 2 stronach + odpowiedzi" },
     ],

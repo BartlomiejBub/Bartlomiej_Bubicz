@@ -512,6 +512,34 @@ input[type="radio"] { width: 18px; height: 18px; margin: 0; accent-color: var(--
 .abcd-litera { font-weight: 700; }
 .chip-count { opacity: 0.7; font-weight: 400; }
 
+/* Wzory i schematy */
+.wzory-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 10px;
+}
+.wzor-karta {
+  min-width: 0;
+  padding: 12px 14px 8px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+}
+.wzor-nazwa { margin: 0 0 2px; color: var(--muted); font-size: 0.85rem; font-weight: 600; }
+.wzor-tex { color: var(--ink); }
+.wzor-tex .wzor { margin: 0 0 4px; }
+.wzor-uwaga { margin: 0 0 4px; color: var(--muted); font-size: 0.85rem; }
+.jak {
+  margin-top: 12px;
+  padding: 14px 18px;
+  border-left: 4px solid var(--accent);
+  border-radius: 10px;
+  background: var(--surface-2);
+}
+.jak h4 { margin: 0 0 6px; color: var(--ink); }
+.jak ol { margin: 0; padding-left: 20px; }
+.jak li + li { margin-top: 4px; }
+
 /* Wzór wyśrodkowany i rysunek w treści zadania */
 .wzor { margin: 4px 0 12px; overflow-x: auto; overflow-y: hidden; }
 .wzor .katex-display { margin: 0; }

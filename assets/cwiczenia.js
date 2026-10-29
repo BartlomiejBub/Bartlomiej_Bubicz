@@ -102,7 +102,51 @@ function pokazDzial(uczen, d, przyciski) {
     widzi("generator") && blokGeneratora(d),
     widzi("karty") && blokKart(d),
   ];
-  widok.replaceChildren(el("p", { class: "section-intro" }, d.opis), ...bloki.filter(Boolean));
+  // Kartę wzorów widzi każdy, kto ma jakikolwiek dostęp do działu.
+  const wzory = d.wzory.length > 0 && blokWzorow(d);
+  widok.replaceChildren(el("p", { class: "section-intro" }, d.opis), ...[wzory, ...bloki].filter(Boolean));
+}
+
+// --- Wzory i schematy: najważniejsze wzory tematu i jak rozwiązywać typowe zadania
+
+function blokWzorow(d) {
+  let temat = d.wzory[0];
+  const tresc = el("div", { class: "wzory-tresc" });
+
+  const pokaz = () => {
+    const karty = el("div", { class: "wzory-grid" },
+      ...temat.wzory.map((w) =>
+        el("div", { class: "wzor-karta" },
+          wstaw(el("p", { class: "wzor-nazwa" }), w.nazwa, { akapity: false }),
+          wstaw(el("div", { class: "wzor-tex" }), `$${w.tex}$`),
+          w.uwaga && wstaw(el("p", { class: "wzor-uwaga" }), w.uwaga, { akapity: false }),
+        ),
+      ),
+    );
+    const jak = temat.jak?.length > 0 && el("div", { class: "jak" },
+      el("h4", {}, "Jak rozwiązywać"),
+      el("ol", {}, ...temat.jak.map((krok) => wstaw(el("li"), krok, { akapity: false }))),
+    );
+    tresc.replaceChildren(...[karty, jak].filter(Boolean));
+  };
+
+  const przyciski = d.wzory.map((t) => {
+    const b = el("button", { class: "chip", type: "button", "aria-pressed": String(t === temat) }, t.nazwa);
+    b.addEventListener("click", () => {
+      temat = t;
+      for (const p of przyciski) p.setAttribute("aria-pressed", String(p === b));
+      pokaz();
+    });
+    return b;
+  });
+
+  pokaz();
+  return el("section", { class: "blok" },
+    el("h3", {}, "Wzory i schematy"),
+    el("p", { class: "blok-intro" }, "Najważniejsze wzory z każdego tematu i krótko, jak rozwiązywać typowe zadania."),
+    el("div", { class: "chips", role: "group", "aria-label": "Temat wzorów" }, ...przyciski),
+    tresc,
+  );
 }
 
 // --- Zadania z matur: zadania zamknięte z arkuszy CKE, posortowane po tematach
