@@ -99,4 +99,18 @@ export default {
       poprawna: 0,
       rysunek: "assets/arkusze/rys/2023-sierpien-32.png" },
   ],
+  otwarte: [
+    { nr: "4",
+      dzial: "dowody",
+      temat: "dowody-algebraiczne",
+      punkty: 2,
+      tresc: "**Wykaż, że dla każdej liczby naturalnej $n \\ge 1$ liczba $3n^3 + 18n^2 + 15n$ jest podzielna przez $6$.**",
+      rozwiazanie: "Przekształcamy równoważnie wyrażenie $3n^3 + 18n^2 + 15n$ do postaci iloczynu\n\n$3n^3 + 18n^2 + 15n = 3n(n^2 + 6n + 5) = 3n(n+1)(n+5)$\n\nPonieważ liczby $n$ oraz $n+1$ są kolejnymi liczbami naturalnymi, to jedna z nich jest liczbą parzystą, zatem iloczyn $n(n+1)$ jest liczbą parzystą, więc iloczyn $3n(n+1)(n+5)$ jest podzielny przez $6$. To należało wykazać." },
+    { nr: "33",
+      dzial: "dowody",
+      temat: "optymalizacja",
+      punkty: 4,
+      tresc: "Zakład stolarski produkuje krzesła, które sprzedaje po $196$ złotych za sztukę. Właściciel, na podstawie analizy rzeczywistych wpływów i wydatków, stwierdził, że:\n\n• przychód $P$ (w złotych) ze sprzedaży $x$ krzeseł można opisać funkcją $P(x) = 196x$\n\n• koszt $K$ (w złotych) produkcji $x$ krzeseł dziennie można opisać funkcją\n\n$K(x) = 4x^2 + 4x + 240$\n\nDziennie w zakładzie można wyprodukować co najwyżej $30$ krzeseł.\n\n**Oblicz, ile krzeseł powinien dziennie sprzedawać zakład, aby zysk ze sprzedaży krzeseł wyprodukowanych przez ten zakład w ciągu jednego dnia był możliwie największy. Oblicz ten największy zysk.**\n\n**Zapisz obliczenia.**\n\nWskazówka: przyjmij, że zysk jest różnicą przychodu i kosztów.",
+      rozwiazanie: "Oznaczmy przez $x$ liczbę krzeseł wyprodukowanych w ciągu jednego dnia.\n\nZysk ze sprzedaży jest różnicą przychodu ze sprzedaży krzeseł oraz kosztu ich wytworzenia:\n\n$Z(x) = 196x - K(x) = 196x - (4x^2 + 4x + 240) = -4x^2 + 192x - 240$\n\nPonieważ dziennie w zakładzie można wyprodukować maksymalnie $30$ krzeseł, więc dziedziną funkcji $Z$ jest zbiór wszystkich liczb całkowitych należących do przedziału $[0, 30]$. Wykresem funkcji $Z(x) = -4x^2 + 192x - 240$, gdzie $x$ jest liczbą całkowitą z przedziału $[0, 30]$, jest zbiór punktów leżących na paraboli o ramionach skierowanych w dół. Przekształcamy wzór funkcji $Z$ do postaci kanonicznej:\n\n$Z(x) = -4x^2 + 192x - 240 = -4(x^2 - 48x) - 240 = -4[(x - 24)^2 - 24^2] - 240 =$\n\n$= -4(x - 24)^2 + 2064$\n\nZ postaci kanonicznej odczytujemy współrzędne wierzchołka paraboli: $W = (24, 2064)$. Ponieważ $24$ należy do dziedziny funkcji $Z$, więc funkcja zysku przyjmuje największą wartość, równą $2\\,064$, dla argumentu $24$." },
+  ],
 };

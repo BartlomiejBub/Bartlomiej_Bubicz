@@ -96,4 +96,23 @@ export default {
       opcje: ["$t = 1{,}5$ s", "$t = 2$ s", "$t = 2{,}5$ s", "$t = 3$ s"],
       poprawna: 0 },
   ],
+  otwarte: [
+    {
+      "nr": "7",
+      "dzial": "dowody",
+      "temat": "dowody-algebraiczne",
+      "punkty": 2,
+      "tresc": "**Wykaż, że dla każdej liczby całkowitej $n$ liczba $7n^2 + 21n$ jest podzielna przez $14$.**",
+      "rozwiazanie": "Liczba $7n^2 + 21n$ jest podzielna przez $7$ jako suma dwóch liczb podzielnych przez $7$.\n\nGdy liczba $n$ jest parzysta, to liczby $7n^2$ oraz $21n$ są parzyste, więc liczba $7n^2 + 21n$ jest parzysta jako suma dwóch liczb parzystych.\n\nGdy liczba $n$ jest nieparzysta, to liczby $7n^2$ oraz $21n$ są nieparzyste jako iloczyny liczb nieparzystych i w konsekwencji liczba $7n^2 + 21n$ jest parzysta jako suma dwóch liczb nieparzystych.\n\nZatem liczba $7n^2 + 21n$ jest podzielna przez $2$ i przez $7$. Liczby $2$ i $7$ są względnie pierwsze, więc liczba $7n^2 + 21n$ jest podzielna przez $2 \\cdot 7 = 14$. To należało wykazać."
+    },
+    {
+      "nr": "21",
+      "dzial": "dowody",
+      "temat": "dowody-geometryczne",
+      "punkty": 2,
+      "tresc": "Dany jest trójkąt $KLM$, w którym $|KM| = a$ oraz $|LM| = b$.\n\nDwusieczna kąta $LMK$ przecina bok $KL$ w punkcie $N$ (zobacz rysunek).\n\n[rysunek]\n\n**Wykaż, że stosunek pola trójkąta $KNM$ do pola trójkąta $NLM$ jest równy $\\frac{a}{b}$.**",
+      "rysunek": "assets/arkusze/rys/2026-maj-o21.png",
+      "rozwiazanie": "Przyjmijmy następujące oznaczenie: $|\\sphericalangle LMK| = 2\\alpha$.\n\nOdcinek $MN$ zawiera się w dwusiecznej kąta $LMK$, więc $|\\sphericalangle NMK| = \\alpha$ oraz $|\\sphericalangle LMN| = \\alpha$.\n\nStosujemy wzór na pole trójkąta w zależności od długości dwóch boków i sinusa kąta między tymi bokami i otrzymujemy:\n\n$P_{KNM} = \\frac{1}{2} \\cdot a \\cdot |MN| \\cdot \\sin\\alpha$\n\n$P_{NLM} = \\frac{1}{2} \\cdot b \\cdot |MN| \\cdot \\sin\\alpha$\n\nZatem:\n\n$\\frac{P_{KNM}}{P_{NLM}} = \\frac{\\frac{1}{2} \\cdot a \\cdot |MN| \\cdot \\sin\\alpha}{\\frac{1}{2} \\cdot b \\cdot |MN| \\cdot \\sin\\alpha} = \\frac{a}{b}$\n\nTo należało wykazać."
+    },
+  ],
 };

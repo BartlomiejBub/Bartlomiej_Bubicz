@@ -167,7 +167,7 @@ function blokZadan(d) {
     licznik.textContent = ocenione.length ? `Dobrze: ${dobrze} z ${ocenione.length}` : "";
   };
   const pokaz = () => {
-    lista.replaceChildren(...temat.zadania.map((z) => kartaABCD(z, (dobrze) => {
+    lista.replaceChildren(...temat.zadania.map((z) => z.rozwiazanie ? kartaOtwarta(z) : kartaABCD(z, (dobrze) => {
       if (!wyniki.has(z)) wyniki.set(z, dobrze);
       odswiezLicznik();
     })));
@@ -188,7 +188,9 @@ function blokZadan(d) {
   pokaz();
   return el("section", { class: "blok" },
     el("div", { class: "blok-head" }, el("h3", {}, "Zadania z matur"), licznik),
-    el("p", { class: "blok-intro" }, "Zadania zamknięte z arkuszy CKE, posortowane według tematów. Zaznacz odpowiedź i kliknij „Sprawdź odpowiedź”."),
+    el("p", { class: "blok-intro" }, d.tematy.some((t) => t.zadania.some((z) => z.rozwiazanie))
+      ? "Zadania otwarte z arkuszy CKE, posortowane według tematów. Rozwiąż zadanie na kartce, a potem porównaj z rozwiązaniem z klucza CKE."
+      : "Zadania zamknięte z arkuszy CKE, posortowane według tematów. Zaznacz odpowiedź i kliknij „Sprawdź odpowiedź”."),
     el("div", { class: "chips", role: "group", "aria-label": "Temat zadań" }, ...przyciski),
     lista,
   );
@@ -237,6 +239,29 @@ function kartaABCD(z, ocenione) {
     el("div", { class: "abcd-opcje", role: "radiogroup", "aria-label": `Odpowiedzi do zadania: ${z.zrodlo}` }, ...opcje.map((o) => o.label)),
     el("div", { class: "gen-actions" }, sprawdzPrzycisk),
     info,
+  );
+}
+
+/** Zadanie otwarte z arkusza; „Pokaż rozwiązanie” odsłania przykładowe rozwiązanie z klucza CKE. */
+function kartaOtwarta(z) {
+  const rozwiazanie = el("div", { class: "rozwiazanie", hidden: "" },
+    el("p", { class: "rozwiazanie-tytul" }, "Przykładowe rozwiązanie (klucz CKE)"),
+    wstaw(el("div", { class: "abcd-tresc" }), z.rozwiazanie),
+  );
+  const przycisk = el("button", { class: "btn btn-primary", type: "button", "aria-expanded": "false" }, "Pokaż rozwiązanie");
+  przycisk.addEventListener("click", () => {
+    const pokaz = rozwiazanie.hidden;
+    rozwiazanie.hidden = !pokaz;
+    przycisk.setAttribute("aria-expanded", String(pokaz));
+    przycisk.textContent = pokaz ? "Ukryj rozwiązanie" : "Pokaż rozwiązanie";
+  });
+
+  return el("li", { class: "abcd-card" },
+    el("p", { class: "abcd-zrodlo" }, z.zrodlo),
+    z.wstep && wstaw(el("div", { class: "abcd-tresc abcd-wstep" }), z.wstep, { rysunek: z.rysunek }),
+    wstaw(el("div", { class: "abcd-tresc" }), z.tresc, { rysunek: z.rysunek }),
+    el("div", { class: "gen-actions" }, przycisk),
+    rozwiazanie,
   );
 }
 

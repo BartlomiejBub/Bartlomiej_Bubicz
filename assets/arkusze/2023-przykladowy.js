@@ -78,4 +78,18 @@ export default {
       poprawna: 1,
       rysunek: "assets/arkusze/rys/2023-przykladowy-30.png" },
   ],
+  otwarte: [
+    { nr: "9",
+      dzial: "dowody",
+      temat: "dowody-algebraiczne",
+      punkty: 2,
+      tresc: "**Wykaż, że dla każdej liczby całkowitej nieparzystej $n$ liczba $n^2 + 2023$ jest podzielna przez $8$.**",
+      rozwiazanie: "Niech $n$ będzie liczbą całkowitą nieparzystą. Wtedy $n = 2k + 1$ przy pewnym $k \\in \\mathbb{Z}$, więc\n\n$n^2 + 2023 = (2k + 1)^2 + 2023 = 4k^2 + 4k + 1 + 2023 = 4k(k + 1) + 2024$.\n\nJeżeli $k$ jest liczbą parzystą, to liczba $4k(k + 1)$ jest podzielna przez $8$ jako iloczyn liczby $4$, liczby parzystej $k$ i liczby całkowitej $k + 1$.\n\nJeżeli $k$ jest liczbą nieparzystą, to liczba $4k(k + 1)$ jest podzielna przez $8$ jako iloczyn liczby $4$, liczby parzystej $k + 1$ i liczby całkowitej $k$.\n\nLiczba $2024$ jest podzielna przez $8$, gdyż $2024 = 8 \\cdot 253$.\n\nZatem liczba $4k(k + 1) + 2024$ jest podzielna przez $8$ jako suma liczb podzielnych przez $8$. To kończy dowód." },
+    { nr: "29",
+      dzial: "dowody",
+      temat: "optymalizacja",
+      punkty: 4,
+      tresc: "Rozważamy wszystkie równoległoboki o obwodzie równym $200$ i kącie ostrym o mierze $30^\\circ$.\n\n**Podaj wzór i dziedzinę funkcji opisującej zależność pola takiego równoległoboku od długości $x$ boku równoległoboku. Oblicz wymiary tego z rozważanych równoległoboków, który ma największe pole, i oblicz to największe pole. Zapisz obliczenia.**",
+      rozwiazanie: "Oznaczmy przez $a$ oraz $b$ długości boków równoległoboku o obwodzie równym $200$ i kącie ostrym o mierze $30^\\circ$.\n\nPonieważ $2a + 2b = 200$ oraz $a > 0$ i $b > 0$, więc $b = 100 - a$ i $a \\in (0, 100)$.\n\nWyznaczamy pole $P$ równoległoboku jako funkcję jednej zmiennej $a$:\n\n$P = a \\cdot b \\cdot \\sin 30^\\circ$\n\n$P(a) = a \\cdot (100 - a) \\cdot \\frac{1}{2}$\n\n$P(a) = -\\frac{1}{2}a^2 + 50a$\n\ndla $a \\in (0, 100)$.\n\nWykresem funkcji $P(a)$ jest fragment paraboli skierowanej ramionami do dołu. Z własności funkcji kwadratowej wynika, że funkcja $P$ może osiągnąć wartość największą w punkcie odpowiadającym wierzchołkowi paraboli, tj. dla argumentu $a = -\\frac{50}{2 \\cdot \\left(-\\frac{1}{2}\\right)} = 50$. Ponieważ $50 \\in (0, 100)$, więc funkcja $P$ osiąga wartość największą dla argumentu $a = 50$. Wtedy $b = 100 - a = 100 - 50 = 50$ oraz $P(50) = 50 \\cdot (100 - 50) \\cdot \\frac{1}{2} = 1250$.\n\nZ rozważanych równoległoboków największe pole – równe $1250$ – ma ten, który jest rombem o boku długości $50$." },
+  ],
 };

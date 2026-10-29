@@ -16,6 +16,11 @@
 //         poprawna: 2,                         // 0 = A … 3 = D, z klucza CKE
 //         rysunek: "assets/arkusze/rys/2024-maj-22.png" },
 //     ],
+//     otwarte: [                               // zadania otwarte (dowody, optymalizacja) – opcjonalnie
+//       { nr: "3", dzial: "dowody", temat: "dowody-algebraiczne", punkty: 2,
+//         tresc: "Wykaż, że …",                // jak wyżej, może mieć wstep, [rysunek] i rysunek
+//         rozwiazanie: "Przekształcamy …" },   // pierwsze przykładowe pełne rozwiązanie z klucza CKE
+//     ],
 //   };
 import { readdir, access } from "node:fs/promises";
 import { czesciTekstu } from "../assets/generatory/wspolne.js";
@@ -78,6 +83,29 @@ for (const plik of pliki) {
       }
     }
   }
+  for (const z of arkusz.otwarte ?? []) {
+    const gdzie = `${plik} otwarte zad. ${z.nr}`;
+    if (!z.nr || numery.has(z.nr)) blad(gdzie, "brak albo powtórzony numer zadania");
+    numery.add(z.nr);
+    if (!TEMATY[z.dzial]?.some((t) => t.id === z.temat)) blad(gdzie, `nieznany dział/temat ${z.dzial}/${z.temat}`);
+    if (!Number.isInteger(z.punkty) || z.punkty < 1 || z.punkty > 6) blad(gdzie, `zła liczba punktów: ${z.punkty}`);
+    for (const pole of Object.keys(z)) if (!["nr", "dzial", "temat", "punkty", "wstep", "tresc", "rysunek", "rozwiazanie"].includes(pole)) blad(gdzie, `nieznane pole ${pole}`);
+    const zRysunkiem = [z.wstep, z.tresc].some((t) => t?.includes("[rysunek]"));
+    if (zRysunkiem !== Boolean(z.rysunek)) blad(gdzie, "znacznik [rysunek] i pole rysunek muszą występować razem");
+    if (z.rysunek) { try { await access(new URL(z.rysunek, repo)); } catch { blad(gdzie, `brak pliku ${z.rysunek}`); } }
+    if (z.rozwiazanie?.includes("[rysunek]")) blad(gdzie, "rysunek tylko w treści, nie w rozwiązaniu");
+    for (const s of [z.wstep, z.tresc, z.rozwiazanie].filter((s, i) => s !== undefined || i > 0)) {
+      if (typeof s !== "string" || !s.trim()) { blad(gdzie, "pusty tekst"); continue; }
+      if ((s.match(/\$/g) ?? []).length % 2) blad(gdzie, `niesparowane $ w: ${s.slice(0, 80)}`);
+      if (/NaN|undefined|\[object/.test(s)) blad(gdzie, `podejrzany zapis: ${s.slice(0, 80)}`);
+      if (katex) {
+        for (const c of czesciTekstu(s).filter((c) => c.tex)) {
+          try { katex.renderToString(c.s, { throwOnError: true }); } catch (e) { blad(gdzie, `KaTeX: ${e.message} w: ${c.s}`); }
+        }
+      }
+    }
+  }
+  if (arkusz.otwarte?.length) console.log(`${plik}: ${arkusz.otwarte.length} zadań otwartych`);
   console.log(`${plik}: ${arkusz.nazwa}, ${arkusz.zadania.length} zadań (${Object.entries(naDzial).map(([d, n]) => `${d} ${n}`).join(", ")})`);
 }
 

@@ -100,4 +100,7 @@ export default {
       opcje: ["$3$", "$4$", "$7$", "$14$"],
       poprawna: 0 },
   ],
+  otwarte: [
+    {"nr": "5", "dzial": "dowody", "temat": "dowody-algebraiczne", "punkty": 3, "tresc": "**Wykaż, że dla każdej liczby całkowitej $a$, która przy dzieleniu przez $5$ daje resztę $1$, i dla każdej liczby całkowitej $b$, która przy dzieleniu przez $5$ daje resztę $4$, liczba $a^2 - b^2$ jest podzielna przez $5$.**", "rozwiazanie": "Ponieważ liczba całkowita $a$ przy dzieleniu przez $5$ daje resztę $1$, natomiast liczba całkowita $b$ przy dzieleniu przez $5$ daje resztę $4$, więc liczby $a$ i $b$ możemy zapisać w postaci: $a = 5k + 1$, gdzie $k \\in \\mathbb{Z}$, oraz $b = 5l + 4$, gdzie $l \\in \\mathbb{Z}$.\n\nWtedy\n\n$a^2 - b^2 = (5k + 1)^2 - (5l + 4)^2 = 25k^2 + 10k + 1 - 25l^2 - 40l - 16 =$\n\n$= 25k^2 + 10k - 25l^2 - 40l - 15 = 5 \\cdot (5k^2 + 2k - 5l^2 - 8l - 3)$\n\nLiczba $5k^2 + 2k - 5l^2 - 8l - 3$ jest całkowita, co oznacza, że liczba $a^2 - b^2$ jest podzielna przez $5$.\n\nTo należało wykazać."},
+  ],
 };

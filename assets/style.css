@@ -9,6 +9,8 @@
   --accent: #1d6f5c;
   --accent-contrast: #ffffff;
   --line: #d3e6df;
+  --wzor-bg: #fff3e4;
+  --wzor-line: #f3c58f;
   --link: #1b5e8a;
   --shadow: 0 1px 2px rgb(22 64 58 / 6%), 0 8px 24px rgb(22 64 58 / 8%);
 
@@ -37,6 +39,8 @@
     --accent: #5ec4a6;
     --accent-contrast: #0b1412;
     --line: #27413b;
+    --wzor-bg: #3a2410;
+    --wzor-line: #9a5b1f;
     --link: #86c1ec;
     --shadow: 0 1px 2px rgb(0 0 0 / 30%), 0 8px 24px rgb(0 0 0 / 35%);
 
@@ -515,20 +519,22 @@ input[type="radio"] { width: 18px; height: 18px; margin: 0; accent-color: var(--
 /* Wzory i schematy */
 .wzory-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-template-columns: 1fr;   /* jedna karta pod drugą – łatwiej czytać po kolei */
   gap: 10px;
 }
 .wzor-karta {
   min-width: 0;
-  padding: 12px 14px 8px;
-  border: 1px solid var(--line);
+  padding: 12px 16px 8px;
+  border: 1px solid var(--wzor-line);
   border-radius: 12px;
-  background: var(--surface);
+  background: var(--wzor-bg);
 }
 .wzor-nazwa { margin: 0 0 2px; color: var(--muted); font-size: 0.85rem; font-weight: 600; }
 .wzor-tex { color: var(--ink); }
 .wzor-tex .wzor { margin: 0 0 4px; }
 .wzor-uwaga { margin: 0 0 4px; color: var(--muted); font-size: 0.85rem; }
+.rozwiazanie { margin-top: 12px; padding: 12px 14px; border-left: 4px solid var(--accent); border-radius: 6px; background: rgba(127, 127, 127, 0.06); }
+.rozwiazanie-tytul { margin: 0 0 6px; color: var(--muted); font-size: 0.85rem; font-weight: 600; }
 .wzor-slownie { margin: 2px 0 6px; color: var(--ink); }
 .wzor-przyklad { margin: 0 0 4px; padding: 6px 8px; border-radius: 6px; background: var(--chip-bg, rgba(127, 127, 127, 0.08)); font-size: 0.9rem; }
 .jak {

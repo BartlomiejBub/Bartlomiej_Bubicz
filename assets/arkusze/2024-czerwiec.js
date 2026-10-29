@@ -93,4 +93,9 @@ export default {
       opcje: ["$9$", "$12$", "$15$", "$30$"],
       poprawna: 1 },
   ],
+    otwarte: [
+      { nr: "5", dzial: "dowody", temat: "dowody-algebraiczne", punkty: 2,
+        tresc: "**Wykaż, że dla każdej liczby naturalnej $n \geq 1$ liczba $5n^3 - 5n$ jest podzielna przez $30$.**",
+        rozwiazanie: "Przekształcamy wyrażenie $5n^3 - 5n$ do postaci iloczynu\n\n$5n^3 - 5n = 5n(n^2 - 1) = 5n(n - 1)(n + 1)$\n\nJeden z czynników w rozkładzie jest równy $5$, więc liczba $5n(n - 1)(n + 1)$ jest podzielna przez $5$. Wśród każdych trzech kolejnych liczb całkowitych $n - 1,\ n,\ n + 1$ co najmniej jedna jest podzielna przez $2$ i dokładnie jedna jest podzielna przez $3$. Zatem liczba $5n(n - 1)(n + 1)$ dzieli się przez $5$ oraz przez $2$ oraz przez $3$. Ponadto liczby $2,\ 3,\ 5$ są parami względnie pierwsze. Zatem liczba $5n^3 - 5n = 5n(n^2 - 1) = 5n(n - 1)(n + 1)$ jest podzielna przez $30$.\n\nTo kończy dowód." },
+    ],
 };

@@ -107,4 +107,22 @@ export default {
       opcje: ["$\\frac{1}{36}$", "$\\frac{2}{36}$", "$\\frac{3}{36}$", "$\\frac{4}{36}$"],
       poprawna: 2 },
   ],
+  otwarte: [
+    {
+      "nr": "5",
+      "dzial": "dowody",
+      "temat": "dowody-algebraiczne",
+      "punkty": 2,
+      "tresc": "**Wykaż, że dla każdej nieparzystej liczby całkowitej $n$ liczba $3n^2 + 6n + 15$ jest podzielna przez $12$.**",
+      "rozwiazanie": "Ponieważ liczba $n$ jest nieparzysta, więc zapiszemy ją w postaci $n = 2l + 1$, gdzie $l \\in \\mathbb{Z}$.\n\nWówczas:\n\n$3n^2 + 6n + 15 = 3(2l+1)^2 + 6(2l+1) + 15 = 3(4l^2 + 4l + 1) + 12l + 6 + 15 =$\n\n$= 12l^2 + 12l + 3 + 12l + 21 = 12l^2 + 24l + 24 = 12 \\cdot (l^2 + 2l + 2)$\n\nPonieważ $l \\in \\mathbb{Z}$, więc również suma $l^2 + 2l + 2$ jest liczbą całkowitą.\n\nZatem iloczyn $12 \\cdot (l^2 + 2l + 2)$ jest podzielny przez $12$. To należało wykazać."
+    },
+    {
+      "nr": "30",
+      "dzial": "dowody",
+      "temat": "optymalizacja",
+      "punkty": 4,
+      "tresc": "Rozważamy wszystkie walce, w których suma średnicy podstawy walca i wysokości walca jest równa $10$.\n\nNiech $P(r)$ oznacza pole powierzchni bocznej takiego walca w zależności od promienia $r$ podstawy walca.\n\n**Wyznacz wzór i dziedzinę funkcji $P$ zmiennej $r$.**\n\n**Oblicz promień $r$ podstawy tego z rozważanych walców, którego pole powierzchni bocznej jest największe. Zapisz obliczenia.**",
+      "rozwiazanie": "Z warunków zadania otrzymujemy:\n\n$2r + H = 10$\n\n$H = 10 - 2r$\n\nPole $P$ powierzchni bocznej walca jest równe:\n\n$P = 2\\pi r H$\n\nwięc wzór funkcji $P$ zmiennej $r$ ma postać:\n\n$P(r) = 2\\pi r \\cdot (10 - 2r)$\n\n$P(r) = -4\\pi r^2 + 20\\pi r$\n\nWyznaczamy dziedzinę funkcji $P$. Z warunków zadania wynika, że:\n\n$r > 0$ oraz $H = 10 - 2r > 0$\n\nZatem:\n\n$r > 0$ oraz $r < 5$\n\nZmienna $r$ może przyjmować wartości z przedziału $(0, 5)$.\n\nPonieważ we wzorze funkcji $P$ współczynnik przy drugiej potędze zmiennej $r$ jest ujemny, więc wykresem funkcji $P$ jest fragment paraboli skierowanej ramionami do dołu.\n\nObliczamy pierwszą współrzędną wierzchołka tej paraboli:\n\n$p = \\frac{-20\\pi}{2 \\cdot (-4\\pi)} = \\frac{5}{2} \\in (0, 5)$\n\nZatem funkcja $P$ przyjmuje wartość największą dla argumentu $\\frac{5}{2}$."
+    },
+  ],
 };

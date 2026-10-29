@@ -96,4 +96,12 @@ export default {
       poprawna: 2,
       rysunek: "assets/arkusze/rys/2023-grudzien-probna-29.png" },
   ],
+    otwarte: [
+      { nr: "5", dzial: "dowody", temat: "dowody-algebraiczne", punkty: 2,
+        tresc: "**Wykaż, że dla każdej liczby całkowitej nieparzystej $n$ liczba $3n^2 + 4n + 1$ jest podzielna przez $4$.**",
+        rozwiazanie: "Ponieważ liczba $n$ jest nieparzysta, więc zapiszemy ją w postaci $n = 2l + 1$, gdzie $l \\in \\mathbb{Z}$. Wówczas badana liczba ma postać\n\n$3n^2 + 4n + 1 = 3(2l + 1)^2 + 4(2l + 1) + 1 = 3(4l^2 + 4l + 1) + 8l + 4 + 1$\n\n$= 12l^2 + 12l + 3 + 8l + 5 = 12l^2 + 20l + 8 = 4(3l^2 + 5l + 2)$\n\nPonieważ $l \\in \\mathbb{Z}$, więc również $3l^2 + 5l + 2$ jest liczbą całkowitą. Zatem iloczyn $4(3l^2 + 5l + 2)$ jest podzielny przez $4$. To należało wykazać." },
+      { nr: "30", dzial: "dowody", temat: "optymalizacja", punkty: 4,
+        tresc: "Zgodnie z założeniem architekta okno na poddaszu ma mieć kształt trapezu równoramiennego, który nie jest równoległobokiem. Dłuższa podstawa trapezu ma mieć długość $12$ dm, a suma długości krótszej podstawy i wysokości tego trapezu ma być równa $18$ dm.\n\n**Oblicz, jaką długość powinna mieć krótsza podstawa tego trapezu, tak aby pole powierzchni okna było największe. Oblicz to pole. Zapisz obliczenia.**",
+        rozwiazanie: "Przyjmujemy oznaczenia:\n\n$a = 12$ – dłuższa podstawa trapezu,\n\n$b$ – krótsza podstawa trapezu,\n\n$h$ – wysokość trapezu.\n\nZ warunków zadania otrzymujemy:\n\n$b + h = 18$\n\nStąd wyznaczamy $h$:\n\n$h = 18 - b$\n\nPole trapezu wyrażamy jako funkcję zmiennej $b$:\n\n$P(b) = \\frac{1}{2}(12 + b)(18 - b) = -\\frac{1}{2}(b + 12)(b - 18)$\n\nWyznaczamy dziedzinę funkcji $P$. Z warunków zadania wynika, że:\n\n$b > 0$ oraz $h = 18 - b > 0$ oraz $b < 12$\n\nZatem\n\n$b > 0$ oraz $b < 18$ oraz $b < 12$\n\nZmienna $b$ może przyjmować wartość z przedziału $(0, 12)$.\n\nWykresem funkcji $P$ jest fragment paraboli skierowanej ramionami do dołu. Obliczamy pierwszą współrzędną wierzchołka paraboli:\n\n$p = \\frac{-12 + 18}{2} = \\frac{6}{2} = 3 \\in (0, 12)$\n\nZatem funkcja $P$ przyjmuje wartość największą dla argumentu $3$.\n\nDla $b = 3$ pole tego trapezu jest równe:\n\n$P(3) = \\frac{1}{2}(12 + 3)(18 - 3) = 112{,}5$\n\nNajwiększe pole równe $112{,}5 \\text{ dm}^2$ ma trapez, którego krótsza podstawa ma $3$ dm." },
+    ],
 };

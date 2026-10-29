@@ -119,4 +119,18 @@ export default {
       poprawna: 0,
       rysunek: "assets/arkusze/rys/2022-wrzesien-probna-24.png" },
   ],
+  otwarte: [
+    { nr: "23",
+      dzial: "dowody",
+      temat: "optymalizacja",
+      punkty: 4,
+      tresc: "Rodzinna firma stolarska produkuje małe wiatraki ogrodowe. Na podstawie analizy rzeczywistych wpływów i wydatków stwierdzono, że:\n\n• przychód $P$ (w złotych) z tygodniowej sprzedaży $x$ wiatraków można opisać funkcją $P(x) = 251x$\n\n• koszt $K$ (w złotych) produkcji $x$ wiatraków w ciągu jednego tygodnia można określić funkcją $K(x) = x^2 + 21x + 170$.\n\nTygodniowo w zakładzie można wyprodukować co najwyżej $150$ wiatraków.\n\n**Oblicz, ile tygodniowo wiatraków należy sprzedać, aby zysk zakładu w ciągu jednego tygodnia był największy. Oblicz ten największy zysk. Zapisz obliczenia.**\n\nWskazówka: przyjmij, że zysk jest różnicą przychodu i kosztów.",
+      rozwiazanie: "Zysk ze sprzedaży jest różnicą przychodu ze sprzedaży wiatraków oraz kosztu ich wytworzenia: $Z(x) = P(x) - K(x) = -x^2 + 230x - 170$.\n\nTygodniowo w zakładzie można wyprodukować maksymalnie $150$ wiatraków, więc dziedziną funkcji $Z$ jest zbiór wszystkich liczb całkowitych z przedziału $[0, 150]$.\n\nPonieważ funkcja $Z(x) = -x^2 + 230x - 170$ jest funkcją kwadratową, największą wartość przyjmuje dla argumentu będącego pierwszą współrzędną wierzchołka paraboli. Korzystając ze wzoru $p = -\\frac{b}{2a}$, obliczamy\n\n$x = -\\frac{230}{2 \\cdot (-1)} = \\frac{-230}{-2} = 115$\n\nLiczba $x = 115$ należy do dziedziny funkcji $Z$. Największy tygodniowy zysk jest osiągany przy produkcji $115$ wiatraków tygodniowo. Obliczymy go, przyjmując $x = 115$:\n\n$Z(115) = -115^2 + 230 \\cdot 115 - 170 = 13\\,055$ zł\n\nPrzy produkcji $115$ wiatraków tygodniowo zysk firmy będzie równy $13\\,055$ zł." },
+    { nr: "26",
+      dzial: "dowody",
+      temat: "dowody-algebraiczne",
+      punkty: 2,
+      tresc: "**Wykaż, że dla każdej liczby naturalnej $n$ liczba $10n^2 + 30n + 8$ przy dzieleniu przez $5$ daje resztę $3$.**",
+      rozwiazanie: "Przekształcamy równoważnie dane wyrażenie\n\n$10n^2 + 30n + 8 = 10n^2 + 30n + 5 + 3 = 5 \\cdot (2n^2 + 6n + 1) + 3$.\n\nPonieważ wartość wyrażenia $2n^2 + 6n + 1$ jest liczbą całkowitą, to $5 \\cdot (2n^2 + 6n + 1)$ jest wielokrotnością liczby $5$, zatem $5 \\cdot (2n^2 + 6n + 1) + 3$ przy dzieleniu przez $5$ daje resztę $3$. To należało wykazać." },
+  ],
 };

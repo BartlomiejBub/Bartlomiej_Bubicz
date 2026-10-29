@@ -107,4 +107,12 @@ export default {
       poprawna: 1,
       rysunek: "assets/arkusze/rys/2024-sierpien-28.png" },
   ],
+  otwarte: [
+    { nr: "3", dzial: "dowody", temat: "dowody-algebraiczne", punkty: 2,
+      tresc: "**Wykaż, że dla każdej liczby naturalnej **$n \\geq 1$** liczba **$(2n + 5)^2 + 3$** jest podzielna przez **$4$**.**",
+      rozwiazanie: "Przekształcamy równoważnie dane wyrażenie\n\n$(2n + 5)^2 + 3 = 4n^2 + 20n + 25 + 3 = 4n^2 + 20n + 28 = 4(n^2 + 5n + 7)$\n\nPonieważ $n$ jest liczbą naturalną, więc $n^2 + 5n + 7$ jest liczbą naturalną.\n\nZatem liczba $(2n + 5)^2 + 3 = 4(n^2 + 5n + 7)$ jest podzielna przez $4$.\n\nTo należało wykazać." },
+    { nr: "30", dzial: "dowody", temat: "optymalizacja", punkty: 3,
+      tresc: "Suma dwóch nieujemnych liczb rzeczywistych $x$ oraz $y$ jest równa $12$.\n\n**Wyznacz **$x$** oraz **$y$**, dla których wartość wyrażenia **$2x^2 + y^2$** jest najmniejsza. Oblicz tę najmniejszą wartość. Zapisz obliczenia.**",
+      rozwiazanie: "Ponieważ $x + y = 12$, więc $y = 12 - x$.\n\nWyrażenie $2x^2 + y^2$ zapisujemy jako funkcję $f$ jednej zmiennej $x$. W tym celu podstawiamy $y = 12 - x$ i otrzymujemy\n\n$f(x) = 2x^2 + (12 - x)^2 = 2x^2 + 144 - 24x + x^2 = 3x^2 - 24x + 144$\n\nWyznaczamy dziedzinę funkcji $f$. Z warunków zadania wynika, że\n\n$x \\geq 0 \\quad\\text{i}\\quad y \\geq 0$\n\nZatem\n\n$x \\geq 0 \\quad\\text{oraz}\\quad 12 - x \\geq 0$\n\n$x \\geq 0 \\quad\\text{oraz}\\quad x \\leq 12$\n\nZmienna $x$ może przyjmować wartości z przedziału $[0, 12]$.\n\nWykresem funkcji $f$ jest fragment paraboli skierowanej ramionami do góry. Obliczamy pierwszą współrzędną wierzchołka paraboli:\n\n$p = -\\frac{-24}{2 \\cdot 3} = 4 \\in [0, 12]$\n\nZatem funkcja $f$ przyjmuje wartość najmniejszą dla argumentu $4$. Wobec tego wartość wyrażenia $2x^2 + y^2$ jest najmniejsza dla $x = 4$ oraz $y = 12 - 4 = 8$.\n\nObliczamy najmniejszą wartość wyrażenia $2x^2 + y^2$:\n\n$f(4) = 3 \\cdot 4^2 - 24 \\cdot 4 + 144 = 96$" },
+  ],
 };
