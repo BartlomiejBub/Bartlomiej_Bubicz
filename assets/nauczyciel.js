@@ -17,6 +17,8 @@ const NAGLOWEK = `// Uczniowie i ich dostęp do ćwiczeń.
 //          działy: liczby (Liczby i równania), funkcje (Funkcje i ciągi), geometria (Geometria),
 //          statystyka (Prawdopodobieństwo i statystyka), dowody (Dowody i optymalizacja)
 //          tekstowe (Zadania z treścią)
+// tematy – opcjonalnie: tylko wybrane tematy działu, np. tematy: { funkcje: ["funkcja-liniowa", "funkcja-kwadratowa"] }
+//          (id tematów w pliku assets/arkusze/tematy.js; bez tego pola uczeń widzi cały dział)
 //
 // Repozytorium jest publiczne – zamiast nazwisk wpisuj samo imię albo pseudonim.
 `;
@@ -26,6 +28,7 @@ const lista = UCZNIOWIE.map((u) => ({
   kod: u.kod,
   wszystko: u.dostep === "wszystko",
   dzialy: Object.fromEntries(DZIALY.map((d) => [d.id, new Set(u.dostep === "wszystko" ? [] : u.dostep?.[d.id] ?? [])])),
+  tematy: Object.fromEntries(Object.entries(u.tematy ?? {}).map(([d, t]) => [d, new Set(t)])),   // brak działu = cały dział
   nowyKod: null,
 }));
 let zmiany = false;
@@ -48,6 +51,10 @@ function tekstPliku() {
         .filter(([, r]) => r.length)
         .map(([d, r]) => `${d}: [${r.join(", ")}]`);
       dostep = czesci.length ? `{ ${czesci.join(", ")} }` : "{}";
+      const tematy = DZIALY
+        .filter((d) => u.tematy[d.id] && u.dzialy[d.id].size)
+        .map((d) => `${d.id}: [${d.tematy.filter((t) => u.tematy[d.id].has(t.id)).map((t) => `"${t.id}"`).join(", ")}]`);
+      if (tematy.length) dostep += `, tematy: { ${tematy.join(", ")} }`;
     }
     return `  { imie: ${JSON.stringify(u.imie.trim() || "Uczeń")}, kod: "${u.kod}", dostep: ${dostep} },`;
   });
@@ -86,9 +93,11 @@ function wiersz(u) {
       cb.checked = u.wszystko || u.dzialy[d.id].has(r.id);
       cb.disabled = u.wszystko;
       cb.addEventListener("change", () => {
+        const mial = u.dzialy[d.id].size > 0;
         if (cb.checked) u.dzialy[d.id].add(r.id);
         else u.dzialy[d.id].delete(r.id);
         zmieniono();
+        if (mial !== u.dzialy[d.id].size > 0) rysuj();
       });
       return el("td", {}, cb);
     }),
@@ -111,11 +120,38 @@ function wiersz(u) {
   });
 
   return el("tr", {},
-    el("th", { scope: "row" }, imie, u.nowyKod && el("small", { class: "new-code" }, `Kod: ${u.nowyKod}`)),
+    el("th", { scope: "row" }, imie, u.nowyKod && el("small", { class: "new-code" }, `Kod: ${u.nowyKod}`), !u.wszystko && edytorTematow(u)),
     ...pola,
     el("td", {}, wszystko),
     el("td", {}, usun),
   );
+}
+
+/** Ograniczenie do wybranych tematów w działach, do których uczeń ma dostęp (zaznaczone wszystkie = cały dział). */
+function edytorTematow(u) {
+  const dzialy = DZIALY.filter((d) => u.dzialy[d.id].size);
+  if (!dzialy.length) return null;
+  const opis = () => {
+    const ograniczone = dzialy.filter((d) => u.tematy[d.id]);
+    return ograniczone.length ? `Tematy: wybrane (${ograniczone.map((d) => d.nazwa).join(", ")})` : "Tematy: wszystkie";
+  };
+  const podsumowanie = el("summary", {}, opis());
+  const grupy = dzialy.map((d) => el("fieldset", { class: "tematy-dzial" },
+    el("legend", {}, d.nazwa),
+    ...d.tematy.map((t) => {
+      const cb = el("input", { type: "checkbox" });
+      cb.checked = !u.tematy[d.id] || u.tematy[d.id].has(t.id);
+      cb.addEventListener("change", () => {
+        const wybrane = new Set(d.tematy.filter((x) => (x.id === t.id ? cb.checked : !u.tematy[d.id] || u.tematy[d.id].has(x.id))).map((x) => x.id));
+        if (wybrane.size === d.tematy.length) delete u.tematy[d.id];
+        else u.tematy[d.id] = wybrane;
+        podsumowanie.textContent = opis();
+        zmieniono();
+      });
+      return el("label", { class: "tematy-opcja" }, cb, ` ${t.nazwa}`);
+    }),
+  ));
+  return el("details", { class: "tematy-edytor" }, podsumowanie, ...grupy);
 }
 
 function rysuj() {
@@ -157,6 +193,7 @@ document.getElementById("nowy-uczen").addEventListener("submit", async (e) => {
     kod: skrot,
     wszystko: false,
     dzialy: Object.fromEntries(DZIALY.map((d) => [d.id, new Set()])),
+    tematy: {},
     nowyKod: kod.toUpperCase(),
   });
   ok.textContent = `Dodano: ${imie}. Zapisz kod ${kod.toUpperCase()} i przekaż go uczniowi, a w tabeli zaznacz, do czego ma dostęp.`;

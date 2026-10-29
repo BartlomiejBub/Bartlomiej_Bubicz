@@ -904,12 +904,12 @@ function ileWyrazow(r) {
 // --- Lista generatorów
 
 export const GENERATORY = [
-  { id: "funkcja-liniowa", nazwa: "Funkcja liniowa", opis: "Miejsce zerowe i parametr we wzorze funkcji liniowej.", generuj: funkcjaLiniowa },
-  { id: "prosta-przez-punkty", nazwa: "Wzór funkcji liniowej", opis: "Wzór funkcji liniowej z dwóch punktów albo z prostej równoległej lub prostopadłej.", generuj: prostaPrzezPunkty },
-  { id: "postac-kanoniczna", nazwa: "Postać kanoniczna", opis: "Wzór funkcji kwadratowej w postaci kanonicznej z wierzchołka, osi symetrii lub miejsc zerowych.", generuj: postacKanoniczna },
-  { id: "wierzcholek", nazwa: "Wierzchołek paraboli", opis: "Wierzchołek, oś symetrii oraz największa i najmniejsza wartość funkcji kwadratowej.", generuj: wierzcholek },
-  { id: "miejsca-zerowe", nazwa: "Miejsca zerowe funkcji kwadratowej", opis: "Miejsca zerowe z wyróżnika, z postaci kanonicznej i z symetrii paraboli.", generuj: miejscaZerowe },
-  { id: "ciag-arytmetyczny", nazwa: "Ciąg arytmetyczny", opis: "Różnica, wyrazy i suma ciągu arytmetycznego, ciąg z parametrem.", generuj: ciagArytmetyczny },
-  { id: "ciag-geometryczny", nazwa: "Ciąg geometryczny", opis: "Iloraz, wyrazy, suma i iloczyny wyrazów ciągu geometrycznego.", generuj: ciagGeometryczny },
-  { id: "wzor-ogolny", nazwa: "Wzór ogólny ciągu", opis: "Wyrazy ciągu ze wzoru, numer wyrazu o danej wartości, liczba wyrazów ujemnych.", generuj: wzorOgolny },
+  { id: "funkcja-liniowa", temat: "funkcja-liniowa", nazwa: "Funkcja liniowa", opis: "Miejsce zerowe i parametr we wzorze funkcji liniowej.", generuj: funkcjaLiniowa },
+  { id: "prosta-przez-punkty", temat: "funkcja-liniowa", nazwa: "Wzór funkcji liniowej", opis: "Wzór funkcji liniowej z dwóch punktów albo z prostej równoległej lub prostopadłej.", generuj: prostaPrzezPunkty },
+  { id: "postac-kanoniczna", temat: "funkcja-kwadratowa", nazwa: "Postać kanoniczna", opis: "Wzór funkcji kwadratowej w postaci kanonicznej z wierzchołka, osi symetrii lub miejsc zerowych.", generuj: postacKanoniczna },
+  { id: "wierzcholek", temat: "funkcja-kwadratowa", nazwa: "Wierzchołek paraboli", opis: "Wierzchołek, oś symetrii oraz największa i najmniejsza wartość funkcji kwadratowej.", generuj: wierzcholek },
+  { id: "miejsca-zerowe", temat: "funkcja-kwadratowa", nazwa: "Miejsca zerowe funkcji kwadratowej", opis: "Miejsca zerowe z wyróżnika, z postaci kanonicznej i z symetrii paraboli.", generuj: miejscaZerowe },
+  { id: "ciag-arytmetyczny", temat: "ciag-arytmetyczny", nazwa: "Ciąg arytmetyczny", opis: "Różnica, wyrazy i suma ciągu arytmetycznego, ciąg z parametrem.", generuj: ciagArytmetyczny },
+  { id: "ciag-geometryczny", temat: "ciag-geometryczny", nazwa: "Ciąg geometryczny", opis: "Iloraz, wyrazy, suma i iloczyny wyrazów ciągu geometrycznego.", generuj: ciagGeometryczny },
+  { id: "wzor-ogolny", temat: "wzor-ogolny", nazwa: "Wzór ogólny ciągu", opis: "Wyrazy ciągu ze wzoru, numer wyrazu o danej wartości, liczba wyrazów ujemnych.", generuj: wzorOgolny },
 ];

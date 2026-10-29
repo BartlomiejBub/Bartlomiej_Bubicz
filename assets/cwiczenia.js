@@ -1,7 +1,7 @@
 // Ćwiczenia dla zalogowanych uczniów: zadania z matur, generator zadań i karty pracy.
 import { el } from "./dom.js";
-import { zaloguj, zalogowany, wyloguj, ma } from "./dostep.js";
-import { DZIALY, KARTY, maMaterialy } from "./dzialy.js";
+import { zaloguj, zalogowany, wyloguj, ma, tematyUcznia } from "./dostep.js";
+import { DZIALY, KARTY, maMaterialy, przytnij } from "./dzialy.js";
 import { losownik, sprawdz } from "./generatory/wspolne.js";
 import { wstaw } from "./matematyka.js";
 
@@ -70,7 +70,9 @@ function pokazUcznia(uczen) {
   panel.querySelector("[data-imie]").textContent = uczen.imie;
 
   const widzi = (d, r) => ma(uczen, d.id, r) && maMaterialy(d, r);
-  const dostepne = DZIALY.filter((d) => ["zadania", "generator", "karty"].some((r) => widzi(d, r)));
+  const dostepne = DZIALY
+    .map((d) => przytnij(d, tematyUcznia(uczen, d.id)))
+    .filter((d) => ["zadania", "generator", "karty"].some((r) => widzi(d, r)));
   if (!dostepne.length) {
     wyborDzialu.hidden = true;
     widok.replaceChildren(

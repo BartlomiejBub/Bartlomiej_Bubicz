@@ -767,3 +767,10 @@ input.zle { border-color: var(--zle); background: var(--zle-bg); }
   .sheet-space { height: 28mm; border: 0; }
   .sheet-answers { break-before: page; margin-top: 0; }
 }
+
+/* nauczyciel.html: ograniczenie do wybranych tematów */
+.tematy-edytor { margin-top: 6px; font-weight: 400; font-size: 0.85rem; }
+.tematy-edytor summary { cursor: pointer; color: var(--muted); }
+.tematy-dzial { margin: 6px 0 0; padding: 4px 8px 6px; border: 1px solid var(--line); border-radius: 6px; }
+.tematy-dzial legend { padding: 0 4px; font-weight: 600; }
+.tematy-opcja { display: block; white-space: nowrap; }

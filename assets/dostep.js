@@ -51,6 +51,12 @@ export function wyloguj() {
   zapisz(null);
 }
 
+/** Tematy działu, które uczeń widzi: lista id tematów albo null, gdy widzi cały dział. */
+export function tematyUcznia(uczen, dzial) {
+  if (!uczen || uczen.dostep === "wszystko") return null;
+  return uczen.tematy?.[dzial] ?? null;
+}
+
 /** Czy uczeń ma dostęp do rodzaju materiałów ("zadania", "generator", "karty") w dziale. */
 export function ma(uczen, dzial, rodzaj) {
   if (!uczen) return false;

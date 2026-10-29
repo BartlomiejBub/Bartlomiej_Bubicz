@@ -112,6 +112,19 @@ export function maMaterialy(d, rodzaj) {
  *  Gotowe karty w PDF (pole pdf działu) robi skrypt tools/zrob-karty.mjs. */
 export const KARTY = { ile: 3, zadanNaGenerator: 2 };
 
+/** Dział ograniczony do wybranych tematów (null = cały dział): zadania, wzory i generatory tych tematów.
+ *  Karta pracy w PDF obejmuje cały dział, więc przy ograniczeniu zostają tylko karty z generatora. */
+export function przytnij(d, tematy) {
+  if (!tematy) return d;
+  return {
+    ...d,
+    tematy: d.tematy.filter((t) => tematy.includes(t.id)),
+    wzory: d.wzory.filter((t) => tematy.includes(t.id)),
+    generatory: d.generatory.filter((g) => tematy.includes(g.temat)),
+    pdf: [],
+  };
+}
+
 export const dzial = (id) => DZIALY.find((d) => d.id === id) ?? null;
 
 /** Zadania karty pracy – te same dla tego samego klucza (np. "karta/2" albo "losowa/123456"). */
