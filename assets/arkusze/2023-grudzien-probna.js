@@ -103,5 +103,13 @@ export default {
       { nr: "30", dzial: "dowody", temat: "optymalizacja", punkty: 4,
         tresc: "Zgodnie z założeniem architekta okno na poddaszu ma mieć kształt trapezu równoramiennego, który nie jest równoległobokiem. Dłuższa podstawa trapezu ma mieć długość $12$ dm, a suma długości krótszej podstawy i wysokości tego trapezu ma być równa $18$ dm.\n\n**Oblicz, jaką długość powinna mieć krótsza podstawa tego trapezu, tak aby pole powierzchni okna było największe. Oblicz to pole. Zapisz obliczenia.**",
         rozwiazanie: "Przyjmujemy oznaczenia:\n\n$a = 12$ – dłuższa podstawa trapezu,\n\n$b$ – krótsza podstawa trapezu,\n\n$h$ – wysokość trapezu.\n\nZ warunków zadania otrzymujemy:\n\n$b + h = 18$\n\nStąd wyznaczamy $h$:\n\n$h = 18 - b$\n\nPole trapezu wyrażamy jako funkcję zmiennej $b$:\n\n$P(b) = \\frac{1}{2}(12 + b)(18 - b) = -\\frac{1}{2}(b + 12)(b - 18)$\n\nWyznaczamy dziedzinę funkcji $P$. Z warunków zadania wynika, że:\n\n$b > 0$ oraz $h = 18 - b > 0$ oraz $b < 12$\n\nZatem\n\n$b > 0$ oraz $b < 18$ oraz $b < 12$\n\nZmienna $b$ może przyjmować wartość z przedziału $(0, 12)$.\n\nWykresem funkcji $P$ jest fragment paraboli skierowanej ramionami do dołu. Obliczamy pierwszą współrzędną wierzchołka paraboli:\n\n$p = \\frac{-12 + 18}{2} = \\frac{6}{2} = 3 \\in (0, 12)$\n\nZatem funkcja $P$ przyjmuje wartość największą dla argumentu $3$.\n\nDla $b = 3$ pole tego trapezu jest równe:\n\n$P(3) = \\frac{1}{2}(12 + 3)(18 - 3) = 112{,}5$\n\nNajwiększe pole równe $112{,}5 \\text{ dm}^2$ ma trapez, którego krótsza podstawa ma $3$ dm." },
+      {
+        "nr": "9",
+        "dzial": "liczby",
+        "temat": "rownania",
+        "punkty": 3,
+        "tresc": "**Rozwiąż równanie**\n\n$2x^3 + 3x^2 = 10x + 15$\n\n**Zapisz obliczenia.**",
+        "rozwiazanie": "Przekształcamy równanie równoważnie, stosując metodę grupowania wyrazów:\n\n$2x^3 + 3x^2 = 10x + 15$\n\n$2x^3 + 3x^2 - 10x - 15 = 0$\n\n$x^2(2x + 3) - 5(2x + 3) = 0$\n\n$(2x + 3)(x^2 - 5) = 0$\n\n$(2x + 3)(x - \\sqrt{5})(x + \\sqrt{5}) = 0$\n\n$2x + 3 = 0$ lub $x - \\sqrt{5} = 0$ lub $x + \\sqrt{5} = 0$\n\n$x = -\\frac{3}{2}$ lub $x = \\sqrt{5}$ lub $x = -\\sqrt{5}$\n\nRozwiązaniami równania są liczby: $(-\\sqrt{5})$, $\\left(-\\frac{3}{2}\\right)$, $\\sqrt{5}$."
+      },
     ],
 };

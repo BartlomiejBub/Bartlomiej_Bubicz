@@ -113,5 +113,13 @@ export default {
       "tresc": "Dany jest trapez równoramienny $ABCD$ o podstawach $AB$ i $CD$, w którym $|AB| = 2 \\cdot |CD|$. Przekątna $AC$ tego trapezu jest zawarta w dwusiecznej kąta $DAB$.\n\n**Wykaż, że w tym trapezie miara kąta $DAB$ jest równa $60^\\circ$.**",
       "rozwiazanie": "Przyjmijmy następujące oznaczenia:\n\n$|CD| = a$ (zatem $|AB| = 2a$)\n\n$|\\sphericalangle DAB| = |\\sphericalangle ABC| = 2\\alpha$.\n\nPonieważ przekątna $AC$ zawiera się w dwusiecznej kąta $DAB$, to $|\\sphericalangle DAC| = |\\sphericalangle CAB| = \\alpha$.\n\nKąty $CAB$ i $ACD$ są naprzemianległe oraz $AB \\parallel CD$, zatem $|\\sphericalangle ACD| = \\alpha$.\n\nOznacza to, że trójkąt $ACD$ jest równoramienny oraz $|AD| = |CD| = a$. Zatem również $|BC| = a$.\n\nNiech $E$ będzie spodkiem wysokości trapezu $ABCD$ poprowadzonej z wierzchołka $C$. Z własności trapezu równoramiennego obliczamy długość odcinka $EB$:\n\n$|EB| = \\frac{|AB| - |CD|}{2} = \\frac{2a - a}{2} = \\frac{1}{2}a$\n\nW trójkącie prostokątnym $EBC$ mamy:\n\n$\\cos 2\\alpha = \\frac{|EB|}{|BC|} = \\frac{\\frac{1}{2}a}{a} = \\frac{1}{2}$\n\nZatem kąt ostry $DAB$ ma miarę równą $60^\\circ$. To należało wykazać."
     },
+    {
+      "nr": "8",
+      "dzial": "liczby",
+      "temat": "nierownosci",
+      "punkty": 2,
+      "tresc": "**Rozwiąż nierówność**\n\n$(x - 3)(x + 5) > 9$\n\n**Zapisz obliczenia.**",
+      "rozwiazanie": "Zapisujemy nierówność w postaci $x^2 + 2x - 24 > 0$ i obliczamy miejsca zerowe funkcji $y = x^2 + 2x - 24$.\n\nObliczamy wyróżnik trójmianu $x^2 + 2x - 24$:\n\n$\\Delta = 2^2 - 4 \\cdot 1 \\cdot (-24) = 100$\n\nStąd\n\n$x_1 = \\frac{-2 - \\sqrt{100}}{2 \\cdot 1} = -6$\n\n$x_2 = \\frac{-2 + \\sqrt{100}}{2 \\cdot 1} = 4$\n\nSzkicujemy wykres funkcji $y = x^2 + 2x - 24$.\n\nOdczytujemy argumenty, dla których funkcja przyjmuje wartości dodatnie.\n\nZbiorem rozwiązań nierówności jest $(-\\infty, -6) \\cup (4, +\\infty)$."
+    },
   ],
 };

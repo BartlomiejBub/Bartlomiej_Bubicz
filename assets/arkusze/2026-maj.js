@@ -114,5 +114,22 @@ export default {
       "rysunek": "assets/arkusze/rys/2026-maj-o21.png",
       "rozwiazanie": "Przyjmijmy następujące oznaczenie: $|\\sphericalangle LMK| = 2\\alpha$.\n\nOdcinek $MN$ zawiera się w dwusiecznej kąta $LMK$, więc $|\\sphericalangle NMK| = \\alpha$ oraz $|\\sphericalangle LMN| = \\alpha$.\n\nStosujemy wzór na pole trójkąta w zależności od długości dwóch boków i sinusa kąta między tymi bokami i otrzymujemy:\n\n$P_{KNM} = \\frac{1}{2} \\cdot a \\cdot |MN| \\cdot \\sin\\alpha$\n\n$P_{NLM} = \\frac{1}{2} \\cdot b \\cdot |MN| \\cdot \\sin\\alpha$\n\nZatem:\n\n$\\frac{P_{KNM}}{P_{NLM}} = \\frac{\\frac{1}{2} \\cdot a \\cdot |MN| \\cdot \\sin\\alpha}{\\frac{1}{2} \\cdot b \\cdot |MN| \\cdot \\sin\\alpha} = \\frac{a}{b}$\n\nTo należało wykazać."
     },
+    {
+      "nr": "10",
+      "dzial": "liczby",
+      "temat": "nierownosci",
+      "punkty": 2,
+      "tresc": "**Rozwiąż nierówność**\n\n$3x^2 + 4x \\ge 6x + 8$\n\n**Zapisz obliczenia.**",
+      "rozwiazanie": "Zapisujemy nierówność w postaci $3x^2 - 2x - 8 \\ge 0$ i obliczamy miejsca zerowe funkcji kwadratowej $y = 3x^2 - 2x - 8$.\n\nObliczamy wyróżnik trójmianu $3x^2 - 2x - 8$:\n\n$\\Delta = (-2)^2 - 4 \\cdot 3 \\cdot (-8) = 100$\n\nStąd:\n\n$x_1 = \\frac{-(-2) - \\sqrt{100}}{2 \\cdot 3} = -\\frac{4}{3}$\n\n$x_2 = \\frac{-(-2) + \\sqrt{100}}{2 \\cdot 3} = 2$\n\nSzkicujemy wykres funkcji kwadratowej $y = 3x^2 - 2x - 8$.\n\nOdczytujemy argumenty, dla których funkcja przyjmuje wartości nieujemne.\n\nZbiorem rozwiązań nierówności jest $\\left(-\\infty, -\\frac{4}{3}\\right] \\cup [2, +\\infty)$."
+    },
+    {
+      "nr": "11",
+      "dzial": "liczby",
+      "temat": "rownania",
+      "punkty": 2,
+      "tresc": "Na przedstawienie w pewnym teatrze sprzedawano bilety według poniższego cennika.\n\n[rysunek]\n\nNa to przedstawienie sprzedano łącznie $200$ biletów.\n\nPo opłaceniu kosztów związanych z organizacją przedstawienia w wysokości $25\\%$ wpływów ze sprzedaży biletów organizatorom pozostało $4665$ zł.\n\n**Oblicz liczbę biletów ulgowych sprzedanych na to przedstawienie. Zapisz obliczenia.**",
+      "rysunek": "assets/arkusze/rys/2026-maj-o11.png",
+      "rozwiazanie": "Oznaczmy:\n\n$x$ – liczba biletów normalnych sprzedanych na przedstawienie,\n\n$y$ – liczba biletów ulgowych sprzedanych na przedstawienie.\n\nPo uwzględnieniu warunków zadania otrzymujemy:\n\n$x + y = 200$ oraz $0{,}75 \\cdot (35x + 25y) = 4665$\n\nZ pierwszego z tych równań wyznaczamy $x = 200 - y$ i podstawiamy w miejsce $x$ do drugiego z równań, w wyniku czego otrzymujemy:\n\n$0{,}75 \\cdot [35(200 - y) + 25y] = 4665 \\quad / : 0{,}75$\n\n$35(200 - y) + 25y = 6220$\n\n$7000 - 35y + 25y = 6220$\n\n$-10y = -780$\n\n$y = 78$\n\nNa przedstawienie sprzedano $78$ biletów ulgowych."
+    },
   ],
 };

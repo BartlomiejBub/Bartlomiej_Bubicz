@@ -111,5 +111,21 @@ export default {
       tresc: "Działka ma kształt trapezu. Podstawy $AB$ i $CD$ tego trapezu mają długości $|AB| = 400$ m oraz $|CD| = 100$ m. Wysokość trapezu jest równa $75$ m, a jego kąty $DAB$ i $ABC$ są ostre.\n\nZ działki postanowiono wydzielić plac w kształcie prostokąta z przeznaczeniem na parking. Dwa z wierzchołków tego prostokąta mają leżeć na podstawie $AB$ tego trapezu, a dwa pozostałe – $E$ oraz $F$ – na ramionach $AD$ i $BC$ trapezu (zobacz rysunek).\n\n[rysunek]\n\n**Wyznacz długości boków prostokąta, dla których powierzchnia wydzielonego placu będzie największa. Wyznacz tę największą powierzchnię.**\n\n**Zapisz obliczenia.**\n\nWskazówka: Aby powiązać ze sobą wymiary prostokąta, skorzystaj z tego, że pole trapezu $ABCD$ jest sumą pól trapezów $ABFE$ oraz $EFCD$:\n\n$P_{ABCD} = P_{ABFE} + P_{EFCD}$",
       rysunek: "assets/arkusze/rys/2023-czerwiec-o33.png",
       rozwiazanie: "Przyjmijmy oznaczenia jak na rysunku.\n\nZ porównania sumy pól trapezów $ABFE$ i $EFCD$ otrzymujemy\n\n$P_{ABCD} = P_{ABFE} + P_{EFCD}$\n\n$\\frac{100 + 400}{2} \\cdot 75 = \\frac{400 + y}{2} \\cdot x + \\frac{100 + y}{2} \\cdot (75 - x)$\n\nStąd otrzymujemy\n\n$y = 400 - 4x$\n\nZatem pole $P$ placu wyraża się wzorem $P(x) = x \\cdot (400 - 4x)$ dla $x \\in (0, 75]$. Korzystamy z własności funkcji kwadratowej i obliczamy wartość $x$, dla którego wyrażenie $x(400 - 4x)$ osiąga wartość największą:\n\n$p = \\frac{x_1 + x_2}{2} = \\frac{0 + 100}{2} = 50$\n\nPonieważ $50 \\in (0, 75]$, więc funkcja $P$ osiąga wartość największą dla argumentu $x = 50$. Wtedy $y = 200$. Zatem plac o największej powierzchni ma wymiary $50$ m $\\times$ $200$ m. Powierzchnia placu o największej powierzchni jest równa $50\\text{ m} \\cdot 200\\text{ m} = 10\\,000\\text{ m}^2$." },
+    {
+      "nr": "8",
+      "dzial": "liczby",
+      "temat": "nierownosci",
+      "punkty": 2,
+      "tresc": "**Rozwiąż nierówność**\n\n$x(2x - 1) < 2x$\n\n**Zapisz obliczenia.**",
+      "rozwiazanie": "Przekształcamy nierówność równoważnie:\n\n$x(2x - 1) < 2x$\n\n$2x^2 - x - 2x < 0$\n\n$2x^2 - 3x < 0$\n\n$2x\\left(x - \\frac{3}{2}\\right) < 0$\n\nOdczytujemy i zapisujemy pierwiastki trójmianu $2x\\left(x - \\frac{3}{2}\\right)$: $x = 0$ lub $x = \\frac{3}{2}$.\n\nPodajemy zbiór rozwiązań nierówności: $\\left(0, \\frac{3}{2}\\right)$ lub $x \\in \\left(0, \\frac{3}{2}\\right)$."
+    },
+    {
+      "nr": "9",
+      "dzial": "liczby",
+      "temat": "rownania",
+      "punkty": 3,
+      "tresc": "**Rozwiąż równanie**\n\n$x^3 + 4x^2 - 9x - 36 = 0$\n\n**Zapisz obliczenia.**",
+      "rozwiazanie": "Przekształcamy równanie równoważnie i stosujemy metodę grupowania wyrazów:\n\n$x^3 + 4x^2 - 9x - 36 = 0$\n\n$x^2(x + 4) - 9(x + 4) = 0$\n\n$(x + 4)(x^2 - 9) = 0$\n\n$(x + 4)(x + 3)(x - 3) = 0$\n\n$x + 4 = 0$ lub $x + 3 = 0$ lub $x - 3 = 0$\n\n$x = -4$ lub $x = -3$ lub $x = 3$\n\nRozwiązaniami równania są liczby: $(-4)$, $(-3)$, $3$."
+    },
   ],
 };

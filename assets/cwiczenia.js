@@ -190,12 +190,22 @@ function blokZadan(d) {
   pokaz();
   return el("section", { class: "blok" },
     el("div", { class: "blok-head" }, el("h3", {}, "Zadania z matur"), licznik),
-    el("p", { class: "blok-intro" }, d.tematy.some((t) => t.zadania.some((z) => z.rozwiazanie))
-      ? "Zadania otwarte z arkuszy CKE, posortowane według tematów. Rozwiąż zadanie na kartce, a potem porównaj z rozwiązaniem z klucza CKE."
-      : "Zadania zamknięte z arkuszy CKE, posortowane według tematów. Zaznacz odpowiedź i kliknij „Sprawdź odpowiedź”."),
+    el("p", { class: "blok-intro" }, opisZadan(d)),
     el("div", { class: "chips", role: "group", "aria-label": "Temat zadań" }, ...przyciski),
     lista,
   );
+}
+
+function opisZadan(d) {
+  const zadania = d.tematy.flatMap((t) => t.zadania);
+  const otwarte = zadania.some((z) => z.rozwiazanie);
+  const zamkniete = zadania.some((z) => !z.rozwiazanie);
+  if (otwarte && zamkniete) {
+    return "Zadania z arkuszy CKE, posortowane według tematów: najpierw zamknięte (zaznacz odpowiedź i kliknij „Sprawdź odpowiedź”), potem otwarte (rozwiąż na kartce i porównaj z rozwiązaniem z klucza CKE).";
+  }
+  return otwarte
+    ? "Zadania otwarte z arkuszy CKE, posortowane według tematów. Rozwiąż zadanie na kartce, a potem porównaj z rozwiązaniem z klucza CKE."
+    : "Zadania zamknięte z arkuszy CKE, posortowane według tematów. Zaznacz odpowiedź i kliknij „Sprawdź odpowiedź”.";
 }
 
 /** Zadanie ABCD jak w arkuszu; „Sprawdź odpowiedź” pokazuje poprawną literę z klucza CKE. */

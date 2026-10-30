@@ -120,5 +120,13 @@ export default {
       wstep: "Właściciel pewnej apteki przeanalizował dane dotyczące liczby obsługiwanych klientów z $30$ kolejnych dni. Przyjmijmy, że liczbę $L$ obsługiwanych klientów $n$-tego dnia opisuje funkcja\n\n$L(n) = -n^2 + 22n + 279$\n\ngdzie $n$ jest liczbą naturalną spełniającą warunki $n \\ge 1$ i $n \\le 30$.",
       tresc: "**Którego dnia analizowanego okresu w aptece obsłużono największą liczbę klientów? Oblicz liczbę klientów obsłużonych tego dnia. Zapisz obliczenia.**",
       rozwiazanie: "Wykresem funkcji $L(n) = -n^2 + 22n + 279$, gdzie $n$ jest liczbą naturalną z przedziału $[1, 30]$, jest zbiór punktów leżących na paraboli o ramionach skierowanych w dół. Przekształcamy wzór funkcji $L$ do postaci kanonicznej:\n\n$L(n) = -n^2 + 22n + 279 = -[n^2 - 22n] + 279 = -[(n - 11)^2 - 11^2] + 279 =$\n\n$= -(n - 11)^2 + 121 + 279 = -(n - 11)^2 + 400$\n\nZ postaci kanonicznej odczytujemy współrzędne wierzchołka paraboli: $W = (11, 400)$.\n\nInterpretujemy otrzymane wartości: największą liczbę klientów obsłużono jedenastego dnia badanego okresu i było to $400$ osób." },
+    {
+      "nr": "9",
+      "dzial": "liczby",
+      "temat": "rownania",
+      "punkty": 3,
+      "tresc": "**Rozwiąż równanie**\n\n$3x^3 - 2x^2 - 12x + 8 = 0$\n\n**Zapisz obliczenia.**",
+      "rozwiazanie": "Przekształcamy równanie równoważnie i stosujemy metodę grupowania wyrazów:\n\n$3x^3 - 2x^2 - 12x + 8 = 0$\n\n$x^2(3x - 2) - 4(3x - 2) = 0$\n\n$(3x - 2)(x^2 - 4) = 0$\n\n$(3x - 2)(x - 2)(x + 2) = 0$\n\n$3x - 2 = 0$ lub $x - 2 = 0$ lub $x + 2 = 0$\n\n$x = \\frac{2}{3}$ lub $x = 2$ lub $x = -2$\n\nRozwiązaniami równania są liczby: $(-2)$, $\\frac{2}{3}$, $2$."
+    },
   ],
 };

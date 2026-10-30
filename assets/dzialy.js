@@ -17,11 +17,12 @@ import { WZORY as WZORY_TEKSTOWE } from "./wzory/tekstowe.js";
 
 /** Zadania z arkuszy w danym temacie (zamknięte, potem otwarte), od najnowszych arkuszy, z podpisem źródła. */
 function zadaniaTematu(dzial, temat) {
-  return ARKUSZE.flatMap((a) =>
-    [...a.zadania, ...(a.otwarte ?? [])]
+  const z = (lista) => ARKUSZE.flatMap((a) =>
+    (lista(a) ?? [])
       .filter((z) => z.dzial === dzial && z.temat === temat)
       .map((z) => ({ ...z, zrodlo: `${a.nazwa}, zadanie ${z.nr}` + (z.punkty ? ` (0–${z.punkty} pkt)` : "") })),
   );
+  return [...z((a) => a.zadania), ...z((a) => a.otwarte)];
 }
 
 const tematy = (dzial) => TEMATY[dzial].map((t) => ({ ...t, zadania: zadaniaTematu(dzial, t.id) }));

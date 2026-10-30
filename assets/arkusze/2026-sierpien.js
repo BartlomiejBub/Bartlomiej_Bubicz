@@ -124,5 +124,21 @@ export default {
       "tresc": "Rozważamy wszystkie walce, w których suma średnicy podstawy walca i wysokości walca jest równa $10$.\n\nNiech $P(r)$ oznacza pole powierzchni bocznej takiego walca w zależności od promienia $r$ podstawy walca.\n\n**Wyznacz wzór i dziedzinę funkcji $P$ zmiennej $r$.**\n\n**Oblicz promień $r$ podstawy tego z rozważanych walców, którego pole powierzchni bocznej jest największe. Zapisz obliczenia.**",
       "rozwiazanie": "Z warunków zadania otrzymujemy:\n\n$2r + H = 10$\n\n$H = 10 - 2r$\n\nPole $P$ powierzchni bocznej walca jest równe:\n\n$P = 2\\pi r H$\n\nwięc wzór funkcji $P$ zmiennej $r$ ma postać:\n\n$P(r) = 2\\pi r \\cdot (10 - 2r)$\n\n$P(r) = -4\\pi r^2 + 20\\pi r$\n\nWyznaczamy dziedzinę funkcji $P$. Z warunków zadania wynika, że:\n\n$r > 0$ oraz $H = 10 - 2r > 0$\n\nZatem:\n\n$r > 0$ oraz $r < 5$\n\nZmienna $r$ może przyjmować wartości z przedziału $(0, 5)$.\n\nPonieważ we wzorze funkcji $P$ współczynnik przy drugiej potędze zmiennej $r$ jest ujemny, więc wykresem funkcji $P$ jest fragment paraboli skierowanej ramionami do dołu.\n\nObliczamy pierwszą współrzędną wierzchołka tej paraboli:\n\n$p = \\frac{-20\\pi}{2 \\cdot (-4\\pi)} = \\frac{5}{2} \\in (0, 5)$\n\nZatem funkcja $P$ przyjmuje wartość największą dla argumentu $\\frac{5}{2}$."
     },
+    {
+      "nr": "9",
+      "dzial": "liczby",
+      "temat": "nierownosci",
+      "punkty": 2,
+      "tresc": "**Rozwiąż nierówność**\n\n$x(3x - 2) < 1$\n\n**Zapisz obliczenia.**",
+      "rozwiazanie": "Zapisujemy nierówność w postaci $3x^2 - 2x - 1 < 0$ i obliczamy miejsca zerowe funkcji kwadratowej $y = 3x^2 - 2x - 1$.\n\nObliczamy wyróżnik trójmianu $3x^2 - 2x - 1$:\n\n$\\Delta = (-2)^2 - 4 \\cdot 3 \\cdot (-1) = 16$\n\nStąd:\n\n$x_1 = \\frac{-(-2) - \\sqrt{16}}{2 \\cdot 3} = -\\frac{1}{3}$\n\n$x_2 = \\frac{-(-2) + \\sqrt{16}}{2 \\cdot 3} = 1$\n\nSzkicujemy wykres funkcji kwadratowej $y = 3x^2 - 2x - 1$.\n\nPonieważ współczynnik przy drugiej potędze zmiennej $x$ jest dodatni, więc wykresem funkcji $y = 3x^2 - 2x - 1$ jest parabola skierowana ramionami do góry.\n\nOdczytujemy argumenty, dla których funkcja przyjmuje wartości ujemne.\n\nZbiorem rozwiązań nierówności jest przedział $\\left(-\\frac{1}{3}, 1\\right)$."
+    },
+    {
+      "nr": "10",
+      "dzial": "liczby",
+      "temat": "rownania",
+      "punkty": 2,
+      "tresc": "W pewnym sklepie czekolada $\\mathcal{C}$ kosztuje $x$ złotych, a baton $\\mathcal{B}$ kosztuje $y$ złotych.\n\nPiotr kupił w tym sklepie $8$ czekolad $\\mathcal{C}$ oraz $4$ batony $\\mathcal{B}$ i zapłacił za zakupy $82$ złote.\n\nNatalia kupiła w tym sklepie $3$ czekolady $\\mathcal{C}$ oraz $9$ batonów $\\mathcal{B}$ i zapłaciła za te zakupy $60$ złotych.\n\n**Oblicz cenę** $x$ **czekolady** $\\mathcal{C}$**. Zapisz obliczenia.**",
+      "rozwiazanie": "Po uwzględnieniu warunków zadania otrzymujemy:\n\n$8x + 4y = 82$ oraz $3x + 9y = 60$\n\nZ pierwszego z tych równań wyznaczamy $y = 20{,}5 - 2x$ i podstawiamy w miejsce $y$ do drugiego z równań, w wyniku czego otrzymujemy:\n\n$3x + 9 \\cdot (20{,}5 - 2x) = 60$\n\n$3x + 184{,}5 - 18x = 60$\n\n$15x = 124{,}5$\n\n$x = 8{,}3$\n\nCzekolada kosztuje $8{,}30$ zł."
+    },
   ],
 };

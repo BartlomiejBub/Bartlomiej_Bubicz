@@ -132,5 +132,13 @@ export default {
       punkty: 2,
       tresc: "**Wykaż, że dla każdej liczby naturalnej $n$ liczba $10n^2 + 30n + 8$ przy dzieleniu przez $5$ daje resztę $3$.**",
       rozwiazanie: "Przekształcamy równoważnie dane wyrażenie\n\n$10n^2 + 30n + 8 = 10n^2 + 30n + 5 + 3 = 5 \\cdot (2n^2 + 6n + 1) + 3$.\n\nPonieważ wartość wyrażenia $2n^2 + 6n + 1$ jest liczbą całkowitą, to $5 \\cdot (2n^2 + 6n + 1)$ jest wielokrotnością liczby $5$, zatem $5 \\cdot (2n^2 + 6n + 1) + 3$ przy dzieleniu przez $5$ daje resztę $3$. To należało wykazać." },
+    {
+      "nr": "6",
+      "dzial": "liczby",
+      "temat": "rownania",
+      "punkty": 3,
+      "tresc": "**Rozwiąż równanie**\n\n$3x^3 - 6x^2 - 27x + 54 = 0$\n\n**Zapisz obliczenia.**",
+      "rozwiazanie": "Przekształcamy lewą stronę równania do postaci iloczynu:\n\n$3x^3 - 6x^2 - 27x + 54 = 0$\n\n$3x^2(x - 2) - 27(x - 2) = 0$\n\n$(x - 2)(3x^2 - 27) = 0$\n\n$3(x - 2)(x^2 - 9) = 0$\n\nStąd otrzymujemy kolejno\n\n$x - 2 = 0$ lub $x^2 - 9 = 0$\n\n$x - 2 = 0$ lub $(x - 3)(x + 3) = 0$\n\n$x - 2 = 0$ lub $x - 3 = 0$ lub $x + 3 = 0$\n\n$x = 2$ lub $x = 3$ lub $x = -3$\n\nRozwiązaniami równania są liczby: $(-3)$, $2$ oraz $3$."
+    },
   ],
 };

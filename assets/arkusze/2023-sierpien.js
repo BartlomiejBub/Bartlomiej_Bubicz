@@ -112,5 +112,13 @@ export default {
       punkty: 4,
       tresc: "Zakład stolarski produkuje krzesła, które sprzedaje po $196$ złotych za sztukę. Właściciel, na podstawie analizy rzeczywistych wpływów i wydatków, stwierdził, że:\n\n• przychód $P$ (w złotych) ze sprzedaży $x$ krzeseł można opisać funkcją $P(x) = 196x$\n\n• koszt $K$ (w złotych) produkcji $x$ krzeseł dziennie można opisać funkcją\n\n$K(x) = 4x^2 + 4x + 240$\n\nDziennie w zakładzie można wyprodukować co najwyżej $30$ krzeseł.\n\n**Oblicz, ile krzeseł powinien dziennie sprzedawać zakład, aby zysk ze sprzedaży krzeseł wyprodukowanych przez ten zakład w ciągu jednego dnia był możliwie największy. Oblicz ten największy zysk.**\n\n**Zapisz obliczenia.**\n\nWskazówka: przyjmij, że zysk jest różnicą przychodu i kosztów.",
       rozwiazanie: "Oznaczmy przez $x$ liczbę krzeseł wyprodukowanych w ciągu jednego dnia.\n\nZysk ze sprzedaży jest różnicą przychodu ze sprzedaży krzeseł oraz kosztu ich wytworzenia:\n\n$Z(x) = 196x - K(x) = 196x - (4x^2 + 4x + 240) = -4x^2 + 192x - 240$\n\nPonieważ dziennie w zakładzie można wyprodukować maksymalnie $30$ krzeseł, więc dziedziną funkcji $Z$ jest zbiór wszystkich liczb całkowitych należących do przedziału $[0, 30]$. Wykresem funkcji $Z(x) = -4x^2 + 192x - 240$, gdzie $x$ jest liczbą całkowitą z przedziału $[0, 30]$, jest zbiór punktów leżących na paraboli o ramionach skierowanych w dół. Przekształcamy wzór funkcji $Z$ do postaci kanonicznej:\n\n$Z(x) = -4x^2 + 192x - 240 = -4(x^2 - 48x) - 240 = -4[(x - 24)^2 - 24^2] - 240 =$\n\n$= -4(x - 24)^2 + 2064$\n\nZ postaci kanonicznej odczytujemy współrzędne wierzchołka paraboli: $W = (24, 2064)$. Ponieważ $24$ należy do dziedziny funkcji $Z$, więc funkcja zysku przyjmuje największą wartość, równą $2\\,064$, dla argumentu $24$." },
+    {
+      "nr": "9",
+      "dzial": "liczby",
+      "temat": "rownania",
+      "punkty": 3,
+      "tresc": "**Rozwiąż równanie**\n\n$3x^3 - 2x^2 - 3x + 2 = 0$\n\n**Zapisz obliczenia.**",
+      "rozwiazanie": "Przekształcamy równanie równoważnie i stosujemy metodę grupowania wyrazów:\n\n$3x^3 - 2x^2 - 3x + 2 = 0$\n\n$x^2(3x - 2) - (3x - 2) = 0$\n\n$(3x - 2)(x^2 - 1) = 0$\n\n$(3x - 2)(x - 1)(x + 1) = 0$\n\n$3x - 2 = 0$ lub $x - 1 = 0$ lub $x + 1 = 0$\n\n$x = \\frac{2}{3}$ lub $x = 1$ lub $x = -1$\n\nRozwiązaniami równania są liczby: $(-1)$, $\\frac{2}{3}$, $1$."
+    },
   ],
 };
