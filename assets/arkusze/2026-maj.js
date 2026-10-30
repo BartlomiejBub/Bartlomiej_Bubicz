@@ -98,38 +98,52 @@ export default {
   ],
   otwarte: [
     {
-      "nr": "7",
-      "dzial": "dowody",
-      "temat": "dowody-algebraiczne",
-      "punkty": 2,
-      "tresc": "**Wykaż, że dla każdej liczby całkowitej $n$ liczba $7n^2 + 21n$ jest podzielna przez $14$.**",
-      "rozwiazanie": "Liczba $7n^2 + 21n$ jest podzielna przez $7$ jako suma dwóch liczb podzielnych przez $7$.\n\nGdy liczba $n$ jest parzysta, to liczby $7n^2$ oraz $21n$ są parzyste, więc liczba $7n^2 + 21n$ jest parzysta jako suma dwóch liczb parzystych.\n\nGdy liczba $n$ jest nieparzysta, to liczby $7n^2$ oraz $21n$ są nieparzyste jako iloczyny liczb nieparzystych i w konsekwencji liczba $7n^2 + 21n$ jest parzysta jako suma dwóch liczb nieparzystych.\n\nZatem liczba $7n^2 + 21n$ jest podzielna przez $2$ i przez $7$. Liczby $2$ i $7$ są względnie pierwsze, więc liczba $7n^2 + 21n$ jest podzielna przez $2 \\cdot 7 = 14$. To należało wykazać."
+      nr: "7",
+      dzial: "dowody",
+      temat: "dowody-algebraiczne",
+      punkty: 2,
+      tresc: "**Wykaż, że dla każdej liczby całkowitej $n$ liczba $7n^2 + 21n$ jest podzielna przez $14$.**",
+      rozwiazanie: "Liczba $7n^2 + 21n$ jest podzielna przez $7$ jako suma dwóch liczb podzielnych przez $7$.\n\nGdy liczba $n$ jest parzysta, to liczby $7n^2$ oraz $21n$ są parzyste, więc liczba $7n^2 + 21n$ jest parzysta jako suma dwóch liczb parzystych.\n\nGdy liczba $n$ jest nieparzysta, to liczby $7n^2$ oraz $21n$ są nieparzyste jako iloczyny liczb nieparzystych i w konsekwencji liczba $7n^2 + 21n$ jest parzysta jako suma dwóch liczb nieparzystych.\n\nZatem liczba $7n^2 + 21n$ jest podzielna przez $2$ i przez $7$. Liczby $2$ i $7$ są względnie pierwsze, więc liczba $7n^2 + 21n$ jest podzielna przez $2 \\cdot 7 = 14$. To należało wykazać."
     },
     {
-      "nr": "21",
-      "dzial": "dowody",
-      "temat": "dowody-geometryczne",
-      "punkty": 2,
-      "tresc": "Dany jest trójkąt $KLM$, w którym $|KM| = a$ oraz $|LM| = b$.\n\nDwusieczna kąta $LMK$ przecina bok $KL$ w punkcie $N$ (zobacz rysunek).\n\n[rysunek]\n\n**Wykaż, że stosunek pola trójkąta $KNM$ do pola trójkąta $NLM$ jest równy $\\frac{a}{b}$.**",
-      "rysunek": "assets/arkusze/rys/2026-maj-o21.png",
-      "rozwiazanie": "Przyjmijmy następujące oznaczenie: $|\\sphericalangle LMK| = 2\\alpha$.\n\nOdcinek $MN$ zawiera się w dwusiecznej kąta $LMK$, więc $|\\sphericalangle NMK| = \\alpha$ oraz $|\\sphericalangle LMN| = \\alpha$.\n\nStosujemy wzór na pole trójkąta w zależności od długości dwóch boków i sinusa kąta między tymi bokami i otrzymujemy:\n\n$P_{KNM} = \\frac{1}{2} \\cdot a \\cdot |MN| \\cdot \\sin\\alpha$\n\n$P_{NLM} = \\frac{1}{2} \\cdot b \\cdot |MN| \\cdot \\sin\\alpha$\n\nZatem:\n\n$\\frac{P_{KNM}}{P_{NLM}} = \\frac{\\frac{1}{2} \\cdot a \\cdot |MN| \\cdot \\sin\\alpha}{\\frac{1}{2} \\cdot b \\cdot |MN| \\cdot \\sin\\alpha} = \\frac{a}{b}$\n\nTo należało wykazać."
+      nr: "21",
+      dzial: "dowody",
+      temat: "dowody-geometryczne",
+      punkty: 2,
+      tresc: "Dany jest trójkąt $KLM$, w którym $|KM| = a$ oraz $|LM| = b$.\n\nDwusieczna kąta $LMK$ przecina bok $KL$ w punkcie $N$ (zobacz rysunek).\n\n[rysunek]\n\n**Wykaż, że stosunek pola trójkąta $KNM$ do pola trójkąta $NLM$ jest równy $\\frac{a}{b}$.**",
+      rysunek: "assets/arkusze/rys/2026-maj-o21.png",
+      rozwiazanie: "Przyjmijmy następujące oznaczenie: $|\\sphericalangle LMK| = 2\\alpha$.\n\nOdcinek $MN$ zawiera się w dwusiecznej kąta $LMK$, więc $|\\sphericalangle NMK| = \\alpha$ oraz $|\\sphericalangle LMN| = \\alpha$.\n\nStosujemy wzór na pole trójkąta w zależności od długości dwóch boków i sinusa kąta między tymi bokami i otrzymujemy:\n\n$P_{KNM} = \\frac{1}{2} \\cdot a \\cdot |MN| \\cdot \\sin\\alpha$\n\n$P_{NLM} = \\frac{1}{2} \\cdot b \\cdot |MN| \\cdot \\sin\\alpha$\n\nZatem:\n\n$\\frac{P_{KNM}}{P_{NLM}} = \\frac{\\frac{1}{2} \\cdot a \\cdot |MN| \\cdot \\sin\\alpha}{\\frac{1}{2} \\cdot b \\cdot |MN| \\cdot \\sin\\alpha} = \\frac{a}{b}$\n\nTo należało wykazać."
     },
     {
-      "nr": "10",
-      "dzial": "liczby",
-      "temat": "nierownosci",
-      "punkty": 2,
-      "tresc": "**Rozwiąż nierówność**\n\n$3x^2 + 4x \\ge 6x + 8$\n\n**Zapisz obliczenia.**",
-      "rozwiazanie": "Zapisujemy nierówność w postaci $3x^2 - 2x - 8 \\ge 0$ i obliczamy miejsca zerowe funkcji kwadratowej $y = 3x^2 - 2x - 8$.\n\nObliczamy wyróżnik trójmianu $3x^2 - 2x - 8$:\n\n$\\Delta = (-2)^2 - 4 \\cdot 3 \\cdot (-8) = 100$\n\nStąd:\n\n$x_1 = \\frac{-(-2) - \\sqrt{100}}{2 \\cdot 3} = -\\frac{4}{3}$\n\n$x_2 = \\frac{-(-2) + \\sqrt{100}}{2 \\cdot 3} = 2$\n\nSzkicujemy wykres funkcji kwadratowej $y = 3x^2 - 2x - 8$.\n\nOdczytujemy argumenty, dla których funkcja przyjmuje wartości nieujemne.\n\nZbiorem rozwiązań nierówności jest $\\left(-\\infty, -\\frac{4}{3}\\right] \\cup [2, +\\infty)$."
+      nr: "10",
+      dzial: "liczby",
+      temat: "nierownosci",
+      punkty: 2,
+      tresc: "**Rozwiąż nierówność**\n\n$3x^2 + 4x \\ge 6x + 8$\n\n**Zapisz obliczenia.**",
+      rozwiazanie: "Zapisujemy nierówność w postaci $3x^2 - 2x - 8 \\ge 0$ i obliczamy miejsca zerowe funkcji kwadratowej $y = 3x^2 - 2x - 8$.\n\nObliczamy wyróżnik trójmianu $3x^2 - 2x - 8$:\n\n$\\Delta = (-2)^2 - 4 \\cdot 3 \\cdot (-8) = 100$\n\nStąd:\n\n$x_1 = \\frac{-(-2) - \\sqrt{100}}{2 \\cdot 3} = -\\frac{4}{3}$\n\n$x_2 = \\frac{-(-2) + \\sqrt{100}}{2 \\cdot 3} = 2$\n\nSzkicujemy wykres funkcji kwadratowej $y = 3x^2 - 2x - 8$.\n\nOdczytujemy argumenty, dla których funkcja przyjmuje wartości nieujemne.\n\nZbiorem rozwiązań nierówności jest $\\left(-\\infty, -\\frac{4}{3}\\right] \\cup [2, +\\infty)$."
     },
     {
-      "nr": "11",
-      "dzial": "liczby",
-      "temat": "rownania",
-      "punkty": 2,
-      "tresc": "Na przedstawienie w pewnym teatrze sprzedawano bilety według poniższego cennika.\n\n[rysunek]\n\nNa to przedstawienie sprzedano łącznie $200$ biletów.\n\nPo opłaceniu kosztów związanych z organizacją przedstawienia w wysokości $25\\%$ wpływów ze sprzedaży biletów organizatorom pozostało $4665$ zł.\n\n**Oblicz liczbę biletów ulgowych sprzedanych na to przedstawienie. Zapisz obliczenia.**",
-      "rysunek": "assets/arkusze/rys/2026-maj-o11.png",
-      "rozwiazanie": "Oznaczmy:\n\n$x$ – liczba biletów normalnych sprzedanych na przedstawienie,\n\n$y$ – liczba biletów ulgowych sprzedanych na przedstawienie.\n\nPo uwzględnieniu warunków zadania otrzymujemy:\n\n$x + y = 200$ oraz $0{,}75 \\cdot (35x + 25y) = 4665$\n\nZ pierwszego z tych równań wyznaczamy $x = 200 - y$ i podstawiamy w miejsce $x$ do drugiego z równań, w wyniku czego otrzymujemy:\n\n$0{,}75 \\cdot [35(200 - y) + 25y] = 4665 \\quad / : 0{,}75$\n\n$35(200 - y) + 25y = 6220$\n\n$7000 - 35y + 25y = 6220$\n\n$-10y = -780$\n\n$y = 78$\n\nNa przedstawienie sprzedano $78$ biletów ulgowych."
+      nr: "11",
+      dzial: "liczby",
+      temat: "rownania",
+      punkty: 2,
+      tresc: "Na przedstawienie w pewnym teatrze sprzedawano bilety według poniższego cennika.\n\n[rysunek]\n\nNa to przedstawienie sprzedano łącznie $200$ biletów.\n\nPo opłaceniu kosztów związanych z organizacją przedstawienia w wysokości $25\\%$ wpływów ze sprzedaży biletów organizatorom pozostało $4665$ zł.\n\n**Oblicz liczbę biletów ulgowych sprzedanych na to przedstawienie. Zapisz obliczenia.**",
+      rysunek: "assets/arkusze/rys/2026-maj-o11.png",
+      rozwiazanie: "Oznaczmy:\n\n$x$ – liczba biletów normalnych sprzedanych na przedstawienie,\n\n$y$ – liczba biletów ulgowych sprzedanych na przedstawienie.\n\nPo uwzględnieniu warunków zadania otrzymujemy:\n\n$x + y = 200$ oraz $0{,}75 \\cdot (35x + 25y) = 4665$\n\nZ pierwszego z tych równań wyznaczamy $x = 200 - y$ i podstawiamy w miejsce $x$ do drugiego z równań, w wyniku czego otrzymujemy:\n\n$0{,}75 \\cdot [35(200 - y) + 25y] = 4665 \\quad / : 0{,}75$\n\n$35(200 - y) + 25y = 6220$\n\n$7000 - 35y + 25y = 6220$\n\n$-10y = -780$\n\n$y = 78$\n\nNa przedstawienie sprzedano $78$ biletów ulgowych."
     },
+    { nr: "14",
+      dzial: "funkcje",
+      temat: "funkcja-kwadratowa",
+      punkty: 4,
+      tresc: "W kartezjańskim układzie współrzędnych $(x, y)$ wykresem funkcji kwadratowej $f$ jest parabola o wierzchołku w punkcie $W = (3, -2)$. Funkcja kwadratowa $g$ jest określona za pomocą funkcji $f$ wzorem $g(x) = f(x + 1)$. Jednym z miejsc zerowych funkcji $g$ jest liczba $0$.\n\n**Wyznacz wzór funkcji **$f$** w postaci ogólnej. Zapisz obliczenia.**",
+      rozwiazanie: "Korzystamy ze wzoru na postać kanoniczną funkcji kwadratowej i zapisujemy:\n\n$f(x) = a(x - 3)^2 - 2$, gdzie $a \\neq 0$.\n\nPonieważ liczba $0$ jest jednym z miejsc zerowych funkcji kwadratowej $g$ określonej wzorem $g(x) = f(x + 1)$, więc:\n\n$g(0) = 0$\n\nStąd:\n\n$f(0 + 1) = 0$\n\n$f(1) = 0$\n\nZatem:\n\n$a(1 - 3)^2 - 2 = 0$\n\n$4a - 2 = 0$\n\n$a = \\frac{1}{2}$\n\nZapisujemy wzór funkcji $f$ w postaci kanonicznej:\n\n$f(x) = \\frac{1}{2}(x - 3)^2 - 2$\n\nPrzekształcamy wzór funkcji $f$ do postaci ogólnej:\n\n$f(x) = \\frac{1}{2}(x - 3)^2 - 2 = \\frac{1}{2}(x^2 - 6x + 9) - 2 = \\frac{1}{2}x^2 - 3x + \\frac{5}{2}$"
+      },
+    { nr: "15",
+      dzial: "funkcje",
+      temat: "ciag-geometryczny",
+      punkty: 3,
+      tresc: "Ciąg $(a_n)$ jest określony wzorem $a_n = 3n + 5$ dla każdej liczby naturalnej $n \\geq 1$. Trzywyrazowy ciąg $(a_1, \\ a_9, \\ a_k)$ jest geometryczny.\n\n**Oblicz **$k$**. Zapisz obliczenia.**",
+      rozwiazanie: "Korzystamy ze wzoru na $n$-ty wyraz ciągu $(a_n)$ i obliczamy wyrazy $a_1$ oraz $a_9$:\n\n$a_1 = 3 \\cdot 1 + 5 = 8$\n\n$a_9 = 3 \\cdot 9 + 5 = 32$\n\nZatem iloraz trzywyrazowego ciągu geometrycznego $(8, \\ 32, \\ a_k)$ jest równy $\\frac{32}{8} = 4$.\n\nStąd:\n\n$a_k = 32 \\cdot 4 = 128$\n\nObliczamy $k$:\n\n$a_k = 128$\n\n$3k + 5 = 128$\n\n$k = 41$"
+      },
   ],
 };

@@ -94,20 +94,20 @@ export default {
       rysunek: "assets/arkusze/rys/2024-grudzien-probna-o30.png",
       rozwiazanie: "Przyjmijmy oznaczenia jak na rysunku.\n\nPonieważ $|AB| = x$, więc $|AE| = 3x$.\n\nSuma długości wszystkich dwunastu krawędzi prostopadłościanu jest równa $48$, zatem\n\n$4 \\cdot |AB| + 4 \\cdot |AD| + 4 \\cdot |AE| = 48$\n\n$|AB| + |AD| + |AE| = 12$\n\n$x + |AD| + 3x = 12$\n\n$|AD| = 12 - 4x$\n\nPole $P$ powierzchni całkowitej prostopadłościanu $ABCDEFGH$ jest równe\n\n$P = 2 \\cdot (|AB| \\cdot |AD| + |AB| \\cdot |AE| + |AD| \\cdot |AE|)$\n\nPonieważ $|AB| = x$, $|AD| = 12 - 4x$, $|AE| = 3x$, więc wzór funkcji $P$ zmiennej $x$ ma postać\n\n$P(x) = 2 \\cdot [x \\cdot (12 - 4x) + x \\cdot 3x + (12 - 4x) \\cdot 3x]$\n\n$P(x) = 2 \\cdot (12x - 4x^2 + 3x^2 + 36x - 12x^2)$\n\n$P(x) = 2 \\cdot (-13x^2 + 48x)$\n\n$P(x) = -26x^2 + 96x$\n\nWyznaczamy dziedzinę funkcji $P$. Z warunków zadania wynika, że:\n\n$|AB| = x > 0 \\quad\\text{oraz}\\quad |AD| = 12 - 4x > 0 \\quad\\text{oraz}\\quad |AE| = 3x > 0$\n\nZatem\n\n$x > 0 \\quad\\text{oraz}\\quad x < 3$\n\nZmienna $x$ może przyjmować wartości z przedziału $(0, 3)$.\n\nWykresem funkcji $P$ jest fragment paraboli skierowanej ramionami do dołu. Obliczamy pierwszą współrzędną wierzchołka tej paraboli:\n\n$p = \\frac{-96}{2 \\cdot (-26)} = \\frac{24}{13} \\in (0, 3)$\n\nZatem funkcja $P$ przyjmuje wartość największą dla argumentu $\\frac{24}{13}$.\n\nSpośród rozważanych prostopadłościanów największe pole powierzchni całkowitej ma ten, w którym $x = \\frac{24}{13}$." },
       {
-      "nr": "8",
-      "dzial": "liczby",
-      "temat": "rownania",
-      "punkty": 3,
-      "tresc": "**Rozwiąż równanie**\n\n$\\frac{x + 3}{x - 1} = \\frac{x}{2x - 2}$\n\n**Zapisz konieczne założenie i obliczenia.**",
-      "rozwiazanie": "Każde z wyrażeń: $\\frac{x + 3}{x - 1}$, $\\frac{x}{2x - 2}$ ma sens liczbowy dla $x \\neq 1$.\n\nPrzekształcamy równanie równoważnie:\n\n$\\frac{x + 3}{x - 1} = \\frac{x}{2x - 2}$ $\\quad /\\cdot 2(x - 1)$, gdzie $x \\neq 1$\n\n$2(x + 3) = x$, gdzie $x \\neq 1$\n\nRozwiązujemy otrzymane równanie liniowe:\n\n$2x + 6 = x$\n\n$x = -6$\n\nRozwiązaniem równania $\\frac{x + 3}{x - 1} = \\frac{x}{2x - 2}$ jest liczba $(-6)$."
+      nr: "8",
+      dzial: "liczby",
+      temat: "rownania",
+      punkty: 3,
+      tresc: "**Rozwiąż równanie**\n\n$\\frac{x + 3}{x - 1} = \\frac{x}{2x - 2}$\n\n**Zapisz konieczne założenie i obliczenia.**",
+      rozwiazanie: "Każde z wyrażeń: $\\frac{x + 3}{x - 1}$, $\\frac{x}{2x - 2}$ ma sens liczbowy dla $x \\neq 1$.\n\nPrzekształcamy równanie równoważnie:\n\n$\\frac{x + 3}{x - 1} = \\frac{x}{2x - 2}$ $\\quad /\\cdot 2(x - 1)$, gdzie $x \\neq 1$\n\n$2(x + 3) = x$, gdzie $x \\neq 1$\n\nRozwiązujemy otrzymane równanie liniowe:\n\n$2x + 6 = x$\n\n$x = -6$\n\nRozwiązaniem równania $\\frac{x + 3}{x - 1} = \\frac{x}{2x - 2}$ jest liczba $(-6)$."
       },
       {
-      "nr": "9",
-      "dzial": "liczby",
-      "temat": "nierownosci",
-      "punkty": 2,
-      "tresc": "**Rozwiąż nierówność**\n\n$x(x - 6) \\leq 7$\n\n**Zapisz obliczenia.**",
-      "rozwiazanie": "Zapisujemy nierówność w postaci $x^2 - 6x - 7 \\leq 0$ i obliczamy miejsca zerowe funkcji $y = x^2 - 6x - 7$.\n\nObliczamy wyróżnik trójmianu $x^2 - 6x - 7$:\n\n$\\Delta = (-6)^2 - 4 \\cdot 1 \\cdot (-7) = 64$\n\nStąd\n\n$x_1 = \\frac{-(-6) - \\sqrt{64}}{2 \\cdot 1} = -1$\n\n$x_2 = \\frac{-(-6) + \\sqrt{64}}{2 \\cdot 1} = 7$\n\nSzkicujemy wykres funkcji $y = x^2 - 6x - 7$. Odczytujemy argumenty, dla których funkcja przyjmuje wartości niedodatnie.\n\nZbiorem rozwiązań nierówności jest przedział $\\langle -1, 7 \\rangle$."
+      nr: "9",
+      dzial: "liczby",
+      temat: "nierownosci",
+      punkty: 2,
+      tresc: "**Rozwiąż nierówność**\n\n$x(x - 6) \\leq 7$\n\n**Zapisz obliczenia.**",
+      rozwiazanie: "Zapisujemy nierówność w postaci $x^2 - 6x - 7 \\leq 0$ i obliczamy miejsca zerowe funkcji $y = x^2 - 6x - 7$.\n\nObliczamy wyróżnik trójmianu $x^2 - 6x - 7$:\n\n$\\Delta = (-6)^2 - 4 \\cdot 1 \\cdot (-7) = 64$\n\nStąd\n\n$x_1 = \\frac{-(-6) - \\sqrt{64}}{2 \\cdot 1} = -1$\n\n$x_2 = \\frac{-(-6) + \\sqrt{64}}{2 \\cdot 1} = 7$\n\nSzkicujemy wykres funkcji $y = x^2 - 6x - 7$. Odczytujemy argumenty, dla których funkcja przyjmuje wartości niedodatnie.\n\nZbiorem rozwiązań nierówności jest przedział $\\langle -1, 7 \\rangle$."
       },
     ],
 };

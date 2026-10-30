@@ -102,12 +102,13 @@ export default {
         rysunek: "assets/arkusze/rys/2024-maj-o31.png",
         rozwiazanie: "Przyjmijmy oznaczenia jak na rysunku w zadaniu. Długość siatki użytej do wykonania ogrodzenia – po uwzględnieniu warunków zadania – można zapisać równaniem\n\n$4x + 6y = 36$\n\nStąd wyznaczamy $y$: $y = 6 - \\frac{2}{3}x$.\n\nZ warunków zadania wynika, że\n\n$x > 0$ i $y > 0$\n\nNiech $P$ oznacza sumę pól podstaw trzech wybiegów. Suma pól podstaw trzech wybiegów jest równa polu prostokąta o bokach długości $x$ oraz $3y$. Zatem\n\n$P = 3xy$\n\nSumę pól podstaw trzech wybiegów zapisujemy jako funkcję jednej zmiennej $x$. W tym celu podstawiamy $y = 6 - \\frac{2}{3}x$ i otrzymujemy\n\n$P(x) = 3x\\left(6 - \\frac{2}{3}x\\right) = -2x^2 + 18x$\n\nWyznaczamy dziedzinę funkcji $P$. Wykorzystujemy związek między wymiarami $x$ i $y$ oraz wykorzystujemy warunki, jakie te wymiary spełniają\n\n$y = 6 - \\frac{2}{3}x > 0$ oraz $x > 0$\n\nZatem\n\n$x < 9$ oraz $x > 0$\n\nZmienna $x$ może przyjmować wartości z przedziału $(0, 9)$.\n\nWykresem funkcji $P$ jest fragment paraboli skierowanej ramionami do dołu. Obliczamy pierwszą współrzędną wierzchołka paraboli:\n\n$p = -\\frac{18}{2 \\cdot (-2)} = 4{,}5 \\in (0, 9)$\n\nZatem funkcja $P$ przyjmuje wartość największą dla argumentu $4{,}5$.\n\nObliczamy drugi wymiar, dla którego suma pól podstaw trzech wybiegów jest największa\n\n$y = 6 - \\frac{2}{3} \\cdot 4{,}5 = 3$\n\nSuma pól podstaw trzech wybiegów jest największa, gdy: $x = 4{,}5$ m oraz $y = 3$ m." },
       {
-      "nr": "9",
-      "dzial": "liczby",
-      "temat": "rownania",
-      "punkty": 3,
-      "tresc": "**Rozwiąż równanie**\n\n$x^3 - 2x^2 - 3x + 6 = 0$\n\n**Zapisz obliczenia.**",
-      "rozwiazanie": "Przekształcamy równanie równoważnie i stosujemy metodę grupowania wyrazów:\n\n$x^3 - 2x^2 - 3x + 6 = 0$\n\n$x^2(x - 2) - 3(x - 2) = 0$\n\n$(x - 2)(x^2 - 3) = 0$\n\n$(x - 2)(x - \\sqrt{3})(x + \\sqrt{3}) = 0$\n\n$x - 2 = 0$ lub $x - \\sqrt{3} = 0$ lub $x + \\sqrt{3} = 0$\n\n$x = 2$ lub $x = \\sqrt{3}$ lub $x = -\\sqrt{3}$"
+      nr: "9",
+      dzial: "liczby",
+      temat: "rownania",
+      punkty: 3,
+      tresc: "**Rozwiąż równanie**\n\n$x^3 - 2x^2 - 3x + 6 = 0$\n\n**Zapisz obliczenia.**",
+      rozwiazanie: "Przekształcamy równanie równoważnie i stosujemy metodę grupowania wyrazów:\n\n$x^3 - 2x^2 - 3x + 6 = 0$\n\n$x^2(x - 2) - 3(x - 2) = 0$\n\n$(x - 2)(x^2 - 3) = 0$\n\n$(x - 2)(x - \\sqrt{3})(x + \\sqrt{3}) = 0$\n\n$x - 2 = 0$ lub $x - \\sqrt{3} = 0$ lub $x + \\sqrt{3} = 0$\n\n$x = 2$ lub $x = \\sqrt{3}$ lub $x = -\\sqrt{3}$"
       },
+    {nr:"17",dzial:"funkcje",temat:"ciag-arytmetyczny",punkty:2,tresc:"Ciąg arytmetyczny $(a_n)$ jest określony dla każdej liczby naturalnej $n \\geq 1$. Trzeci wyraz tego ciągu jest równy $(-1)$, a suma piętnastu początkowych kolejnych wyrazów tego ciągu jest równa $(-165)$.\n\n**Oblicz różnicę tego ciągu. Zapisz obliczenia.**",rozwiazanie:"Korzystamy ze wzorów na $n$-ty wyraz i sumę $n$ początkowych wyrazów ciągu arytmetycznego i otrzymujemy układ równań\n\n$\\begin{cases} -1 = a_1 + 2r \\\\ -165 = \\frac{2a_1 + 14r}{2} \\cdot 15 \\end{cases}$\n\nPrzekształcając ten układ równoważnie, otrzymujemy\n\n$\\begin{cases} -1 = a_1 + 2r \\\\ -11 = a_1 + 7r \\end{cases}$\n\nOdejmując stronami równania układu, otrzymujemy\n\n$10 = -5r$\n\n$r = -2$\n\nRóżnica ciągu jest równa $(-2)$."},
     ],
 };

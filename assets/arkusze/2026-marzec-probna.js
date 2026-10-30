@@ -98,28 +98,42 @@ export default {
   ],
   otwarte: [
     {
-      "nr": "5",
-      "dzial": "dowody",
-      "temat": "dowody-algebraiczne",
-      "punkty": 2,
-      "tresc": "**Wykaż, że liczba $2501^4 - 2499^4$ jest podzielna przez $10\\,000$.**",
-      "rozwiazanie": "Korzystamy z własności działań na potęgach oraz ze wzoru na różnicę kwadratów i otrzymujemy:\n\n$2501^4 - 2499^4 = (2501^2)^2 - (2499^2)^2 = (2501^2 - 2499^2)(2501^2 + 2499^2) =$\n\n$= (2501 - 2499)(2501 + 2499)(2501^2 + 2499^2) =$\n\n$= 2 \\cdot 5000 \\cdot (2501^2 + 2499^2) = 10000 \\cdot (2501^2 + 2499^2)$\n\nLiczba $2501^2 + 2499^2$ jest liczbą całkowitą, zatem liczba $2501^4 - 2499^4$ jest podzielna przez $10\\,000$."
+      nr: "5",
+      dzial: "dowody",
+      temat: "dowody-algebraiczne",
+      punkty: 2,
+      tresc: "**Wykaż, że liczba $2501^4 - 2499^4$ jest podzielna przez $10\\,000$.**",
+      rozwiazanie: "Korzystamy z własności działań na potęgach oraz ze wzoru na różnicę kwadratów i otrzymujemy:\n\n$2501^4 - 2499^4 = (2501^2)^2 - (2499^2)^2 = (2501^2 - 2499^2)(2501^2 + 2499^2) =$\n\n$= (2501 - 2499)(2501 + 2499)(2501^2 + 2499^2) =$\n\n$= 2 \\cdot 5000 \\cdot (2501^2 + 2499^2) = 10000 \\cdot (2501^2 + 2499^2)$\n\nLiczba $2501^2 + 2499^2$ jest liczbą całkowitą, zatem liczba $2501^4 - 2499^4$ jest podzielna przez $10\\,000$."
     },
     {
-      "nr": "21",
-      "dzial": "dowody",
-      "temat": "dowody-geometryczne",
-      "punkty": 3,
-      "tresc": "Dany jest trapez równoramienny $ABCD$ o podstawach $AB$ i $CD$, w którym $|AB| = 2 \\cdot |CD|$. Przekątna $AC$ tego trapezu jest zawarta w dwusiecznej kąta $DAB$.\n\n**Wykaż, że w tym trapezie miara kąta $DAB$ jest równa $60^\\circ$.**",
-      "rozwiazanie": "Przyjmijmy następujące oznaczenia:\n\n$|CD| = a$ (zatem $|AB| = 2a$)\n\n$|\\sphericalangle DAB| = |\\sphericalangle ABC| = 2\\alpha$.\n\nPonieważ przekątna $AC$ zawiera się w dwusiecznej kąta $DAB$, to $|\\sphericalangle DAC| = |\\sphericalangle CAB| = \\alpha$.\n\nKąty $CAB$ i $ACD$ są naprzemianległe oraz $AB \\parallel CD$, zatem $|\\sphericalangle ACD| = \\alpha$.\n\nOznacza to, że trójkąt $ACD$ jest równoramienny oraz $|AD| = |CD| = a$. Zatem również $|BC| = a$.\n\nNiech $E$ będzie spodkiem wysokości trapezu $ABCD$ poprowadzonej z wierzchołka $C$. Z własności trapezu równoramiennego obliczamy długość odcinka $EB$:\n\n$|EB| = \\frac{|AB| - |CD|}{2} = \\frac{2a - a}{2} = \\frac{1}{2}a$\n\nW trójkącie prostokątnym $EBC$ mamy:\n\n$\\cos 2\\alpha = \\frac{|EB|}{|BC|} = \\frac{\\frac{1}{2}a}{a} = \\frac{1}{2}$\n\nZatem kąt ostry $DAB$ ma miarę równą $60^\\circ$. To należało wykazać."
+      nr: "21",
+      dzial: "dowody",
+      temat: "dowody-geometryczne",
+      punkty: 3,
+      tresc: "Dany jest trapez równoramienny $ABCD$ o podstawach $AB$ i $CD$, w którym $|AB| = 2 \\cdot |CD|$. Przekątna $AC$ tego trapezu jest zawarta w dwusiecznej kąta $DAB$.\n\n**Wykaż, że w tym trapezie miara kąta $DAB$ jest równa $60^\\circ$.**",
+      rozwiazanie: "Przyjmijmy następujące oznaczenia:\n\n$|CD| = a$ (zatem $|AB| = 2a$)\n\n$|\\sphericalangle DAB| = |\\sphericalangle ABC| = 2\\alpha$.\n\nPonieważ przekątna $AC$ zawiera się w dwusiecznej kąta $DAB$, to $|\\sphericalangle DAC| = |\\sphericalangle CAB| = \\alpha$.\n\nKąty $CAB$ i $ACD$ są naprzemianległe oraz $AB \\parallel CD$, zatem $|\\sphericalangle ACD| = \\alpha$.\n\nOznacza to, że trójkąt $ACD$ jest równoramienny oraz $|AD| = |CD| = a$. Zatem również $|BC| = a$.\n\nNiech $E$ będzie spodkiem wysokości trapezu $ABCD$ poprowadzonej z wierzchołka $C$. Z własności trapezu równoramiennego obliczamy długość odcinka $EB$:\n\n$|EB| = \\frac{|AB| - |CD|}{2} = \\frac{2a - a}{2} = \\frac{1}{2}a$\n\nW trójkącie prostokątnym $EBC$ mamy:\n\n$\\cos 2\\alpha = \\frac{|EB|}{|BC|} = \\frac{\\frac{1}{2}a}{a} = \\frac{1}{2}$\n\nZatem kąt ostry $DAB$ ma miarę równą $60^\\circ$. To należało wykazać."
     },
     {
-      "nr": "8",
-      "dzial": "liczby",
-      "temat": "nierownosci",
-      "punkty": 2,
-      "tresc": "**Rozwiąż nierówność**\n\n$(x - 3)(x + 5) > 9$\n\n**Zapisz obliczenia.**",
-      "rozwiazanie": "Zapisujemy nierówność w postaci $x^2 + 2x - 24 > 0$ i obliczamy miejsca zerowe funkcji $y = x^2 + 2x - 24$.\n\nObliczamy wyróżnik trójmianu $x^2 + 2x - 24$:\n\n$\\Delta = 2^2 - 4 \\cdot 1 \\cdot (-24) = 100$\n\nStąd\n\n$x_1 = \\frac{-2 - \\sqrt{100}}{2 \\cdot 1} = -6$\n\n$x_2 = \\frac{-2 + \\sqrt{100}}{2 \\cdot 1} = 4$\n\nSzkicujemy wykres funkcji $y = x^2 + 2x - 24$.\n\nOdczytujemy argumenty, dla których funkcja przyjmuje wartości dodatnie.\n\nZbiorem rozwiązań nierówności jest $(-\\infty, -6) \\cup (4, +\\infty)$."
+      nr: "8",
+      dzial: "liczby",
+      temat: "nierownosci",
+      punkty: 2,
+      tresc: "**Rozwiąż nierówność**\n\n$(x - 3)(x + 5) > 9$\n\n**Zapisz obliczenia.**",
+      rozwiazanie: "Zapisujemy nierówność w postaci $x^2 + 2x - 24 > 0$ i obliczamy miejsca zerowe funkcji $y = x^2 + 2x - 24$.\n\nObliczamy wyróżnik trójmianu $x^2 + 2x - 24$:\n\n$\\Delta = 2^2 - 4 \\cdot 1 \\cdot (-24) = 100$\n\nStąd\n\n$x_1 = \\frac{-2 - \\sqrt{100}}{2 \\cdot 1} = -6$\n\n$x_2 = \\frac{-2 + \\sqrt{100}}{2 \\cdot 1} = 4$\n\nSzkicujemy wykres funkcji $y = x^2 + 2x - 24$.\n\nOdczytujemy argumenty, dla których funkcja przyjmuje wartości dodatnie.\n\nZbiorem rozwiązań nierówności jest $(-\\infty, -6) \\cup (4, +\\infty)$."
     },
+    { nr: "12",
+      dzial: "funkcje",
+      temat: "funkcja-kwadratowa",
+      punkty: 3,
+      tresc: "Funkcja kwadratowa $f$ jest określona wzorem $f(x) = -16x^2 + 40x + 11$. W kartezjańskim układzie współrzędnych $(x, y)$ wykresem funkcji $f$ jest parabola o wierzchołku w punkcie $C$. Ta parabola przecina oś $Ox$ w punktach $A$ oraz $B$.\n\n**Oblicz pole trójkąta **$ABC$**. Zapisz obliczenia.**",
+      rozwiazanie: "Zauważmy, że trójkąt $ABC$ jest równoramienny. Podstawą tego trójkąta jest odcinek $AB$, natomiast wysokością jest odcinek, którego długość jest równa rzędnej punktu $C$.\n\nObliczamy wyróżnik trójmianu $-16x^2 + 40x + 11$:\n\n$\\Delta = 40^2 - 4 \\cdot (-16) \\cdot 11 = 1600 + 704 = 2304$\n\nObliczamy miejsca zerowe funkcji $f$:\n\n$x_1 = \\frac{-40 - \\sqrt{2304}}{2 \\cdot (-16)} = \\frac{-88}{-32} = \\frac{11}{4}$\n\n$x_2 = \\frac{-40 + \\sqrt{2304}}{2 \\cdot (-16)} = \\frac{8}{-32} = -\\frac{1}{4}$\n\nObliczamy długość podstawy $AB$ trójkąta $ABC$:\n\n$|AB| = \\frac{11}{4} - \\left(-\\frac{1}{4}\\right) = \\frac{12}{4} = 3$\n\nKorzystamy ze wzoru na drugą współrzędną wierzchołka paraboli i obliczamy rzędną punktu $C = (p, q)$:\n\n$q = \\frac{-2304}{4 \\cdot (-16)} = \\frac{-2304}{-64} = 36$\n\nObliczamy pole trójkąta $ABC$:\n\n$P_{ABC} = \\frac{1}{2} \\cdot 3 \\cdot 36 = 54$"
+      },
+    { nr: "14",
+      dzial: "funkcje",
+      temat: "ciag-arytmetyczny",
+      punkty: 3,
+      tresc: "Ciąg $(a_n)$ jest określony wzorem $a_n = \\frac{3n + 9}{n + 1}$ dla każdej liczby naturalnej $n \\geq 1$.\n\n**Wyznacz wszystkie wartości **$x$**, dla których trzywyrazowy ciąg**\n\n$(a_5, \\ 2x^2, \\ 3x^2 + 5)$\n\n**jest arytmetyczny. Zapisz obliczenia.**",
+      rozwiazanie: "Obliczamy piąty wyraz ciągu $(a_n)$:\n\n$a_5 = \\frac{3 \\cdot 5 + 9}{5 + 1} = \\frac{24}{6} = 4$\n\nZ warunków zadania wynika, że liczby $4$, $2x^2$, $3x^2 + 5$ są kolejnymi wyrazami ciągu arytmetycznego. Z własności ciągu arytmetycznego otrzymujemy:\n\n$\\frac{4 + 3x^2 + 5}{2} = 2x^2$\n\n$3x^2 + 9 = 4x^2$\n\n$x^2 = 9$\n\nZatem $x = -3$ lub $x = 3$."
+      },
   ],
 };

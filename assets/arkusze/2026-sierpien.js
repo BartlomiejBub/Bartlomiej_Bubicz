@@ -109,36 +109,50 @@ export default {
   ],
   otwarte: [
     {
-      "nr": "5",
-      "dzial": "dowody",
-      "temat": "dowody-algebraiczne",
-      "punkty": 2,
-      "tresc": "**Wykaż, że dla każdej nieparzystej liczby całkowitej $n$ liczba $3n^2 + 6n + 15$ jest podzielna przez $12$.**",
-      "rozwiazanie": "Ponieważ liczba $n$ jest nieparzysta, więc zapiszemy ją w postaci $n = 2l + 1$, gdzie $l \\in \\mathbb{Z}$.\n\nWówczas:\n\n$3n^2 + 6n + 15 = 3(2l+1)^2 + 6(2l+1) + 15 = 3(4l^2 + 4l + 1) + 12l + 6 + 15 =$\n\n$= 12l^2 + 12l + 3 + 12l + 21 = 12l^2 + 24l + 24 = 12 \\cdot (l^2 + 2l + 2)$\n\nPonieważ $l \\in \\mathbb{Z}$, więc również suma $l^2 + 2l + 2$ jest liczbą całkowitą.\n\nZatem iloczyn $12 \\cdot (l^2 + 2l + 2)$ jest podzielny przez $12$. To należało wykazać."
+      nr: "5",
+      dzial: "dowody",
+      temat: "dowody-algebraiczne",
+      punkty: 2,
+      tresc: "**Wykaż, że dla każdej nieparzystej liczby całkowitej $n$ liczba $3n^2 + 6n + 15$ jest podzielna przez $12$.**",
+      rozwiazanie: "Ponieważ liczba $n$ jest nieparzysta, więc zapiszemy ją w postaci $n = 2l + 1$, gdzie $l \\in \\mathbb{Z}$.\n\nWówczas:\n\n$3n^2 + 6n + 15 = 3(2l+1)^2 + 6(2l+1) + 15 = 3(4l^2 + 4l + 1) + 12l + 6 + 15 =$\n\n$= 12l^2 + 12l + 3 + 12l + 21 = 12l^2 + 24l + 24 = 12 \\cdot (l^2 + 2l + 2)$\n\nPonieważ $l \\in \\mathbb{Z}$, więc również suma $l^2 + 2l + 2$ jest liczbą całkowitą.\n\nZatem iloczyn $12 \\cdot (l^2 + 2l + 2)$ jest podzielny przez $12$. To należało wykazać."
     },
     {
-      "nr": "30",
-      "dzial": "dowody",
-      "temat": "optymalizacja",
-      "punkty": 4,
-      "tresc": "Rozważamy wszystkie walce, w których suma średnicy podstawy walca i wysokości walca jest równa $10$.\n\nNiech $P(r)$ oznacza pole powierzchni bocznej takiego walca w zależności od promienia $r$ podstawy walca.\n\n**Wyznacz wzór i dziedzinę funkcji $P$ zmiennej $r$.**\n\n**Oblicz promień $r$ podstawy tego z rozważanych walców, którego pole powierzchni bocznej jest największe. Zapisz obliczenia.**",
-      "rozwiazanie": "Z warunków zadania otrzymujemy:\n\n$2r + H = 10$\n\n$H = 10 - 2r$\n\nPole $P$ powierzchni bocznej walca jest równe:\n\n$P = 2\\pi r H$\n\nwięc wzór funkcji $P$ zmiennej $r$ ma postać:\n\n$P(r) = 2\\pi r \\cdot (10 - 2r)$\n\n$P(r) = -4\\pi r^2 + 20\\pi r$\n\nWyznaczamy dziedzinę funkcji $P$. Z warunków zadania wynika, że:\n\n$r > 0$ oraz $H = 10 - 2r > 0$\n\nZatem:\n\n$r > 0$ oraz $r < 5$\n\nZmienna $r$ może przyjmować wartości z przedziału $(0, 5)$.\n\nPonieważ we wzorze funkcji $P$ współczynnik przy drugiej potędze zmiennej $r$ jest ujemny, więc wykresem funkcji $P$ jest fragment paraboli skierowanej ramionami do dołu.\n\nObliczamy pierwszą współrzędną wierzchołka tej paraboli:\n\n$p = \\frac{-20\\pi}{2 \\cdot (-4\\pi)} = \\frac{5}{2} \\in (0, 5)$\n\nZatem funkcja $P$ przyjmuje wartość największą dla argumentu $\\frac{5}{2}$."
+      nr: "30",
+      dzial: "dowody",
+      temat: "optymalizacja",
+      punkty: 4,
+      tresc: "Rozważamy wszystkie walce, w których suma średnicy podstawy walca i wysokości walca jest równa $10$.\n\nNiech $P(r)$ oznacza pole powierzchni bocznej takiego walca w zależności od promienia $r$ podstawy walca.\n\n**Wyznacz wzór i dziedzinę funkcji $P$ zmiennej $r$.**\n\n**Oblicz promień $r$ podstawy tego z rozważanych walców, którego pole powierzchni bocznej jest największe. Zapisz obliczenia.**",
+      rozwiazanie: "Z warunków zadania otrzymujemy:\n\n$2r + H = 10$\n\n$H = 10 - 2r$\n\nPole $P$ powierzchni bocznej walca jest równe:\n\n$P = 2\\pi r H$\n\nwięc wzór funkcji $P$ zmiennej $r$ ma postać:\n\n$P(r) = 2\\pi r \\cdot (10 - 2r)$\n\n$P(r) = -4\\pi r^2 + 20\\pi r$\n\nWyznaczamy dziedzinę funkcji $P$. Z warunków zadania wynika, że:\n\n$r > 0$ oraz $H = 10 - 2r > 0$\n\nZatem:\n\n$r > 0$ oraz $r < 5$\n\nZmienna $r$ może przyjmować wartości z przedziału $(0, 5)$.\n\nPonieważ we wzorze funkcji $P$ współczynnik przy drugiej potędze zmiennej $r$ jest ujemny, więc wykresem funkcji $P$ jest fragment paraboli skierowanej ramionami do dołu.\n\nObliczamy pierwszą współrzędną wierzchołka tej paraboli:\n\n$p = \\frac{-20\\pi}{2 \\cdot (-4\\pi)} = \\frac{5}{2} \\in (0, 5)$\n\nZatem funkcja $P$ przyjmuje wartość największą dla argumentu $\\frac{5}{2}$."
     },
     {
-      "nr": "9",
-      "dzial": "liczby",
-      "temat": "nierownosci",
-      "punkty": 2,
-      "tresc": "**Rozwiąż nierówność**\n\n$x(3x - 2) < 1$\n\n**Zapisz obliczenia.**",
-      "rozwiazanie": "Zapisujemy nierówność w postaci $3x^2 - 2x - 1 < 0$ i obliczamy miejsca zerowe funkcji kwadratowej $y = 3x^2 - 2x - 1$.\n\nObliczamy wyróżnik trójmianu $3x^2 - 2x - 1$:\n\n$\\Delta = (-2)^2 - 4 \\cdot 3 \\cdot (-1) = 16$\n\nStąd:\n\n$x_1 = \\frac{-(-2) - \\sqrt{16}}{2 \\cdot 3} = -\\frac{1}{3}$\n\n$x_2 = \\frac{-(-2) + \\sqrt{16}}{2 \\cdot 3} = 1$\n\nSzkicujemy wykres funkcji kwadratowej $y = 3x^2 - 2x - 1$.\n\nPonieważ współczynnik przy drugiej potędze zmiennej $x$ jest dodatni, więc wykresem funkcji $y = 3x^2 - 2x - 1$ jest parabola skierowana ramionami do góry.\n\nOdczytujemy argumenty, dla których funkcja przyjmuje wartości ujemne.\n\nZbiorem rozwiązań nierówności jest przedział $\\left(-\\frac{1}{3}, 1\\right)$."
+      nr: "9",
+      dzial: "liczby",
+      temat: "nierownosci",
+      punkty: 2,
+      tresc: "**Rozwiąż nierówność**\n\n$x(3x - 2) < 1$\n\n**Zapisz obliczenia.**",
+      rozwiazanie: "Zapisujemy nierówność w postaci $3x^2 - 2x - 1 < 0$ i obliczamy miejsca zerowe funkcji kwadratowej $y = 3x^2 - 2x - 1$.\n\nObliczamy wyróżnik trójmianu $3x^2 - 2x - 1$:\n\n$\\Delta = (-2)^2 - 4 \\cdot 3 \\cdot (-1) = 16$\n\nStąd:\n\n$x_1 = \\frac{-(-2) - \\sqrt{16}}{2 \\cdot 3} = -\\frac{1}{3}$\n\n$x_2 = \\frac{-(-2) + \\sqrt{16}}{2 \\cdot 3} = 1$\n\nSzkicujemy wykres funkcji kwadratowej $y = 3x^2 - 2x - 1$.\n\nPonieważ współczynnik przy drugiej potędze zmiennej $x$ jest dodatni, więc wykresem funkcji $y = 3x^2 - 2x - 1$ jest parabola skierowana ramionami do góry.\n\nOdczytujemy argumenty, dla których funkcja przyjmuje wartości ujemne.\n\nZbiorem rozwiązań nierówności jest przedział $\\left(-\\frac{1}{3}, 1\\right)$."
     },
     {
-      "nr": "10",
-      "dzial": "liczby",
-      "temat": "rownania",
-      "punkty": 2,
-      "tresc": "W pewnym sklepie czekolada $\\mathcal{C}$ kosztuje $x$ złotych, a baton $\\mathcal{B}$ kosztuje $y$ złotych.\n\nPiotr kupił w tym sklepie $8$ czekolad $\\mathcal{C}$ oraz $4$ batony $\\mathcal{B}$ i zapłacił za zakupy $82$ złote.\n\nNatalia kupiła w tym sklepie $3$ czekolady $\\mathcal{C}$ oraz $9$ batonów $\\mathcal{B}$ i zapłaciła za te zakupy $60$ złotych.\n\n**Oblicz cenę** $x$ **czekolady** $\\mathcal{C}$**. Zapisz obliczenia.**",
-      "rozwiazanie": "Po uwzględnieniu warunków zadania otrzymujemy:\n\n$8x + 4y = 82$ oraz $3x + 9y = 60$\n\nZ pierwszego z tych równań wyznaczamy $y = 20{,}5 - 2x$ i podstawiamy w miejsce $y$ do drugiego z równań, w wyniku czego otrzymujemy:\n\n$3x + 9 \\cdot (20{,}5 - 2x) = 60$\n\n$3x + 184{,}5 - 18x = 60$\n\n$15x = 124{,}5$\n\n$x = 8{,}3$\n\nCzekolada kosztuje $8{,}30$ zł."
+      nr: "10",
+      dzial: "liczby",
+      temat: "rownania",
+      punkty: 2,
+      tresc: "W pewnym sklepie czekolada $\\mathcal{C}$ kosztuje $x$ złotych, a baton $\\mathcal{B}$ kosztuje $y$ złotych.\n\nPiotr kupił w tym sklepie $8$ czekolad $\\mathcal{C}$ oraz $4$ batony $\\mathcal{B}$ i zapłacił za zakupy $82$ złote.\n\nNatalia kupiła w tym sklepie $3$ czekolady $\\mathcal{C}$ oraz $9$ batonów $\\mathcal{B}$ i zapłaciła za te zakupy $60$ złotych.\n\n**Oblicz cenę** $x$ **czekolady** $\\mathcal{C}$**. Zapisz obliczenia.**",
+      rozwiazanie: "Po uwzględnieniu warunków zadania otrzymujemy:\n\n$8x + 4y = 82$ oraz $3x + 9y = 60$\n\nZ pierwszego z tych równań wyznaczamy $y = 20{,}5 - 2x$ i podstawiamy w miejsce $y$ do drugiego z równań, w wyniku czego otrzymujemy:\n\n$3x + 9 \\cdot (20{,}5 - 2x) = 60$\n\n$3x + 184{,}5 - 18x = 60$\n\n$15x = 124{,}5$\n\n$x = 8{,}3$\n\nCzekolada kosztuje $8{,}30$ zł."
     },
+    { nr: "12",
+      dzial: "funkcje",
+      temat: "funkcja-liniowa",
+      punkty: 2,
+      tresc: "Funkcja liniowa $f$ jest określona wzorem $f(x) = 5x + m^2 + 6m$, gdzie $m$ jest pewną liczbą rzeczywistą. W kartezjańskim układzie współrzędnych $(x, y)$ wykres funkcji $f$ przecina oś $Oy$ w punkcie o współrzędnych $(0, -9)$.\n\n**Oblicz **$m$**. Zapisz obliczenia.**",
+      rozwiazanie: "Ponieważ wykres funkcji $f$ przecina oś $Oy$ w punkcie $(0, -9)$, więc $f(0) = -9$.\n\nStąd otrzymujemy:\n\n$5 \\cdot 0 + m^2 + 6m = -9$\n\n$m^2 + 6m + 9 = 0$\n\n$(m + 3)^2 = 0$\n\nZatem $m = -3$."
+      },
+    { nr: "15",
+      dzial: "funkcje",
+      temat: "ciag-arytmetyczny",
+      punkty: 3,
+      tresc: "Ciąg arytmetyczny $(a_n)$ jest określony dla każdej liczby naturalnej $n \\geq 1$. Suma $S_{10}$ dziesięciu początkowych kolejnych wyrazów tego ciągu jest równa $90$. Średnia arytmetyczna pierwszego, siódmego i ósmego wyrazu tego ciągu jest równa $10$.\n\n**Oblicz pierwszy wyraz i różnicę ciągu **$(a_n)$**. Zapisz obliczenia.**",
+      rozwiazanie: "Po uwzględnieniu warunków zadania otrzymujemy:\n\n$S_{10} = 90 \\quad\\text{oraz}\\quad \\frac{a_1 + a_7 + a_8}{3} = 10$\n\nKorzystamy ze wzorów na $n$-ty wyraz i sumę $n$ początkowych wyrazów ciągu arytmetycznego i zapisujemy układ równań z dwiema niewiadomymi $a_1$ i $r$ (gdzie $r$ jest różnicą ciągu arytmetycznego $(a_n)$):\n\n$\\frac{2a_1 + 9r}{2} \\cdot 10 = 90 \\quad\\text{oraz}\\quad \\frac{a_1 + a_1 + 6r + a_1 + 7r}{3} = 10$\n\nPrzekształcamy ten układ równoważnie i otrzymujemy:\n\n$2a_1 + 9r = 18 \\quad\\text{oraz}\\quad 3a_1 + 13r = 30$\n\nZ pierwszego z tych równań wyznaczamy $a_1 = 9 - \\frac{9}{2}r$ i podstawiamy w miejsce $a_1$ do drugiego z równań, w wyniku czego otrzymujemy:\n\n$3 \\cdot \\left(9 - \\frac{9}{2}r\\right) + 13r = 30$\n\n$27 - \\frac{27}{2}r + 13r = 30$\n\n$-\\frac{1}{2}r = 3$\n\n$r = -6$\n\nZatem:\n\n$a_1 = 9 - \\frac{9}{2} \\cdot (-6) = 36$\n\nPierwszy wyraz ciągu $(a_n)$ jest równy $36$, a różnica tego ciągu jest równa $(-6)$."
+      },
   ],
 };

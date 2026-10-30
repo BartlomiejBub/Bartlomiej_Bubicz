@@ -112,20 +112,22 @@ export default {
       rysunek: "assets/arkusze/rys/2023-czerwiec-o33.png",
       rozwiazanie: "Przyjmijmy oznaczenia jak na rysunku.\n\nZ porównania sumy pól trapezów $ABFE$ i $EFCD$ otrzymujemy\n\n$P_{ABCD} = P_{ABFE} + P_{EFCD}$\n\n$\\frac{100 + 400}{2} \\cdot 75 = \\frac{400 + y}{2} \\cdot x + \\frac{100 + y}{2} \\cdot (75 - x)$\n\nStąd otrzymujemy\n\n$y = 400 - 4x$\n\nZatem pole $P$ placu wyraża się wzorem $P(x) = x \\cdot (400 - 4x)$ dla $x \\in (0, 75]$. Korzystamy z własności funkcji kwadratowej i obliczamy wartość $x$, dla którego wyrażenie $x(400 - 4x)$ osiąga wartość największą:\n\n$p = \\frac{x_1 + x_2}{2} = \\frac{0 + 100}{2} = 50$\n\nPonieważ $50 \\in (0, 75]$, więc funkcja $P$ osiąga wartość największą dla argumentu $x = 50$. Wtedy $y = 200$. Zatem plac o największej powierzchni ma wymiary $50$ m $\\times$ $200$ m. Powierzchnia placu o największej powierzchni jest równa $50\\text{ m} \\cdot 200\\text{ m} = 10\\,000\\text{ m}^2$." },
     {
-      "nr": "8",
-      "dzial": "liczby",
-      "temat": "nierownosci",
-      "punkty": 2,
-      "tresc": "**Rozwiąż nierówność**\n\n$x(2x - 1) < 2x$\n\n**Zapisz obliczenia.**",
-      "rozwiazanie": "Przekształcamy nierówność równoważnie:\n\n$x(2x - 1) < 2x$\n\n$2x^2 - x - 2x < 0$\n\n$2x^2 - 3x < 0$\n\n$2x\\left(x - \\frac{3}{2}\\right) < 0$\n\nOdczytujemy i zapisujemy pierwiastki trójmianu $2x\\left(x - \\frac{3}{2}\\right)$: $x = 0$ lub $x = \\frac{3}{2}$.\n\nPodajemy zbiór rozwiązań nierówności: $\\left(0, \\frac{3}{2}\\right)$ lub $x \\in \\left(0, \\frac{3}{2}\\right)$."
+      nr: "8",
+      dzial: "liczby",
+      temat: "nierownosci",
+      punkty: 2,
+      tresc: "**Rozwiąż nierówność**\n\n$x(2x - 1) < 2x$\n\n**Zapisz obliczenia.**",
+      rozwiazanie: "Przekształcamy nierówność równoważnie:\n\n$x(2x - 1) < 2x$\n\n$2x^2 - x - 2x < 0$\n\n$2x^2 - 3x < 0$\n\n$2x\\left(x - \\frac{3}{2}\\right) < 0$\n\nOdczytujemy i zapisujemy pierwiastki trójmianu $2x\\left(x - \\frac{3}{2}\\right)$: $x = 0$ lub $x = \\frac{3}{2}$.\n\nPodajemy zbiór rozwiązań nierówności: $\\left(0, \\frac{3}{2}\\right)$ lub $x \\in \\left(0, \\frac{3}{2}\\right)$."
     },
     {
-      "nr": "9",
-      "dzial": "liczby",
-      "temat": "rownania",
-      "punkty": 3,
-      "tresc": "**Rozwiąż równanie**\n\n$x^3 + 4x^2 - 9x - 36 = 0$\n\n**Zapisz obliczenia.**",
-      "rozwiazanie": "Przekształcamy równanie równoważnie i stosujemy metodę grupowania wyrazów:\n\n$x^3 + 4x^2 - 9x - 36 = 0$\n\n$x^2(x + 4) - 9(x + 4) = 0$\n\n$(x + 4)(x^2 - 9) = 0$\n\n$(x + 4)(x + 3)(x - 3) = 0$\n\n$x + 4 = 0$ lub $x + 3 = 0$ lub $x - 3 = 0$\n\n$x = -4$ lub $x = -3$ lub $x = 3$\n\nRozwiązaniami równania są liczby: $(-4)$, $(-3)$, $3$."
+      nr: "9",
+      dzial: "liczby",
+      temat: "rownania",
+      punkty: 3,
+      tresc: "**Rozwiąż równanie**\n\n$x^3 + 4x^2 - 9x - 36 = 0$\n\n**Zapisz obliczenia.**",
+      rozwiazanie: "Przekształcamy równanie równoważnie i stosujemy metodę grupowania wyrazów:\n\n$x^3 + 4x^2 - 9x - 36 = 0$\n\n$x^2(x + 4) - 9(x + 4) = 0$\n\n$(x + 4)(x^2 - 9) = 0$\n\n$(x + 4)(x + 3)(x - 3) = 0$\n\n$x + 4 = 0$ lub $x + 3 = 0$ lub $x - 3 = 0$\n\n$x = -4$ lub $x = -3$ lub $x = 3$\n\nRozwiązaniami równania są liczby: $(-4)$, $(-3)$, $3$."
     },
+    {nr:"15.1",dzial:"funkcje",temat:"inne-funkcje",punkty:1,wstep:"Masa $m$ leku $\\mathcal{L}$ zażytego przez chorego zmienia się w organizmie zgodnie z zależnością wykładniczą\n\n$m(t) = m_0 \\cdot (0{,}6)^{0{,}25t}$\n\ngdzie:\n\n$m_0$ – masa (wyrażona w mg) przyjętej w chwili $t = 0$ dawki leku,\n\n$t$ – czas (wyrażony w godzinach) liczony od momentu $t = 0$ zażycia leku.",tresc:"Chory przyjął jednorazowo lek $\\mathcal{L}$ w dawce $200$ mg.\n\n**Oblicz, ile mg leku **$\\mathcal{L}$** pozostanie w organizmie chorego po **$12$** godzinach od momentu przyjęcia dawki. Zapisz obliczenia.**",rozwiazanie:"Obliczamy $m(12) = 200 \\cdot (0{,}6)^{0{,}25 \\cdot 12} = 200 \\cdot (0{,}6)^3 = 43{,}2$ mg."},
+    {nr:"15.2",dzial:"funkcje",temat:"ciag-geometryczny",punkty:1,wstep:"Masa $m$ leku $\\mathcal{L}$ zażytego przez chorego zmienia się w organizmie zgodnie z zależnością wykładniczą\n\n$m(t) = m_0 \\cdot (0{,}6)^{0{,}25t}$\n\ngdzie:\n\n$m_0$ – masa (wyrażona w mg) przyjętej w chwili $t = 0$ dawki leku,\n\n$t$ – czas (wyrażony w godzinach) liczony od momentu $t = 0$ zażycia leku.",tresc:"Liczby $m(2{,}5)$, $m(4{,}5)$, $m(6{,}5)$ w podanej kolejności tworzą ciąg geometryczny.\n\n**Oblicz iloraz tego ciągu. Zapisz obliczenia.**",rozwiazanie:"Obliczamy iloraz $q$ ciągu geometrycznego:\n\n$q = \\frac{m(4{,}5)}{m(2{,}5)} = \\frac{m_0 \\cdot (0{,}6)^{0{,}25 \\cdot 4{,}5}}{m_0 \\cdot (0{,}6)^{0{,}25 \\cdot 2{,}5}} = (0{,}6)^{0{,}25 \\cdot (4{,}5 - 2{,}5)} = (0{,}6)^{0{,}5}$"},
   ],
 };

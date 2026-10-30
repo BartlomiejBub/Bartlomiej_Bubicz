@@ -98,12 +98,13 @@ export default {
         tresc: "**Wykaż, że dla każdej liczby naturalnej $n \geq 1$ liczba $5n^3 - 5n$ jest podzielna przez $30$.**",
         rozwiazanie: "Przekształcamy wyrażenie $5n^3 - 5n$ do postaci iloczynu\n\n$5n^3 - 5n = 5n(n^2 - 1) = 5n(n - 1)(n + 1)$\n\nJeden z czynników w rozkładzie jest równy $5$, więc liczba $5n(n - 1)(n + 1)$ jest podzielna przez $5$. Wśród każdych trzech kolejnych liczb całkowitych $n - 1,\ n,\ n + 1$ co najmniej jedna jest podzielna przez $2$ i dokładnie jedna jest podzielna przez $3$. Zatem liczba $5n(n - 1)(n + 1)$ dzieli się przez $5$ oraz przez $2$ oraz przez $3$. Ponadto liczby $2,\ 3,\ 5$ są parami względnie pierwsze. Zatem liczba $5n^3 - 5n = 5n(n^2 - 1) = 5n(n - 1)(n + 1)$ jest podzielna przez $30$.\n\nTo kończy dowód." },
       {
-      "nr": "10",
-      "dzial": "liczby",
-      "temat": "rownania",
-      "punkty": 3,
-      "tresc": "**Rozwiąż równanie**\n\n$4x^3 - 12x^2 - x + 3 = 0$\n\n**Zapisz obliczenia.**",
-      "rozwiazanie": "Przekształcamy równanie równoważnie i stosujemy metodę grupowania wyrazów:\n\n$4x^3 - 12x^2 - x + 3 = 0$\n\n$4x^2(x - 3) - (x - 3) = 0$\n\n$(x - 3)(4x^2 - 1) = 0$\n\n$(x - 3)(2x - 1)(2x + 1) = 0$\n\n$x - 3 = 0$ lub $2x - 1 = 0$ lub $2x + 1 = 0$\n\n$x = 3$ lub $x = \\frac{1}{2}$ lub $x = -\\frac{1}{2}$\n\nRozwiązaniami równania są liczby: $\\left(-\\frac{1}{2}\\right)$, $\\frac{1}{2}$, $3$."
+      nr: "10",
+      dzial: "liczby",
+      temat: "rownania",
+      punkty: 3,
+      tresc: "**Rozwiąż równanie**\n\n$4x^3 - 12x^2 - x + 3 = 0$\n\n**Zapisz obliczenia.**",
+      rozwiazanie: "Przekształcamy równanie równoważnie i stosujemy metodę grupowania wyrazów:\n\n$4x^3 - 12x^2 - x + 3 = 0$\n\n$4x^2(x - 3) - (x - 3) = 0$\n\n$(x - 3)(4x^2 - 1) = 0$\n\n$(x - 3)(2x - 1)(2x + 1) = 0$\n\n$x - 3 = 0$ lub $2x - 1 = 0$ lub $2x + 1 = 0$\n\n$x = 3$ lub $x = \\frac{1}{2}$ lub $x = -\\frac{1}{2}$\n\nRozwiązaniami równania są liczby: $\\left(-\\frac{1}{2}\\right)$, $\\frac{1}{2}$, $3$."
       },
+    {nr:"14",dzial:"funkcje",temat:"funkcja-kwadratowa",punkty:2,tresc:"Parabola, która jest wykresem funkcji kwadratowej $f$, ma z osiami kartezjańskiego układu współrzędnych $(x, y)$ dokładnie dwa punkty wspólne: $M = (0, 18)$ oraz $N = (3, 0)$.\n\n**Wyznacz wzór funkcji kwadratowej **$f$**. Zapisz obliczenia.**",rozwiazanie:"Ponieważ punkt $N = (3, 0)$ jest jedynym punktem wspólnym wykresu funkcji $f$ i osi $Ox$, więc jest to wierzchołek paraboli będącej wykresem funkcji $f$.\n\nZapisujemy wzór funkcji $f$ w postaci kanonicznej:\n\n$f(x) = a(x - 3)^2$, gdzie $a \\neq 0$\n\nPunkt $M = (0, 18)$ leży na wykresie funkcji $f$, zatem\n\n$f(0) = 18$\n\n$a(0 - 3)^2 = 18$\n\n$9a = 18$\n\n$a = 2$\n\nZatem $f(x) = 2(x - 3)^2$."},
     ],
 };

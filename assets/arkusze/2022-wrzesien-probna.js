@@ -133,12 +133,14 @@ export default {
       tresc: "**Wykaż, że dla każdej liczby naturalnej $n$ liczba $10n^2 + 30n + 8$ przy dzieleniu przez $5$ daje resztę $3$.**",
       rozwiazanie: "Przekształcamy równoważnie dane wyrażenie\n\n$10n^2 + 30n + 8 = 10n^2 + 30n + 5 + 3 = 5 \\cdot (2n^2 + 6n + 1) + 3$.\n\nPonieważ wartość wyrażenia $2n^2 + 6n + 1$ jest liczbą całkowitą, to $5 \\cdot (2n^2 + 6n + 1)$ jest wielokrotnością liczby $5$, zatem $5 \\cdot (2n^2 + 6n + 1) + 3$ przy dzieleniu przez $5$ daje resztę $3$. To należało wykazać." },
     {
-      "nr": "6",
-      "dzial": "liczby",
-      "temat": "rownania",
-      "punkty": 3,
-      "tresc": "**Rozwiąż równanie**\n\n$3x^3 - 6x^2 - 27x + 54 = 0$\n\n**Zapisz obliczenia.**",
-      "rozwiazanie": "Przekształcamy lewą stronę równania do postaci iloczynu:\n\n$3x^3 - 6x^2 - 27x + 54 = 0$\n\n$3x^2(x - 2) - 27(x - 2) = 0$\n\n$(x - 2)(3x^2 - 27) = 0$\n\n$3(x - 2)(x^2 - 9) = 0$\n\nStąd otrzymujemy kolejno\n\n$x - 2 = 0$ lub $x^2 - 9 = 0$\n\n$x - 2 = 0$ lub $(x - 3)(x + 3) = 0$\n\n$x - 2 = 0$ lub $x - 3 = 0$ lub $x + 3 = 0$\n\n$x = 2$ lub $x = 3$ lub $x = -3$\n\nRozwiązaniami równania są liczby: $(-3)$, $2$ oraz $3$."
+      nr: "6",
+      dzial: "liczby",
+      temat: "rownania",
+      punkty: 3,
+      tresc: "**Rozwiąż równanie**\n\n$3x^3 - 6x^2 - 27x + 54 = 0$\n\n**Zapisz obliczenia.**",
+      rozwiazanie: "Przekształcamy lewą stronę równania do postaci iloczynu:\n\n$3x^3 - 6x^2 - 27x + 54 = 0$\n\n$3x^2(x - 2) - 27(x - 2) = 0$\n\n$(x - 2)(3x^2 - 27) = 0$\n\n$3(x - 2)(x^2 - 9) = 0$\n\nStąd otrzymujemy kolejno\n\n$x - 2 = 0$ lub $x^2 - 9 = 0$\n\n$x - 2 = 0$ lub $(x - 3)(x + 3) = 0$\n\n$x - 2 = 0$ lub $x - 3 = 0$ lub $x + 3 = 0$\n\n$x = 2$ lub $x = 3$ lub $x = -3$\n\nRozwiązaniami równania są liczby: $(-3)$, $2$ oraz $3$."
     },
+    {nr:"10.1",dzial:"funkcje",temat:"wlasnosci-funkcji",punkty:1,wstep:"Na rysunku, w kartezjańskim układzie współrzędnych $(x, y)$, przedstawiono wykres funkcji $f$ określonej dla każdego $x \\in [-5, 4)$. Na tym wykresie zaznaczono punkty o współrzędnych całkowitych.\n\n[rysunek]",tresc:"**Zapisz w wykropkowanym miejscu zbiór wartości funkcji **$f$**.**",rysunek:"assets/arkusze/rys/2022-wrzesien-probna-o10.png",rozwiazanie:"$[-4, 4]$"},
+    {nr:"12.2",dzial:"funkcje",temat:"funkcja-liniowa",punkty:2,wstep:"Basen ma długość $25$ m. W najpłytszym miejscu jego głębokość jest równa $1{,}2$ m. Przekrój podłużny tego basenu przedstawiono poglądowo na rysunku.\n\nGłębokość $y$ basenu zmienia się wraz z odległością $x$ od brzegu w sposób opisany funkcją:\n\n$y = \\begin{cases} ax + b & \\text{dla } 0 \\leq x \\leq 15 \\text{ m} \\\\ 0{,}18x - 0{,}9 & \\text{dla } 15 \\text{ m} \\leq x \\leq 25 \\text{ m} \\end{cases}$\n\nOdległość $x$ jest mierzona od płytszego brzegu w poziomie na powierzchni wody (zobacz rysunek). Wielkości $x$ i $y$ są wyrażone w metrach.\n\n[rysunek]",tresc:"**Oblicz wartość współczynnika **$a$** oraz wartość współczynnika **$b$**.**\n\n**Zapisz obliczenia.**",rysunek:"assets/arkusze/rys/2022-wrzesien-probna-o12.png",rozwiazanie:"Obliczamy wartość współczynnika $b$:\n\n$b = y(0) = 1{,}2$\n\nW celu obliczenia wartości współczynnika $a$ obliczamy głębokość basenu w odległości $15$ m od płytszego brzegu, gdzie łączą się obie płaszczyzny dna:\n\n$y(15) = 0{,}18 \\cdot 15 - 0{,}9 = 1{,}8$\n\nZatem\n\n$a \\cdot 15 + 1{,}2 = 1{,}8$\n\ni stąd $a = 0{,}04$."},
   ],
 };
