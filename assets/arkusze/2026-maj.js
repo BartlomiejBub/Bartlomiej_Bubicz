@@ -150,6 +150,7 @@ export default {
       temat: "stereometria",
       punkty: 2,
       tresc: "Dany jest ostrosłup prawidłowy czworokątny, w którym przekątna podstawy ma długość $8\\sqrt{3}$. Krawędź boczna tego ostrosłupa jest nachylona do płaszczyzny podstawy pod kątem $30^\\circ$.\n\n**Oblicz objętość tego ostrosłupa. Zapisz obliczenia.**",
-      rozwiazanie: "Przyjmujemy oznaczenia:\n\n$a$ – długość krawędzi podstawy,\n\n$H$ – wysokość ostrosłupa,\n\n$O$ – spodek wysokości ostrosłupa.\n\nZauważamy, że $a > 0$ i $H > 0$.\n\nPonieważ $O$ jest punktem przecięcia przekątnych kwadratu, to $|OB| = 4\\sqrt{3}$.\n\nW trójkącie prostokątnym $SOB$ mamy\n\n$\\operatorname{tg} 30^\\circ = \\frac{|SO|}{|OB|} = \\frac{H}{4\\sqrt{3}}$\n\nZatem\n\n$H = 4\\sqrt{3} \\cdot \\operatorname{tg} 30^\\circ = 4\\sqrt{3} \\cdot \\frac{\\sqrt{3}}{3} = 4$\n\nObliczamy objętość $V$ ostrosłupa:\n\n$V = \\frac{1}{3} \\cdot \\frac{1}{2} \\cdot \\left(8\\sqrt{3}\\right)^2 \\cdot 4 = 128$" },
+      rozwiazanie: "Przyjmujemy oznaczenia jak na rysunku:\n\n[rysunek]\n\n$a$ – długość krawędzi podstawy,\n\n$H$ – wysokość ostrosłupa,\n\n$O$ – spodek wysokości ostrosłupa.\n\nZauważamy, że $a > 0$ i $H > 0$.\n\nPonieważ $O$ jest punktem przecięcia przekątnych kwadratu, to $|OB| = 4\\sqrt{3}$.\n\nW trójkącie prostokątnym $SOB$ mamy\n\n$\\operatorname{tg} 30^\\circ = \\frac{|SO|}{|OB|} = \\frac{H}{4\\sqrt{3}}$\n\nZatem\n\n$H = 4\\sqrt{3} \\cdot \\operatorname{tg} 30^\\circ = 4\\sqrt{3} \\cdot \\frac{\\sqrt{3}}{3} = 4$\n\nObliczamy objętość $V$ ostrosłupa:\n\n$V = \\frac{1}{3} \\cdot \\frac{1}{2} \\cdot \\left(8\\sqrt{3}\\right)^2 \\cdot 4 = 128$",
+      rysunekRozwiazania: "assets/arkusze/rys/2026-maj-k27.png" },
   ],
 };

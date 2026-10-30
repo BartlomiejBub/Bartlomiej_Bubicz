@@ -19,7 +19,8 @@
 //     otwarte: [                               // zadania otwarte (dowody, optymalizacja) – opcjonalnie
 //       { nr: "3", dzial: "dowody", temat: "dowody-algebraiczne", punkty: 2,
 //         tresc: "Wykaż, że …",                // jak wyżej, może mieć wstep, [rysunek] i rysunek
-//         rozwiazanie: "Przekształcamy …" },   // pierwsze przykładowe pełne rozwiązanie z klucza CKE
+//         rozwiazanie: "Przekształcamy …",     // pierwsze przykładowe pełne rozwiązanie z klucza CKE
+//         rysunekRozwiazania: "…" },           // opcjonalnie rysunek z klucza: [rysunek] w rozwiązaniu
 //     ],
 //   };
 import { readdir, access } from "node:fs/promises";
@@ -89,11 +90,12 @@ for (const plik of pliki) {
     numery.add(z.nr);
     if (!TEMATY[z.dzial]?.some((t) => t.id === z.temat)) blad(gdzie, `nieznany dział/temat ${z.dzial}/${z.temat}`);
     if (!Number.isInteger(z.punkty) || z.punkty < 1 || z.punkty > 6) blad(gdzie, `zła liczba punktów: ${z.punkty}`);
-    for (const pole of Object.keys(z)) if (!["nr", "dzial", "temat", "punkty", "wstep", "tresc", "rysunek", "rozwiazanie"].includes(pole)) blad(gdzie, `nieznane pole ${pole}`);
+    for (const pole of Object.keys(z)) if (!["nr", "dzial", "temat", "punkty", "wstep", "tresc", "rysunek", "rozwiazanie", "rysunekRozwiazania"].includes(pole)) blad(gdzie, `nieznane pole ${pole}`);
     const zRysunkiem = [z.wstep, z.tresc].some((t) => t?.includes("[rysunek]"));
     if (zRysunkiem !== Boolean(z.rysunek)) blad(gdzie, "znacznik [rysunek] i pole rysunek muszą występować razem");
     if (z.rysunek) { try { await access(new URL(z.rysunek, repo)); } catch { blad(gdzie, `brak pliku ${z.rysunek}`); } }
-    if (z.rozwiazanie?.includes("[rysunek]")) blad(gdzie, "rysunek tylko w treści, nie w rozwiązaniu");
+    if (Boolean(z.rozwiazanie?.includes("[rysunek]")) !== Boolean(z.rysunekRozwiazania)) blad(gdzie, "znacznik [rysunek] w rozwiązaniu i pole rysunekRozwiazania muszą występować razem");
+    if (z.rysunekRozwiazania) { try { await access(new URL(z.rysunekRozwiazania, repo)); } catch { blad(gdzie, `brak pliku ${z.rysunekRozwiazania}`); } }
     for (const s of [z.wstep, z.tresc, z.rozwiazanie].filter((s, i) => s !== undefined || i > 0)) {
       if (typeof s !== "string" || !s.trim()) { blad(gdzie, "pusty tekst"); continue; }
       if ((s.match(/\$/g) ?? []).length % 2) blad(gdzie, `niesparowane $ w: ${s.slice(0, 80)}`);

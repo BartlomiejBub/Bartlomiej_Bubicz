@@ -258,7 +258,7 @@ function kartaABCD(z, ocenione) {
 function kartaOtwarta(z) {
   const rozwiazanie = el("div", { class: "rozwiazanie", hidden: "" },
     el("p", { class: "rozwiazanie-tytul" }, "Przykładowe rozwiązanie (klucz CKE)"),
-    wstaw(el("div", { class: "abcd-tresc" }), z.rozwiazanie),
+    wstaw(el("div", { class: "abcd-tresc" }), z.rozwiazanie, { rysunek: z.rysunekRozwiazania }),
   );
   const przycisk = el("button", { class: "btn btn-primary", type: "button", "aria-expanded": "false" }, "Pokaż rozwiązanie");
   przycisk.addEventListener("click", () => {
