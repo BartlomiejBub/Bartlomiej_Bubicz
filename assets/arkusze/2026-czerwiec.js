@@ -116,5 +116,18 @@ export default {
       tresc: "Czterowyrazowy ciąg $(7, \\ a_2, \\ a_3, \\ a_4)$ jest arytmetyczny. Suma wszystkich wyrazów tego ciągu jest równa $54$.\n\n**Oblicz drugi wyraz tego ciągu. Zapisz obliczenia.**",
       rozwiazanie: "Z treści zadania wynika, że $7 + a_2 + a_3 + a_4 = 54$.\n\nStąd i ze wzoru na $n$-ty wyraz ciągu arytmetycznego otrzymujemy równanie:\n\n$7 + 7 + r + 7 + 2r + 7 + 3r = 54$\n\n$28 + 6r = 54$\n\n$6r = 26$\n\n$r = \\frac{13}{3}$\n\nZatem:\n\n$a_2 = 7 + r = 7 + \\frac{13}{3} = \\frac{34}{3}$"
       },
+    { nr: "22",
+      dzial: "geometria",
+      temat: "geometria-analityczna",
+      punkty: 3,
+      tresc: "W kartezjańskim układzie współrzędnych $(x, y)$ dany jest równoległobok $ABCD$, w którym $D = (6, 19)$. Bok $AB$ tego równoległoboku zawiera się w prostej o równaniu $y = \\frac{1}{2}x + 9$, a bok $AD$ zawiera się w prostej o równaniu $y = 4x - 5$. Punkt $K = (10, 14)$ jest środkiem odcinka $AB$. Przekątne równoległoboku $ABCD$ przecinają się w punkcie $S$.\n\n**Oblicz współrzędne punktu **$S$**. Zapisz obliczenia.**",
+      rozwiazanie: "Punkt $A$ jest punktem wspólnym prostych $AB$ i $AD$, zatem współrzędne tego punktu są rozwiązaniem układu równań:\n\n$\\begin{cases} y = \\frac{1}{2}x + 9 \\\\ y = 4x - 5 \\end{cases}$\n\nStąd:\n\n$\\frac{1}{2}x + 9 = 4x - 5$\n\n$\\frac{7}{2}x = 14$\n\n$x = 4$\n\n$y = 11$\n\nZatem $A = (4, 11)$.\n\nPunkt $K$ jest środkiem odcinka $AB$, więc:\n\n$\\frac{4 + x_B}{2} = 10$ oraz $\\frac{11 + y_B}{2} = 14$\n\n$x_B = 16$ oraz $y_B = 17$\n\nZatem $B = (16, 17)$.\n\nPunkt $S = (x_S, y_S)$ jest środkiem odcinka $BD$, więc:\n\n$x_S = \\frac{16 + 6}{2} = 11$ oraz $y_S = \\frac{17 + 19}{2} = 18$\n\nZatem $S = (11, 18)$." },
+    { nr: "27",
+      dzial: "geometria",
+      temat: "stereometria",
+      punkty: 4,
+      tresc: "Odcinek $AD$ jest wysokością walca, a odcinek $AB$ jest średnicą podstawy walca. Odcinek $BD$ ma długość $4\\sqrt{3}$. Miara kąta $ABD$ jest równa $30^\\circ$ (zobacz rysunek).\n\n[rysunek]\n\n**Oblicz objętość i pole powierzchni całkowitej tego walca. Zapisz obliczenia.**",
+      rysunek: "assets/arkusze/rys/2026-czerwiec-o27.png",
+      rozwiazanie: "Przyjmujemy oznaczenia:\n\n$r$ – promień podstawy walca,\n\n$H$ – wysokość walca.\n\nZauważamy, że kąt $DAB$ jest prosty oraz $r > 0$ i $H > 0$.\n\nW trójkącie prostokątnym $ABD$ mamy:\n\n$\\sin 30^\\circ = \\frac{|AD|}{|BD|} = \\frac{H}{4\\sqrt{3}}$\n\nZatem:\n\n$H = 4\\sqrt{3} \\cdot \\sin 30^\\circ = 4\\sqrt{3} \\cdot \\frac{1}{2} = 2\\sqrt{3}$\n\nPonadto:\n\n$\\cos 30^\\circ = \\frac{|AB|}{|BD|} = \\frac{2r}{4\\sqrt{3}} = \\frac{r}{2\\sqrt{3}}$\n\nStąd:\n\n$r = 2\\sqrt{3} \\cdot \\cos 30^\\circ = 2\\sqrt{3} \\cdot \\frac{\\sqrt{3}}{2} = 3$\n\nObliczamy objętość $V$ walca:\n\n$V = \\pi r^2 H = \\pi \\cdot 3^2 \\cdot 2\\sqrt{3} = 18\\pi\\sqrt{3}$\n\nObliczamy pole powierzchni całkowitej $P_c$ walca:\n\n$P_c = 2\\pi r^2 + 2\\pi r H = 2\\pi \\cdot 3^2 + 2\\pi \\cdot 3 \\cdot 2\\sqrt{3} = 18\\pi + 12\\pi\\sqrt{3}$" },
   ],
 };

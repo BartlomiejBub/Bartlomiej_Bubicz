@@ -145,5 +145,11 @@ export default {
       tresc: "Ciąg $(a_n)$ jest określony wzorem $a_n = 3n + 5$ dla każdej liczby naturalnej $n \\geq 1$. Trzywyrazowy ciąg $(a_1, \\ a_9, \\ a_k)$ jest geometryczny.\n\n**Oblicz **$k$**. Zapisz obliczenia.**",
       rozwiazanie: "Korzystamy ze wzoru na $n$-ty wyraz ciągu $(a_n)$ i obliczamy wyrazy $a_1$ oraz $a_9$:\n\n$a_1 = 3 \\cdot 1 + 5 = 8$\n\n$a_9 = 3 \\cdot 9 + 5 = 32$\n\nZatem iloraz trzywyrazowego ciągu geometrycznego $(8, \\ 32, \\ a_k)$ jest równy $\\frac{32}{8} = 4$.\n\nStąd:\n\n$a_k = 32 \\cdot 4 = 128$\n\nObliczamy $k$:\n\n$a_k = 128$\n\n$3k + 5 = 128$\n\n$k = 41$"
       },
+    { nr: "27",
+      dzial: "geometria",
+      temat: "stereometria",
+      punkty: 2,
+      tresc: "Dany jest ostrosłup prawidłowy czworokątny, w którym przekątna podstawy ma długość $8\\sqrt{3}$. Krawędź boczna tego ostrosłupa jest nachylona do płaszczyzny podstawy pod kątem $30^\\circ$.\n\n**Oblicz objętość tego ostrosłupa. Zapisz obliczenia.**",
+      rozwiazanie: "Przyjmujemy oznaczenia:\n\n$a$ – długość krawędzi podstawy,\n\n$H$ – wysokość ostrosłupa,\n\n$O$ – spodek wysokości ostrosłupa.\n\nZauważamy, że $a > 0$ i $H > 0$.\n\nPonieważ $O$ jest punktem przecięcia przekątnych kwadratu, to $|OB| = 4\\sqrt{3}$.\n\nW trójkącie prostokątnym $SOB$ mamy\n\n$\\operatorname{tg} 30^\\circ = \\frac{|SO|}{|OB|} = \\frac{H}{4\\sqrt{3}}$\n\nZatem\n\n$H = 4\\sqrt{3} \\cdot \\operatorname{tg} 30^\\circ = 4\\sqrt{3} \\cdot \\frac{\\sqrt{3}}{3} = 4$\n\nObliczamy objętość $V$ ostrosłupa:\n\n$V = \\frac{1}{3} \\cdot \\frac{1}{2} \\cdot \\left(8\\sqrt{3}\\right)^2 \\cdot 4 = 128$" },
   ],
 };

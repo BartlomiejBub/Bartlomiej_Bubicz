@@ -121,5 +121,9 @@ export default {
       rozwiazanie: "Przekształcamy równanie równoważnie i stosujemy metodę grupowania wyrazów:\n\n$3x^3 - 2x^2 - 3x + 2 = 0$\n\n$x^2(3x - 2) - (3x - 2) = 0$\n\n$(3x - 2)(x^2 - 1) = 0$\n\n$(3x - 2)(x - 1)(x + 1) = 0$\n\n$3x - 2 = 0$ lub $x - 1 = 0$ lub $x + 1 = 0$\n\n$x = \\frac{2}{3}$ lub $x = 1$ lub $x = -1$\n\nRozwiązaniami równania są liczby: $(-1)$, $\\frac{2}{3}$, $1$."
     },
     {nr:"18",dzial:"funkcje",temat:"ciag-arytmetyczny",punkty:2,tresc:"Ciąg $(3x^2 + 5x, x^2, 20 - x^2)$ jest arytmetyczny.\n\n**Oblicz **$x$**. Zapisz obliczenia.**",rozwiazanie:"Z własności ciągu arytmetycznego otrzymujemy\n\n$\\frac{3x^2 + 5x + 20 - x^2}{2} = x^2$\n\n$2x^2 + 5x + 20 = 2x^2$\n\n$x = -4$"},
+    { nr: "24", dzial: "geometria", temat: "planimetria", punkty: 2,
+      tresc: "Dany jest trapez równoramienny $ABCD$, w którym podstawa $CD$ ma długość $6$, ramię $AD$ ma długość $4$, a kąty $BAD$ oraz $ABC$ mają miarę $60^\\circ$ (zobacz rysunek).\n\n[rysunek]\n\n**Oblicz pole tego trapezu. Zapisz obliczenia.**",
+      rysunek: "assets/arkusze/rys/2023-sierpien-o24.png",
+      rozwiazanie: "Niech $DE$ oraz $CF$ będą wysokościami trapezu opuszczonymi na podstawę $AB$.\n\nStosując definicje funkcji trygonometrycznych dla kąta $BAD$ w trójkącie prostokątnym $FAD$ (lub korzystając ze związków miarowych dla trójkąta o kątach $30^\\circ$, $60^\\circ$ i $90^\\circ$), otrzymujemy\n\n$\\frac{|AE|}{|AD|} = \\cos 60^\\circ$, więc $|AE| = |AD| \\cdot \\cos 60^\\circ = 4 \\cdot \\frac{1}{2} = 2$\n\noraz\n\n$\\frac{|DE|}{|AD|} = \\sin 60^\\circ$, więc $|DE| = |AD| \\cdot \\sin 60^\\circ = 4 \\cdot \\frac{\\sqrt{3}}{2} = 2\\sqrt{3}$.\n\nPonieważ trapez jest równoramienny, więc $|AE| = |FB|$. Zatem\n\n$|AB| = |CD| + 2 \\cdot |AE| = 10$.\n\nObliczamy pole $P$ trapezu $ABCD$:\n\n$P = \\frac{|AB| + |CD|}{2} \\cdot |DE| = \\frac{10 + 6}{2} \\cdot 2\\sqrt{3} = 16\\sqrt{3}$" },
   ],
 };

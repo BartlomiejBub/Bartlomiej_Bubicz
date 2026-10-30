@@ -109,5 +109,12 @@ export default {
       tresc: "**Rozwiąż nierówność**\n\n$x(x - 6) \\leq 7$\n\n**Zapisz obliczenia.**",
       rozwiazanie: "Zapisujemy nierówność w postaci $x^2 - 6x - 7 \\leq 0$ i obliczamy miejsca zerowe funkcji $y = x^2 - 6x - 7$.\n\nObliczamy wyróżnik trójmianu $x^2 - 6x - 7$:\n\n$\\Delta = (-6)^2 - 4 \\cdot 1 \\cdot (-7) = 64$\n\nStąd\n\n$x_1 = \\frac{-(-6) - \\sqrt{64}}{2 \\cdot 1} = -1$\n\n$x_2 = \\frac{-(-6) + \\sqrt{64}}{2 \\cdot 1} = 7$\n\nSzkicujemy wykres funkcji $y = x^2 - 6x - 7$. Odczytujemy argumenty, dla których funkcja przyjmuje wartości niedodatnie.\n\nZbiorem rozwiązań nierówności jest przedział $\\langle -1, 7 \\rangle$."
       },
+    { nr: "19", dzial: "geometria", temat: "planimetria", punkty: 4,
+      tresc: "W trapezie prostokątnym $ABCD$ dłuższa podstawa $AB$ ma długość $7{,}5$. Krótsza przekątna $AC$ ma długość równą $6$ i dzieli trapez na dwa trójkąty prostokątne (zobacz rysunek).\n\n[rysunek]\n\n**Oblicz pole trapezu **$ABCD$**. Zapisz obliczenia.**",
+      rysunek: "assets/arkusze/rys/2024-grudzien-probna-o19.png",
+      rozwiazanie: "Trójkąty $ABC$ oraz $CAD$ są podobne na podstawie cechy kąt – kąt – kąt podobieństwa trójkątów. Stąd\n\n$\\frac{|CD|}{|AC|} = \\frac{|AC|}{|AB|}$\n\n$\\frac{|CD|}{6} = \\frac{6}{7{,}5}$\n\n$|CD| = 4{,}8$\n\nKorzystamy z twierdzenia Pitagorasa i obliczamy długość odcinka $AD$:\n\n$|AD|^2 = |AC|^2 - |CD|^2$\n\n$|AD|^2 = 6^2 - 4{,}8^2$\n\n$|AD|^2 = 12{,}96$\n\n$|AD| = 3{,}6$\n\nObliczamy pole trapezu $ABCD$:\n\n$P_{ABCD} = \\frac{1}{2} \\cdot (|AB| + |CD|) \\cdot |AD| = \\frac{1}{2} \\cdot (7{,}5 + 4{,}8) \\cdot 3{,}6 = 22{,}14$" },
+    { nr: "26", dzial: "geometria", temat: "stereometria", punkty: 2,
+      tresc: "Objętość stożka o wysokości $2$ jest równa $8\\pi$.\n\n**Oblicz miarę kąta rozwarcia tego stożka. Zapisz obliczenia.**",
+      rozwiazanie: "Ze wzoru na objętość stożka otrzymujemy:\n\n$V = \\frac{1}{3} \\cdot \\pi \\cdot r^2 \\cdot H$\n\n$8\\pi = \\frac{1}{3} \\cdot \\pi \\cdot r^2 \\cdot 2$\n\n$r^2 = 12$\n\n$r = \\sqrt{12} = 2\\sqrt{3}$\n\nNiech $\\alpha$ oznacza połowę miary kąta rozwarcia stożka. Wtedy\n\n$\\operatorname{tg} \\alpha = \\frac{2\\sqrt{3}}{2} = \\sqrt{3}$\n\nStąd $\\alpha = 60^\\circ$.\n\nZatem kąt rozwarcia stożka ma miarę $120^\\circ$." },
     ],
 };
