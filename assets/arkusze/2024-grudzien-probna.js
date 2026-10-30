@@ -116,5 +116,8 @@ export default {
     { nr: "26", dzial: "geometria", temat: "stereometria", punkty: 2,
       tresc: "Objętość stożka o wysokości $2$ jest równa $8\\pi$.\n\n**Oblicz miarę kąta rozwarcia tego stożka. Zapisz obliczenia.**",
       rozwiazanie: "Ze wzoru na objętość stożka otrzymujemy:\n\n$V = \\frac{1}{3} \\cdot \\pi \\cdot r^2 \\cdot H$\n\n$8\\pi = \\frac{1}{3} \\cdot \\pi \\cdot r^2 \\cdot 2$\n\n$r^2 = 12$\n\n$r = \\sqrt{12} = 2\\sqrt{3}$\n\nNiech $\\alpha$ oznacza połowę miary kąta rozwarcia stożka. Wtedy\n\n$\\operatorname{tg} \\alpha = \\frac{2\\sqrt{3}}{2} = \\sqrt{3}$\n\nStąd $\\alpha = 60^\\circ$.\n\nZatem kąt rozwarcia stożka ma miarę $120^\\circ$." },
+      { nr: "28", dzial: "statystyka", temat: "prawdopodobienstwo", punkty: 2,
+        tresc: "Dane są dwa zbiory: $C = \\{1, 2, 3, 4, 5, 6\\}$ oraz $D = \\{7, 8, 9, 10\\}$.\n\nLosujemy jedną liczbę ze zbioru $C$, a następnie losujemy jedną liczbę ze zbioru $D$.\n\n**Oblicz prawdopodobieństwo zdarzenia **$A$** polegającego na tym, że wylosujemy liczby, których iloczyn będzie podzielny przez **$4$**. Zapisz obliczenia.**",
+        rozwiazanie: "Zdarzeniami elementarnymi są wszystkie uporządkowane pary liczb $(x, y)$, gdzie $x \\in \\{1, 2, 3, 4, 5, 6\\}$ oraz $y \\in \\{7, 8, 9, 10\\}$.\n\nLiczbę wszystkich zdarzeń elementarnych obliczamy z wykorzystaniem reguły mnożenia. Moc zbioru $\\Omega$ jest równa $6 \\cdot 4 = 24$.\n\nZdarzeniu $A$ sprzyjają następujące zdarzenia elementarne:\n\n$(1, 8), (2, 8), (2, 10), (3, 8), (4, 7), (4, 8), (4, 9), (4, 10), (5, 8), (6, 8), (6, 10)$,\n\nwięc moc zbioru $A$ jest równa $11$.\n\nZatem prawdopodobieństwo zdarzenia $A$ jest równe $\\frac{11}{24}$." },
     ],
 };

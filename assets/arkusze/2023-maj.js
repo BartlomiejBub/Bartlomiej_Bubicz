@@ -137,5 +137,9 @@ export default {
       rysunek: "assets/arkusze/rys/2023-maj-o26.png",
       rozwiazanie: "Przyjmujemy oznaczenia jak na rysunku.\n\n[rysunek]\n\n$a$ – długość krawędzi podstawy,\n\n$H$ – wysokość ostrosłupa.\n\nZauważamy, że $a > 0$ i $H > 0$.\n\nPonieważ $O$ jest punktem przecięcia przekątnych kwadratu, to $|OE| = \\frac{1}{2}a$.\n\nW trójkącie prostokątnym $SOE$ mamy\n\n$\\sin 30^\\circ = \\frac{|SO|}{|SE|} = \\frac{H}{6}$\n\nZatem\n\n$H = 6 \\cdot \\sin 30^\\circ = 6 \\cdot \\frac{1}{2} = 3$\n\nPonadto\n\n$\\cos 30^\\circ = \\frac{|OE|}{|SE|} = \\frac{\\frac{1}{2}a}{6} = \\frac{a}{12}$\n\nStąd\n\n$a = 12 \\cdot \\cos 30^\\circ = 12 \\cdot \\frac{\\sqrt{3}}{2} = 6\\sqrt{3}$\n\nObliczamy objętość $V$ ostrosłupa:\n\n$V = \\frac{1}{3} \\cdot (6\\sqrt{3})^2 \\cdot 3 = 108$\n\nObliczamy pole powierzchni całkowitej $P_c$ ostrosłupa:\n\n$P_c = (6\\sqrt{3})^2 + 4 \\cdot \\frac{1}{2} \\cdot 6\\sqrt{3} \\cdot 6 = 108 + 72\\sqrt{3}$",
       rysunekRozwiazania: "assets/arkusze/rys/2023-maj-k26.png" },
+    { nr: "30", dzial: "statystyka", temat: "prawdopodobienstwo", punkty: 2,
+      tresc: "Ze zbioru ośmiu liczb $\\{2, 3, 4, 5, 6, 7, 8, 9\\}$ losujemy ze zwracaniem kolejno dwa razy po jednej liczbie.\n\n**Oblicz prawdopodobieństwo zdarzenia **$A$** polegającego na tym, że iloczyn wylosowanych liczb jest podzielny przez **$15$**. Zapisz obliczenia.**",
+      rozwiazanie: "Zbiór wszystkich zdarzeń elementarnych obrazuje tabela $8 \\times 8$, co oznacza, że moc zbioru $\\Omega$ jest równa $64$.\n\nW tabeli zaznaczamy iloczyny podzielne przez $15$.\n\n[rysunek]\n\nZdarzeń sprzyjających wylosowaniu liczb, których iloczyn jest podzielny przez $15$, jest $6$. Zatem prawdopodobieństwo zdarzenia polegającego na wylosowaniu liczb, których iloczyn jest podzielny przez $15$, jest równe $\\frac{6}{64}$.",
+      rysunekRozwiazania: "assets/arkusze/rys/2023-maj-k30.png" },
   ],
 };
