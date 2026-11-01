@@ -64,4 +64,13 @@ export const TEMATY = {
     { id: "potegi", nazwa: "Potęgi" },                                      // działania na potęgach, notacja wykładnicza
     { id: "pierwiastki", nazwa: "Pierwiastki" },                            // kwadratowe i sześcienne, szacowanie, wyłączanie czynnika
   ],
+  "e8-wyrazenia": [
+    { id: "zapisywanie-wyrazen", nazwa: "Zapisywanie wyrażeń" },            // wyrażenie z treści: o 3 więcej, 2 razy mniej, kolejne liczby
+    { id: "wartosc-wyrazenia", nazwa: "Wartość wyrażenia" },                // podstawianie liczb, także ujemnych i ułamków
+    { id: "przeksztalcanie", nazwa: "Upraszczanie i mnożenie wyrażeń" },    // wyrazy podobne, nawiasy, mnożenie sum, wyłączanie przed nawias
+    { id: "rownania", nazwa: "Równania" },                                  // rozwiązywanie i sprawdzanie, nawiasy, ułamki
+    { id: "zadania-z-rownaniem", nazwa: "Zadania tekstowe z równaniem" },   // wiek, liczby, pieniądze, układanie równania
+    { id: "przeksztalcanie-wzorow", nazwa: "Przekształcanie wzorów" },      // wyznaczanie zmiennej, np. a z L = 2a + 2b
+    { id: "proporcje", nazwa: "Proporcje i proporcjonalność prosta" },      // proporcja, wielkości wprost proporcjonalne
+  ],
 };

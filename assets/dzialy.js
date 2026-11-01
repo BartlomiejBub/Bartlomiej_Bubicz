@@ -8,6 +8,7 @@ import { GENERATORY as DOWODY } from "./generatory/dowody.js";
 import { GENERATORY as TEKSTOWE } from "./generatory/tekstowe.js";
 import { GENERATORY as E8_PODSTAWY } from "./generatory/e8-podstawy.js";
 import { GENERATORY as E8_LICZBY } from "./generatory/e8-liczby.js";
+import { GENERATORY as E8_WYRAZENIA } from "./generatory/e8-wyrazenia.js";
 import { losownik, ziarno } from "./generatory/wspolne.js";
 import { ARKUSZE as ARKUSZE_MATURY } from "./arkusze/index.js";
 import { ARKUSZE as ARKUSZE_E8 } from "./arkusze-e8/index.js";
@@ -20,6 +21,7 @@ import { WZORY as WZORY_DOWODY } from "./wzory/dowody.js";
 import { WZORY as WZORY_TEKSTOWE } from "./wzory/tekstowe.js";
 import { WZORY as WZORY_E8_PODSTAWY } from "./wzory/e8-podstawy.js";
 import { WZORY as WZORY_E8_LICZBY } from "./wzory/e8-liczby.js";
+import { WZORY as WZORY_E8_WYRAZENIA } from "./wzory/e8-wyrazenia.js";
 
 const ARKUSZE = [...ARKUSZE_MATURY, ...ARKUSZE_E8];
 
@@ -131,6 +133,18 @@ export const DZIALY = [
     tematy: tematy("e8-liczby"),
     wzory: WZORY_E8_LICZBY,
     generatory: E8_LICZBY,
+    pdf: [],
+  },
+  {
+    id: "e8-wyrazenia",
+    egzamin: "e8",
+    nazwa: "Wyrażenia i równania",
+    opis: "Zapisywanie i upraszczanie wyrażeń, wartość wyrażenia, równania i zadania tekstowe z równaniem, przekształcanie wzorów i proporcje.",
+    wzoryTytul: "Co trzeba umieć – krok po kroku",
+    wzoryOpis: "Na egzaminie nie ma karty wzorów, więc tu jest wszystko, co trzeba zapamiętać, wytłumaczone prostymi słowami i na przykładach.",
+    tematy: tematy("e8-wyrazenia"),
+    wzory: WZORY_E8_WYRAZENIA,
+    generatory: E8_WYRAZENIA,
     pdf: [],
   },
 ];
