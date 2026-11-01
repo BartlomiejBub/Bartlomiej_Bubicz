@@ -26,9 +26,11 @@ function tekstyZadania(z) {
   return [z.tresc, z.wynik, ...(z.rozwiazanie ?? []), ...z.pola.flatMap((p) => [p.etykieta ?? "", ...(p.opcje ?? [])])];
 }
 
-// Ósmoklasiści dodają ułamki o różnych mianownikach (np. 2/3 + 1/5 = 13/15), więc tam mianowniki mogą być większe.
+// Ósmoklasiści dodają ułamki o różnych mianownikach (np. 2/3 + 1/5 = 13/15), więc tam mianowniki mogą być większe,
+// a ułamki dziesiętne mogą mieć do 4 cyfr po przecinku (mianownik dzieli 10 000, np. 0,045).
 function ladna(v, dzial) {
-  return Math.abs(v.n) <= 100000 && v.d <= (dzial.startsWith("e8-") ? 40 : 12);
+  if (dzial.startsWith("e8-")) return Math.abs(v.n) <= 100000 && (v.d <= 40 || 10000 % v.d === 0);
+  return Math.abs(v.n) <= 100000 && v.d <= 12;
 }
 
 for (const nazwa of DZIALY) {

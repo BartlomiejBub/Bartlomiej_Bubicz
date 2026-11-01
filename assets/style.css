@@ -700,6 +700,8 @@ input.zle { border-color: var(--zle); background: var(--zle-bg); }
 .solution h4 { margin: 0 0 6px; color: var(--ink); }
 .solution ol { margin: 0 0 10px; padding-left: 20px; }
 .solution li + li { margin-top: 4px; }
+/* Słupki pisemne (tablice KaTeX) w rozwiązaniach: w osobnej linii i trochę większe, żeby skreślenia i przeniesienia były czytelne. */
+.solution .katex:has(.mtable) { display: block; width: fit-content; max-width: 100%; margin: 8px 0; padding: 0 6px 2px 2px; overflow-x: auto; font-size: 1.2em; }
 .solution-answer { margin: 0; color: var(--ink); font-weight: 600; }
 
 /* Karty pracy – lista */

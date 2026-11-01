@@ -41,6 +41,8 @@ const pole = (id, etykieta) => ({ id, typ: "liczba", etykieta });
 const zad = (tresc, pola, odpowiedz, wynik, rozwiazanie) => ({ tresc, pola, odpowiedz, wynik, rozwiazanie });
 const ulamekTex = (n, d) => (d === 1 ? String(n) : `\\frac{${n}}{${d}}`);
 const ladna = (v) => Math.abs(v.n) <= 100000 && v.d <= 40;
+/** Wynik dziesiętny: co najwyżej 4 cyfry po przecinku (mianownik dzieli 10 000), np. 0,045 albo 5,6088. */
+const ladnaDz = (v) => Math.abs(v.n) <= 100000 && 10000 % v.d === 0;
 
 /** Powtarza losowanie, aż f() zwróci zadanie (wartość różną od null); f korzysta z tego samego losownika, więc wynik jest powtarzalny. */
 function probuj(f, proby = 600) {
@@ -58,6 +60,9 @@ function zaokr(n) {
   const p = 10 ** Math.max(1, d - 2);
   return Math.round(n / p) * p;
 }
+
+/** Czy szacunek jest bliski wyniku (najwyżej 20% różnicy) – tylko wtedy pokazujemy sprawdzenie szacowaniem. */
+const blisko = (szac, wynik) => wynik !== 0 && Math.abs(szac - wynik) <= 0.2 * Math.abs(wynik);
 
 const NAZWY_KOLUMN = ["jedności", "dziesiątki", "setki", "tysiące", "dziesiątki tysięcy", "setki tysięcy"];
 
@@ -321,7 +326,8 @@ function odejmowaniePisemne(r) {
       ...kroki,
       ...(o.kaskada ? ["Zera nie mają czego pożyczyć, więc bierzemy od najbliższej cyfry różnej od zera, a zera po drodze zamieniają się w dziewiątki."] : []),
       `Całe odejmowanie wygląda tak (mała szara liczba to cyfra po pożyczce): $${o.tex}$`,
-      `Sprawdzenie: odejmowanie sprawdzamy dodawaniem. $${dz(wynik)} + ${dz(b)} = ${dz(a)}$ – zgadza się z liczbą, od której odejmowaliśmy. Szacowanie: $${dz(p1)} - ${dz(p2)} = ${dz(p1 - p2)}$ – blisko wyniku.`,
+      `Sprawdzenie: odejmowanie sprawdzamy dodawaniem. $${dz(wynik)} + ${dz(b)} = ${dz(a)}$ – zgadza się z liczbą, od której odejmowaliśmy.`
+        + (blisko(p1 - p2, wynik) ? ` Szacowanie: $${dz(p1)} - ${dz(p2)} = ${dz(p1 - p2)}$ – blisko wyniku.` : ""),
     ],
   );
 }
@@ -368,7 +374,9 @@ function mnozeniePisemne(r) {
     const czesciowe = [...bs].reverse().map((ch, i) => Number(ch) * a * 10 ** i);
     kroki.push(`Dodajemy wiersze: $${czesciowe.map((x) => dz(x)).join(" + ")} = ${dz(iloczyn)}$.`);
   }
-  const p1 = zaokr(a), p2 = zaokr(b);
+  // Szacujemy obie liczby; gdy to za mało dokładne (np. 15 · 501 ≈ 20 · 500), zaokrąglamy tylko większą.
+  let p1 = zaokr(a), p2 = zaokr(b);
+  if (!blisko(p1 * p2, iloczyn)) [p1, p2] = a >= b ? [zaokr(a), b] : [a, zaokr(b)];
   return zad(
     tresc,
     [pole("wynik", "Wynik")],
@@ -378,7 +386,7 @@ function mnozeniePisemne(r) {
       "Piszemy liczby jedna pod drugą (prawe strony równo). Mnożymy pierwszą liczbę przez kolejne cyfry drugiej, zaczynając od cyfry jedności.",
       ...kroki,
       `Całe mnożenie wygląda tak: $${mnozenieTex(a, b)}$`,
-      `Sprawdzenie szacowaniem: $${dz(p1)} \\cdot ${dz(p2)} = ${dz(p1 * p2)}$ – blisko wyniku $${dz(iloczyn)}$.`,
+      ...(blisko(p1 * p2, iloczyn) ? [`Sprawdzenie szacowaniem: $${dz(p1)} \\cdot ${dz(p2)} = ${dz(p1 * p2)}$ – blisko wyniku $${dz(iloczyn)}$.`] : []),
     ],
   );
 }
@@ -863,6 +871,48 @@ function brakujacaCyfra(r) {
   });
 }
 
+// --- 9b. Cechy podzielności: która z czterech liczb dzieli się przez 2, 5, 10, 3 albo 9
+
+const sumaCyfr = (n) => [...String(n)].reduce((a, c) => a + Number(c), 0);
+const CECHY = {
+  2: { cecha: "jej ostatnia cyfra jest parzysta ($0, 2, 4, 6, 8$)", co: (n) => `ostatnia cyfra $${n % 10}$` },
+  5: { cecha: "jej ostatnia cyfra to $0$ albo $5$", co: (n) => `ostatnia cyfra $${n % 10}$` },
+  10: { cecha: "jej ostatnia cyfra to $0$", co: (n) => `ostatnia cyfra $${n % 10}$` },
+  3: { cecha: "suma jej cyfr dzieli się przez $3$", co: (n) => `suma cyfr $${[...String(n)].join(" + ")} = ${sumaCyfr(n)}$` },
+  9: { cecha: "suma jej cyfr dzieli się przez $9$", co: (n) => `suma cyfr $${[...String(n)].join(" + ")} = ${sumaCyfr(n)}$` },
+};
+
+function ktoraPodzielna(r) {
+  const dziel = r.pick([2, 5, 10, 2, 5, 10, 3, 9]);
+  const { cecha, co } = CECHY[dziel];
+  const liczby = probuj(() => {
+    const dl = r.int(3, 4), min = 10 ** (dl - 1), max = 10 ** dl - 1;
+    const dobra = probuj(() => { const n = r.int(min, max); return n % dziel === 0 ? n : null; });
+    // Złe odpowiedzi wyglądają podobnie: przy 10 kończą się na 5, przy 9 często dzielą się przez 3.
+    const zla = () => probuj(() => {
+      let n = r.int(min, max);
+      if (dziel === 10 && r.chance(0.6)) n = n - (n % 10) + 5;
+      if (dziel === 9 && r.chance(0.6)) n -= n % 3;
+      return n >= min && n % dziel !== 0 ? n : null;
+    });
+    const zle = [zla(), zla(), zla()];
+    const wszystkie = [dobra, ...zle];
+    return new Set(wszystkie).size === 4 ? { dobra, wszystkie: r.shuffle(wszystkie) } : null;
+  });
+  const opcje = liczby.wszystkie.map((n) => `$${dz(n)}$`);
+  return zad(
+    `Która z liczb $${liczby.wszystkie.map((n) => dz(n)).join("$, $")}$ jest podzielna przez $${dziel}$?`,
+    [{ id: "odp", typ: "wybor", etykieta: `Liczba podzielna przez $${dziel}$`, opcje }],
+    { odp: liczby.wszystkie.indexOf(liczby.dobra) },
+    `$${dz(liczby.dobra)}$`,
+    [
+      `Liczba dzieli się przez $${dziel}$, gdy ${cecha}. Nie trzeba dzielić – wystarczy sprawdzić ten warunek.`,
+      ...liczby.wszystkie.map((n) => `$${dz(n)}$: ${co(n)} – ${n % dziel === 0 ? "**tak**, dzieli się" : "nie dzieli się"}.`),
+      `Sprawdzenie: $${dz(liczby.dobra)} : ${dziel} = ${dz(liczby.dobra / dziel)}$ – bez reszty.`,
+    ],
+  );
+}
+
 // --- 10. Skracanie, rozszerzanie, liczby mieszane
 
 function skracanieUlamka(r) {
@@ -1128,7 +1178,7 @@ function dziesietneDodawanieOdejmowanie(r) {
     const Ak = A * 10 ** (k - m1), Bk = B * 10 ** (k - m2);
     if (!dodawanie && Ak === Bk) return null;
     const wynik = dodawanie ? q(Ak + Bk, 10 ** k) : q(Ak - Bk, 10 ** k);
-    if (!ladna(wynik)) return null;
+    if (!ladnaDz(wynik)) return null;
     const x = dzMiejsca(A, m1), y = dzMiejsca(B, m2);
     const znak = dodawanie ? "+" : "-";
     const opis = [
@@ -1149,7 +1199,11 @@ function dziesietneDodawanieOdejmowanie(r) {
       [
         ...opis,
         `Całe ${dodawanie ? "dodawanie" : "odejmowanie"} wygląda tak (szare zera są dopisane): $${uklad}$`,
-        `Sprawdzenie szacowaniem: $${p1} ${znak} ${p2} = ${dodawanie ? p1 + p2 : p1 - p2}$ – blisko wyniku $${dz(wynik)}$.`,
+        dodawanie && blisko(p1 + p2, Number(wynik))
+          ? `Sprawdzenie szacowaniem: $${p1} + ${p2} = ${p1 + p2}$ – blisko wyniku $${dz(wynik)}$.`
+          : dodawanie
+            ? `Sprawdzenie odejmowaniem: $${dz(wynik)} - ${y} = ${x}$ – zgadza się.`
+            : `Sprawdzenie dodawaniem: $${dz(wynik)} + ${y} = ${x}$ – zgadza się z liczbą, od której odejmowaliśmy.`,
       ],
     );
   });
@@ -1162,7 +1216,7 @@ function dziesietneMnozenie(r) {
     if (String(A).length + String(B).length < 3 || A < 10 || B < 10) return null;
     const k = ma + mb, iloczyn = A * B;
     const wynik = q(iloczyn, 10 ** k);
-    if (!ladna(wynik)) return null;
+    if (!ladnaDz(wynik)) return null;
     const txt = String(iloczyn).padStart(k + 1, "0");
     const zPrzecinkiem = `${txt.slice(0, -k)}{,}${txt.slice(-k)}`;
     return zad(
@@ -1209,7 +1263,7 @@ function dziesietneMnozenieRzedu(r) {
     let n = r.int(m === 0 ? 2 : 1, m === 0 ? 999 : 99999);
     if (m > 0 && n % 10 === 0) n++;
     const x = q(n, 10 ** m), wynik = x.mul(p);
-    if (!ladna(wynik)) return null;
+    if (!ladnaDz(wynik)) return null;
     return zad(
       `Oblicz: $${dz(x, m)} \\cdot ${p}$.`,
       [pole("wynik", "Wynik")],
@@ -1232,7 +1286,7 @@ function dziesietneDzielenieRzedu(r) {
     let n = r.int(1, 9999);
     if (m > 0 && n % 10 === 0) n++;
     const x = q(n, 10 ** m), wynik = x.div(p);
-    if (!ladna(wynik)) return null;
+    if (!ladnaDz(wynik)) return null;
     return zad(
       `Oblicz: $${dz(x, m)} : ${p}$.`,
       [pole("wynik", "Wynik")],
@@ -1336,6 +1390,7 @@ export const GENERATORY = [
   { id: "liczby-ujemne", nazwa: "Liczby ujemne", opis: "Dodawanie i odejmowanie liczb ujemnych (termometr, oś liczbowa), mnożenie i dzielenie z minusami, krótkie wyrażenia z kolejnością działań.", temat: "liczby-ujemne", generuj: liczbyUjemne },
   { id: "nwd-nww", nazwa: "NWD i NWW", opis: "Największy wspólny dzielnik i najmniejsza wspólna wielokrotność dwóch liczb (rozkład na czynniki pierwsze), także w zadaniach o paczkach i autobusach.", temat: "podzielnosc", generuj: nwdNww },
   { id: "brakujaca-cyfra", nazwa: "Cechy podzielności – brakująca cyfra", opis: "Wstaw brakującą cyfrę tak, żeby liczba była podzielna przez 3, 4, 6 albo 9.", temat: "podzielnosc", generuj: brakujacaCyfra },
+  { id: "ktora-podzielna", nazwa: "Cechy podzielności – która liczba?", opis: "Wybierz liczbę podzielną przez 2, 5, 10, 3 albo 9, sprawdzając tylko ostatnią cyfrę albo sumę cyfr.", temat: "podzielnosc", generuj: ktoraPodzielna },
   { id: "skracanie-ulamka", nazwa: "Skracanie, rozszerzanie, liczby mieszane", opis: "Skracanie do ułamka nieskracalnego (licznik i mianownik), rozszerzanie ułamka oraz zamiana liczby mieszanej na ułamek niewłaściwy i odwrotnie.", temat: "ulamki-zwykle", generuj: skracanieUlamka },
   { id: "ulamki-dodawanie-odejmowanie", nazwa: "Dodawanie i odejmowanie ułamków", opis: "Dodawanie i odejmowanie ułamków o różnych mianownikach (wspólny mianownik = NWW), także w zadaniach z pizzą i czekoladą.", temat: "ulamki-zwykle", generuj: ulamkiDodawanieOdejmowanie },
   { id: "ulamki-mnozenie-dzielenie", nazwa: "Mnożenie i dzielenie ułamków", opis: "Mnożenie ułamków ze skracaniem „na krzyż”, dzielenie przez odwrotność, liczby mieszane i ułamek z liczby.", temat: "mnozenie-ulamkow", generuj: ulamkiMnozenieDzielenie },
