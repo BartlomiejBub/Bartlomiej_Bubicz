@@ -45,6 +45,9 @@ function pokaz() {
         el("li", { class: "sheet-task" },
           el("p", { class: "sheet-topic" }, z.temat),
           wstaw(el("div", { class: "sheet-text" }), z.tresc),
+          ...z.pola.filter((p) => p.typ === "wybor").map((p) =>
+            el("ul", { class: "sheet-opcje" },
+              ...p.opcje.map((o, i) => el("li", {}, el("strong", {}, `${"ABCDEFGH"[i]}. `), wstaw(el("span"), o, { akapity: false }))))),
           el("div", { class: "sheet-space", "aria-hidden": "true" }),
         ),
       ),

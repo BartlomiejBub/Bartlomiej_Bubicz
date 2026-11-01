@@ -55,4 +55,13 @@ export const TEMATY = {
     { id: "mnozenie-ulamkow", nazwa: "Mnożenie i dzielenie ułamków" },
     { id: "ulamki-dziesietne", nazwa: "Ułamki dziesiętne" },
   ],
+  "e8-liczby": [
+    { id: "systemy-zapisu", nazwa: "System dziesiętny i rzymski" },          // wartość pozycyjna, liczby rzymskie
+    { id: "os-liczbowa", nazwa: "Oś liczbowa i porównywanie" },             // ułamki i ujemne na osi, porównywanie, odległość
+    { id: "ulamki-i-rozwiniecia", nazwa: "Ułamki i rozwinięcia dziesiętne" }, // okresowe, zamiana, wartość wyrażeń z ułamkami
+    { id: "dzielniki", nazwa: "Dzielniki, wielokrotności i liczby pierwsze" },
+    { id: "zaokraglanie", nazwa: "Zaokrąglanie i szacowanie" },
+    { id: "potegi", nazwa: "Potęgi" },                                      // działania na potęgach, notacja wykładnicza
+    { id: "pierwiastki", nazwa: "Pierwiastki" },                            // kwadratowe i sześcienne, szacowanie, wyłączanie czynnika
+  ],
 };

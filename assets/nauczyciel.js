@@ -17,7 +17,7 @@ const NAGLOWEK = `// Uczniowie i ich dostęp do ćwiczeń.
 //          działy matury: liczby (Liczby i równania), funkcje (Funkcje i ciągi), geometria (Geometria),
 //          statystyka (Prawdopodobieństwo i statystyka), dowody (Dowody i optymalizacja),
 //          tekstowe (Zadania z treścią);
-//          działy egzaminu ósmoklasisty: e8-podstawy (Podstawy: działania i ułamki)
+//          działy egzaminu ósmoklasisty: e8-podstawy (Podstawy: działania i ułamki), e8-liczby (Liczby i działania)
 // tematy – opcjonalnie: tylko wybrane tematy działu, np. tematy: { funkcje: ["funkcja-liniowa", "funkcja-kwadratowa"] }
 //          (id tematów w pliku assets/arkusze/tematy.js; bez tego pola uczeń widzi cały dział)
 //

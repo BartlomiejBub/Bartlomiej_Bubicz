@@ -768,6 +768,7 @@ input.zle { border-color: var(--zle); background: var(--zle-bg); }
   text-transform: uppercase;
 }
 .sheet-text { color: var(--ink); }
+.sheet-opcje { display: flex; flex-wrap: wrap; gap: 4px 28px; margin: 6px 0 0; padding: 0; list-style: none; }
 .sheet-text p { margin: 0 0 6px; }
 .sheet-space { height: 72px; border-bottom: 1px dashed var(--line); }
 .sheet-answers { margin-top: 36px; padding-top: 14px; border-top: 2px solid var(--ink); }
