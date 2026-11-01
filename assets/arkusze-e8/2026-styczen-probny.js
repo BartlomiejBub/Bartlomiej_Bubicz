@@ -1,5 +1,6 @@
-// Egzamin ósmoklasisty styczeń 2026 (próbny, CKE) – zadania zamknięte z działu „Liczby i działania” przepisane z arkusza.
+// Egzamin ósmoklasisty styczeń 2026 (próbny, CKE) – zadania zamknięte przepisane z arkusza, przypisane do działów egzaminu ósmoklasisty (pole dzial).
 const DOK = "**Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.**";
+const UZ = "**Uzupełnij zdania. Wybierz odpowiedź spośród oznaczonych literami A i B oraz odpowiedź spośród oznaczonych literami C i D.**";
 
 export default {
   nazwa: "Egzamin ósmoklasisty styczeń 2026 (próbny)",
@@ -16,6 +17,16 @@ export default {
       tresc: "Uczniowie trzech klas: 8A, 8B i 8C, zebrali łącznie $132{,}9$ kg makulatury. Uczniowie klas 8A i 8B zebrali łącznie $90{,}6$ kg makulatury, a uczniowie klas 8B i 8C zebrali łącznie $86{,}8$ kg.\n\n**Ile kilogramów makulatury zebrali uczniowie klasy 8B? Wybierz właściwą odpowiedź spośród podanych.**",
       opcje: ["$43{,}4$", "$44{,}3$", "$44{,}5$", "$47{,}2$"],
       poprawna: 2 },
+    { nr: "5", dzial: "e8-wyrazenia", temat: "przeksztalcanie",
+      tresc: UZ,
+      czesci: [
+        { tekst: "Równość $3a - 4 = a + 2$ jest spełniona dla liczby $a$ równej …", litery: "AB", opcje: ["$3$", "$1$"], poprawna: 0 },
+        { tekst: "Wyrażenie $(3a - 4) - (a + 2)$ jest równe …", litery: "CD", opcje: ["$2a - 2$", "$2a - 6$"], poprawna: 1 },
+      ] },
+    { nr: "6", dzial: "e8-wyrazenia", temat: "zapisywanie-wyrazen",
+      tresc: `Aleks kupił jeden komplet słuchawek bezprzewodowych, dwie jednakowe ładowarki i dwa jednakowe dyski USB. Jeden dysk USB był $2$ razy tańszy od ładowarki, a komplet słuchawek bezprzewodowych był $4$ razy droższy od jednej ładowarki.\n\n${DOK}\n\nJeżeli przez $x$ oznaczymy cenę jednej ładowarki, to wartość zakupów Aleksa opiszemy wyrażeniem`,
+      opcje: ["$10{,}5x$", "$7x$", "$6{,}5x$", "$6x$"],
+      poprawna: 1 },
     { nr: "7", dzial: "e8-liczby", temat: "potegi",
       tresc: "Dane są trzy liczby: $x = 5{,}27 \\cdot 10^{-3}$, $y = 0{,}0023$, $z = 1400 \\cdot 10^{-5}$. Uporządkowano te liczby w kolejności od najmniejszej do największej.\n\n**Który zapis przedstawia poprawny sposób uporządkowania liczb** $x$, $y$, $z$**? Wybierz właściwą odpowiedź spośród podanych.**",
       opcje: ["$x < y < z$", "$y < x < z$", "$z < y < x$", "$x < z < y$"],

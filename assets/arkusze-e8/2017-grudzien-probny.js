@@ -1,4 +1,4 @@
-// Egzamin ósmoklasisty grudzień 2017 (próbny, CKE) – zadania zamknięte z działu „Liczby i działania” przepisane z arkusza.
+// Egzamin ósmoklasisty grudzień 2017 (próbny, CKE) – zadania zamknięte przepisane z arkusza, przypisane do działów egzaminu ósmoklasisty (pole dzial).
 const UZ = "**Uzupełnij zdania. Wybierz odpowiedź spośród oznaczonych literami A i B oraz odpowiedź spośród oznaczonych literami C i D.**";
 const PF = "**Oceń prawdziwość podanych zdań. Wybierz P, jeśli zdanie jest prawdziwe, albo F – jeśli jest fałszywe.**";
 

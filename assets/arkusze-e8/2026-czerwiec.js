@@ -1,9 +1,20 @@
-// Egzamin ósmoklasisty czerwiec 2026 (dodatkowy, CKE) – zadania zamknięte z działu „Liczby i działania” przepisane z arkusza.
+// Egzamin ósmoklasisty czerwiec 2026 (dodatkowy, CKE) – zadania zamknięte przepisane z arkusza, przypisane do działów egzaminu ósmoklasisty (pole dzial).
 const DOK = "**Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.**";
+const UZ = "**Uzupełnij zdania. Wybierz odpowiedź spośród oznaczonych literami A i B oraz odpowiedź spośród oznaczonych literami C i D.**";
 
 export default {
   nazwa: "Egzamin ósmoklasisty czerwiec 2026 (dodatkowy)",
   zadania: [
+    { nr: "2", dzial: "e8-wyrazenia", temat: "proporcje",
+      tresc: `Kwotę $1\\,800$ złotych przeznaczoną na nagrody w pewnym konkursie podzielono na trzy części w stosunku $6 : 3 : 1$, odpowiednio: za I, za II i za III miejsce.\n\n${UZ}`,
+      czesci: [
+        { tekst: "Wartość nagrody za III miejsce jest równa …", litery: "AB", opcje: ["$180$ złotych", "$200$ złotych"], poprawna: 0 },
+        { tekst: "Wartość nagrody za I miejsce jest … razy większa od wartości nagrody za II miejsce.", litery: "CD", opcje: ["$3$", "$2$"], poprawna: 1 },
+      ] },
+    { nr: "3", dzial: "e8-wyrazenia", temat: "rownania",
+      tresc: `${DOK}\n\nRozwiązaniem równania $3(x + 2) = 6 - (x - 1)$ jest liczba`,
+      opcje: ["$-\\frac{3}{2}$", "$-1$", "$\\frac{1}{4}$", "$\\frac{1}{2}$"],
+      poprawna: 2 },
     { nr: "4", dzial: "e8-liczby", temat: "potegi",
       tresc: "W tabeli zapisano cztery wyrażenia arytmetyczne:\n\nI. $2^{24} : 2$  II. $4^{12} \\cdot 4$  III. $2^{25} : 8$  IV. $(4 \\cdot 8)^4$\n\n**Które z tych wyrażeń ma największą wartość? Wybierz właściwą odpowiedź spośród podanych.**",
       opcje: ["I", "II", "III", "IV"],

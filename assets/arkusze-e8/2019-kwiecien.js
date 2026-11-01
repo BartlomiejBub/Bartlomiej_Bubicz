@@ -1,4 +1,4 @@
-// Egzamin ósmoklasisty kwiecień 2019 (CKE) – zadania zamknięte z działu „Liczby i działania” przepisane z arkusza.
+// Egzamin ósmoklasisty kwiecień 2019 (CKE) – zadania zamknięte przepisane z arkusza, przypisane do działów egzaminu ósmoklasisty (pole dzial).
 const UZ = "**Uzupełnij poniższe zdania. Wybierz odpowiedź spośród oznaczonych literami A i B oraz odpowiedź spośród oznaczonych literami C i D.**";
 
 export default {

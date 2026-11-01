@@ -1,4 +1,4 @@
-// Egzamin ósmoklasisty maj 2026 (CKE, wersja X) – zadania zamknięte z działu „Liczby i działania” przepisane z arkusza.
+// Egzamin ósmoklasisty maj 2026 (CKE, wersja X) – zadania zamknięte przepisane z arkusza, przypisane do działów egzaminu ósmoklasisty (pole dzial).
 const DOK = "**Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.**";
 const UZ = "**Uzupełnij zdania. Wybierz odpowiedź spośród oznaczonych literami A i B oraz odpowiedź spośród oznaczonych literami C i D.**";
 
@@ -17,11 +17,25 @@ export default {
       tresc: `${DOK}\n\nWartość wyrażenia $2^5 \\cdot 3 \\cdot 3^4 \\cdot 2^3$ jest równa wartości wyrażenia`,
       opcje: ["$2^8 \\cdot 3^5$", "$4^8 \\cdot 9^5$", "$2^{15} \\cdot 3^4$", "$4^{15} \\cdot 9^4$"],
       poprawna: 0 },
+    { nr: "5", dzial: "e8-wyrazenia", temat: "zapisywanie-wyrazen",
+      tresc: "W pewnej hodowli rasowy kocur kosztuje $x$ złotych, a rasowa kotka kosztuje $y$ złotych. Janek kupił z tej hodowli rasowego kocura ze zniżką $40\\%$ oraz rasową kotkę ze zniżką $20\\%$.\n\n**Które wyrażenie poprawnie opisuje, ile złotych zapłacił Janek za te koty? Wybierz właściwą odpowiedź spośród podanych.**",
+      opcje: ["$0{,}4x + 0{,}2y$", "$0{,}2x + 0{,}4y$", "$0{,}8x + 0{,}6y$", "$0{,}6x + 0{,}8y$"],
+      poprawna: 3 },
     { nr: "6", dzial: "e8-liczby", temat: "dzielniki",
       tresc: `W pudełku było jedenaście kul ponumerowanych kolejnymi liczbami naturalnymi od $1$ do $11$. Z tego pudełka wylosowano pięć kul. Suma liczb na dowolnych dwóch kulach, które pozostały w pudełku, jest parzysta.\n\n${UZ}`,
       czesci: [
         { tekst: "Po losowaniu w pudełku zostały wyłącznie kule ponumerowane liczbami …", litery: "AB", opcje: ["nieparzystymi", "parzystymi"], poprawna: 0 },
         { tekst: "Suma liczb na pięciu wylosowanych kulach jest równa …", litery: "CD", opcje: ["$30$", "$36$"], poprawna: 0 },
       ] },
+    { nr: "8", dzial: "e8-wyrazenia", temat: "przeksztalcanie",
+      tresc: `Sumę $S = 1 + 2 + 3 + \\ldots + n$ kolejnych liczb naturalnych od $1$ do $n$ można obliczyć ze wzoru\n\n$S = \\frac{1}{2}n(n + 1)$\n\n${UZ}`,
+      czesci: [
+        { tekst: "Suma stu kolejnych liczb naturalnych od $1$ do $100$ jest równa …", litery: "AB", opcje: ["$5001$", "$5050$"], poprawna: 1 },
+        { tekst: "Wzór na sumę $S$ po poprawnym przekształceniu ma postać …", litery: "CD", opcje: ["$S = \\frac{1}{2}n^2 + 1$", "$S = \\frac{1}{2}n^2 + \\frac{1}{2}n$"], poprawna: 1 },
+      ] },
+    { nr: "11", dzial: "e8-wyrazenia", temat: "zadania-z-rownaniem",
+      tresc: `Kąty wewnętrzne czworokąta oznaczono: $\\alpha$, $\\beta$, $\\gamma$ oraz $\\delta$. Miara kąta $\\beta$ jest o $70^\\circ$ większa od miary kąta $\\alpha$, miara kąta $\\gamma$ jest dwukrotnie większa od miary kąta $\\alpha$. Kąt $\\delta$ jest kątem prostym.\n\n${DOK}\n\nMiara kąta $\\beta$ jest równa`,
+      opcje: ["$50^\\circ$", "$85^\\circ$", "$120^\\circ$", "$155^\\circ$"],
+      poprawna: 2 },
   ],
 };

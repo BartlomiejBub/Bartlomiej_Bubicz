@@ -1,4 +1,4 @@
-// Egzamin ósmoklasisty czerwiec 2024 (dodatkowy, CKE) – zadania zamknięte z działu „Liczby i działania” przepisane z arkusza.
+// Egzamin ósmoklasisty czerwiec 2024 (dodatkowy, CKE) – zadania zamknięte przepisane z arkusza, przypisane do działów egzaminu ósmoklasisty (pole dzial).
 const DOK = "**Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.**";
 const UZ = "**Uzupełnij zdania. Wybierz odpowiedź spośród oznaczonych literami A i B oraz odpowiedź spośród oznaczonych literami C i D.**";
 const PF = "**Oceń prawdziwość podanych zdań. Wybierz P, jeśli zdanie jest prawdziwe, albo F – jeśli jest fałszywe.**";
@@ -20,6 +20,12 @@ export default {
       czesci: [
         { tekst: "$\\left(\\frac{1}{5}\\right)^8 > \\left(\\frac{1}{5}\\right)^6$", litery: "PF", poprawna: 1 },
         { tekst: "$2^2 \\cdot \\left(\\frac{1}{2}\\right)^2 = (-2)^3 \\cdot \\left(-\\frac{1}{2}\\right)^3$", litery: "PF", poprawna: 0 },
+      ] },
+    { nr: "4", dzial: "e8-wyrazenia", temat: "zapisywanie-wyrazen",
+      tresc: `W pudełku są kulki czerwone, zielone i niebieskie. Kulek czerwonych jest trzy razy więcej niż zielonych i o dwie mniej niż niebieskich.\n\n${UZ}`,
+      czesci: [
+        { tekst: "W pudełku najmniej jest kulek …", litery: "AB", opcje: ["niebieskich", "zielonych"], poprawna: 1 },
+        { tekst: "Jeśli liczbę kulek zielonych oznaczymy przez $x$, to liczbę wszystkich kulek w pudełku opisuje wyrażenie …", litery: "CD", opcje: ["$7x - 2$", "$7x + 2$"], poprawna: 1 },
       ] },
     { nr: "5", dzial: "e8-liczby", temat: "os-liczbowa",
       tresc: "Na osi liczbowej zaznaczono sześć liczb całkowitych. Cztery z tych liczb oznaczono literami: $k$, $m$, $t$, $p$.\n\n[rysunek]\n\n**Które z poniższych wyrażeń ma wartość równą** $1$**? Wybierz właściwą odpowiedź spośród podanych.**",

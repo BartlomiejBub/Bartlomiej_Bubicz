@@ -1,4 +1,4 @@
-// Egzamin ósmoklasisty maj 2025 (CKE, wersja X) – zadania zamknięte z działu „Liczby i działania” przepisane z arkusza.
+// Egzamin ósmoklasisty maj 2025 (CKE, wersja X) – zadania zamknięte przepisane z arkusza, przypisane do działów egzaminu ósmoklasisty (pole dzial).
 const DOK = "**Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.**";
 const PF = "**Oceń prawdziwość podanych zdań. Wybierz P, jeśli zdanie jest prawdziwe, albo F – jeśli jest fałszywe.**";
 
@@ -13,6 +13,15 @@ export default {
       tresc: "Dane są liczby: $91$, $92$, $95$, $97$.\n\n**Która z podanych liczb przy dzieleniu przez** $7$ **daje resztę** $1$**? Wybierz właściwą odpowiedź spośród podanych.**",
       opcje: ["$91$", "$92$", "$95$", "$97$"],
       poprawna: 1 },
+    { nr: "5", dzial: "e8-wyrazenia", temat: "przeksztalcanie-wzorow",
+      tresc: `Obwód pięciokąta przedstawionego na rysunku wyraża się wzorem $L = 2a + 2b + c$.\n\n[rysunek]\n\n${DOK}\n\nWielkość $a$ wyznaczoną poprawnie z podanego wzoru opisuje równanie`,
+      opcje: ["$a = \\frac{L - 2b - c}{2}$", "$a = \\frac{L - 2b + c}{2}$", "$a = L + 2b - c$", "$a = L - 2b - c$"],
+      poprawna: 0,
+      rysunek: "assets/arkusze-e8/rys/2025-maj-5.png" },
+    { nr: "6", dzial: "e8-wyrazenia", temat: "zapisywanie-wyrazen",
+      tresc: `W pudełku znajdują się wyłącznie piłki białe, fioletowe i czarne. Piłek białych jest $4$ razy więcej niż fioletowych i o $3$ mniej niż czarnych. Liczbę piłek fioletowych oznaczamy przez $x$.\n\n${DOK}\n\nŁączną liczbę wszystkich piłek w pudełku opisuje wyrażenie`,
+      opcje: ["$9x + 3$", "$9x - 3$", "$6x + 3$", "$6x - 3$"],
+      poprawna: 0 },
     { nr: "7", dzial: "e8-liczby", temat: "pierwiastki",
       tresc: `Dane są wyrażenia:\n\n$K = \\frac{1}{9} \\cdot \\sqrt{\\frac{1}{16}} - \\frac{1}{16} \\cdot \\sqrt{\\frac{1}{9}}$\n\n$L = 9 \\cdot \\sqrt{16} - 16 \\cdot \\sqrt{9}$\n\n${PF}`,
       czesci: [

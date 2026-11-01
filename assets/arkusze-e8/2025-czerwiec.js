@@ -1,4 +1,4 @@
-// Egzamin ósmoklasisty czerwiec 2025 (dodatkowy, CKE) – zadania zamknięte z działu „Liczby i działania” przepisane z arkusza.
+// Egzamin ósmoklasisty czerwiec 2025 (dodatkowy, CKE) – zadania zamknięte przepisane z arkusza, przypisane do działów egzaminu ósmoklasisty (pole dzial).
 const DOK = "**Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.**";
 const PF = "**Oceń prawdziwość podanych zdań. Wybierz P, jeśli zdanie jest prawdziwe, albo F – jeśli jest fałszywe.**";
 
@@ -25,5 +25,13 @@ export default {
       tresc: `Jurek przejechał rowerem $12$ km, co stanowiło $\\frac{2}{3}$ długości zaplanowanej trasy.\n\n${DOK}\n\nPołowa zaplanowanej trasy ma długość`,
       opcje: ["$6$ km", "$8$ km", "$9$ km", "$10$ km"],
       poprawna: 2 },
+    { nr: "8", dzial: "e8-wyrazenia", temat: "rownania",
+      tresc: `Dane jest równanie\n\n$5 + \\frac{1 - x}{2} = 2(x - 1)$\n\n${DOK}\n\nRozwiązaniem tego równania jest liczba`,
+      opcje: ["$2$", "$2\\frac{1}{2}$", "$3$", "$4\\frac{1}{3}$"],
+      poprawna: 2 },
+    { nr: "11", dzial: "e8-wyrazenia", temat: "zapisywanie-wyrazen",
+      tresc: `Kasia jest $3$ razy starsza od Ani. Ola jest o $2$ lata starsza od Kasi. Oznaczymy przez $x$ wiek Ani.\n\n${DOK}\n\nŁączny wiek Kasi, Ani i Oli opisuje wyrażenie`,
+      opcje: ["$3x + 5$", "$4x + 2$", "$5x + 2$", "$7x + 2$"],
+      poprawna: 3 },
   ],
 };

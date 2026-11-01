@@ -1,4 +1,5 @@
-// Egzamin ósmoklasisty grudzień 2024 (próbny, CKE) – zadania zamknięte z działu „Liczby i działania” przepisane z arkusza.
+// Egzamin ósmoklasisty grudzień 2024 (próbny, CKE) – zadania zamknięte przepisane z arkusza, przypisane do działów egzaminu ósmoklasisty (pole dzial).
+const DOK = "**Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.**";
 const UZ = "**Uzupełnij zdania. Wybierz odpowiedź spośród oznaczonych literami A i B oraz odpowiedź spośród oznaczonych literami C i D.**";
 const PF = "**Oceń prawdziwość podanych zdań. Wybierz P, jeśli zdanie jest prawdziwe, albo F – jeśli jest fałszywe.**";
 
@@ -11,6 +12,10 @@ export default {
         { tekst: "Wartość wyrażenia $5^2 \\cdot 5^3 \\cdot 5^5$ jest równa $\\left(5^5\\right)^2$.", litery: "PF", poprawna: 0 },
         { tekst: "Wyrażenia $\\frac{2^3 \\cdot 3^3}{6}$ oraz $\\left(\\frac{12}{5} : \\frac{2}{5}\\right)^2$ mają taką samą wartość.", litery: "PF", poprawna: 0 },
       ] },
+    { nr: "3", dzial: "e8-wyrazenia", temat: "przeksztalcanie",
+      tresc: `${DOK}\n\nWyrażenie $2(a - 2b) - (a - b)(2 - b) + b^2$ można przekształcić równoważnie do postaci`,
+      opcje: ["$ab$", "$ab - 2b$", "$b^2 - 2b - ab$", "$b^2 - 6b + a - 2$", "$b^2 + ab$"],
+      poprawna: 1 },
     { nr: "4", dzial: "e8-liczby", temat: "pierwiastki",
       tresc: UZ,
       czesci: [
