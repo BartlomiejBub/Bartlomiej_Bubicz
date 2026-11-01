@@ -1,4 +1,5 @@
 // Egzamin ósmoklasisty grudzień 2017 (próbny, CKE) – zadania zamknięte przepisane z arkusza, przypisane do działów egzaminu ósmoklasisty (pole dzial).
+const DOK = "**Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.**";
 const UZ = "**Uzupełnij zdania. Wybierz odpowiedź spośród oznaczonych literami A i B oraz odpowiedź spośród oznaczonych literami C i D.**";
 const PF = "**Oceń prawdziwość podanych zdań. Wybierz P, jeśli zdanie jest prawdziwe, albo F – jeśli jest fałszywe.**";
 
@@ -18,6 +19,18 @@ export default {
         { tekst: "W zacieniowane pole kwadratu należy wpisać liczbę $5^9$.", litery: "PF", poprawna: 0 },
       ],
       rysunek: "assets/arkusze-e8/rys/2017-grudzien-probny-5.png" },
+    { nr: "8", dzial: "e8-wyrazenia", temat: "wartosc-wyrazenia",
+      tresc: `Punkt kratowy to miejsce przecięcia się linii kwadratowej siatki. Pole wielokąta, którego wierzchołki znajdują się w punktach kratowych kwadratowej siatki na płaszczyźnie, można obliczyć ze wzoru Picka:\n\n$P = W + \\frac{1}{2}B - 1$,\n\ngdzie $P$ oznacza pole wielokąta, $W$ – liczbę punktów kratowych leżących wewnątrz wielokąta, a $B$ – liczbę punktów kratowych leżących na brzegu tego wielokąta.\n\n[rysunek]\n\nW wielokącie przedstawionym na rysunku $W = 3$ oraz $B = 5$, zatem $P = 4{,}5$.\n\nWewnątrz pewnego wielokąta znajduje się $5$ punktów kratowych, a na jego brzegu jest $6$ punktów kratowych.\n\n${DOK}\n\nPole tego wielokąta jest równe`,
+      opcje: ["$6$", "$6{,}5$", "$7$", "$7{,}5$"],
+      poprawna: 2,
+      rysunek: "assets/arkusze-e8/rys/2017-grudzien-probny-8.png" },
+    { nr: "9", dzial: "e8-wyrazenia", temat: "wartosc-wyrazenia",
+      tresc: `Punkt kratowy to miejsce przecięcia się linii kwadratowej siatki. Pole wielokąta, którego wierzchołki znajdują się w punktach kratowych kwadratowej siatki na płaszczyźnie, można obliczyć ze wzoru Picka:\n\n$P = W + \\frac{1}{2}B - 1$,\n\ngdzie $P$ oznacza pole wielokąta, $W$ – liczbę punktów kratowych leżących wewnątrz wielokąta, a $B$ – liczbę punktów kratowych leżących na brzegu tego wielokąta.\n\n[rysunek]\n\nW wielokącie przedstawionym na rysunku $W = 3$ oraz $B = 5$, zatem $P = 4{,}5$.\n\n${UZ}`,
+      czesci: [
+        { tekst: "Wielokąt, którego pole jest równe $15$, może mieć … punktów kratowych leżących na brzegu wielokąta.", litery: "AB", opcje: ["$7$", "$8$"], poprawna: 1 },
+        { tekst: "Pole wielokąta, który ma dwukrotnie więcej punktów kratowych leżących na brzegu wielokąta niż punktów leżących wewnątrz, wyraża się liczbą ….", litery: "CD", opcje: ["parzystą", "nieparzystą"], poprawna: 1 },
+      ],
+      rysunek: "assets/arkusze-e8/rys/2017-grudzien-probny-9.png" },
     { nr: "14", dzial: "e8-liczby", temat: "pierwiastki",
       tresc: UZ,
       czesci: [

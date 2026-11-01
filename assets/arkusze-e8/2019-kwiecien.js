@@ -1,4 +1,5 @@
 // Egzamin ósmoklasisty kwiecień 2019 (CKE) – zadania zamknięte przepisane z arkusza, przypisane do działów egzaminu ósmoklasisty (pole dzial).
+const DOK = "**Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.**";
 const UZ = "**Uzupełnij poniższe zdania. Wybierz odpowiedź spośród oznaczonych literami A i B oraz odpowiedź spośród oznaczonych literami C i D.**";
 
 export default {
@@ -22,5 +23,13 @@ export default {
         { tekst: "Adam przygotował … karty do gry.", litery: "AB", opcje: ["$32$", "$64$"], poprawna: 1 },
         { tekst: "Każdy gracz może otrzymać maksymalnie … kart.", litery: "CD", opcje: ["$12$", "$13$"], poprawna: 0 },
       ] },
+    { nr: "6", dzial: "e8-wyrazenia", temat: "proporcje",
+      tresc: "Dorota sporządziła z cukru i wody syrop do deseru. Stosunek masy cukru do masy wody w tym syropie jest równy $5 : 3$.\n\n**Ile procent masy tego syropu stanowi masa cukru? Wybierz właściwą odpowiedź spośród podanych.**",
+      opcje: ["$25\\%$", "$37{,}5\\%$", "$40\\%$", "$60\\%$", "$62{,}5\\%$"],
+      poprawna: 4 },
+    { nr: "8", dzial: "e8-wyrazenia", temat: "przeksztalcanie",
+      tresc: `${DOK}\n\nWyrażenie: $(2a + 3b)(3b - 2a)$ jest równe`,
+      opcje: ["$4a^2 - 12ab + 9b^2$", "$9b^2 + 12ab + 4a^2$", "$9b^2 - 4a^2$", "$4a^2 - 9b^2$"],
+      poprawna: 2 },
   ],
 };

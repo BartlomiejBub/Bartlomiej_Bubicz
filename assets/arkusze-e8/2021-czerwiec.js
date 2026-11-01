@@ -1,4 +1,5 @@
 // Egzamin ósmoklasisty czerwiec 2021 (dodatkowy, CKE) – zadania zamknięte przepisane z arkusza, przypisane do działów egzaminu ósmoklasisty (pole dzial).
+const DOK = "**Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.**";
 const UZ = "**Uzupełnij zdania. Wybierz odpowiedź spośród oznaczonych literami A i B oraz odpowiedź spośród oznaczonych literami C i D.**";
 
 export default {
@@ -34,5 +35,10 @@ export default {
         { tekst: "Gdy $a + b + c = -1$ oraz $a$ jest liczbą mniejszą od $(-1)$, to suma $(b + c)$ jest …", litery: "AB", opcje: ["dodatnia", "ujemna"], poprawna: 0 },
         { tekst: "Gdy $a \\cdot b \\cdot c = 1$ oraz $a$ jest liczbą większą od zera, to iloczyn $(b \\cdot c)$ jest …", litery: "CD", opcje: ["dodatni", "ujemny"], poprawna: 0 },
       ] },
+    { nr: "10", dzial: "e8-wyrazenia", temat: "zadania-z-rownaniem",
+      tresc: `Długości boków trójkąta równoramiennego przedstawionego na rysunku opisano wyrażeniami algebraicznymi.\n\n[rysunek]\n\n${DOK}\n\nObwód tego trójkąta jest równy`,
+      opcje: ["$13$", "$21$", "$27$", "$30$"],
+      poprawna: 2,
+      rysunek: "assets/arkusze-e8/rys/2021-czerwiec-10.png" },
   ],
 };

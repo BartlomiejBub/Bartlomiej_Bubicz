@@ -1,5 +1,6 @@
 // Egzamin ósmoklasisty maj 2022 (CKE, wersja X) – zadania zamknięte przepisane z arkusza, przypisane do działów egzaminu ósmoklasisty (pole dzial).
 const DOK = "**Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.**";
+const UZ = "**Uzupełnij zdania. Wybierz odpowiedź spośród oznaczonych literami A i B oraz odpowiedź spośród oznaczonych literami C i D.**";
 
 export default {
   nazwa: "Egzamin ósmoklasisty maj 2022",
@@ -22,6 +23,16 @@ export default {
       tresc: "Dane są trzy liczby:\n\n$x = \\frac{10^{30} \\cdot 10^{70}}{10}$\n\n$y = \\left(10^3\\right)^{15} \\cdot 10^{60}$\n\n$z = 10^{50} \\cdot \\frac{10^{80}}{10^{20}}$\n\n**Która z tych liczb jest mniejsza od liczby** $10^{100}$**? Wybierz właściwą odpowiedź spośród podanych.**",
       opcje: ["Tylko $x$.", "Tylko $y$.", "Tylko $z$.", "Każda z liczb $x$, $y$, $z$."],
       poprawna: 0 },
+    { nr: "6", dzial: "e8-wyrazenia", temat: "proporcje",
+      tresc: `Na uszycie $90$ jednakowych bluzek w rozmiarze $S$ potrzeba tyle samo materiału, ile na uszycie $60$ jednakowych bluzek w rozmiarze $L$.\n\nPrzyjmij, że na uszycie większej lub mniejszej liczby bluzek potrzeba proporcjonalnie więcej lub mniej materiału.\n\n${UZ}`,
+      czesci: [
+        { tekst: "Na uszycie $240$ bluzek w rozmiarze $S$ potrzeba tyle samo materiału, ile potrzeba na uszycie … bluzek w rozmiarze $L$.", litery: "AB", opcje: ["$160$", "$150$"], poprawna: 0 },
+        { tekst: "Na uszycie dwóch bluzek w rozmiarze $L$ potrzeba tyle samo materiału, ile potrzeba na uszycie … bluzek w rozmiarze $S$.", litery: "CD", opcje: ["trzech", "pięciu"], poprawna: 0 },
+      ] },
+    { nr: "7", dzial: "e8-wyrazenia", temat: "wartosc-wyrazenia",
+      tresc: "Dane jest wyrażenie $\\frac{n^4 - 3}{6}$ oraz liczby: $-3$, $-1$, $0$, $1$, $3$.\n\n**Dla której z danych liczb wartość podanego wyrażenia jest najmniejsza? Wybierz właściwą odpowiedź spośród podanych.**",
+      opcje: ["$-3$", "$-1$", "$0$", "$1$", "$3$"],
+      poprawna: 2 },
     { nr: "8", dzial: "e8-liczby", temat: "pierwiastki",
       tresc: `${DOK}\n\nLiczba $\\sqrt{60}$ jest`,
       opcje: ["większa od $3$ i mniejsza od $4$.", "większa od $4$ i mniejsza od $5$.", "większa od $7$ i mniejsza od $8$.", "większa od $8$ i mniejsza od $9$."],
@@ -35,5 +46,9 @@ export default {
       tresc: `Plik z prezentacją multimedialną Igora ma rozmiar $13$ MB (megabajtów). Plik z prezentacją multimedialną Lidki ma $2{,}5$ razy większy rozmiar (wyrażony w MB) niż plik z prezentacją Igora.\n\n${DOK}\n\nPlik z prezentacją Lidki ma większy rozmiar niż plik z prezentacją Igora o`,
       opcje: ["$12$ MB", "$19{,}5$ MB", "$25$ MB", "$32{,}5$ MB"],
       poprawna: 1 },
+    { nr: "11", dzial: "e8-wyrazenia", temat: "zadania-z-rownaniem",
+      tresc: `Ogrodnik kupił ziemię ogrodową, którą zaplanował zużyć w maju, czerwcu i lipcu. W maju zużył $\\frac{1}{3}$ masy kupionej ziemi. W czerwcu zużył połowę masy ziemi, która została. Na lipiec pozostało mu jeszcze $60$ kg ziemi.\n\n${DOK}\n\nJeżeli przez $x$ oznaczymy masę zakupionej ziemi, to sytuację przedstawioną w zadaniu opisuje równanie`,
+      opcje: ["$\\left(x - \\frac{1}{3}x\\right) + \\frac{1}{2}x = 60$", "$\\left(x - \\frac{1}{3}x\\right) + \\frac{1}{2}\\left(x - \\frac{1}{3}x\\right) = 60$", "$\\left(x - \\frac{1}{3}x\\right) - \\frac{1}{2}x = 60$", "$\\left(x - \\frac{1}{3}x\\right) - \\frac{1}{2}\\left(x - \\frac{1}{3}x\\right) = 60$"],
+      poprawna: 3 },
   ],
 };

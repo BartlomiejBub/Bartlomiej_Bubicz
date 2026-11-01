@@ -9,6 +9,10 @@ export default {
       tresc: "Podczas lekcji matematyki uczniowie zaokrąglali liczbę $0{,}84631$. Adam zaokrąglił tę liczbę do części dziesiątych, Bartek – do części setnych, Magda – do części tysięcznych, a Zosia – do części dziesięciotysięcznych.\n\n**Które z dzieci otrzymało największą liczbę? Wybierz właściwą odpowiedź spośród podanych.**",
       opcje: ["Adam.", "Bartek.", "Magda.", "Zosia."],
       poprawna: 1 },
+    { nr: "5", dzial: "e8-wyrazenia", temat: "przeksztalcanie",
+      tresc: `${DOK}\n\nWyrażenie: $(x - 2)(4x - 3) - x(1 - x)$ po uproszczeniu jest równe`,
+      opcje: ["$5x^2 - x - 6$", "$5x^2 - 9x + 6$", "$5x^2 - 12x + 6$", "$3x^2 - x - 6$"],
+      poprawna: 2 },
     { nr: "7", dzial: "e8-liczby", temat: "ulamki-i-rozwiniecia",
       tresc: `Wydajność dużej pompy strażackiej to $24\\,000$ litrów wody na minutę, natomiast wydajność małej pompy to $1200$ litrów wody na minutę. Mała pompa w ciągu $1$ godziny pracy zużywa $0{,}931$ litra paliwa.\n\n${UZ}`,
       czesci: [

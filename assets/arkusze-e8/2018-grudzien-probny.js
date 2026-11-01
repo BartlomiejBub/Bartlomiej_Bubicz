@@ -21,5 +21,9 @@ export default {
         { tekst: "Liczba o $2$ większa od liczby $a$ jest równa …", litery: "AB", opcje: ["$5\\sqrt{2} - 4$", "$3\\sqrt{2} - 2$"], poprawna: 1 },
         { tekst: "Liczba $2$ razy większa od liczby $a$ jest równa …", litery: "CD", opcje: ["$6\\sqrt{4} - 8$", "$6\\sqrt{2} - 8$"], poprawna: 1 },
       ] },
+    { nr: "11", dzial: "e8-wyrazenia", temat: "zadania-z-rownaniem",
+      tresc: "O liczbie $x$ wiemy, że $\\frac{1}{3}$ tej liczby jest o $\\frac{3}{4}$ większa od $\\frac{1}{6}$ tej liczby.\n\n**Które równanie pozwoli wyznaczyć liczbę** $x$**? Wybierz właściwą odpowiedź spośród podanych.**",
+      opcje: ["$\\frac{2}{3}x = \\frac{1}{6}x + \\frac{3}{4}$", "$\\frac{1}{3}x + \\frac{3}{4} = \\frac{5}{6}x$", "$\\frac{1}{3}x = \\frac{1}{6}x + \\frac{3}{4}$", "$\\frac{1}{3}x + \\frac{3}{4} = \\frac{1}{6}x$"],
+      poprawna: 2 },
   ],
 };

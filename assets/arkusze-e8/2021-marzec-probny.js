@@ -30,5 +30,11 @@ export default {
         { tekst: "Wartość wyrażenia $\\sqrt{1 + \\frac{25}{144}}$ jest równa …", litery: "AB", opcje: ["$1\\frac{5}{12}$", "$1\\frac{1}{12}$"], poprawna: 1 },
         { tekst: "Wartość wyrażenia $\\sqrt[3]{3 + \\frac{3}{8}}$ jest równa …", litery: "CD", opcje: ["$1\\frac{1}{2}$", "$1\\frac{1}{8}$"], poprawna: 0 },
       ] },
+    { nr: "10", dzial: "e8-wyrazenia", temat: "wartosc-wyrazenia",
+      tresc: `Zależność między liczbą przekątnych ($k$) a liczbą boków ($n$) wielokąta wypukłego określa wzór $k = \\frac{n(n-3)}{2}$.\n\n${PF}`,
+      czesci: [
+        { tekst: "Liczba przekątnych w dwunastokącie wypukłym jest trzy razy większa od liczby przekątnych w czworokącie wypukłym.", litery: "PF", poprawna: 1 },
+        { tekst: "Liczba przekątnych w ośmiokącie wypukłym jest o $11$ większa od liczby przekątnych w sześciokącie wypukłym.", litery: "PF", poprawna: 0 },
+      ] },
   ],
 };
