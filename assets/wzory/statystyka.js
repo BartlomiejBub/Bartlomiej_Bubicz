@@ -138,7 +138,7 @@ export const WZORY = [
       {
         nazwa: "„Albo” – gdy zdarzenia mogą zajść naraz",
         slownie: "Jeśli oba zdarzenia mogą zajść razem, wyniki wspólne policzyłbyś dwa razy, więc raz je odejmujesz.",
-        tex: "P(A \\cup B) = P(A) + P(B) - P(A \\cap B)",
+        tex: "\\begin{aligned} P(A \\cup B) &= P(A) + P(B) \\\\ &\\quad - P(A \\cap B) \\end{aligned}",
         litery: "$P(A \\cap B)$ – prawdopodobieństwo, że zajdą oba zdarzenia naraz",
         przyklad: "Kostka: $A$ – liczba parzysta ($2, 4, 6$), $B$ – liczba większa od $4$ ($5, 6$), oba naraz: $6$. Wychodzi $\\frac{3}{6} + \\frac{2}{6} - \\frac{1}{6} = \\frac{4}{6} = \\frac{2}{3}$.",
         uwaga: "Prościej jest często wypisać wszystkie pasujące wyniki ($2, 4, 5, 6$) i je policzyć.",
@@ -230,7 +230,7 @@ export const WZORY = [
       {
         nazwa: "Wariancja (jak bardzo dane są rozrzucone)",
         slownie: "Dla każdej liczby sprawdzasz, jak daleko leży od średniej, i tę odległość podnosisz do kwadratu. Potem liczysz średnią tych kwadratów.",
-        tex: "\\sigma^{2} = \\frac{(a_{1} - \\bar{a})^{2} + (a_{2} - \\bar{a})^{2} + \\ldots + (a_{n} - \\bar{a})^{2}}{n}",
+        tex: "\\sigma^{2} = \\frac{\\begin{gathered} (a_{1} - \\bar{a})^{2} + (a_{2} - \\bar{a})^{2} \\\\ + \\ldots + (a_{n} - \\bar{a})^{2} \\end{gathered}}{n}",
         litery: "$\\sigma^{2}$ – wariancja, $a_{i}$ – kolejne dane, $\\bar{a}$ – średnia z danych, $n$ – ile jest danych",
         przyklad: "Dane: $1, 3, 5, 7$. Średnia to $4$. Kwadraty odległości: $9, 1, 1, 9$. Ich suma to $20$, więc $\\sigma^{2} = \\frac{20}{4} = 5$.",
         uwaga: "Im większa wariancja, tym bardziej rozrzucone są dane. Gdy wszystkie liczby są takie same, wariancja to $0$.",
@@ -254,14 +254,14 @@ export const WZORY = [
       {
         nazwa: "Gdy do wszystkich danych coś dodasz",
         slownie: "Jeśli do każdej liczby dodasz tę samą liczbę, średnia i mediana rosną o tyle samo. Rozrzut się nie zmienia, więc odchylenie zostaje takie samo.",
-        tex: "b_{i} = a_{i} + c \\quad \\Rightarrow \\quad \\bar{b} = \\bar{a} + c, \\quad \\sigma_{b} = \\sigma_{a}",
+        tex: "b_{i} = a_{i} + c \\qquad \\Rightarrow \\quad \\bar{b} = \\bar{a} + c, \\quad \\sigma_{b} = \\sigma_{a}",
         litery: "$a_{i}$ – dane na początku, $c$ – dodana liczba, $b_{i}$ – nowe dane, $\\bar{b}$ – nowa średnia, $\\sigma_{b}$ – nowe odchylenie",
         przyklad: "Dane $2, 4, 6$ mają średnią $4$. Dodajesz $10$ do każdej: $12, 14, 16$. Średnia to $14$, a rozrzut taki sam jak wcześniej.",
       },
       {
         nazwa: "Gdy wszystkie dane pomnożysz",
         slownie: "Jeśli każdą liczbę pomnożysz przez to samo, średnia też zostanie pomnożona przez to samo. Rozrzut rośnie tyle razy (bez znaku minus).",
-        tex: "b_{i} = k \\cdot a_{i} \\quad \\Rightarrow \\quad \\bar{b} = k \\cdot \\bar{a}, \\quad \\sigma_{b} = |k| \\cdot \\sigma_{a}",
+        tex: "b_{i} = k \\cdot a_{i} \\qquad \\Rightarrow \\quad \\bar{b} = k \\cdot \\bar{a}, \\quad \\sigma_{b} = |k| \\cdot \\sigma_{a}",
         litery: "$k$ – liczba, przez którą mnożysz, $b_{i}$ – nowe dane, $|k|$ – $k$ bez znaku minus",
         przyklad: "Dane $2, 4, 6$ mają średnią $4$. Mnożysz przez $3$: $6, 12, 18$. Nowa średnia to $12$, a odchylenie jest $3$ razy większe.",
         uwaga: "Odchylenie nigdy nie jest ujemne, więc przy mnożeniu przez liczbę ujemną mnożysz je przez jej wartość bez minusa.",

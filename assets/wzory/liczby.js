@@ -634,7 +634,7 @@ export const WZORY = [
       {
         nazwa: "Brak wyrazu z x",
         slownie: "Gdy w równaniu nie ma wyrazu z $x$ w pierwszej potędze, $x$ jest dodatnim albo ujemnym pierwiastkiem z liczby po prawej stronie.",
-        tex: "x^{2} = k \\quad \\text{daje} \\quad x = -\\sqrt{k} \\ \\text{lub} \\ x = \\sqrt{k}",
+        tex: "x^{2} = k \\qquad \\text{daje} \\quad x = -\\sqrt{k} \\ \\text{lub} \\ x = \\sqrt{k}",
         litery: "$k$ – liczba po prawej stronie, $k > 0$",
         przyklad: "$x^{2} = 25$, więc $x = -5$ lub $x = 5$.",
         uwaga: "Dla $k < 0$ nie ma rozwiązań, bo kwadrat nigdy nie jest ujemny.",
@@ -642,7 +642,7 @@ export const WZORY = [
       {
         nazwa: "Równanie z grupowaniem",
         slownie: "Cztery składniki łączymy w pary i wyciągamy wspólny nawias. Potem przyrównujemy każdy nawias do zera.",
-        tex: "x^{3} + ax^{2} - bx - ab = (x + a)(x^{2} - b)",
+        tex: "x^{3} + ax^{2} - bx - ab \\qquad = (x + a)(x^{2} - b)",
         litery: "$a$, $b$ – liczby, $x$ – niewiadoma",
         przyklad: "$x^{3} + 2x^{2} - 9x - 18 = x^{2}(x + 2) - 9(x + 2) = (x + 2)(x - 3)(x + 3)$. Rozwiązania: $x = -2$, $x = 3$, $x = -3$.",
       },
@@ -657,7 +657,7 @@ export const WZORY = [
       {
         nazwa: "Równanie z wartością bezwzględną",
         slownie: "Liczby oddalone od $a$ o dokładnie $r$ leżą po dwóch stronach $a$: o $r$ w lewo i o $r$ w prawo.",
-        tex: "|x - a| = r \\quad \\text{daje} \\quad x = a - r \\ \\text{lub} \\ x = a + r",
+        tex: "|x - a| = r \\qquad \\text{daje} \\quad x = a - r \\ \\text{lub} \\ x = a + r",
         litery: "$a$ – środek, $r$ – odległość od środka, $r > 0$",
         przyklad: "$|x - 3| = 2$, więc $x = 3 - 2 = 1$ lub $x = 3 + 2 = 5$.",
         uwaga: "Dla $r = 0$ jest jedno rozwiązanie $x = a$, a dla $r < 0$ nie ma rozwiązań.",
@@ -700,7 +700,7 @@ export const WZORY = [
       {
         nazwa: "Nierówność z wartością bezwzględną, mniejsza lub równa",
         slownie: "Liczby oddalone od $a$ o najwyżej $r$ tworzą przedział od $a - r$ do $a + r$: środek $a$ i po $r$ w każdą stronę.",
-        tex: "|x - a| \\leq r \\quad \\text{daje} \\quad a - r \\leq x \\leq a + r",
+        tex: "|x - a| \\leq r \\qquad \\text{daje} \\quad a - r \\leq x \\leq a + r",
         litery: "$a$ – środek, $r$ – największa dozwolona odległość od środka, $r \\geq 0$",
         przyklad: "$|x - 3| \\leq 2$ daje liczby od $3 - 2 = 1$ do $3 + 2 = 5$, czyli $x \\in [1, 5]$.",
         uwaga: "Przy znaku $<$ końce nie należą do przedziału: $(1, 5)$.",
@@ -708,7 +708,7 @@ export const WZORY = [
       {
         nazwa: "Nierówność z wartością bezwzględną, większa lub równa",
         slownie: "Liczby oddalone od $a$ o co najmniej $r$ leżą na zewnątrz: po lewej albo po prawej stronie.",
-        tex: "|x - a| \\geq r \\quad \\text{daje} \\quad x \\leq a - r \\ \\text{lub} \\ x \\geq a + r",
+        tex: "|x - a| \\geq r \\qquad \\text{daje} \\quad x \\leq a - r \\ \\text{lub} \\ x \\geq a + r",
         litery: "$a$ – środek, $r$ – najmniejsza dozwolona odległość od środka, $r \\geq 0$",
         przyklad: "$|x - 3| \\geq 2$ daje $x \\leq 1$ lub $x \\geq 5$, czyli $x \\in (-\\infty, 1] \\cup [5, +\\infty)$.",
         uwaga: "Znak $\\cup$ czytaj jako „albo to, albo to”. Przy znaku $>$ końce nie należą do zbioru.",
@@ -724,14 +724,14 @@ export const WZORY = [
       {
         nazwa: "Nierówność kwadratowa – wartości dodatnie",
         slownie: "Gdy ramiona paraboli idą w górę, wartości dodatnie są na zewnątrz miejsc zerowych: na lewo od mniejszego i na prawo od większego.",
-        tex: "ax^{2} + bx + c > 0 \\quad \\text{dla} \\quad x \\in (-\\infty, x_{1}) \\cup (x_{2}, +\\infty)",
+        tex: "ax^{2} + bx + c > 0 \\qquad \\text{dla} \\quad x \\in (-\\infty, x_{1}) \\cup (x_{2}, +\\infty)",
         litery: "$a > 0$ (ramiona w górę), $x_{1} < x_{2}$ – miejsca zerowe",
         przyklad: "$x^{2} - 5x + 6 > 0$. Miejsca zerowe to $2$ i $3$, więc $x \\in (-\\infty, 2) \\cup (3, +\\infty)$.",
       },
       {
         nazwa: "Nierówność kwadratowa bez miejsc zerowych",
         slownie: "Gdy parabola ma ramiona w górę i nie ma miejsc zerowych, leży cała nad osią. Każda liczba spełnia wtedy nierówność z plusem.",
-        tex: "a > 0 \\ \\text{i} \\ \\Delta < 0 \\quad \\text{to} \\quad ax^{2} + bx + c > 0 \\ \\text{dla każdego } x",
+        tex: "a > 0 \\ \\text{i} \\ \\Delta < 0 \\quad \\text{to} \\qquad ax^{2} + bx + c > 0 \\ \\text{dla każdego } x",
         litery: "$a$ – liczba przy $x^{2}$, $\\Delta$ – delta",
         przyklad: "$x^{2} + 1 > 0$: delta to $0 - 4 \\cdot 1 \\cdot 1 = -4 < 0$, więc nierówność jest prawdziwa dla każdej liczby.",
         uwaga: "Gdy $a < 0$, parabola leży cała pod osią. Przy $\\Delta = 0$ dotyka osi w jednym punkcie $x = -\\frac{b}{2a}$.",

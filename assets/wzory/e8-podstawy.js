@@ -123,7 +123,7 @@ export const WZORY = [
       {
         nazwa: "Co to dzielenie i jak je sprawdzić",
         slownie: "Dzielenie to rozdzielanie po równo. Masz $12$ cukierków i $4$ osoby: każda dostaje $3$. Gdy rozdzielić się nie da bez reszty, zostaje **reszta**: $13$ cukierków dla $4$ osób to po $3$ i $1$ zostaje. Sprawdzamy mnożeniem: iloraz razy dzielnik plus reszta musi dać dzielną.",
-        tex: "a : b = c \\ \\text{ reszta } r \\quad\\Longleftrightarrow\\quad c \\cdot b + r = a",
+        tex: "a : b = c \\ \\text{ reszta } r \\qquad \\Longleftrightarrow\\quad c \\cdot b + r = a",
         litery: "$a$ – dzielna, $b$ – dzielnik, $c$ – iloraz, $r$ – reszta (zawsze mniejsza od $b$)",
         przyklad: "$13 : 4 = 3$, reszta $1$, bo $3 \\cdot 4 + 1 = 13$. Bez reszty: $12 : 4 = 3$, bo $3 \\cdot 4 = 12$.",
         uwaga: "Przez zero nie wolno dzielić (nie da się rozdzielić czekolady między $0$ osób). Reszta musi być mniejsza od dzielnika – gdy jest równa albo większa, można było dać jeszcze po jednym.",
@@ -174,7 +174,7 @@ export const WZORY = [
       {
         nazwa: "Kolejność działań – cztery poziomy",
         slownie: "W matematyce obowiązuje umowa, żeby każdy dostał ten sam wynik. Najpierw liczysz **nawiasy** (jak zakupy w osobnej torbie), potem **potęgi**, potem **mnożenie i dzielenie**, a na końcu **dodawanie i odejmowanie**. Działania z tego samego poziomu liczysz po kolei od lewej do prawej, tak jak czytasz zdanie.",
-        tex: "\\text{nawiasy} \\;\\to\\; \\text{potęgi} \\;\\to\\; \\cdot \\text{ lub } : \\;\\to\\; + \\text{ lub } -",
+        tex: "\\text{nawiasy} \\;\\to\\; \\text{potęgi} \\qquad \\to\\; \\cdot \\text{ lub } : \\;\\to\\; + \\text{ lub } -",
         przyklad: "$18 - 2 \\cdot (3 + 4)^2 : 7$: nawias $3 + 4 = 7$, potęga $7^2 = 49$, mnożenie $2 \\cdot 49 = 98$, dzielenie $98 : 7 = 14$, odejmowanie $18 - 14 = 4$.",
         uwaga: "Liczenie po prostu od lewej do prawej daje zły wynik: $2 + 3 \\cdot 4$ to $14$, a nie $20$.",
       },
@@ -202,7 +202,7 @@ export const WZORY = [
       {
         nazwa: "Jak zapisywać obliczenia",
         slownie: "Zapisuj każdy krok pod poprzednim, ze znakiem równości po lewej. W każdym kroku wykonaj jedno działanie, a resztę przepisz bez zmian. Dzięki temu łatwo znaleźć błąd – a na egzaminie dostaniesz punkty za dobrą metodę, nawet gdy na końcu się pomylisz.",
-        tex: "\\begin{array}{ll} 18 - 2 \\cdot (3 + 4)^2 : 7 & \\\\ = 18 - 2 \\cdot 7^2 : 7 & \\text{nawias} \\\\ = 18 - 2 \\cdot 49 : 7 & \\text{potęga} \\\\ = 18 - 98 : 7 & \\text{mnożenie (od lewej)} \\\\ = 18 - 14 & \\text{dzielenie} \\\\ = 4 & \\text{odejmowanie} \\end{array}",
+        tex: "\\begin{array}{ll} \\mathrlap{18 - 2 \\cdot (3 + 4)^2 : 7} & \\\\ = 18 - 2 \\cdot 7^2 : 7 & \\text{nawias} \\\\ = 18 - 2 \\cdot 49 : 7 & \\text{potęga} \\\\ = 18 - 98 : 7 & \\begin{aligned} & \\text{mnożenie} \\\\ & \\text{(od lewej)} \\end{aligned} \\\\ = 18 - 14 & \\text{dzielenie} \\\\ = 4 & \\text{odejmowanie} \\end{array}",
         uwaga: "Nie pisz znaku „=” między rzeczami, które nie są równe. Każdy kolejny zapis ma mieć tę samą wartość co poprzedni.",
       },
     ],
@@ -222,7 +222,7 @@ export const WZORY = [
       {
         nazwa: "Liczby ujemne, oś liczbowa i termometr",
         slownie: "Liczby ujemne są mniejsze od zera, jak temperatura poniżej zera na termometrze, dług w portfelu albo piętro w garażu pod ziemią. Im niżej na termometrze (im bardziej w lewo na osi liczbowej), tym liczba jest **mniejsza**. Dlatego $-5$ jest mniejsze od $-2$: przy $-5$ °C jest większy mróz niż przy $-2$ °C.",
-        tex: "\\ldots < -3 < -2 < -1 < 0 < 1 < 2 < 3 < \\ldots",
+        tex: "\\ldots < -3 < -2 < -1 < 0 \\qquad < 1 < 2 < 3 < \\ldots",
         przyklad: "Temperatura $-7$ °C jest niższa niż $-2$ °C, więc $-7 < -2$. Dług $50$ zł to $-50$ zł, a dług $80$ zł to $-80$ zł, czyli mniej: $-80 < -50$.",
         uwaga: "Wśród liczb ujemnych większa jest ta, która jest bliżej zera: $-2 > -7$. Nie sugeruj się tym, że $7$ jest większe od $2$.",
       },
@@ -272,14 +272,14 @@ export const WZORY = [
       {
         nazwa: "Cechy podzielności: patrzymy na końcówkę",
         slownie: "Liczba jest podzielna przez inną, jeśli da się ją rozdzielić po równo bez reszty – jak $12$ cukierków dla $4$ osób. Nie musisz dzielić, wystarczy spojrzeć na **końcówkę**. Przez $2$ dzielą się liczby parzyste, przez $5$ – kończące się na $0$ lub $5$, przez $10$ – na $0$. Przez $4$ dzielą się liczby, których **dwie ostatnie cyfry** tworzą liczbę podzielną przez $4$ (bo $100$ dzieli się przez $4$, więc reszta liczby się nie liczy).",
-        tex: "\\begin{array}{ll} \\text{przez } 2: & \\text{ostatnia cyfra } 0,\\ 2,\\ 4,\\ 6,\\ 8 \\\\ \\text{przez } 5: & \\text{ostatnia cyfra } 0 \\text{ lub } 5 \\\\ \\text{przez } 10: & \\text{ostatnia cyfra } 0 \\\\ \\text{przez } 4: & \\text{dwie ostatnie cyfry dzielą się przez } 4 \\end{array}",
+        tex: "\\begin{array}{ll} \\text{przez } 2: & \\begin{aligned} & \\text{ostatnia cyfra} \\\\ & 0,\\ 2,\\ 4,\\ 6,\\ 8 \\end{aligned} \\\\[1ex] \\text{przez } 5: & \\begin{aligned} & \\text{ostatnia cyfra} \\\\ & 0 \\text{ lub } 5 \\end{aligned} \\\\[1ex] \\text{przez } 10: & \\text{ostatnia cyfra } 0 \\\\[1ex] \\text{przez } 4: & \\begin{aligned} & \\text{dwie ostatnie cyfry} \\\\ & \\text{dzielą się przez } 4 \\end{aligned} \\end{array}",
         przyklad: "$3468$ kończy się na $8$ – jest parzysta, więc dzieli się przez $2$. Dwie ostatnie cyfry to $68$, a $68 : 4 = 17$, więc dzieli się też przez $4$. $2345$ dzieli się przez $5$, ale nie przez $2$. $1370$ dzieli się przez $2$, $5$ i $10$.",
         uwaga: "Samo bycie parzystą nie wystarcza do podzielności przez $4$: $18$ jest parzysta, ale $18 : 4$ nie wychodzi bez reszty. Sprawdzaj dwie ostatnie cyfry (np. $116$: $16$ dzieli się przez $4$, więc $116$ też).",
       },
       {
         nazwa: "Podzielność przez 3, 6 i 9: suma cyfr",
         slownie: "Dodaj wszystkie cyfry liczby. Jeśli ta suma dzieli się przez $3$, to cała liczba dzieli się przez $3$. Jeśli suma dzieli się przez $9$, to liczba dzieli się przez $9$. Przez $6$ dzieli się liczba, która jest **parzysta i ma sumę cyfr podzielną przez** $3$ (czyli dzieli się i przez $2$, i przez $3$).",
-        tex: "4185 \\to 4 + 1 + 8 + 5 = 18 \\to \\text{dzieli się przez } 3 \\text{ i przez } 9",
+        tex: "4185 \\to 4 + 1 + 8 + 5 = 18 \\qquad \\to \\text{dzieli się przez } 3 \\text{ i przez } 9",
         przyklad: "$4185$: suma cyfr to $18$, a $18$ dzieli się przez $3$ i przez $9$, więc $4185$ też ($4185 : 9 = 465$). $2346$: suma cyfr to $15$ – dzieli się przez $3$, ale nie przez $9$. Liczba jest parzysta, więc dzieli się też przez $6$ ($2346 : 6 = 391$).",
         uwaga: "Przez $9$ dzieli się tylko liczba z sumą cyfr podzielną przez $9$ – sama podzielność przez $3$ nie wystarcza (suma $15$ dzieli się przez $3$, ale nie przez $9$).",
       },

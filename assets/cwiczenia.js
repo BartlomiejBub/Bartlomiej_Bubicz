@@ -120,6 +120,24 @@ function pokazDzial(uczen, d, przyciski) {
 
 // --- Wzory i schematy: najważniejsze wzory tematu i jak rozwiązywać typowe zadania
 
+/** Wzór podzielony w miejscach \qquad poza nawiasami i tablicami – na wąskim ekranie części układają się jedna pod drugą. */
+function czesciWzoru(tex) {
+  const czesci = [];
+  let glebokosc = 0, start = 0;
+  const re = /\\begin\{[^}]*\}|\\end\{[^}]*\}|\\[{}]|[{}]|\\qquad(?![a-zA-Z])/g;
+  for (const m of tex.matchAll(re)) {
+    const t = m[0];
+    if (t === "{" || t.startsWith("\\begin")) glebokosc++;
+    else if (t === "}" || t.startsWith("\\end")) glebokosc--;
+    else if (t === "\\qquad" && glebokosc === 0) {
+      czesci.push(tex.slice(start, m.index));
+      start = m.index + t.length;
+    }
+  }
+  czesci.push(tex.slice(start));
+  return czesci.map((c) => c.trim()).filter(Boolean);
+}
+
 function blokWzorow(d) {
   let temat = d.wzory[0];
   const tresc = el("div", { class: "wzory-tresc" });
@@ -130,7 +148,7 @@ function blokWzorow(d) {
         el("div", { class: "wzor-karta" },
           wstaw(el("p", { class: "wzor-nazwa" }), w.nazwa, { akapity: false }),
           w.slownie && wstaw(el("p", { class: "wzor-slownie" }), w.slownie, { akapity: false }),
-          wstaw(el("div", { class: "wzor-tex" }), `$${w.tex}$`),
+          el("div", { class: "wzor-tex" }, ...czesciWzoru(w.tex).map((t) => wstaw(el("div", { class: "wzor-czesc" }), `$${t}$`))),
           w.litery && wstaw(el("p", { class: "wzor-uwaga" }), w.litery, { akapity: false }),
           w.przyklad && wstaw(el("p", { class: "wzor-przyklad" }), `**Przykład:** ${w.przyklad}`, { akapity: false }),
           w.uwaga && wstaw(el("p", { class: "wzor-uwaga" }), w.uwaga, { akapity: false }),
