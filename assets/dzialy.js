@@ -9,7 +9,8 @@ import { GENERATORY as TEKSTOWE } from "./generatory/tekstowe.js";
 import { GENERATORY as E8_PODSTAWY } from "./generatory/e8-podstawy.js";
 import { GENERATORY as E8_LICZBY } from "./generatory/e8-liczby.js";
 import { losownik, ziarno } from "./generatory/wspolne.js";
-import { ARKUSZE } from "./arkusze/index.js";
+import { ARKUSZE as ARKUSZE_MATURY } from "./arkusze/index.js";
+import { ARKUSZE as ARKUSZE_E8 } from "./arkusze-e8/index.js";
 import { TEMATY } from "./arkusze/tematy.js";
 import { WZORY as WZORY_LICZBY } from "./wzory/liczby.js";
 import { WZORY as WZORY_FUNKCJE } from "./wzory/funkcje.js";
@@ -19,6 +20,8 @@ import { WZORY as WZORY_DOWODY } from "./wzory/dowody.js";
 import { WZORY as WZORY_TEKSTOWE } from "./wzory/tekstowe.js";
 import { WZORY as WZORY_E8_PODSTAWY } from "./wzory/e8-podstawy.js";
 import { WZORY as WZORY_E8_LICZBY } from "./wzory/e8-liczby.js";
+
+const ARKUSZE = [...ARKUSZE_MATURY, ...ARKUSZE_E8];
 
 /** Zadania z arkuszy w danym temacie (zamknięte, potem otwarte), od najnowszych arkuszy, z podpisem źródła. */
 function zadaniaTematu(dzial, temat) {

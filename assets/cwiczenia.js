@@ -196,7 +196,7 @@ function blokZadan(d) {
     licznik.textContent = ocenione.length ? `Dobrze: ${dobrze} z ${ocenione.length}` : "";
   };
   const pokaz = () => {
-    lista.replaceChildren(...temat.zadania.map((z) => z.rozwiazanie ? kartaOtwarta(z) : kartaABCD(z, (dobrze) => {
+    lista.replaceChildren(...temat.zadania.map((z) => z.rozwiazanie ? kartaOtwarta(z) : kartaZamknieta(z, (dobrze) => {
       if (!wyniki.has(z)) wyniki.set(z, dobrze);
       odswiezLicznik();
     })));
@@ -235,38 +235,53 @@ function opisZadan(d) {
     : "Zadania zamknięte z arkuszy CKE, posortowane według tematów. Zaznacz odpowiedź i kliknij „Sprawdź odpowiedź”.";
 }
 
-/** Zadanie ABCD jak w arkuszu; „Sprawdź odpowiedź” pokazuje poprawną literę z klucza CKE. */
-function kartaABCD(z, ocenione) {
-  const nazwa = `abcd-${++licznikPol}`;
-  const opcje = z.opcje.map((o, i) => {
-    const radio = el("input", { type: "radio", name: nazwa, value: String(i) });
-    const label = el("label", { class: "abcd-opcja" },
-      radio,
-      el("span", { class: "abcd-litera" }, `${"ABCD"[i]}.`),
-      wstaw(el("span", { class: "abcd-tekst" }), o, { akapity: false }),
+/** Zadanie zamknięte jak w arkuszu: ABCD (albo ABCDE) albo kilka części – P/F, uzupełnianie A/B i C/D, T/N z uzasadnieniem.
+ *  „Sprawdź odpowiedź” zaznacza poprawne litery z klucza CKE w każdej części. */
+function kartaZamknieta(z, ocenione) {
+  const czesci = z.czesci ?? [{ litery: "ABCDE".slice(0, z.opcje.length), opcje: z.opcje, poprawna: z.poprawna }];
+  const grupy = czesci.map((c, k) => {
+    const nazwa = `abcd-${++licznikPol}`;
+    const opcje = [...c.litery].map((litera, i) => {
+      const radio = el("input", { type: "radio", name: nazwa, value: String(i) });
+      const label = el("label", { class: "abcd-opcja" },
+        radio,
+        el("span", { class: "abcd-litera" }, c.opcje ? `${litera}.` : litera),
+        c.opcje && wstaw(el("span", { class: "abcd-tekst" }), c.opcje[i], { akapity: false }),
+      );
+      return { radio, label };
+    });
+    const etykieta = czesci.length > 1 ? `Część ${k + 1} zadania: ${z.zrodlo}` : `Odpowiedzi do zadania: ${z.zrodlo}`;
+    const node = el("div", { class: c.opcje ? "abcd-czesc" : "abcd-czesc abcd-pf" },
+      c.tekst && wstaw(el("p", { class: "abcd-czesc-tekst" }), c.tekst, { akapity: false }),
+      el("div", { class: "abcd-opcje", role: "radiogroup", "aria-label": etykieta }, ...opcje.map((o) => o.label)),
     );
-    return { radio, label };
+    return { c, opcje, node };
   });
   const info = el("p", { class: "feedback", role: "status" });
   const sprawdzPrzycisk = el("button", { class: "btn btn-primary", type: "button" }, "Sprawdź odpowiedź");
 
   sprawdzPrzycisk.addEventListener("click", () => {
-    const wybrana = opcje.findIndex((o) => o.radio.checked);
-    opcje.forEach((o, i) => {
-      o.label.classList.toggle("ok", i === z.poprawna);
-      o.label.classList.toggle("zle", i === wybrana && i !== z.poprawna);
-    });
-    const litera = "ABCD"[z.poprawna];
-    if (wybrana < 0) {
+    const wybrane = grupy.map((g) => g.opcje.findIndex((o) => o.radio.checked));
+    const litery = grupy.map((g) => g.c.litery[g.c.poprawna]).join("");
+    if (wybrane.includes(-1) && !wybrane.every((w) => w === -1)) {
+      info.className = "feedback uwaga";
+      info.textContent = "Zaznacz odpowiedź w każdej części zadania.";
+      return;
+    }
+    grupy.forEach((g, k) => g.opcje.forEach((o, i) => {
+      o.label.classList.toggle("ok", i === g.c.poprawna);
+      o.label.classList.toggle("zle", i === wybrane[k] && i !== g.c.poprawna);
+    }));
+    if (wybrane.every((w) => w === -1)) {
       info.className = "feedback";
-      info.textContent = `Poprawna odpowiedź: ${litera}.`;
-    } else if (wybrana === z.poprawna) {
+      info.textContent = `Poprawna odpowiedź: ${litery}.`;
+    } else if (grupy.every((g, k) => wybrane[k] === g.c.poprawna)) {
       info.className = "feedback ok";
-      info.textContent = `Dobrze! Poprawna odpowiedź: ${litera}.`;
+      info.textContent = `Dobrze! Poprawna odpowiedź: ${litery}.`;
       ocenione(true);
     } else {
       info.className = "feedback zle";
-      info.textContent = `Niestety nie. Poprawna odpowiedź: ${litera}.`;
+      info.textContent = `Niestety nie. Poprawna odpowiedź: ${litery}.`;
       ocenione(false);
     }
   });
@@ -275,7 +290,7 @@ function kartaABCD(z, ocenione) {
     el("p", { class: "abcd-zrodlo" }, z.zrodlo),
     z.wstep && wstaw(el("div", { class: "abcd-tresc abcd-wstep" }), z.wstep, { rysunek: z.rysunek }),
     wstaw(el("div", { class: "abcd-tresc" }), z.tresc, { rysunek: z.rysunek }),
-    el("div", { class: "abcd-opcje", role: "radiogroup", "aria-label": `Odpowiedzi do zadania: ${z.zrodlo}` }, ...opcje.map((o) => o.label)),
+    ...grupy.map((g) => g.node),
     el("div", { class: "gen-actions" }, sprawdzPrzycisk),
     info,
   );

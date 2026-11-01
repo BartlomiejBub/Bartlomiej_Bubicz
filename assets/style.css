@@ -565,6 +565,13 @@ input[type="radio"] { width: 18px; height: 18px; margin: 0; accent-color: var(--
 .abcd-opcje .abcd-opcja.ok { border-color: var(--ok); background: var(--ok-bg); }      /* wygrywa z :has(input:checked) */
 .abcd-opcje .abcd-opcja.zle { border-color: var(--zle); background: var(--zle-bg); }
 .abcd-litera { font-weight: 700; }
+/* Zadania z kilku części (egzamin ósmoklasisty): każda część ma swoje litery; P/F – zdanie i dwa małe przyciski obok. */
+.abcd-czesc + .abcd-czesc { margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--line); }
+.abcd-czesc-tekst { margin: 0 0 8px; color: var(--ink); }
+.abcd-pf { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; }
+.abcd-pf .abcd-czesc-tekst { flex: 1 1 260px; margin: 0; }
+.abcd-pf .abcd-opcje { display: flex; gap: 8px; margin: 0; }
+.abcd-pf .abcd-opcja { min-width: 56px; justify-content: center; }
 .chip-count { opacity: 0.7; font-weight: 400; }
 
 /* Wzory i schematy */
