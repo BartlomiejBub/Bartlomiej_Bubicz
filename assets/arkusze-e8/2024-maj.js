@@ -6,6 +6,13 @@ const PF = "**Oceń prawdziwość podanych zdań. Wybierz P, jeśli zdanie jest 
 export default {
   nazwa: "Egzamin ósmoklasisty maj 2024",
   zadania: [
+    { nr: "1", dzial: "e8-procenty", temat: "podwyzki-obnizki",
+      tresc: `Ala codziennie uczyła się języka hiszpańskiego. Na diagramie przedstawiono, ile czasu przeznaczyła na naukę tego języka w kolejnych dniach tygodnia od poniedziałku do soboty.\n\n[rysunek]\n\n${PF}`,
+      czesci: [
+        { tekst: "Ala przez cztery dni – od poniedziałku do czwartku – na naukę języka hiszpańskiego przeznaczyła łącznie $2$ godziny i $10$ minut.", litery: "PF", poprawna: 0 },
+        { tekst: "Na naukę języka hiszpańskiego w sobotę Ala przeznaczyła o $40\\%$ czasu mniej niż w piątek.", litery: "PF", poprawna: 0 },
+      ],
+      rysunek: "assets/arkusze-e8/rys/2024-maj-1.png" },
     { nr: "2", dzial: "e8-liczby", temat: "ulamki-i-rozwiniecia",
       tresc: `Wypisano ułamki spełniające łącznie następujące warunki:\n\n• mianownik każdego z nich jest równy $4$\n\n• licznik każdego z nich jest liczbą naturalną większą od mianownika\n\n• każdy z tych ułamków jest większy od liczby $3$ oraz mniejszy od liczby $5$.\n\n${DOK}\n\nWszystkich ułamków spełniających powyższe warunki jest`,
       opcje: ["sześć.", "siedem.", "osiem.", "dziewięć."],
@@ -29,6 +36,10 @@ export default {
     { nr: "9", dzial: "e8-wyrazenia", temat: "przeksztalcanie",
       tresc: `${DOK}\n\nWyrażenie $x(x + 4) - 3(2x - 5)$ można przekształcić równoważnie do postaci`,
       opcje: ["$x^2 + 2x - 5$", "$x^2 - 2x + 5$", "$x^2 + 2x - 15$", "$x^2 - 2x + 15$"],
+      poprawna: 3 },
+    { nr: "10", dzial: "e8-procenty", temat: "czas-kalendarz",
+      tresc: `Podróż pociągiem z Olsztyna do Gdyni planowo trwa $2$ godziny i $54$ minuty. Pewnego dnia pociąg wyjechał z Olsztyna punktualnie o wyznaczonej godzinie, ale przyjechał do Gdyni z czterominutowym opóźnieniem o godzinie $17{:}31$.\n\n${DOK}\n\nPociąg wyjechał z Olsztyna o godzinie`,
+      opcje: ["$14{:}27$", "$14{:}41$", "$14{:}31$", "$14{:}33$"],
       poprawna: 3 },
     { nr: "11", dzial: "e8-wyrazenia", temat: "proporcje",
       tresc: `Na wykresie przedstawiono zależność pola pomalowanej powierzchni od ilości zużytej farby. Pole pomalowanej powierzchni jest wprost proporcjonalne do ilości zużytej farby.\n\n[rysunek]\n\n${PF}`,

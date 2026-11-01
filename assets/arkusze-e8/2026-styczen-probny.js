@@ -1,6 +1,7 @@
 // Egzamin ósmoklasisty styczeń 2026 (próbny, CKE) – zadania zamknięte przepisane z arkusza, przypisane do działów egzaminu ósmoklasisty (pole dzial).
 const DOK = "**Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.**";
 const UZ = "**Uzupełnij zdania. Wybierz odpowiedź spośród oznaczonych literami A i B oraz odpowiedź spośród oznaczonych literami C i D.**";
+const PF = "**Oceń prawdziwość podanych zdań. Wybierz P, jeśli zdanie jest prawdziwe, albo F – jeśli jest fałszywe.**";
 
 export default {
   nazwa: "Egzamin ósmoklasisty styczeń 2026 (próbny)",
@@ -36,5 +37,11 @@ export default {
       opcje: ["I", "II", "III", "IV"],
       poprawna: 3,
       rysunek: "assets/arkusze-e8/rys/2026-styczen-probny-8.png" },
+    { nr: "11", dzial: "e8-procenty", temat: "skala",
+      tresc: `Dany jest prostokąt $ABCD$ o bokach długości $4$ cm i $9$ cm. Ten prostokąt narysowano w skali $2 : 1$ i otrzymano prostokąt $EFGH$.\n\n${PF}`,
+      czesci: [
+        { tekst: "Obwód prostokąta $EFGH$ jest dwukrotnie większy od obwodu prostokąta $ABCD$.", litery: "PF", poprawna: 0 },
+        { tekst: "Pole prostokąta $EFGH$ jest równe $144\\,\\mathrm{cm}^2$.", litery: "PF", poprawna: 0 },
+      ] },
   ],
 };

@@ -5,6 +5,11 @@ const UZ = "**Uzupełnij zdania. Wybierz odpowiedź spośród oznaczonych litera
 export default {
   nazwa: "Egzamin ósmoklasisty maj 2026",
   zadania: [
+    { nr: "1", dzial: "e8-procenty", temat: "procent-liczby",
+      tresc: `Test z matematyki składa się z $40$ zadań. Na diagramie przedstawiono procentowy podział liczby zadań w teście na zadania z pięciu działów: algebry, planimetrii, stereometrii, arytmetyki, statystyki.\n\n[rysunek]\n\n${DOK}\n\nLiczba zadań z arytmetyki w tym teście jest równa`,
+      opcje: ["$14$", "$18$", "$26$", "$35$"],
+      poprawna: 0,
+      rysunek: "assets/arkusze-e8/rys/2026-maj-1.png" },
     { nr: "2", dzial: "e8-liczby", temat: "dzielniki",
       tresc: "Ola otwiera swoją szafkę za pomocą czterocyfrowego kodu $YXXY$, gdzie $X$ jest największym wspólnym dzielnikiem liczb $18$ i $27$, a $Y$ jest najmniejszą wspólną wielokrotnością liczb $2$ i $4$.\n\n**Jaki jest kod do otwarcia szafki Oli? Wybierz właściwą odpowiedź spośród podanych.**",
       opcje: ["$4334$", "$4994$", "$8338$", "$8998$"],

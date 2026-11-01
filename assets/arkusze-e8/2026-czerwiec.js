@@ -35,5 +35,9 @@ export default {
       tresc: `Dane są cztery wyrażenia arytmetyczne:\n\nI. $1 - 2\\frac{2}{3} \\cdot 3$  II. $3{,}4 - 2\\frac{1}{4}$  III. $3\\frac{3}{4} - 4{,}25$  IV. $6 : 1{,}2$\n\n${DOK}\n\nLiczbami całkowitymi są wartości wyrażeń`,
       opcje: ["I oraz II", "II oraz III", "I oraz IV", "III oraz IV"],
       poprawna: 2 },
+    { nr: "10", dzial: "e8-procenty", temat: "predkosc",
+      tresc: `Ala wyruszyła na wycieczkę rowerową o godzinie $11{:}40$. Przejechała trasę o długości $28$ km i dotarła do celu tego samego dnia o godzinie $13{:}00$.\n\n${DOK}\n\nPrędkość, z jaką Ala na rowerze pokonała trasę wycieczki, była równa`,
+      opcje: ["$10{,}5\\,\\frac{\\mathrm{km}}{\\mathrm{h}}$", "$12\\,\\frac{\\mathrm{km}}{\\mathrm{h}}$", "$16{,}8\\,\\frac{\\mathrm{km}}{\\mathrm{h}}$", "$21\\,\\frac{\\mathrm{km}}{\\mathrm{h}}$"],
+      poprawna: 3 },
   ],
 };

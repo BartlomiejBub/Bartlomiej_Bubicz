@@ -1,10 +1,18 @@
 // Egzamin ósmoklasisty maj 2025 (CKE, wersja X) – zadania zamknięte przepisane z arkusza, przypisane do działów egzaminu ósmoklasisty (pole dzial).
 const DOK = "**Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.**";
+const UZ = "**Uzupełnij zdania. Wybierz odpowiedź spośród oznaczonych literami A i B oraz odpowiedź spośród oznaczonych literami C i D.**";
 const PF = "**Oceń prawdziwość podanych zdań. Wybierz P, jeśli zdanie jest prawdziwe, albo F – jeśli jest fałszywe.**";
 
 export default {
   nazwa: "Egzamin ósmoklasisty maj 2025",
   zadania: [
+    { nr: "1", dzial: "e8-procenty", temat: "procent-liczby",
+      tresc: `Deskorolka kosztuje $180$ zł. Na diagramie przedstawiono kwoty, które Aldona odłożyła w styczniu, w lutym, w marcu i w kwietniu na zakup deskorolki.\n\n[rysunek]\n\n${UZ}`,
+      czesci: [
+        { tekst: "W styczniu i lutym łącznie Aldona odłożyła … kwoty potrzebnej na zakup deskorolki.", litery: "AB", opcje: ["$45\\%$", "$50\\%$"], poprawna: 1 },
+        { tekst: "W marcu Aldona odłożyła kwotę o … większą od kwoty odłożonej w styczniu.", litery: "CD", opcje: ["$10\\%$", "$20\\%$"], poprawna: 1 },
+      ],
+      rysunek: "assets/arkusze-e8/rys/2025-maj-1.png" },
     { nr: "2", dzial: "e8-liczby", temat: "ulamki-i-rozwiniecia",
       tresc: `Dane jest wyrażenie\n\n$\\left(2{,}4 - 5\\frac{1}{3}\\right) : (-2)$\n\n${DOK}\n\nWartość tego wyrażenia jest równa`,
       opcje: ["$\\left(-1\\frac{8}{15}\\right)$", "$\\left(-1\\frac{7}{15}\\right)$", "$1\\frac{7}{15}$", "$1\\frac{8}{15}$"],
@@ -32,6 +40,10 @@ export default {
       tresc: `${DOK}\n\nWartość wyrażenia $8^6 : 4^3$ zapisana w postaci potęgi liczby $2$ jest równa`,
       opcje: ["$2^2$", "$2^3$", "$2^4$", "$2^{12}$"],
       poprawna: 3 },
+    { nr: "9", dzial: "e8-procenty", temat: "predkosc",
+      tresc: `Rowerzysta pokonał odcinek drogi o długości $100$ m z prędkością $5\\,\\frac{\\mathrm{m}}{\\mathrm{s}}$.\n\n${DOK}\n\nRowerzysta pokonał ten odcinek drogi w czasie`,
+      opcje: ["$50$ sekund.", "$20$ sekund.", "$500$ sekund.", "$200$ sekund."],
+      poprawna: 1 },
     { nr: "12", dzial: "e8-liczby", temat: "os-liczbowa",
       tresc: `Na osi liczbowej zaznaczono punkty $A$, $B$ i $C$. Odcinek $AC$ jest podzielony na $6$ równych części.\n\n[rysunek]\n\n${PF}`,
       czesci: [

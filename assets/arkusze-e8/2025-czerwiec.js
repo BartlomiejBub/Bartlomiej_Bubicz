@@ -9,6 +9,10 @@ export default {
       tresc: `Zapisywano kolejno liczby według następującej zasady:\n\n• liczbę $6$ zapisano jako pierwszą\n\n• każda następna zapisana liczba była połową liczby poprzedniej.\n\n${DOK}\n\nPiątą liczbą, którą zapisano, jest`,
       opcje: ["$\\frac{3}{2}$", "$\\frac{3}{4}$", "$\\frac{3}{8}$", "$\\frac{3}{16}$"],
       poprawna: 2 },
+    { nr: "3", dzial: "e8-procenty", temat: "czas-kalendarz",
+      tresc: "Martyna przez $20$ minut słuchała kolejno nagrań ćwiczeń językowych. Czas odtwarzania nagrania każdego ćwiczenia w całości jest równy $250$ sekund.\n\n**Ile najwięcej ćwiczeń w całości Martyna mogła wysłuchać w tym czasie? Wybierz właściwą odpowiedź spośród podanych.**",
+      opcje: ["$4$", "$5$", "$8$", "$12$"],
+      poprawna: 0 },
     { nr: "4", dzial: "e8-liczby", temat: "potegi",
       tresc: PF,
       czesci: [

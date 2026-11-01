@@ -1,4 +1,5 @@
 // Egzamin ósmoklasisty maj 2023 (CKE, wersja X) – zadania zamknięte przepisane z arkusza, przypisane do działów egzaminu ósmoklasisty (pole dzial).
+const DOK = "**Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.**";
 const UZ = "**Uzupełnij poniższe zdania. Wybierz odpowiedź spośród oznaczonych literami A i B oraz odpowiedź spośród oznaczonych literami C i D.**";
 const PF = "**Oceń prawdziwość podanych zdań. Wybierz P, jeśli zdanie jest prawdziwe, albo F – jeśli jest fałszywe.**";
 
@@ -40,5 +41,10 @@ export default {
       tresc: "Liczbę $x$ powiększono o $7$, a następnie otrzymany wynik zwiększono $4$-krotnie. Liczbę $y$ zwiększono $5$-krotnie, a otrzymany wynik powiększono o $3$.\n\n**Która para wyrażeń algebraicznych poprawnie opisuje wykonane działania? Wybierz właściwą odpowiedź spośród podanych.**",
       opcje: ["$4(x + 7)$ oraz $5y + 3$", "$4x + 7$ oraz $5y + 3$", "$4(x + 7)$ oraz $5(y + 3)$", "$4x + 7$ oraz $5(y + 3)$"],
       poprawna: 0 },
+    { nr: "10", dzial: "e8-procenty", temat: "skala",
+      tresc: `Na planie miasta odległość w linii prostej od punktu oznaczającego przystanek autobusowy Dworzec do punktu oznaczającego przystanek autobusowy Galeria jest równa $8$ cm. Plan miasta został wykonany w skali $1 : 4\\,000$.\n\n[rysunek]\n\n${DOK}\n\nOdległość w linii prostej w terenie między tymi przystankami jest równa`,
+      opcje: ["$320$ m", "$500$ m", "$3\\,200$ m", "$5\\,000$ m"],
+      poprawna: 0,
+      rysunek: "assets/arkusze-e8/rys/2023-maj-10.png" },
   ],
 };
