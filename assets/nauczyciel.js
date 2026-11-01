@@ -2,7 +2,7 @@
 import { el } from "./dom.js";
 import { SOL, UCZNIOWIE } from "./uczniowie.js";
 import { skrotKodu, normalizujKod } from "./dostep.js";
-import { DZIALY, RODZAJE } from "./dzialy.js";
+import { DZIALY, EGZAMINY, RODZAJE } from "./dzialy.js";
 
 const ALFABET = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";   // bez I, O, 0, 1 – łatwo je pomylić
 
@@ -13,10 +13,11 @@ const NAGLOWEK = `// Uczniowie i ich dostęp do ćwiczeń.
 // Strona zaktualizuje się po kilku minutach (w razie czego odśwież ją klawiszami Ctrl+F5).
 //
 // kod    – skrót SHA-256 kodu ucznia; samego kodu tu nie ma, więc nie da się go podejrzeć w repozytorium
-// dostep – "wszystko" albo lista dla działów: "zadania" (zadania z matur), "generator", "karty" (karty pracy);
-//          działy: liczby (Liczby i równania), funkcje (Funkcje i ciągi), geometria (Geometria),
-//          statystyka (Prawdopodobieństwo i statystyka), dowody (Dowody i optymalizacja)
-//          tekstowe (Zadania z treścią)
+// dostep – "wszystko" albo lista dla działów: "zadania" (zadania z arkuszy CKE), "generator", "karty" (karty pracy);
+//          działy matury: liczby (Liczby i równania), funkcje (Funkcje i ciągi), geometria (Geometria),
+//          statystyka (Prawdopodobieństwo i statystyka), dowody (Dowody i optymalizacja),
+//          tekstowe (Zadania z treścią);
+//          działy egzaminu ósmoklasisty: e8-podstawy (Podstawy: działania i ułamki)
 // tematy – opcjonalnie: tylko wybrane tematy działu, np. tematy: { funkcje: ["funkcja-liniowa", "funkcja-kwadratowa"] }
 //          (id tematów w pliku assets/arkusze/tematy.js; bez tego pola uczeń widzi cały dział)
 //
@@ -42,6 +43,9 @@ function losujKod() {
   return `${znaki.slice(0, 4)}-${znaki.slice(4)}`;
 }
 
+/** Klucz obiektu w pliku: id działu, w cudzysłowie, gdy ma myślnik (np. "e8-podstawy"). */
+const klucz = (id) => (/^[a-z]\w*$/.test(id) ? id : JSON.stringify(id));
+
 function tekstPliku() {
   const wiersze = lista.map((u) => {
     let dostep = '"wszystko"';
@@ -49,11 +53,11 @@ function tekstPliku() {
       const czesci = DZIALY
         .map((d) => [d.id, RODZAJE.filter((r) => u.dzialy[d.id].has(r.id)).map((r) => `"${r.id}"`)])
         .filter(([, r]) => r.length)
-        .map(([d, r]) => `${d}: [${r.join(", ")}]`);
+        .map(([d, r]) => `${klucz(d)}: [${r.join(", ")}]`);
       dostep = czesci.length ? `{ ${czesci.join(", ")} }` : "{}";
       const tematy = DZIALY
         .filter((d) => u.tematy[d.id] && u.dzialy[d.id].size)
-        .map((d) => `${d.id}: [${d.tematy.filter((t) => u.tematy[d.id].has(t.id)).map((t) => `"${t.id}"`).join(", ")}]`);
+        .map((d) => `${klucz(d.id)}: [${d.tematy.filter((t) => u.tematy[d.id].has(t.id)).map((t) => `"${t.id}"`).join(", ")}]`);
       if (tematy.length) dostep += `, tematy: { ${tematy.join(", ")} }`;
     }
     return `  { imie: ${JSON.stringify(u.imie.trim() || "Uczeń")}, kod: "${u.kod}", dostep: ${dostep} },`;
@@ -71,11 +75,14 @@ function zmieniono() {
 function naglowek() {
   document.getElementById("naglowek").replaceChildren(
     el("tr", {},
-      el("th", { rowspan: "2", scope: "col" }, "Uczeń"),
-      ...DZIALY.map((d) => el("th", { colspan: String(RODZAJE.length), scope: "colgroup" }, d.nazwa)),
-      el("th", { rowspan: "2", scope: "col" }, "Wszystko"),
-      el("th", { rowspan: "2", scope: "col" }, el("span", { class: "visually-hidden" }, "Usuń")),
+      el("th", { rowspan: "3", scope: "col" }, "Uczeń"),
+      ...EGZAMINY.map((e) => [e, DZIALY.filter((d) => d.egzamin === e.id).length])
+        .filter(([, n]) => n)
+        .map(([e, n]) => el("th", { colspan: String(n * RODZAJE.length), scope: "colgroup", class: "egzamin-kolumny" }, e.nazwa)),
+      el("th", { rowspan: "3", scope: "col" }, "Wszystko"),
+      el("th", { rowspan: "3", scope: "col" }, el("span", { class: "visually-hidden" }, "Usuń")),
     ),
+    el("tr", {}, ...DZIALY.map((d) => el("th", { colspan: String(RODZAJE.length), scope: "colgroup" }, d.nazwa))),
     el("tr", {}, ...DZIALY.flatMap(() => RODZAJE.map((r) => el("th", { scope: "col" }, r.krotko)))),
   );
 }

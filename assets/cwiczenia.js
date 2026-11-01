@@ -1,11 +1,12 @@
-// Ćwiczenia dla zalogowanych uczniów: zadania z matur, generator zadań i karty pracy.
+// Ćwiczenia dla zalogowanych uczniów: zadania z arkuszy CKE, generator zadań i karty pracy.
+// Pokazuje działy egzaminu wybranego na stronie (<body data-egzamin>, zmienia go korepetycje.js).
 import { el } from "./dom.js";
 import { zaloguj, zalogowany, wyloguj, ma, tematyUcznia } from "./dostep.js";
-import { DZIALY, KARTY, maMaterialy, przytnij } from "./dzialy.js";
+import { DZIALY, KARTY, egzamin, maMaterialy, przytnij } from "./dzialy.js";
 import { losownik, sprawdz } from "./generatory/wspolne.js";
 import { wstaw } from "./matematyka.js";
 
-const KLUCZ_DZIALU = "korepetycje.dzial";
+const KLUCZ_DZIALU = "korepetycje.dzial";   // + "." + egzamin; dla matury bez przyrostka, jak dawniej
 
 const logowanie = document.getElementById("cwiczenia-logowanie");
 const panel = document.getElementById("cwiczenia-uczen");
@@ -14,6 +15,9 @@ const poleKodu = document.getElementById("kod");
 const blad = document.getElementById("login-error");
 const wyborDzialu = document.getElementById("dzialy-wybor");
 const widok = document.getElementById("dzial");
+
+const biezacyEgzamin = () => egzamin(document.body.dataset.egzamin);
+const kluczDzialu = () => (biezacyEgzamin().id === "matura" ? KLUCZ_DZIALU : `${KLUCZ_DZIALU}.${biezacyEgzamin().id}`);
 
 const losoweZiarno = () => crypto.getRandomValues(new Uint32Array(1))[0];
 
@@ -70,15 +74,20 @@ function pokazUcznia(uczen) {
   panel.querySelector("[data-imie]").textContent = uczen.imie;
 
   const widzi = (d, r) => ma(uczen, d.id, r) && maMaterialy(d, r);
-  const dostepne = DZIALY
+  const wszystkie = DZIALY
     .map((d) => przytnij(d, tematyUcznia(uczen, d.id)))
     .filter((d) => ["zadania", "generator", "karty"].some((r) => widzi(d, r)));
+  const e = biezacyEgzamin();
+  const dostepne = wszystkie.filter((d) => d.egzamin === e.id);
   if (!dostepne.length) {
+    const inny = wszystkie.find((d) => d.egzamin !== e.id);
     wyborDzialu.hidden = true;
     widok.replaceChildren(
       el("div", { class: "empty" },
         el("strong", {}, "Brak materiałów"),
-        el("p", {}, "Nie masz jeszcze przydzielonych materiałów. Daj znać nauczycielowi."),
+        el("p", {}, inny
+          ? `Tutaj nie masz jeszcze materiałów. Twoje materiały są w części „${egzamin(inny.egzamin).nazwa}” – przełącz ją na górze strony.`
+          : "Nie masz jeszcze przydzielonych materiałów. Daj znać nauczycielowi."),
       ),
     );
     return;
@@ -91,12 +100,12 @@ function pokazUcznia(uczen) {
   });
   wyborDzialu.replaceChildren(...przyciski);
   wyborDzialu.hidden = dostepne.length < 2;
-  const zapisany = dostepne.find((d) => d.id === przypomnij(KLUCZ_DZIALU));
+  const zapisany = dostepne.find((d) => d.id === przypomnij(kluczDzialu()));
   pokazDzial(uczen, zapisany ?? dostepne[0], przyciski);
 }
 
 function pokazDzial(uczen, d, przyciski) {
-  pamietaj(KLUCZ_DZIALU, d.id);
+  pamietaj(kluczDzialu(), d.id);
   for (const b of przyciski) b.setAttribute("aria-pressed", String(b.dataset.dzial === d.id));
   const widzi = (r) => ma(uczen, d.id, r) && maMaterialy(d, r);
   const bloki = [
@@ -147,14 +156,14 @@ function blokWzorow(d) {
 
   pokaz();
   return el("section", { class: "blok" },
-    el("h3", {}, "Wzory i schematy"),
-    el("p", { class: "blok-intro" }, "Najważniejsze wzory z każdego tematu i krótko, jak rozwiązywać typowe zadania."),
+    el("h3", {}, d.wzoryTytul ?? "Wzory i schematy"),
+    el("p", { class: "blok-intro" }, d.wzoryOpis ?? "Najważniejsze wzory z każdego tematu i krótko, jak rozwiązywać typowe zadania."),
     el("div", { class: "chips", role: "group", "aria-label": "Temat wzorów" }, ...przyciski),
     tresc,
   );
 }
 
-// --- Zadania z matur: zadania zamknięte z arkuszy CKE, posortowane po tematach
+// --- Zadania z arkuszy CKE (zamknięte i otwarte), posortowane po tematach
 
 function blokZadan(d) {
   const tematy = d.tematy.filter((t) => t.zadania.length);
@@ -189,7 +198,7 @@ function blokZadan(d) {
 
   pokaz();
   return el("section", { class: "blok" },
-    el("div", { class: "blok-head" }, el("h3", {}, "Zadania z matur"), licznik),
+    el("div", { class: "blok-head" }, el("h3", {}, egzamin(d.egzamin).zadania), licznik),
     el("p", { class: "blok-intro" }, opisZadan(d)),
     el("div", { class: "chips", role: "group", "aria-label": "Temat zadań" }, ...przyciski),
     lista,
@@ -311,7 +320,7 @@ function blokGeneratora(d) {
   nowe({ fokus: false });
   return el("section", { class: "blok" },
     el("div", { class: "blok-head" }, el("h3", {}, "Generator zadań"), licznik),
-    el("p", { class: "blok-intro" }, "Zadania jak na maturze, za każdym razem z innymi liczbami. Wpisz wynik i kliknij „Sprawdź”."),
+    el("p", { class: "blok-intro" }, d.generatorOpis ?? `Zadania ${egzamin(d.egzamin).podobne}, za każdym razem z innymi liczbami. Wpisz wynik i kliknij „Sprawdź”.`),
     el("div", { class: "chips", role: "group", "aria-label": "Temat zadań" }, ...tematy),
     karta,
   );
@@ -479,3 +488,8 @@ function blokKart(d) {
 const uczen = zalogowany();
 if (uczen) pokazUcznia(uczen);
 else pokazLogowanie();
+
+document.addEventListener("egzamin", () => {
+  const u = zalogowany();
+  if (u) pokazUcznia(u);
+});

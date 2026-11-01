@@ -5,10 +5,11 @@
 // Strona zaktualizuje się po kilku minutach (w razie czego odśwież ją klawiszami Ctrl+F5).
 //
 // kod    – skrót SHA-256 kodu ucznia; samego kodu tu nie ma, więc nie da się go podejrzeć w repozytorium
-// dostep – "wszystko" albo lista dla działów: "zadania" (zadania z matur), "generator", "karty" (karty pracy);
-//          działy: liczby (Liczby i równania), funkcje (Funkcje i ciągi), geometria (Geometria),
-//          statystyka (Prawdopodobieństwo i statystyka), dowody (Dowody i optymalizacja)
-//          tekstowe (Zadania z treścią)
+// dostep – "wszystko" albo lista dla działów: "zadania" (zadania z arkuszy CKE), "generator", "karty" (karty pracy);
+//          działy matury: liczby (Liczby i równania), funkcje (Funkcje i ciągi), geometria (Geometria),
+//          statystyka (Prawdopodobieństwo i statystyka), dowody (Dowody i optymalizacja),
+//          tekstowe (Zadania z treścią);
+//          działy egzaminu ósmoklasisty: e8-podstawy (Podstawy: działania i ułamki)
 // tematy – opcjonalnie: tylko wybrane tematy działu, np. tematy: { funkcje: ["funkcja-liniowa", "funkcja-kwadratowa"] }
 //          (id tematów w pliku assets/arkusze/tematy.js; bez tego pola uczeń widzi cały dział)
 //

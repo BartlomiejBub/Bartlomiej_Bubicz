@@ -26,8 +26,9 @@ function tekstyZadania(z) {
   return [z.tresc, z.wynik, ...(z.rozwiazanie ?? []), ...z.pola.flatMap((p) => [p.etykieta ?? "", ...(p.opcje ?? [])])];
 }
 
-function ladna(v) {
-  return Math.abs(v.n) <= 100000 && v.d <= 12;
+// Ósmoklasiści dodają ułamki o różnych mianownikach (np. 2/3 + 1/5 = 13/15), więc tam mianowniki mogą być większe.
+function ladna(v, dzial) {
+  return Math.abs(v.n) <= 100000 && v.d <= (dzial.startsWith("e8-") ? 40 : 12);
 }
 
 for (const nazwa of DZIALY) {
@@ -83,14 +84,14 @@ for (const nazwa of DZIALY) {
         if (odp === undefined) { blad(g.id, seed, `brak odpowiedzi dla pola ${p.id}`); continue; }
         if (p.typ === "liczba") {
           const v = Q.z(odp);
-          if (!ladna(v)) blad(g.id, seed, `brzydka odpowiedź ${p.id} = ${v}`);
+          if (!ladna(v, nazwa)) blad(g.id, seed, `brzydka odpowiedź ${p.id} = ${v}`);
           wpisane[p.id] = v.toString().replace("-", "−");
           zle[p.id] = v.add(1).toString();
           if (!czytajLiczbe(wpisane[p.id])?.eq(v)) blad(g.id, seed, `nie da się wpisać ${v}`);
         } else if (p.typ === "zbior") {
           if (!Array.isArray(odp) || odp.length !== p.ile) { blad(g.id, seed, `zbior ${p.id}: oczekiwano ${p.ile} wartości`); continue; }
           const vals = odp.map((x) => Q.z(x));
-          if (vals.some((v) => !ladna(v))) blad(g.id, seed, `brzydka odpowiedź w zbiorze ${p.id}: ${vals.join("; ")}`);
+          if (vals.some((v) => !ladna(v, nazwa))) blad(g.id, seed, `brzydka odpowiedź w zbiorze ${p.id}: ${vals.join("; ")}`);
           wpisane[p.id] = [...vals].reverse().map(String);
           zle[p.id] = vals.map((v, i) => (i === 0 ? v.add(1) : v).toString());
         } else if (p.typ === "wybor") {

@@ -1,10 +1,12 @@
-// Działy ćwiczeń: zadania z matur (posortowane po tematach), generatory i karty pracy.
+// Działy ćwiczeń: zadania z arkuszy CKE (posortowane po tematach), wzory, generatory i karty pracy.
+// Pole egzamin: "matura" albo "e8" (egzamin ósmoklasisty) – na stronie każdy egzamin ma swoje działy.
 import { GENERATORY as LICZBY } from "./generatory/liczby.js";
 import { GENERATORY as FUNKCJE } from "./generatory/funkcje.js";
 import { GENERATORY as GEOMETRIA } from "./generatory/geometria.js";
 import { GENERATORY as STATYSTYKA } from "./generatory/statystyka.js";
 import { GENERATORY as DOWODY } from "./generatory/dowody.js";
 import { GENERATORY as TEKSTOWE } from "./generatory/tekstowe.js";
+import { GENERATORY as E8_PODSTAWY } from "./generatory/e8-podstawy.js";
 import { losownik, ziarno } from "./generatory/wspolne.js";
 import { ARKUSZE } from "./arkusze/index.js";
 import { TEMATY } from "./arkusze/tematy.js";
@@ -14,6 +16,7 @@ import { WZORY as WZORY_GEOMETRIA } from "./wzory/geometria.js";
 import { WZORY as WZORY_STATYSTYKA } from "./wzory/statystyka.js";
 import { WZORY as WZORY_DOWODY } from "./wzory/dowody.js";
 import { WZORY as WZORY_TEKSTOWE } from "./wzory/tekstowe.js";
+import { WZORY as WZORY_E8_PODSTAWY } from "./wzory/e8-podstawy.js";
 
 /** Zadania z arkuszy w danym temacie (zamknięte, potem otwarte), od najnowszych arkuszy, z podpisem źródła. */
 function zadaniaTematu(dzial, temat) {
@@ -30,6 +33,7 @@ const tematy = (dzial) => TEMATY[dzial].map((t) => ({ ...t, zadania: zadaniaTema
 export const DZIALY = [
   {
     id: "liczby",
+    egzamin: "matura",
     nazwa: "Liczby i równania",
     opis: "Potęgi, pierwiastki, logarytmy, procenty, wyrażenia algebraiczne, równania i nierówności.",
     tematy: tematy("liczby"),
@@ -41,6 +45,7 @@ export const DZIALY = [
   },
   {
     id: "funkcje",
+    egzamin: "matura",
     nazwa: "Funkcje i ciągi",
     opis: "Własności funkcji, funkcja liniowa i kwadratowa, ciągi arytmetyczne i geometryczne.",
     tematy: tematy("funkcje"),
@@ -52,6 +57,7 @@ export const DZIALY = [
   },
   {
     id: "geometria",
+    egzamin: "matura",
     nazwa: "Geometria",
     opis: "Trygonometria, planimetria, geometria analityczna i stereometria.",
     tematy: tematy("geometria"),
@@ -63,6 +69,7 @@ export const DZIALY = [
   },
   {
     id: "statystyka",
+    egzamin: "matura",
     nazwa: "Prawdopodobieństwo i statystyka",
     opis: "Kombinatoryka, rachunek prawdopodobieństwa i statystyka.",
     tematy: tematy("statystyka"),
@@ -74,6 +81,7 @@ export const DZIALY = [
   },
   {
     id: "dowody",
+    egzamin: "matura",
     nazwa: "Dowody i optymalizacja",
     opis: "Zadania otwarte: dowody algebraiczne i geometryczne oraz zadania na największą i najmniejszą wartość.",
     tematy: tematy("dowody"),
@@ -85,6 +93,7 @@ export const DZIALY = [
   },
   {
     id: "tekstowe",
+    egzamin: "matura",
     nazwa: "Zadania z treścią",
     opis: "Ruch i wspólna praca, procenty i pieniądze, równania z treści i ciągi w praktyce.",
     tematy: tematy("tekstowe"),
@@ -94,10 +103,29 @@ export const DZIALY = [
       { nazwa: "Karta pracy: Zadania z treścią", plik: "karty/zadania-z-tresci.pdf", opis: "12 zadań na 2 stronach + rozwiązania" },
     ],
   },
+  {
+    id: "e8-podstawy",
+    egzamin: "e8",
+    nazwa: "Podstawy: działania i ułamki",
+    opis: "Działania pisemne, kolejność działań, liczby ujemne, podzielność oraz ułamki zwykłe i dziesiętne – bez tego trudno o dobry wynik na egzaminie.",
+    wzoryTytul: "Jak to zrobić – krok po kroku",
+    wzoryOpis: "Każdy sposób wytłumaczony prostymi słowami, z porównaniem do codziennych sytuacji i z przykładem.",
+    generatorOpis: "Ćwiczenia, za każdym razem z innymi liczbami. Policz na kartce, wpisz wynik i kliknij „Sprawdź”.",
+    tematy: tematy("e8-podstawy"),
+    wzory: WZORY_E8_PODSTAWY,
+    generatory: E8_PODSTAWY,
+    pdf: [],
+  },
 ];
 
+export const EGZAMINY = [
+  { id: "matura", nazwa: "Matura", opis: "matura, poziom podstawowy", zadania: "Zadania z matur", podobne: "jak na maturze" },
+  { id: "e8", nazwa: "Egzamin ósmoklasisty", opis: "egzamin ósmoklasisty", zadania: "Zadania z egzaminów", podobne: "jak na egzaminie" },
+];
+export const egzamin = (id) => EGZAMINY.find((e) => e.id === id) ?? EGZAMINY[0];
+
 export const RODZAJE = [
-  { id: "zadania", nazwa: "Zadania z matur", krotko: "Zadania" },
+  { id: "zadania", nazwa: "Zadania z arkuszy CKE", krotko: "Zadania" },
   { id: "generator", nazwa: "Generator zadań", krotko: "Generator" },
   { id: "karty", nazwa: "Karty pracy", krotko: "Karty" },
 ];

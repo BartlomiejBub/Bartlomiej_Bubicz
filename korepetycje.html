@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Korepetycje – Bartłomiej Bubicz</title>
-  <meta name="description" content="Materiały do matury z matematyki na poziomie podstawowym (formuła 2023): arkusze CKE, karta wzorów i ćwiczenia.">
+  <meta name="description" content="Materiały do matury z matematyki na poziomie podstawowym (formuła 2023) i do egzaminu ósmoklasisty: arkusze CKE, karta wzorów i ćwiczenia.">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha512-fHwaWebuwA7NSF5Qg/af4UeDx9XqUpYpOGgubo3yWu+b2IQR4UeQwbb42Ti7gVAjNtVoI/I9TEoYeu9omwcC6g==" crossorigin="anonymous">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,15 +28,24 @@
 
   <main class="wrap">
     <section class="hero hero-compact">
-      <p class="eyebrow">Matematyka · poziom podstawowy</p>
+      <p class="eyebrow" data-tylko="matura">Matematyka · poziom podstawowy</p>
+      <p class="eyebrow" data-tylko="e8">Matematyka · klasa 8</p>
       <h1>Korepetycje</h1>
-      <p class="lead">Materiały do matury z matematyki na poziomie podstawowym w nowej formule (od 2023 roku).</p>
+      <p class="lead" data-tylko="matura">Materiały do matury z matematyki na poziomie podstawowym w nowej formule (od 2023 roku).</p>
+      <p class="lead" data-tylko="e8">Materiały do egzaminu ósmoklasisty z matematyki, a do tego podstawy: działania pisemne, ułamki i liczby ujemne.</p>
     </section>
 
+    <div class="egzaminy" role="group" aria-label="Egzamin">
+      <button class="egzamin" type="button" data-egzamin="matura" aria-pressed="true"><strong>Matura</strong><small>poziom podstawowy</small></button>
+      <button class="egzamin" type="button" data-egzamin="e8" aria-pressed="false"><strong>Egzamin ósmoklasisty</strong><small>szkoła podstawowa</small></button>
+    </div>
+
     <div class="tabs" role="tablist" aria-label="Materiały">
-      <button class="tab" type="button" role="tab" id="tab-matury" data-tab="matury" aria-controls="panel-matury" aria-selected="true">Matury</button>
-      <button class="tab" type="button" role="tab" id="tab-karty" data-tab="karty" aria-controls="panel-karty" aria-selected="false" tabindex="-1">Karty maturalne</button>
-      <button class="tab" type="button" role="tab" id="tab-cwiczenia" data-tab="cwiczenia" aria-controls="panel-cwiczenia" aria-selected="false" tabindex="-1">Ćwiczenia</button>
+      <button class="tab" type="button" role="tab" id="tab-matury" data-tab="matury" data-tylko="matura" aria-controls="panel-matury" aria-selected="true">Matury</button>
+      <button class="tab" type="button" role="tab" id="tab-karty" data-tab="karty" data-tylko="matura" aria-controls="panel-karty" aria-selected="false" tabindex="-1">Karty maturalne</button>
+      <button class="tab" type="button" role="tab" id="tab-cwiczenia" data-tab="cwiczenia" data-tylko="matura" aria-controls="panel-cwiczenia" aria-selected="false" tabindex="-1">Ćwiczenia</button>
+      <button class="tab" type="button" role="tab" id="tab-e8-arkusze" data-tab="e8-arkusze" data-tylko="e8" aria-controls="panel-e8-arkusze" aria-selected="false" tabindex="-1">Arkusze</button>
+      <button class="tab" type="button" role="tab" id="tab-e8-cwiczenia" data-tab="e8-cwiczenia" data-tylko="e8" aria-controls="panel-cwiczenia" aria-selected="false" tabindex="-1">Ćwiczenia</button>
     </div>
 
     <section class="panel" role="tabpanel" id="panel-matury" aria-labelledby="tab-matury" tabindex="0">
@@ -55,10 +64,16 @@
       </article>
     </section>
 
+    <section class="panel" role="tabpanel" id="panel-e8-arkusze" aria-labelledby="tab-e8-arkusze" tabindex="0" hidden>
+      <h2>Arkusze egzaminu ósmoklasisty CKE</h2>
+      <p class="section-intro">Każdy link otwiera stronę arkusza na arkusze.pl, gdzie są zadania i odpowiedzi. Na egzaminie nie ma karty wzorów, więc wzory trzeba znać na pamięć – pomogą w tym ćwiczenia.</p>
+      <div id="e8-list"></div>
+    </section>
+
     <section class="panel" role="tabpanel" id="panel-cwiczenia" aria-labelledby="tab-cwiczenia" tabindex="0" hidden>
       <div id="cwiczenia-logowanie">
         <h2>Ćwiczenia</h2>
-        <p class="section-intro">Zadania z matur, generator zadań i karty pracy dla moich uczniów. Zaloguj się swoim kodem ucznia.</p>
+        <p class="section-intro">Zadania z arkuszy CKE, wyjaśnienia, generator zadań i karty pracy dla moich uczniów. Zaloguj się swoim kodem ucznia.</p>
         <form class="card login-card" id="login-form">
           <label class="field-label" for="kod">Kod ucznia</label>
           <div class="login-row">

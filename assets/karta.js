@@ -1,7 +1,7 @@
 // Karta pracy do druku: karta.html?dzial=liczby&nr=2 (stała) albo ?dzial=liczby&ziarno=123 (wylosowana).
 import { el } from "./dom.js";
 import { zalogowany, ma } from "./dostep.js";
-import { dzial as znajdzDzial, zadaniaKarty, KARTY } from "./dzialy.js";
+import { dzial as znajdzDzial, egzamin, zadaniaKarty, KARTY } from "./dzialy.js";
 import { wstaw } from "./matematyka.js";
 
 const parametry = new URLSearchParams(location.search);
@@ -17,7 +17,7 @@ function komunikat(tytul, tekst) {
   karta.replaceChildren(
     el("div", { class: "empty" },
       el("strong", {}, tytul),
-      el("p", {}, tekst, " ", el("a", { href: "korepetycje.html#cwiczenia" }, "Przejdź do ćwiczeń")),
+      el("p", {}, tekst, " ", el("a", { href: d?.egzamin === "e8" ? "korepetycje.html#e8-cwiczenia" : "korepetycje.html#cwiczenia" }, "Przejdź do ćwiczeń")),
     ),
   );
 }
@@ -31,7 +31,7 @@ function pokaz() {
   karta.replaceChildren(
     el("header", { class: "sheet-head" },
       el("div", {},
-        el("p", { class: "eyebrow" }, `${d.nazwa} · matura, poziom podstawowy`),
+        el("p", { class: "eyebrow" }, `${d.nazwa} · ${egzamin(d.egzamin).opis}`),
         el("h1", {}, tytul),
         nr ? null : el("p", { class: "sheet-code" }, `Numer losowania: ${ziarno}`),
       ),

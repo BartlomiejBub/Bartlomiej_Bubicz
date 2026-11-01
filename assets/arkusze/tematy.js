@@ -42,4 +42,17 @@ export const TEMATY = {
     { id: "rownania-z-tresci", nazwa: "Równania z treści" },
     { id: "ciagi-w-praktyce", nazwa: "Ciągi w praktyce" },
   ],
+
+  // Egzamin ósmoklasisty (działy z przedrostkiem e8-). Podstawy to arytmetyka spoza arkuszy: wzory i generatory.
+  "e8-podstawy": [
+    { id: "dodawanie-odejmowanie", nazwa: "Dodawanie i odejmowanie pisemne" },
+    { id: "mnozenie", nazwa: "Mnożenie pisemne" },
+    { id: "dzielenie", nazwa: "Dzielenie pisemne" },
+    { id: "kolejnosc-dzialan", nazwa: "Kolejność działań" },
+    { id: "liczby-ujemne", nazwa: "Liczby ujemne" },
+    { id: "podzielnosc", nazwa: "Podzielność, NWD i NWW" },
+    { id: "ulamki-zwykle", nazwa: "Ułamki: skracanie i wspólny mianownik" },
+    { id: "mnozenie-ulamkow", nazwa: "Mnożenie i dzielenie ułamków" },
+    { id: "ulamki-dziesietne", nazwa: "Ułamki dziesiętne" },
+  ],
 };
