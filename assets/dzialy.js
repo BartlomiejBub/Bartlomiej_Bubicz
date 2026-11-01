@@ -9,6 +9,7 @@ import { GENERATORY as TEKSTOWE } from "./generatory/tekstowe.js";
 import { GENERATORY as E8_PODSTAWY } from "./generatory/e8-podstawy.js";
 import { GENERATORY as E8_LICZBY } from "./generatory/e8-liczby.js";
 import { GENERATORY as E8_WYRAZENIA } from "./generatory/e8-wyrazenia.js";
+import { GENERATORY as E8_PROCENTY } from "./generatory/e8-procenty.js";
 import { losownik, ziarno } from "./generatory/wspolne.js";
 import { ARKUSZE as ARKUSZE_MATURY } from "./arkusze/index.js";
 import { ARKUSZE as ARKUSZE_E8 } from "./arkusze-e8/index.js";
@@ -22,6 +23,7 @@ import { WZORY as WZORY_TEKSTOWE } from "./wzory/tekstowe.js";
 import { WZORY as WZORY_E8_PODSTAWY } from "./wzory/e8-podstawy.js";
 import { WZORY as WZORY_E8_LICZBY } from "./wzory/e8-liczby.js";
 import { WZORY as WZORY_E8_WYRAZENIA } from "./wzory/e8-wyrazenia.js";
+import { WZORY as WZORY_E8_PROCENTY } from "./wzory/e8-procenty.js";
 
 const ARKUSZE = [...ARKUSZE_MATURY, ...ARKUSZE_E8];
 
@@ -145,6 +147,18 @@ export const DZIALY = [
     tematy: tematy("e8-wyrazenia"),
     wzory: WZORY_E8_WYRAZENIA,
     generatory: E8_WYRAZENIA,
+    pdf: [],
+  },
+  {
+    id: "e8-procenty",
+    egzamin: "e8",
+    nazwa: "Procenty i obliczenia praktyczne",
+    opis: "Procenty, podwyżki i obniżki, zakupy, prędkość, jednostki miary, skala oraz obliczenia na czasie i w kalendarzu.",
+    wzoryTytul: "Co trzeba umieć – krok po kroku",
+    wzoryOpis: "Na egzaminie nie ma karty wzorów ani kalkulatora, więc tu jest wszystko, co trzeba zapamiętać, i sposoby liczenia w pamięci.",
+    tematy: tematy("e8-procenty"),
+    wzory: WZORY_E8_PROCENTY,
+    generatory: E8_PROCENTY,
     pdf: [],
   },
 ];

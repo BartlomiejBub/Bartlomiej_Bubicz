@@ -73,4 +73,14 @@ export const TEMATY = {
     { id: "przeksztalcanie-wzorow", nazwa: "Przekształcanie wzorów" },      // wyznaczanie zmiennej, np. a z L = 2a + 2b
     { id: "proporcje", nazwa: "Proporcje i proporcjonalność prosta" },      // proporcja, wielkości wprost proporcjonalne
   ],
+  "e8-procenty": [
+    { id: "procent-liczby", nazwa: "Procent liczby i jakim procentem jest" }, // p% z liczby, jakim procentem a jest b
+    { id: "liczba-z-procentu", nazwa: "Liczba z danego procentu" },          // 30% liczby to 12 – jaka to liczba
+    { id: "podwyzki-obnizki", nazwa: "Podwyżki, obniżki i punkty procentowe" }, // zmiany cen, kolejne zmiany, lokaty, punkty procentowe
+    { id: "pieniadze", nazwa: "Zakupy i pieniądze" },                        // ceny, reszta, cena za sztukę/kg, opłacalność
+    { id: "predkosc", nazwa: "Prędkość, droga i czas" },                    // s = v·t, km/h i m/s, średnia prędkość
+    { id: "jednostki", nazwa: "Jednostki miary" },                          // długość, masa, pole, objętość, litry
+    { id: "skala", nazwa: "Skala i plan" },                                 // skala mapy, odległości na planie
+    { id: "czas-kalendarz", nazwa: "Czas, zegar i kalendarz" },             // godziny i minuty, daty, dni tygodnia, lata przestępne
+  ],
 };
