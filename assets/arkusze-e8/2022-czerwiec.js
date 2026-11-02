@@ -6,6 +6,13 @@ const PF = "**Oceń prawdziwość podanych zdań. Wybierz P, jeśli zdanie jest 
 export default {
   nazwa: "Egzamin ósmoklasisty czerwiec 2022 (dodatkowy)",
   zadania: [
+    { nr: "1", dzial: "e8-procenty", temat: "procent-liczby",
+      tresc: `Wśród pewnej grupy osób przeprowadzono ankietę. Jedno z pytań brzmiało: „Jaka jest twoja ulubiona pora roku?”. Każdy ankietowany wskazał tylko jedną porę roku. Rozkład udzielonych odpowiedzi na to pytanie przedstawiono na diagramie.\n\n[rysunek]\n\n${PF}`,
+      czesci: [
+        { tekst: "Zima jest ulubioną porą roku dla mniej niż $24\\%$ liczby osób ankietowanych.", litery: "PF", poprawna: 1 },
+        { tekst: "Lato jest ulubioną porą roku dla $\\frac{3}{7}$ liczby osób ankietowanych.", litery: "PF", poprawna: 0 },
+      ],
+      rysunek: "assets/arkusze-e8/rys/2022-czerwiec-1.png" },
     { nr: "2", dzial: "e8-wyrazenia", temat: "zadania-z-rownaniem",
       tresc: `Córka obecnie jest $4$ razy młodsza od swojej mamy. Razem mają $60$ lat.\n\n${UZ}`,
       czesci: [
@@ -20,6 +27,13 @@ export default {
       tresc: `${DOK}\n\nRozwiązaniem równania $-2(x - 1) - 3(2 - x) = 0$ jest liczba`,
       opcje: ["$-4$", "$-1{,}6$", "$0{,}8$", "$4$", "$8$"],
       poprawna: 3 },
+    { nr: "5", dzial: "e8-procenty", temat: "czas-kalendarz",
+      tresc: `O godzinie $14{:}50$ Maciek wyruszył w podróż pociągiem z Gdańska do Grudziądza. Najpierw dojechał do Iławy, gdzie po $50$-minutowym oczekiwaniu wsiadł do pociągu, którym dojechał do Grudziądza.\n\nNa rysunku pokazano, jak w czasie przebiegała podróż Maćka. Na osi czas przejazdu z Gdańska do Grudziądza podzielono na $20$ jednakowych odstępów.\n\n[rysunek]\n\n${PF}`,
+      czesci: [
+        { tekst: "Przejazd z Iławy do Grudziądza trwał jedną godzinę.", litery: "PF", poprawna: 0 },
+        { tekst: "Maciek przyjechał do Grudziądza o godzinie $18{:}10$.", litery: "PF", poprawna: 0 },
+      ],
+      rysunek: "assets/arkusze-e8/rys/2022-czerwiec-5.png" },
     { nr: "6", dzial: "e8-liczby", temat: "pierwiastki",
       tresc: "Dane są trzy liczby:\n\n$g = \\sqrt{120}$\n\n$h = 8 + \\sqrt{17}$\n\n$k = 9 + \\sqrt{3}$\n\n**Które spośród tych liczb są mniejsze od liczby** $11$**? Wybierz właściwą odpowiedź spośród podanych.**",
       opcje: ["Tylko $g$.", "Tylko $h$ i $k$.", "Tylko $g$ i $k$.", "Tylko $g$ i $h$."],
@@ -33,6 +47,10 @@ export default {
     { nr: "8", dzial: "e8-liczby", temat: "dzielniki",
       tresc: "Na tablicy zapisano wszystkie różne liczby dwucyfrowe, które jednocześnie spełniają trzy warunki: są mniejsze od $40$, są podzielne przez $3$, suma cyfr każdej z nich jest większa od $7$.\n\n**Ile liczb zapisano na tablicy? Wybierz właściwą odpowiedź spośród podanych.**",
       opcje: ["$3$", "$4$", "$5$", "$6$"],
+      poprawna: 1 },
+    { nr: "9", dzial: "e8-procenty", temat: "liczba-z-procentu",
+      tresc: "Biuro podróży w ramach oferty promocyjnej obniżyło cenę wycieczki o $20\\%$. Pani Anna skorzystała z promocji i za wycieczkę zapłaciła $1500$ zł.\n\n**Jaka była cena wycieczki przed obniżką? Wybierz właściwą odpowiedź spośród podanych.**",
+      opcje: ["$1800$ zł", "$1875$ zł", "$2000$ zł", "$2175$ zł"],
       poprawna: 1 },
     { nr: "10", dzial: "e8-liczby", temat: "potegi",
       tresc: "**Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.**\n\nLiczba $3^5 \\cdot 9^6$ jest równa",

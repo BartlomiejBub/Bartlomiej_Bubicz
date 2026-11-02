@@ -1,10 +1,18 @@
 // Egzamin ósmoklasisty kwiecień 2019 (CKE) – zadania zamknięte przepisane z arkusza, przypisane do działów egzaminu ósmoklasisty (pole dzial).
 const DOK = "**Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.**";
 const UZ = "**Uzupełnij poniższe zdania. Wybierz odpowiedź spośród oznaczonych literami A i B oraz odpowiedź spośród oznaczonych literami C i D.**";
+const PF = "**Oceń prawdziwość podanych zdań. Wybierz P, jeśli zdanie jest prawdziwe, albo F – jeśli jest fałszywe.**";
 
 export default {
   nazwa: "Egzamin ósmoklasisty kwiecień 2019",
   zadania: [
+    { nr: "1", dzial: "e8-procenty", temat: "czas-kalendarz",
+      tresc: `Na rysunku przedstawiono kartkę z kalendarza na rok $2017$.\n\n[rysunek]\n\nNatalia obchodzi urodziny $31$ sierpnia, jej siostra Ewa – $18$ sierpnia, a brat Karol – $2$ października.\n\n${PF}`,
+      czesci: [
+        { tekst: "W $2017$ r. urodziny Ewy wypadły w piątek.", litery: "PF", poprawna: 0 },
+        { tekst: "W $2017$ r. dniem urodzin Karola był poniedziałek.", litery: "PF", poprawna: 0 },
+      ],
+      rysunek: "assets/arkusze-e8/rys/2019-kwiecien-1.png" },
     { nr: "2", dzial: "e8-liczby", temat: "zaokraglanie",
       tresc: "Liczba $1450$ jest zaokrągleniem do rzędu dziesiątek kilku liczb naturalnych.\n\n**Ile jest wszystkich liczb naturalnych różnych od** $1450$**, które mają takie zaokrąglenie? Wybierz właściwą odpowiedź spośród podanych.**",
       opcje: ["$4$", "$5$", "$9$", "$10$"],

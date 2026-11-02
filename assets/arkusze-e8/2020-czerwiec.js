@@ -1,10 +1,18 @@
 // Egzamin ósmoklasisty czerwiec 2020 (CKE, wersja X) – zadania zamknięte przepisane z arkusza, przypisane do działów egzaminu ósmoklasisty (pole dzial).
 const DOK = "**Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.**";
+const UZ = "**Uzupełnij poniższe zdania. Wybierz odpowiedź spośród oznaczonych literami A i B oraz odpowiedź spośród oznaczonych literami C i D.**";
 const PF = "**Oceń prawdziwość podanych zdań. Wybierz P, jeśli zdanie jest prawdziwe, albo F – jeśli jest fałszywe.**";
 
 export default {
   nazwa: "Egzamin ósmoklasisty czerwiec 2020",
   zadania: [
+    { nr: "1", dzial: "e8-procenty", temat: "procent-liczby",
+      tresc: `Rowerzysta uczestniczył w rajdzie rowerowym. Całą trasę rajdu pokonał w ciągu czterech dni. W tabeli poniżej przedstawiono długości kolejnych etapów trasy, które przebył każdego dnia.\n\n[rysunek]\n\n${UZ}`,
+      czesci: [
+        { tekst: "W poniedziałek i wtorek rowerzysta przejechał łącznie … długości całej trasy rajdu.", litery: "AB", opcje: ["więcej niż $50\\%$", "mniej niż $50\\%$"], poprawna: 0 },
+        { tekst: "W środę rowerzysta przejechał … długości całej trasy rajdu.", litery: "CD", opcje: ["$\\frac{1}{4}$", "$\\frac{1}{5}$"], poprawna: 1 },
+      ],
+      rysunek: "assets/arkusze-e8/rys/2020-czerwiec-1.png" },
     { nr: "2", dzial: "e8-liczby", temat: "ulamki-i-rozwiniecia",
       tresc: `${DOK}\n\nWartość wyrażenia $\\frac{5}{7} - \\frac{2}{7} \\cdot \\left(-\\frac{3}{2}\\right)$ jest równa`,
       opcje: ["$-\\frac{15}{14}$", "$-\\frac{9}{14}$", "$\\frac{2}{7}$", "$\\frac{8}{7}$"],
@@ -20,6 +28,11 @@ export default {
         { tekst: "Współrzędna punktu $R$ jest równa $271$.", litery: "PF", poprawna: 0 },
       ],
       rysunek: "assets/arkusze-e8/rys/2020-czerwiec-4.png" },
+    { nr: "5", dzial: "e8-procenty", temat: "predkosc",
+      tresc: `Pociąg o długości $l = 150$ m przejechał przez tunel o długości $d = 350$ m ze stałą prędkością $v = 20\\,\\frac{\\mathrm{m}}{\\mathrm{s}}$.\n\n[rysunek]\n\n**Ile czasu upłynęło od momentu wjazdu czoła pociągu do tunelu (rysunek 1.) do momentu wyjazdu z tunelu końca ostatniego wagonu (rysunek 2.)? Wybierz właściwą odpowiedź spośród podanych.**`,
+      opcje: ["$7{,}5$ s", "$17{,}5$ s", "$25$ s", "$36$ s"],
+      poprawna: 2,
+      rysunek: "assets/arkusze-e8/rys/2020-czerwiec-5.png" },
     { nr: "6", dzial: "e8-liczby", temat: "pierwiastki",
       tresc: `${DOK}\n\nWartość wyrażenia $\\sqrt{3}\\left(\\sqrt{27} - \\sqrt{12}\\right)$ jest równa`,
       opcje: ["$\\sqrt{3}$", "$3$", "$\\sqrt{45}$", "$\\sqrt{69}$"],
@@ -32,6 +45,10 @@ export default {
       tresc: "Dany jest wzór opisujący pole trapezu: $P = \\frac{(x + y) \\cdot h}{2}$, gdzie $x$ i $y$ oznaczają długości podstaw trapezu, a $h$ oznacza wysokość trapezu.\n\n**Którym równaniem opisano** $x$ **wyznaczone poprawnie z tego wzoru? Wybierz właściwą odpowiedź spośród podanych.**",
       opcje: ["$x = \\frac{P}{2} - hy$", "$x = \\frac{P}{2h} - y$", "$x = 2P - hy$", "$x = \\frac{2P}{h} - y$"],
       poprawna: 3 },
+    { nr: "13", dzial: "e8-procenty", temat: "podwyzki-obnizki",
+      tresc: `W grudniu, w trzech sklepach sportowych: Alfa, Beta i Gamma, sprzedawano łyżwy figurowe w tej samej cenie. Na wiosnę w każdym sklepie ogłoszono obniżkę cen tych łyżew. Poniżej przedstawiono oferty tych sklepów.\n\nSklep Alfa: Płacisz tylko $\\frac{2}{3}$ ceny.\n\nSklep Beta: Obniżka o $30\\%$.\n\nSklep Gamma: Ścinamy ćwierć ceny.\n\n${DOK}\n\nPo obniżce cena łyżew figurowych była`,
+      opcje: ["najniższa w sklepie Alfa.", "najniższa w sklepie Beta.", "najniższa w sklepie Gamma.", "taka sama w trzech sklepach."],
+      poprawna: 0 },
     { nr: "15", dzial: "e8-wyrazenia", temat: "zapisywanie-wyrazen",
       tresc: `W trójkącie $KLM$ poprowadzono wysokość $KN$. Długości niektórych odcinków opisano za pomocą wyrażeń algebraicznych: $|KL| = 2y$, $|LM| = 2x$, $|KN| = k + 1$.\n\n[rysunek]\n\n${DOK}\n\nPole trójkąta $KLM$ opisano wyrażeniem`,
       opcje: ["$x(k + 1)$", "$2x(k + 1)$", "$y(k + 1)$", "$2y(k + 1)$"],

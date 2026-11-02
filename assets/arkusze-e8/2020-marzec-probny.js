@@ -1,9 +1,17 @@
 // Egzamin ósmoklasisty marzec 2020 (próbny, CKE) – zadania zamknięte przepisane z arkusza, przypisane do działów egzaminu ósmoklasisty (pole dzial).
 const DOK = "**Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.**";
+const PF = "**Oceń prawdziwość podanych zdań. Wybierz P, jeśli zdanie jest prawdziwe, albo F – jeśli jest fałszywe.**";
 
 export default {
   nazwa: "Egzamin ósmoklasisty marzec 2020 (próbny)",
   zadania: [
+    { nr: "1", dzial: "e8-procenty", temat: "liczba-z-procentu",
+      tresc: `Na diagramie kołowym przedstawiono procentowy udział soków o różnych smakach, które zostały sprzedane podczas festynu. Najmniej sprzedano soku pomidorowego, tylko $15$ kartonów, a najwięcej – soku jabłkowego.\n\n[rysunek]\n\n${PF}`,
+      czesci: [
+        { tekst: "Sprzedano łącznie $125$ kartonów soków.", litery: "PF", poprawna: 1 },
+        { tekst: "Sprzedano o $30$ kartonów więcej soku jabłkowego niż pomidorowego.", litery: "PF", poprawna: 0 },
+      ],
+      rysunek: "assets/arkusze-e8/rys/2020-marzec-probny-1.png" },
     { nr: "2", dzial: "e8-liczby", temat: "dzielniki",
       tresc: "W liczbie pięciocyfrowej $258\\#4$, podzielnej przez $4$ i niepodzielnej przez $3$, cyfrę dziesiątek zastąpiono znakiem „$\\#$”.\n\n**Jakiej cyfry na pewno nie zastąpiono znakiem** „$\\#$”**? Wybierz właściwą odpowiedź spośród podanych.**",
       opcje: ["$0$", "$4$", "$6$", "$8$"],
@@ -12,6 +20,17 @@ export default {
       tresc: `${DOK}\n\nWartość wyrażenia $\\frac{4}{3} \\cdot 3 - 2^3$ jest równa`,
       opcje: ["$-\\frac{14}{3}$", "$-4$", "$-7$", "$-\\frac{8}{3}$", "$-2$"],
       poprawna: 1 },
+    { nr: "4", dzial: "e8-procenty", temat: "predkosc",
+      tresc: `Miejscowości $A$ i $B$ położone na przeciwległych brzegach jeziora są połączone dwiema drogami – drogą polną prowadzącą przez punkt $P$ i drogą leśną prowadzącą przez punkt $L$. Długość drogi polnej $APB$ wynosi $10$ km, a długość drogi leśnej $ALB$ jest równa $6$ km.\n\n[rysunek]\n\nMatylda i Karol wyruszyli na rowerach z miejscowości $A$ do miejscowości $B$ o godzinie $10{:}00$. Matylda jechała drogą leśną, a Karol – drogą polną. Średnia prędkość jazdy Matyldy wynosiła $15\\,\\frac{\\mathrm{km}}{\\mathrm{h}}$, a średnia prędkość Karola była równa $20\\,\\frac{\\mathrm{km}}{\\mathrm{h}}$.\n\n${PF}`,
+      czesci: [
+        { tekst: "Do miejscowości $B$ Karol przyjechał wcześniej niż Matylda.", litery: "PF", poprawna: 1 },
+        { tekst: "Matylda przyjechała do miejscowości $B$ o godzinie $10{:}24$.", litery: "PF", poprawna: 0 },
+      ],
+      rysunek: "assets/arkusze-e8/rys/2020-marzec-probny-4.png" },
+    { nr: "5", dzial: "e8-procenty", temat: "czas-kalendarz",
+      tresc: "Na treningu odmierzano za pomocą aplikacji komputerowej $15$-minutowe cykle ćwiczeń, które następowały bezpośrednio jeden po drugim. Ola zaczęła ćwiczyć, gdy pierwszy cykl trwał już $2$ minuty, a skończyła, gdy do końca trzeciego cyklu zostało jeszcze $7$ minut.\n\n**Ile łącznie minut Ola ćwiczyła na zajęciach? Wybierz właściwą odpowiedź spośród podanych.**",
+      opcje: ["$36$", "$35$", "$24$", "$21$"],
+      poprawna: 0 },
     { nr: "7", dzial: "e8-liczby", temat: "potegi",
       tresc: "Marta przygotowała dwa żetony takie, że suma liczb zapisanych na obu stronach każdego żetonu jest równa zero. Widok jednej ze stron tych żetonów przedstawiono poniżej.\n\n[rysunek]\n\n**Jakie liczby znajdują się na niewidocznych stronach tych żetonów? Wybierz właściwą odpowiedź spośród podanych.**",
       opcje: ["$-25$ i $-8$", "$-25$ i $8$", "$25$ i $-8$", "$25$ i $8$"],

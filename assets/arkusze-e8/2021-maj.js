@@ -25,6 +25,13 @@ export default {
         { litery: "AB", opcje: ["Tak,", "Nie,"], poprawna: 0 },
         { tekst: "ponieważ wśród dowolnych pięciu kolejnych liczb całkowitych", litery: "123", opcje: ["nie musi znajdować się liczba podzielna przez $10$.", "jest co najmniej jedna liczba nieparzysta i co najmniej jedna liczba parzysta.", "jest co najmniej jedna liczba podzielna przez $5$ i co najmniej jedna liczba parzysta."], poprawna: 2 },
       ] },
+    { nr: "6", dzial: "e8-procenty", temat: "procent-liczby",
+      tresc: `Podatek od dochodów za rok $2016$ w Polsce był obliczany według sposobów przedstawionych w poniższej tabeli.\n\n[rysunek]\n\n${UZ}`,
+      czesci: [
+        { tekst: "W $2016$ roku podstawa obliczenia podatku dla pana Jana wyniosła $84\\,500$ zł. Wysokość podatku (w zł) od dochodu pana Jana opisuje wyrażenie …", litery: "AB", opcje: ["$0{,}18 \\cdot 84\\,500 - 556{,}02$", "$0{,}18 \\cdot (84\\,500 - 556{,}02)$"], poprawna: 0 },
+        { tekst: "W $2016$ roku podstawa obliczenia podatku dla pani Zofii wyniosła $97\\,300$ zł. Wysokość podatku (w zł) od dochodu pani Zofii opisuje wyrażenie …", litery: "CD", opcje: ["$14\\,839{,}02 + 0{,}32 \\cdot 85\\,528$", "$14\\,839{,}02 + 0{,}32 \\cdot (97\\,300 - 85\\,528)$"], poprawna: 1 },
+      ],
+      rysunek: "assets/arkusze-e8/rys/2021-maj-6.png" },
     { nr: "7", dzial: "e8-liczby", temat: "pierwiastki",
       tresc: `Do liczby $\\left(-\\sqrt{10}\\right)$ dodajemy $5$.\n\n${DOK}\n\nOtrzymany wynik jest liczbą`,
       opcje: ["większą od $1$.", "dodatnią mniejszą od $1$.", "mniejszą od $(-8)$.", "ujemną większą od $(-8)$."],

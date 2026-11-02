@@ -1,13 +1,31 @@
 // Egzamin ósmoklasisty grudzień 2018 (próbny, CKE) – zadania zamknięte przepisane z arkusza, przypisane do działów egzaminu ósmoklasisty (pole dzial).
 const DOK = "**Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.**";
 const UZ = "**Uzupełnij poniższe zdania. Wybierz odpowiedź spośród oznaczonych literami A i B oraz odpowiedź spośród oznaczonych literami C i D.**";
+const PF = "**Oceń prawdziwość podanych zdań. Wybierz P, jeśli zdanie jest prawdziwe, albo F – jeśli jest fałszywe.**";
 
 export default {
   nazwa: "Egzamin ósmoklasisty grudzień 2018 (próbny)",
   zadania: [
+    { nr: "2", dzial: "e8-procenty", temat: "jednostki",
+      tresc: `Poniżej zamieszczono fragment etykiety z jogurtu o masie $150$ g.\n\n[rysunek]\n\n${UZ}`,
+      czesci: [
+        { tekst: "Zjedzenie całego jogurtu dostarcza organizmowi około … wapnia.", litery: "AB", opcje: ["$167$ mg", "$250$ mg"], poprawna: 1 },
+        { tekst: "Zjedzenie całego jogurtu dostarcza organizmowi … razy więcej białka niż witaminy B2.", litery: "CD", opcje: ["$18{,}4$", "$18\\,400$"], poprawna: 1 },
+      ],
+      rysunek: "assets/arkusze-e8/rys/2018-grudzien-probny-2.png" },
+    { nr: "3", dzial: "e8-procenty", temat: "procent-liczby",
+      tresc: PF,
+      czesci: [
+        { tekst: "$120\\%$ liczby $180$ to tyle samo, co $180\\%$ liczby $120$.", litery: "PF", poprawna: 0 },
+        { tekst: "$20\\%$ liczby $36$ to tyle samo, co $40\\%$ liczby $18$.", litery: "PF", poprawna: 0 },
+      ] },
     { nr: "4", dzial: "e8-liczby", temat: "dzielniki",
       tresc: `Liczba $x$ jest najmniejszą liczbą dodatnią podzielną przez $3$ i $4$, a liczba $y$ jest największą liczbą dwucyfrową podzielną przez $2$ i $9$.\n\n${DOK}\n\nNajmniejsza wspólna wielokrotność liczb $x$ i $y$ jest równa`,
       opcje: ["$72$", "$108$", "$180$", "$216$"],
+      poprawna: 2 },
+    { nr: "6", dzial: "e8-procenty", temat: "predkosc",
+      tresc: "Prędkość rozchodzenia się impulsu elektrycznego u człowieka wynosi około $2$ metrów na sekundę. U roślin impuls elektryczny może rozchodzić się z prędkością około $60$ centymetrów na minutę.\n\n**Ile razy prędkość rozchodzenia się impulsu elektrycznego u człowieka jest większa od prędkości rozchodzenia się impulsu elektrycznego u roślin? Wybierz właściwą odpowiedź spośród podanych.**",
+      opcje: ["W przybliżeniu $2$ razy.", "W przybliżeniu $20$ razy.", "W przybliżeniu $200$ razy.", "W przybliżeniu $2000$ razy."],
       poprawna: 2 },
     { nr: "7", dzial: "e8-liczby", temat: "zaokraglanie",
       tresc: "Monika poprawnie zaokrągliła liczbę $3465$ do pełnych setek i otrzymała liczbę $x$, a Paweł poprawnie zaokrąglił liczbę $3495$ do pełnych tysięcy i otrzymał liczbę $y$.\n\n**Czy liczby** $x$ **i** $y$ **są równe? Wybierz odpowiedź A (Tak) albo B (Nie) i jej uzasadnienie spośród 1, 2 albo 3.**",

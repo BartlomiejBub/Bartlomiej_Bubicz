@@ -1,10 +1,16 @@
 // Egzamin ósmoklasisty czerwiec 2021 (dodatkowy, CKE) – zadania zamknięte przepisane z arkusza, przypisane do działów egzaminu ósmoklasisty (pole dzial).
 const DOK = "**Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.**";
 const UZ = "**Uzupełnij zdania. Wybierz odpowiedź spośród oznaczonych literami A i B oraz odpowiedź spośród oznaczonych literami C i D.**";
+const PF = "**Oceń prawdziwość podanych zdań. Wybierz P, jeśli zdanie jest prawdziwe, albo F – jeśli jest fałszywe.**";
 
 export default {
   nazwa: "Egzamin ósmoklasisty czerwiec 2021 (dodatkowy)",
   zadania: [
+    { nr: "1", dzial: "e8-procenty", temat: "procent-liczby",
+      tresc: `Na diagramie przedstawiono wyniki ankiety, w której uczniowie pewnej szkoły odpowiadali na pytanie „Jakie jest twoje ulubione zwierzę domowe?”. Każdy ankietowany uczeń podawał tylko jedno zwierzę. Chomik był ulubieńcem $16$ uczniów.\n\n[rysunek]\n\n**Które z podanych zdań jest fałszywe? Wybierz właściwą odpowiedź spośród podanych.**`,
+      opcje: ["Pies był ulubieńcem $45\\%$ uczniów biorących udział w ankiecie.", "Królika wskazało $4$ razy mniej uczniów niż chomika.", "Kota wskazało $24$ ankietowanych uczniów.", "W ankiecie wzięło udział $80$ uczniów."],
+      poprawna: 2,
+      rysunek: "assets/arkusze-e8/rys/2021-czerwiec-1.png" },
     { nr: "2", dzial: "e8-liczby", temat: "ulamki-i-rozwiniecia",
       tresc: "Poniżej zapisano trzy liczby:\n\n$p = \\frac{27 \\cdot 9}{27 + 9}$\n\n$r = \\frac{27 + 9}{27 - 9}$\n\n$s = \\frac{27 - 9}{27 : 9}$\n\n**Który zapis przedstawia poprawnie uporządkowane liczby** $p, r, s$ **od najmniejszej do największej? Wybierz właściwą odpowiedź spośród podanych.**",
       opcje: ["$s, r, p$", "$r, s, p$", "$s, p, r$", "$r, p, s$"],
@@ -29,6 +35,12 @@ export default {
       tresc: "Dane są cztery liczby:\n\n$a = (-2)^2$\n\n$b = \\sqrt{9 + 16}$\n\n$c = \\frac{1}{2}(3 - 5)^2$\n\n$d = \\sqrt{\\frac{25}{4}}$\n\n**Które zdanie jest fałszywe? Wybierz właściwą odpowiedź spośród podanych.**",
       opcje: ["Wszystkie liczby są dodatnie.", "Liczba $b$ jest większa niż liczba $c$.", "Liczba $c$ jest dwa razy mniejsza niż liczba $a$.", "Liczba $d$ jest $2$ razy mniejsza niż liczba $b$.", "Liczba $c$ jest większa niż liczba $d$."],
       poprawna: 4 },
+    { nr: "8", dzial: "e8-procenty", temat: "pieniadze",
+      tresc: "Czekolada o masie $20$ dag przed promocją kosztowała $9{,}60$ zł. Producent czekolady przygotował dwie promocje.\n\nPromocja I: masa czekolady o $20\\%$ większa przy tej samej cenie.\n\nPromocja II: cena czekolady o $20\\%$ mniejsza przy tej samej masie.\n\n**Czy dla klienta kupującego** $120$ **dag czekolady bardziej opłacalna jest promocja II niż I? Wybierz odpowiedź A albo B i jej uzasadnienie spośród 1., 2. albo 3.**",
+      czesci: [
+        { litery: "AB", opcje: ["Tak,", "Nie,"], poprawna: 0 },
+        { tekst: "ponieważ", litery: "123", opcje: ["w promocji I masa czekolady wzrośnie o $4$ dag, natomiast w promocji II masa się nie zmieni.", "w promocji II $1$ dag czekolady kosztuje mniej niż w promocji I.", "w promocji II trzeba kupić $6$ czekolad, natomiast w promocji I – tylko $5$."], poprawna: 1 },
+      ] },
     { nr: "9", dzial: "e8-liczby", temat: "os-liczbowa",
       tresc: `Dane są trzy liczby $a$, $b$ i $c$.\n\n${UZ}`,
       czesci: [

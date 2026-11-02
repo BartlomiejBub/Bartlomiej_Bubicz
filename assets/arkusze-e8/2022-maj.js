@@ -1,10 +1,18 @@
 // Egzamin ósmoklasisty maj 2022 (CKE, wersja X) – zadania zamknięte przepisane z arkusza, przypisane do działów egzaminu ósmoklasisty (pole dzial).
 const DOK = "**Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.**";
 const UZ = "**Uzupełnij zdania. Wybierz odpowiedź spośród oznaczonych literami A i B oraz odpowiedź spośród oznaczonych literami C i D.**";
+const PF = "**Oceń prawdziwość podanych zdań. Wybierz P, jeśli zdanie jest prawdziwe, albo F – jeśli jest fałszywe.**";
 
 export default {
   nazwa: "Egzamin ósmoklasisty maj 2022",
   zadania: [
+    { nr: "1", dzial: "e8-procenty", temat: "procent-liczby",
+      tresc: `Wśród uczniów klas ósmych przeprowadzono ankietę. Jedno z pytań tej ankiety brzmiało: „Jakie filmy oglądasz najchętniej? Zaznacz tylko jedną odpowiedź.” (do wyboru: biograficzne, fantasy, komediowe, przyrodnicze, żadne z wymienionych). Każdy z uczniów wypełniających ankietę zaznaczył tylko jedną odpowiedź. Czworo spośród ankietowanych zaznaczyło odpowiedź „żadne z wymienionych”. Procentowy rozkład udzielonych odpowiedzi uczniów przedstawiono na poniższym diagramie.\n\n[rysunek]\n\n${PF}`,
+      czesci: [
+        { tekst: "W ankiecie wzięło udział $80$ uczniów.", litery: "PF", poprawna: 0 },
+        { tekst: "Filmy fantasy wybrało o $20$ uczniów więcej niż uczniów, którzy wybrali filmy przyrodnicze.", litery: "PF", poprawna: 0 },
+      ],
+      rysunek: "assets/arkusze-e8/rys/2022-maj-1.png" },
     { nr: "2", dzial: "e8-liczby", temat: "ulamki-i-rozwiniecia",
       tresc: `${DOK}\n\nWartość wyrażenia $\\frac{4^2}{5} - 3^2$ jest równa`,
       opcje: ["$-\\frac{29}{5}$", "$-\\frac{22}{5}$", "$\\frac{7}{5}$", "$\\frac{61}{5}$"],
@@ -50,5 +58,9 @@ export default {
       tresc: `Ogrodnik kupił ziemię ogrodową, którą zaplanował zużyć w maju, czerwcu i lipcu. W maju zużył $\\frac{1}{3}$ masy kupionej ziemi. W czerwcu zużył połowę masy ziemi, która została. Na lipiec pozostało mu jeszcze $60$ kg ziemi.\n\n${DOK}\n\nJeżeli przez $x$ oznaczymy masę zakupionej ziemi, to sytuację przedstawioną w zadaniu opisuje równanie`,
       opcje: ["$\\left(x - \\frac{1}{3}x\\right) + \\frac{1}{2}x = 60$", "$\\left(x - \\frac{1}{3}x\\right) + \\frac{1}{2}\\left(x - \\frac{1}{3}x\\right) = 60$", "$\\left(x - \\frac{1}{3}x\\right) - \\frac{1}{2}x = 60$", "$\\left(x - \\frac{1}{3}x\\right) - \\frac{1}{2}\\left(x - \\frac{1}{3}x\\right) = 60$"],
       poprawna: 3 },
+    { nr: "12", dzial: "e8-procenty", temat: "pieniadze",
+      tresc: "Trzy koleżanki kupiły bilety autobusowe w tym samym automacie. Martyna kupiła $6$ biletów $75$-minutowych i zapłaciła za te bilety $24$ zł. Weronika kupiła $4$ bilety $20$-minutowe i zapłaciła za nie $12$ zł. Ania kupiła $2$ bilety $75$-minutowe i $2$ bilety $20$-minutowe.\n\n**Ile Ania zapłaciła za bilety? Wybierz właściwą odpowiedź spośród podanych.**",
+      opcje: ["$7$ zł", "$14$ zł", "$19$ zł", "$20$ zł"],
+      poprawna: 1 },
   ],
 };

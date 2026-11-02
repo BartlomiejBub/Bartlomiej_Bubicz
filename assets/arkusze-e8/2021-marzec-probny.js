@@ -6,6 +6,11 @@ const PF = "**Oceń prawdziwość podanych zdań. Wybierz P, jeśli zdanie jest 
 export default {
   nazwa: "Egzamin ósmoklasisty marzec 2021 (próbny)",
   zadania: [
+    { nr: "1", dzial: "e8-procenty", temat: "liczba-z-procentu",
+      tresc: `W szkole Adama w gazetce szkolnej ukazał się artykuł, dotyczący wyboru przez ósmoklasistów szkoły ponadpodstawowej.\n\n[rysunek]\n\nPoniżej zapisano trzy prawdziwe informacje.\n\nI. Ankietę oddało łącznie $150$ uczniów.\n\nII. W ankiecie wzięli udział wszyscy uczniowie klas ósmych.\n\nIII. Łącznie mniej niż połowa uczniów biorących udział w ankiecie zamierza kontynuować naukę w technikum lub w branżowej szkole.\n\n**Które z informacji – I, II, III – wynikają z analizy danych zamieszczonych w treści artykułu? Wybierz właściwą odpowiedź spośród podanych.**`,
+      opcje: ["Tylko I i II.", "Tylko I i III.", "Tylko II i III.", "Wszystkie – I, II i III."],
+      poprawna: 1,
+      rysunek: "assets/arkusze-e8/rys/2021-marzec-probny-1.png" },
     { nr: "2", dzial: "e8-liczby", temat: "dzielniki",
       tresc: `Piłki tenisowe zapakowano do $186$ jednakowych pudełek. Do każdego z tych pudełek włożono po $6$ piłek.\n\n${PF}`,
       czesci: [
@@ -20,6 +25,16 @@ export default {
       tresc: `Dane są trzy wyrażenia:\n\nI. $6 \\cdot 1\\frac{2}{3}$\n\nII. $6 : 1{,}2$\n\nIII. $7{,}25 - 2\\frac{1}{4}$\n\n${DOK}\n\nLiczbami całkowitymi są wartości wyrażeń`,
       opcje: ["I, II i III.", "Tylko I i II.", "Tylko II i III.", "Tylko I i III."],
       poprawna: 0 },
+    { nr: "5", dzial: "e8-procenty", temat: "czas-kalendarz",
+      tresc: `Asia wzięła udział w zajęciach teatralnych. Zajęcia składały się z $2$ części. Każda część trwała tyle samo minut. Pomiędzy pierwszą a drugą częścią była $10$-minutowa przerwa. Zajęcia rozpoczęły się o godzinie $17{:}45$, a zakończyły o godzinie $19{:}05$.\n\n${DOK}\n\nDruga część zajęć rozpoczęła się o godzinie`,
+      opcje: ["$18{:}20$", "$18{:}25$", "$18{:}30$", "$18{:}35$"],
+      poprawna: 2 },
+    { nr: "6", dzial: "e8-procenty", temat: "podwyzki-obnizki",
+      tresc: `Cenę laptopa obniżono najpierw o $15\\%$, a później o $150$ zł. Po obu obniżkach laptop kosztuje $2400$ zł.\n\n${PF}`,
+      czesci: [
+        { tekst: "Przed tymi dwoma obniżkami laptop kosztował $3000$ zł.", litery: "PF", poprawna: 0 },
+        { tekst: "Po obu obniżkach cena laptopa stanowi $85\\%$ ceny początkowej.", litery: "PF", poprawna: 1 },
+      ] },
     { nr: "7", dzial: "e8-liczby", temat: "potegi",
       tresc: `${DOK}\n\nWartość wyrażenia $\\frac{6^8}{2^4}$ jest równa`,
       opcje: ["$3^2$", "$3^4$", "$2^2 \\cdot 3^8$", "$2^4 \\cdot 3^8$"],
