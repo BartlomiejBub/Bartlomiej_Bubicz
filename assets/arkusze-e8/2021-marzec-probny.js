@@ -73,5 +73,9 @@ export default {
       tresc: `Bok rombu ma długość $17$ cm, a jedna z jego przekątnych ma długość $30$ cm.\n\n${DOK}\n\nPole tego rombu jest równe`,
       opcje: ["$120\\,\\mathrm{cm}^2$", "$240\\,\\mathrm{cm}^2$", "$255\\,\\mathrm{cm}^2$", "$480\\,\\mathrm{cm}^2$"],
       poprawna: 1 },
+    { nr: "15", dzial: "e8-bryly", temat: "pole-powierzchni",
+      tresc: `Dwa sześciany – jeden o krawędzi $2$ i drugi o krawędzi $3$ – pocięto na sześciany o krawędzi $1$. Z otrzymanych sześcianów zbudowano prostopadłościan. Żadna ściana tego prostopadłościanu nie jest kwadratem.\n\n${DOK}\n\nPole powierzchni zbudowanego prostopadłościanu jest równe`,
+      opcje: ["$35$", "$47$", "$94$", "$142$"],
+      poprawna: 2 },
   ],
 };

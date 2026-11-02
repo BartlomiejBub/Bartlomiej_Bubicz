@@ -60,5 +60,19 @@ export default {
       tresc: "W układzie współrzędnych zaznaczono dwa punkty: $A = (-8, -4)$ i $P = (-2, 2)$. Punkt $P$ jest środkiem odcinka $AB$.\n\n**Jakie współrzędne ma punkt** $B$**? Wybierz właściwą odpowiedź spośród podanych.**",
       opcje: ["$(4, 8)$", "$(-10, -2)$", "$(-10, 8)$", "$(4, -2)$"],
       poprawna: 0 },
+    { nr: "14", dzial: "e8-bryly", temat: "objetosc",
+      tresc: "Cztery jednakowe drewniane elementy, każdy w kształcie prostopadłościanu o wymiarach $2\\,\\mathrm{cm} \\times 2\\,\\mathrm{cm} \\times 9\\,\\mathrm{cm}$, przyklejono do metalowej płytki w sposób pokazany na rysunku I.\n\n[rysunek]\n\nW ten sposób przygotowano formę, którą wypełniono masą gipsową, i tak otrzymano gipsowy odlew w kształcie prostopadłościanu, pokazany na rysunku II.\n\n**Uzupełnij zdania. Wybierz odpowiedź spośród oznaczonych literami A i B oraz odpowiedź spośród oznaczonych literami C i D.**",
+      czesci: [
+        { tekst: "Objętość drewna, z którego zbudowano formę, jest równa …", litery: "AB", opcje: ["$144\\,\\mathrm{cm}^3$", "$36\\,\\mathrm{cm}^3$"], poprawna: 0 },
+        { tekst: "Objętość gipsowego odlewu jest równa …", litery: "CD", opcje: ["$162\\,\\mathrm{cm}^3$", "$98\\,\\mathrm{cm}^3$"], poprawna: 1 },
+      ],
+      rysunek: "assets/arkusze-e8/rys/2018-grudzien-probny-14.png" },
+    { nr: "15", dzial: "e8-bryly", temat: "ostroslupy",
+      tresc: `Na rysunkach przedstawiono ostrosłup prawidłowy i graniastosłup prawidłowy. Wszystkie krawędzie obu brył są jednakowej długości.\n\n[rysunek]\n\n${PF}`,
+      czesci: [
+        { tekst: "Suma długości wszystkich krawędzi ostrosłupa jest większa niż suma długości wszystkich krawędzi graniastosłupa.", litery: "PF", poprawna: 1 },
+        { tekst: "Całkowite pole powierzchni ostrosłupa jest większe niż całkowite pole powierzchni graniastosłupa.", litery: "PF", poprawna: 1 },
+      ],
+      rysunek: "assets/arkusze-e8/rys/2018-grudzien-probny-15.png" },
   ],
 };

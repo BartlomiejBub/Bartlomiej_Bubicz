@@ -67,5 +67,12 @@ export default {
       tresc: `Stosunek długości trzech boków trójkąta jest równy $2 : 4 : 5$. Obwód tego trójkąta jest równy $33$ cm.\n\n${DOK}\n\nNajkrótszy bok tego trójkąta ma długość`,
       opcje: ["$2$ cm", "$3$ cm", "$6$ cm", "$11$ cm"],
       poprawna: 2 },
+    { nr: "15", dzial: "e8-bryly", temat: "pole-powierzchni",
+      tresc: `Na rysunku przedstawiono graniastosłup prosty trójkątny oraz jego podstawę. Wysokość tego graniastosłupa jest równa $1$ cm.\n\n[rysunek]\n\n${UZ}`,
+      czesci: [
+        { tekst: "Pole powierzchni bocznej tego graniastosłupa jest … pole jednej podstawy.", litery: "AB", opcje: ["takie samo jak", "dwa razy większe niż"], poprawna: 1 },
+        { tekst: "Pole powierzchni całkowitej tego graniastosłupa jest równe …", litery: "CD", opcje: ["$24\\,\\mathrm{cm}^2$", "$30\\,\\mathrm{cm}^2$"], poprawna: 0 },
+      ],
+      rysunek: "assets/arkusze-e8/rys/2023-czerwiec-15.png" },
   ],
 };

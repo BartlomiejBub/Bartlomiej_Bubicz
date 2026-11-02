@@ -60,6 +60,13 @@ export default {
       tresc: `Dany jest wzór na pole powierzchni całkowitej graniastosłupa:\n\n$P_c = 2P_p + P_b$\n\ngdzie: $P_c$ – pole powierzchni całkowitej, $P_p$ – pole podstawy, $P_b$ – pole powierzchni bocznej.\n\n${DOK}\n\nPole podstawy $P_p$ wyznaczone poprawnie z powyższego wzoru opisano równaniem`,
       opcje: ["$P_p = \\frac{P_c - P_b}{2}$", "$P_p = \\frac{P_c}{2} - P_b$", "$P_p = P_c - \\frac{P_b}{2}$", "$P_p = P_c - P_b$"],
       poprawna: 0 },
+    { nr: "12", dzial: "e8-bryly", temat: "ostroslupy",
+      tresc: `Na rysunku przedstawiono prostokąt i dwa trójkąty równoramienne $T_1$ i $T_2$ oraz podano długości ich boków.\n\n[rysunek]\n\n**Czy te trzy wielokąty mogą być ścianami jednego ostrosłupa? Wybierz odpowiedź A albo B i jej uzasadnienie spośród 1., 2. albo 3.**`,
+      czesci: [
+        { litery: "AB", opcje: ["Tak,", "Nie,"], poprawna: 1 },
+        { tekst: "ponieważ", litery: "123", opcje: ["długości boków prostokąta są równe długościom podstaw trójkątów $T_1$ i $T_2$.", "trójkąty $T_1$ i $T_2$ mają podstawy różnej długości.", "ramiona trójkąta $T_1$ mają inną długość niż ramiona trójkąta $T_2$."], poprawna: 2 },
+      ],
+      rysunek: "assets/arkusze-e8/rys/2022-czerwiec-12.png" },
     { nr: "13", dzial: "e8-figury", temat: "pitagoras",
       tresc: `W pewnym rombie jeden z kątów wewnętrznych ma miarę $120^\\circ$. Obwód tego rombu jest równy $24$ cm.\n\n${DOK}\n\nDłuższa przekątna tego rombu ma długość`,
       opcje: ["$3\\sqrt{3}$ cm", "$6$ cm", "$6\\sqrt{3}$ cm", "$12$ cm"],

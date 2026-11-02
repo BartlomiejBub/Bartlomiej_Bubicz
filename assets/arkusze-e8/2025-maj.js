@@ -68,5 +68,10 @@ export default {
       opcje: ["$(4, -2)$", "$(3, -2)$", "$(2, -2)$", "$(6, -2)$"],
       poprawna: 2,
       rysunek: "assets/arkusze-e8/rys/2025-maj-14.png" },
+    { nr: "15", dzial: "e8-bryly", temat: "pole-powierzchni",
+      tresc: `Trzy krawędzie wychodzące z jednego wierzchołka prostopadłościanu mają długości: $5$, $6$, $7$ (zobacz rysunek).\n\n[rysunek]\n\n${DOK}\n\nPole powierzchni całkowitej tego prostopadłościanu jest równe`,
+      opcje: ["$107$", "$172$", "$210$", "$214$"],
+      poprawna: 3,
+      rysunek: "assets/arkusze-e8/rys/2025-maj-15.png" },
   ],
 };

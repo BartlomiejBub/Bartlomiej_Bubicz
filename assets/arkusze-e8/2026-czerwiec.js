@@ -58,5 +58,10 @@ export default {
         { tekst: "Po usunięciu z figury $S$ patyczka $FE$, bez przesuwania pozostałych patyczków, otrzymamy figurę, która nie ma osi symetrii.", litery: "PF", poprawna: 1 },
       ],
       rysunek: "assets/arkusze-e8/rys/2026-czerwiec-13.png" },
+    { nr: "14", dzial: "e8-bryly", temat: "siatki",
+      tresc: `Na rysunku przedstawiono siatkę pewnego sześcianu. Obwód tej siatki jest równy $70$ cm.\n\n[rysunek]\n\n${DOK}\n\nPole powierzchni całkowitej tego sześcianu jest równe`,
+      opcje: ["$100\\,\\mathrm{cm}^2$", "$120\\,\\mathrm{cm}^2$", "$125\\,\\mathrm{cm}^2$", "$150\\,\\mathrm{cm}^2$"],
+      poprawna: 3,
+      rysunek: "assets/arkusze-e8/rys/2026-czerwiec-14.png" },
   ],
 };

@@ -47,6 +47,13 @@ export default {
         { tekst: "Pole wielokąta, który ma dwukrotnie więcej punktów kratowych leżących na brzegu wielokąta niż punktów leżących wewnątrz, wyraża się liczbą ….", litery: "CD", opcje: ["parzystą", "nieparzystą"], poprawna: 1 },
       ],
       rysunek: "assets/arkusze-e8/rys/2017-grudzien-probny-9.png" },
+    { nr: "10", dzial: "e8-bryly", temat: "pole-powierzchni",
+      tresc: `Z każdej z dwóch jednakowych kostek sześciennych wycięto sześcian i otrzymano bryły przedstawione na rysunku.\n\n[rysunek]\n\n**Czy całkowite pole powierzchni bryły I jest większe od całkowitego pola powierzchni bryły II? Wybierz odpowiedź T albo N i jej uzasadnienie spośród A, B albo C.**`,
+      czesci: [
+        { litery: "TN", opcje: ["Tak,", "Nie,"], poprawna: 1 },
+        { tekst: "ponieważ", litery: "ABC", opcje: ["z pierwszej kostki usunięto mniejszy sześcian niż z drugiej kostki.", "całkowite pole powierzchni każdej z otrzymanych brył jest równe całkowitemu polu powierzchni początkowej kostki.", "pole powierzchni „wnęki” w II bryle jest większe niż pole powierzchni „wnęki” w I bryle."], poprawna: 1 },
+      ],
+      rysunek: "assets/arkusze-e8/rys/2017-grudzien-probny-10.png" },
     { nr: "11", dzial: "e8-figury", temat: "pitagoras",
       tresc: `Na bokach trójkąta prostokątnego $ABC$ zaznaczono punkty $D$ i $E$. Odcinek $DE$ podzielił trójkąt $ABC$ na dwa wielokąty: trójkąt prostokątny $ADE$ i czworokąt $DBCE$, jak na rysunku. Odcinek $AB$ ma długość $4\\sqrt{3}$ cm, a odcinek $DE$ ma długość $3$ cm.\n\n[rysunek]\n\n${DOK}\n\nDługość odcinka $EC$ jest równa`,
       opcje: ["$1$ cm", "$\\sqrt{3}$ cm", "$2$ cm", "$4$ cm", "$3\\sqrt{3}$ cm"],
@@ -73,5 +80,11 @@ export default {
       tresc: `Punkt $S = (3, 2)$ jest środkiem odcinka $AB$, w którym $A = (5, 5)$.\n\n${DOK}\n\nPunkt $B$ ma współrzędne`,
       opcje: ["$(8, 7)$", "$(7, 8)$", "$(-1, 1)$", "$(1, -1)$"],
       poprawna: 3 },
+    { nr: "16", dzial: "e8-bryly", temat: "graniastoslupy",
+      tresc: `Jedną ścianę drewnianego sześcianu pomalowano na czerwono, a pozostałe – na biało. Ten sześcian rozcięto na $27$ jednakowych sześcianów.\n\n${PF}`,
+      czesci: [
+        { tekst: "Tylko cztery małe sześciany mają dokładnie jedną ścianę pomalowaną na biało.", litery: "PF", poprawna: 1 },
+        { tekst: "Tylko cztery małe sześciany mają trzy ściany pomalowane na biało.", litery: "PF", poprawna: 0 },
+      ] },
   ],
 };

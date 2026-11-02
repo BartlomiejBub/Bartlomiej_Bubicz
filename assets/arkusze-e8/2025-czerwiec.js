@@ -55,6 +55,10 @@ export default {
         { tekst: "Najdłuższy bok tego trapezu ma długość …", litery: "CD", opcje: ["$9$ cm", "$10$ cm"], poprawna: 1 },
       ],
       rysunek: "assets/arkusze-e8/rys/2025-czerwiec-12.png" },
+    { nr: "13", dzial: "e8-bryly", temat: "objetosc",
+      tresc: `Pole powierzchni całkowitej sześcianu jest równe $150\\,\\mathrm{cm}^2$.\n\n${DOK}\n\nObjętość tego sześcianu jest równa`,
+      opcje: ["$25\\,\\mathrm{cm}^3$", "$125\\,\\mathrm{cm}^3$", "$625\\,\\mathrm{cm}^3$", "$750\\,\\mathrm{cm}^3$"],
+      poprawna: 1 },
     { nr: "14", dzial: "e8-figury", temat: "uklad-wspolrzednych",
       tresc: `W układzie współrzędnych $(x, y)$ zaznaczono kolejne wierzchołki $A$ i $B$ pewnego czworokąta $ABCD$. Punkty $A$ i $B$ są punktami kratowymi. Pozostałe wierzchołki czworokąta mają współrzędne $C = (3, y_C)$ oraz $D = (-1, y_D)$, gdzie $y_C$ jest liczbą całkowitą dodatnią oraz $y_C = y_D$.\n\n[rysunek]\n\n${PF}`,
       czesci: [
@@ -62,5 +66,10 @@ export default {
         { tekst: "Dla $y_C = y_D = 3$ czworokąt $ABCD$ jest rombem.", litery: "PF", poprawna: 1 },
       ],
       rysunek: "assets/arkusze-e8/rys/2025-czerwiec-14.png" },
+    { nr: "15", dzial: "e8-bryly", temat: "objetosc",
+      tresc: `Sześcienną kostkę o objętości $1\\,\\mathrm{dm}^3$ włożono do prostopadłościennego pudełka, którego krawędzie oznaczono literami $a$, $b$, $c$ (zobacz rysunek). Długość krawędzi sześciennej kostki stanowi $\\frac{1}{3}$ długości krawędzi $a$, $\\frac{1}{2}$ długości krawędzi $b$ i $\\frac{2}{5}$ długości krawędzi $c$.\n\n[rysunek]\n\n${DOK}\n\nObjętość tego pudełka jest równa`,
+      opcje: ["$12\\,\\mathrm{dm}^3$", "$18\\,\\mathrm{dm}^3$", "$10\\,\\mathrm{dm}^3$", "$15\\,\\mathrm{dm}^3$"],
+      poprawna: 3,
+      rysunek: "assets/arkusze-e8/rys/2025-czerwiec-15.png" },
   ],
 };

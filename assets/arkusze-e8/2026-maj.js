@@ -61,5 +61,10 @@ export default {
       opcje: ["$16$", "$32$", "$49$", "$64$"],
       poprawna: 3,
       rysunek: "assets/arkusze-e8/rys/2026-maj-13.png" },
+    { nr: "14", dzial: "e8-bryly", temat: "pole-powierzchni",
+      tresc: `Trzy jednakowe sześciany o krawędzi długości $5$ ustawiono jeden na drugim i otrzymano prostopadłościan (zobacz rysunek).\n\n[rysunek]\n\n${DOK}\n\nPole powierzchni całkowitej otrzymanego prostopadłościanu jest równe`,
+      opcje: ["$350$", "$375$", "$400$", "$450$"],
+      poprawna: 0,
+      rysunek: "assets/arkusze-e8/rys/2026-maj-14.png" },
   ],
 };

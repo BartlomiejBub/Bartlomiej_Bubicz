@@ -63,5 +63,17 @@ export default {
       opcje: ["$4$ cm", "$6$ cm", "$7$ cm", "$12$ cm"],
       poprawna: 1,
       rysunek: "assets/arkusze-e8/rys/2021-czerwiec-13.png" },
+    { nr: "14", dzial: "e8-bryly", temat: "ostroslupy",
+      tresc: `Suma długości wszystkich krawędzi ostrosłupa prawidłowego sześciokątnego jest równa $450$. Krawędź boczna jest w tym ostrosłupie czterokrotnie dłuższa od krawędzi podstawy.\n\n[rysunek]\n\n${DOK}\n\nDługość krawędzi podstawy tego ostrosłupa jest równa`,
+      opcje: ["$15$", "$25$", "$50$", "$60$"],
+      poprawna: 0,
+      rysunek: "assets/arkusze-e8/rys/2021-czerwiec-14.png" },
+    { nr: "15", dzial: "e8-bryly", temat: "siatki",
+      tresc: `Na rysunku przedstawiono siatkę graniastosłupa prostego oraz podano długości niektórych jego krawędzi.\n\n[rysunek]\n\n${PF}`,
+      czesci: [
+        { tekst: "Pole największej ściany bocznej tego graniastosłupa jest równe $35$.", litery: "PF", poprawna: 0 },
+        { tekst: "Pole podstawy tego graniastosłupa jest równe $12$.", litery: "PF", poprawna: 1 },
+      ],
+      rysunek: "assets/arkusze-e8/rys/2021-czerwiec-15.png" },
   ],
 };

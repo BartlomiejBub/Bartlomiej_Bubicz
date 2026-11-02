@@ -55,5 +55,17 @@ export default {
       opcje: ["$7$", "$11$", "$19$", "$21$"],
       poprawna: 2,
       rysunek: "assets/arkusze-e8/rys/2026-styczen-probny-12.png" },
+    { nr: "13", dzial: "e8-bryly", temat: "objetosc",
+      wstep: "Adam zbudował dwa prostopadłościany. Pierwszy prostopadłościan ma wymiary $5$, $6$, $10$. Drugi prostopadłościan ma wymiary $6$, $6$, $10$.",
+      tresc: UZ,
+      czesci: [
+        { tekst: "Objętość pierwszego prostopadłościanu jest równa …", litery: "AB", opcje: ["$300$", "$600$"], poprawna: 0 },
+        { tekst: "Różnica objętości tych prostopadłościanów jest równa …", litery: "CD", opcje: ["$60$", "$120$"], poprawna: 0 },
+      ] },
+    { nr: "14", dzial: "e8-bryly", temat: "pole-powierzchni",
+      wstep: "Adam zbudował dwa prostopadłościany. Pierwszy prostopadłościan ma wymiary $5$, $6$, $10$. Drugi prostopadłościan ma wymiary $6$, $6$, $10$.",
+      tresc: `Adam ustawił te prostopadłościany jeden na drugim tak, że powstał większy prostopadłościan.\n\n${DOK}\n\nPole powierzchni całkowitej otrzymanego prostopadłościanu jest równe`,
+      opcje: ["$412$", "$472$", "$532$", "$592$"],
+      poprawna: 1 },
   ],
 };

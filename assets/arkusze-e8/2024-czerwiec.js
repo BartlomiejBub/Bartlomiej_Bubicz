@@ -74,5 +74,9 @@ export default {
       tresc: `Działka ma powierzchnię $200$ arów. Warzywa zajmują $130$ arów, jabłonie rosną na $\\frac{1}{5}$ pozostałej części działki, a resztę działki zajmują śliwy.\n\n${DOK}\n\nŚliwy zajmują powierzchnię`,
       opcje: ["$14$ arów.", "$30$ arów.", "$56$ arów.", "$70$ arów."],
       poprawna: 2 },
+    { nr: "15", dzial: "e8-bryly", temat: "ostroslupy",
+      tresc: "W pudełku są klocki w kształcie ostrosłupów trójkątnych i sześcianów. Klocków w kształcie ostrosłupów trójkątnych jest trzy razy więcej niż klocków sześciennych. Wszystkie klocki mają łącznie $720$ krawędzi.\n\n**Ile klocków w kształcie sześcianu jest w tym pudełku? Wybierz właściwą odpowiedź spośród podanych.**",
+      opcje: ["$24$", "$30$", "$39$", "$40$"],
+      poprawna: 0 },
   ],
 };

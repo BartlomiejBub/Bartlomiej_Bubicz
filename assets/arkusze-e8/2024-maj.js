@@ -70,5 +70,11 @@ export default {
         { tekst: "Pole trójkąta $ABC$ jest równe $52\\,\\mathrm{cm}^2$.", litery: "PF", poprawna: 0 },
       ],
       rysunek: "assets/arkusze-e8/rys/2024-maj-14.png" },
+    { nr: "15", dzial: "e8-bryly", temat: "pole-powierzchni",
+      tresc: `Dany jest ostrosłup prawidłowy czworokątny. Pole powierzchni całkowitej tej bryły jest równe $P$, a jedna ściana boczna ma pole równe $\\frac{2}{9}P$.\n\n${UZ}`,
+      czesci: [
+        { tekst: "Pole powierzchni bocznej tego ostrosłupa jest równe …", litery: "AB", opcje: ["$\\frac{6}{9}P$", "$\\frac{8}{9}P$"], poprawna: 1 },
+        { tekst: "Pole powierzchni podstawy tego ostrosłupa jest dwa razy … niż pole powierzchni jego jednej ściany bocznej.", litery: "CD", opcje: ["mniejsze", "większe"], poprawna: 0 },
+      ] },
   ],
 };

@@ -54,6 +54,11 @@ export default {
       opcje: ["Na diagramie A.", "Na diagramie B.", "Na diagramie C.", "Na diagramie D."],
       poprawna: 3,
       rysunek: "assets/arkusze-e8/rys/2020-lipiec-10.png" },
+    { nr: "11", dzial: "e8-bryly", temat: "siatki",
+      tresc: "Na drewnianej kostce w kształcie sześcianu zaznaczono punkty $K$ i $L$ tak, jak na rysunku.\n\nPo ścianach tej kostki od punktu $K$ do punktu $L$ przeszła mrówka.\n\n**Na której z poniższych siatek sześcianu przedstawiono trasę, której nie mogła pokonać mrówka? Wybierz właściwą odpowiedź spośród podanych.**\n\n[rysunek]",
+      opcje: ["rysunek A", "rysunek B", "rysunek C", "rysunek D"],
+      poprawna: 1,
+      rysunek: "assets/arkusze-e8/rys/2020-lipiec-11.png" },
     { nr: "13", dzial: "e8-figury", temat: "czworokaty",
       tresc: `Krótsza przekątna trapezu prostokątnego dzieli go na dwa trójkąty prostokątne równoramienne.\n\n${PF}`,
       czesci: [
