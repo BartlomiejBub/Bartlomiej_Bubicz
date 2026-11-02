@@ -10,6 +10,7 @@ import { GENERATORY as E8_PODSTAWY } from "./generatory/e8-podstawy.js";
 import { GENERATORY as E8_LICZBY } from "./generatory/e8-liczby.js";
 import { GENERATORY as E8_WYRAZENIA } from "./generatory/e8-wyrazenia.js";
 import { GENERATORY as E8_PROCENTY } from "./generatory/e8-procenty.js";
+import { GENERATORY as E8_FIGURY } from "./generatory/e8-figury.js";
 import { losownik, ziarno } from "./generatory/wspolne.js";
 import { ARKUSZE as ARKUSZE_MATURY } from "./arkusze/index.js";
 import { ARKUSZE as ARKUSZE_E8 } from "./arkusze-e8/index.js";
@@ -24,6 +25,7 @@ import { WZORY as WZORY_E8_PODSTAWY } from "./wzory/e8-podstawy.js";
 import { WZORY as WZORY_E8_LICZBY } from "./wzory/e8-liczby.js";
 import { WZORY as WZORY_E8_WYRAZENIA } from "./wzory/e8-wyrazenia.js";
 import { WZORY as WZORY_E8_PROCENTY } from "./wzory/e8-procenty.js";
+import { WZORY as WZORY_E8_FIGURY } from "./wzory/e8-figury.js";
 
 const ARKUSZE = [...ARKUSZE_MATURY, ...ARKUSZE_E8];
 
@@ -159,6 +161,18 @@ export const DZIALY = [
     tematy: tematy("e8-procenty"),
     wzory: WZORY_E8_PROCENTY,
     generatory: E8_PROCENTY,
+    pdf: [],
+  },
+  {
+    id: "e8-figury",
+    egzamin: "e8",
+    nazwa: "Figury płaskie",
+    opis: "Kąty, trójkąty, czworokąty i wielokąty, pola i obwody, twierdzenie Pitagorasa, układ współrzędnych i symetrie.",
+    wzoryTytul: "Co trzeba umieć – krok po kroku",
+    wzoryOpis: "Na egzaminie nie ma karty wzorów, więc tu jest wszystko, co trzeba zapamiętać, wytłumaczone prostymi słowami i na przykładach.",
+    tematy: tematy("e8-figury"),
+    wzory: WZORY_E8_FIGURY,
+    generatory: E8_FIGURY,
     pdf: [],
   },
 ];
