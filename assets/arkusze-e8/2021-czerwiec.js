@@ -52,5 +52,16 @@ export default {
       opcje: ["$13$", "$21$", "$27$", "$30$"],
       poprawna: 2,
       rysunek: "assets/arkusze-e8/rys/2021-czerwiec-10.png" },
+    { nr: "12", dzial: "e8-figury", temat: "pola-obwody",
+      tresc: `Na krótszym boku prostokąta zbudowano trójkąt równoboczny o obwodzie $18$ cm, a na dłuższym boku prostokąta zbudowano kwadrat o polu równym $64\\,\\mathrm{cm}^2$.\n\n${PF}`,
+      czesci: [
+        { tekst: "Pole prostokąta jest o $16\\,\\mathrm{cm}^2$ mniejsze od pola kwadratu powstałego na dłuższym boku prostokąta.", litery: "PF", poprawna: 0 },
+        { tekst: "Obwód prostokąta jest o $10$ cm dłuższy od obwodu trójkąta równobocznego zbudowanego na krótszym boku prostokąta.", litery: "PF", poprawna: 0 },
+      ] },
+    { nr: "13", dzial: "e8-figury", temat: "pola-obwody",
+      tresc: `W trójkącie $ABC$ o obwodzie $34$ cm poprowadzono odcinek $DE$. Obwód trójkąta $AED$ jest równy $16$ cm, a obwód czworokąta $EBCD$ – $30$ cm.\n\n[rysunek]\n\n${DOK}\n\nDługość odcinka $DE$ jest równa`,
+      opcje: ["$4$ cm", "$6$ cm", "$7$ cm", "$12$ cm"],
+      poprawna: 1,
+      rysunek: "assets/arkusze-e8/rys/2021-czerwiec-13.png" },
   ],
 };

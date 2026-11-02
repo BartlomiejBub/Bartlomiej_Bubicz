@@ -62,5 +62,17 @@ export default {
       tresc: "Trzy koleżanki kupiły bilety autobusowe w tym samym automacie. Martyna kupiła $6$ biletów $75$-minutowych i zapłaciła za te bilety $24$ zł. Weronika kupiła $4$ bilety $20$-minutowe i zapłaciła za nie $12$ zł. Ania kupiła $2$ bilety $75$-minutowe i $2$ bilety $20$-minutowe.\n\n**Ile Ania zapłaciła za bilety? Wybierz właściwą odpowiedź spośród podanych.**",
       opcje: ["$7$ zł", "$14$ zł", "$19$ zł", "$20$ zł"],
       poprawna: 1 },
+    { nr: "13", dzial: "e8-figury", temat: "trojkaty",
+      tresc: `Dany jest trójkąt $ABC$, w którym kąt $BCA$ ma miarę $35^\\circ$. Punkt $D$ leży na boku $BC$ tego trójkąta. Odcinek $AD$ ma taką samą długość jak odcinek $BD$. Kąt $ADC$ ma miarę $130^\\circ$ (zobacz rysunek poniżej).\n\n[rysunek]\n\n${DOK}\n\nKąt $CAB$ ma miarę`,
+      opcje: ["$95^\\circ$", "$75^\\circ$", "$90^\\circ$", "$80^\\circ$"],
+      poprawna: 3,
+      rysunek: "assets/arkusze-e8/rys/2022-maj-13.png" },
+    { nr: "15", dzial: "e8-figury", temat: "pola-obwody",
+      tresc: `Na rysunku przedstawiono trapez $KLMN$ zbudowany z trzech jednakowych trójkątów prostokątnych o przyprostokątnych długości $3$ cm i $4$ cm.\n\n[rysunek]\n\n${PF}`,
+      czesci: [
+        { tekst: "Pole trapezu $KLMN$ jest równe $18\\,\\mathrm{cm}^2$.", litery: "PF", poprawna: 0 },
+        { tekst: "Obwód trapezu $KLMN$ jest równy $18$ cm.", litery: "PF", poprawna: 0 },
+      ],
+      rysunek: "assets/arkusze-e8/rys/2022-maj-15.png" },
   ],
 };

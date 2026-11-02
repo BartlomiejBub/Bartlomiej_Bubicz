@@ -1,5 +1,6 @@
 // Egzamin ósmoklasisty marzec 2020 (próbny, CKE) – zadania zamknięte przepisane z arkusza, przypisane do działów egzaminu ósmoklasisty (pole dzial).
 const DOK = "**Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.**";
+const UZ = "**Uzupełnij poniższe zdania. Wybierz odpowiedź spośród oznaczonych literami A i B oraz odpowiedź spośród oznaczonych literami C i D.**";
 const PF = "**Oceń prawdziwość podanych zdań. Wybierz P, jeśli zdanie jest prawdziwe, albo F – jeśli jest fałszywe.**";
 
 export default {
@@ -36,6 +37,13 @@ export default {
       opcje: ["$-25$ i $-8$", "$-25$ i $8$", "$25$ i $-8$", "$25$ i $8$"],
       poprawna: 3,
       rysunek: "assets/arkusze-e8/rys/2020-marzec-probny-7.png" },
+    { nr: "8", dzial: "e8-figury", temat: "uklad-wspolrzednych",
+      tresc: `W układzie współrzędnych zaznaczono trójkąt $ABC$ oraz punkt $P$ należący do boku $BC$. Wszystkie współrzędne punktów $A$, $B$, $C$ i $P$ są liczbami całkowitymi.\n\n[rysunek]\n\n${PF}`,
+      czesci: [
+        { tekst: "Pole trójkąta $PAB$ jest równe polu trójkąta $PAC$.", litery: "PF", poprawna: 0 },
+        { tekst: "Pole trójkąta $ABC$ jest równe $21$.", litery: "PF", poprawna: 0 },
+      ],
+      rysunek: "assets/arkusze-e8/rys/2020-marzec-probny-8.png" },
     { nr: "9", dzial: "e8-wyrazenia", temat: "proporcje",
       tresc: "Trójkąt, w którym długości boków są do siebie w stosunku $3 : 4 : 5$ nazywa się trójkątem egipskim.\n\n**Z odcinków o jakich długościach nie można zbudować trójkąta egipskiego? Wybierz właściwą odpowiedź spośród podanych.**",
       opcje: ["$6$, $8$, $10$", "$9$, $12$, $15$", "$12$, $20$, $25$", "$21$, $28$, $35$"],
@@ -44,5 +52,26 @@ export default {
       tresc: `Sprzedawca kupił od ogrodnika róże i tulipany za łączną kwotę $580$ zł. Jeden tulipan kosztował $1{,}20$ zł, a cena jednej róży była równa $4$ zł. Sprzedawca kupił o $50$ tulipanów więcej niż róż.\n\n${DOK}\n\nJeśli liczbę zakupionych tulipanów oznaczymy przez $t$, to podane zależności opisuje równanie`,
       opcje: ["$1{,}2(t + 50) + 4t = 580$", "$1{,}2(t - 50) + 4t = 580$", "$1{,}2t + 4(t - 50) = 580$", "$1{,}2t + 4(t + 50) = 580$"],
       poprawna: 2 },
+    { nr: "11", dzial: "e8-figury", temat: "czworokaty",
+      tresc: `Figura zacieniowana na rysunku jest równoległobokiem.\n\n[rysunek]\n\n${PF}`,
+      czesci: [
+        { tekst: "Suma miar kątów $\\alpha$ i $\\beta$ wynosi $180^\\circ$.", litery: "PF", poprawna: 0 },
+        { tekst: "Kąt $\\alpha$ ma miarę $3$ razy mniejszą niż kąt $\\beta$.", litery: "PF", poprawna: 0 },
+      ],
+      rysunek: "assets/arkusze-e8/rys/2020-marzec-probny-11.png" },
+    { nr: "12", dzial: "e8-figury", temat: "trojkaty",
+      tresc: `Na rysunku przedstawiono trójkąt równoramienny $KLM$ o ramionach $KM$ i $LM$. Miara kąta $KML$ jest dwa razy większa niż miara kąta $KLM$.\n\n[rysunek]\n\n${UZ}`,
+      czesci: [
+        { tekst: "Miara kąta $KLM$ jest równa …", litery: "AB", opcje: ["$40^\\circ$", "$45^\\circ$"], poprawna: 1 },
+        { tekst: "Trójkąt $KLM$ jest …", litery: "CD", opcje: ["rozwartokątny", "prostokątny"], poprawna: 1 },
+      ],
+      rysunek: "assets/arkusze-e8/rys/2020-marzec-probny-12.png" },
+    { nr: "14", dzial: "e8-figury", temat: "pitagoras",
+      tresc: `W okręgu o środku $S$ i promieniu $5$ cm narysowano cięciwę $AB$ o długości $8$ cm.\n\n[rysunek]\n\n${PF}`,
+      czesci: [
+        { tekst: "Odległość punktu $S$ od cięciwy $AB$ jest równa $3$ cm.", litery: "PF", poprawna: 0 },
+        { tekst: "Obwód trójkąta $ASB$ jest równy $16$ cm.", litery: "PF", poprawna: 1 },
+      ],
+      rysunek: "assets/arkusze-e8/rys/2020-marzec-probny-14.png" },
   ],
 };

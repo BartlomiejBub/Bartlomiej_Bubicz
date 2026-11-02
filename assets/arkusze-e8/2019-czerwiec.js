@@ -30,6 +30,13 @@ export default {
       tresc: `${DOK}\n\nWyrażenie: $(x - 2)(4x - 3) - x(1 - x)$ po uproszczeniu jest równe`,
       opcje: ["$5x^2 - x - 6$", "$5x^2 - 9x + 6$", "$5x^2 - 12x + 6$", "$3x^2 - x - 6$"],
       poprawna: 2 },
+    { nr: "6", dzial: "e8-figury", temat: "pola-obwody",
+      tresc: `Na rysunku przedstawiono kształt i wymiary elementu układanki, w którym sąsiednie boki są do siebie prostopadłe, a także dwie figury (figura I i figura II) zbudowane z takich elementów.\n\n[rysunek]\n\n${PF}`,
+      czesci: [
+        { tekst: "Obwód figury I jest o $2b$ większy od obwodu figury II.", litery: "PF", poprawna: 1 },
+        { tekst: "Pole figury II jest równe $12a^2$.", litery: "PF", poprawna: 0 },
+      ],
+      rysunek: "assets/arkusze-e8/rys/2019-czerwiec-6.png" },
     { nr: "7", dzial: "e8-liczby", temat: "ulamki-i-rozwiniecia",
       tresc: `Wydajność dużej pompy strażackiej to $24\\,000$ litrów wody na minutę, natomiast wydajność małej pompy to $1200$ litrów wody na minutę. Mała pompa w ciągu $1$ godziny pracy zużywa $0{,}931$ litra paliwa.\n\n${UZ}`,
       czesci: [
@@ -41,5 +48,29 @@ export default {
       opcje: ["$k$.", "$l$.", "$m$.", "$n$."],
       poprawna: 2,
       rysunek: "assets/arkusze-e8/rys/2019-czerwiec-8.png" },
+    { nr: "9", dzial: "e8-figury", temat: "uklad-wspolrzednych",
+      tresc: `Dane są punkty o współrzędnych: $A = (2, 1)$, $B = (4, 9)$, $C = (-2, 5)$, $D = (8, 5)$.\n\n${PF}`,
+      czesci: [
+        { tekst: "Środek odcinka $AB$ ma współrzędne $(3, 5)$.", litery: "PF", poprawna: 0 },
+        { tekst: "Środek odcinka $AB$ jest także środkiem odcinka $CD$.", litery: "PF", poprawna: 0 },
+      ] },
+    { nr: "10", dzial: "e8-figury", temat: "uklad-wspolrzednych",
+      tresc: `W prostokątnym układzie współrzędnych zaznaczono wierzchołki trójkąta prostokątnego $ABC$ (patrz: rysunek).\n\n[rysunek]\n\n${DOK}\n\nPrzeciwprostokątna trójkąta $ABC$ ma długość`,
+      opcje: ["$\\sqrt{39}$", "$10$", "$\\sqrt{89}$", "$13$"],
+      poprawna: 2,
+      rysunek: "assets/arkusze-e8/rys/2019-czerwiec-10.png" },
+    { nr: "12", dzial: "e8-figury", temat: "trojkaty",
+      tresc: `Na rysunku przedstawiono dwa trójkąty oraz podano niektóre ich wymiary i miary kilku kątów.\n\n[rysunek]\n\n${PF}`,
+      czesci: [
+        { tekst: "Te trójkąty są równoramienne.", litery: "PF", poprawna: 1 },
+        { tekst: "Te trójkąty są przystające.", litery: "PF", poprawna: 0 },
+      ],
+      rysunek: "assets/arkusze-e8/rys/2019-czerwiec-12.png" },
+    { nr: "13", dzial: "e8-figury", temat: "trojkaty",
+      tresc: `W trójkącie $ABC$, w którym $|AC| = |BC|$, poprowadzono wysokość $CD$. Obwód trójkąta $ACD$ jest równy $24$ cm, a obwód trójkąta $ABC$ jest równy $36$ cm.\n\n${PF}`,
+      czesci: [
+        { tekst: "Obwód trójkąta $BCD$ jest równy $18$ cm.", litery: "PF", poprawna: 1 },
+        { tekst: "Wysokość $CD$ ma długość $6$ cm.", litery: "PF", poprawna: 0 },
+      ] },
   ],
 };

@@ -54,6 +54,16 @@ export default {
       opcje: ["Na diagramie A.", "Na diagramie B.", "Na diagramie C.", "Na diagramie D."],
       poprawna: 3,
       rysunek: "assets/arkusze-e8/rys/2020-lipiec-10.png" },
+    { nr: "13", dzial: "e8-figury", temat: "czworokaty",
+      tresc: `Krótsza przekątna trapezu prostokątnego dzieli go na dwa trójkąty prostokątne równoramienne.\n\n${PF}`,
+      czesci: [
+        { tekst: "Wysokość trapezu i krótsza podstawa trapezu mają taką samą długość.", litery: "PF", poprawna: 0 },
+        { tekst: "Wysokość trapezu jest równa połowie dłuższej podstawy trapezu.", litery: "PF", poprawna: 0 },
+      ] },
+    { nr: "14", dzial: "e8-figury", temat: "pitagoras",
+      tresc: `W trójkącie prostokątnym o kącie ostrym $30^\\circ$ suma długości krótszej przyprostokątnej i przeciwprostokątnej jest równa $12$ cm.\n\n${DOK}\n\nDłuższa przyprostokątna tego trójkąta ma długość`,
+      opcje: ["$4\\sqrt{2}$ cm", "$4\\sqrt{3}$ cm", "$6$ cm", "$8$ cm"],
+      poprawna: 1 },
     { nr: "15", dzial: "e8-wyrazenia", temat: "zadania-z-rownaniem",
       tresc: `Na rysunku przedstawiono czworokąt $ABCD$, który podzielono na dwa trójkąty. Długości boków otrzymanych trójkątów opisano za pomocą wyrażeń algebraicznych. Obwód trójkąta $ABC$ jest równy $31$.\n\n[rysunek]\n\n${PF}`,
       czesci: [
