@@ -1,6 +1,7 @@
 // Egzamin ósmoklasisty czerwiec 2026 (dodatkowy, CKE) – zadania zamknięte przepisane z arkusza, przypisane do działów egzaminu ósmoklasisty (pole dzial).
 const DOK = "**Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.**";
 const UZ = "**Uzupełnij zdania. Wybierz odpowiedź spośród oznaczonych literami A i B oraz odpowiedź spośród oznaczonych literami C i D.**";
+const PF = "**Oceń prawdziwość podanych zdań. Wybierz P, jeśli zdanie jest prawdziwe, albo F – jeśli jest fałszywe.**";
 
 export default {
   nazwa: "Egzamin ósmoklasisty czerwiec 2026 (dodatkowy)",
@@ -39,5 +40,23 @@ export default {
       tresc: `Ala wyruszyła na wycieczkę rowerową o godzinie $11{:}40$. Przejechała trasę o długości $28$ km i dotarła do celu tego samego dnia o godzinie $13{:}00$.\n\n${DOK}\n\nPrędkość, z jaką Ala na rowerze pokonała trasę wycieczki, była równa`,
       opcje: ["$10{,}5\\,\\frac{\\mathrm{km}}{\\mathrm{h}}$", "$12\\,\\frac{\\mathrm{km}}{\\mathrm{h}}$", "$16{,}8\\,\\frac{\\mathrm{km}}{\\mathrm{h}}$", "$21\\,\\frac{\\mathrm{km}}{\\mathrm{h}}$"],
       poprawna: 3 },
+    { nr: "11", dzial: "e8-figury", temat: "uklad-wspolrzednych",
+      tresc: `W prostokątnym układzie współrzędnych $(x, y)$ dane są odcinki $AB$ oraz $CD$. Końcami tych odcinków są – odpowiednio – punkty: $A = (0, 0)$, $B = (0, 4)$ oraz $C = (-2, 0)$, $D = (6, 0)$.\n\n${PF}`,
+      czesci: [
+        { tekst: "Odcinek $AB$ ma taką samą długość jak odcinek $CD$.", litery: "PF", poprawna: 1 },
+        { tekst: "Odcinek $AB$ jest prostopadły do odcinka $CD$.", litery: "PF", poprawna: 0 },
+      ] },
+    { nr: "12", dzial: "e8-figury", temat: "pitagoras",
+      tresc: `Bok $AD$ równoległoboku $ABCD$ ma długość $6$, a przekątna $BD$ prostopadła do tego boku ma długość $8$ (zobacz rysunek).\n\n[rysunek]\n\n${DOK}\n\nObwód równoległoboku $ABCD$ jest równy`,
+      opcje: ["$32$", "$48$", "$24$", "$22$"],
+      poprawna: 0,
+      rysunek: "assets/arkusze-e8/rys/2026-czerwiec-12.png" },
+    { nr: "13", dzial: "e8-figury", temat: "symetrie",
+      tresc: `Z ośmiu jednakowych patyczków zbudowano figurę $S$ (zobacz rysunek). Ta figura ma dwie osie symetrii w płaszczyźnie rysunku.\n\n[rysunek]\n\n${PF}`,
+      czesci: [
+        { tekst: "Po usunięciu z figury $S$ patyczków $AF$ i $AB$, bez przesuwania pozostałych patyczków, otrzymamy figurę, która ma jedną oś symetrii.", litery: "PF", poprawna: 0 },
+        { tekst: "Po usunięciu z figury $S$ patyczka $FE$, bez przesuwania pozostałych patyczków, otrzymamy figurę, która nie ma osi symetrii.", litery: "PF", poprawna: 1 },
+      ],
+      rysunek: "assets/arkusze-e8/rys/2026-czerwiec-13.png" },
   ],
 };

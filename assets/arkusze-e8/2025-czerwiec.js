@@ -1,5 +1,6 @@
 // Egzamin ósmoklasisty czerwiec 2025 (dodatkowy, CKE) – zadania zamknięte przepisane z arkusza, przypisane do działów egzaminu ósmoklasisty (pole dzial).
 const DOK = "**Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.**";
+const UZ = "**Uzupełnij zdania. Wybierz odpowiedź spośród oznaczonych literami A i B oraz odpowiedź spośród oznaczonych literami C i D.**";
 const PF = "**Oceń prawdziwość podanych zdań. Wybierz P, jeśli zdanie jest prawdziwe, albo F – jeśli jest fałszywe.**";
 
 export default {
@@ -33,9 +34,33 @@ export default {
       tresc: `Dane jest równanie\n\n$5 + \\frac{1 - x}{2} = 2(x - 1)$\n\n${DOK}\n\nRozwiązaniem tego równania jest liczba`,
       opcje: ["$2$", "$2\\frac{1}{2}$", "$3$", "$4\\frac{1}{3}$"],
       poprawna: 2 },
+    { nr: "9", dzial: "e8-figury", temat: "pola-obwody",
+      tresc: `Dane są dwie figury: kwadrat $K$ i romb $R$. Długość boku kwadratu $K$ jest równa $8$. Iloczyn długości przekątnych rombu $R$ jest równy $64$.\n\n${PF}`,
+      czesci: [
+        { tekst: "Pole rombu $R$ jest równe $32$.", litery: "PF", poprawna: 0 },
+        { tekst: "Pole kwadratu $K$ jest równe polu rombu $R$.", litery: "PF", poprawna: 1 },
+      ] },
+    { nr: "10", dzial: "e8-figury", temat: "trojkaty",
+      tresc: `Karol wie, że suma miar kątów wewnętrznych trójkąta jest równa $180^\\circ$, i na tej podstawie zapisał trzy wnioski.\n\nWniosek 1. Skoro suma miar kątów wewnętrznych trójkąta jest równa $180^\\circ$, to trójkąt nie może mieć dwóch kątów wewnętrznych prostych ani dwóch kątów wewnętrznych rozwartych.\n\nWniosek 2. Ponieważ trójkąt nie może mieć dwóch kątów wewnętrznych rozwartych, więc nie istnieje trójkąt rozwartokątny równoramienny.\n\nWniosek 3. Jeśli suma miar dwóch kątów wewnętrznych trójkąta jest większa od $90^\\circ$, to trzeci kąt wewnętrzny tego trójkąta jest ostry.\n\n**Które z wniosków zapisanych przez Karola są prawdziwe? Wybierz właściwą odpowiedź spośród podanych.**`,
+      opcje: ["Tylko 1. i 3.", "Tylko 1. i 2.", "Tylko 2. i 3.", "1., 2. i 3."],
+      poprawna: 0 },
     { nr: "11", dzial: "e8-wyrazenia", temat: "zapisywanie-wyrazen",
       tresc: `Kasia jest $3$ razy starsza od Ani. Ola jest o $2$ lata starsza od Kasi. Oznaczymy przez $x$ wiek Ani.\n\n${DOK}\n\nŁączny wiek Kasi, Ani i Oli opisuje wyrażenie`,
       opcje: ["$3x + 5$", "$4x + 2$", "$5x + 2$", "$7x + 2$"],
       poprawna: 3 },
+    { nr: "12", dzial: "e8-figury", temat: "pitagoras",
+      tresc: `Na rysunku przedstawiono trapez prostokątny oraz podano długości trzech jego boków.\n\n[rysunek]\n\n${UZ}`,
+      czesci: [
+        { tekst: "Pole tego trapezu jest równe …", litery: "AB", opcje: ["$30\\,\\mathrm{cm}^2$", "$60\\,\\mathrm{cm}^2$"], poprawna: 0 },
+        { tekst: "Najdłuższy bok tego trapezu ma długość …", litery: "CD", opcje: ["$9$ cm", "$10$ cm"], poprawna: 1 },
+      ],
+      rysunek: "assets/arkusze-e8/rys/2025-czerwiec-12.png" },
+    { nr: "14", dzial: "e8-figury", temat: "uklad-wspolrzednych",
+      tresc: `W układzie współrzędnych $(x, y)$ zaznaczono kolejne wierzchołki $A$ i $B$ pewnego czworokąta $ABCD$. Punkty $A$ i $B$ są punktami kratowymi. Pozostałe wierzchołki czworokąta mają współrzędne $C = (3, y_C)$ oraz $D = (-1, y_D)$, gdzie $y_C$ jest liczbą całkowitą dodatnią oraz $y_C = y_D$.\n\n[rysunek]\n\n${PF}`,
+      czesci: [
+        { tekst: "Czworokąt $ABCD$ jest równoległobokiem.", litery: "PF", poprawna: 0 },
+        { tekst: "Dla $y_C = y_D = 3$ czworokąt $ABCD$ jest rombem.", litery: "PF", poprawna: 1 },
+      ],
+      rysunek: "assets/arkusze-e8/rys/2025-czerwiec-14.png" },
   ],
 };

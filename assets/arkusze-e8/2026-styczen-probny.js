@@ -37,11 +37,23 @@ export default {
       opcje: ["I", "II", "III", "IV"],
       poprawna: 3,
       rysunek: "assets/arkusze-e8/rys/2026-styczen-probny-8.png" },
+    { nr: "9", dzial: "e8-figury", temat: "trojkaty",
+      tresc: `Trójkąty $ABC$ i $ABD$ są równoramienne. Miara kąta między ramionami trójkąta $ABC$ jest równa $80^\\circ$, a miara kąta między ramionami trójkąta $ABD$ jest równa $40^\\circ$. Punkt $S$ jest punktem przecięcia odcinków $AC$ i $BD$ (zobacz rysunek).\n\n[rysunek]\n\n${UZ}`,
+      czesci: [
+        { tekst: "Kąt $ASB$ jest …", litery: "AB", opcje: ["ostry", "prosty"], poprawna: 1 },
+        { tekst: "Miara kąta $DAC$ jest równa …", litery: "CD", opcje: ["$20^\\circ$", "$40^\\circ$"], poprawna: 0 },
+      ],
+      rysunek: "assets/arkusze-e8/rys/2026-styczen-probny-9.png" },
     { nr: "11", dzial: "e8-procenty", temat: "skala",
       tresc: `Dany jest prostokąt $ABCD$ o bokach długości $4$ cm i $9$ cm. Ten prostokąt narysowano w skali $2 : 1$ i otrzymano prostokąt $EFGH$.\n\n${PF}`,
       czesci: [
         { tekst: "Obwód prostokąta $EFGH$ jest dwukrotnie większy od obwodu prostokąta $ABCD$.", litery: "PF", poprawna: 0 },
         { tekst: "Pole prostokąta $EFGH$ jest równe $144\\,\\mathrm{cm}^2$.", litery: "PF", poprawna: 0 },
       ] },
+    { nr: "12", dzial: "e8-figury", temat: "pola-obwody",
+      tresc: `Z kart w kształcie trójkąta równobocznego o boku długości $2$ cm układano figury w sposób przedstawiony na rysunku.\n\n[rysunek]\n\n**Ile takich trójkątów należy ułożyć, aby otrzymać trapez o obwodzie równym** $42$ cm**? Wybierz właściwą odpowiedź spośród podanych.**`,
+      opcje: ["$7$", "$11$", "$19$", "$21$"],
+      poprawna: 2,
+      rysunek: "assets/arkusze-e8/rys/2026-styczen-probny-12.png" },
   ],
 };

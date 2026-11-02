@@ -1,6 +1,7 @@
 // Egzamin ósmoklasisty maj 2026 (CKE, wersja X) – zadania zamknięte przepisane z arkusza, przypisane do działów egzaminu ósmoklasisty (pole dzial).
 const DOK = "**Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.**";
 const UZ = "**Uzupełnij zdania. Wybierz odpowiedź spośród oznaczonych literami A i B oraz odpowiedź spośród oznaczonych literami C i D.**";
+const PF = "**Oceń prawdziwość podanych zdań. Wybierz P, jeśli zdanie jest prawdziwe, albo F – jeśli jest fałszywe.**";
 
 export default {
   nazwa: "Egzamin ósmoklasisty maj 2026",
@@ -38,9 +39,27 @@ export default {
         { tekst: "Suma stu kolejnych liczb naturalnych od $1$ do $100$ jest równa …", litery: "AB", opcje: ["$5001$", "$5050$"], poprawna: 1 },
         { tekst: "Wzór na sumę $S$ po poprawnym przekształceniu ma postać …", litery: "CD", opcje: ["$S = \\frac{1}{2}n^2 + 1$", "$S = \\frac{1}{2}n^2 + \\frac{1}{2}n$"], poprawna: 1 },
       ] },
+    { nr: "10", dzial: "e8-figury", temat: "pitagoras",
+      tresc: `Dany jest trójkąt równoboczny o boku długości $2$ cm.\n\n${PF}`,
+      czesci: [
+        { tekst: "Wysokość tego trójkąta jest równa $\\sqrt{3}$ cm.", litery: "PF", poprawna: 0 },
+        { tekst: "Pole tego trójkąta jest równe $\\sqrt{3}\\,\\mathrm{cm}^2$.", litery: "PF", poprawna: 0 },
+      ] },
     { nr: "11", dzial: "e8-wyrazenia", temat: "zadania-z-rownaniem",
       tresc: `Kąty wewnętrzne czworokąta oznaczono: $\\alpha$, $\\beta$, $\\gamma$ oraz $\\delta$. Miara kąta $\\beta$ jest o $70^\\circ$ większa od miary kąta $\\alpha$, miara kąta $\\gamma$ jest dwukrotnie większa od miary kąta $\\alpha$. Kąt $\\delta$ jest kątem prostym.\n\n${DOK}\n\nMiara kąta $\\beta$ jest równa`,
       opcje: ["$50^\\circ$", "$85^\\circ$", "$120^\\circ$", "$155^\\circ$"],
       poprawna: 2 },
+    { nr: "12", dzial: "e8-figury", temat: "uklad-wspolrzednych",
+      tresc: `Na kartce w kratkę Jurek wykonał rysunek. Na tym rysunku punkty $M$, $W$, $S$ oznaczają położenia odpowiednio: muzeum, wieży widokowej oraz schroniska. Wieża widokowa znajduje się $3$ km na północ i $4$ km na zachód od schroniska. Muzeum znajduje się $5$ km na wschód od schroniska.\n\n[rysunek]\n\n${PF}`,
+      czesci: [
+        { tekst: "Odległość w linii prostej schroniska od muzeum jest równa odległości w linii prostej schroniska od wieży widokowej.", litery: "PF", poprawna: 0 },
+        { tekst: "Odległość w linii prostej muzeum od wieży widokowej jest mniejsza niż $10$ km.", litery: "PF", poprawna: 0 },
+      ],
+      rysunek: "assets/arkusze-e8/rys/2026-maj-12.png" },
+    { nr: "13", dzial: "e8-figury", temat: "pola-obwody",
+      tresc: `Przekątna $AD$ dzieli pięciokąt $ABCDE$ na trójkąt $ADE$ i na kwadrat $ABCD$ (zobacz rysunek). Pole trójkąta $ADE$ jest równe $28$, a wysokość poprowadzona z wierzchołka $E$ na bok $AD$ jest równa $7$.\n\n[rysunek]\n\n${DOK}\n\nPole kwadratu $ABCD$ jest równe`,
+      opcje: ["$16$", "$32$", "$49$", "$64$"],
+      poprawna: 3,
+      rysunek: "assets/arkusze-e8/rys/2026-maj-13.png" },
   ],
 };
