@@ -92,4 +92,12 @@ export const TEMATY = {
     { id: "uklad-wspolrzednych", nazwa: "Układ współrzędnych" },            // punkty, odcinki, środek i długość odcinka, figury w układzie
     { id: "symetrie", nazwa: "Symetrie" },                                  // osiowa i środkowa, osie symetrii figur
   ],
+  "e8-bryly": [
+    { id: "graniastoslupy", nazwa: "Graniastosłupy" },                      // rodzaje, ściany, krawędzie, wierzchołki, sześcian i prostopadłościan
+    { id: "ostroslupy", nazwa: "Ostrosłupy" },                              // rodzaje, ściany boczne, krawędzie, wysokość
+    { id: "siatki", nazwa: "Siatki brył" },                                 // rozpoznawanie siatek, sklejanie, które ściany się stykają
+    { id: "pole-powierzchni", nazwa: "Pole powierzchni" },                  // pole podstawy i pole boczne, sumy ścian
+    { id: "objetosc", nazwa: "Objętość" },                                  // V = Pp · H, ostrosłup 1/3, jednostki i litry
+    { id: "przekatne-wysokosci", nazwa: "Przekątne i wysokości w bryłach" }, // Pitagoras w bryłach: przekątna, wysokość ściany bocznej
+  ],
 };
