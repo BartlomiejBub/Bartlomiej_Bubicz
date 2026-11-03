@@ -19,7 +19,7 @@ const NAGLOWEK = `// Uczniowie i ich dostęp do ćwiczeń.
 //          tekstowe (Zadania z treścią);
 //          działy egzaminu ósmoklasisty: e8-podstawy (Podstawy: działania i ułamki), e8-liczby (Liczby i działania),
 //          e8-wyrazenia (Wyrażenia i równania), e8-procenty (Procenty i obliczenia praktyczne),
-//          e8-figury (Figury płaskie), e8-bryly (Bryły)
+//          e8-figury (Figury płaskie), e8-bryly (Bryły), e8-dane (Dane i prawdopodobieństwo)
 // tematy – opcjonalnie: tylko wybrane tematy działu, np. tematy: { funkcje: ["funkcja-liniowa", "funkcja-kwadratowa"] }
 //          (id tematów w pliku assets/arkusze/tematy.js; bez tego pola uczeń widzi cały dział)
 //

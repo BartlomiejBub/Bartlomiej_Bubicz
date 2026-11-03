@@ -1,0 +1,248 @@
+// Karta wzorów i metod: Egzamin ósmoklasisty – dane i prawdopodobieństwo (tabele, diagramy i wykresy, średnia arytmetyczna, zliczanie możliwości, prawdopodobieństwo).
+// tex – wzór albo rachunek wyśrodkowany (KaTeX bez $), reszta – tekst z $…$. Karty są pisane prostym językiem:
+// slownie tłumaczy zwykłymi słowami i porównaniem z życia (kino, pizza, naklejki, koszulki i spodnie, kolejka, worek z kulami),
+// przyklad pokazuje liczby krok po kroku (każdy wynik da się sprawdzić), uwaga to typowy błąd z egzaminu.
+// Karty nie mają rysunków, więc tabele są małe (dwie wąskie kolumny), a diagramy i wykresy opisane słowami (co leży na osi, jak biegnie linia).
+// Mediana nie występuje w szkole podstawowej, więc jej tu nie ma; zostaje średnia arytmetyczna, jej zmiany i średnia z tabeli.
+// Na egzaminie nie ma karty wzorów ani kalkulatora, więc są tu też rzeczy do zapamiętania
+// (1% koła to 3,6°, suma = średnia · ile, reguła mnożenia, n·(n−1):2 par, 6 wyników kostki, 36 wyników dwóch kostek, P od 0 do 1).
+// Wiersze wzorów są krótkie (na telefonie mają ok. 290 px): części oddzielone \qquad zawijają się jedna pod drugą.
+// Procenty z liczby i procenty z wykresu kołowego są szerzej w dziale „Procenty i obliczenia praktyczne”; tu używamy ich tylko do odczytu wykresów.
+
+export const WZORY = [
+  {
+    id: "odczytywanie-danych",
+    nazwa: "Tabele, diagramy i wykresy",
+    wzory: [
+      {
+        nazwa: "Tabela: wiersz, kolumna i suma",
+        slownie: "Tabela jest jak plan miejsc w kinie. **Wiersz** to rząd poziomy (czytasz go w poprzek), a **kolumna** to rząd pionowy (czytasz go z góry na dół). Szukaną liczbę znajdziesz w **komórce**, czyli na przecięciu wiersza i kolumny. Zanim zaczniesz liczyć, przeczytaj tytuł tabeli i jednostki (zł, osoby, °C, tys.).",
+        tex: "\\begin{array}{c|c} \\text{dzień} & \\text{lody} \\\\ \\hline \\text{pon.} & 12 \\\\ \\text{wt.} & 8 \\\\ \\text{śr.} & 15 \\end{array}",
+        przyklad: "Tabela pokazuje, ile lodów sprzedano w kiosku: w poniedziałek $12$, we wtorek $8$, w środę $15$. Razem: $12 + 8 + 15 = 35$ lodów. Najwięcej sprzedano w środę ($15$), najmniej we wtorek ($8$), a różnica to $15 - 8 = 7$ lodów.",
+        uwaga: "Pilnuj jednostek: jeśli w nagłówku jest „tys. zł”, liczba $12$ oznacza $12$ tysięcy złotych, a nie $12$ zł. Nie pomyl też wiersza z kolumną – przesuń palec po wierszu i po kolumnie, aż spotkają się w jednej komórce. Czytaj pytanie: „ile razem” to dodawanie, „o ile więcej” to odejmowanie.",
+      },
+      {
+        nazwa: "Diagram słupkowy: skala na osi",
+        slownie: "Wysokość słupka mówi, ile jest czegoś – tak jak wysokość wieży z klocków mówi, ile klocków położyłeś. Liczbę odczytujesz z **osi pionowej**, a pod słupkiem (na osi poziomej) stoi jego nazwa. Najpierw sprawdź, ile wynosi **jedna kreska**: nie zawsze jeden – może pięć albo dziesięć. Jeśli słupek kończy się w połowie między dwiema kreskami, jego wartość też jest w połowie między tymi liczbami.",
+        tex: "\\begin{gathered} \\text{jedna kreska = } 5 \\text{ osób} \\\\ \\text{słupek na 3 kreskach} \\\\ 3 \\cdot 5 = 15 \\text{ osób} \\end{gathered}",
+        przyklad: "Oś pionowa ma opisane liczby $0$, $10$, $20$, a między nimi po jednej kresce bez opisu. Od $0$ do $10$ są dwa odstępy, więc jedna kreska to $5$. Słupek sięgający trzeciej kreski ma wartość $3 \\cdot 5 = 15$, a słupek kończący się w połowie między drugą a trzecią kreską – $12{,}5$.",
+        uwaga: "Nie zakładaj, że jedna kreska to jeden. Gdybyś w przykładzie liczył kreski po $1$, słupek z trzeciej kreski miałby $3$ zamiast $15$. Uważaj też na oś, która nie zaczyna się od zera: słupek wygląda wtedy na dużo wyższy, niż jest naprawdę. Czytaj liczby z osi, a nie oceniaj na oko.",
+      },
+      {
+        nazwa: "Porównania: o ile więcej, ile razy więcej",
+        slownie: "Pytanie „**o ile** więcej?” oznacza różnicę, czyli **odejmowanie**: większa liczba minus mniejsza – jak sprawdzanie, o ile centymetrów jesteś wyższy od kolegi. Pytanie „**ile razy** więcej?” oznacza **dzielenie**: większa liczba podzielona przez mniejszą. A pytanie „jaką **częścią** całości?” to ułamek: część podzielona przez całość.",
+        tex: "\\begin{gathered} \\text{o ile więcej:} \\\\ \\text{większa} - \\text{mniejsza} \\end{gathered} \\qquad \\begin{gathered} \\text{ile razy więcej:} \\\\ \\text{większa} : \\text{mniejsza} \\end{gathered}",
+        przyklad: "Diagram pokazuje, jak uczniowie dojeżdżają do szkoły: słupek „pieszo” ma wartość $8$, a słupek „rowerem” – $24$ (to wszyscy uczniowie). Rowerem jedzie o $24 - 8 = 16$ osób więcej i **3 razy** więcej, bo $24 : 8 = 3$. Wszystkich uczniów jest $8 + 24 = 32$, więc pieszo chodzi $\\frac{8}{32} = \\frac{1}{4}$ uczniów, czyli $25\\%$.",
+        uwaga: "Nie myl „o $16$ więcej” z „$16$ razy więcej”. Słupek $24$ jest o $16$ większy od słupka $8$, ale tylko $3$ razy większy. Przy dzieleniu liczy się kolejność: $24 : 8 = 3$, a $8 : 24 = \\frac{1}{3}$ to odpowiedź na inne pytanie – jaką częścią słupka $24$ jest słupek $8$.",
+      },
+      {
+        nazwa: "Wykres kołowy: procent i kąt wycinka",
+        slownie: "Wykres kołowy to pizza pokrojona na kawałki. Cała pizza to $100\\%$ i kąt pełny $360^\\circ$, więc **jeden procent** to $360^\\circ : 100 = 3{,}6^\\circ$. Z procentów na kąt **mnożysz** przez $3{,}6$, a z kąta na procenty **dzielisz** przez $3{,}6$ (albo liczysz ułamek: kąt przez $360^\\circ$). Ćwiartka koła ma $90^\\circ$, a połowa $180^\\circ$.",
+        tex: "\\begin{array}{rl} 100\\% & = 360^\\circ \\\\ 50\\% & = 180^\\circ \\\\ 25\\% & = 90^\\circ \\end{array} \\qquad \\begin{array}{rl} 10\\% & = 36^\\circ \\\\ 5\\% & = 18^\\circ \\\\ 1\\% & = 3{,}6^\\circ \\end{array} \\qquad \\alpha = p \\cdot 3{,}6^\\circ",
+        litery: "$\\alpha$ – kąt wycinka, $p$ – liczba procentów wycinka",
+        przyklad: "Wycinek $15\\%$ ma kąt $15 \\cdot 3{,}6^\\circ = 54^\\circ$ (albo $10\\% + 5\\%$, czyli $36^\\circ + 18^\\circ = 54^\\circ$). Wycinek o kącie $108^\\circ$ to $108 : 3{,}6 = 30$, czyli $30\\%$ koła (sprawdzenie: $\\frac{108}{360} = \\frac{3}{10} = 30\\%$). Wycinek $120^\\circ$ to $\\frac{120}{360} = \\frac{1}{3}$ koła.",
+        uwaga: "Wycinek $90^\\circ$ to nie $90\\%$, tylko $25\\%$ – kąt dzielisz przez $360$, a nie przez $100$. Pilnuj też, żeby wycinki dawały razem $100\\%$ i $360^\\circ$: wycinki $40\\%$, $35\\%$ i $30\\%$ to razem $105\\%$, więc nie mogą tworzyć jednego koła.",
+      },
+      {
+        nazwa: "Wykres kołowy: ile osób, ile razem",
+        slownie: "Procent z wykresu kołowego zamieniasz na liczbę osób tak jak zawsze: liczysz **procent z całości**. Gdy znasz liczbę osób w jednym wycinku, a szukasz wszystkich, idziesz w drugą stronę: od wycinka do całości. Najłatwiej przez ułamek koła: wycinek $25\\%$ to ćwiartka koła, więc całość jest $4$ razy większa od niego.",
+        tex: "\\begin{gathered} \\text{osób w wycinku} = \\\\ \\frac{p}{100} \\cdot \\text{wszyscy} \\end{gathered} \\qquad \\begin{gathered} \\text{wszyscy} = \\\\ \\text{osoby w wycinku} : \\frac{p}{100} \\end{gathered}",
+        litery: "$p$ – liczba procentów wycinka",
+        przyklad: "Zapytano $60$ uczniów o ulubiony sport. Wycinek „pływanie” ma kąt $90^\\circ$, czyli $25\\%$ koła: $\\frac{1}{4} \\cdot 60 = 15$ uczniów. Wycinek „siatkówka” ma $20\\%$: $0{,}2 \\cdot 60 = 12$ uczniów. Odwrotnie: wycinek $30\\%$ to $27$ osób, więc $10\\%$ to $9$ osób, a wszystkich jest $10 \\cdot 9 = 90$ osób.",
+        uwaga: "Nie mnóż liczby osób przez kąt. Wycinek $90^\\circ$ w ankiecie $60$ osób to nie $90 \\cdot 60$ osób, tylko ćwiartka z $60$, czyli $15$ osób. Najpierw zamień kąt albo procent na ułamek koła, dopiero potem licz osoby. Na końcu sprawdź, czy wszystkie wycinki dają razem tyle osób, ile było w całej ankiecie.",
+      },
+      {
+        nazwa: "Wykres zależności: droga w czasie",
+        slownie: "Na osi poziomej jest **czas**, a na pionowej **droga** od domu (albo od startu). Każdy punkt wykresu mówi, gdzie ktoś był o danej godzinie. Linia **pozioma** oznacza, że droga się nie zmienia, więc ktoś **stoi** (np. odpoczywa). Im **bardziej stromo** linia idzie w górę, tym szybciej ktoś jedzie. Linia opadająca w dół to powrót w stronę startu. Prędkość na jednym odcinku to droga podzielona przez czas.",
+        tex: "\\begin{array}{l} \\text{poziomo: stoi} \\\\ \\text{w górę: oddala się} \\\\ \\text{w dół: wraca} \\end{array} \\qquad v = \\frac{\\text{droga}}{\\text{czas}}",
+        przyklad: "Wykres Oli na rowerze: od godziny $0$ do $1$ droga rośnie od $0$ do $15$ km, od $1$ h do $1{,}5$ h linia jest pozioma na wysokości $15$ km (Ola odpoczywa $30$ min), a od $1{,}5$ h do $3$ h droga rośnie do $30$ km. Pierwszy odcinek: $15 : 1 = 15$ km/h. Ostatni: $(30 - 15) : 1{,}5 = 10$ km/h. Najszybciej Ola jechała na pierwszym odcinku – najbardziej stromym.",
+        uwaga: "Wykres nie jest rysunkiem trasy. Linia pozioma nie znaczy „jedzie po płaskim”, tylko „nie jedzie wcale”, a linia w dół – „jedzie z powrotem”, a nie „zjeżdża z górki”. Prędkość licz dla **jednego odcinka**: ostatni odcinek w przykładzie to $15 \\text{ km w } 1{,}5 \\text{ h}$, czyli $10$ km/h, a nie $30$ km w $1{,}5$ h ($20$ km/h).",
+      },
+    ],
+    jak: [
+      "Przeczytaj tytuł, opisy osi i jednostki (zł, osoby, km, °C, tys.). Dopiero potem szukaj liczb.",
+      "Tabela: znajdź właściwy wiersz i właściwą kolumnę. Diagram słupkowy: sprawdź, ile wynosi jedna kreska na osi, i odczytaj wysokość słupka.",
+      "Pytanie „o ile więcej” – odejmij. „Ile razy więcej” – podziel większą liczbę przez mniejszą. „Jaka część” albo „jaki procent” – część podziel przez całość.",
+      "Wykres kołowy: całe koło to $100\\%$ i $360^\\circ$, jeden procent to $3{,}6^\\circ$, a wszystkie wycinki dają razem $100\\%$.",
+      "Wykres drogi od czasu: linia pozioma – stoi, im bardziej stromo w górę, tym szybciej. Prędkość to droga : czas dla jednego odcinka.",
+      "Sprawdź, czy odpowiedź ma jednostkę i czy pasuje do pytania (liczba osób, kilometry, procent).",
+    ],
+  },
+  {
+    id: "srednia",
+    nazwa: "Średnia arytmetyczna",
+    wzory: [
+      {
+        nazwa: "Średnia arytmetyczna – podział po równo",
+        slownie: "Średnia to liczba, którą dostałby **każdy**, gdyby wszystko podzielić po równo. Czterech kolegów ma po $3$, $5$, $4$ i $4$ naklejki. Zbierz wszystkie naklejki na jedną kupkę ($16$ sztuk) i rozdaj po równo czterem osobom – każdy dostanie $4$. Dlatego średnią liczysz tak: dodajesz wszystkie liczby i dzielisz sumę przez to, ile ich jest.",
+        tex: "\\begin{gathered} \\text{średnia} = \\\\ \\frac{\\text{suma liczb}}{\\text{ile ich jest}} \\end{gathered}",
+        przyklad: "Oceny: $3$, $5$, $4$, $4$. Suma: $3 + 5 + 4 + 4 = 16$. Liczb jest $4$, więc średnia to $16 : 4 = 4$. Średnia z dwóch liczb $7$ i $10$ to $(7 + 10) : 2 = 17 : 2 = 8{,}5$. Wzrost trzech osób to $150$, $154$ i $158$ cm, więc średni wzrost to $462 : 3 = 154$ cm.",
+        uwaga: "Dziel przez **liczbę składników**, a nie przez największą liczbę ani zawsze przez $2$. Zero też się liczy: z liczb $0$, $6$, $6$ średnia to $12 : 3 = 4$, a nie $12 : 2 = 6$. Średnia nie musi być jedną z danych liczb ani liczbą całkowitą: średnia z $2$ i $3$ to $2{,}5$.",
+      },
+      {
+        nazwa: "Suma z średniej",
+        slownie: "Odwróć rozdawanie po równo: jeśli każdy z $5$ kolegów ma średnio $4$ naklejki, to wszystkich naklejek jest $5 \\cdot 4 = 20$. Znając średnią i to, ile jest liczb, możesz więc odzyskać **sumę** – mnożąc. Dzięki temu rozwiążesz zadania, w których brakuje części danych.",
+        tex: "\\begin{gathered} \\text{suma} = \\\\ \\text{średnia} \\cdot \\text{ile liczb} \\end{gathered}",
+        przyklad: "Średni wzrost $4$ koszykarzy to $190$ cm, więc razem mają $4 \\cdot 190 = 760$ cm wzrostu. Średnia z $6$ sprawdzianów to $4$ punkty, więc suma punktów to $6 \\cdot 4 = 24$. W klasie jest $25$ uczniów, a średni wiek to $13$ lat, więc suma lat to $25 \\cdot 13 = 325$.",
+        uwaga: "Nie dodawaj średniej do liczby składników. Suma $6$ sprawdzianów ze średnią $4$ to $6 \\cdot 4 = 24$ punkty, a nie $6 + 4 = 10$. Sprawdź dzieleniem: $24 : 6 = 4$ – zgadza się, a $10 : 6$ nie daje $4$.",
+      },
+      {
+        nazwa: "Brakująca liczba, gdy znamy średnią",
+        slownie: "Chcesz mieć średnią $4$ z czterech sprawdzianów, a masz trzy wyniki? Policz, ile punktów powinno być **razem** (średnia razy liczba sprawdzianów), i odejmij to, co już masz. Zostaje dokładnie tyle, ile brakuje – jak ostatnia moneta, której brakuje do potrzebnej kwoty.",
+        tex: "\\begin{gathered} \\text{cała suma} = \\\\ \\text{średnia} \\cdot \\text{ile liczb} \\\\ \\text{brakująca} = \\\\ \\text{cała suma} - \\text{znane} \\end{gathered}",
+        przyklad: "Z trzech sprawdzianów masz $4$, $5$ i $3$ punkty. Jaki wynik z czwartego da średnią $4$? Razem ma być $4 \\cdot 4 = 16$, masz $4 + 5 + 3 = 12$, więc brakuje $16 - 12 = 4$ punkty. Drugie zadanie: średnia z $5$ liczb to $12$, a cztery z nich to $10$, $11$, $13$ i $15$. Razem ma być $5 \\cdot 12 = 60$, cztery liczby dają $49$, więc piąta to $60 - 49 = 11$.",
+        uwaga: "Najpierw policz **całą sumę** (średnia razy ile liczb, razem z brakującą), a dopiero potem odejmij sumę znanych. W drugim przykładzie mnożysz przez $5$, a nie przez $4$ znane liczby, bo brakująca liczba też się liczy. Sprawdzenie: $(49 + 11) : 5 = 60 : 5 = 12$ – zgadza się.",
+      },
+      {
+        nazwa: "Dodanie lub usunięcie liczby",
+        slownie: "Gdy zmienia się liczba danych, nie poprawiaj średniej „w głowie” – wróć do **sumy**. Policz starą sumę (średnia razy ile liczb), dodaj nową liczbę (albo odejmij usuniętą) i podziel przez nową liczbę składników. Podpowiedź: dodana liczba **większa** od średniej podnosi średnią, **mniejsza** ją obniża, a równa średniej nie zmienia jej wcale.",
+        tex: "\\begin{gathered} \\text{dodajesz } x\\text{:} \\\\ \\frac{\\text{stara suma} + x}{n + 1} \\end{gathered} \\qquad \\begin{gathered} \\text{usuwasz } x\\text{:} \\\\ \\frac{\\text{stara suma} - x}{n - 1} \\end{gathered}",
+        litery: "$x$ – dodawana (usuwana) liczba, $n$ – ile było liczb",
+        przyklad: "Średnia $3$ liczb to $6$, więc ich suma to $18$. Dodajemy $10$: $(18 + 10) : 4 = 28 : 4 = 7$ – średnia **rośnie**, bo $10 > 6$. Dodajemy $2$: $(18 + 2) : 4 = 5$ – średnia **maleje**, bo $2 < 6$. Średnia $5$ liczb to $8$ (suma $40$). Usuwamy liczbę $20$: $(40 - 20) : 4 = 5$ – średnia spadła, bo usunęliśmy dużą liczbę.",
+        uwaga: "Nie licz nowej średniej jako $(6 + 10) : 2 = 8$. Stara średnia $6$ opisywała **trzy** liczby, a nie jedną, więc nowa liczba $10$ ma mniejszy wpływ i średnia rośnie tylko do $7$. Zawsze przeliczaj przez sumy.",
+      },
+      {
+        nazwa: "Zmiana wszystkich liczb",
+        slownie: "Co się stanie ze średnią, gdy **każdą** liczbę zmienisz tak samo? Jeśli każdy z kolegów dostanie jeszcze $2$ naklejki, średnia też wzrośnie o $2$. Jeśli każdy dostanie dwa razy tyle naklejek, średnia będzie dwa razy większa. Nie musisz liczyć wszystkiego od początku – wystarczy zrobić to samo ze średnią.",
+        tex: "\\begin{gathered} \\text{każda liczba} + k \\\\ \\Rightarrow \\text{średnia} + k \\end{gathered} \\qquad \\begin{gathered} \\text{każda liczba} \\cdot k \\\\ \\Rightarrow \\text{średnia} \\cdot k \\end{gathered}",
+        litery: "$k$ – liczba, którą dodajemy do każdej liczby (albo przez którą każdą mnożymy)",
+        przyklad: "Średni wzrost grupy to $150$ cm. Każdy urósł o $5$ cm, więc nowa średnia to $150 + 5 = 155$ cm. Wszystkie ceny zeszytów wzrosły dwukrotnie (razy $2$), więc średnia cena z $3$ zł zmieniła się na $6$ zł. Gdy wszystkie ceny spadną o $1$ zł, średnia spadnie o $1$ zł: z $8$ zł na $7$ zł.",
+        uwaga: "Nie myl powiększenia **każdej** liczby z dopisaniem **nowej** liczby. Gdy $5$ liczb o średniej $8$ powiększysz każdą o $3$, średnia to $11$. Ale gdy do tych $5$ liczb dopiszesz szóstą liczbę $2$, średnia spadnie z $8$ do $7$ (suma $40 + 2 = 42$, a $42 : 6 = 7$).",
+      },
+      {
+        nazwa: "Średnia z tabeli – ile razy każda wartość",
+        slownie: "Gdy ta sama wartość pojawia się wiele razy, tabela podaje, **ile razy**. Każdą wartość mnożysz przez to, ile razy występuje (to szybsze dodawanie powtórek), dodajesz wszystkie iloczyny i dzielisz przez liczbę wszystkich danych – czyli przez sumę drugiej kolumny, a nie przez liczbę wierszy.",
+        tex: "\\begin{array}{c|c} \\text{ocena} & \\text{ile osób} \\\\ \\hline 3 & 2 \\\\ 4 & 5 \\\\ 5 & 3 \\end{array} \\qquad \\begin{gathered} \\frac{3 \\cdot 2 + 4 \\cdot 5 + 5 \\cdot 3}{2 + 5 + 3} \\\\ = \\frac{41}{10} = 4{,}1 \\end{gathered}",
+        przyklad: "Oceny w klasie: $3$ – dwie osoby, $4$ – pięć osób, $5$ – trzy osoby. Suma ocen: $3 \\cdot 2 + 4 \\cdot 5 + 5 \\cdot 3 = 6 + 20 + 15 = 41$. Uczniów jest $2 + 5 + 3 = 10$. Średnia: $41 : 10 = 4{,}1$.",
+        uwaga: "Nie dziel przez liczbę wierszy tabeli: wierszy jest $3$, ale uczniów $10$. Nie uśredniaj też średnich z grup o różnej liczebności: $20$ dziewcząt ze średnią $5$ i $10$ chłopców ze średnią $2$ mają razem $100 + 20 = 120$ punktów na $30$ osób, czyli średnią $4$, a nie $(5 + 2) : 2 = 3{,}5$.",
+      },
+    ],
+    jak: [
+      "Dodaj wszystkie liczby (każdą tyle razy, ile razy występuje) i policz, ile ich jest.",
+      "Podziel sumę przez liczbę składników – to jest średnia. Zero też jest składnikiem.",
+      "Gdy znasz średnią, a szukasz sumy: suma $=$ średnia $\\cdot$ ile liczb. Brakującą liczbę dostaniesz, odejmując sumę znanych od całej sumy.",
+      "Dodanie albo usunięcie liczby: policz starą sumę, dodaj (odejmij) liczbę i podziel przez nową liczbę składników.",
+      "Gdy każdą liczbę zmienisz tak samo (dodasz $k$ albo pomnożysz przez $k$), z średnią zrób to samo.",
+      "Sprawdź sens: średnia leży między najmniejszą a największą liczbą i jest bliżej tych, których jest więcej.",
+    ],
+  },
+  {
+    id: "zliczanie",
+    nazwa: "Zliczanie możliwości",
+    wzory: [
+      {
+        nazwa: "Wypisywanie po kolei – drzewko możliwości",
+        slownie: "Gdy możliwości jest mało, najpewniej jest je **wszystkie wypisać**. Ale po kolei, a nie jak popadnie – tak jak układasz książki na półce alfabetycznie. Ustal zasadę: najpierw wszystkie możliwości zaczynające się od pierwszego elementu, potem od drugiego i tak dalej. Wtedy żadnej nie pominiesz i żadnej nie powtórzysz. Takie wypisywanie przypomina drzewko: z każdej gałęzi wychodzą nowe gałązki.",
+        tex: "\\begin{array}{rl} \\text{od } 1\\text{:} & 12,\\ 13 \\\\ \\text{od } 2\\text{:} & 21,\\ 23 \\\\ \\text{od } 3\\text{:} & 31,\\ 32 \\end{array}",
+        litery: "Zapis „od $1$” znaczy: liczba zaczyna się od cyfry $1$.",
+        przyklad: "Ile liczb dwucyfrowych o różnych cyfrach można zapisać z cyfr $1$, $2$, $3$? Od $1$: $12$, $13$. Od $2$: $21$, $23$. Od $3$: $31$, $32$. Razem $6$ liczb. Trzy osoby – Ania, Basia i Czesio – w kolejce można ustawić tak: ABC, ACB, BAC, BCA, CAB, CBA, czyli też na $6$ sposobów.",
+        uwaga: "Liczby $12$ i $21$ to dwie różne liczby, bo ważna jest kolejność cyfr. Ale para kolegów Ania–Basia i para Basia–Ania to ta sama para. Zanim zaczniesz wypisywać, zapytaj: czy kolejność ma znaczenie? Jeśli nie, wypisz każdą parę tylko raz.",
+      },
+      {
+        nazwa: "Reguła mnożenia – zestawy i wybory po kolei",
+        slownie: "Masz $3$ koszulki i $2$ pary spodni. Do **każdej** koszulki pasują **obie** pary spodni, więc zestawów jest $3 \\cdot 2 = 6$ (a nie $3 + 2$). Gdy robisz kilka wyborów jeden po drugim, **mnożysz** liczby możliwości w każdym wyborze. Pomaga drzewko: z każdej gałęzi pierwszego wyboru wychodzi tyle gałązek, ile jest możliwości w drugim.",
+        tex: "\\begin{gathered} \\text{1. wybór: } m \\text{ sposobów} \\\\ \\text{2. wybór: } n \\text{ sposobów} \\\\ \\text{razem: } m \\cdot n \\end{gathered}",
+        litery: "$m$, $n$ – liczby możliwości w kolejnych wyborach",
+        przyklad: "Obiad składa się z zupy ($3$ rodzaje), drugiego dania ($4$ rodzaje) i napoju ($2$ rodzaje): $3 \\cdot 4 \\cdot 2 = 24$ różne obiady. Koszulki w $3$ kolorach, spodenki w $2$ kolorach i buty w $2$ kolorach dają $3 \\cdot 2 \\cdot 2 = 12$ strojów.",
+        uwaga: "Dodajesz tylko wtedy, gdy wybierasz **jedną rzecz z kilku grup** („albo to, albo tamto”): jeden jogurt spośród $3$ albo jeden sok spośród $2$ to $3 + 2 = 5$ możliwości. Gdy wybierasz **i to, i tamto** (koszulkę i spodnie), mnożysz. Podpowiedź: „i” – mnożymy, „albo” – dodajemy.",
+      },
+      {
+        nazwa: "Liczby dwucyfrowe z danych cyfr",
+        slownie: "Liczba dwucyfrowa ma cyfrę dziesiątek i cyfrę jedności. Wybierasz je po kolei i mnożysz liczby możliwości. Ważne są dwa pytania: czy cyfry mogą się **powtarzać** (jak w liczbie $22$) i czy wśród cyfr jest **zero**. Zero nie może stać na pierwszym miejscu – $05$ to nie liczba dwucyfrowa, tylko $5$. Dlatego zaczynaj od pierwszej cyfry i wybieraj ją spośród cyfr różnych od zera.",
+        tex: "\\begin{gathered} \\text{cyfry } 0, 1, 2, 3 \\\\ \\text{z powtórzeniami:} \\\\ 3 \\cdot 4 = 12 \\end{gathered} \\qquad \\begin{gathered} \\text{cyfry } 0, 1, 2, 3 \\\\ \\text{bez powtórzeń:} \\\\ 3 \\cdot 3 = 9 \\end{gathered}",
+        litery: "Pierwsza cyfra: $3$ możliwości (bez zera). Druga cyfra: $4$ możliwości, gdy cyfry mogą się powtarzać, albo $3$, gdy nie mogą (jedną cyfrę już zużyto).",
+        przyklad: "Z cyfr $1$, $2$, $3$, $4$ (bez zera): z powtórzeniami $4 \\cdot 4 = 16$ liczb, bez powtórzeń $4 \\cdot 3 = 12$ liczb. Wszystkich liczb dwucyfrowych (od $10$ do $99$) jest $9 \\cdot 10 = 90$: pierwsza cyfra od $1$ do $9$, druga od $0$ do $9$.",
+        uwaga: "Dla cyfr $0$, $1$, $2$, $3$ nie licz $4 \\cdot 4 = 16$. Wśród tych $16$ par są $00$, $01$, $02$, $03$, które nie są liczbami dwucyfrowymi, więc zostaje $12$. Gdy wśród cyfr jest zero, **zaczynaj od pierwszej cyfry** i wybieraj ją spośród cyfr różnych od zera.",
+      },
+      {
+        nazwa: "Liczby trzycyfrowe i ograniczenia",
+        slownie: "Liczba trzycyfrowa to trzy wybory po kolei – jak zamek z trzema pokrętłami, w którym każde pokrętło ma swoją liczbę ustawień. Najpierw zajmij się cyfrą, która ma **ograniczenie**: pierwsza nie może być zerem, a ostatnia ma być parzysta, jeśli liczba ma być parzysta. Potem wybierz pozostałe cyfry i pomnóż liczby możliwości.",
+        tex: "\\begin{gathered} \\text{trzycyfrowe liczby:} \\\\ 9 \\cdot 10 \\cdot 10 = 900 \\end{gathered} \\qquad \\begin{gathered} \\text{różne cyfry:} \\\\ 9 \\cdot 9 \\cdot 8 = 648 \\end{gathered}",
+        przyklad: "Liczby trzycyfrowe z cyfr $1$, $2$, $3$, $4$ (cyfry mogą się powtarzać): $4 \\cdot 4 \\cdot 4 = 64$. Tylko parzyste: ostatnia cyfra to $2$ albo $4$ (dwie możliwości), więc $4 \\cdot 4 \\cdot 2 = 32$. Z różnymi cyframi: $4 \\cdot 3 \\cdot 2 = 24$. Kod do kłódki z trzema pokrętłami (cyfry od $0$ do $9$): $10 \\cdot 10 \\cdot 10 = 1000$ kodów.",
+        uwaga: "Przy liczbach trzycyfrowych o **różnych cyfrach** nie licz $10 \\cdot 9 \\cdot 8 = 720$, bo wtedy pierwszą cyfrą mogłoby być zero (np. $012$). Poprawnie: pierwsza cyfra – $9$ możliwości (bez zera), druga – $9$ (zero już wolno, ale nie cyfrę użytą), trzecia – $8$. Razem $648$. Ograniczenie (zero, parzystość) rozpatruj **najpierw**.",
+      },
+      {
+        nazwa: "Pary: uściski dłoni i mecze",
+        slownie: "Na przyjęciu jest $5$ osób i każdy wita się z każdym. Każda osoba podaje rękę $4$ innym, więc wychodzi $5 \\cdot 4 = 20$ – ale każdy uścisk policzyliśmy **dwa razy** (Ania–Basia i Basia–Ania to ten sam uścisk). Dzielimy więc przez $2$ i dostajemy $10$ uścisków. Tak samo liczysz mecze „każdy z każdym”, jeśli grają tylko raz. Gdy kolejność ma znaczenie (np. wybór prezesa i zastępcy), nie dzielisz.",
+        tex: "\\begin{gathered} \\text{każdy z każdym:} \\\\ \\frac{n \\cdot (n - 1)}{2} \\end{gathered} \\qquad \\begin{gathered} \\text{ważna kolejność:} \\\\ n \\cdot (n - 1) \\end{gathered}",
+        litery: "$n$ – liczba osób (drużyn)",
+        przyklad: "$5$ osób, uściski: $\\frac{5 \\cdot 4}{2} = 10$. W turnieju gra $8$ drużyn, każda z każdą raz: $\\frac{8 \\cdot 7}{2} = 28$ meczów, a z rewanżami (każdy mecz dwa razy) jest $8 \\cdot 7 = 56$ meczów. Z $10$ osób wybieramy przewodniczącego i jego zastępcę: $10 \\cdot 9 = 90$ sposobów.",
+        uwaga: "Najczęstszy błąd to zapomnienie o dzieleniu przez $2$: $5$ osób to $10$ uścisków, a nie $20$. Drugi błąd: $n \\cdot n$ zamiast $n \\cdot (n - 1)$ – nikt nie podaje ręki samemu sobie. Szybki test na małym przykładzie: przy $3$ osobach są $3$ uściski i rzeczywiście $\\frac{3 \\cdot 2}{2} = 3$.",
+      },
+      {
+        nazwa: "Ustawianie w rzędzie i kody",
+        slownie: "Na ile sposobów można ustawić trzy osoby w kolejce? Na pierwszym miejscu może stanąć każda z $3$ osób, na drugim jedna z pozostałych $2$, a na ostatnim zostaje już tylko $1$. Mnożymy: $3 \\cdot 2 \\cdot 1 = 6$. Za każdym razem wybór maleje o $1$, bo ktoś już stoi w kolejce. Inaczej jest z kodami: cyfry mogą się powtarzać, więc każde miejsce ma tyle samo możliwości.",
+        tex: "\\begin{gathered} \\text{3 osoby:} \\\\ 3 \\cdot 2 \\cdot 1 = 6 \\\\ \\text{4 osoby:} \\\\ 4 \\cdot 3 \\cdot 2 \\cdot 1 = 24 \\end{gathered} \\qquad \\begin{gathered} \\text{kod, 3 cyfry:} \\\\ 10 \\cdot 10 \\cdot 10 = 1000 \\end{gathered}",
+        przyklad: "Pięć osób w kolejce: $5 \\cdot 4 \\cdot 3 \\cdot 2 \\cdot 1 = 120$ sposobów. PIN z czterech cyfr (cyfry mogą się powtarzać): $10 \\cdot 10 \\cdot 10 \\cdot 10 = 10\\,000$ kodów. Gdy w kodzie nie wolno powtarzać cyfr, jest $10 \\cdot 9 \\cdot 8 \\cdot 7 = 5040$ kodów.",
+        uwaga: "Rozróżnij **kolejkę** (każdy tylko raz, wybór maleje: $3 \\cdot 2 \\cdot 1$) i **kod** (cyfry mogą się powtarzać, więc każdy wybór ma tyle samo możliwości: $10 \\cdot 10 \\cdot 10$). Zapytaj siebie: czy tego samego elementu mogę użyć drugi raz?",
+      },
+    ],
+    jak: [
+      "Zdecyduj, czy możliwości jest mało (wystarczy wypisać) czy dużo (trzeba policzyć regułą mnożenia).",
+      "Wypisuj po kolei: od najmniejszej liczby albo alfabetycznie. Nie powtarzaj i niczego nie pomijaj.",
+      "Reguła mnożenia: dla każdego wyboru policz, ile jest możliwości (z uwzględnieniem ograniczeń), i pomnóż. „I” – mnożymy, „albo” – dodajemy.",
+      "Zaczynaj od cyfry z ograniczeniem: pierwsza cyfra liczby nie jest zerem, ostatnia cyfra liczby parzystej jest parzysta.",
+      "Pary „każdy z każdym”: $n \\cdot (n - 1) : 2$. Gdy kolejność ma znaczenie, nie dziel przez $2$.",
+      "Sprawdź wynik na małym przypadku (2–3 osoby, 2–3 cyfry) i oceń, czy liczba jest rozsądna.",
+    ],
+  },
+  {
+    id: "prawdopodobienstwo",
+    nazwa: "Prawdopodobieństwo",
+    wzory: [
+      {
+        nazwa: "Prawdopodobieństwo: sprzyjające przez wszystkie",
+        slownie: "Prawdopodobieństwo mówi, jak bardzo możliwe jest zdarzenie. Gdy wszystkie wyniki są **jednakowo możliwe** (uczciwa kostka, dobrze wymieszane kule), liczysz ułamek: ile wyników nas **cieszy**, podzielone przez to, ile jest **wszystkich** wyników. Jak w pizzy: ile kawałków z pieczarkami, a ile kawałków w całej pizzy.",
+        tex: "\\begin{gathered} P(A) = \\\\ \\frac{\\text{wyniki sprzyjające}}{\\text{wszystkie wyniki}} \\end{gathered}",
+        litery: "$P(A)$ – prawdopodobieństwo zdarzenia $A$; wyniki sprzyjające to te, w których zdarzenie $A$ zachodzi",
+        przyklad: "W worku są $3$ kule czerwone i $2$ niebieskie. Wszystkich kul jest $3 + 2 = 5$, więc $P(\\text{czerwona}) = \\frac{3}{5}$, a $P(\\text{niebieska}) = \\frac{2}{5}$. Na kostce $P(\\text{szóstka}) = \\frac{1}{6}$, a $P(\\text{parzysta}) = \\frac{3}{6} = \\frac{1}{2}$ (parzyste to $2$, $4$, $6$).",
+        uwaga: "Do mianownika idą **wszystkie** kule, a nie tylko te inne. Błąd: $P(\\text{czerwona}) = \\frac{3}{2}$ (czerwone przez niebieskie) – prawdopodobieństwo nie może być większe od $1$. Drugi błąd: „albo wylosuję, albo nie, więc szansa jest pół na pół” – to prawda tylko wtedy, gdy kul obu kolorów jest tyle samo.",
+      },
+      {
+        nazwa: "Skala od 0 do 1",
+        slownie: "Prawdopodobieństwo to liczba od $0$ do $1$ – jak suwak od „na pewno nie” do „na pewno tak”. $0$ oznacza zdarzenie **niemożliwe**, $1$ – zdarzenie **pewne**, a $\\frac{1}{2}$ – „pół na pół”. Im większa liczba, tym bardziej możliwe jest zdarzenie. Prawdopodobieństwo możesz zapisać ułamkiem, liczbą dziesiętną albo procentem.",
+        tex: "0 \\le P \\le 1 \\qquad \\begin{array}{rl} 0 & = \\text{niemożliwe} \\\\ \\frac{1}{2} & = \\text{pół na pół} \\\\ 1 & = \\text{pewne} \\end{array}",
+        przyklad: "Na zwykłej kostce: $P(\\text{wypadnie } 7) = \\frac{0}{6} = 0$ (zdarzenie niemożliwe), $P(\\text{liczba mniejsza od } 7) = \\frac{6}{6} = 1$ (zdarzenie pewne), a $P(\\text{parzysta}) = \\frac{1}{2} = 0{,}5 = 50\\%$. Prawdopodobieństwo $\\frac{1}{4}$ to to samo co $0{,}25$ i $25\\%$.",
+        uwaga: "Wynik większy od $1$, ujemny albo większy niż $100\\%$ to na pewno błąd – zwykle odwrócony ułamek (np. $\\frac{6}{3}$ zamiast $\\frac{3}{6}$). Małe prawdopodobieństwo nie znaczy „nie może się zdarzyć”: $\\frac{1}{6}$ to całkiem możliwe zdarzenie, a niemożliwe jest dopiero $0$.",
+      },
+      {
+        nazwa: "Rzut kostką",
+        slownie: "Zwykła kostka ma sześć ścianek z oczkami od $1$ do $6$, więc ma **sześć jednakowo możliwych wyników**. Mianownik jest zawsze $6$. Licznik to liczba ścianek, które nas cieszą – wypisz je wszystkie. Parzyste to $2$, $4$, $6$; liczby pierwsze to $2$, $3$, $5$ (liczba $1$ nie jest pierwsza); podzielne przez $3$ to $3$ i $6$.",
+        tex: "\\begin{array}{rl} \\text{parzysta} & \\frac{3}{6} = \\frac{1}{2} \\\\[1ex] \\text{pierwsza} & \\frac{3}{6} = \\frac{1}{2} \\\\[1ex] \\text{podz. przez } 3 & \\frac{2}{6} = \\frac{1}{3} \\end{array}",
+        przyklad: "Rzucamy raz kostką. „Wypadnie liczba większa od $4$”: wyniki $5$ i $6$, więc $P = \\frac{2}{6} = \\frac{1}{3}$. „Wypadnie liczba pierwsza”: wyniki $2$, $3$, $5$, więc $P = \\frac{3}{6} = \\frac{1}{2}$. „Wypadnie liczba niepodzielna przez $3$”: wyniki $1$, $2$, $4$, $5$, więc $P = \\frac{4}{6} = \\frac{2}{3}$.",
+        uwaga: "Mianownik to zawsze liczba **wszystkich** ścianek. Przy zdarzeniu „parzysta” mianownik to $6$, a nie $3$. Nie zapomnij też skrócić ułamka, jeśli zadanie tego wymaga: $\\frac{3}{6} = \\frac{1}{2}$. I pamiętaj, że $1$ nie jest liczbą pierwszą (ma tylko jeden dzielnik).",
+      },
+      {
+        nazwa: "Dwie monety i dwie kostki – wszystkie wyniki",
+        slownie: "Gdy rzucasz **dwa razy** (albo dwiema monetami czy kostkami naraz), wyniki są **parami**. Para „orzeł, reszka” i para „reszka, orzeł” to dwa różne wyniki – jak dwie monety o różnych kolorach. Liczbę wszystkich wyników liczysz regułą mnożenia: dla monet $2 \\cdot 2 = 4$, dla kostek $6 \\cdot 6 = 36$. Wyniki sprzyjające wypisz po kolei.",
+        tex: "\\begin{gathered} \\text{2 monety: } 2 \\cdot 2 = 4 \\\\ \\text{2 kostki: } 6 \\cdot 6 = 36 \\end{gathered} \\qquad \\text{OO, OR, RO, RR}",
+        litery: "O – orzeł, R – reszka",
+        przyklad: "Dwie monety mają cztery wyniki: OO, OR, RO, RR. Dokładnie jeden orzeł: OR i RO, więc $P = \\frac{2}{4} = \\frac{1}{2}$. Dwa orły: tylko OO, więc $P = \\frac{1}{4}$. Dwie kostki: suma oczek równa $7$ ma sześć wyników – $(1, 6)$, $(2, 5)$, $(3, 4)$, $(4, 3)$, $(5, 2)$, $(6, 1)$ – więc $P = \\frac{6}{36} = \\frac{1}{6}$. Suma równa $12$: tylko $(6, 6)$, więc $P = \\frac{1}{36}$.",
+        uwaga: "Nie licz „dwa orły, jeden orzeł, zero orłów” jako trzech jednakowo możliwych wyników. „Jeden orzeł” zdarza się dwa razy częściej niż „dwa orły”, bo ma dwa sposoby (OR i RO), więc $P(\\text{jeden orzeł}) = \\frac{2}{4}$, a nie $\\frac{1}{3}$. Moneta nie pamięta poprzednich rzutów: po trzech orłach z rzędu orzeł w następnym rzucie nadal ma $\\frac{1}{2}$.",
+      },
+      {
+        nazwa: "Losowanie kul, losów i kart",
+        slownie: "Losujemy jedną rzecz z pudełka: kulę, los, kartę z numerem. Wszystkich możliwości jest tyle, ile sztuk jest **razem**. Zdarzenie sprzyjające to sztuki z żądaną cechą (kolor, numer). Gdy do pudełka coś **dokładasz** albo coś z niego **wyjmujesz**, policz wszystko od nowa: zmienia się liczba wszystkich sztuk i czasem liczba tych, które nas cieszą.",
+        tex: "\\begin{array}{rl} \\text{białe:} & 4 \\\\ \\text{czerwone:} & 6 \\\\ \\hline \\text{razem:} & 10 \\end{array} \\qquad P(\\text{biała}) = \\frac{4}{10} = \\frac{2}{5}",
+        przyklad: "W worku jest $4$ kule białe i $6$ czerwonych, więc $P(\\text{biała}) = \\frac{4}{10} = \\frac{2}{5}$. Dokładamy $5$ białych kul: białych jest $9$, wszystkich $15$, więc $P = \\frac{9}{15} = \\frac{3}{5}$. Zamiast tego wyjmujemy $2$ czerwone kule: białych nadal $4$, wszystkich $8$, więc $P = \\frac{4}{8} = \\frac{1}{2}$. Losy numerowane od $1$ do $20$: podzielne przez $5$ są cztery ($5$, $10$, $15$, $20$), więc $P = \\frac{4}{20} = \\frac{1}{5}$.",
+        uwaga: "Gdy dokładasz kule **tego samego koloru**, zwiększasz i licznik, i mianownik: $\\frac{4 + 5}{10 + 5}$, a nie $\\frac{4 + 5}{10}$. Gdy dokładasz kule **innego** koloru, rośnie tylko mianownik, więc prawdopodobieństwo maleje. Zawsze policz od nowa, ile jest kul razem.",
+      },
+      {
+        nazwa: "Zdarzenie przeciwne – ile zostało do całości",
+        slownie: "Zdarzenie przeciwne to „to, co się **nie** zdarzy”. Jeśli szansa wylosowania czerwonej kuli to $\\frac{3}{5}$, to szansa, że kula **nie** będzie czerwona, to reszta do całości: $1 - \\frac{3}{5} = \\frac{2}{5}$ – jak z pizzą: cała to $1$, zjadłeś $\\frac{3}{5}$, zostało $\\frac{2}{5}$. Ten sposób przydaje się, gdy łatwiej policzyć, czego **nie** chcemy (np. w zadaniu „przynajmniej jeden orzeł”).",
+        tex: "P(A') = 1 - P(A) \\qquad P(A) + P(A') = 1",
+        litery: "$A'$ – zdarzenie przeciwne do $A$ (zdarzenie $A$ nie zachodzi)",
+        przyklad: "Kostka: $P(\\text{nie szóstka}) = 1 - \\frac{1}{6} = \\frac{5}{6}$. Dwie monety, „przynajmniej jeden orzeł”: przeciwne jest „dwie reszki” (RR), czyli $\\frac{1}{4}$, więc $P = 1 - \\frac{1}{4} = \\frac{3}{4}$ (sprawdzenie: OO, OR, RO to $3$ z $4$ wyników). Deszcz ma $30\\%$ szans, więc brak deszczu ma $100\\% - 30\\% = 70\\%$.",
+        uwaga: "Uważaj na słowa: przeciwne do „liczba większa od $4$” to „liczba **nie** większa od $4$”, czyli $1$, $2$, $3$, $4$ (cztery wyniki, razem z czwórką), a nie tylko $1$, $2$, $3$. Stąd $P = 1 - \\frac{2}{6} = \\frac{4}{6} = \\frac{2}{3}$. Pamiętaj, że oba prawdopodobieństwa muszą dać razem $1$.",
+      },
+    ],
+    jak: [
+      "Ustal, co losujemy i ile jest **wszystkich** jednakowo możliwych wyników: kule razem, $6$ na kostce, $4$ przy dwóch monetach, $36$ przy dwóch kostkach.",
+      "Policz wyniki, które sprzyjają zdarzeniu (wypisz je, jeśli jest ich mało).",
+      "Zapisz ułamek: sprzyjające przez wszystkie, i skróć go.",
+      "Sprawdź sens: wynik jest od $0$ do $1$, zdarzenie niemożliwe ma $0$, pewne ma $1$.",
+      "Gdy łatwiej policzyć, czego **nie** chcemy, użyj zdarzenia przeciwnego: $1$ minus jego prawdopodobieństwo.",
+      "Gdy kule dokładasz albo wyjmujesz, policz od nowa i licznik, i mianownik.",
+    ],
+  },
+];

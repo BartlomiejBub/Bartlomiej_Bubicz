@@ -12,6 +12,7 @@ import { GENERATORY as E8_WYRAZENIA } from "./generatory/e8-wyrazenia.js";
 import { GENERATORY as E8_PROCENTY } from "./generatory/e8-procenty.js";
 import { GENERATORY as E8_FIGURY } from "./generatory/e8-figury.js";
 import { GENERATORY as E8_BRYLY } from "./generatory/e8-bryly.js";
+import { GENERATORY as E8_DANE } from "./generatory/e8-dane.js";
 import { losownik, ziarno } from "./generatory/wspolne.js";
 import { ARKUSZE as ARKUSZE_MATURY } from "./arkusze/index.js";
 import { ARKUSZE as ARKUSZE_E8 } from "./arkusze-e8/index.js";
@@ -28,6 +29,7 @@ import { WZORY as WZORY_E8_WYRAZENIA } from "./wzory/e8-wyrazenia.js";
 import { WZORY as WZORY_E8_PROCENTY } from "./wzory/e8-procenty.js";
 import { WZORY as WZORY_E8_FIGURY } from "./wzory/e8-figury.js";
 import { WZORY as WZORY_E8_BRYLY } from "./wzory/e8-bryly.js";
+import { WZORY as WZORY_E8_DANE } from "./wzory/e8-dane.js";
 
 const ARKUSZE = [...ARKUSZE_MATURY, ...ARKUSZE_E8];
 
@@ -187,6 +189,18 @@ export const DZIALY = [
     tematy: tematy("e8-bryly"),
     wzory: WZORY_E8_BRYLY,
     generatory: E8_BRYLY,
+    pdf: [],
+  },
+  {
+    id: "e8-dane",
+    egzamin: "e8",
+    nazwa: "Dane i prawdopodobieństwo",
+    opis: "Tabele, diagramy i wykresy, średnia arytmetyczna, zliczanie możliwości i prawdopodobieństwo.",
+    wzoryTytul: "Co trzeba umieć – krok po kroku",
+    wzoryOpis: "Na egzaminie nie ma karty wzorów, więc tu jest wszystko, co trzeba zapamiętać, wytłumaczone prostymi słowami i na przykładach.",
+    tematy: tematy("e8-dane"),
+    wzory: WZORY_E8_DANE,
+    generatory: E8_DANE,
     pdf: [],
   },
 ];

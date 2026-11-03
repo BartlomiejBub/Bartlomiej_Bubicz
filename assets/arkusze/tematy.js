@@ -100,4 +100,10 @@ export const TEMATY = {
     { id: "objetosc", nazwa: "Objętość" },                                  // V = Pp · H, ostrosłup 1/3, jednostki i litry
     { id: "przekatne-wysokosci", nazwa: "Przekątne i wysokości w bryłach" }, // Pitagoras w bryłach: przekątna, wysokość ściany bocznej
   ],
+  "e8-dane": [
+    { id: "odczytywanie-danych", nazwa: "Tabele, diagramy i wykresy" },     // odczyt z tabel, diagramów słupkowych i kołowych, wykresów zależności
+    { id: "srednia", nazwa: "Średnia arytmetyczna" },                       // średnia, brakująca liczba, zmiana średniej
+    { id: "zliczanie", nazwa: "Zliczanie możliwości" },                     // wypisywanie, reguła mnożenia, ile liczb, ile par
+    { id: "prawdopodobienstwo", nazwa: "Prawdopodobieństwo" },              // kostka, monety, losowanie kul i kart
+  ],
 };
