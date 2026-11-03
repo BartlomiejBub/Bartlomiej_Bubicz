@@ -59,6 +59,12 @@ export default {
       opcje: ["rysunek A", "rysunek B", "rysunek C", "rysunek D"],
       poprawna: 1,
       rysunek: "assets/arkusze-e8/rys/2020-lipiec-11.png" },
+    { nr: "12", dzial: "e8-dane", temat: "zliczanie",
+      tresc: `Uczniowie klasy 8a utworzyli jeden szereg, a uczniowie klasy 8b – drugi. W obu szeregach chłopcy i dziewczęta stali na przemian: chłopiec – dziewczyna – chłopiec – dziewczyna itd. W klasie 8a na pierwszym i ostatnim miejscu stali chłopcy, a w klasie 8b na pierwszym i ostatnim miejscu stały dziewczęta. W klasie 8a jest $12$ dziewcząt, a w klasie 8b jest o dwóch chłopców mniej niż w klasie 8a.\n\n${UZ}`,
+      czesci: [
+        { tekst: "W klasie 8a jest … chłopców.", litery: "AB", opcje: ["$11$", "$13$"], poprawna: 1 },
+        { tekst: "W klasie 8b jest … uczniów.", litery: "CD", opcje: ["$21$", "$23$"], poprawna: 1 },
+      ] },
     { nr: "13", dzial: "e8-figury", temat: "czworokaty",
       tresc: `Krótsza przekątna trapezu prostokątnego dzieli go na dwa trójkąty prostokątne równoramienne.\n\n${PF}`,
       czesci: [

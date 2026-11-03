@@ -6,6 +6,11 @@ const PF = "**Oceń prawdziwość podanych zdań. Wybierz P, jeśli zdanie jest 
 export default {
   nazwa: "Egzamin ósmoklasisty czerwiec 2025 (dodatkowy)",
   zadania: [
+    { nr: "1", dzial: "e8-dane", temat: "srednia",
+      tresc: "Robert rozpoczął czytanie książki we wtorek i zakończył w sobotę. W tabeli podano liczbę stron, które Robert przeczytał w kolejnych dniach tygodnia od wtorku do piątku.\n\n[rysunek]\n\nOd wtorku do soboty włącznie Robert czytał dziennie średnio $60$ stron tej książki.\n\n**Ile stron tej książki Robert przeczytał w sobotę? Wybierz właściwą odpowiedź spośród podanych.**",
+      opcje: ["$46$", "$56$", "$75$", "$76$"],
+      poprawna: 1,
+      rysunek: "assets/arkusze-e8/rys/2025-czerwiec-1.png" },
     { nr: "2", dzial: "e8-liczby", temat: "ulamki-i-rozwiniecia",
       tresc: `Zapisywano kolejno liczby według następującej zasady:\n\n• liczbę $6$ zapisano jako pierwszą\n\n• każda następna zapisana liczba była połową liczby poprzedniej.\n\n${DOK}\n\nPiątą liczbą, którą zapisano, jest`,
       opcje: ["$\\frac{3}{2}$", "$\\frac{3}{4}$", "$\\frac{3}{8}$", "$\\frac{3}{16}$"],
@@ -25,6 +30,12 @@ export default {
       czesci: [
         { tekst: "Suma liczb $k$ i $m$ jest podzielna przez $4$.", litery: "PF", poprawna: 0 },
         { tekst: "Iloczyn liczb $k$ i $m$ jest podzielny przez $3$.", litery: "PF", poprawna: 0 },
+      ] },
+    { nr: "6", dzial: "e8-dane", temat: "prawdopodobienstwo",
+      tresc: `W pudełku jest $18$ kart jednakowej wielkości. Na każdej z nich narysowano jedną figurę geometryczną. Wśród tych kart\n\n• jest pięć kart z narysowanym trójkątem równobocznym o boku długości $6$ cm\n\n• są cztery karty z narysowanym kwadratem o boku długości $7$ cm\n\n• jest dziewięć kart z narysowanym pięciokątem foremnym o boku długości $2$ cm.\n\nZ pudełka wylosowano jedną kartę.\n\n${UZ}`,
+      czesci: [
+        { tekst: "Prawdopodobieństwo, że wylosowano kartę z narysowanym kwadratem, jest równe …", litery: "AB", opcje: ["$\\frac{1}{18}$", "$\\frac{2}{9}$"], poprawna: 1 },
+        { tekst: "Prawdopodobieństwo, że wylosowano kartę z narysowaną figurą o obwodzie mniejszym od $18$ cm, jest równe …", litery: "CD", opcje: ["$\\frac{1}{2}$", "$\\frac{7}{9}$"], poprawna: 0 },
       ] },
     { nr: "7", dzial: "e8-liczby", temat: "ulamki-i-rozwiniecia",
       tresc: `Jurek przejechał rowerem $12$ km, co stanowiło $\\frac{2}{3}$ długości zaplanowanej trasy.\n\n${DOK}\n\nPołowa zaplanowanej trasy ma długość`,

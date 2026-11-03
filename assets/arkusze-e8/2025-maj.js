@@ -21,6 +21,12 @@ export default {
       tresc: "Dane są liczby: $91$, $92$, $95$, $97$.\n\n**Która z podanych liczb przy dzieleniu przez** $7$ **daje resztę** $1$**? Wybierz właściwą odpowiedź spośród podanych.**",
       opcje: ["$91$", "$92$", "$95$", "$97$"],
       poprawna: 1 },
+    { nr: "4", dzial: "e8-dane", temat: "srednia",
+      tresc: `Średnia arytmetyczna czterech liczb $a$, $b$, $c$, $d$ jest równa $9$, a średnia arytmetyczna dwóch liczb $e$ i $f$ jest równa $6$.\n\n${UZ}`,
+      czesci: [
+        { tekst: "Suma liczb $a$, $b$, $c$, $d$ jest o … większa od sumy liczb $e$ i $f$.", litery: "AB", opcje: ["$3$", "$24$"], poprawna: 1 },
+        { tekst: "Średnia arytmetyczna liczb $a$, $b$, $c$, $d$, $e$, $f$ jest równa …", litery: "CD", opcje: ["$8$", "$7{,}5$"], poprawna: 0 },
+      ] },
     { nr: "5", dzial: "e8-wyrazenia", temat: "przeksztalcanie-wzorow",
       tresc: `Obwód pięciokąta przedstawionego na rysunku wyraża się wzorem $L = 2a + 2b + c$.\n\n[rysunek]\n\n${DOK}\n\nWielkość $a$ wyznaczoną poprawnie z podanego wzoru opisuje równanie`,
       opcje: ["$a = \\frac{L - 2b - c}{2}$", "$a = \\frac{L - 2b + c}{2}$", "$a = L + 2b - c$", "$a = L - 2b - c$"],
@@ -44,6 +50,10 @@ export default {
       tresc: `Rowerzysta pokonał odcinek drogi o długości $100$ m z prędkością $5\\,\\frac{\\mathrm{m}}{\\mathrm{s}}$.\n\n${DOK}\n\nRowerzysta pokonał ten odcinek drogi w czasie`,
       opcje: ["$50$ sekund.", "$20$ sekund.", "$500$ sekund.", "$200$ sekund."],
       poprawna: 1 },
+    { nr: "10", dzial: "e8-dane", temat: "prawdopodobienstwo",
+      tresc: `Na loterię przygotowano $72$ losy i ponumerowano je kolejnymi liczbami naturalnymi od $1$ do $72$. Wygrywają losy o numerach od $1$ do $9$ i od $46$ do $72$. Pozostałe losy są puste. Ada jako pierwsza wyciąga jeden los.\n\n${DOK}\n\nPrawdopodobieństwo wyciągnięcia przez Adę losu pustego jest równe`,
+      opcje: ["$\\frac{26}{72}$", "$\\frac{27}{72}$", "$\\frac{35}{72}$", "$\\frac{36}{72}$"],
+      poprawna: 3 },
     { nr: "11", dzial: "e8-figury", temat: "pitagoras",
       tresc: `Dany jest trójkąt prostokątny $ABC$. Na środku boku $AB$ zaznaczono punkt $D$. Następnie poprowadzono odcinek $DC$, dzielący trójkąt $ABC$ na dwa trójkąty $ADC$ i $DBC$. Ponadto $|AD| = |DB| = 30$ cm oraz $|DC| = 50$ cm (zobacz rysunek).\n\n[rysunek]\n\n${PF}`,
       czesci: [

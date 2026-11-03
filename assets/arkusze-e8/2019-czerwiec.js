@@ -59,6 +59,12 @@ export default {
       opcje: ["$\\sqrt{39}$", "$10$", "$\\sqrt{89}$", "$13$"],
       poprawna: 2,
       rysunek: "assets/arkusze-e8/rys/2019-czerwiec-10.png" },
+    { nr: "11", dzial: "e8-dane", temat: "zliczanie",
+      tresc: `Rzucono czterema symetrycznymi sześciennymi kostkami do gry. Na $20$ widocznych ścianach tych czterech kostek suma oczek jest równa $76$. Za niewidoczną uznano ścianę, na której kostka stoi.\n\n${PF}`,
+      czesci: [
+        { tekst: "Na każdej z niewidocznych ścian tych kostek jest jedno oczko.", litery: "PF", poprawna: 1 },
+        { tekst: "Na niewidocznej ścianie jednej z tych kostek może być pięć oczek.", litery: "PF", poprawna: 0 },
+      ] },
     { nr: "12", dzial: "e8-figury", temat: "trojkaty",
       tresc: `Na rysunku przedstawiono dwa trójkąty oraz podano niektóre ich wymiary i miary kilku kątów.\n\n[rysunek]\n\n${PF}`,
       czesci: [

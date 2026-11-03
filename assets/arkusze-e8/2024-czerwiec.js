@@ -50,6 +50,12 @@ export default {
         { tekst: "W mieszance przygotowanej przez Olę masa orzechów jest większa o … od masy rodzynek.", litery: "AB", opcje: ["$32$ g", "$48$ g"], poprawna: 0 },
         { tekst: "Mieszanka przygotowana przez Olę zawiera … orzechów.", litery: "CD", opcje: ["$20\\%$", "$25\\%$"], poprawna: 0 },
       ] },
+    { nr: "9", dzial: "e8-dane", temat: "srednia",
+      tresc: `Antek jest zawodnikiem szkolnej drużyny koszykówki. Od początku sezonu jego drużyna zagrała w sześciu meczach. Antek w tych sześciu meczach zdobył łącznie $84$ punkty.\n\n${PF}`,
+      czesci: [
+        { tekst: "Średnia liczby punktów zdobytych przez Antka w jednym meczu jest równa $14$.", litery: "PF", poprawna: 0 },
+        { tekst: "Średnia liczby punktów zdobytych przez Antka w jednym meczu będzie równa $15$, jeśli w siódmym meczu zdobędzie on $21$ punktów.", litery: "PF", poprawna: 0 },
+      ] },
     { nr: "10", dzial: "e8-liczby", temat: "pierwiastki",
       tresc: UZ,
       czesci: [

@@ -6,6 +6,13 @@ const PF = "**Oceń prawdziwość podanych zdań. Wybierz P, jeśli zdanie jest 
 export default {
   nazwa: "Egzamin ósmoklasisty styczeń 2026 (próbny)",
   zadania: [
+    { nr: "1", dzial: "e8-dane", temat: "odczytywanie-danych",
+      tresc: `Na diagramie przedstawiono zysk pewnej firmy w kolejnych kwartałach $2024$ roku.\n\n[rysunek]\n\n${PF}`,
+      czesci: [
+        { tekst: "Zysk tej firmy w I kwartale stanowi $\\frac{1}{6}$ zysku z całego roku $2024$.", litery: "PF", poprawna: 1 },
+        { tekst: "Zysk tej firmy w drugim półroczu $2024$ roku był o $350$ tysięcy złotych większy niż jej zysk w pierwszym półroczu $2024$ roku.", litery: "PF", poprawna: 0 },
+      ],
+      rysunek: "assets/arkusze-e8/rys/2026-styczen-probny-1.png" },
     { nr: "2", dzial: "e8-liczby", temat: "potegi",
       tresc: `${DOK}\n\nWartość wyrażenia $4^3 - 8^2 : 2^4$ jest równa`,
       opcje: ["$0$", "$10$", "$56$", "$60$"],
@@ -44,6 +51,10 @@ export default {
         { tekst: "Miara kąta $DAC$ jest równa …", litery: "CD", opcje: ["$20^\\circ$", "$40^\\circ$"], poprawna: 0 },
       ],
       rysunek: "assets/arkusze-e8/rys/2026-styczen-probny-9.png" },
+    { nr: "10", dzial: "e8-dane", temat: "srednia",
+      tresc: `Na tablicy zapisano osiem liczb całkowitych dodatnich, których średnia arytmetyczna jest równa $9$.\n\n${DOK}\n\nPo dopisaniu do tych ośmiu liczb dodatkowej liczby równej $9$ średnia arytmetyczna`,
+      opcje: ["wzrośnie o $1$.", "zmaleje o $1$.", "się nie zmieni.", "wzrośnie o $9$."],
+      poprawna: 2 },
     { nr: "11", dzial: "e8-procenty", temat: "skala",
       tresc: `Dany jest prostokąt $ABCD$ o bokach długości $4$ cm i $9$ cm. Ten prostokąt narysowano w skali $2 : 1$ i otrzymano prostokąt $EFGH$.\n\n${PF}`,
       czesci: [

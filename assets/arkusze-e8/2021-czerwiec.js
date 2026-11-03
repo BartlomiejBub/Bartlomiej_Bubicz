@@ -52,6 +52,10 @@ export default {
       opcje: ["$13$", "$21$", "$27$", "$30$"],
       poprawna: 2,
       rysunek: "assets/arkusze-e8/rys/2021-czerwiec-10.png" },
+    { nr: "11", dzial: "e8-dane", temat: "prawdopodobienstwo",
+      tresc: `W pudełku znajdowały się piłeczki białe i czarne – łącznie $72$. Wśród wszystkich piłeczek $\\frac{1}{4}$ stanowiły piłeczki czarne. Wyciągnięto $12$ piłeczek, wśród których żadna nie była czarna. Bartek – jako trzynasty – losuje jedną piłeczkę.\n\n${DOK}\n\nPrawdopodobieństwo wylosowania przez Bartka piłeczki czarnej wynosi`,
+      opcje: ["$\\frac{1}{4}$", "$\\frac{1}{3}$", "$\\frac{3}{10}$", "$\\frac{3}{7}$"],
+      poprawna: 2 },
     { nr: "12", dzial: "e8-figury", temat: "pola-obwody",
       tresc: `Na krótszym boku prostokąta zbudowano trójkąt równoboczny o obwodzie $18$ cm, a na dłuższym boku prostokąta zbudowano kwadrat o polu równym $64\\,\\mathrm{cm}^2$.\n\n${PF}`,
       czesci: [

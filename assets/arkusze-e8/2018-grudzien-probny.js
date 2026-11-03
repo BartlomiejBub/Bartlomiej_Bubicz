@@ -6,6 +6,11 @@ const PF = "**Oceń prawdziwość podanych zdań. Wybierz P, jeśli zdanie jest 
 export default {
   nazwa: "Egzamin ósmoklasisty grudzień 2018 (próbny)",
   zadania: [
+    { nr: "1", dzial: "e8-dane", temat: "odczytywanie-danych",
+      tresc: "Firma przesyłkowa Wielpak korzysta z paczkomatów do samodzielnego nadawania i odbierania przesyłek przez klientów. Maksymalne wymiary prostopadłościennej paczki, którą można nadać za pośrednictwem tej firmy, wynoszą $38$ cm $\\times$ $41$ cm $\\times$ $64$ cm, a masa przesyłki nie może być większa niż $25$ kg.\n\nW tabeli zapisano wymiary i masę czterech paczek.\n\n[rysunek]\n\n**Które z tych paczek mogą być nadane przez paczkomat tej firmy? Wybierz właściwą odpowiedź spośród podanych.**",
+      opcje: ["Tylko $1$, $2$ i $4$.", "Tylko $2$ i $3$.", "Tylko $3$ i $4$.", "Tylko $2$ i $4$.", "Tylko $4$."],
+      poprawna: 3,
+      rysunek: "assets/arkusze-e8/rys/2018-grudzien-probny-1.png" },
     { nr: "2", dzial: "e8-procenty", temat: "jednostki",
       tresc: `Poniżej zamieszczono fragment etykiety z jogurtu o masie $150$ g.\n\n[rysunek]\n\n${UZ}`,
       czesci: [
@@ -46,6 +51,17 @@ export default {
         { tekst: "Liczba o $2$ większa od liczby $a$ jest równa …", litery: "AB", opcje: ["$5\\sqrt{2} - 4$", "$3\\sqrt{2} - 2$"], poprawna: 1 },
         { tekst: "Liczba $2$ razy większa od liczby $a$ jest równa …", litery: "CD", opcje: ["$6\\sqrt{4} - 8$", "$6\\sqrt{2} - 8$"], poprawna: 1 },
       ] },
+    { nr: "9", dzial: "e8-dane", temat: "srednia",
+      tresc: "Państwo Nowakowie mają trzy córki i jednego syna. Średnia wieku wszystkich dzieci państwa Nowaków jest równa $10$ lat, a średnia wieku wszystkich córek jest równa $8$ lat.\n\n**Ile lat ma syn państwa Nowaków? Wybierz właściwą odpowiedź spośród podanych.**",
+      opcje: ["$9$", "$11$", "$12$", "$16$"],
+      poprawna: 3 },
+    { nr: "10", dzial: "e8-dane", temat: "prawdopodobienstwo",
+      tresc: `Do gry planszowej używane są dwa bączki o kształtach przedstawionych na rysunkach. Każdy bączek po zatrzymaniu na jednym boku wielokąta wskazuje liczbę umieszczoną na jego tarczy. Na rysunku I bączek ma kształt pięciokąta foremnego z zaznaczonymi liczbami od $1$ do $5$. Na rysunku II bączek ma kształt sześciokąta foremnego z zaznaczonymi liczbami od $1$ do $6$.\n\n[rysunek]\n\n${PF}`,
+      czesci: [
+        { tekst: "Prawdopodobieństwo otrzymania liczby większej niż $3$ na bączku z rysunku I jest większe niż $\\frac{1}{2}$.", litery: "PF", poprawna: 1 },
+        { tekst: "Uzyskanie nieparzystej liczby na bączku z rysunku I jest tak samo prawdopodobne, jak uzyskanie nieparzystej liczby na bączku z rysunku II.", litery: "PF", poprawna: 1 },
+      ],
+      rysunek: "assets/arkusze-e8/rys/2018-grudzien-probny-10.png" },
     { nr: "11", dzial: "e8-wyrazenia", temat: "zadania-z-rownaniem",
       tresc: "O liczbie $x$ wiemy, że $\\frac{1}{3}$ tej liczby jest o $\\frac{3}{4}$ większa od $\\frac{1}{6}$ tej liczby.\n\n**Które równanie pozwoli wyznaczyć liczbę** $x$**? Wybierz właściwą odpowiedź spośród podanych.**",
       opcje: ["$\\frac{2}{3}x = \\frac{1}{6}x + \\frac{3}{4}$", "$\\frac{1}{3}x + \\frac{3}{4} = \\frac{5}{6}x$", "$\\frac{1}{3}x = \\frac{1}{6}x + \\frac{3}{4}$", "$\\frac{1}{3}x + \\frac{3}{4} = \\frac{1}{6}x$"],

@@ -6,6 +6,11 @@ const PF = "**Oceń prawdziwość podanych zdań. Wybierz P, jeśli zdanie jest 
 export default {
   nazwa: "Egzamin ósmoklasisty czerwiec 2026 (dodatkowy)",
   zadania: [
+    { nr: "1", dzial: "e8-dane", temat: "srednia",
+      tresc: `Na stronie internetowej szkoły zamieszczono diagram słupkowy przedstawiający liczbę finalistów konkursów przedmiotowych z sześciu kolejnych lat.\n\n[rysunek]\n\n${DOK}\n\nŚrednia roczna liczba finalistów w okresie tych sześciu lat była równa`,
+      opcje: ["$6{,}5$", "$7$", "$7{,}8$", "$8$"],
+      poprawna: 0,
+      rysunek: "assets/arkusze-e8/rys/2026-czerwiec-1.png" },
     { nr: "2", dzial: "e8-wyrazenia", temat: "proporcje",
       tresc: `Kwotę $1\\,800$ złotych przeznaczoną na nagrody w pewnym konkursie podzielono na trzy części w stosunku $6 : 3 : 1$, odpowiednio: za I, za II i za III miejsce.\n\n${UZ}`,
       czesci: [
@@ -32,6 +37,13 @@ export default {
       tresc: `Trzy kolejne liczby naturalne można zapisać w postaci: $n$, $(n + 1)$, $(n + 2)$.\n\n${DOK}\n\nSuma każdych trzech kolejnych liczb naturalnych jest liczbą podzielną przez`,
       opcje: ["$2$", "$3$", "$5$", "$6$"],
       poprawna: 1 },
+    { nr: "8", dzial: "e8-dane", temat: "prawdopodobienstwo",
+      tresc: `Poniżej przedstawiono kalendarz na kwiecień w pewnym roku.\n\n[rysunek]\n\nWybieramy losowo jeden dzień tego miesiąca.\n\n${UZ}`,
+      czesci: [
+        { tekst: "Prawdopodobieństwo, że wybrany dzień tego miesiąca to wtorek, jest równe …", litery: "AB", opcje: ["$\\frac{1}{5}$", "$\\frac{1}{6}$"], poprawna: 1 },
+        { tekst: "Prawdopodobieństwo, że numer wybranego dnia tego miesiąca będzie liczbą podzielną przez …, jest równe $\\frac{2}{15}$.", litery: "CD", opcje: ["$4$", "$7$"], poprawna: 1 },
+      ],
+      rysunek: "assets/arkusze-e8/rys/2026-czerwiec-8.png" },
     { nr: "9", dzial: "e8-liczby", temat: "ulamki-i-rozwiniecia",
       tresc: `Dane są cztery wyrażenia arytmetyczne:\n\nI. $1 - 2\\frac{2}{3} \\cdot 3$  II. $3{,}4 - 2\\frac{1}{4}$  III. $3\\frac{3}{4} - 4{,}25$  IV. $6 : 1{,}2$\n\n${DOK}\n\nLiczbami całkowitymi są wartości wyrażeń`,
       opcje: ["I oraz II", "II oraz III", "I oraz IV", "III oraz IV"],

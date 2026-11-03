@@ -35,6 +35,12 @@ export default {
       tresc: "Dorota sporządziła z cukru i wody syrop do deseru. Stosunek masy cukru do masy wody w tym syropie jest równy $5 : 3$.\n\n**Ile procent masy tego syropu stanowi masa cukru? Wybierz właściwą odpowiedź spośród podanych.**",
       opcje: ["$25\\%$", "$37{,}5\\%$", "$40\\%$", "$60\\%$", "$62{,}5\\%$"],
       poprawna: 4 },
+    { nr: "7", dzial: "e8-dane", temat: "srednia",
+      tresc: `W pewnej firmie zatrudnionych jest więcej niż $10$ pracowników. Połowa z nich zarabia po $3000$ zł, a druga połowa – po $4000$ zł.\n\n${PF}`,
+      czesci: [
+        { tekst: "Średnia arytmetyczna zarobków w tej firmie jest równa $3500$ zł.", litery: "PF", poprawna: 0 },
+        { tekst: "Gdy z pracy w tej firmie zrezygnują dwie osoby, z których jedna zarabia $3000$ zł, a druga $4000$ zł, to średnia arytmetyczna zarobków się nie zmieni.", litery: "PF", poprawna: 0 },
+      ] },
     { nr: "8", dzial: "e8-wyrazenia", temat: "przeksztalcanie",
       tresc: `${DOK}\n\nWyrażenie: $(2a + 3b)(3b - 2a)$ jest równe`,
       opcje: ["$4a^2 - 12ab + 9b^2$", "$9b^2 + 12ab + 4a^2$", "$9b^2 - 4a^2$", "$4a^2 - 9b^2$"],

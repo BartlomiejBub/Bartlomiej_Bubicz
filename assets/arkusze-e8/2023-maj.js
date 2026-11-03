@@ -50,6 +50,12 @@ export default {
       opcje: ["$320$ m", "$500$ m", "$3\\,200$ m", "$5\\,000$ m"],
       poprawna: 0,
       rysunek: "assets/arkusze-e8/rys/2023-maj-10.png" },
+    { nr: "11", dzial: "e8-dane", temat: "prawdopodobienstwo",
+      tresc: `Z urny, w której jest wyłącznie $18$ kul białych i $12$ kul czarnych, losujemy $1$ kulę.\n\n${PF}`,
+      czesci: [
+        { tekst: "Prawdopodobieństwo wylosowania kuli białej jest równe $\\frac{3}{5}$.", litery: "PF", poprawna: 0 },
+        { tekst: "Prawdopodobieństwo wylosowania kuli czarnej jest mniejsze od $\\frac{1}{3}$.", litery: "PF", poprawna: 1 },
+      ] },
     { nr: "12", dzial: "e8-figury", temat: "pitagoras",
       tresc: `W prostokącie $ABCD$ punkty $E$ i $F$ są środkami boków $BC$ i $CD$ (zobacz rysunek). Długość odcinka $EC$ jest równa $6$ cm, a długość odcinka $EF$ jest równa $10$ cm.\n\n[rysunek]\n\n${DOK}\n\nObwód prostokąta $ABCD$ jest równy`,
       opcje: ["$64$ cm", "$56$ cm", "$40$ cm", "$28$ cm"],

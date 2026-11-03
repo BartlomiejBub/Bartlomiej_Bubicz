@@ -6,6 +6,11 @@ const PF = "**Oceń prawdziwość podanych zdań. Wybierz P, jeśli zdanie jest 
 export default {
   nazwa: "Egzamin ósmoklasisty grudzień 2017 (próbny)",
   zadania: [
+    { nr: "1", dzial: "e8-dane", temat: "odczytywanie-danych",
+      tresc: "Z okazji Światowego Dnia Książki uczniowie klasy VII zorganizowali quiz wiedzy o postaciach literackich. Quiz można było zakończyć na jednym z poziomów, które zaliczało się kolejno od I do VI. Na diagramie przedstawiono, ile procent uczniów zakończyło quiz na danym poziomie. Na poziomach niższych niż Asia quiz zakończyło dokładnie $32\\%$ uczniów biorących w nim udział.\n\n[rysunek]\n\n**Ile procent uczniów zakończyło ten quiz na poziomach wyższych niż Asia? Wybierz właściwą odpowiedź spośród podanych.**",
+      opcje: ["$40\\%$", "$32\\%$", "$28\\%$", "$8\\%$"],
+      poprawna: 0,
+      rysunek: "assets/arkusze-e8/rys/2017-grudzien-probny-1.png" },
     { nr: "2", dzial: "e8-liczby", temat: "ulamki-i-rozwiniecia",
       tresc: UZ,
       czesci: [
@@ -35,6 +40,12 @@ export default {
       tresc: `Jacek i Ola testują swoje elektryczne deskorolki. W tym celu zmierzyli czasy przejazdu na trasie $400$ m. Ola pokonała tę trasę w czasie $160$ s, a Jacek – w czasie $100$ s.\n\n${DOK}\n\nRóżnica średnich prędkości uzyskanych przez Jacka i przez Olę jest równa`,
       opcje: ["$1{,}5\\,\\frac{\\mathrm{km}}{\\mathrm{h}}$", "$5{,}4\\,\\frac{\\mathrm{km}}{\\mathrm{h}}$", "$9\\,\\frac{\\mathrm{km}}{\\mathrm{h}}$", "$14{,}4\\,\\frac{\\mathrm{km}}{\\mathrm{h}}$"],
       poprawna: 1 },
+    { nr: "7", dzial: "e8-dane", temat: "zliczanie",
+      tresc: PF,
+      czesci: [
+        { tekst: "W pięciu rzutach standardową sześcienną kostką do gry, jeżeli wynik każdego rzutu będzie inny, można otrzymać łącznie dokładnie $20$ oczek.", litery: "PF", poprawna: 0 },
+        { tekst: "W $16$ rzutach standardową sześcienną kostką do gry można otrzymać łącznie ponad $100$ oczek.", litery: "PF", poprawna: 1 },
+      ] },
     { nr: "8", dzial: "e8-wyrazenia", temat: "wartosc-wyrazenia",
       tresc: `Punkt kratowy to miejsce przecięcia się linii kwadratowej siatki. Pole wielokąta, którego wierzchołki znajdują się w punktach kratowych kwadratowej siatki na płaszczyźnie, można obliczyć ze wzoru Picka:\n\n$P = W + \\frac{1}{2}B - 1$,\n\ngdzie $P$ oznacza pole wielokąta, $W$ – liczbę punktów kratowych leżących wewnątrz wielokąta, a $B$ – liczbę punktów kratowych leżących na brzegu tego wielokąta.\n\n[rysunek]\n\nW wielokącie przedstawionym na rysunku $W = 3$ oraz $B = 5$, zatem $P = 4{,}5$.\n\nWewnątrz pewnego wielokąta znajduje się $5$ punktów kratowych, a na jego brzegu jest $6$ punktów kratowych.\n\n${DOK}\n\nPole tego wielokąta jest równe`,
       opcje: ["$6$", "$6{,}5$", "$7$", "$7{,}5$"],

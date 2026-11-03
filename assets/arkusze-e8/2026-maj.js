@@ -39,6 +39,10 @@ export default {
         { tekst: "Suma stu kolejnych liczb naturalnych od $1$ do $100$ jest równa …", litery: "AB", opcje: ["$5001$", "$5050$"], poprawna: 1 },
         { tekst: "Wzór na sumę $S$ po poprawnym przekształceniu ma postać …", litery: "CD", opcje: ["$S = \\frac{1}{2}n^2 + 1$", "$S = \\frac{1}{2}n^2 + \\frac{1}{2}n$"], poprawna: 1 },
       ] },
+    { nr: "9", dzial: "e8-dane", temat: "srednia",
+      tresc: `Średnia arytmetyczna dwóch liczb $x$ i $y$ jest równa $4$, a średnia arytmetyczna trzech liczb $x$, $y$, $z$ jest równa $5$.\n\n${DOK}\n\nLiczba $z$ jest równa`,
+      opcje: ["$4$", "$5$", "$6$", "$7$"],
+      poprawna: 3 },
     { nr: "10", dzial: "e8-figury", temat: "pitagoras",
       tresc: `Dany jest trójkąt równoboczny o boku długości $2$ cm.\n\n${PF}`,
       czesci: [

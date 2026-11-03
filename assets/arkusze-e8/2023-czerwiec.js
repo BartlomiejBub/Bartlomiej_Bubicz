@@ -6,6 +6,13 @@ const PF = "**Oceń prawdziwość podanych zdań. Wybierz P, jeśli zdanie jest 
 export default {
   nazwa: "Egzamin ósmoklasisty czerwiec 2023 (dodatkowy)",
   zadania: [
+    { nr: "1", dzial: "e8-dane", temat: "odczytywanie-danych",
+      tresc: `Na diagramie przedstawiono liczbę butelek z wodą dostarczonych do sklepu osiedlowego oraz liczbę butelek z wodą sprzedanych w tym sklepie przez trzy kolejne dni: poniedziałek, wtorek i środę.\n\n[rysunek]\n\n${PF}`,
+      czesci: [
+        { tekst: "Przez te trzy dni w sklepie osiedlowym sprzedano łącznie $190$ butelek z wodą.", litery: "PF", poprawna: 0 },
+        { tekst: "Liczba butelek z wodą sprzedanych w poniedziałek stanowi $\\frac{3}{4}$ liczby butelek z wodą dostarczonych w tym dniu.", litery: "PF", poprawna: 0 },
+      ],
+      rysunek: "assets/arkusze-e8/rys/2023-czerwiec-1.png" },
     { nr: "2", dzial: "e8-liczby", temat: "ulamki-i-rozwiniecia",
       tresc: `Z tasiemki o długości $\\frac{2}{3}$ m odcięto kawałek o długości pół metra.\n\n${DOK}\n\nPozostała po odcięciu część tasiemki ma długość`,
       opcje: ["mniejszą od $15$ cm.", "większą od $15$ cm, ale mniejszą od $16$ cm.", "równą $16$ cm.", "większą od $16$ cm, ale mniejszą od $17$ cm."],
@@ -45,6 +52,10 @@ export default {
         { tekst: "Jest dokładnie … liczb naturalnych $m$ spełniających warunek $\\sqrt{110} < m < \\sqrt{300}$.", litery: "AB", opcje: ["$7$", "$6$"], poprawna: 0 },
         { tekst: "Są dokładnie … liczby naturalne $k$ spełniające warunek $\\sqrt[3]{10} < k < \\sqrt[3]{127}$.", litery: "CD", opcje: ["$4$", "$3$"], poprawna: 1 },
       ] },
+    { nr: "10", dzial: "e8-dane", temat: "prawdopodobienstwo",
+      tresc: `Spośród wszystkich liczb dwucyfrowych dodatnich losujemy jedną liczbę.\n\n${DOK}\n\nPrawdopodobieństwo wylosowania liczby podzielnej przez $20$ jest równe`,
+      opcje: ["$\\frac{2}{45}$", "$\\frac{1}{25}$", "$\\frac{1}{2}$", "$\\frac{4}{99}$"],
+      poprawna: 0 },
     { nr: "11", dzial: "e8-procenty", temat: "predkosc",
       tresc: `Samochód przejechał ze stałą prędkością trasę o długości $18$ kilometrów w czasie $12$ minut.\n\n${DOK}\n\nSamochód przejechał tę trasę z prędkością`,
       opcje: ["$30\\,\\frac{\\mathrm{km}}{\\mathrm{h}}$", "$60\\,\\frac{\\mathrm{km}}{\\mathrm{h}}$", "$90\\,\\frac{\\mathrm{km}}{\\mathrm{h}}$", "$120\\,\\frac{\\mathrm{km}}{\\mathrm{h}}$"],

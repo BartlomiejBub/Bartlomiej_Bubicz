@@ -5,6 +5,13 @@ const UZ = "**Uzupełnij zdania. Wybierz odpowiedź spośród oznaczonych litera
 export default {
   nazwa: "Egzamin ósmoklasisty maj 2021",
   zadania: [
+    { nr: "1", dzial: "e8-dane", temat: "odczytywanie-danych",
+      tresc: "Na diagramie słupkowym przedstawiono liczby medali zdobytych na czterech letnich igrzyskach olimpijskich przez reprezentację Polski.\n\n[rysunek]\n\n**Oceń prawdziwość podanych zdań, dotyczących medali zdobytych przez reprezentację Polski podczas letnich igrzysk olimpijskich w latach** $2004$**–**$2016$**. Wybierz P, jeśli zdanie jest prawdziwe, albo F – jeśli jest fałszywe.**",
+      czesci: [
+        { tekst: "Liczba zdobytych złotych medali stanowi więcej niż jedną trzecią liczby wszystkich zdobytych medali.", litery: "PF", poprawna: 1 },
+        { tekst: "Podczas letnich igrzysk olimpijskich średnio zdobywano $3$ złote medale.", litery: "PF", poprawna: 0 },
+      ],
+      rysunek: "assets/arkusze-e8/rys/2021-maj-1.png" },
     { nr: "2", dzial: "e8-liczby", temat: "ulamki-i-rozwiniecia",
       tresc: "Dane są cztery liczby $x$, $y$, $t$, $u$ zapisane za pomocą wyrażeń arytmetycznych:\n\n$x = -62{,}5 + 30$\n\n$y = -14{,}4 - 12{,}6$\n\n$t = -12 : 0{,}3$\n\n$u = -8{,}02 \\cdot 6$\n\n**Która z tych liczb jest największa? Wybierz właściwą odpowiedź spośród podanych.**",
       opcje: ["$x$", "$y$", "$t$", "$u$"],
@@ -46,6 +53,16 @@ export default {
       tresc: `Trójki liczb naturalnych $a$, $b$ i $c$, które spełniają warunek $a^2 + b^2 = c^2$, nazywamy trójkami pitagorejskimi. Niektóre z nich znajdujemy z wykorzystaniem wzorów:\n\n$a = 2n + 1$\n\n$b = 2n(n + 1)$\n\n$c = 2n^2 + 2n + 1$,\n\ngdzie $n$ oznacza dowolną liczbę naturalną ($n \\ge 1$). W tym zadaniu liczby $a$, $b$ i $c$ są wyznaczone za pomocą tych wzorów.\n\n${DOK}\n\nJeżeli najmniejsza z liczb $a$, $b$ i $c$ jest równa $9$, to największa z tych liczb jest równa`,
       opcje: ["$41$", "$73$", "$145$", "$181$"],
       poprawna: 0 },
+    { nr: "10", dzial: "e8-dane", temat: "srednia",
+      tresc: "Ala kupiła trzy zeszyty i blok rysunkowy. Średnia arytmetyczna cen tych czterech artykułów była równa $6$ zł. Zeszyty kosztowały łącznie $15$ zł.\n\n**Ile kosztował blok rysunkowy? Wybierz właściwą odpowiedź spośród podanych.**",
+      opcje: ["$4$ zł", "$5$ zł", "$8$ zł", "$9$ zł"],
+      poprawna: 3 },
+    { nr: "11", dzial: "e8-dane", temat: "prawdopodobienstwo",
+      tresc: `W pewnej loterii wśród $150$ losów co szósty był wygrywający, a pozostałe losy były puste. Wyciągnięto $30$ losów i żaden z nich nie był wygrywający.\n\n${UZ}`,
+      czesci: [
+        { tekst: "Na loterię przygotowano … losów wygrywających.", litery: "AB", opcje: ["$120$", "$25$"], poprawna: 1 },
+        { tekst: "Wyciągnięto jeszcze jeden los. Prawdopodobieństwo tego, że będzie to los wygrywający, wynosi …", litery: "CD", opcje: ["$\\frac{25}{120}$", "$\\frac{25}{125}$"], poprawna: 0 },
+      ] },
     { nr: "12", dzial: "e8-figury", temat: "trojkaty",
       tresc: "W trójkącie $ABC$ narysowano dwie wysokości: $CD$ i $AE$, jak na rysunku. Kąt rozwarty pomiędzy tymi wysokościami jest równy $138^\\circ$.\n\n[rysunek]\n\n**Jaką miarę ma kąt** $\\alpha$ **zaznaczony na rysunku? Wybierz właściwą odpowiedź spośród podanych.**",
       opcje: ["$38^\\circ$", "$42^\\circ$", "$45^\\circ$", "$48^\\circ$"],

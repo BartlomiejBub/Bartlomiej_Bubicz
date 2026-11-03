@@ -45,6 +45,12 @@ export default {
         { tekst: "Wartość wyrażenia $\\sqrt{1 + \\frac{25}{144}}$ jest równa …", litery: "AB", opcje: ["$1\\frac{5}{12}$", "$1\\frac{1}{12}$"], poprawna: 1 },
         { tekst: "Wartość wyrażenia $\\sqrt[3]{3 + \\frac{3}{8}}$ jest równa …", litery: "CD", opcje: ["$1\\frac{1}{2}$", "$1\\frac{1}{8}$"], poprawna: 0 },
       ] },
+    { nr: "9", dzial: "e8-dane", temat: "prawdopodobienstwo",
+      tresc: "Na festyn przygotowano loterię, w której było $120$ losów, w tym $80$ wygrywających. Przed rozpoczęciem festynu dołożono jeszcze $20$ losów wygrywających i $20$ przegrywających.\n\n**Czy prawdopodobieństwo wyciągnięcia losu wygrywającego w tej loterii zmieniło się po dołożeniu losów? Wybierz odpowiedź A albo B i jej uzasadnienie spośród 1., 2. albo 3.**",
+      czesci: [
+        { litery: "AB", opcje: ["Tak,", "Nie,"], poprawna: 0 },
+        { tekst: "ponieważ", litery: "123", opcje: ["różnica liczby losów wygrywających i przegrywających po dołożeniu losów jest taka sama jak na początku.", "dołożono tyle samo losów wygrywających co przegrywających.", "zmienił się stosunek liczby losów wygrywających do liczby wszystkich losów."], poprawna: 2 },
+      ] },
     { nr: "10", dzial: "e8-wyrazenia", temat: "wartosc-wyrazenia",
       tresc: `Zależność między liczbą przekątnych ($k$) a liczbą boków ($n$) wielokąta wypukłego określa wzór $k = \\frac{n(n-3)}{2}$.\n\n${PF}`,
       czesci: [

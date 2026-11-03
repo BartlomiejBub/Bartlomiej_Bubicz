@@ -67,6 +67,10 @@ export default {
       opcje: ["$95^\\circ$", "$75^\\circ$", "$90^\\circ$", "$80^\\circ$"],
       poprawna: 3,
       rysunek: "assets/arkusze-e8/rys/2022-maj-13.png" },
+    { nr: "14", dzial: "e8-dane", temat: "prawdopodobienstwo",
+      tresc: "W pudełku było wyłącznie $6$ kulek zielonych i $8$ kulek niebieskich. Po dołożeniu do tego pudełka pewnej liczby kulek zielonych prawdopodobieństwo wylosowania kulki niebieskiej jest równe $\\frac{1}{4}$.\n\n**Ile kulek zielonych dołożono do pudełka? Wybierz właściwą odpowiedź spośród podanych.**",
+      opcje: ["$10$", "$16$", "$18$", "$24$"],
+      poprawna: 2 },
     { nr: "15", dzial: "e8-figury", temat: "pola-obwody",
       tresc: `Na rysunku przedstawiono trapez $KLMN$ zbudowany z trzech jednakowych trójkątów prostokątnych o przyprostokątnych długości $3$ cm i $4$ cm.\n\n[rysunek]\n\n${PF}`,
       czesci: [

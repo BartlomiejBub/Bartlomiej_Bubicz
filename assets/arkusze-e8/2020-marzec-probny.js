@@ -66,6 +66,11 @@ export default {
         { tekst: "Trójkąt $KLM$ jest …", litery: "CD", opcje: ["rozwartokątny", "prostokątny"], poprawna: 1 },
       ],
       rysunek: "assets/arkusze-e8/rys/2020-marzec-probny-12.png" },
+    { nr: "13", dzial: "e8-dane", temat: "zliczanie",
+      tresc: "Małe trójkąty równoboczne o bokach długości $1$ układano obok siebie tak, że uzyskiwano kolejne, coraz większe trójkąty równoboczne, według reguły przedstawionej na poniższym rysunku.\n\n[rysunek]\n\n**Ile małych trójkątów równobocznych należy użyć, aby ułożyć trójkąt równoboczny o podstawie równej** $5$**? Wybierz właściwą odpowiedź spośród podanych.**",
+      opcje: ["$9$", "$16$", "$25$", "$50$"],
+      poprawna: 2,
+      rysunek: "assets/arkusze-e8/rys/2020-marzec-probny-13.png" },
     { nr: "14", dzial: "e8-figury", temat: "pitagoras",
       tresc: `W okręgu o środku $S$ i promieniu $5$ cm narysowano cięciwę $AB$ o długości $8$ cm.\n\n[rysunek]\n\n${PF}`,
       czesci: [
@@ -73,5 +78,9 @@ export default {
         { tekst: "Obwód trójkąta $ASB$ jest równy $16$ cm.", litery: "PF", poprawna: 1 },
       ],
       rysunek: "assets/arkusze-e8/rys/2020-marzec-probny-14.png" },
+    { nr: "15", dzial: "e8-dane", temat: "srednia",
+      tresc: "Średnia arytmetyczna dwóch ocen Janka z matematyki jest równa $3{,}5$.\n\n**Jaką trzecią ocenę musi uzyskać Janek, by średnia jego ocen była równa** $4$**? Wybierz właściwą odpowiedź spośród podanych.**",
+      opcje: ["$3$", "$4$", "$5$", "$6$"],
+      poprawna: 2 },
   ],
 };
