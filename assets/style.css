@@ -527,10 +527,22 @@ input[type="radio"] { width: 18px; height: 18px; margin: 0; accent-color: var(--
 .chip:disabled:hover { border-color: var(--field-line); }
 .rozdzialy { margin-bottom: 8px; }
 .rozdzial-tytul { margin: 32px 0 4px; color: var(--ink); font-size: 1.5rem; }
-.egzaminy.kafelki { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 16px; }
-@media (max-width: 520px) {
-  .egzaminy.kafelki { grid-template-columns: 1fr; }
+.egzaminy.kafelki { grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 16px; }
+@media (max-width: 760px) {
+  .egzaminy.kafelki { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
+.postep {
+  margin-top: 24px;
+  padding: 14px 18px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+}
+.postep-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; color: var(--muted); font-weight: 600; }
+.postep-head strong { color: var(--accent); font-size: 1.4rem; }
+.postep-pasek { height: 10px; margin: 8px 0 10px; overflow: hidden; border-radius: 999px; background: var(--surface-2); }
+.postep-pasek span { display: block; height: 100%; border-radius: inherit; background: var(--accent); }
+.postep .field-hint { display: block; margin: 0; }
 .egzamin:disabled { opacity: 0.55; cursor: default; }
 .egzamin:disabled:hover { border-color: var(--line); }
 .zestaw .gen-card { margin: 0; }

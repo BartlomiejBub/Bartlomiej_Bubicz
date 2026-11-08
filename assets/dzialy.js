@@ -207,8 +207,8 @@ export const DZIALY = [
 ];
 
 export const EGZAMINY = [
-  { id: "matura", nazwa: "Matura", opis: "matura, poziom podstawowy", zadania: "Zadania z matur", podobne: "jak na maturze" },
-  { id: "e8", nazwa: "Egzamin ósmoklasisty", opis: "egzamin ósmoklasisty", zadania: "Zadania z egzaminów", podobne: "jak na egzaminie" },
+  { id: "matura", nazwa: "Matura", opis: "matura, poziom podstawowy", zadania: "Zadania z matur", podobne: "jak na maturze", droga: "do matury" },
+  { id: "e8", nazwa: "Egzamin ósmoklasisty", opis: "egzamin ósmoklasisty", zadania: "Zadania z egzaminów", podobne: "jak na egzaminie", droga: "do egzaminu ósmoklasisty" },
 ];
 export const egzamin = (id) => EGZAMINY.find((e) => e.id === id) ?? EGZAMINY[0];
 
@@ -268,6 +268,50 @@ export function wczesniejszeRozdzialy(klasa, r) {
     }
   }
   return wynik;
+}
+
+/** Jaką część każdego tematu uczeń ma za sobą przed danym rozdziałem: "dział/temat" → od 0 do 1.
+ *  Temat wraca w kilku rozdziałach (np. pola figur w klasach 4–8), więc liczy się, ile z nich już było. */
+export function udzialTematow(klasa, r) {
+  const wszystkie = klasy(klasa.egzamin).flatMap((k) => k.rozdzialy);
+  const teraz = wszystkie.indexOf(r);
+  const licznik = new Map();   // "dział/temat" → { razem, bylo }
+  wszystkie.forEach((x, i) => {
+    for (const [d, ids] of Object.entries(x.tematy)) {
+      for (const t of ids) {
+        const l = licznik.get(`${d}/${t}`) ?? { razem: 0, bylo: 0 };
+        l.razem++;
+        if (i < teraz) l.bylo++;
+        licznik.set(`${d}/${t}`, l);
+      }
+    }
+  });
+  return new Map([...licznik].map(([klucz, l]) => [klucz, l.bylo / l.razem]));
+}
+
+/** Tematy przerobione do końca przed danym rozdziałem (wszystkie ich rozdziały już były) – jako rozdział dla dzialRozdzialu. */
+export function przerobioneTematy(klasa, r) {
+  const tematy = {};
+  for (const [klucz, udzial] of udzialTematow(klasa, r)) {
+    if (udzial < 1) continue;
+    const [d, t] = klucz.split("/");
+    (tematy[d] ??= []).push(t);
+  }
+  return { id: `${r.id}-przerobione`, nazwa: r.nazwa, opis: r.opis, tematy };
+}
+
+/** Postęp do egzaminu przed danym rozdziałem, od 0 do 1: przerobiona część tematów ważona liczbą zadań z arkuszy w temacie. */
+export function postepDoEgzaminu(klasa, r) {
+  const udzial = udzialTematow(klasa, r);
+  let razem = 0;
+  let za = 0;
+  for (const d of DZIALY.filter((x) => x.egzamin === klasa.egzamin)) {
+    for (const t of d.tematy) {
+      razem += t.zadania.length;
+      za += t.zadania.length * (udzial.get(`${d.id}/${t.id}`) ?? 0);
+    }
+  }
+  return razem ? za / razem : 0;
 }
 
 /** Rozdział jako jeden dział: tematy (zadania z arkuszy), wzory i generatory z działów, do których prowadzi.

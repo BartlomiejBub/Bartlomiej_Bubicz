@@ -2,7 +2,9 @@
 // Pokazuje działy egzaminu wybranego na stronie (<body data-egzamin>, zmienia go korepetycje.js).
 import { el } from "./dom.js";
 import { zaloguj, zalogowany, wyloguj, ma, tematyUcznia, dostepUcznia } from "./dostep.js";
-import { DZIALY, KARTY, egzamin, maMaterialy, przytnij, klasy, dzialRozdzialu, wczesniejszeRozdzialy } from "./dzialy.js";
+import {
+  DZIALY, KARTY, egzamin, maMaterialy, przytnij, klasy, dzialRozdzialu, wczesniejszeRozdzialy, przerobioneTematy, postepDoEgzaminu,
+} from "./dzialy.js";
 import { losownik, sprawdz } from "./generatory/wspolne.js";
 import { wstaw } from "./matematyka.js";
 
@@ -186,6 +188,7 @@ function pokazKlase(uczen, k, przyciski) {
     pamietaj(`${KLUCZ_ROZDZIALU}.${k.id}`, x.r.id);
     for (const c of chipy) c.setAttribute("aria-pressed", String(c.dataset.rozdzial === x.r.id));
     tresc.replaceChildren(
+      blokPostepu(k, x.r),
       el("h3", { class: "rozdzial-tytul" }, x.r.nazwa),
       el("p", { class: "blok-intro" }, x.r.opis),
       ...kafelkiRozdzialu(uczen, k, x),
@@ -216,11 +219,28 @@ function pokazKlase(uczen, k, przyciski) {
   if (gotowe.length) wybierz(zapisany ?? gotowe[0]);
 }
 
-/** Trzy sposoby pracy z rozdziałem: nauka, próbny sprawdzian z tego rozdziału i powtórka wcześniejszych rozdziałów. */
+/** Ile materiału z egzaminu uczeń ma za sobą przed tym rozdziałem – rośnie z każdym rozdziałem aż do egzaminu. */
+function blokPostepu(k, r) {
+  const procent = Math.round(100 * postepDoEgzaminu(k, r));
+  return el("div", { class: "postep" },
+    el("div", { class: "postep-head" },
+      el("span", {}, `Droga ${egzamin(k.egzamin).droga}`),
+      el("strong", {}, `${procent}%`),
+    ),
+    el("div", { class: "postep-pasek", role: "progressbar", "aria-label": `Droga ${egzamin(k.egzamin).droga}`, "aria-valuemin": "0", "aria-valuemax": "100", "aria-valuenow": String(procent) },
+      el("span", { style: `width: ${procent}%` })),
+    el("p", { class: "field-hint" }, "Tyle materiału z egzaminu masz już za sobą w szkole. Rośnie z każdym rozdziałem."),
+  );
+}
+
+/** Cztery sposoby pracy z rozdziałem: nauka, próbny sprawdzian, powtórka wcześniejszych rozdziałów
+ *  i zadania z egzaminu z tematów, które uczeń ma już całe za sobą. */
 function kafelkiRozdzialu(uczen, k, x) {
   const dostep = dostepUcznia(uczen);
   const teraz = pulaZadan([x.d]);
   const wczesniej = pulaZadan(wczesniejszeRozdzialy(k, x.r).map((w) => dzialRozdzialu(w.klasa, w.rozdzial, dostep)));
+  const umiesz = dzialRozdzialu(k, przerobioneTematy(k, x.r), dostep);
+  const ileUmiesz = umiesz.tematy.reduce((s, t) => s + t.zadania.length, 0);
   // Im bliżej egzaminu, tym więcej zadań z arkuszy w powtórce: od 1 w najmłodszej klasie do 3 w ostatniej.
   const lista = klasy(k.egzamin);
   const zArkuszy = 1 + Math.round((2 * lista.indexOf(k)) / Math.max(1, lista.length - 1));
@@ -228,7 +248,7 @@ function kafelkiRozdzialu(uczen, k, x) {
 
   const tryby = [
     {
-      id: "nauka", nazwa: "Ucz się", opis: "wyjaśnienia, ćwiczenia i zadania z egzaminów",
+      id: "nauka", nazwa: "Ucz się", opis: "wyjaśnienia i ćwiczenia z rozdziału",
       pokaz: () => materialy(x.d, x.widzi),
     },
     {
@@ -250,6 +270,11 @@ function kafelkiRozdzialu(uczen, k, x) {
           + (wczesniej.zamkniete.length ? " Są wśród nich zadania z arkuszy egzaminacyjnych – im bliżej egzaminu, tym więcej." : ""),
         losuj: (r) => zadaniaPowtorki(wczesniej, zArkuszy, r),
       })],
+    },
+    {
+      id: "umiesz", nazwa: egzamin(k.egzamin).zadania, opis: `${zadan(ileUmiesz)} z tematów, które już były`,
+      brak: !ileUmiesz && "Pojawią się, gdy przerobisz w szkole do końca pierwszy temat z egzaminu.",
+      pokaz: () => [blokZadan(umiesz, `Zadania z prawdziwych arkuszy z tematów, które masz już całe za sobą – takie możesz rozwiązać już teraz. ${opisZadan(umiesz)}`)],
     },
   ];
 
@@ -427,7 +452,7 @@ function blokWzorow(d) {
 
 // --- Zadania z arkuszy CKE (zamknięte i otwarte), posortowane po tematach
 
-function blokZadan(d) {
+function blokZadan(d, intro = opisZadan(d)) {
   const tematy = d.tematy.filter((t) => t.zadania.length);
   let temat = tematy[0];
   const wyniki = new Map();   // zadanie -> czy dobrze przy pierwszym sprawdzeniu
@@ -461,7 +486,7 @@ function blokZadan(d) {
   pokaz();
   return el("section", { class: "blok" },
     el("div", { class: "blok-head" }, el("h3", {}, egzamin(d.egzamin).zadania), licznik),
-    el("p", { class: "blok-intro" }, opisZadan(d)),
+    el("p", { class: "blok-intro" }, intro),
     el("div", { class: "chips", role: "group", "aria-label": "Temat zadań" }, ...przyciski),
     lista,
   );
