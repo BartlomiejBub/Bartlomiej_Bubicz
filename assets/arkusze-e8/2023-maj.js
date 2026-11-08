@@ -87,5 +87,8 @@ export default {
     { nr: "16", dzial: "e8-wyrazenia", temat: "zadania-z-rownaniem", punkty: 2,
       tresc: "Cena biletu do teatru jest o $64$ zł większa od ceny biletu do kina. Za $4$ bilety do teatru i $5$ biletów do kina zapłacono łącznie $400$ zł.\n\n**Oblicz cenę jednego biletu do teatru. Zapisz obliczenia.**",
       rozwiazanie: "Oznaczmy cenę jednego biletu do teatru jako $x$.\n\nCena jednego biletu do kina jest o $64$ zł mniejsza od ceny jednego biletu do teatru, zatem oznaczymy ją jako $x - 64$.\n\nZa $4$ bilety do teatru i $5$ biletów do kina zapłacono $400$ zł.\n\nZapiszemy i rozwiążemy równanie uwzględniające powyższe warunki:\n\n$4x + 5(x - 64) = 400$\n\n$4x + 5x - 320 = 400$\n\n$4x + 5x = 400 + 320$\n\n$9x = 720$\n\n$x = 80$\n\nOdpowiedź: Cena jednego biletu do teatru jest równa $80$ zł." },
+    { nr: "17", dzial: "e8-procenty", temat: "predkosc", punkty: 2,
+      tresc: "Pociąg przebył ze stałą prędkością drogę $700$ metrów w czasie $50$ sekund. Przy zachowaniu tej samej, stałej prędkości ten sam pociąg drogę równą jego długości przebył w czasie $15$ sekund.\n\n**Oblicz długość tego pociągu. Zapisz obliczenia.**",
+      rozwiazanie: "Obliczamy prędkość, z jaką pociąg przejeżdża $700$ m w czasie $50$ s. Skorzystamy ze wzoru na prędkość $v = \\frac{s}{t}$, gdzie:\n\n$v$ – prędkość\n\n$s = 700$ m – droga\n\n$t = 50$ s – czas\n\n$v = \\frac{700 \\text{ m}}{50 \\text{ s}} = 14\\,\\frac{\\mathrm{m}}{\\mathrm{s}}$\n\nObliczamy drogę, którą pociąg przejedzie z tą prędkością w czasie $15$ s:\n\n$s = 14\\,\\frac{\\mathrm{m}}{\\mathrm{s}} \\cdot 15 \\text{ s} = 210$ m\n\nOdpowiedź: Pociąg ma długość $210$ m." },
   ],
 };

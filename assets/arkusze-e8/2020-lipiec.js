@@ -90,5 +90,8 @@ export default {
     { nr: "19", dzial: "e8-wyrazenia", temat: "zadania-z-rownaniem", punkty: 3,
       tresc: "Do pracowni komputerowej kupiono $6$ myszek bezprzewodowych i $6$ myszek przewodowych. Cena myszki bezprzewodowej była o $11$ zł wyższa od ceny myszki z przewodem. Za zakup wszystkich myszek zapłacono $234$ zł.\n\n**Ile najwięcej myszek bezprzewodowych można by kupić za tę kwotę? Zapisz obliczenia.**",
       rozwiazanie: "$x$ – cena myszki bezprzewodowej\n\n$x - 11$ – cena myszki przewodowej\n\n$6x + 6(x - 11) = 234$\n\n$12x = 300$\n\n$x = 25$ (zł)\n\n$234 : 25 = 9{,}36 \\approx 9$\n\nOdpowiedź: Za tę kwotę można kupić co najwyżej $9$ myszek bezprzewodowych." },
+    { nr: "21", dzial: "e8-procenty", temat: "podwyzki-obnizki", punkty: 3,
+      tresc: "Pani Maria w $2015$ roku łącznie zarobiła $43\\,740$ zł. W każdym miesiącu od stycznia do września włącznie otrzymywała pensję tej samej wysokości. W październiku otrzymała podwyżkę, po której miesięcznie zarabiała $3780$ zł.\n\n**Oblicz, o ile procent wzrosła miesięczna pensja pani Marii po podwyżce. Zapisz obliczenia.**",
+      rozwiazanie: "$x$ – wysokość miesięcznych zarobków w $9$ początkowych miesiącach (trzech pierwszych kwartałach) roku\n\n$9x + 3 \\cdot 3780 = 43\\,740$\n\n$x = 3600$ (zł)\n\n$\\frac{3780}{3600} \\cdot 100\\% = 105\\%$\n\n$3600 \\text{ zł} + 0{,}05 \\cdot 3600 = 3780$ zł\n\nOdpowiedź: Od listopada do grudnia pani Maria otrzymała $5\\%$ podwyżki." },
   ],
 };

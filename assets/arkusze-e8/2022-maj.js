@@ -79,4 +79,9 @@ export default {
       ],
       rysunek: "assets/arkusze-e8/rys/2022-maj-15.png" },
   ],
+  otwarte: [
+    { nr: "17", dzial: "e8-procenty", temat: "predkosc", punkty: 2,
+      tresc: "Kierowca przejechał ze stałą prędkością trasę o długości $22{,}5$ km od godziny $7{:}50$ do godziny $8{:}05$.\n\n**Oblicz prędkość, z jaką kierowca przejechał tę trasę. Wynik wyraź w **$\\frac{\\mathrm{km}}{\\mathrm{h}}$**. Zapisz obliczenia.**",
+      rozwiazanie: "Czas przejazdu od godziny $7{:}50$ do godziny $8{:}05$ jest równy $15$ minut.\n\nSkorzystamy ze wzoru na prędkość $v = \\frac{s}{t}$, gdzie:\n\n$v$ – prędkość\n\n$s = 22{,}5$ km – droga\n\n$t = 15$ minut $= 15 \\cdot \\frac{1}{60}$ h $= \\frac{1}{4}$ h – czas\n\n$v = \\frac{22{,}5 \\text{ km}}{\\frac{1}{4} \\text{ h}} = 22{,}5 \\cdot 4\\,\\frac{\\mathrm{km}}{\\mathrm{h}} = 90\\,\\frac{\\mathrm{km}}{\\mathrm{h}}$\n\nOdpowiedź: Kierowca jechał z prędkością $90\\,\\frac{\\mathrm{km}}{\\mathrm{h}}$." },
+  ],
 };

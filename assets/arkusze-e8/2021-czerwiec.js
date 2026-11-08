@@ -81,8 +81,14 @@ export default {
       rysunek: "assets/arkusze-e8/rys/2021-czerwiec-15.png" },
   ],
   otwarte: [
+    { nr: "16", dzial: "e8-procenty", temat: "jednostki", punkty: 2,
+      tresc: "W jednej szklance o pojemności $250$ mililitrów mieści się maksymalnie $150$ gramów mąki. Babcia Kasi przechowuje mąkę w dwulitrowym pojemniku.\n\n**Czy w takim pojemniku zmieści się **$1{,}5$** kilograma mąki? Odpowiedź uzasadnij. Zapisz obliczenia.**",
+      rozwiazanie: "Obliczamy masę $2$ litrów mąki:\n\n$250$ ml – $150$ g\n\n$1000$ ml – $600$ g\n\n$2000$ ml – $1200$ g\n\nZauważamy, że w pojemniku mieści się tylko $1{,}2$ kg mąki.\n\nOdpowiedź: Mąka nie zmieści się w pojemniku, jest jej za dużo." },
     { nr: "17", dzial: "e8-wyrazenia", temat: "zadania-z-rownaniem", punkty: 3,
       tresc: "W zespole tańca nowoczesnego liczba dziewcząt jest dwa razy większa od liczby chłopców. Gdy na próbie nieobecnych było $2$ chłopców i $1$ dziewczyna, to liczba obecnych chłopców stanowiła $\\frac{2}{5}$ liczby obecnych dziewcząt.\n\n**Z ilu osób składa się zespół? Zapisz obliczenia.**",
       rozwiazanie: "$x$ – liczba chłopców w zespole\n\n$2x$ – liczba dziewcząt w zespole\n\n$x - 2 = 0{,}4(2x - 1)$\n\n$x - 2 = 0{,}8x - 0{,}4$\n\n$0{,}2x = 1{,}6$\n\n$x = 8$ – liczba chłopców\n\n$2x = 16$ – liczba dziewcząt\n\nOdpowiedź: Zespół składa się z $24$ osób." },
+    { nr: "18", dzial: "e8-procenty", temat: "predkosc", punkty: 2,
+      tresc: "Pan Piotr odczytał na nawigacji samochodowej, że na pokonanie trasy długości $38$ km potrzebuje $40$ minut.\n\n**Jaką prędkość jazdy wyrażoną w **$\\frac{\\mathrm{km}}{\\mathrm{h}}$** przyjęła nawigacja samochodowa w celu wyznaczenia czasu potrzebnego na pokonanie tej trasy? Zapisz obliczenia.**",
+      rozwiazanie: "$38$ km to $40$ minut\n\n$19$ km to $20$ minut\n\n$57$ km to $60$ minut\n\nOdpowiedź: Średnia prędkość przewidywana przez nawigację to $57\\,\\frac{\\mathrm{km}}{\\mathrm{h}}$." },
   ],
 };

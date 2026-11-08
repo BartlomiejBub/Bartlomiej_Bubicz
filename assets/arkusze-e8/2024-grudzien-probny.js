@@ -100,5 +100,8 @@ export default {
     { nr: "19", dzial: "e8-wyrazenia", temat: "zadania-z-rownaniem", punkty: 3,
       tresc: "Marek kupił w sklepie sportowym kask narciarski, buty i narty. Kask kosztował $500$ zł. Narty i kask kosztowały razem o $700$ zł mniej niż narty i buty łącznie. Buty i kask kosztowały razem tyle co narty.\n\n**Oblicz, ile kosztowały narty, a ile kosztowały buty, które kupił Marek w tym sklepie. Zapisz obliczenia.**",
       rozwiazanie: "Skoro narty i kask kosztują o $700$ zł mniej niż narty i buty, to oznacza, że buty są o $700$ zł droższe od kasku, czyli kosztują:\n\n$700 + 500 = 1200$ (zł)\n\nPonieważ narty kosztują tyle, co buty i kask razem, to oznacza, że ich cena jest równa:\n\n$1200 + 500 = 1700$ (zł)\n\nOdpowiedź: Narty kosztują $1700$ zł, a buty kosztują $1200$ zł." },
+    { nr: "21", dzial: "e8-procenty", temat: "procent-liczby", punkty: 2,
+      tresc: "Urządzenie do produkcji kostek lodu nalewa wodę do jednakowych foremek w kształcie sześcianu o pojemności $8\\,\\text{cm}^3$. Wlana woda wypełnia $75\\%$ pojemności każdej foremki. Z jednej foremki zostanie wyprodukowana jedna kostka lodu.\n\n**Oblicz, ile kostek lodu wyprodukuje to urządzenie z **$3000\\,\\text{cm}^3$** wody. Zapisz obliczenia.**",
+      rozwiazanie: "Obliczamy objętość wody w jednej foremce:\n\n$\\frac{3}{4} \\cdot 8 = 6$ ($\\text{cm}^3$)\n\nObliczamy liczbę kostek lodu, które może wyprodukować urządzenie z $3000\\,\\text{cm}^3$ wody:\n\n$3000 : 6 = 500$\n\nOdpowiedź: To urządzenie wyprodukuje $500$ kostek lodu z $3000\\,\\text{cm}^3$ wody." },
   ],
 };

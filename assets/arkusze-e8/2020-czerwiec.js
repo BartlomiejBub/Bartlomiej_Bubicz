@@ -86,5 +86,8 @@ export default {
     { nr: "18", dzial: "e8-wyrazenia", temat: "zadania-z-rownaniem", punkty: 2,
       tresc: "W domu kultury zorganizowano konkurs recytatorski. Dla uczestników kupiono nagrody: książki i e-booki. Książki stanowiły $\\frac{2}{3}$ liczby kupionych nagród. E-booków było o $8$ mniej niż książek.\n\n**Ile kupiono książek? Zapisz obliczenia.**",
       rozwiazanie: "$x$ – liczba kupionych nagród\n\n$\\frac{2}{3}x$ – liczba kupionych książek\n\n$\\frac{2}{3}x - 8$ – liczba kupionych e-booków\n\n$\\frac{2}{3}x + \\frac{2}{3}x - 8 = x$\n\n$\\frac{4}{3}x - 8 = x$\n\n$\\frac{1}{3}x = 8$\n\n$x = 24$\n\n$\\frac{2}{3} \\cdot 24 = 16$\n\nOdpowiedź: Kupiono $16$ książek." },
+    { nr: "19", dzial: "e8-procenty", temat: "czas-kalendarz", punkty: 3,
+      tresc: "W zakładzie krawieckim są szyte poduszki dla zwierząt domowych. Praca w tym zakładzie trwa pięć dni w tygodniu – od poniedziałku do piątku – po $7$ godzin dziennie. W $2020$ roku $1$ marca wypadł w niedzielę i w tym miesiącu nie było żadnych dni wolnych oprócz sobót i niedziel. W ciągu każdej godziny pracy szyto średnio $3$ poduszki.\n\n**Ile poduszek uszyto w tym zakładzie w marcu **$2020$** roku? Zapisz obliczenia.**",
+      rozwiazanie: "Marzec $2020$ r. – $31$ dni, w tym $4$ soboty i $5$ niedziel\n\n$31 - 9 = 22$ – liczba dni roboczych\n\n$22 \\cdot 7 = 154$ – liczba godzin pracy w marcu\n\n$154 \\cdot 3 = 462$ – liczba poduszek uszytych w marcu\n\nOdpowiedź: W marcu $2020$ roku w zakładzie uszyto $462$ poduszki." },
   ],
 };

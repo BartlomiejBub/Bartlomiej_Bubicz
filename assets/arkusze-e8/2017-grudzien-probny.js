@@ -99,6 +99,9 @@ export default {
       ] },
   ],
   otwarte: [
+    { nr: "19", dzial: "e8-procenty", temat: "pieniadze", punkty: 2,
+      tresc: "Na pływalni w marcu obowiązywała promocja.\n\nOgłoszenie: Jednorazowe wejście na pływalnię – $9$ zł. PROMOCJA!!! Co czwarte wejście gratis.\n\nWojtek był w marcu codziennie jeden raz na pływalni i wykorzystał wszystkie ulgi promocyjne.\n\n**Ile kosztowało go korzystanie z pływalni w marcu? Zapisz obliczenia.**",
+      rozwiazanie: "Wojtek korzystał z gratisowego wejścia w następujących dniach marca: $4$, $8$, $12$, $16$, $20$, $24$ i $28$, czyli $7$ razy.\n\nWojtek zapłacił za $31 - 7 = 24$ wejścia.\n\n$24 \\cdot 9 = 216$\n\nOdpowiedź: Za korzystanie z pływalni przez cały marzec Wojtek zapłacił $216$ zł." },
     { nr: "22", dzial: "e8-wyrazenia", temat: "zadania-z-rownaniem", punkty: 4,
       tresc: "W wypożyczalni Gierka za wypożyczenie gry planszowej trzeba zapłacić $8$ zł za $3$ dni i dodatkowo po $2{,}50$ zł za każdy kolejny dzień wypożyczenia. Natomiast w wypożyczalni Planszówka płaci się $12$ zł za $3$ dni i po $2$ zł za każdy kolejny dzień.\n\n**Przy jakiej liczbie dni koszty wypożyczenia tej gry w jednej i drugiej wypożyczalni są jednakowe? Zapisz obliczenia.**",
       rozwiazanie: "W wypożyczalni Gierka płaci się po $50$ groszy więcej za każdy dzień wypożyczenia powyżej trzeciego, a w wypożyczalni Planszówka płaci się o $4$ zł wyższą opłatę stałą za trzy początkowe dni wypożyczenia.\n\nAby koszty były jednakowe, trzeba znaleźć taką liczbę dodatkowych dni (powyżej trzeciego), dla której te różnice się zrównoważą.\n\n$4 : 0{,}5 = 8$ (dni)\n\n$8 + 3 = 11$\n\nOdpowiedź: Przy wypożyczeniu gry na $11$ dni koszty w obu wypożyczalniach są jednakowe." },

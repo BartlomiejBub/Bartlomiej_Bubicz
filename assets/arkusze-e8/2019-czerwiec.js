@@ -90,6 +90,9 @@ export default {
       rysunek: "assets/arkusze-e8/rys/2019-czerwiec-15.png" },
   ],
   otwarte: [
+    { nr: "16", dzial: "e8-procenty", temat: "pieniadze", punkty: 2,
+      tresc: "We wtorek w kwiaciarni obowiązywały ceny zapisane poniżej.\n\n| Kwiat | Cena |\n|---|---|\n| róża | $8$ zł |\n| goździk | $3$ zł |\n| gerbera | $5$ zł |\n| tulipan | $3$ zł |\n\nZa dodatki użyte do wykonania bukietu dolicza się $20\\%$ wartości kwiatów, z których wykonano ten bukiet.\n\n**Ile zapłaci tego dnia klient za bukiet złożony z **$3$** tulipanów, **$2$** róż i **$5$** goździków? Zapisz obliczenia.**",
+      rozwiazanie: "Obliczamy koszt kwiatów w bukiecie:\n\n$3 \\cdot 3 + 2 \\cdot 8 + 5 \\cdot 3 = 40$ (zł)\n\nObliczamy koszt bukietu:\n\n$1{,}2 \\cdot 40 = 48$ (zł)\n\nOdpowiedź: Klient we wtorek za taki bukiet zapłaci $48$ zł." },
     { nr: "17", dzial: "e8-wyrazenia", temat: "zadania-z-rownaniem", punkty: 2,
       tresc: "Pan Jan wybrał z bankomatu $2900$ zł. Na tę kwotę składały się łącznie $22$ banknoty $200$-złotowe i $100$-złotowe.\n\n**Ile banknotów **$100$**-złotowych pan Jan wybrał z bankomatu? Zapisz obliczenia.**",
       rozwiazanie: "$x$ – liczba banknotów $100$-złotowych\n\n$22 - x$ – liczba banknotów $200$-złotowych\n\n$100x + 200 \\cdot (22 - x) = 2900$\n\n$x = 15$\n\nOdpowiedź: Pan Jan wybrał z bankomatu $15$ banknotów $100$-złotowych." },

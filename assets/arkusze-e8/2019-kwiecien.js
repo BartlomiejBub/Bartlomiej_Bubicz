@@ -83,6 +83,9 @@ export default {
       rysunek: "assets/arkusze-e8/rys/2019-kwiecien-15.png" },
   ],
   otwarte: [
+    { nr: "17", dzial: "e8-procenty", temat: "predkosc", punkty: 2,
+      tresc: "Samochód osobowy przebył drogę $120$ km w czasie $75$ minut. Prędkość średnia busa na tej samej trasie wyniosła $80\\,\\frac{\\mathrm{km}}{\\mathrm{h}}$.\n\n**O ile krótszy był czas przejazdu tej drogi samochodem osobowym od czasu przejazdu busem? Zapisz obliczenia.**",
+      rozwiazanie: "Obliczamy czas przejazdu busa:\n\n$1$ h – $80$ km\n\n$0{,}5$ h – $40$ km\n\n$1{,}5$ h – $120$ km\n\nObliczamy różnicę: $1{,}5$ h $- 75$ min $= 90$ min $- 75$ min $= 15$ minut.\n\nOdpowiedź: Czas przejazdu tej trasy samochodem był o $15$ minut krótszy niż busem." },
     { nr: "18", dzial: "e8-wyrazenia", temat: "zadania-z-rownaniem", punkty: 2,
       tresc: "Adam zamówił bukiet złożony tylko z goździków i róż, w którym goździków było $2$ razy więcej niż róż. Jedna róża kosztowała $4$ zł, a cena jednego goździka wynosiła $3$ zł.\n\n**Czy wszystkie kwiaty w tym bukiecie mogły kosztować **$35$** zł? Uzasadnij odpowiedź.**",
       rozwiazanie: "$x$ – liczba róż w bukiecie\n\n$2x$ – liczba goździków w bukiecie\n\n$4x$ – koszt róż w bukiecie\n\n$2x \\cdot 3$ – koszt goździków w bukiecie\n\n$4x + 6x = 35$\n\n$10x = 35$\n\n$x = 3{,}5$\n\nGdyby ten bukiet kosztował $35$ zł, to zgodnie z warunkami zadania składałby się z $3{,}5$ róż i $7$ goździków. Liczby kwiatów w bukiecie muszą wyrażać się liczbami całkowitymi, zatem Adam za taki bukiet nie mógł zapłacić $35$ zł." },
