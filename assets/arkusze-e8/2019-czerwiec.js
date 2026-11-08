@@ -89,4 +89,12 @@ export default {
       poprawna: 1,
       rysunek: "assets/arkusze-e8/rys/2019-czerwiec-15.png" },
   ],
+  otwarte: [
+    { nr: "17", dzial: "e8-wyrazenia", temat: "zadania-z-rownaniem", punkty: 2,
+      tresc: "Pan Jan wybrał z bankomatu $2900$ zł. Na tę kwotę składały się łącznie $22$ banknoty $200$-złotowe i $100$-złotowe.\n\n**Ile banknotów **$100$**-złotowych pan Jan wybrał z bankomatu? Zapisz obliczenia.**",
+      rozwiazanie: "$x$ – liczba banknotów $100$-złotowych\n\n$22 - x$ – liczba banknotów $200$-złotowych\n\n$100x + 200 \\cdot (22 - x) = 2900$\n\n$x = 15$\n\nOdpowiedź: Pan Jan wybrał z bankomatu $15$ banknotów $100$-złotowych." },
+    { nr: "19", dzial: "e8-wyrazenia", temat: "zadania-z-rownaniem", punkty: 3,
+      tresc: "Bilet normalny na koncert kosztuje $45$ zł, a cena biletu ulgowego stanowi $\\frac{5}{9}$ ceny biletu normalnego. Janek zakupił pięć razy więcej biletów normalnych niż biletów ulgowych. Za wszystkie bilety zapłacił $500$ zł.\n\n**Ile biletów każdego rodzaju Janek zakupił? Zapisz obliczenia.**",
+      rozwiazanie: "Obliczamy cenę biletu ulgowego:\n\n$\\frac{5}{9} \\cdot 45 = 25$\n\nWprowadzamy oznaczenia:\n\n$x$ – liczba zakupionych biletów ulgowych\n\n$5x$ – liczba zakupionych biletów normalnych\n\n$25x$ – wartość zakupionych biletów ulgowych\n\n$5x \\cdot 45 = 225x$ – wartość zakupionych biletów normalnych\n\nObliczamy liczbę zakupionych biletów ulgowych:\n\n$25x + 225x = 500$\n\n$x = 2$\n\nObliczamy liczbę zakupionych biletów normalnych:\n\n$5x = 5 \\cdot 2 = 10$\n\nOdpowiedź: Janek zakupił na koncert $10$ biletów normalnych i $2$ bilety ulgowe." },
+  ],
 };

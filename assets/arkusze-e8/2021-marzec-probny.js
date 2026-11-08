@@ -84,4 +84,12 @@ export default {
       opcje: ["$35$", "$47$", "$94$", "$142$"],
       poprawna: 2 },
   ],
+  otwarte: [
+    { nr: "16", dzial: "e8-wyrazenia", temat: "zapisywanie-wyrazen", punkty: 2,
+      tresc: "Pewną kwotę rozdzielono na trzy nagrody pieniężne. Marcin dostał $2$ razy więcej pieniędzy niż Jędrek, a Kamil $2$ razy mniej niż Jędrek.\n\n**Uzasadnij, że Kamil otrzymał **$\\frac{1}{7}$** tej kwoty.**",
+      rozwiazanie: "Zauważamy, że najmniej pieniędzy otrzymał Kamil. Jędrek otrzymał $2$ razy więcej niż Kamil, a Marcin $2$ razy więcej niż Jędrek.\n\nZatem Kamil ma jedną część, Jędrek – $2$ części, a Marcin $4$ części. Rozdzieloną kwotę można podzielić na $7$ takich części.\n\nZatem Kamil otrzymał $\\frac{1}{7}$ całej kwoty." },
+    { nr: "18", dzial: "e8-wyrazenia", temat: "zadania-z-rownaniem", punkty: 2,
+      tresc: "W kwiaciarni było trzy razy więcej czerwonych róż niż białych. Pan Nowak kupił $40$ czerwonych róż i wtedy w kwiaciarni zostało dwa razy więcej białych róż niż czerwonych.\n\n**Ile białych róż było w kwiaciarni? Zapisz obliczenia.**",
+      rozwiazanie: "$x$ – liczba białych róż\n\n$3x$ – liczba czerwonych róż\n\n$(3x - 40) \\cdot 2 = x$\n\n$x = 16$\n\nOdpowiedź: W kwiaciarni było $16$ białych róż." },
+  ],
 };

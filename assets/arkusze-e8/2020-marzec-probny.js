@@ -83,4 +83,13 @@ export default {
       opcje: ["$3$", "$4$", "$5$", "$6$"],
       poprawna: 2 },
   ],
+  otwarte: [
+    { nr: "16", dzial: "e8-wyrazenia", temat: "zadania-z-rownaniem", punkty: 2,
+      tresc: "W tabeli podano cenniki dwóch korporacji taksówkowych. Należność za przejazd składa się z jednorazowej opłaty początkowej i doliczonej do niej opłaty zależnej od długości przejechanej trasy.\n\nTaxi „Jedynka”: opłata początkowa $3{,}20$ zł, cena za $1$ km trasy $3{,}20$ zł.\n\nTaxi „Dwójka”: opłata początkowa $8{,}00$ zł, cena za $1$ km trasy $2{,}40$ zł.\n\nPan Jan korzystał z Taxi „Jedynka”, a pan Wojciech – z Taxi „Dwójka”. Obaj panowie pokonali trasę o tej samej długości i zapłacili tyle samo.\n\n**Ile kilometrów miała trasa, którą przejechał każdy z nich? Zapisz obliczenia.**",
+      rozwiazanie: "$8 - 3{,}20 = 4{,}80$\n\n$3{,}20 - 2{,}40 = 0{,}80$\n\n$4{,}8 : 0{,}8 = 6$\n\nOdpowiedź: Każdy z pasażerów przejechał trasę długości $6$ km." },
+    { nr: "18", dzial: "e8-wyrazenia", temat: "rownania", punkty: 2,
+      tresc: "Długości boków czworokąta opisano za pomocą wyrażeń algebraicznych, tak jak pokazano na rysunku.\n\n[rysunek]\n\n**Uzasadnij, że jeśli obwód tego czworokąta jest równy **$100$** cm, to jest on rombem. Zapisz obliczenia.**",
+      rysunek: "assets/arkusze-e8/rys/2020-marzec-probny-o18.png",
+      rozwiazanie: "$\\frac{1}{2}x + 15 + \\frac{3}{2}x - 5 + x + 5 + 2x - 15 = 100$\n\n$5x = 100$\n\n$x = 20$ (cm)\n\nObliczamy długości boków czworokąta:\n\n$\\frac{1}{2} \\cdot 20 + 15 = 25$ (cm)\n\n$\\frac{3}{2} \\cdot 20 - 5 = 25$ (cm)\n\n$20 + 5 = 25$ (cm)\n\n$2 \\cdot 20 - 15 = 25$ (cm)\n\nOdpowiedź: Długości boków tego czworokąta są sobie równe, zatem czworokąt jest rombem." },
+  ],
 };

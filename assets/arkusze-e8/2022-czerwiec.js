@@ -83,4 +83,12 @@ export default {
         { tekst: "Wyrażenie $\\frac{1}{2}(2 - 2a^2)$ można przekształcić do postaci ….", litery: "CD", opcje: ["$1 - 2a^2$", "$1 - a^2$"], poprawna: 1 },
       ] },
   ],
+  otwarte: [
+    { nr: "16", dzial: "e8-wyrazenia", temat: "zadania-z-rownaniem", punkty: 2,
+      tresc: "W kasie są banknoty $20$-złotowe i $50$-złotowe. Liczba banknotów $20$-złotowych jest taka sama jak liczba banknotów $50$-złotowych. Łączna wartość wszystkich banknotów $50$-złotowych jest o $6$ tysięcy złotych większa od łącznej wartości wszystkich banknotów $20$-złotowych.\n\n**Oblicz, ile banknotów **$20$**-złotowych jest w kasie. Zapisz obliczenia.**",
+      rozwiazanie: "Oznaczamy liczbę banknotów $20$- i $50$-złotowych przez $x$.\n\nWartość banknotów $50$-złotowych jest o $6000$ zł większa od wartości banknotów $20$-złotowych, zatem możemy ułożyć równanie:\n\n$20x + 6000 = 50x$\n\n$30x = 6000$\n\n$x = 200$\n\nOdpowiedź: W kasie jest $200$ banknotów $20$-złotowych." },
+    { nr: "17", dzial: "e8-wyrazenia", temat: "zadania-z-rownaniem", punkty: 2,
+      tresc: "Janek miał łącznie $84$ piłeczki, z których każda była w jednym z trzech kolorów: czerwonym, zielonym lub niebieskim. Liczby piłeczek czerwonych, zielonych i niebieskich są – odpowiednio – kolejnymi liczbami podzielnymi przez $7$. Janek rozdzielił wszystkie piłeczki na siedem identycznych zestawów, przy czym w każdym z nich znalazły się piłeczki w trzech kolorach.\n\n**Oblicz, ile piłeczek czerwonych, ile – zielonych, a ile – niebieskich było w jednym zestawie. Zapisz obliczenia.**",
+      rozwiazanie: "Wypiszemy kolejne liczby podzielne przez $7$: $7, 14, 21, 28, 35, 42, 49, \\ldots$\n\nSzukamy trzech liczb, których suma jest równa $84$:\n\n$14 + 21 + 28 = 63$, $63 < 84$\n\n$21 + 28 + 35 = 84$, $84 = 84$\n\nSzukane liczby to: $21, 28, 35$.\n\nZauważamy, że szukane liczby, które są podzielne przez $7$, odpowiadają kolejno piłeczkom w kolorach: czerwonym, zielonym, niebieskim, a więc Janek ma:\n\n$21$ piłeczek czerwonych\n\n$28$ piłeczek zielonych\n\n$35$ piłeczek niebieskich\n\nJanek rozdzielił wszystkie piłeczki na $7$ identycznych zestawów, w każdym zestawie były piłeczki w trzech kolorach, zatem możemy obliczyć, że jeden zestaw zawiera:\n\n$21 : 7 = 3$ czerwone piłeczki\n\n$28 : 7 = 4$ zielone piłeczki\n\n$35 : 7 = 5$ niebieskich piłeczek\n\nOdpowiedź: Liczba piłeczek w jednym zestawie: czerwonych: $3$, zielonych: $4$, niebieskich: $5$." },
+  ],
 };

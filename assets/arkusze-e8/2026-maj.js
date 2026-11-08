@@ -71,4 +71,9 @@ export default {
       poprawna: 0,
       rysunek: "assets/arkusze-e8/rys/2026-maj-14.png" },
   ],
+  otwarte: [
+    { nr: "15", dzial: "e8-wyrazenia", temat: "zadania-z-rownaniem", punkty: 2,
+      tresc: "Do wykonania origami Ela przygotowała łącznie $160$ kartek. Każda z tych kartek była w jednym z czterech kolorów: białym, niebieskim, zielonym lub czerwonym. Kartek białych było $37$. Kartek niebieskich było $1{,}5$ raza więcej niż czerwonych, a kartek zielonych było o $10$ mniej niż czerwonych.\n\n**Oblicz, ile kartek niebieskich przygotowała Ela. Zapisz obliczenia.**",
+      rozwiazanie: "Kartek w czterech kolorach było razem $160$.\n\nKartek białych było $37$.\n\nLiczbę kartek czerwonych oznaczymy jako $x$.\n\nZapiszemy wyrażenia algebraiczne opisujące liczby kartek niebieskich i zielonych:\n\n$1{,}5x$ – liczba kartek niebieskich\n\n$x - 10$ – liczba kartek zielonych\n\nObliczymy liczbę kartek czerwonych. Zapiszemy i rozwiążemy równanie spełniające wszystkie warunki zadania:\n\n$x + 1{,}5x + (x - 10) + 37 = 160$\n\n$3{,}5x = 160 - 37 + 10$\n\n$3{,}5x = 133$\n\n$x = 38$\n\nObliczymy liczbę kartek niebieskich:\n\n$1{,}5 \\cdot 38 = 57$\n\nOdpowiedź: Ela przygotowała $57$ kartek niebieskich." },
+  ],
 };

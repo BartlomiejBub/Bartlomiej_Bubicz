@@ -83,4 +83,9 @@ export default {
       ],
       rysunek: "assets/arkusze-e8/rys/2023-maj-15.png" },
   ],
+  otwarte: [
+    { nr: "16", dzial: "e8-wyrazenia", temat: "zadania-z-rownaniem", punkty: 2,
+      tresc: "Cena biletu do teatru jest o $64$ zł większa od ceny biletu do kina. Za $4$ bilety do teatru i $5$ biletów do kina zapłacono łącznie $400$ zł.\n\n**Oblicz cenę jednego biletu do teatru. Zapisz obliczenia.**",
+      rozwiazanie: "Oznaczmy cenę jednego biletu do teatru jako $x$.\n\nCena jednego biletu do kina jest o $64$ zł mniejsza od ceny jednego biletu do teatru, zatem oznaczymy ją jako $x - 64$.\n\nZa $4$ bilety do teatru i $5$ biletów do kina zapłacono $400$ zł.\n\nZapiszemy i rozwiążemy równanie uwzględniające powyższe warunki:\n\n$4x + 5(x - 64) = 400$\n\n$4x + 5x - 320 = 400$\n\n$4x + 5x = 400 + 320$\n\n$9x = 720$\n\n$x = 80$\n\nOdpowiedź: Cena jednego biletu do teatru jest równa $80$ zł." },
+  ],
 };

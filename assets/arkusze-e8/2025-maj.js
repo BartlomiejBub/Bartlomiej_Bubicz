@@ -88,5 +88,8 @@ export default {
     { nr: "16", dzial: "e8-liczby", temat: "ulamki-i-rozwiniecia", punkty: 2,
       tresc: "Liczbę $\\frac{7}{15}$ zapisano w postaci sumy trzech ułamków zwykłych, z których jeden jest równy $\\frac{1}{5}$, a drugi $\\frac{1}{6}$.\n\n**Uzasadnij, że trzeci składnik tej sumy można przedstawić w postaci ułamka zwykłego, którego licznik jest równy **$1$**, a mianownik jest liczbą całkowitą dodatnią. Zapisz obliczenia.**",
       rozwiazanie: "Obliczamy trzeci składnik sumy:\n\n$\\frac{7}{15} - \\left(\\frac{1}{5} + \\frac{1}{6}\\right) = \\frac{14}{30} - \\frac{11}{30} = \\frac{3}{30} = \\frac{1}{10}$\n\nTrzeci składnik sumy można przedstawić w postaci ułamka $\\frac{1}{10}$, który spełnia warunki zadania." },
+    { nr: "17", dzial: "e8-wyrazenia", temat: "zadania-z-rownaniem", punkty: 3,
+      tresc: "Troje przyjaciół – Andrzej, Basia i Marek – zbiera plakaty. Andrzej ma o $28$ plakatów więcej od Basi, a Marek ma ich $3$ razy mniej od Basi. Andrzej i Marek mają razem $2$ razy więcej plakatów od Basi.\n\n**Oblicz, ile plakatów ma każde z tych przyjaciół. Zapisz obliczenia.**",
+      rozwiazanie: "$b$ – liczba plakatów Basi\n\n$b + 28$ – liczba plakatów Andrzeja\n\n$\\frac{b}{3}$ – liczba plakatów Marka\n\nZapiszemy równanie wynikające z warunków zadania i obliczymy liczbę plakatów Basi:\n\n$b + 28 + \\frac{b}{3} = 2b$\n\n$\\frac{2}{3}b = 28$\n\n$b = 42$\n\nObliczymy liczbę plakatów Marka:\n\n$\\frac{b}{3} = \\frac{42}{3} = 14$\n\nObliczymy liczbę plakatów Andrzeja:\n\n$b + 28 = 42 + 28 = 70$\n\nOdpowiedź: Basia ma $42$ plakaty, Marek ma $14$ plakatów, Andrzej ma $70$ plakatów." },
   ],
 };

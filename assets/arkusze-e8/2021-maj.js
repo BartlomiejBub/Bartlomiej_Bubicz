@@ -86,5 +86,8 @@ export default {
     { nr: "16", dzial: "e8-liczby", temat: "ulamki-i-rozwiniecia", punkty: 2,
       tresc: "Paweł powiedział, że podzieli tabliczkę czekolady w taki sposób, że bratu przypadnie $\\frac{1}{2}$ całej tabliczki, siostrze $\\frac{5}{12}$ całej tabliczki, a jemu $\\frac{1}{6}$ całej tabliczki. Czy taki podział tabliczki czekolady jest możliwy? Uzasadnij swoją odpowiedź.",
       rozwiazanie: "Dodajemy części tabliczki przeznaczone dla brata, siostry i Pawła:\n\n$\\frac{1}{2} + \\frac{5}{12} + \\frac{1}{6} = \\frac{13}{12} > 1$\n\nOdpowiedź: Taki podział tabliczki czekolady nie jest możliwy." },
+    { nr: "18", dzial: "e8-wyrazenia", temat: "zadania-z-rownaniem", punkty: 2,
+      tresc: "Ania chciała kupić $10$ jednakowych puszek karmy dla psa, ale zabrakło jej $11$ złotych. Kupiła $6$ takich puszek karmy i zostało jej $3{,}40$ złotych.\n\n**Ile kosztuje jedna puszka karmy? Zapisz obliczenia.**",
+      rozwiazanie: "$x$ – cena (w zł) jednej puszki karmy dla psa\n\n$10x - 11 = 6x + 3{,}40$\n\n$4x = 14{,}40$\n\n$x = 3{,}60$\n\nOdpowiedź: Jedna puszka karmy dla psa kosztuje $3{,}60$ zł." },
   ],
 };

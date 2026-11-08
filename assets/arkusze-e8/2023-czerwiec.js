@@ -86,4 +86,9 @@ export default {
       ],
       rysunek: "assets/arkusze-e8/rys/2023-czerwiec-15.png" },
   ],
+  otwarte: [
+    { nr: "17", dzial: "e8-wyrazenia", temat: "zadania-z-rownaniem", punkty: 3,
+      tresc: "Do księgarni językowej dostarczono łącznie $240$ książek napisanych w czterech różnych językach. Książek w języku włoskim było $3$ razy mniej niż książek w języku niemieckim, książek w języku angielskim było $2$ razy więcej niż w języku niemieckim, a książek w języku francuskim było o $20$ więcej niż w języku włoskim.\n\n**Oblicz, ile książek napisanych w języku francuskim dostarczono do tej księgarni. Zapisz obliczenia.**",
+      rozwiazanie: "Oznaczmy liczbę książek w języku włoskim jako $w$.\n\nZapiszemy za pomocą wyrażeń algebraicznych z jedną zmienną liczbę książek w pozostałych językach:\n\nw języku niemieckim: $3w$\n\nw języku angielskim: $2 \\cdot 3w$\n\nw języku francuskim: $w + 20$\n\nLiczba książek w czterech językach dostarczona do księgarni jest równa $240$, zatem zapiszemy i rozwiążemy równanie:\n\n$w + 3w + 2 \\cdot 3w + w + 20 = 240$\n\n$11w = 220$\n\n$w = 20$\n\nObliczymy liczbę książek w języku francuskim:\n\n$20 + 20 = 40$\n\nOdpowiedź: Do księgarni dostarczono $40$ książek napisanych w języku francuskim." },
+  ],
 };

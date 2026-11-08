@@ -82,4 +82,9 @@ export default {
       poprawna: 0,
       rysunek: "assets/arkusze-e8/rys/2020-czerwiec-15.png" },
   ],
+  otwarte: [
+    { nr: "18", dzial: "e8-wyrazenia", temat: "zadania-z-rownaniem", punkty: 2,
+      tresc: "W domu kultury zorganizowano konkurs recytatorski. Dla uczestników kupiono nagrody: książki i e-booki. Książki stanowiły $\\frac{2}{3}$ liczby kupionych nagród. E-booków było o $8$ mniej niż książek.\n\n**Ile kupiono książek? Zapisz obliczenia.**",
+      rozwiazanie: "$x$ – liczba kupionych nagród\n\n$\\frac{2}{3}x$ – liczba kupionych książek\n\n$\\frac{2}{3}x - 8$ – liczba kupionych e-booków\n\n$\\frac{2}{3}x + \\frac{2}{3}x - 8 = x$\n\n$\\frac{4}{3}x - 8 = x$\n\n$\\frac{1}{3}x = 8$\n\n$x = 24$\n\n$\\frac{2}{3} \\cdot 24 = 16$\n\nOdpowiedź: Kupiono $16$ książek." },
+  ],
 };

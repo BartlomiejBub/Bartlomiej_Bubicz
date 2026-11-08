@@ -91,4 +91,9 @@ export default {
       ],
       rysunek: "assets/arkusze-e8/rys/2018-grudzien-probny-15.png" },
   ],
+  otwarte: [
+    { nr: "20", dzial: "e8-wyrazenia", temat: "zadania-z-rownaniem", punkty: 3,
+      tresc: "W wyborach na przewodniczącego klasy kandydowało troje uczniów: Jacek, Helena i Grzegorz. Każdy uczeń tej klasy oddał jeden ważny głos. Jacek otrzymał $9$ głosów, co stanowiło $36\\%$ wszystkich głosów. Helena otrzymała o $6$ głosów więcej niż Grzegorz.\n\n**Oblicz, ile głosów otrzymała Helena, a ile – Grzegorz. Zapisz obliczenia.**",
+      rozwiazanie: "Jacek otrzymał $9$ głosów, co stanowiło $36\\%$ wszystkich głosów.\n\n$9$ głosów to $36\\%$\n\n$1$ głos to $4\\%$\n\n$25$ głosów to $100\\%$\n\nW wyborach głosowało $25$ osób.\n\n$25 - 9 = 16$ – głosy oddane na Helenę i Grześka\n\n$16 - 6 = 10$\n\n$10 : 2 = 5$ – tyle głosów otrzymał Grzesiek\n\n$5 + 6 = 11$ – tyle głosów otrzymała Helena\n\nOdpowiedź: Helena otrzymała $11$ głosów, a Grzegorz – $5$ głosów." },
+  ],
 };

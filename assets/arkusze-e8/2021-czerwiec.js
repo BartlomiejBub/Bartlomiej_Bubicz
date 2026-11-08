@@ -80,4 +80,9 @@ export default {
       ],
       rysunek: "assets/arkusze-e8/rys/2021-czerwiec-15.png" },
   ],
+  otwarte: [
+    { nr: "17", dzial: "e8-wyrazenia", temat: "zadania-z-rownaniem", punkty: 3,
+      tresc: "W zespole tańca nowoczesnego liczba dziewcząt jest dwa razy większa od liczby chłopców. Gdy na próbie nieobecnych było $2$ chłopców i $1$ dziewczyna, to liczba obecnych chłopców stanowiła $\\frac{2}{5}$ liczby obecnych dziewcząt.\n\n**Z ilu osób składa się zespół? Zapisz obliczenia.**",
+      rozwiazanie: "$x$ – liczba chłopców w zespole\n\n$2x$ – liczba dziewcząt w zespole\n\n$x - 2 = 0{,}4(2x - 1)$\n\n$x - 2 = 0{,}8x - 0{,}4$\n\n$0{,}2x = 1{,}6$\n\n$x = 8$ – liczba chłopców\n\n$2x = 16$ – liczba dziewcząt\n\nOdpowiedź: Zespół składa się z $24$ osób." },
+  ],
 };

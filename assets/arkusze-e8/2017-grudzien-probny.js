@@ -98,4 +98,9 @@ export default {
         { tekst: "Tylko cztery małe sześciany mają trzy ściany pomalowane na biało.", litery: "PF", poprawna: 0 },
       ] },
   ],
+  otwarte: [
+    { nr: "22", dzial: "e8-wyrazenia", temat: "zadania-z-rownaniem", punkty: 4,
+      tresc: "W wypożyczalni Gierka za wypożyczenie gry planszowej trzeba zapłacić $8$ zł za $3$ dni i dodatkowo po $2{,}50$ zł za każdy kolejny dzień wypożyczenia. Natomiast w wypożyczalni Planszówka płaci się $12$ zł za $3$ dni i po $2$ zł za każdy kolejny dzień.\n\n**Przy jakiej liczbie dni koszty wypożyczenia tej gry w jednej i drugiej wypożyczalni są jednakowe? Zapisz obliczenia.**",
+      rozwiazanie: "W wypożyczalni Gierka płaci się po $50$ groszy więcej za każdy dzień wypożyczenia powyżej trzeciego, a w wypożyczalni Planszówka płaci się o $4$ zł wyższą opłatę stałą za trzy początkowe dni wypożyczenia.\n\nAby koszty były jednakowe, trzeba znaleźć taką liczbę dodatkowych dni (powyżej trzeciego), dla której te różnice się zrównoważą.\n\n$4 : 0{,}5 = 8$ (dni)\n\n$8 + 3 = 11$\n\nOdpowiedź: Przy wypożyczeniu gry na $11$ dni koszty w obu wypożyczalniach są jednakowe." },
+  ],
 };

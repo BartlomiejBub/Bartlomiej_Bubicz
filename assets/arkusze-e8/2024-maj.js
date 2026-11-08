@@ -88,4 +88,9 @@ export default {
         { tekst: "Pole powierzchni podstawy tego ostrosłupa jest dwa razy … niż pole powierzchni jego jednej ściany bocznej.", litery: "CD", opcje: ["mniejsze", "większe"], poprawna: 0 },
       ] },
   ],
+  otwarte: [
+    { nr: "16", dzial: "e8-wyrazenia", temat: "zadania-z-rownaniem", punkty: 2,
+      tresc: "Ela i Ania dostały w prezencie po jednym zestawie puzzli o takiej samej liczbie elementów. Ela ułożyła $\\frac{2}{5}$ swoich puzzli, a Ania $\\frac{1}{3}$ swoich. Dziewczynki ułożyły łącznie $440$ elementów.\n\n**Oblicz, z ilu elementów składa się jeden zestaw puzzli. Zapisz obliczenia.**",
+      rozwiazanie: "$x$ – liczba elementów w jednym zestawie puzzli\n\n$\\frac{2}{5}x$ – liczba elementów, które ułożyła Ela\n\n$\\frac{1}{3}x$ – liczba elementów, które ułożyła Ania\n\nZapiszemy i rozwiążemy równanie prowadzące do obliczenia liczby elementów w jednym zestawie puzzli:\n\n$\\frac{2}{5}x + \\frac{1}{3}x = 440$\n\n$\\frac{11}{15}x = 440$\n\n$x = 600$\n\nOdpowiedź: Jeden zestaw puzzli składa się z $600$ elementów." },
+  ],
 };

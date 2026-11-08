@@ -83,4 +83,12 @@ export default {
       ],
       rysunek: "assets/arkusze-e8/rys/2020-lipiec-15.png" },
   ],
+  otwarte: [
+    { nr: "18", dzial: "e8-wyrazenia", temat: "proporcje", punkty: 2,
+      tresc: "Rada rodziców na nagrody dla dwóch klas ósmych przeznaczyła $1080$ zł. W klasie 8a jest $32$ uczniów, a w klasie 8b jest $28$ uczniów. Pieniądze podzielono proporcjonalnie do liczby uczniów w danej klasie.\n\n**Oblicz kwotę, jaką każda z klas otrzymała na nagrody. Zapisz obliczenia.**",
+      rozwiazanie: "$32 + 28 = 60$ – liczba osób w dwóch klasach\n\n$1080 : 60 = 18$ (zł/$1$ osobę)\n\n$32 \\cdot 18 = 576$ (zł) – kwota przeznaczona dla klasy VIIIa\n\n$28 \\cdot 18 = 504$ (zł) – kwota przeznaczona dla klasy VIIIb\n\nOdpowiedź: Klasa VIIIa otrzymała $576$ zł, a VIIIb otrzymała $504$ zł." },
+    { nr: "19", dzial: "e8-wyrazenia", temat: "zadania-z-rownaniem", punkty: 3,
+      tresc: "Do pracowni komputerowej kupiono $6$ myszek bezprzewodowych i $6$ myszek przewodowych. Cena myszki bezprzewodowej była o $11$ zł wyższa od ceny myszki z przewodem. Za zakup wszystkich myszek zapłacono $234$ zł.\n\n**Ile najwięcej myszek bezprzewodowych można by kupić za tę kwotę? Zapisz obliczenia.**",
+      rozwiazanie: "$x$ – cena myszki bezprzewodowej\n\n$x - 11$ – cena myszki przewodowej\n\n$6x + 6(x - 11) = 234$\n\n$12x = 300$\n\n$x = 25$ (zł)\n\n$234 : 25 = 9{,}36 \\approx 9$\n\nOdpowiedź: Za tę kwotę można kupić co najwyżej $9$ myszek bezprzewodowych." },
+  ],
 };

@@ -82,4 +82,12 @@ export default {
       poprawna: 1,
       rysunek: "assets/arkusze-e8/rys/2019-kwiecien-15.png" },
   ],
+  otwarte: [
+    { nr: "18", dzial: "e8-wyrazenia", temat: "zadania-z-rownaniem", punkty: 2,
+      tresc: "Adam zamówił bukiet złożony tylko z goździków i róż, w którym goździków było $2$ razy więcej niż róż. Jedna róża kosztowała $4$ zł, a cena jednego goździka wynosiła $3$ zł.\n\n**Czy wszystkie kwiaty w tym bukiecie mogły kosztować **$35$** zł? Uzasadnij odpowiedź.**",
+      rozwiazanie: "$x$ – liczba róż w bukiecie\n\n$2x$ – liczba goździków w bukiecie\n\n$4x$ – koszt róż w bukiecie\n\n$2x \\cdot 3$ – koszt goździków w bukiecie\n\n$4x + 6x = 35$\n\n$10x = 35$\n\n$x = 3{,}5$\n\nGdyby ten bukiet kosztował $35$ zł, to zgodnie z warunkami zadania składałby się z $3{,}5$ róż i $7$ goździków. Liczby kwiatów w bukiecie muszą wyrażać się liczbami całkowitymi, zatem Adam za taki bukiet nie mógł zapłacić $35$ zł." },
+    { nr: "19", dzial: "e8-wyrazenia", temat: "zadania-z-rownaniem", punkty: 3,
+      tresc: "Z okazji dnia sportu w godzinach od $9{:}00$ do $12{:}00$ przeprowadzono połowę z wszystkich konkurencji zaplanowanych na cały dzień, a między $12{:}00$ a $14{:}00$ – jeszcze $\\frac{1}{3}$ z pozostałych. O godzinie $14{:}00$ z powodu deszczu zakończono zawody. W tym dniu nie przeprowadzono $12$ zaplanowanych konkurencji.\n\n**Ile konkurencji planowano przeprowadzić podczas całego dnia sportu? Zapisz obliczenia.**",
+      rozwiazanie: "$1 - \\frac{1}{2} = \\frac{1}{2}$\n\n$\\frac{1}{3} \\cdot \\frac{1}{2} = \\frac{1}{6}$\n\n$\\frac{1}{2} - \\frac{1}{6} = \\frac{1}{3}$\n\n$\\frac{1}{3}$ to $12$ konkurencji\n\n$1$ to $36$ konkurencji\n\nOdpowiedź: Podczas dnia sportu zaplanowano przeprowadzenie $36$ konkurencji." },
+  ],
 };
