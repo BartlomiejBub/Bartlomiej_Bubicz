@@ -83,4 +83,13 @@ export default {
       poprawna: 3,
       rysunek: "assets/arkusze-e8/rys/2025-czerwiec-15.png" },
   ],
+  otwarte: [
+    { nr: "17", dzial: "e8-liczby", temat: "ulamki-i-rozwiniecia", punkty: 3,
+      tresc: "Kamil otrzymał $300$ złotych na zakup koszulki i torby sportowej. Na koszulkę wydał $\\frac{1}{5}$ tej kwoty. Za torbę sportową zapłacił $\\frac{3}{5}$ kwoty, która została mu po zakupie koszulki.\n\n**Oblicz, ile złotych zostało Kamilowi po zakupach. Zapisz obliczenia.**",
+      rozwiazanie: "Obliczamy koszt zakupu koszulki:\n\n$\\frac{1}{5} \\cdot 300 = 60$ (zł)\n\nObliczamy kwotę pozostałą po zakupie koszulki:\n\n$300 - 60 = 240$ (zł)\n\nObliczamy koszt zakupu torby:\n\n$\\frac{3}{5} \\cdot 240 = 3 \\cdot 48 = 144$ (zł)\n\nObliczamy kwotę, która została Kamilowi po zakupach:\n\n$240 - 144 = 96$ (zł)\n\nOdpowiedź: Po zakupach Kamilowi zostało $96$ zł." },
+    { nr: "19", dzial: "e8-liczby", temat: "os-liczbowa", punkty: 2,
+      tresc: "Dane są dwie osie liczbowe (zobacz rysunek).\n\nNa pierwszej z nich zaznaczono punkty $K$, $L$, $M$ oraz podano współrzędne punktów $K$ i $L$. Odcinek $KM$ jest podzielony na $9$ równych części.\n\nNa drugiej osi liczbowej zaznaczono punkty $P$, $R$, $S$ oraz podano współrzędne punktów $P$ i $S$. Odcinek $PS$ jest podzielony na $9$ równych części.\n\n[rysunek]\n\n**Oblicz iloczyn **$x \\cdot y$**. Zapisz obliczenia.**",
+      rysunek: "assets/arkusze-e8/rys/2025-czerwiec-o19.png",
+      rozwiazanie: "$x$ – współrzędna punktu $M$:\n\n$x = \\frac{5}{2} \\cdot 9 = 22{,}5$\n\n$y$ – współrzędna punktu $R$:\n\n$y = \\frac{18}{9} \\cdot 3 = 6$\n\nObliczamy iloczyn liczb $x \\cdot y$:\n\n$x \\cdot y = 22{,}5 \\cdot 6 = 135$\n\nOdpowiedź: Iloczyn liczb $x \\cdot y$ jest równy $135$." },
+  ],
 };

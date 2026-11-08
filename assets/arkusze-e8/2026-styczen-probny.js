@@ -79,4 +79,9 @@ export default {
       opcje: ["$412$", "$472$", "$532$", "$592$"],
       poprawna: 1 },
   ],
+  otwarte: [
+    { nr: "15", dzial: "e8-liczby", temat: "pierwiastki", punkty: 2,
+      tresc: "Dana jest liczba\n\n$a = \\frac{2\\sqrt{3} \\cdot \\sqrt{10}}{\\sqrt{6}}$\n\n**Wyznacz dwie kolejne liczby całkowite dodatnie, między którymi na osi liczbowej znajduje się liczba **$a$**. Zapisz obliczenia.**",
+      rozwiazanie: "Obliczamy wartość liczby $a$:\n\n$a = \\frac{2\\sqrt{3} \\cdot \\sqrt{10}}{\\sqrt{6}} = \\frac{2\\sqrt{3} \\cdot \\sqrt{2} \\cdot \\sqrt{5}}{\\sqrt{2} \\cdot \\sqrt{3}} = 2\\sqrt{5} = \\sqrt{20}$\n\nSzukamy dwóch kolejnych liczb naturalnych, takich że jedna jest mniejsza od $\\sqrt{20}$, a druga jest większa od $\\sqrt{20}$.\n\n$\\sqrt{16} < \\sqrt{20} < \\sqrt{25}$\n\n$\\sqrt{16} = 4$\n\n$\\sqrt{25} = 5$\n\nOdpowiedź: Liczba $a$ znajduje się na osi liczbowej między liczbami $4$ oraz $5$." },
+  ],
 };

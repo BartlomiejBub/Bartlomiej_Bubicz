@@ -82,4 +82,9 @@ export default {
       poprawna: 1,
       rysunek: "assets/arkusze-e8/rys/2021-maj-15.png" },
   ],
+  otwarte: [
+    { nr: "16", dzial: "e8-liczby", temat: "ulamki-i-rozwiniecia", punkty: 2,
+      tresc: "Paweł powiedział, że podzieli tabliczkę czekolady w taki sposób, że bratu przypadnie $\\frac{1}{2}$ całej tabliczki, siostrze $\\frac{5}{12}$ całej tabliczki, a jemu $\\frac{1}{6}$ całej tabliczki. Czy taki podział tabliczki czekolady jest możliwy? Uzasadnij swoją odpowiedź.",
+      rozwiazanie: "Dodajemy części tabliczki przeznaczone dla brata, siostry i Pawła:\n\n$\\frac{1}{2} + \\frac{5}{12} + \\frac{1}{6} = \\frac{13}{12} > 1$\n\nOdpowiedź: Taki podział tabliczki czekolady nie jest możliwy." },
+  ],
 };

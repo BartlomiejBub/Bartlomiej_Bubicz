@@ -89,4 +89,9 @@ export default {
       ],
       rysunek: "assets/arkusze-e8/rys/2024-grudzien-probny-15.png" },
   ],
+  otwarte: [
+    { nr: "16", dzial: "e8-liczby", temat: "dzielniki", punkty: 2,
+      tresc: "Na festyn wpuszczano uczestników jednym wejściem. Pierwszy wchodzący otrzymał i sok, i ciastko. Następnie co szósty wchodzący otrzymywał sok, a co dziesiąty wchodzący otrzymywał ciastko.\n\nTo znaczy, że sok otrzymali wchodzący: pierwszy, siódmy, trzynasty itd. A ciastko otrzymali wchodzący: pierwszy, jedenasty, dwudziesty pierwszy itd. Na festyn przyszło $450$ osób.\n\n**Oblicz, ilu uczestników tego festynu otrzymało i sok, i ciastko. Zapisz obliczenia.**",
+      rozwiazanie: "Wypiszemy kilka początkowych kolejnych wielokrotności liczby $6$:\n\n$6,\\ 12,\\ 18,\\ 24,\\ 30,\\ 36,\\ 42,\\ \\ldots$\n\nWypiszemy kilka początkowych kolejnych wielokrotności liczby $10$:\n\n$10,\\ 20,\\ 30,\\ 40,\\ 50,\\ 60,\\ \\ldots$\n\nZauważmy, że najmniejszą wspólną wielokrotnością liczb $6$ i $10$ jest liczba $30$, czyli\n\n$\\text{NWW}(6, 10) = 30$\n\nTo oznacza, że co $30$ osoba, licząc od pierwszej (tzn. $1,\\ 31,\\ 61,\\ \\ldots$) otrzymała i sok, i ciastko.\n\nObliczamy, na ile takich $30$-osobowych grup można było podzielić $450$ uczestników festynu:\n\n$450 : 30 = 15$\n\nOdpowiedź: Sok i ciastko otrzymało $15$ uczestników tego festynu." },
+  ],
 };

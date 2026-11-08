@@ -84,4 +84,9 @@ export default {
       poprawna: 3,
       rysunek: "assets/arkusze-e8/rys/2025-maj-15.png" },
   ],
+  otwarte: [
+    { nr: "16", dzial: "e8-liczby", temat: "ulamki-i-rozwiniecia", punkty: 2,
+      tresc: "Liczbę $\\frac{7}{15}$ zapisano w postaci sumy trzech ułamków zwykłych, z których jeden jest równy $\\frac{1}{5}$, a drugi $\\frac{1}{6}$.\n\n**Uzasadnij, że trzeci składnik tej sumy można przedstawić w postaci ułamka zwykłego, którego licznik jest równy **$1$**, a mianownik jest liczbą całkowitą dodatnią. Zapisz obliczenia.**",
+      rozwiazanie: "Obliczamy trzeci składnik sumy:\n\n$\\frac{7}{15} - \\left(\\frac{1}{5} + \\frac{1}{6}\\right) = \\frac{14}{30} - \\frac{11}{30} = \\frac{3}{30} = \\frac{1}{10}$\n\nTrzeci składnik sumy można przedstawić w postaci ułamka $\\frac{1}{10}$, który spełnia warunki zadania." },
+  ],
 };

@@ -76,4 +76,9 @@ export default {
       poprawna: 3,
       rysunek: "assets/arkusze-e8/rys/2026-czerwiec-14.png" },
   ],
+  otwarte: [
+    { nr: "15", dzial: "e8-liczby", temat: "ulamki-i-rozwiniecia", punkty: 2,
+      tresc: "Na klombie rośnie $150$ tulipanów. Każdy z nich ma kwiat w jednym z trzech kolorów: w czerwonym, w żółtym albo w białym.\n\nWśród tych kwiatów $\\frac{1}{5}$ ma kolor czerwony i $\\frac{1}{3}$ ma kolor żółty.\n\n**Oblicz, jaką część liczby wszystkich tulipanów stanowi liczba białych tulipanów na tym klombie. Zapisz obliczenia.**",
+      rozwiazanie: "Obliczamy, jaką część liczby wszystkich tulipanów stanowi łączna liczba czerwonych i żółtych tulipanów:\n\n$\\frac{1}{5} + \\frac{1}{3} = \\frac{3 + 5}{15} = \\frac{8}{15}$\n\nObliczamy, jaką część liczby wszystkich tulipanów stanowi liczba białych tulipanów:\n\n$1 - \\frac{8}{15} = \\frac{15 - 8}{15} = \\frac{7}{15}$\n\nOdpowiedź: Liczba białych tulipanów stanowi $\\frac{7}{15}$ liczby wszystkich tulipanów na tym klombie." },
+  ],
 };
