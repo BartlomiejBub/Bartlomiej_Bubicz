@@ -527,6 +527,13 @@ input[type="radio"] { width: 18px; height: 18px; margin: 0; accent-color: var(--
 .chip:disabled:hover { border-color: var(--field-line); }
 .rozdzialy { margin-bottom: 8px; }
 .rozdzial-tytul { margin: 32px 0 4px; color: var(--ink); font-size: 1.5rem; }
+.egzaminy.kafelki { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 16px; }
+@media (max-width: 520px) {
+  .egzaminy.kafelki { grid-template-columns: 1fr; }
+}
+.egzamin:disabled { opacity: 0.55; cursor: default; }
+.egzamin:disabled:hover { border-color: var(--line); }
+.zestaw .gen-card { margin: 0; }
 
 .blok { margin-top: 36px; }
 .blok h3 { margin: 0 0 4px; color: var(--ink); font-size: 1.25rem; }

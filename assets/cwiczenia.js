@@ -2,7 +2,7 @@
 // Pokazuje działy egzaminu wybranego na stronie (<body data-egzamin>, zmienia go korepetycje.js).
 import { el } from "./dom.js";
 import { zaloguj, zalogowany, wyloguj, ma, tematyUcznia, dostepUcznia } from "./dostep.js";
-import { DZIALY, KARTY, egzamin, maMaterialy, przytnij, klasy, dzialRozdzialu } from "./dzialy.js";
+import { DZIALY, KARTY, egzamin, maMaterialy, przytnij, klasy, dzialRozdzialu, wczesniejszeRozdzialy } from "./dzialy.js";
 import { losownik, sprawdz } from "./generatory/wspolne.js";
 import { wstaw } from "./matematyka.js";
 
@@ -10,6 +10,8 @@ const KLUCZ_DZIALU = "korepetycje.dzial";   // + "." + egzamin; dla matury bez p
 const KLUCZ_TRYBU = "korepetycje.tryb";     // "egzamin" (działy egzaminu) albo "szkola" (klasy i rozdziały)
 const KLUCZ_KLASY = "korepetycje.klasa";    // + "." + egzamin
 const KLUCZ_ROZDZIALU = "korepetycje.rozdzial";   // + "." + id klasy
+const ZADAN_NA_SPRAWDZIAN = 10;
+const ZADAN_NA_POWTORKE = 6;
 
 const logowanie = document.getElementById("cwiczenia-logowanie");
 const panel = document.getElementById("cwiczenia-uczen");
@@ -186,7 +188,7 @@ function pokazKlase(uczen, k, przyciski) {
     tresc.replaceChildren(
       el("h3", { class: "rozdzial-tytul" }, x.r.nazwa),
       el("p", { class: "blok-intro" }, x.r.opis),
-      ...materialy(x.d, x.widzi),
+      ...kafelkiRozdzialu(uczen, k, x),
     );
   };
   const chipy = rozdzialy.map((x, i) => {
@@ -212,6 +214,152 @@ function pokazKlase(uczen, k, przyciski) {
     ),
   ].filter(Boolean));
   if (gotowe.length) wybierz(zapisany ?? gotowe[0]);
+}
+
+/** Trzy sposoby pracy z rozdziałem: nauka, próbny sprawdzian z tego rozdziału i powtórka wcześniejszych rozdziałów. */
+function kafelkiRozdzialu(uczen, k, x) {
+  const dostep = dostepUcznia(uczen);
+  const teraz = pulaZadan([x.d]);
+  const wczesniej = pulaZadan(wczesniejszeRozdzialy(k, x.r).map((w) => dzialRozdzialu(w.klasa, w.rozdzial, dostep)));
+  // Im bliżej egzaminu, tym więcej zadań z arkuszy w powtórce: od 1 w najmłodszej klasie do 3 w ostatniej.
+  const lista = klasy(k.egzamin);
+  const zArkuszy = 1 + Math.round((2 * lista.indexOf(k)) / Math.max(1, lista.length - 1));
+  const naSprawdzian = teraz.generatory.length ? ZADAN_NA_SPRAWDZIAN : Math.min(ZADAN_NA_SPRAWDZIAN, teraz.zamkniete.length);
+
+  const tryby = [
+    {
+      id: "nauka", nazwa: "Ucz się", opis: "wyjaśnienia, ćwiczenia i zadania z egzaminów",
+      pokaz: () => materialy(x.d, x.widzi),
+    },
+    {
+      id: "sprawdzian", nazwa: "Przed sprawdzianem", opis: `${zadan(naSprawdzian)} z tego rozdziału`,
+      brak: !naSprawdzian && "W tym rozdziale nie ma jeszcze zadań do sprawdzianu.",
+      pokaz: () => [zestaw({
+        tytul: "Sprawdzian próbny",
+        opis: "Zadania z całego rozdziału, temat po temacie – tak jak na sprawdzianie w szkole. Rozwiąż je na kartce i sprawdź, ile umiesz.",
+        losuj: (r) => zadaniaSprawdzianu(teraz, r),
+        druk: x.d.karty && `karta.html?rozdzial=${x.d.id}`,
+      })],
+    },
+    {
+      id: "powtorka", nazwa: "Powtórka", opis: "zadania z wcześniejszych rozdziałów",
+      brak: !wczesniej.generatory.length && !wczesniej.zamkniete.length && "Powtórka pojawi się, gdy przerobisz wcześniejsze rozdziały.",
+      pokaz: () => [zestaw({
+        tytul: "Powtórka",
+        opis: "Za każdym razem inne zadania z rozdziałów, które już były – żeby nic nie wyleciało z głowy przed egzaminem."
+          + (wczesniej.zamkniete.length ? " Są wśród nich zadania z arkuszy egzaminacyjnych – im bliżej egzaminu, tym więcej." : ""),
+        losuj: (r) => zadaniaPowtorki(wczesniej, zArkuszy, r),
+      })],
+    },
+  ];
+
+  const tresc = el("div");
+  const przyciski = tryby.map((t) => {
+    const b = el("button", { class: "egzamin", type: "button", "aria-pressed": "false", disabled: Boolean(t.brak), title: t.brak || null },
+      el("strong", {}, t.nazwa), el("small", {}, t.opis));
+    b.addEventListener("click", () => {
+      for (const p of przyciski) p.setAttribute("aria-pressed", String(p === b));
+      tresc.replaceChildren(...t.pokaz());
+    });
+    return b;
+  });
+  przyciski[0].click();
+  return [el("div", { class: "egzaminy kafelki", role: "group", "aria-label": "Co chcesz zrobić" }, ...przyciski), tresc];
+}
+
+/** Generatory i zadania zamknięte z arkuszy z kilku działów (albo rozdziałów), bez powtórzeń. */
+function pulaZadan(dzialy) {
+  return {
+    generatory: [...new Set(dzialy.flatMap((d) => d.generatory))],
+    zamkniete: [...new Set(dzialy.flatMap((d) => d.tematy.flatMap((t) => t.zadania.filter((z) => !z.rozwiazanie))))],
+  };
+}
+
+/** Sprawdzian: każdy generator rozdziału po kolei (gdy jest ich mniej niż zadań – kolejna runda), bez generatorów – zadania z arkuszy. */
+function zadaniaSprawdzianu(pula, r) {
+  if (!pula.generatory.length) return r.shuffle(pula.zamkniete).slice(0, ZADAN_NA_SPRAWDZIAN).map((zadanie) => ({ zadanie }));
+  const wybrane = new Set(r.shuffle(pula.generatory).slice(0, ZADAN_NA_SPRAWDZIAN));
+  const kolejnosc = pula.generatory.filter((g) => wybrane.has(g));
+  return Array.from({ length: ZADAN_NA_SPRAWDZIAN }, (_, i) => kolejnosc[i % kolejnosc.length])
+    .sort((a, b) => kolejnosc.indexOf(a) - kolejnosc.indexOf(b))
+    .map((generator) => ({ generator }));
+}
+
+/** Powtórka: kilka zadań z arkuszy i reszta z generatorów wcześniejszych rozdziałów, przemieszane. */
+function zadaniaPowtorki(pula, zArkuszy, r) {
+  const ileArkuszy = pula.generatory.length ? Math.min(zArkuszy, pula.zamkniete.length) : ZADAN_NA_POWTORKE;
+  const zamkniete = r.shuffle(pula.zamkniete).slice(0, ileArkuszy).map((zadanie) => ({ zadanie }));
+  const ileGen = ZADAN_NA_POWTORKE - zamkniete.length;
+  const generatory = r.shuffle(pula.generatory);
+  const zGeneratorow = generatory.length ? Array.from({ length: ileGen }, (_, i) => ({ generator: generatory[i % generatory.length] })) : [];
+  return r.shuffle([...zamkniete, ...zGeneratorow]);
+}
+
+/** Zestaw zadań do rozwiązania jedno po drugim, z licznikiem dobrych odpowiedzi i przyciskiem „Nowy zestaw”. */
+function zestaw({ tytul, opis, losuj, druk }) {
+  const licznik = el("span", { class: "gen-count", "aria-live": "polite" });
+  const lista = el("ol", { class: "abcd-list zestaw" });
+  let dobrze = 0;
+  let ile = 0;
+  const odswiez = () => {
+    licznik.textContent = `Dobrze: ${dobrze} z ${ile}`;
+  };
+  const zalicz = () => {
+    dobrze++;
+    odswiez();
+  };
+  const nowy = () => {
+    const pozycje = losuj(losownik(losoweZiarno()));
+    dobrze = 0;
+    ile = pozycje.length;
+    lista.replaceChildren(...pozycje.map((p) => (p.generator ? kartaGeneratora(p.generator, zalicz) : kartaZZestawu(p.zadanie, zalicz))));
+    odswiez();
+  };
+  const nowyPrzycisk = el("button", { class: "btn", type: "button" }, "Nowy zestaw");
+  nowyPrzycisk.addEventListener("click", nowy);
+  const wydruk = druk ? el("a", { class: "btn", href: druk, target: "_blank", rel: "noopener" }, "Wydrukuj kartę z rozdziału") : null;
+  wydruk?.addEventListener("click", () => {
+    wydruk.href = `${druk}&ziarno=${losoweZiarno()}`;
+  });
+
+  nowy();
+  return el("section", { class: "blok" },
+    el("div", { class: "blok-head" }, el("h3", {}, tytul), licznik),
+    el("p", { class: "blok-intro" }, opis),
+    lista,
+    el("div", { class: "blok-actions" }, nowyPrzycisk, wydruk),
+  );
+}
+
+/** Zadanie z generatora w zestawie; „Nowe zadanie” losuje w tym miejscu inne zadanie tego samego rodzaju. Liczy się tylko raz. */
+function kartaGeneratora(g, zalicz) {
+  const karta = el("li", { class: "gen-card" });
+  let zaliczone = false;
+  const pokaz = ({ fokus }) => {
+    karta.replaceChildren(
+      el("p", { class: "abcd-zrodlo" }, g.nazwa),
+      ...widokZadania(g.generuj(losownik(losoweZiarno())), {
+        temat: g.nazwa,
+        poprawne: () => {
+          if (!zaliczone) zalicz();
+          zaliczone = true;
+        },
+        nastepne: () => pokaz({ fokus: true }),
+      }),
+    );
+    if (fokus) karta.querySelector(".gen-tresc").focus({ preventScroll: true });
+  };
+  pokaz({ fokus: false });
+  return karta;
+}
+
+/** Zadanie zamknięte z arkusza w zestawie; liczy się pierwsze sprawdzenie. */
+function kartaZZestawu(z, zalicz) {
+  let ocenione = false;
+  return kartaZamknieta(z, (dobrze) => {
+    if (!ocenione && dobrze) zalicz();
+    ocenione = true;
+  });
 }
 
 // --- Wzory i schematy: najważniejsze wzory tematu i jak rozwiązywać typowe zadania
@@ -371,6 +519,7 @@ function kartaZamknieta(z, ocenione) {
     if (wybrane.every((w) => w === -1)) {
       info.className = "feedback";
       info.textContent = `Poprawna odpowiedź: ${litery}.`;
+      ocenione(false);   // podejrzana odpowiedź się nie liczy
     } else if (grupy.every((g, k) => wybrane[k] === g.c.poprawna)) {
       info.className = "feedback ok";
       info.textContent = `Dobrze! Poprawna odpowiedź: ${litery}.`;

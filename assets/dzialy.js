@@ -258,6 +258,18 @@ export function rozdzial(id) {
   return null;
 }
 
+/** Rozdziały przerobione przed danym: wcześniejsze w tej klasie i wszystkie z niższych klas tej samej szkoły. */
+export function wczesniejszeRozdzialy(klasa, r) {
+  const wynik = [];
+  for (const k of klasy(klasa.egzamin)) {
+    for (const x of k.rozdzialy) {
+      if (x === r) return wynik;
+      wynik.push({ klasa: k, rozdzial: x });
+    }
+  }
+  return wynik;
+}
+
 /** Rozdział jako jeden dział: tematy (zadania z arkuszy), wzory i generatory z działów, do których prowadzi.
  *  dostep – co widzi uczeń: tematy(id działu) → lista id tematów albo null (cały dział), ma(id działu, rodzaj).
  *  karty – czy uczeń może drukować karty pracy z generatorów tego rozdziału (karty z generatora wymagają też generatora). */
