@@ -592,10 +592,10 @@ function ciagi(r) {
 // --- Lista generatorów
 
 export const GENERATORY = [
-  { id: "srednia-predkosc", nazwa: "Średnia prędkość", opis: "Średnia prędkość na całej trasie przy różnych prędkościach tam i z powrotem (albo na dwóch połowach trasy) oraz czas podróży.", generuj: sredniaPredkosc },
-  { id: "wspolna-praca", nazwa: "Wspólna praca", opis: "Po jakim czasie dwie osoby lub maszyny wykonają pracę razem; ile zajmie drugiej samej; napełnianie z odpływem.", generuj: wspolnaPraca },
-  { id: "procenty", nazwa: "Procenty – ceny, VAT, punkty procentowe", opis: "Kolejne zmiany ceny, cena przed obniżką lub podwyżką, cena netto i brutto, punkty procentowe a procenty.", generuj: procenty },
-  { id: "lokata", nazwa: "Lokata – odsetki", opis: "Kwota po zakończeniu lokaty z kapitalizacją roczną, odsetki proste i podatek od odsetek.", generuj: lokata },
-  { id: "uklad-rownan", nazwa: "Układ równań z treści", opis: "Bilety i monety, ceny zakupów, wiek oraz boki prostokąta zapisane układem równań.", generuj: ukladRownan },
-  { id: "ciagi-w-praktyce", nazwa: "Ciągi w praktyce", opis: "Oszczędności, rzędy miejsc i stosy (ciąg arytmetyczny) oraz wzrost lub spadek o stały procent rocznie (ciąg geometryczny).", generuj: ciagi },
+  { id: "srednia-predkosc", temat: "ruch-i-praca", nazwa: "Średnia prędkość", opis: "Średnia prędkość na całej trasie przy różnych prędkościach tam i z powrotem (albo na dwóch połowach trasy) oraz czas podróży.", generuj: sredniaPredkosc },
+  { id: "wspolna-praca", temat: "ruch-i-praca", nazwa: "Wspólna praca", opis: "Po jakim czasie dwie osoby lub maszyny wykonają pracę razem; ile zajmie drugiej samej; napełnianie z odpływem.", generuj: wspolnaPraca },
+  { id: "procenty", temat: "procenty-i-pieniadze", nazwa: "Procenty – ceny, VAT, punkty procentowe", opis: "Kolejne zmiany ceny, cena przed obniżką lub podwyżką, cena netto i brutto, punkty procentowe a procenty.", generuj: procenty },
+  { id: "lokata", temat: "procenty-i-pieniadze", nazwa: "Lokata – odsetki", opis: "Kwota po zakończeniu lokaty z kapitalizacją roczną, odsetki proste i podatek od odsetek.", generuj: lokata },
+  { id: "uklad-rownan", temat: "rownania-z-tresci", nazwa: "Układ równań z treści", opis: "Bilety i monety, ceny zakupów, wiek oraz boki prostokąta zapisane układem równań.", generuj: ukladRownan },
+  { id: "ciagi-w-praktyce", temat: "ciagi-w-praktyce", nazwa: "Ciągi w praktyce", opis: "Oszczędności, rzędy miejsc i stosy (ciąg arytmetyczny) oraz wzrost lub spadek o stały procent rocznie (ciąg geometryczny).", generuj: ciagi },
 ];

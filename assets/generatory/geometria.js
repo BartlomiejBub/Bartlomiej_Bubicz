@@ -1084,12 +1084,12 @@ function kula(r) {
 // --- Lista generatorów
 
 export const GENERATORY = [
-  { id: "trygonometria", nazwa: "Trygonometria", opis: "Funkcje trygonometryczne kąta ostrego, jedynka trygonometryczna, wartości dla kątów 30°, 45° i 60°.", generuj: trygonometria },
-  { id: "trojkat-prostokatny", nazwa: "Trójkąt prostokątny", opis: "Twierdzenie Pitagorasa, pole i obwód, wysokość opuszczona na przeciwprostokątną, boki z funkcji trygonometrycznych.", generuj: trojkatProstokatny },
-  { id: "pola-figur", nazwa: "Pola figur", opis: "Pola trójkąta, rombu, trapezu i równoległoboku, także zadania odwrotne.", generuj: polaFigur },
-  { id: "katy", nazwa: "Kąty i okręgi", opis: "Kąty w trójkącie, kąt wpisany i środkowy, kąty przy prostych równoległych, kąty wielokąta.", generuj: katy },
-  { id: "odcinek", nazwa: "Odcinek w układzie współrzędnych", opis: "Długość i środek odcinka, brakujący koniec odcinka, punkt symetryczny.", generuj: odcinek },
-  { id: "okrag", nazwa: "Równanie okręgu", opis: "Środek i promień okręgu z równania, kwadrat promienia okręgu przez dany punkt lub stycznego do osi.", generuj: okrag },
-  { id: "graniastoslupy", nazwa: "Graniastosłupy i ostrosłupy", opis: "Sześcian, prostopadłościan (objętość, pole, przekątna) i objętość ostrosłupa.", generuj: graniastoslupy },
-  { id: "bryly-obrotowe", nazwa: "Bryły obrotowe", opis: "Objętość i pole powierzchni walca, stożka i kuli jako wielokrotność liczby π.", generuj: brylyObrotowe },
+  { id: "trygonometria", temat: "trygonometria", nazwa: "Trygonometria", opis: "Funkcje trygonometryczne kąta ostrego, jedynka trygonometryczna, wartości dla kątów 30°, 45° i 60°.", generuj: trygonometria },
+  { id: "trojkat-prostokatny", temat: "trygonometria", nazwa: "Trójkąt prostokątny", opis: "Twierdzenie Pitagorasa, pole i obwód, wysokość opuszczona na przeciwprostokątną, boki z funkcji trygonometrycznych.", generuj: trojkatProstokatny },
+  { id: "pola-figur", temat: "planimetria", nazwa: "Pola figur", opis: "Pola trójkąta, rombu, trapezu i równoległoboku, także zadania odwrotne.", generuj: polaFigur },
+  { id: "katy", temat: "planimetria", nazwa: "Kąty i okręgi", opis: "Kąty w trójkącie, kąt wpisany i środkowy, kąty przy prostych równoległych, kąty wielokąta.", generuj: katy },
+  { id: "odcinek", temat: "geometria-analityczna", nazwa: "Odcinek w układzie współrzędnych", opis: "Długość i środek odcinka, brakujący koniec odcinka, punkt symetryczny.", generuj: odcinek },
+  { id: "okrag", temat: "geometria-analityczna", nazwa: "Równanie okręgu", opis: "Środek i promień okręgu z równania, kwadrat promienia okręgu przez dany punkt lub stycznego do osi.", generuj: okrag },
+  { id: "graniastoslupy", temat: "stereometria", nazwa: "Graniastosłupy i ostrosłupy", opis: "Sześcian, prostopadłościan (objętość, pole, przekątna) i objętość ostrosłupa.", generuj: graniastoslupy },
+  { id: "bryly-obrotowe", temat: "stereometria", nazwa: "Bryły obrotowe", opis: "Objętość i pole powierzchni walca, stożka i kuli jako wielokrotność liczby π.", generuj: brylyObrotowe },
 ];

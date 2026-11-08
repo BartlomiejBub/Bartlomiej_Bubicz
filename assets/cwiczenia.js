@@ -1,18 +1,22 @@
 // Ćwiczenia dla zalogowanych uczniów: zadania z arkuszy CKE, generator zadań i karty pracy.
 // Pokazuje działy egzaminu wybranego na stronie (<body data-egzamin>, zmienia go korepetycje.js).
 import { el } from "./dom.js";
-import { zaloguj, zalogowany, wyloguj, ma, tematyUcznia } from "./dostep.js";
-import { DZIALY, KARTY, egzamin, maMaterialy, przytnij } from "./dzialy.js";
+import { zaloguj, zalogowany, wyloguj, ma, tematyUcznia, dostepUcznia } from "./dostep.js";
+import { DZIALY, KARTY, egzamin, maMaterialy, przytnij, klasy, dzialRozdzialu } from "./dzialy.js";
 import { losownik, sprawdz } from "./generatory/wspolne.js";
 import { wstaw } from "./matematyka.js";
 
 const KLUCZ_DZIALU = "korepetycje.dzial";   // + "." + egzamin; dla matury bez przyrostka, jak dawniej
+const KLUCZ_TRYBU = "korepetycje.tryb";     // "egzamin" (działy egzaminu) albo "szkola" (klasy i rozdziały)
+const KLUCZ_KLASY = "korepetycje.klasa";    // + "." + egzamin
+const KLUCZ_ROZDZIALU = "korepetycje.rozdzial";   // + "." + id klasy
 
 const logowanie = document.getElementById("cwiczenia-logowanie");
 const panel = document.getElementById("cwiczenia-uczen");
 const formularz = document.getElementById("login-form");
 const poleKodu = document.getElementById("kod");
 const blad = document.getElementById("login-error");
+const wyborTrybu = document.getElementById("tryb-wybor");
 const wyborDzialu = document.getElementById("dzialy-wybor");
 const widok = document.getElementById("dzial");
 
@@ -81,6 +85,7 @@ function pokazUcznia(uczen) {
   const dostepne = wszystkie.filter((d) => d.egzamin === e.id);
   if (!dostepne.length) {
     const inny = wszystkie.find((d) => d.egzamin !== e.id);
+    wyborTrybu.hidden = true;
     wyborDzialu.hidden = true;
     widok.replaceChildren(
       el("div", { class: "empty" },
@@ -93,11 +98,34 @@ function pokazUcznia(uczen) {
     return;
   }
 
+  // Dwa wejścia do tych samych materiałów: działy egzaminu albo klasy i rozdziały ze szkoły.
+  const tryby = [
+    ["egzamin", "Do egzaminu", "działy jak na egzaminie"],
+    ["szkola", "Do szkoły", "rozdziały z Twojej klasy"],
+  ].map(([id, nazwa, opis]) => {
+    const b = el("button", { class: "egzamin", type: "button", "aria-pressed": "false", "data-tryb": id },
+      el("strong", {}, nazwa), el("small", {}, opis));
+    b.addEventListener("click", () => pokazTryb(uczen, dostepne, id));
+    return b;
+  });
+  wyborTrybu.replaceChildren(...tryby);
+  wyborTrybu.hidden = !klasy(e.id).length;
+  pokazTryb(uczen, dostepne, przypomnij(KLUCZ_TRYBU) === "szkola" && klasy(e.id).length ? "szkola" : "egzamin");
+}
+
+function pokazTryb(uczen, dostepne, tryb) {
+  pamietaj(KLUCZ_TRYBU, tryb);
+  for (const b of wyborTrybu.children) b.setAttribute("aria-pressed", String(b.dataset.tryb === tryb));
+  if (tryb === "szkola") {
+    pokazKlasy(uczen);
+    return;
+  }
   const przyciski = dostepne.map((d) => {
     const b = el("button", { class: "tab", type: "button", "aria-pressed": "false", "data-dzial": d.id }, d.nazwa);
     b.addEventListener("click", () => pokazDzial(uczen, d, przyciski));
     return b;
   });
+  wyborDzialu.setAttribute("aria-label", "Dział");
   wyborDzialu.replaceChildren(...przyciski);
   wyborDzialu.hidden = dostepne.length < 2;
   const zapisany = dostepne.find((d) => d.id === przypomnij(kluczDzialu()));
@@ -108,6 +136,11 @@ function pokazDzial(uczen, d, przyciski) {
   pamietaj(kluczDzialu(), d.id);
   for (const b of przyciski) b.setAttribute("aria-pressed", String(b.dataset.dzial === d.id));
   const widzi = (r) => ma(uczen, d.id, r) && maMaterialy(d, r);
+  widok.replaceChildren(el("p", { class: "section-intro" }, d.opis), ...materialy(d, widzi));
+}
+
+/** Bloki z materiałami działu (albo rozdziału), które uczeń widzi. */
+function materialy(d, widzi) {
   const bloki = [
     widzi("zadania") && blokZadan(d),
     widzi("generator") && blokGeneratora(d),
@@ -115,7 +148,70 @@ function pokazDzial(uczen, d, przyciski) {
   ];
   // Kartę wzorów widzi każdy, kto ma jakikolwiek dostęp do działu.
   const wzory = d.wzory.length > 0 && blokWzorow(d);
-  widok.replaceChildren(el("p", { class: "section-intro" }, d.opis), ...[wzory, ...bloki].filter(Boolean));
+  return [wzory, ...bloki].filter(Boolean);
+}
+
+// --- Do szkoły: klasa, rozdział, który uczeń teraz przerabia, i materiały do niego
+
+function pokazKlasy(uczen) {
+  const lista = klasy(biezacyEgzamin().id);
+  // Na przyciskach same numery klas, żeby wszystkie zmieściły się na telefonie.
+  const przyciski = lista.map((k) => {
+    const b = el("button", { class: "tab", type: "button", "aria-pressed": "false", "aria-label": k.nazwa, "data-klasa": k.id },
+      k.nazwa.replace(/^Klasa /, ""));
+    b.addEventListener("click", () => pokazKlase(uczen, k, przyciski));
+    return b;
+  });
+  wyborDzialu.setAttribute("aria-label", "Klasa");
+  wyborDzialu.replaceChildren(el("span", { class: "tabs-etykieta", "aria-hidden": "true" }, "Klasa"), ...przyciski);
+  wyborDzialu.hidden = false;
+  const zapisana = lista.find((k) => k.id === przypomnij(`${KLUCZ_KLASY}.${biezacyEgzamin().id}`));
+  pokazKlase(uczen, zapisana ?? lista[0], przyciski);
+}
+
+function pokazKlase(uczen, k, przyciski) {
+  pamietaj(`${KLUCZ_KLASY}.${k.egzamin}`, k.id);
+  for (const b of przyciski) b.setAttribute("aria-pressed", String(b.dataset.klasa === k.id));
+
+  const dostep = dostepUcznia(uczen);
+  const rozdzialy = k.rozdzialy.map((r) => {
+    const d = dzialRozdzialu(k, r, dostep);
+    const widzi = (rodzaj) => (rodzaj === "karty" ? d.karty : maMaterialy(d, rodzaj));
+    return { r, d, widzi, gotowy: d.wzory.length > 0 || ["zadania", "generator"].some(widzi) };
+  });
+  const tresc = el("div", { class: "rozdzial" });
+  const wybierz = (x) => {
+    pamietaj(`${KLUCZ_ROZDZIALU}.${k.id}`, x.r.id);
+    for (const c of chipy) c.setAttribute("aria-pressed", String(c.dataset.rozdzial === x.r.id));
+    tresc.replaceChildren(
+      el("h3", { class: "rozdzial-tytul" }, x.r.nazwa),
+      el("p", { class: "blok-intro" }, x.r.opis),
+      ...materialy(x.d, x.widzi),
+    );
+  };
+  const chipy = rozdzialy.map((x, i) => {
+    const wkrotce = !Object.keys(x.r.tematy).length;
+    const b = el("button", {
+      class: "chip", type: "button", "aria-pressed": "false", "data-rozdzial": x.r.id, disabled: !x.gotowy,
+      title: x.gotowy ? x.r.opis : wkrotce ? "Materiały do tego rozdziału dopiero przygotowuję." : "Ten rozdział nie jest dla Ciebie odblokowany – zapytaj nauczyciela.",
+    }, `${i + 1}. ${x.r.nazwa}`, wkrotce && el("span", { class: "chip-count" }, " · wkrótce"));
+    b.addEventListener("click", () => wybierz(x));
+    return b;
+  });
+
+  const zablokowane = rozdzialy.some((x) => !x.gotowy && Object.keys(x.r.tematy).length);
+  const gotowe = rozdzialy.filter((x) => x.gotowy);
+  const zapisany = gotowe.find((x) => x.r.id === przypomnij(`${KLUCZ_ROZDZIALU}.${k.id}`));
+  widok.replaceChildren(...[
+    el("p", { class: "section-intro" }, "Rozdziały w kolejności, w jakiej zwykle są w podręcznikach. Wybierz ten, który teraz przerabiasz w szkole – zobaczysz wyjaśnienia, ćwiczenia i zadania z egzaminów z tego tematu."),
+    el("div", { class: "chips rozdzialy", role: "group", "aria-label": `Rozdziały: ${k.nazwa.toLowerCase()}` }, ...chipy),
+    zablokowane && el("p", { class: "field-hint" }, "Wyszarzone rozdziały nie są jeszcze dla Ciebie odblokowane – zapytaj nauczyciela."),
+    gotowe.length ? tresc : el("div", { class: "empty" },
+      el("strong", {}, "Brak materiałów"),
+      el("p", {}, "W tej klasie nie masz jeszcze odblokowanych rozdziałów. Daj znać nauczycielowi."),
+    ),
+  ].filter(Boolean));
+  if (gotowe.length) wybierz(zapisany ?? gotowe[0]);
 }
 
 // --- Wzory i schematy: najważniejsze wzory tematu i jak rozwiązywać typowe zadania
@@ -496,9 +592,10 @@ function widokZadania(z, { temat, poprawne, nastepne }) {
 
 function blokKart(d) {
   const ile = zadan(d.generatory.length * KARTY.zadanNaGenerator);
-  const losowa = el("a", { class: "btn", href: `karta.html?dzial=${d.id}`, target: "_blank", rel: "noopener" }, "Wylosuj nową kartę");
+  const skad = d.rozdzial ? `rozdzial=${d.id}` : `dzial=${d.id}`;
+  const losowa = el("a", { class: "btn", href: `karta.html?${skad}`, target: "_blank", rel: "noopener" }, "Wylosuj nową kartę");
   losowa.addEventListener("click", () => {
-    losowa.href = `karta.html?dzial=${d.id}&ziarno=${losoweZiarno()}`;
+    losowa.href = `karta.html?${skad}&ziarno=${losoweZiarno()}`;
   });
   const link = (href, tytul, opis) =>
     el("li", {}, el("a", { class: "sheet-link", href, target: "_blank", rel: "noopener" }, el("strong", {}, tytul), el("small", {}, opis)));
@@ -510,7 +607,7 @@ function blokKart(d) {
     d.generatory.length > 0 && el("h4", { class: "blok-sub" }, "Karty z generatora"),
     d.generatory.length > 0 && el("ul", { class: "sheet-list" },
       ...Array.from({ length: KARTY.ile }, (_, i) =>
-        link(`karta.html?dzial=${d.id}&nr=${i + 1}`, `Karta z generatora ${i + 1}`, `${ile} z odpowiedziami`)),
+        link(`karta.html?${skad}&nr=${i + 1}`, `Karta z generatora ${i + 1}`, `${ile} z odpowiedziami`)),
     ),
     d.generatory.length > 0 && el("div", { class: "blok-actions" }, losowa),
   );

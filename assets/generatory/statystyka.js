@@ -1133,11 +1133,11 @@ function odchyleniePrzedzial(r) {
 // --- Lista generatorów
 
 export const GENERATORY = [
-  { id: "regula-mnozenia", nazwa: "Reguła mnożenia", opis: "Liczby o cyfrach spełniających warunki, kody, zestawy i trasy.", generuj: regulaMnozenia },
-  { id: "ustawienia", nazwa: "Ustawienia i wybory", opis: "Ustawienia w kolejce, wybór z kolejnością, pary bez kolejności: powitania, mecze, przekątne.", generuj: ustawienia },
-  { id: "kostki-monety", nazwa: "Kostki i monety", opis: "Prawdopodobieństwo przy rzutach kostką i monetą.", generuj: kostkiMonety },
-  { id: "losowanie", nazwa: "Losowanie", opis: "Losowanie kul i liczb – raz albo dwa razy, ze zwracaniem i bez zwracania.", generuj: losowanie },
-  { id: "srednia", nazwa: "Średnia arytmetyczna", opis: "Średnia z listy i z tabeli, brakująca liczba, zmiana średniej, średnia dwóch grup.", generuj: srednia },
-  { id: "mediana", nazwa: "Mediana i dominanta", opis: "Mediana i dominanta z listy i z tabeli, brakująca liczba przy danej medianie.", generuj: mediana },
-  { id: "odchylenie", nazwa: "Odchylenie standardowe", opis: "Wariancja i odchylenie standardowe małych zestawów danych.", generuj: odchylenie },
+  { id: "regula-mnozenia", temat: "kombinatoryka", nazwa: "Reguła mnożenia", opis: "Liczby o cyfrach spełniających warunki, kody, zestawy i trasy.", generuj: regulaMnozenia },
+  { id: "ustawienia", temat: "kombinatoryka", nazwa: "Ustawienia i wybory", opis: "Ustawienia w kolejce, wybór z kolejnością, pary bez kolejności: powitania, mecze, przekątne.", generuj: ustawienia },
+  { id: "kostki-monety", temat: "prawdopodobienstwo", nazwa: "Kostki i monety", opis: "Prawdopodobieństwo przy rzutach kostką i monetą.", generuj: kostkiMonety },
+  { id: "losowanie", temat: "prawdopodobienstwo", nazwa: "Losowanie", opis: "Losowanie kul i liczb – raz albo dwa razy, ze zwracaniem i bez zwracania.", generuj: losowanie },
+  { id: "srednia", temat: "statystyka", nazwa: "Średnia arytmetyczna", opis: "Średnia z listy i z tabeli, brakująca liczba, zmiana średniej, średnia dwóch grup.", generuj: srednia },
+  { id: "mediana", temat: "statystyka", nazwa: "Mediana i dominanta", opis: "Mediana i dominanta z listy i z tabeli, brakująca liczba przy danej medianie.", generuj: mediana },
+  { id: "odchylenie", temat: "statystyka", nazwa: "Odchylenie standardowe", opis: "Wariancja i odchylenie standardowe małych zestawów danych.", generuj: odchylenie },
 ];

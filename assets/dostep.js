@@ -57,6 +57,9 @@ export function tematyUcznia(uczen, dzial) {
   return uczen.tematy?.[dzial] ?? null;
 }
 
+/** Dostęp ucznia w postaci, której używa dzialRozdzialu (dzialy.js). */
+export const dostepUcznia = (uczen) => ({ tematy: (id) => tematyUcznia(uczen, id), ma: (id, rodzaj) => ma(uczen, id, rodzaj) });
+
 /** Czy uczeń ma dostęp do rodzaju materiałów ("zadania", "generator", "karty") w dziale. */
 export function ma(uczen, dzial, rodzaj) {
   if (!uczen) return false;

@@ -30,6 +30,7 @@ import { WZORY as WZORY_E8_PROCENTY } from "./wzory/e8-procenty.js";
 import { WZORY as WZORY_E8_FIGURY } from "./wzory/e8-figury.js";
 import { WZORY as WZORY_E8_BRYLY } from "./wzory/e8-bryly.js";
 import { WZORY as WZORY_E8_DANE } from "./wzory/e8-dane.js";
+import { KLASY } from "./szkola.js";
 
 const ARKUSZE = [...ARKUSZE_MATURY, ...ARKUSZE_E8];
 
@@ -242,6 +243,55 @@ export function przytnij(d, tematy) {
 }
 
 export const dzial = (id) => DZIALY.find((d) => d.id === id) ?? null;
+
+// --- Widok „Do szkoły”: klasy i rozdziały w kolejności z podręczników (assets/szkola.js)
+
+/** Klasy szkoły, z której zdaje się dany egzamin: "e8" – szkoła podstawowa, "matura" – liceum. */
+export const klasy = (egz) => KLASY.filter((k) => k.egzamin === egz);
+
+/** Rozdział o danym id razem z jego klasą albo null. */
+export function rozdzial(id) {
+  for (const klasa of KLASY) {
+    const r = klasa.rozdzialy.find((x) => x.id === id);
+    if (r) return { klasa, rozdzial: r };
+  }
+  return null;
+}
+
+/** Rozdział jako jeden dział: tematy (zadania z arkuszy), wzory i generatory z działów, do których prowadzi.
+ *  dostep – co widzi uczeń: tematy(id działu) → lista id tematów albo null (cały dział), ma(id działu, rodzaj).
+ *  karty – czy uczeń może drukować karty pracy z generatorów tego rozdziału (karty z generatora wymagają też generatora). */
+export function dzialRozdzialu(klasa, r, dostep = { tematy: () => null, ma: () => true }) {
+  const czesci = Object.entries(r.tematy).map(([id, wybrane]) => {
+    const swoje = dostep.tematy(id);
+    const d = przytnij(dzial(id), swoje ? wybrane.filter((t) => swoje.includes(t)) : wybrane);
+    const ma = (rodzaj) => dostep.ma(id, rodzaj);
+    return {
+      d,
+      tematy: ma("zadania") ? d.tematy : [],
+      wzory: ["zadania", "generator", "karty"].some(ma) ? d.wzory : [],
+      generatory: ma("generator") ? d.generatory : [],
+      karty: ma("karty") && ma("generator"),
+    };
+  });
+  const pierwszy = czesci[0]?.d;
+  return {
+    id: r.id,
+    rozdzial: true,
+    klasa,
+    egzamin: klasa.egzamin,
+    nazwa: r.nazwa,
+    opis: r.opis,
+    wzoryTytul: pierwszy?.wzoryTytul,
+    wzoryOpis: pierwszy?.wzoryOpis,
+    generatorOpis: pierwszy?.generatorOpis,
+    tematy: czesci.flatMap((c) => c.tematy),
+    wzory: czesci.flatMap((c) => c.wzory),
+    generatory: czesci.flatMap((c) => c.generatory),
+    karty: czesci.some((c) => c.karty && c.generatory.length),
+    pdf: [],
+  };
+}
 
 /** Zadania karty pracy – te same dla tego samego klucza (np. "karta/2" albo "losowa/123456"). */
 export function zadaniaKarty(d, klucz) {

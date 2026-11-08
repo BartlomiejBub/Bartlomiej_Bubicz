@@ -518,6 +518,15 @@ input[type="radio"] { width: 18px; height: 18px; margin: 0; accent-color: var(--
 }
 .student-bar h2 { margin: 0; }
 #dzialy-wybor { margin: 20px 0 16px; }
+.tryby { margin-top: 20px; }
+.egzaminy[hidden] { display: none; }
+
+/* Do szkoły: klasa i rozdziały klasy */
+.tabs-etykieta { align-self: center; padding: 0 6px 0 10px; color: var(--muted); font-size: 15px; font-weight: 600; }
+.chip:disabled { border-style: dashed; color: var(--muted); cursor: default; }
+.chip:disabled:hover { border-color: var(--field-line); }
+.rozdzialy { margin-bottom: 8px; }
+.rozdzial-tytul { margin: 32px 0 4px; color: var(--ink); font-size: 1.5rem; }
 
 .blok { margin-top: 36px; }
 .blok h3 { margin: 0 0 4px; color: var(--ink); font-size: 1.25rem; }
@@ -527,7 +536,7 @@ input[type="radio"] { width: 18px; height: 18px; margin: 0; accent-color: var(--
 .blok-sub { margin: 18px 0 8px; color: var(--muted); font-size: 0.85rem; letter-spacing: 0.06em; text-transform: uppercase; }
 
 /* Zadania z matur (ABCD) */
-.abcd-list { display: grid; gap: 14px; margin: 0; padding: 0; list-style: none; }
+.abcd-list { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; margin: 0; padding: 0; list-style: none; }   /* karta nie szersza niż ekran, nawet przy krótkich odpowiedziach w dwóch kolumnach */
 .abcd-card {
   padding: 18px 20px;
   border: 1px solid var(--line);

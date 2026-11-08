@@ -251,8 +251,8 @@ function punktNaProstej(r) {
 // --- Lista generatorów
 
 export const GENERATORY = [
-  { id: "ogrodzenie", nazwa: "Ogrodzenie – największe pole", opis: "Wymiary prostokątnego terenu o największym polu przy danej długości siatki (z murem albo bez).", generuj: ogrodzenie },
-  { id: "dwie-liczby", nazwa: "Dwie liczby – iloczyn i suma kwadratów", opis: "Największy iloczyn, najmniejsza suma kwadratów lub najmniejszy iloczyn dwóch liczb o danej sumie albo różnicy.", generuj: dwieLiczby },
-  { id: "przychod", nazwa: "Cena i największy przychód", opis: "O ile zmienić cenę, aby przychód ze sprzedaży był największy.", generuj: przychod },
-  { id: "optymalizacja-geometria", nazwa: "Optymalizacja w geometrii", opis: "Prostokąt wpisany w trójkąt prostokątny o największym polu i punkt prostej najbliższy początku układu.", generuj: optymalizacjaGeometria },
+  { id: "ogrodzenie", temat: "optymalizacja", nazwa: "Ogrodzenie – największe pole", opis: "Wymiary prostokątnego terenu o największym polu przy danej długości siatki (z murem albo bez).", generuj: ogrodzenie },
+  { id: "dwie-liczby", temat: "optymalizacja", nazwa: "Dwie liczby – iloczyn i suma kwadratów", opis: "Największy iloczyn, najmniejsza suma kwadratów lub najmniejszy iloczyn dwóch liczb o danej sumie albo różnicy.", generuj: dwieLiczby },
+  { id: "przychod", temat: "optymalizacja", nazwa: "Cena i największy przychód", opis: "O ile zmienić cenę, aby przychód ze sprzedaży był największy.", generuj: przychod },
+  { id: "optymalizacja-geometria", temat: "optymalizacja", nazwa: "Optymalizacja w geometrii", opis: "Prostokąt wpisany w trójkąt prostokątny o największym polu i punkt prostej najbliższy początku układu.", generuj: optymalizacjaGeometria },
 ];
