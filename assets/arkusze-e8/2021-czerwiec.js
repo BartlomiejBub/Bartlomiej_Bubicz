@@ -90,5 +90,9 @@ export default {
     { nr: "18", dzial: "e8-procenty", temat: "predkosc", punkty: 2,
       tresc: "Pan Piotr odczytał na nawigacji samochodowej, że na pokonanie trasy długości $38$ km potrzebuje $40$ minut.\n\n**Jaką prędkość jazdy wyrażoną w **$\\frac{\\mathrm{km}}{\\mathrm{h}}$** przyjęła nawigacja samochodowa w celu wyznaczenia czasu potrzebnego na pokonanie tej trasy? Zapisz obliczenia.**",
       rozwiazanie: "$38$ km to $40$ minut\n\n$19$ km to $20$ minut\n\n$57$ km to $60$ minut\n\nOdpowiedź: Średnia prędkość przewidywana przez nawigację to $57\\,\\frac{\\mathrm{km}}{\\mathrm{h}}$." },
+    { nr: "19", dzial: "e8-figury", temat: "pitagoras", punkty: 3,
+      tresc: "Równoległobok $ABCD$ zbudowano z czterech przystających trójkątów prostokątnych (patrz rysunek). Boki równoległoboku mają długości $|AB| = 24$ cm i $|AD| = 13$ cm.\n\n[rysunek]\n\n**Oblicz pole równoległoboku **$ABCD$**. Zapisz obliczenia.**",
+      rysunek: "assets/arkusze-e8/rys/2021-czerwiec-o19.png",
+      rozwiazanie: "Pole równoległoboku jest cztery razy większe niż pole trójkąta $AED$:\n\n$24 \\cdot |DE| = 4 \\cdot |AE| \\cdot |DE| : 2$\n\n$|AE| = 12$ cm\n\nW trójkącie prostokątnym $AED$ mamy:\n\n$|DE|^2 + 12^2 = 13^2$\n\n$|DE| = 5$ cm\n\n$P_{ABCD} = 24 \\cdot 5 = 120$ (cm$^2$)\n\nOdpowiedź: Pole równoległoboku jest równe $120$ cm$^2$." },
   ],
 };

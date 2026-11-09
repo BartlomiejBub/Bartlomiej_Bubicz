@@ -97,5 +97,10 @@ export default {
     { nr: "19", dzial: "e8-procenty", temat: "predkosc", punkty: 3,
       tresc: "Pan Kazimierz przejechał trasę o długości $90$ km w czasie $1{,}5$ godziny. W drodze powrotnej tę samą trasę pokonał w czasie o $15$ minut krótszym.\n\n**O ile kilometrów na godzinę była większa jego średnia prędkość jazdy w drodze powrotnej? Zapisz obliczenia.**",
       rozwiazanie: "Obliczamy średnią prędkość w drodze tam:\n\n$v_1 = \\frac{90}{1{,}5} = 60\\,\\frac{\\mathrm{km}}{\\mathrm{h}}$\n\nObliczamy czas jazdy w drodze powrotnej:\n\n$t = 1\\frac{1}{2} - \\frac{1}{4} = 1\\frac{1}{4}$ (h)\n\nObliczamy średnią prędkość w drodze powrotnej:\n\n$v_2 = 90 : 1\\frac{1}{4} = 90 \\cdot \\frac{4}{5} = 72\\,\\frac{\\mathrm{km}}{\\mathrm{h}}$\n\nObliczamy różnicę prędkości:\n\n$72 - 60 = 12\\,\\frac{\\mathrm{km}}{\\mathrm{h}}$\n\nOdpowiedź: Prędkość średnia powinna być większa o $12\\,\\frac{\\mathrm{km}}{\\mathrm{h}}$." },
+    { nr: "20", dzial: "e8-figury", temat: "pola-obwody", punkty: 3,
+      tresc: "Trapez równoramienny $ABCD$, którego pole jest równe $72$ cm$^2$, podzielono na trójkąt $AED$ i trapez $EBCD$. Odcinek $AE$ ma długość równą $4$ cm, a odcinek $CD$ jest od niego $2$ razy dłuższy.\n\n[rysunek]\n\n**Oblicz pole trójkąta **$AED$**. Zapisz obliczenia.**",
+      rysunek: "assets/arkusze-e8/rys/2020-marzec-probny-o20.png",
+      rozwiazanie: "[rysunek]\n\n$|AB| = 16$ cm\n\n$P_{ABCD} = \\frac{16 + 8}{2} \\cdot h$\n\n$72 = 12h$\n\n$h = 6$ (cm)\n\n$P_{AED} = \\frac{4 \\cdot 6}{2} = 12$ (cm$^2$)\n\nOdpowiedź: Pole trójkąta $AED$ jest równe $12$ cm$^2$.",
+      rysunekRozwiazania: "assets/arkusze-e8/rys/2020-marzec-probny-o20-r.png" },
   ],
 };

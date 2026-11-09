@@ -83,11 +83,17 @@ export default {
       rysunek: "assets/arkusze-e8/rys/2020-czerwiec-15.png" },
   ],
   otwarte: [
+    { nr: "16", dzial: "e8-figury", temat: "trojkaty", punkty: 2,
+      tresc: "W trójkącie o kątach wewnętrznych $\\alpha$, $\\beta$, $\\gamma$ miara kąta $\\alpha$ jest równa różnicy miar dwóch pozostałych kątów.\n\n**Uzasadnij, że ten trójkąt jest prostokątny.**",
+      rozwiazanie: "$\\alpha = \\beta - \\gamma$\n\n$\\alpha + \\beta + \\gamma = 180^\\circ$\n\n$\\beta - \\gamma + \\beta + \\gamma = 180^\\circ$\n\n$2\\beta = 180^\\circ$\n\n$\\beta = 90^\\circ$\n\nTen trójkąt jest prostokątny." },
     { nr: "18", dzial: "e8-wyrazenia", temat: "zadania-z-rownaniem", punkty: 2,
       tresc: "W domu kultury zorganizowano konkurs recytatorski. Dla uczestników kupiono nagrody: książki i e-booki. Książki stanowiły $\\frac{2}{3}$ liczby kupionych nagród. E-booków było o $8$ mniej niż książek.\n\n**Ile kupiono książek? Zapisz obliczenia.**",
       rozwiazanie: "$x$ – liczba kupionych nagród\n\n$\\frac{2}{3}x$ – liczba kupionych książek\n\n$\\frac{2}{3}x - 8$ – liczba kupionych e-booków\n\n$\\frac{2}{3}x + \\frac{2}{3}x - 8 = x$\n\n$\\frac{4}{3}x - 8 = x$\n\n$\\frac{1}{3}x = 8$\n\n$x = 24$\n\n$\\frac{2}{3} \\cdot 24 = 16$\n\nOdpowiedź: Kupiono $16$ książek." },
     { nr: "19", dzial: "e8-procenty", temat: "czas-kalendarz", punkty: 3,
       tresc: "W zakładzie krawieckim są szyte poduszki dla zwierząt domowych. Praca w tym zakładzie trwa pięć dni w tygodniu – od poniedziałku do piątku – po $7$ godzin dziennie. W $2020$ roku $1$ marca wypadł w niedzielę i w tym miesiącu nie było żadnych dni wolnych oprócz sobót i niedziel. W ciągu każdej godziny pracy szyto średnio $3$ poduszki.\n\n**Ile poduszek uszyto w tym zakładzie w marcu **$2020$** roku? Zapisz obliczenia.**",
       rozwiazanie: "Marzec $2020$ r. – $31$ dni, w tym $4$ soboty i $5$ niedziel\n\n$31 - 9 = 22$ – liczba dni roboczych\n\n$22 \\cdot 7 = 154$ – liczba godzin pracy w marcu\n\n$154 \\cdot 3 = 462$ – liczba poduszek uszytych w marcu\n\nOdpowiedź: W marcu $2020$ roku w zakładzie uszyto $462$ poduszki." },
+    { nr: "20", dzial: "e8-figury", temat: "pola-obwody", punkty: 3,
+      tresc: "Boisko szkolne ma kształt prostokąta o wymiarach $46$ m i $30$ m. Postanowiono posiać na nim trawę. Do obsiania $40$ m$^2$ powierzchni jest potrzebny jeden kilogram nasion trawy. Nasiona trawy są sprzedawane tylko w $10$-kilogramowych workach, po $163$ zł za jeden worek.\n\n**Oblicz koszt zakupu nasion trawy potrzebnych do obsiania tego boiska. Zapisz obliczenia.**",
+      rozwiazanie: "Pole powierzchni boiska:\n\n$P = 46 \\cdot 30 = 1380$ (m$^2$)\n\nLiczba kilogramów nasion trawy potrzebnych do obsiania boiska:\n\n$1380 : 40 = 34{,}5$ (kg)\n\nLiczba worków:\n\n$34{,}5 : 10 = 3{,}45$, więc trzeba kupić $4$ worki nasion trawy.\n\nKoszt zakupu:\n\n$4 \\cdot 163 = 652$ (zł)\n\nOdpowiedź: Koszt zakupu nasion trawy był równy $652$ zł." },
   ],
 };

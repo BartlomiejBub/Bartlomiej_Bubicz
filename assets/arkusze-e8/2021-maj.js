@@ -94,5 +94,9 @@ export default {
     { nr: "18", dzial: "e8-wyrazenia", temat: "zadania-z-rownaniem", punkty: 2,
       tresc: "Ania chciała kupić $10$ jednakowych puszek karmy dla psa, ale zabrakło jej $11$ złotych. Kupiła $6$ takich puszek karmy i zostało jej $3{,}40$ złotych.\n\n**Ile kosztuje jedna puszka karmy? Zapisz obliczenia.**",
       rozwiazanie: "$x$ – cena (w zł) jednej puszki karmy dla psa\n\n$10x - 11 = 6x + 3{,}40$\n\n$4x = 14{,}40$\n\n$x = 3{,}60$\n\nOdpowiedź: Jedna puszka karmy dla psa kosztuje $3{,}60$ zł." },
+    { nr: "19", dzial: "e8-figury", temat: "pitagoras", punkty: 3,
+      tresc: "Dany jest prostokąt $ABCD$ o wymiarach $12$ cm i $16$ cm. Odcinek $AC$ jest przekątną tego prostokąta. Odcinek $DS$ jest wysokością trójkąta $ACD$ (patrz rysunek).\n\n[rysunek]\n\n**Oblicz długość odcinka **$DS$**. Zapisz obliczenia.**",
+      rysunek: "assets/arkusze-e8/rys/2021-maj-o19.png",
+      rozwiazanie: "Korzystając z twierdzenia Pitagorasa, mamy:\n\n$12^2 + 16^2 = |AC|^2$\n\n$|AC| = 20$ cm\n\nPole trójkąta $ACD$ jest równe połowie pola prostokąta:\n\n$\\frac{1}{2} P_{ABCD} = P_{ACD}$\n\n$\\frac{1}{2} \\cdot 12 \\cdot 16 = \\frac{1}{2} \\cdot 20 \\cdot |DS|$\n\n$|DS| = 9{,}6$ cm\n\nOdpowiedź: Długość odcinka $DS$ jest równa $9{,}6$ cm." },
   ],
 };

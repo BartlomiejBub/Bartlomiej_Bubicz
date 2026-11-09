@@ -95,5 +95,9 @@ export default {
     { nr: "18", dzial: "e8-wyrazenia", temat: "zadania-z-rownaniem", punkty: 2,
       tresc: "W kwiaciarni było trzy razy więcej czerwonych róż niż białych. Pan Nowak kupił $40$ czerwonych róż i wtedy w kwiaciarni zostało dwa razy więcej białych róż niż czerwonych.\n\n**Ile białych róż było w kwiaciarni? Zapisz obliczenia.**",
       rozwiazanie: "$x$ – liczba białych róż\n\n$3x$ – liczba czerwonych róż\n\n$(3x - 40) \\cdot 2 = x$\n\n$x = 16$\n\nOdpowiedź: W kwiaciarni było $16$ białych róż." },
+    { nr: "19", dzial: "e8-figury", temat: "pola-obwody", punkty: 3,
+      tresc: "Na rysunku przedstawiono kwadrat $ABCD$ o polu $400$ cm$^2$. Figurę tę podzielono na kwadrat $K_1$ o polu $49$ cm$^2$ i kwadrat $K_2$ oraz figurę $F$ (patrz rysunek).\n\n[rysunek]\n\n**Oblicz obwód figury **$F$**. Zapisz obliczenia.**",
+      rysunek: "assets/arkusze-e8/rys/2021-marzec-probny-o19.png",
+      rozwiazanie: "$\\sqrt{400} = 20$ – bok kwadratu $ABCD$ ma długość $20$ cm\n\n$\\sqrt{49} = 7$ – bok kwadratu $K_1$ ma długość $7$ cm\n\n$20 - 7 = 13$ – bok kwadratu $K_2$ ma długość $13$ cm\n\nDodajemy długości kolejnych boków wielokąta $F$:\n\n$20 + (20 - 13) + 13 + (13 - 7) + 7 + (20 - 7) = 66$\n\nOdpowiedź: Obwód figury $F$ jest równy $66$ cm." },
   ],
 };
