@@ -26,7 +26,7 @@ export default {
       tresc: "**Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.**\n\nRównanie $\\frac{(x^2 - 3x)(x^2 + 1)}{x^2 - 25} = 0$ w zbiorze liczb rzeczywistych ma dokładnie",
       opcje: ["jedno rozwiązanie", "dwa rozwiązania", "trzy rozwiązania", "cztery rozwiązania"],
       poprawna: 1 },
-    { nr: "10", dzial: "liczby", temat: "rownania",
+    { nr: "10", dzial: "liczby", temat: "uklady-rownan",
       tresc: "**Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.**\n\nW kartezjańskim układzie współrzędnych $(x, y)$ punkt $(-8, 6)$ jest punktem przecięcia prostych o równaniach",
       opcje: ["$2x + 3y = 2$ i $-x + y = -14$.", "$3x + 2y = -12$ i $2x + y = 10$.", "$x + y = -2$ i $x - 2y = 4$.", "$x - y = -14$ i $-2x + y = 22$."],
       poprawna: 3 },

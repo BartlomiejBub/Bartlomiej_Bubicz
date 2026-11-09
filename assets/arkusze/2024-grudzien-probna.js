@@ -22,7 +22,7 @@ export default {
       tresc: "**Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.**\n\nDla każdej liczby rzeczywistej $x$ różnej od $(-1)$, $0$ oraz $1$ wartość wyrażenia $\\frac{x}{x^2 - 1} : \\frac{3x^2}{x + 1}$ jest równa wartości wyrażenia",
       opcje: ["$\\frac{x}{x - 1}$", "$\\frac{1}{3x^2 - 3x}$", "$-3x$", "$-\\frac{1}{3x}$"],
       poprawna: 1 },
-    { nr: "7", dzial: "liczby", temat: "rownania",
+    { nr: "7", dzial: "liczby", temat: "uklady-rownan",
       tresc: "Para liczb $x = -1$ i $y = 6$ jest rozwiązaniem układu równań\n\n$\\begin{cases} ax + 3y = 20 \\\\ x + by = 5 \\end{cases}$\n\ngdzie $a$ oraz $b$ są liczbami rzeczywistymi.\n\n**Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.**\n\nWartość wyrażenia $a \\cdot b$ jest równa",
       opcje: ["$(-2)$", "$(-0{,}5)$", "$0{,}5$", "$2$"],
       poprawna: 0 },

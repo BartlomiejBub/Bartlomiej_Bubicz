@@ -22,7 +22,7 @@ export default {
       tresc: "**Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.**\n\nLiczba wszystkich całkowitych dodatnich rozwiązań nierówności\n\n$\\frac{3x - 5}{12} < \\frac{1}{3}$\n\njest równa",
       opcje: ["$2$", "$3$", "$5$", "$6$"],
       poprawna: 0 },
-    { nr: "7", dzial: "liczby", temat: "rownania",
+    { nr: "7", dzial: "liczby", temat: "uklady-rownan",
       tresc: "**Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.**\n\nUkład równań $\\begin{cases} x - 2y = 3 \\\\ -4x + 8y = -12 \\end{cases}$",
       opcje: ["nie ma rozwiązań.", "ma dokładnie jedno rozwiązanie.", "ma dokładnie dwa rozwiązania.", "ma nieskończenie wiele rozwiązań."],
       poprawna: 3 },

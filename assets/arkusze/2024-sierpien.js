@@ -18,7 +18,7 @@ export default {
       tresc: "**Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.**\n\nRównanie $\\frac{x(x+5)(2-x)}{2x+4} = 0$ w zbiorze liczb rzeczywistych ma dokładnie",
       opcje: ["dwa rozwiązania: $(-5)$ oraz $2$.", "dwa rozwiązania: $(-5)$ oraz $0$.", "trzy rozwiązania: $(-5)$, $0$ oraz $2$.", "cztery rozwiązania: $(-5)$, $(-2)$, $0$ oraz $2$."],
       poprawna: 2 },
-    { nr: "8", dzial: "liczby", temat: "rownania",
+    { nr: "8", dzial: "liczby", temat: "uklady-rownan",
       tresc: "Na rysunku, w kartezjańskim układzie współrzędnych $(x, y)$, przedstawiono interpretację geometryczną jednego z poniższych układów równań A–D.\n\n[rysunek]\n\n**Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.**\n\nUkładem równań, którego interpretację geometryczną przedstawiono na rysunku, jest",
       opcje: ["$\\begin{cases} y = x + 2 \\\\ y = 2x - 3 \\end{cases}$", "$\\begin{cases} y = -x + 2 \\\\ y = 2x - 3 \\end{cases}$", "$\\begin{cases} y = x + 2 \\\\ y = -2x - 3 \\end{cases}$", "$\\begin{cases} y = -x + 2 \\\\ y = 2x + 3 \\end{cases}$"],
       poprawna: 1,

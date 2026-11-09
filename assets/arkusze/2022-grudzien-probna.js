@@ -10,7 +10,7 @@ export default {
       tresc: "Pan Nowak kupił obligacje Skarbu Państwa za $40\\,000$ zł oprocentowane $7\\%$ w skali roku. Odsetki są naliczane i kapitalizowane co rok.\n\n**Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.**\n\nWartość obligacji kupionych przez pana Nowaka będzie po dwóch latach równa",
       opcje: ["$40\\,000 \\cdot (1{,}07)^2$ zł", "$40\\,000 \\cdot (1{,}7)^2$ zł", "$40\\,000 \\cdot 1{,}14$ zł", "$40\\,000 \\cdot 1{,}49$ zł"],
       poprawna: 0 },
-    { nr: "3", dzial: "liczby", temat: "rownania",
+    { nr: "3", dzial: "liczby", temat: "uklady-rownan",
       tresc: "Właściciel sklepu kupił w hurtowni $50$ par identycznych spodni po $x$ zł za parę i $40$ identycznych marynarek po $y$ zł za sztukę. Za zakupy w hurtowni zapłacił $8000$ zł. Po doliczeniu marży $50\\%$ na każdą parę spodni i $20\\%$ na każdą marynarkę ceny detaliczne spodni i marynarki były jednakowe.\n\n**Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.**\n\nCenę pary spodni $x$ oraz cenę marynarki $y$, jakie trzeba zapłacić w hurtowni, można obliczyć z układu równań",
       opcje: ["$\\begin{cases} x + y = 8000 \\\\ 0{,}5x = 0{,}2y \\end{cases}$", "$\\begin{cases} 50x + 40y = 8000 \\\\ 0{,}5x = 0{,}2y \\end{cases}$", "$\\begin{cases} 50x + 40y = 8000 \\\\ 1{,}5x = 1{,}2y \\end{cases}$", "$\\begin{cases} x + y = 8000 \\\\ 1{,}5x = 1{,}2y \\end{cases}$"],
       poprawna: 2 },

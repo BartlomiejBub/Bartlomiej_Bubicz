@@ -26,7 +26,7 @@ export default {
       tresc: "**Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.**\n\nZbiorem wszystkich rozwiązań nierówności\n\n$-2(x + 3)(x - 2) > 0$\n\njest przedział",
       opcje: ["$[-3, 2]$", "$(-3, 2)$", "$[-2, 3]$", "$(-2, 3)$"],
       poprawna: 1 },
-    { nr: "9", dzial: "liczby", temat: "rownania",
+    { nr: "9", dzial: "liczby", temat: "uklady-rownan",
       tresc: "W parku miejskim rosną drzewa iglaste i drzewa liściaste. Wszystkich drzew łącznie jest $198$. Gdyby w tym parku rosło o $18$ drzew iglastych więcej niż teraz, to wtedy drzew liściastych byłoby tam $3$ razy więcej niż drzew iglastych.\n\nPrzyjmijmy następujące oznaczenia:\n\n$x$ – liczba drzew iglastych rosnących w parku miejskim,\n\n$y$ – liczba drzew liściastych rosnących w parku miejskim.\n\n**Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.**\n\nUkładem równań, którego poprawne rozwiązanie prowadzi do obliczenia liczby $x$ drzew iglastych oraz liczby $y$ drzew liściastych, jest",
       opcje: ["$\\begin{cases} x + y = 198 \\\\ x + 18 = 3y \\end{cases}$", "$\\begin{cases} x + y = 198 \\\\ 3x + 18 = y \\end{cases}$", "$\\begin{cases} x + y = 198 \\\\ \\frac{1}{3}x + 18 = y \\end{cases}$", "$\\begin{cases} x + y = 198 \\\\ 3(x + 18) = y \\end{cases}$"],
       poprawna: 3 },

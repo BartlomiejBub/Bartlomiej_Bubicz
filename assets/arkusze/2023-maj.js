@@ -31,7 +31,7 @@ export default {
       tresc: "**Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.**\n\nRównanie $\\frac{(x + 1)(x - 1)^2}{(x - 1)(x + 1)^2} = 0$ w zbiorze liczb rzeczywistych",
       opcje: ["nie ma rozwiązania.", "ma dokładnie jedno rozwiązanie: $-1$.", "ma dokładnie jedno rozwiązanie: $1$.", "ma dokładnie dwa rozwiązania: $-1$ oraz $1$."],
       poprawna: 0 },
-    { nr: "10", dzial: "liczby", temat: "rownania",
+    { nr: "10", dzial: "liczby", temat: "uklady-rownan",
       tresc: "Na rysunku przedstawiono interpretację geometryczną w kartezjańskim układzie współrzędnych $(x, y)$ jednego z niżej zapisanych układów równań A–D.\n\n[rysunek]\n\n**Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.**\n\nUkładem równań, którego interpretację geometryczną przedstawiono na rysunku, jest",
       opcje: ["$\\begin{cases} y = -x + 2 \\\\ y = -2x + 1 \\end{cases}$", "$\\begin{cases} y = x - 2 \\\\ y = -2x - 1 \\end{cases}$", "$\\begin{cases} y = x - 2 \\\\ y = 2x + 1 \\end{cases}$", "$\\begin{cases} y = -x + 2 \\\\ y = 2x - 1 \\end{cases}$"],
       poprawna: 3,

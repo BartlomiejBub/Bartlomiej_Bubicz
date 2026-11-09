@@ -92,15 +92,15 @@ export const KLASY = [
     id: "lo1", egzamin: "matura", nazwa: "Klasa 1",
     rozdzialy: [
       // Kurczab kl. 1, rozdz. 1 (także procenty, punkty procentowe, błędy przybliżeń)
-      { id: "lo1-zbiory-liczby", nazwa: "Zbiory liczbowe. Liczby rzeczywiste", opis: "Zbiory i działania na zbiorach, przedziały, równania i nierówności równoważne, procenty i punkty procentowe, przybliżenia i błędy.", tematy: { "liczby": ["liczby-rzeczywiste", "procenty", "rownania", "nierownosci"], "tekstowe": ["procenty-i-pieniadze"] }, nowe: ["zbiory"], luka: "brak działań na zbiorach i przedziałach; brak równań sprzecznych i tożsamościowych" },
+      { id: "lo1-zbiory-liczby", nazwa: "Zbiory liczbowe. Liczby rzeczywiste", opis: "Zbiory i działania na zbiorach, przedziały, równania i nierówności równoważne, procenty i punkty procentowe, przybliżenia i błędy.", tematy: { "liczby": ["liczby-rzeczywiste", "zbiory", "procenty", "rownania", "nierownosci"], "tekstowe": ["procenty-i-pieniadze"] } },
       // rozdz. 2 (w tym logika, dowód, logarytmy, średnie)
-      { id: "lo1-wyrazenia", nazwa: "Wyrażenia algebraiczne", opis: "Potęgi i pierwiastki, wzory skróconego mnożenia, logarytmy, zdania i dowody, przekształcanie wzorów.", tematy: { "liczby": ["potegi", "pierwiastki", "wyrazenia", "logarytmy"], "dowody": ["dowody-algebraiczne"] }, nowe: ["logika", "przeksztalcanie-wzorow-lo"], luka: "brak logiki (zdania, zaprzeczenia, kwantyfikatory), działań na wyrażeniach i przekształcania wzorów" },
+      { id: "lo1-wyrazenia", nazwa: "Wyrażenia algebraiczne", opis: "Potęgi i pierwiastki, wzory skróconego mnożenia, logarytmy, zdania i dowody, przekształcanie wzorów.", tematy: { "liczby": ["potegi", "pierwiastki", "wyrazenia", "logarytmy"], "dowody": ["dowody-algebraiczne"] }, nowe: ["logika", "przeksztalcanie-wzorow-lo"], luka: "brak logiki (zdania, zaprzeczenia, kwantyfikatory) i przekształcania wzorów" },
       // rozdz. 3
       { id: "lo1-funkcje", nazwa: "Funkcje i ich własności", opis: "Pojęcie funkcji, wykres, dziedzina, zbiór wartości, miejsce zerowe, monotoniczność, odczytywanie własności z wykresu.", tematy: { "funkcje": ["wlasnosci-funkcji"] }, luka: "brak pojęcia funkcji, funkcji różnowartościowych i graficznego rozwiązywania równań" },
       // rozdz. 4
       { id: "lo1-liniowa", nazwa: "Funkcja liniowa", opis: "Proporcjonalność prosta, wykres, miejsce zerowe i współczynnik kierunkowy, zadania praktyczne.", tematy: { "funkcje": ["funkcja-liniowa"] } },
       // rozdz. 5
-      { id: "lo1-uklady", nazwa: "Układy równań liniowych z dwiema niewiadomymi", opis: "Równanie z dwiema niewiadomymi, metoda podstawiania i przeciwnych współczynników, graficzne rozwiązywanie, zadania.", tematy: { "liczby": ["rownania"], "tekstowe": ["rownania-z-tresci"] }, nowe: ["uklady-rownan"], luka: "jedna karta na cały rozdział" },
+      { id: "lo1-uklady", nazwa: "Układy równań liniowych z dwiema niewiadomymi", opis: "Równanie z dwiema niewiadomymi, metoda podstawiania i przeciwnych współczynników, graficzne rozwiązywanie, zadania.", tematy: { "liczby": ["uklady-rownan"], "tekstowe": ["rownania-z-tresci"] } },
       // rozdz. 6
       { id: "lo1-wybrane-funkcje", nazwa: "Podstawowe własności wybranych funkcji", opis: "Funkcja kwadratowa, proporcjonalność odwrotna, funkcja wykładnicza i logarytmiczna – wykresy i własności.", tematy: { "funkcje": ["funkcja-kwadratowa", "inne-funkcje"] } },
       // rozdz. 7

@@ -3,13 +3,15 @@
 export const TEMATY = {
   liczby: [
     { id: "liczby-rzeczywiste", nazwa: "Liczby rzeczywiste" },     // I: przedziały, przybliżenia, wartość bezwzględna liczby
+    { id: "zbiory", nazwa: "Zbiory i działania na zbiorach" },    // LO kl. 1: zbiory, przedziały, dopełnienie
     { id: "potegi", nazwa: "Potęgi" },                             // I.4, I.5
     { id: "pierwiastki", nazwa: "Pierwiastki" },                   // I.3, I.4
     { id: "logarytmy", nazwa: "Logarytmy" },                       // I.1 (logarytmowanie), I.6
     { id: "procenty", nazwa: "Procenty" },                         // I.8, I.9
     { id: "wyrazenia", nazwa: "Wyrażenia algebraiczne" },          // II
-    { id: "rownania", nazwa: "Równania i układy równań" },         // III (równania), IV
-    { id: "nierownosci", nazwa: "Nierówności" },                   // III (nierówności), |x − a| < b
+    { id: "rownania", nazwa: "Równania" },                         // III (równania)
+    { id: "uklady-rownan", nazwa: "Układy równań liniowych" },      // LO kl. 1: układy, interpretacja graficzna
+    { id: "nierownosci", nazwa: "Nierówności" },                 // III (nierówności), |x − a| < b
   ],
   funkcje: [
     { id: "wlasnosci-funkcji", nazwa: "Własności funkcji" },       // V.1–V.4: dziedzina, wykres, monotoniczność

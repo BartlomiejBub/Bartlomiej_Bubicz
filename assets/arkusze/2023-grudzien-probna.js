@@ -20,7 +20,7 @@ export default {
       opcje: ["$|x - 2| < 5$", "$|x - 2| > 5$", "$|x - 5| < 2$", "$|x - 5| > 2$"],
       poprawna: 0,
       rysunek: "assets/arkusze/rys/2023-grudzien-probna-4.png" },
-    { nr: "6", dzial: "liczby", temat: "rownania",
+    { nr: "6", dzial: "liczby", temat: "uklady-rownan",
       tresc: "Dany jest układ równań $\\begin{cases} x - 3y + 5 = 0 \\\\ 2x + y + 3 = 0 \\end{cases}$\n\n**Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.**\n\nRozwiązaniem tego układu równań jest para liczb",
       opcje: ["$x = 1$ i $y = 2$", "$x = 0$ i $y = -3$", "$x = -2$ i $y = 1$", "$x = -1$ i $y = -1$"],
       poprawna: 2 },

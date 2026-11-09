@@ -29,7 +29,7 @@ export default {
       tresc: `${INSTR}\n\nRównanie\n\n$\\frac{(x^2 + x)(x + 3)(x - 1)}{x^2 - 1} = 0$\n\nma w zbiorze liczb rzeczywistych dokładnie`,
       opcje: ["jedno rozwiązanie: $x = -3$.", "dwa rozwiązania: $x = -3$, $x = 0$.", "trzy rozwiązania: $x = -3$, $x = -1$, $x = 0$.", "cztery rozwiązania: $x = -3$, $x = -1$, $x = 0$, $x = 1$."],
       poprawna: 1 },
-    { nr: "9", dzial: "liczby", temat: "rownania",
+    { nr: "9", dzial: "liczby", temat: "uklady-rownan",
       tresc: `Klient banku wypłacił z bankomatu kwotę $1040$ zł. Bankomat wydał kwotę w banknotach o nominałach $20$ zł, $50$ zł oraz $100$ zł. Banknotów $100$-złotowych było dwa razy więcej niż $50$-złotowych, a banknotów $20$-złotowych było o $2$ mniej niż $50$-złotowych.\n\nNiech $x$ oznacza liczbę banknotów $50$-złotowych, a $y$ – liczbę banknotów $20$-złotowych, które otrzymał ten klient.\n\n${INSTR}\n\nPoprawny układ równań prowadzący do obliczenia liczb $x$ i $y$ to`,
       opcje: ["$\\begin{cases} 20y + 50x + 100 \\cdot 2x = 1040 \\\\ y = x - 2 \\end{cases}$", "$\\begin{cases} 20y + 50x + 50x \\cdot 2 = 1040 \\\\ y = x - 2 \\end{cases}$", "$\\begin{cases} 20y + 50x + 100 \\cdot 2x = 1040 \\\\ x = y - 2 \\end{cases}$", "$\\begin{cases} 20y + 50x + 50x \\cdot 2 = 1040 \\\\ x = y - 2 \\end{cases}$"],
       poprawna: 0 },
