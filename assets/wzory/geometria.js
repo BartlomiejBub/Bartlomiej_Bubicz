@@ -238,6 +238,14 @@ export const WZORY = [
         uwaga: "Dzielisz zawsze odcinki liczone od wierzchołka $P$.",
       },
       {
+        nazwa: "Twierdzenie o dwusiecznej kąta",
+        slownie: "Dwusieczna kąta trójkąta dzieli przeciwległy bok na dwa odcinki w takim samym stosunku, w jakim są do siebie boki leżące przy tym kącie.",
+        tex: "\\frac{|AD|}{|DB|} = \\frac{|AC|}{|BC|}",
+        litery: "$CD$ – dwusieczna kąta $ACB$, punkt $D$ leży na boku $AB$",
+        przyklad: "$|AC| = 6$, $|BC| = 9$, $|AB| = 10$: $\\frac{|AD|}{|DB|} = \\frac{6}{9} = \\frac{2}{3}$, więc $|AD| = 4$ i $|DB| = 6$",
+        uwaga: "Każdy odcinek boku $AB$ łączysz z bokiem, który go dotyka: $AD$ z $AC$, a $DB$ z $BC$.",
+      },
+      {
         nazwa: "Pole koła",
         slownie: "Pole koła to liczba $\\pi$ razy promień pomnożony przez siebie.",
         tex: "P = \\pi r^{2}",
