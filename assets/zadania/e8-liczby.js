@@ -5,7 +5,7 @@ export default {
   zadania: [
     {
       nr: "1", dzial: "e8-liczby", temat: "os-liczbowa",
-      tresc: "Liczby całkowite, które spełniają nierówność $-1 \\le x < 3$, to. **Wybierz właściwą odpowiedź.**",
+      tresc: "Które liczby całkowite spełniają nierówność $-1 \\le x < 3$? **Wybierz właściwą odpowiedź.**",
       opcje: ["$-1, 0, 1, 2, 3$", "$0, 1, 2$", "$-1, 0, 1, 2$", "$-2, -1, 0, 1, 2$"],
       poprawna: 2,
     },
