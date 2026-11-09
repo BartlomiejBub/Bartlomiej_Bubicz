@@ -88,6 +88,19 @@ export default {
       opcje: ["$5$ cm", "$10$ cm", "$3$ cm", "$7$ cm"],
       poprawna: 3,
     },
+    // ---- symetrie ----
+    {
+      nr: "33", dzial: "e8-figury", temat: "symetrie",
+      tresc: "Która z tych figur ma dokładnie jedną oś symetrii? **Wybierz właściwą odpowiedź.**",
+      opcje: ["prostokąt, który nie jest kwadratem", "romb, który nie jest kwadratem", "trapez równoramienny, który nie jest równoległobokiem", "trójkąt równoboczny"],
+      poprawna: 2,
+    },
+    {
+      nr: "34", dzial: "e8-figury", temat: "symetrie",
+      tresc: "Punkt $P = (-3, 4)$ odbito symetrycznie względem początku układu współrzędnych. Jakie współrzędne ma obraz tego punktu? **Wybierz właściwą odpowiedź.**",
+      opcje: ["$(-3, -4)$", "$(3, 4)$", "$(4, -3)$", "$(3, -4)$"],
+      poprawna: 3,
+    },
   ],
   otwarte: [
     // ---- proste, półproste i odcinki ----
@@ -190,6 +203,17 @@ export default {
       nr: "32", dzial: "e8-figury", temat: "symetralna-dwusieczna", punkty: 3,
       tresc: "Opisz słowami, jak za pomocą cyrkla i linijki skonstruować symetralną odcinka $AB$ o długości $6$ cm. Podaj, jaką długość ma każda z dwóch części, na które symetralna dzieli odcinek, i jaki kąt tworzy symetralna z odcinkiem $AB$. **Zapisz odpowiedź.**",
       rozwiazanie: "Konstrukcja: (1) rozstawiam cyrkiel na odległość większą niż połowa $AB$, czyli większą niż $3$ cm, np. $4$ cm.\n\n(2) Zakreślam łuk o środku w punkcie $A$ po obu stronach odcinka.\n\n(3) Nie zmieniając rozstawu cyrkla, zakreślam łuk o środku w punkcie $B$ – łuki przecinają się w dwóch punktach.\n\n(4) Przez te dwa punkty prowadzę prostą – to symetralna odcinka $AB$.\n\nSymetralna przechodzi przez środek odcinka, więc dzieli go na dwie części po $6 : 2 = 3$ cm.\n\nSymetralna jest prostopadła do odcinka, więc tworzy z nim kąt $90^\\circ$.\n\nOdpowiedź: Konstrukcja jak wyżej; każda część ma $3$ cm, a symetralna tworzy z $AB$ kąt $90^\\circ$.",
+    },
+    // ---- symetrie ----
+    {
+      nr: "35", dzial: "e8-figury", temat: "symetrie", punkty: 2,
+      tresc: "W symetrii środkowej punkt $A = (-2, 1)$ przechodzi na punkt $A' = (6, 5)$. Wyznacz współrzędne środka tej symetrii. Następnie wyznacz obraz punktu $B = (0, -3)$ w tej samej symetrii. **Zapisz obliczenia.**",
+      rozwiazanie: "Środek symetrii $S$ jest środkiem odcinka $AA'$, więc liczymy średnie współrzędnych.\n\n$x_S = \\frac{-2 + 6}{2} = 2$ oraz $y_S = \\frac{1 + 5}{2} = 3$. Zatem $S = (2, 3)$.\n\nPunkt $B = (0, -3)$ i jego obraz $B'$ mają ten sam środek $S$. Od $B$ do $S$ idziemy o $2$ w prawo i o $6$ w górę, więc od $S$ idziemy o tyle samo dalej: $B' = (2 + 2,\\ 3 + 6) = (4, 9)$.\n\nSprawdzenie: środek odcinka $BB'$ to $\\left(\\frac{0 + 4}{2},\\ \\frac{-3 + 9}{2}\\right) = (2, 3)$.\n\nOdpowiedź: Środek symetrii to $S = (2, 3)$, a obrazem punktu $B$ jest $B' = (4, 9)$.",
+    },
+    {
+      nr: "36", dzial: "e8-figury", temat: "symetrie", punkty: 3,
+      tresc: "Trójkąt $ABC$ ma wierzchołki $A = (1, 1)$, $B = (5, 1)$ i $C = (3, 4)$. Pokaż, że boki $AC$ i $BC$ są równej długości. Przez które punkty przechodzi oś symetrii tego trójkąta i ile osi symetrii ma ten trójkąt? Wyznacz też obraz wierzchołka $C$ w symetrii względem osi $x$. **Zapisz obliczenia.**",
+      rozwiazanie: "Długości boków liczymy z twierdzenia Pitagorasa. Od $A$ do $C$ idziemy $2$ jednostki w prawo i $3$ w górę, więc $AC^{2} = 2^{2} + 3^{2} = 13$.\n\nOd $C$ do $B$ idziemy $2$ jednostki w prawo i $3$ w dół, więc też $BC^{2} = 2^{2} + 3^{2} = 13$. Zatem $AC = BC = \\sqrt{13}$ i trójkąt jest równoramienny.\n\nBok $AB$ leży poziomo i ma długość $5 - 1 = 4$, a $4 \\neq \\sqrt{13}$ (bo $4^{2} = 16$), więc trójkąt nie jest równoboczny.\n\nOś symetrii trójkąta równoramiennego przechodzi przez wierzchołek $C$ i środek podstawy $AB$, czyli przez punkt $(3, 1)$. To pionowa prosta, na której leżą wszystkie punkty o pierwszej współrzędnej $3$.\n\nTrójkąt równoramienny, który nie jest równoboczny, ma dokładnie jedną oś symetrii.\n\nW symetrii względem osi $x$ pierwsza współrzędna się nie zmienia, a druga zmienia znak: $C = (3, 4)$ przechodzi na $C' = (3, -4)$.\n\nOdpowiedź: $AC = BC = \\sqrt{13}$. Jedyna oś symetrii przechodzi przez punkty $C = (3, 4)$ i $(3, 1)$. Obrazem punktu $C$ jest $C' = (3, -4)$.",
     },
   ],
 };

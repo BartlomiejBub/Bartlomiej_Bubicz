@@ -15,6 +15,44 @@ export default {
       opcje: ["$1020$ zł", "$1100$ zł", "$1200$ zł", "$1120$ zł"],
       poprawna: 3,
     },
+    // ---- ruch i wspólna praca ----
+    {
+      nr: "7", dzial: "tekstowe", temat: "ruch-i-praca",
+      tresc: "Rowerzysta jechał przez $2$ godziny z prędkością $18$ km/h, a potem przez $3$ godziny z prędkością $12$ km/h. Jaka była jego średnia prędkość na całej trasie? **Wybierz właściwą odpowiedź.**",
+      opcje: ["$15$ km/h", "$14{,}4$ km/h", "$14$ km/h", "$30$ km/h"],
+      poprawna: 1,
+    },
+    {
+      nr: "8", dzial: "tekstowe", temat: "ruch-i-praca",
+      tresc: "Dwa miasta dzieli odległość $180$ km. Jednocześnie wyjeżdżają z nich naprzeciw siebie dwa samochody: jeden z prędkością $50$ km/h, drugi z prędkością $40$ km/h. Po ilu godzinach się miną? **Wybierz właściwą odpowiedź.**",
+      opcje: ["po $18$ godzinach", "po $3{,}6$ godziny", "po $4{,}5$ godziny", "po $2$ godzinach"],
+      poprawna: 3,
+    },
+    {
+      nr: "9", dzial: "tekstowe", temat: "ruch-i-praca",
+      tresc: "Ola maluje płot sama w $10$ godzin, a Kuba sam w $15$ godzin. Ile godzin zajmie im malowanie płotu, gdy będą pracować razem? **Wybierz właściwą odpowiedź.**",
+      opcje: ["$6$ godzin", "$12{,}5$ godziny", "$25$ godzin", "$5$ godzin"],
+      poprawna: 0,
+    },
+    // ---- procenty i pieniądze ----
+    {
+      nr: "13", dzial: "tekstowe", temat: "procenty-i-pieniadze",
+      tresc: "Plecak kosztował $250$ zł. Najpierw jego cenę obniżono o $20\\%$, a po tygodniu podniesiono nową cenę o $20\\%$. Ile złotych kosztuje plecak po tych dwóch zmianach? **Wybierz właściwą odpowiedź.**",
+      opcje: ["$250$ zł", "$240$ zł", "$200$ zł", "$300$ zł"],
+      poprawna: 1,
+    },
+    {
+      nr: "14", dzial: "tekstowe", temat: "procenty-i-pieniadze",
+      tresc: "Cena brutto towaru, w której jest już podatek VAT $23\\%$, wynosi $861$ zł. Ile wynosi cena netto tego towaru? **Wybierz właściwą odpowiedź.**",
+      opcje: ["$662{,}97$ zł", "$838$ zł", "$700$ zł", "$198{,}03$ zł"],
+      poprawna: 2,
+    },
+    {
+      nr: "15", dzial: "tekstowe", temat: "procenty-i-pieniadze",
+      tresc: "Poparcie dla pewnego pomysłu spadło z $40\\%$ do $30\\%$. O ile spadło poparcie? **Wybierz właściwą odpowiedź.**",
+      opcje: ["o $10$ punktów procentowych, czyli o $25\\%$", "o $10\\%$, czyli o $25$ punktów procentowych", "o $25$ punktów procentowych, czyli o $10\\%$", "o $10$ punktów procentowych, czyli o $10\\%$"],
+      poprawna: 0,
+    },
   ],
   otwarte: [
     {
@@ -36,6 +74,38 @@ export default {
       nr: "6", dzial: "tekstowe", temat: "ciagi-w-praktyce", punkty: 3,
       tresc: "Kredyt spłacano w ratach malejących: każda rata zawierała tę samą część kapitałową i odsetki w wysokości $1\\%$ długu pozostałego przed wpłatą raty. Pierwsza rata wyniosła $1320$ zł, a druga $1310$ zł. Oblicz, ile wynosiła część kapitałowa raty, jaką kwotę pożyczono i na ile rat rozłożono kredyt. **Zapisz obliczenia.**",
       rozwiazanie: "Rata składa się z części kapitałowej $C$ i odsetek. Przy każdej kolejnej racie dług maleje o $C$, więc odsetki maleją o $0{,}01 \\cdot C$. Różnica kolejnych rat to $1320 - 1310 = 10$ zł.\n\nStąd $0{,}01 \\cdot C = 10$, czyli $C = 1000$ zł.\n\nW pierwszej racie odsetki to $1320 - 1000 = 320$ zł i są one $1\\%$ całego kredytu $K$: $0{,}01 K = 320$, więc $K = 32\\,000$ zł.\n\nLiczba rat: $n = \\frac{K}{C} = \\frac{32\\,000}{1000} = 32$.\n\nSprawdzenie: ostatnia rata to $1000 + 0{,}01 \\cdot 1000 = 1010$ zł, a z ciągu arytmetycznego $1320 - 31 \\cdot 10 = 1010$ zł.\n\nOdpowiedź: Część kapitałowa to $1000$ zł, pożyczono $32\\,000$ zł, a kredyt rozłożono na $32$ raty.",
+    },
+    // ---- ruch i wspólna praca ----
+    {
+      nr: "10", dzial: "tekstowe", temat: "ruch-i-praca", punkty: 2,
+      tresc: "Pan Jan wyszedł z domu o godzinie 8:00 i szedł ze stałą prędkością $4$ km/h. Pół godziny później z tego samego domu wyszedł w tę samą stronę jego syn z prędkością $6$ km/h. O której godzinie syn dogoni ojca i w jakiej odległości od domu to nastąpi? **Zapisz obliczenia.**",
+      rozwiazanie: "Syn wyszedł po $0{,}5$ h, więc w tym czasie ojciec przeszedł $4 \\cdot 0{,}5 = 2$ km. To jest przewaga ojca.\n\nSyn jest szybszy, więc odległość między nimi maleje z różnicą prędkości: $6 - 4 = 2$ km/h.\n\nCzas dogonienia liczony od chwili wyjścia syna: $t = \\frac{2}{2} = 1$ h.\n\nSyn wyszedł o 8:30, więc dogoni ojca o 9:30.\n\nOdległość od domu: $6 \\cdot 1 = 6$ km. Sprawdzenie dla ojca: szedł $1{,}5$ h, więc $4 \\cdot 1{,}5 = 6$ km.\n\nOdpowiedź: Syn dogoni ojca o 9:30, w odległości $6$ km od domu.",
+    },
+    {
+      nr: "11", dzial: "tekstowe", temat: "ruch-i-praca", punkty: 2,
+      tresc: "Ania i Bartek wyruszyli jednocześnie naprzeciw siebie z dwóch miejscowości oddalonych o $42$ km. Ania szła z prędkością $10$ km/h, a Bartek jechał rowerem. Spotkali się po $1{,}5$ godziny. Oblicz prędkość Bartka. **Zapisz obliczenia.**",
+      rozwiazanie: "Niech $v$ oznacza prędkość Bartka w km/h. Idą naprzeciw siebie, więc odległość maleje z sumą prędkości: $s = (v_1 + v_2) \\cdot t$.\n\nZ treści: $42 = (10 + v) \\cdot 1{,}5$.\n\nDzielimy przez $1{,}5$: $10 + v = 28$, więc $v = 18$.\n\nSprawdzenie: Ania przeszła $10 \\cdot 1{,}5 = 15$ km, Bartek przejechał $18 \\cdot 1{,}5 = 27$ km, razem $15 + 27 = 42$ km.\n\nOdpowiedź: Bartek jechał z prędkością $18$ km/h.",
+    },
+    {
+      nr: "12", dzial: "tekstowe", temat: "ruch-i-praca", punkty: 3,
+      tresc: "Pusty zbiornik napełnia sama rura A w ciągu $6$ godzin. Pełny zbiornik opróżnia sama rura B w ciągu $15$ godzin. Oblicz, w ile godzin napełni się pusty zbiornik, gdy obie rury będą otwarte. Potem oblicz, ile czasu zajmie dokończenie napełniania samą rurą A, jeśli po $4$ godzinach pracy obu rur rurę B zamknięto. **Zapisz obliczenia.**",
+      rozwiazanie: "Rura A napełnia w ciągu godziny $\\frac{1}{6}$ zbiornika, a rura B opróżnia $\\frac{1}{15}$ zbiornika. Jedna dodaje, a druga zabiera, więc odejmujemy.\n\nPrzy obu otwartych rurach w ciągu godziny przybywa $\\frac{1}{6} - \\frac{1}{15} = \\frac{5}{30} - \\frac{2}{30} = \\frac{3}{30} = \\frac{1}{10}$ zbiornika.\n\nCały zbiornik napełni się więc w $10$ godzin.\n\nPo $4$ godzinach będzie $4 \\cdot \\frac{1}{10} = \\frac{2}{5}$ zbiornika, więc do napełnienia zostaje $1 - \\frac{2}{5} = \\frac{3}{5}$.\n\nSama rura A napełnia $\\frac{1}{6}$ zbiornika na godzinę, więc czas to $\\frac{3}{5} : \\frac{1}{6} = \\frac{3}{5} \\cdot 6 = \\frac{18}{5} = 3{,}6$ h, czyli $3$ h i $36$ min.\n\nOdpowiedź: Przy obu otwartych rurach zbiornik napełni się w $10$ godzin; dokończenie samą rurą A zajmie $3{,}6$ godziny ($3$ h $36$ min).",
+    },
+    // ---- procenty i pieniądze ----
+    {
+      nr: "16", dzial: "tekstowe", temat: "procenty-i-pieniadze", punkty: 2,
+      tresc: "Pani Ewa wpłaciła $5000$ zł na lokatę na $2$ lata z oprocentowaniem $4\\%$ w skali roku. Odsetki dopisuje się do konta na koniec każdego roku. Oblicz, ile złotych będzie na lokacie po $2$ latach (pomiń podatek od odsetek). O ile złotych więcej niż przy odsetkach prostych? **Zapisz obliczenia.**",
+      rozwiazanie: "Co roku kwotę mnożymy przez $1 + \\frac{4}{100} = 1{,}04$.\n\nPo pierwszym roku: $5000 \\cdot 1{,}04 = 5200$ zł.\n\nPo drugim roku: $5200 \\cdot 1{,}04 = 5408$ zł (czyli $5000 \\cdot 1{,}04^{2} = 5408$ zł).\n\nPrzy odsetkach prostych odsetki byłyby takie same co roku: $0{,}04 \\cdot 5000 = 200$ zł, więc po dwóch latach $5000 + 2 \\cdot 200 = 5400$ zł.\n\nRóżnica: $5408 - 5400 = 8$ zł. To odsetki od odsetek za pierwszy rok: $0{,}04 \\cdot 200 = 8$ zł.\n\nOdpowiedź: Na lokacie będzie $5408$ zł, czyli o $8$ zł więcej niż przy odsetkach prostych.",
+    },
+    {
+      nr: "17", dzial: "tekstowe", temat: "procenty-i-pieniadze", punkty: 3,
+      tresc: "Po obniżce ceny o $15\\%$ rower kosztuje $1020$ zł. Oblicz, ile kosztował rower przed obniżką. Następnie sklep podniósł obecną cenę o $10\\%$. Oblicz nową cenę i podaj, o ile procent różni się ona od ceny sprzed obniżki. **Zapisz obliczenia.**",
+      rozwiazanie: "Po obniżce o $15\\%$ cena to $100\\% - 15\\% = 85\\%$ ceny pierwotnej. Niech $x$ oznacza cenę przed obniżką: $0{,}85 \\cdot x = 1020$.\n\nDzielimy: $x = 1020 : 0{,}85 = 1200$ zł.\n\nPodwyżka o $10\\%$ ceny $1020$ zł: $1020 \\cdot 1{,}1 = 1122$ zł.\n\nPorównujemy z ceną pierwotną: $\\frac{1122}{1200} = 0{,}935$, czyli $93{,}5\\%$ ceny pierwotnej.\n\nTo o $100\\% - 93{,}5\\% = 6{,}5\\%$ mniej niż przed obniżką (nie $15\\% - 10\\% = 5\\%$, bo podwyżka dotyczyła już niższej ceny).\n\nOdpowiedź: Przed obniżką rower kosztował $1200$ zł, nowa cena to $1122$ zł i jest ona o $6{,}5\\%$ niższa od pierwotnej.",
+    },
+    {
+      nr: "18", dzial: "tekstowe", temat: "procenty-i-pieniadze", punkty: 3,
+      tresc: "Oprocentowanie roczne pewnej lokaty wzrosło z $2{,}5\\%$ do $4\\%$. O ile punktów procentowych, a o ile procent wzrosło oprocentowanie? Pan Marek wpłacił na roczną lokatę $8000$ zł. Oblicz, o ile złotych większe będą jego odsetki przy nowym oprocentowaniu (przed odliczeniem podatku). **Zapisz obliczenia.**",
+      rozwiazanie: "Zmiana w punktach procentowych to różnica: $4 - 2{,}5 = 1{,}5$ punktu procentowego.\n\nZmiana w procentach to porównanie z wartością początkową: $\\frac{1{,}5}{2{,}5} \\cdot 100\\% = 0{,}6 \\cdot 100\\% = 60\\%$.\n\nOdsetki roczne przy dawnym oprocentowaniu: $0{,}025 \\cdot 8000 = 200$ zł.\n\nOdsetki roczne przy nowym oprocentowaniu: $0{,}04 \\cdot 8000 = 320$ zł.\n\nRóżnica: $320 - 200 = 120$ zł (to samo: $0{,}015 \\cdot 8000 = 120$ zł).\n\nOdpowiedź: Oprocentowanie wzrosło o $1{,}5$ punktu procentowego, czyli o $60\\%$, a odsetki będą większe o $120$ zł.",
     },
   ],
 };

@@ -11,4 +11,5 @@ import e8Liczby from "./e8-liczby.js";
 import e8Wyrazenia from "./e8-wyrazenia.js";
 import e8Procenty from "./e8-procenty.js";
 import e8Dane from "./e8-dane.js";
-export const ZESTAWY = [liczby, e8Figury, funkcje, geometria, tekstowe, statystyka, e8Podstawy, e8Liczby, e8Wyrazenia, e8Procenty, e8Dane];
+import e8Bryly from "./e8-bryly.js";
+export const ZESTAWY = [liczby, e8Figury, funkcje, geometria, tekstowe, statystyka, e8Podstawy, e8Liczby, e8Wyrazenia, e8Procenty, e8Dane, e8Bryly];
