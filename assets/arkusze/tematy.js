@@ -9,7 +9,9 @@ export const TEMATY = {
     { id: "logarytmy", nazwa: "Logarytmy" },                       // I.1 (logarytmowanie), I.6
     { id: "procenty", nazwa: "Procenty" },                         // I.8, I.9
     { id: "wyrazenia", nazwa: "Wyrażenia algebraiczne" },          // II
+    { id: "wielomiany", nazwa: "Wielomiany" },                     // LO kl. 2 rozdz. 8: stopień, działania, pierwiastek, rozkład na czynniki
     { id: "rownania", nazwa: "Równania" },                         // III (równania)
+    { id: "rownania-wymierne", nazwa: "Równania wymierne" },       // LO kl. 3 rozdz. 1: dziedzina, proporcja, zadania z treści
     { id: "uklady-rownan", nazwa: "Układy równań liniowych" },      // LO kl. 1: układy, interpretacja graficzna
     { id: "nierownosci", nazwa: "Nierówności" },                 // III (nierówności), |x − a| < b
   ],

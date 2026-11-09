@@ -70,6 +70,53 @@ export default {
       opcje: ["$[-1, 3)$", "$(-1, 3]$", "$(-2, 6]$", "$(-1, 3)$"],
       poprawna: 1,
     },
+    // ---- wielomiany ----
+    {
+      nr: "22", dzial: "liczby", temat: "wielomiany",
+      tresc: "Stopień wielomianu $W(x) = (x^{2} - 3)(2x^{3} + x) - 2x^{5}$ jest równy. **Wybierz właściwą odpowiedź.**",
+      opcje: ["$5$", "$3$", "$2$", "$1$"],
+      poprawna: 1,
+    },
+    {
+      nr: "23", dzial: "liczby", temat: "wielomiany",
+      tresc: "Liczba $2$ jest pierwiastkiem wielomianu $W(x) = x^{3} - 3x^{2} + ax + 6$. Zatem $a$ jest równe. **Wybierz właściwą odpowiedź.**",
+      opcje: ["$1$", "$-2$", "$-1$", "$2$"],
+      poprawna: 2,
+    },
+    {
+      nr: "24", dzial: "liczby", temat: "wielomiany",
+      tresc: "Zbiorem rozwiązań równania $x^{3} - 9x = 0$ jest. **Wybierz właściwą odpowiedź.**",
+      opcje: ["$\\{-3, 3\\}$", "$\\{0, 3\\}$", "$\\{-3, 0, 3\\}$", "$\\{0, 9\\}$"],
+      poprawna: 2,
+    },
+    {
+      nr: "25", dzial: "liczby", temat: "wielomiany",
+      tresc: "**Oceń prawdziwość podanych zdań.** Zaznacz P, jeśli zdanie jest prawdziwe, albo F – jeśli jest fałszywe.",
+      czesci: [
+        { tekst: "Wielomian $x^{2}(x - 1)$ ma stopień $2$.", litery: "PF", poprawna: 1 },
+        { tekst: "Wielomiany $x^{3} + 2x$ oraz $x(x^{2} + 2)$ są równe.", litery: "PF", poprawna: 0 },
+        { tekst: "Równanie $(x - 2)^{2}(x + 1) = 0$ ma dokładnie dwa różne rozwiązania.", litery: "PF", poprawna: 0 },
+      ],
+    },
+    // ---- równania wymierne ----
+    {
+      nr: "30", dzial: "liczby", temat: "rownania-wymierne",
+      tresc: "Wyrażenie $\\frac{x + 1}{(x - 2)(x + 5)}$ ma sens liczbowy dla wszystkich $x$ ze zbioru. **Wybierz właściwą odpowiedź.**",
+      opcje: ["$\\mathbb{R} \\setminus \\{-5, -1, 2\\}$", "$\\mathbb{R} \\setminus \\{-2, 5\\}$", "$\\mathbb{R} \\setminus \\{-5, 2\\}$", "$\\mathbb{R} \\setminus \\{2\\}$"],
+      poprawna: 2,
+    },
+    {
+      nr: "31", dzial: "liczby", temat: "rownania-wymierne",
+      tresc: "Rozwiązaniem równania $\\frac{x^{2} - 16}{x + 4} = 0$ jest. **Wybierz właściwą odpowiedź.**",
+      opcje: ["$x = -4$ lub $x = 4$", "$x = -4$", "brak rozwiązań", "$x = 4$"],
+      poprawna: 3,
+    },
+    {
+      nr: "32", dzial: "liczby", temat: "rownania-wymierne",
+      tresc: "Rozwiązaniem równania $\\frac{3}{x - 1} = \\frac{6}{x + 4}$ jest liczba. **Wybierz właściwą odpowiedź.**",
+      opcje: ["$6$", "$-9$", "$2$", "$18$"],
+      poprawna: 0,
+    },
   ],
   otwarte: [
     // ---- zbiory ----
@@ -130,6 +177,53 @@ export default {
       nr: "21", dzial: "liczby", temat: "rownania", punkty: 2,
       tresc: "Wyznacz wszystkie wartości parametru $m$, dla których równanie $(m - 4)x = m - 5$ nie ma rozwiązań, oraz wszystkie wartości $m$, dla których równanie $(m + 1)x = m^{2} - 1$ ma nieskończenie wiele rozwiązań. **Zapisz obliczenia.**",
       rozwiazanie: "Równanie $(m - 4)x = m - 5$: jeśli $m \\neq 4$, to $x = \\frac{m - 5}{m - 4}$, czyli jest jedno rozwiązanie. Dla $m = 4$ dostajemy $0 \\cdot x = -1$, czyli $0 = -1$ – równanie sprzeczne. Brak rozwiązań dla $m = 4$.\n\nRównanie $(m + 1)x = m^{2} - 1$: jeśli $m \\neq -1$, to $x = \\frac{m^{2} - 1}{m + 1} = m - 1$, czyli jest jedno rozwiązanie. Dla $m = -1$ dostajemy $0 \\cdot x = 0$, czyli $0 = 0$ – spełnia je każda liczba.\n\nOdpowiedź: pierwsze równanie nie ma rozwiązań dla $m = 4$, drugie ma nieskończenie wiele rozwiązań dla $m = -1$.",
+    },
+    // ---- wielomiany ----
+    {
+      nr: "26", dzial: "liczby", temat: "wielomiany", punkty: 2,
+      tresc: "Dane są wielomiany $P(x) = x^{2} - 2x + 3$ oraz $Q(x) = 2x - 1$. Wyznacz wielomian $W(x) = P(x) \\cdot Q(x) - 2P(x)$ i podaj jego stopień oraz wyraz wolny. **Zapisz obliczenia.**",
+      rozwiazanie: "Mnożymy: $P(x) \\cdot Q(x) = (x^{2} - 2x + 3)(2x - 1) = 2x^{3} - x^{2} - 4x^{2} + 2x + 6x - 3 = 2x^{3} - 5x^{2} + 8x - 3$.\n\nObliczamy $2P(x) = 2x^{2} - 4x + 6$.\n\nOdejmujemy, zmieniając znaki w drugim wielomianie: $W(x) = 2x^{3} - 5x^{2} + 8x - 3 - 2x^{2} + 4x - 6 = 2x^{3} - 7x^{2} + 12x - 9$.\n\nNajwyższa potęga to $x^{3}$, więc stopień wynosi $3$. Wyraz wolny to $-9$.\n\nOdpowiedź: $W(x) = 2x^{3} - 7x^{2} + 12x - 9$, stopień $3$, wyraz wolny $-9$.",
+    },
+    {
+      nr: "27", dzial: "liczby", temat: "wielomiany", punkty: 2,
+      tresc: "Wyznacz liczby $a$ i $b$, dla których wielomiany $W(x) = (x + 2)(x^{2} + ax + b)$ oraz $P(x) = x^{3} + 5x^{2} + 8x + 4$ są równe. **Zapisz obliczenia.**",
+      rozwiazanie: "Wymnażamy: $(x + 2)(x^{2} + ax + b) = x^{3} + ax^{2} + bx + 2x^{2} + 2ax + 2b = x^{3} + (a + 2)x^{2} + (b + 2a)x + 2b$.\n\nWielomiany są równe, gdy mają takie same współczynniki przy każdej potędze $x$:\n\n$a + 2 = 5$, $b + 2a = 8$, $2b = 4$.\n\nZ pierwszego równania $a = 3$. Z trzeciego $b = 2$. Sprawdzamy drugie: $b + 2a = 2 + 6 = 8$, zgadza się.\n\nOdpowiedź: $a = 3$, $b = 2$.",
+    },
+    {
+      nr: "28", dzial: "liczby", temat: "wielomiany", punkty: 2,
+      tresc: "Rozwiąż równanie $x^{3} + 3x^{2} - 4x - 12 = 0$. **Zapisz obliczenia.**",
+      rozwiazanie: "Grupujemy wyrazy w pary i wyłączamy wspólne czynniki: $x^{2}(x + 3) - 4(x + 3) = 0$.\n\nWyłączamy nawias $(x + 3)$: $(x + 3)(x^{2} - 4) = 0$.\n\nRóżnicę kwadratów rozkładamy: $(x + 3)(x - 2)(x + 2) = 0$.\n\nIloczyn jest zerem, gdy któryś czynnik jest zerem: $x = -3$ lub $x = 2$ lub $x = -2$.\n\nOdpowiedź: $x \\in \\{-3, -2, 2\\}$.",
+    },
+    {
+      nr: "29", dzial: "liczby", temat: "wielomiany", punkty: 3,
+      tresc: "Liczba $3$ jest pierwiastkiem wielomianu $W(x) = x^{3} + mx^{2} - 4x - 4m$. Wyznacz $m$, a następnie rozłóż wielomian $W$ na czynniki i podaj wszystkie jego pierwiastki. **Zapisz obliczenia.**",
+      rozwiazanie: "Skoro $3$ jest pierwiastkiem, to $W(3) = 0$: $27 + 9m - 12 - 4m = 0$, czyli $15 + 5m = 0$, więc $m = -3$.\n\nWielomian ma postać $W(x) = x^{3} - 3x^{2} - 4x + 12$.\n\nGrupujemy: $x^{2}(x - 3) - 4(x - 3) = (x - 3)(x^{2} - 4)$.\n\nRóżnica kwadratów: $W(x) = (x - 3)(x - 2)(x + 2)$.\n\nPierwiastki to liczby zerujące czynniki: $3$, $2$ i $-2$.\n\nOdpowiedź: $m = -3$, $W(x) = (x - 3)(x - 2)(x + 2)$, pierwiastki: $-2$, $2$, $3$.",
+    },
+    // ---- równania wymierne ----
+    {
+      nr: "33", dzial: "liczby", temat: "rownania-wymierne", punkty: 2,
+      tresc: "Rozwiąż równanie $\\frac{x^{2} - 5x + 6}{x - 2} = 0$. **Zapisz obliczenia.**",
+      rozwiazanie: "Zakładamy, że mianownik nie jest zerem: $x \\neq 2$.\n\nUłamek jest równy zero, gdy licznik jest zerem: $x^{2} - 5x + 6 = 0$. Delta to $25 - 24 = 1$, więc $x = \\frac{5 - 1}{2} = 2$ lub $x = \\frac{5 + 1}{2} = 3$.\n\nLiczba $2$ nie spełnia założenia $x \\neq 2$, więc ją odrzucamy.\n\nOdpowiedź: $x = 3$.",
+    },
+    {
+      nr: "34", dzial: "liczby", temat: "rownania-wymierne", punkty: 3,
+      tresc: "Rozwiąż równanie $\\frac{3}{x - 1} = \\frac{x + 1}{x + 3}$. **Zapisz obliczenia.**",
+      rozwiazanie: "Założenia: $x - 1 \\neq 0$ i $x + 3 \\neq 0$, czyli $x \\neq 1$ i $x \\neq -3$.\n\nMnożymy na krzyż: $3(x + 3) = (x + 1)(x - 1)$, czyli $3x + 9 = x^{2} - 1$.\n\nPrzenosimy wszystko na jedną stronę: $x^{2} - 3x - 10 = 0$.\n\nDelta: $9 + 40 = 49$, więc $x = \\frac{3 - 7}{2} = -2$ lub $x = \\frac{3 + 7}{2} = 5$.\n\nObie liczby są różne od $1$ i $-3$, więc należą do dziedziny.\n\nOdpowiedź: $x = -2$ lub $x = 5$.",
+    },
+    {
+      nr: "35", dzial: "liczby", temat: "rownania-wymierne", punkty: 2,
+      tresc: "Rozwiąż równanie $\\frac{2x}{x - 1} - 3 = \\frac{2}{x - 1}$. **Zapisz obliczenia.**",
+      rozwiazanie: "Założenie: $x \\neq 1$.\n\nMnożymy obie strony przez $x - 1$, pamiętając o składniku $-3$: $2x - 3(x - 1) = 2$.\n\nUpraszczamy: $2x - 3x + 3 = 2$, więc $-x = -1$ i $x = 1$.\n\nLiczba $1$ nie należy do dziedziny, więc ją odrzucamy. Nie ma innych kandydatów na rozwiązanie.\n\nOdpowiedź: równanie nie ma rozwiązań.",
+    },
+    {
+      nr: "36", dzial: "liczby", temat: "rownania-wymierne", punkty: 3,
+      tresc: "Pierwszy robotnik wykonałby pewną pracę o $6$ dni szybciej niż drugi. Gdy pracują razem, wykonują ją w $4$ dni. W ile dni wykona tę pracę każdy z nich pracując sam? **Zapisz obliczenia.**",
+      rozwiazanie: "Niech $x$ oznacza liczbę dni pracy pierwszego robotnika (samego), $x > 0$. Drugi pracuje $x + 6$ dni.\n\nW ciągu jednego dnia pierwszy wykonuje $\\frac{1}{x}$ pracy, drugi $\\frac{1}{x + 6}$, a razem $\\frac{1}{4}$ pracy. Stąd: $\\frac{1}{x} + \\frac{1}{x + 6} = \\frac{1}{4}$.\n\nMnożymy przez $4x(x + 6)$: $4(x + 6) + 4x = x(x + 6)$, czyli $8x + 24 = x^{2} + 6x$.\n\nPo przeniesieniu: $x^{2} - 2x - 24 = 0$. Delta: $4 + 96 = 100$, więc $x = \\frac{2 - 10}{2} = -4$ lub $x = \\frac{2 + 10}{2} = 6$.\n\nLiczba $-4$ nie pasuje (czas nie jest ujemny), więc $x = 6$.\n\nSprawdzenie: $\\frac{1}{6} + \\frac{1}{12} = \\frac{3}{12} = \\frac{1}{4}$.\n\nOdpowiedź: Pierwszy robotnik wykona pracę w $6$ dni, a drugi w $12$ dni.",
+    },
+    {
+      nr: "37", dzial: "liczby", temat: "rownania-wymierne", punkty: 3,
+      tresc: "Rowerzysta pokonał trasę długości $36$ km ze stałą prędkością. Gdyby jechał z prędkością większą o $3$ km/h, przejechałby tę trasę o $1$ godzinę krócej. Oblicz, z jaką prędkością jechał rowerzysta. **Zapisz obliczenia.**",
+      rozwiazanie: "Niech $x$ oznacza prędkość rowerzysty w km/h, $x > 0$. Czas jazdy to $\\frac{36}{x}$ godzin, a przy prędkości $x + 3$ byłoby to $\\frac{36}{x + 3}$ godzin.\n\nRóżnica czasów wynosi $1$ godzinę: $\\frac{36}{x} - \\frac{36}{x + 3} = 1$.\n\nMnożymy przez $x(x + 3)$: $36(x + 3) - 36x = x(x + 3)$, czyli $108 = x^{2} + 3x$.\n\nStąd $x^{2} + 3x - 108 = 0$. Delta: $9 + 432 = 441$, więc $x = \\frac{-3 - 21}{2} = -12$ lub $x = \\frac{-3 + 21}{2} = 9$.\n\nPrędkość nie może być ujemna, więc $x = 9$.\n\nSprawdzenie: $\\frac{36}{9} = 4$ h oraz $\\frac{36}{12} = 3$ h, różnica $1$ h.\n\nOdpowiedź: Rowerzysta jechał z prędkością $9$ km/h.",
     },
   ],
 };

@@ -4,4 +4,5 @@ import liczby from "./liczby.js";
 import e8Figury from "./e8-figury.js";
 import funkcje from "./funkcje.js";
 import geometria from "./geometria.js";
-export const ZESTAWY = [liczby, e8Figury, funkcje, geometria];
+import tekstowe from "./tekstowe.js";
+export const ZESTAWY = [liczby, e8Figury, funkcje, geometria, tekstowe];

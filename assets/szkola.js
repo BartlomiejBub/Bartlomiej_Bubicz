@@ -117,7 +117,7 @@ export const KLASY = [
       // rozdz. 2
       { id: "lo2-modul", nazwa: "Wartość bezwzględna: równania i nierówności", opis: "Wartość bezwzględna, odległość na osi liczbowej, proste równania i nierówności z wartością bezwzględną.", tematy: { "liczby": ["liczby-rzeczywiste", "rownania", "nierownosci"] } },
       // rozdz. 3
-      { id: "lo2-kwadratowa", nazwa: "Funkcja kwadratowa", opis: "Postacie funkcji, miejsca zerowe, wykres, wzór z własności, równania i nierówności kwadratowe, optymalizacja.", tematy: { "funkcje": ["funkcja-kwadratowa"], "liczby": ["rownania", "nierownosci"], "dowody": ["optymalizacja"], "tekstowe": ["rownania-z-tresci"] }, luka: "brak zadań tekstowych prowadzących do równań kwadratowych" },
+      { id: "lo2-kwadratowa", nazwa: "Funkcja kwadratowa", opis: "Postacie funkcji, miejsca zerowe, wykres, wzór z własności, równania i nierówności kwadratowe, optymalizacja.", tematy: { "funkcje": ["funkcja-kwadratowa"], "liczby": ["rownania", "nierownosci"], "dowody": ["optymalizacja"], "tekstowe": ["rownania-z-tresci"] } },
       // rozdz. 4
       { id: "lo2-okregi", nazwa: "Geometria płaska – okręgi i koła", opis: "Położenie prostej i okręgu oraz dwóch okręgów, kąty w kole, konstrukcje, okrąg opisany i wpisany w trójkąt.", tematy: { "geometria": ["planimetria"], "dowody": ["dowody-geometryczne"] } },
       // rozdz. 5
@@ -127,14 +127,14 @@ export const KLASY = [
       // rozdz. 7
       { id: "lo2-pola-trojkaty", nazwa: "Rozwiązywanie trójkątów. Pole trójkąta i koła", opis: "Twierdzenie sinusów i cosinusów, pole trójkąta, pola figur podobnych, pole koła i wycinka koła.", tematy: { "geometria": ["planimetria", "trygonometria"] } },
       // rozdz. 8
-      { id: "lo2-wielomiany", nazwa: "Wielomiany", opis: "Pojęcie wielomianu, działania, równość wielomianów, twierdzenie Bezouta, rozkład na czynniki, równania wielomianowe.", tematy: { "liczby": ["wyrazenia", "rownania"] }, nowe: ["wielomiany"], luka: "brak pojęcia wielomianu, działań, Bezouta i rozkładu; wzory na sześciany i grupowanie w ZP zostały usunięte w 2024" },
+      { id: "lo2-wielomiany", nazwa: "Wielomiany", opis: "Pojęcie wielomianu, działania, równość wielomianów, twierdzenie Bezouta, rozkład na czynniki, równania wielomianowe.", tematy: { "liczby": ["wyrazenia", "wielomiany", "rownania"] } },
     ],
   },
   {
     id: "lo3", egzamin: "matura", nazwa: "Klasa 3",
     rozdzialy: [
       // rozdz. 1
-      { id: "lo3-wymierne", nazwa: "Ułamki algebraiczne. Równania wymierne", opis: "Skracanie, mnożenie i dzielenie ułamków algebraicznych, równania wymierne, funkcja homograficzna.", tematy: { "liczby": ["wyrazenia", "rownania"], "funkcje": ["inne-funkcje", "funkcja-homograficzna"], "tekstowe": ["rownania-z-tresci"] }, nowe: ["rownania-wymierne"], luka: "brak równań wymiernych i dziedziny ułamka algebraicznego" },
+      { id: "lo3-wymierne", nazwa: "Ułamki algebraiczne. Równania wymierne", opis: "Skracanie, mnożenie i dzielenie ułamków algebraicznych, równania wymierne, funkcja homograficzna.", tematy: { "liczby": ["wyrazenia", "rownania-wymierne"], "funkcje": ["inne-funkcje", "funkcja-homograficzna"], "tekstowe": ["rownania-z-tresci"] } },
       // rozdz. 2
       { id: "lo3-ciagi", nazwa: "Ciągi liczbowe", opis: "Określenie i monotoniczność ciągu, ciąg arytmetyczny i geometryczny, sumy, lokaty i kredyty.", tematy: { "funkcje": ["wzor-ogolny", "ciag-arytmetyczny", "ciag-geometryczny"], "tekstowe": ["ciagi-w-praktyce", "procenty-i-pieniadze"] }, luka: "brak kredytów spłacanych w ratach" },
       // rozdz. 3
