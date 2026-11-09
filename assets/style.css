@@ -641,6 +641,10 @@ input[type="radio"] { width: 18px; height: 18px; margin: 0; accent-color: var(--
 .wzor { margin: 4px 0 12px; overflow-x: auto; overflow-y: hidden; }
 .wzor .katex-display { margin: 0; }
 .rysunek { margin: 6px 0 14px; }
+/* Tabelka w treści zadania („| a | b |” w tekście, assets/matematyka.js) */
+.tabela { margin: 4px 0 14px; border-collapse: collapse; font-size: 0.95em; }
+.tabela th, .tabela td { padding: 5px 12px; border: 1px solid var(--line); text-align: center; }
+.tabela th { background: var(--surface-2); font-weight: 600; }
 .rysunek img {
   display: block;
   width: auto;
