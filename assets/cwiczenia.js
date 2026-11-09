@@ -145,8 +145,10 @@ function pokazDzial(uczen, d, przyciski) {
 
 /** Bloki z materiałami działu (albo rozdziału), które uczeń widzi. */
 function materialy(d, widzi) {
+  const ma = (pole) => d.tematy.some((t) => t[pole]?.length);
   const bloki = [
-    widzi("zadania") && blokZadan(d),
+    widzi("zadania") && ma("cwiczenia") && blokZadan(d, OPIS_CWICZEN, { pole: "cwiczenia", tytul: "Zadania do ćwiczeń" }),
+    widzi("zadania") && ma("zadania") && blokZadan(d),
     widzi("generator") && blokGeneratora(d),
     widzi("karty") && blokKart(d),
   ];
@@ -292,11 +294,11 @@ function kafelkiRozdzialu(uczen, k, x) {
   return [el("div", { class: "egzaminy kafelki", role: "group", "aria-label": "Co chcesz zrobić" }, ...przyciski), tresc];
 }
 
-/** Generatory i zadania zamknięte z arkuszy z kilku działów (albo rozdziałów), bez powtórzeń. */
+/** Generatory i zadania zamknięte (z arkuszy i do ćwiczeń) z kilku działów (albo rozdziałów), bez powtórzeń. */
 function pulaZadan(dzialy) {
   return {
     generatory: [...new Set(dzialy.flatMap((d) => d.generatory))],
-    zamkniete: [...new Set(dzialy.flatMap((d) => d.tematy.flatMap((t) => t.zadania.filter((z) => !z.rozwiazanie))))],
+    zamkniete: [...new Set(dzialy.flatMap((d) => d.tematy.flatMap((t) => [...t.zadania, ...(t.cwiczenia ?? [])].filter((z) => !z.rozwiazanie))))],
   };
 }
 
@@ -450,10 +452,13 @@ function blokWzorow(d) {
   );
 }
 
-// --- Zadania z arkuszy CKE (zamknięte i otwarte), posortowane po tematach
+// --- Zadania z arkuszy CKE (zamknięte i otwarte), posortowane po tematach,
+// i tak samo pokazane zadania do ćwiczeń ułożone dla strony (pole cwiczenia tematu)
 
-function blokZadan(d, intro = opisZadan(d)) {
-  const tematy = d.tematy.filter((t) => t.zadania.length);
+const OPIS_CWICZEN = "Zadania na poziomie szkolnym, posortowane według tematów: zamknięte – zaznacz odpowiedź i kliknij „Sprawdź odpowiedź”, otwarte – rozwiąż na kartce i porównaj z rozwiązaniem.";
+
+function blokZadan(d, intro = opisZadan(d), { pole = "zadania", tytul = egzamin(d.egzamin).zadania } = {}) {
+  const tematy = d.tematy.filter((t) => t[pole].length).map((t) => ({ ...t, zadania: t[pole] }));
   let temat = tematy[0];
   const wyniki = new Map();   // zadanie -> czy dobrze przy pierwszym sprawdzeniu
   const licznik = el("span", { class: "gen-count", "aria-live": "polite" });
@@ -485,7 +490,7 @@ function blokZadan(d, intro = opisZadan(d)) {
 
   pokaz();
   return el("section", { class: "blok" },
-    el("div", { class: "blok-head" }, el("h3", {}, egzamin(d.egzamin).zadania), licznik),
+    el("div", { class: "blok-head" }, el("h3", {}, tytul), licznik),
     el("p", { class: "blok-intro" }, intro),
     el("div", { class: "chips", role: "group", "aria-label": "Temat zadań" }, ...przyciski),
     lista,
@@ -569,7 +574,7 @@ function kartaZamknieta(z, ocenione) {
 /** Zadanie otwarte z arkusza; „Pokaż rozwiązanie” odsłania przykładowe rozwiązanie z klucza CKE. */
 function kartaOtwarta(z) {
   const rozwiazanie = el("div", { class: "rozwiazanie", hidden: "" },
-    el("p", { class: "rozwiazanie-tytul" }, "Przykładowe rozwiązanie (klucz CKE)"),
+    el("p", { class: "rozwiazanie-tytul" }, z.wlasne ? "Rozwiązanie" : "Przykładowe rozwiązanie (klucz CKE)"),
     wstaw(el("div", { class: "abcd-tresc" }), z.rozwiazanie, { rysunek: z.rysunekRozwiazania }),
   );
   const przycisk = el("button", { class: "btn btn-primary", type: "button", "aria-expanded": "false" }, "Pokaż rozwiązanie");

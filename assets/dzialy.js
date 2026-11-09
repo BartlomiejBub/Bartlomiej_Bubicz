@@ -17,6 +17,7 @@ import { losownik, ziarno } from "./generatory/wspolne.js";
 import { ARKUSZE as ARKUSZE_MATURY } from "./arkusze/index.js";
 import { ARKUSZE as ARKUSZE_E8 } from "./arkusze-e8/index.js";
 import { TEMATY } from "./arkusze/tematy.js";
+import { ZESTAWY } from "./zadania/index.js";
 import { WZORY as WZORY_LICZBY } from "./wzory/liczby.js";
 import { WZORY as WZORY_FUNKCJE } from "./wzory/funkcje.js";
 import { WZORY as WZORY_GEOMETRIA } from "./wzory/geometria.js";
@@ -44,7 +45,17 @@ function zadaniaTematu(dzial, temat) {
   return [...z((a) => a.zadania), ...z((a) => a.otwarte)];
 }
 
-const tematy = (dzial) => TEMATY[dzial].map((t) => ({ ...t, zadania: zadaniaTematu(dzial, t.id) }));
+/** Zadania do ćwiczeń (assets/zadania) w danym temacie: zamknięte, potem otwarte; wlasne – rozwiązanie nie pochodzi z klucza CKE. */
+function cwiczeniaTematu(dzial, temat) {
+  const z = (lista) => ZESTAWY.flatMap((a) =>
+    (lista(a) ?? [])
+      .filter((z) => z.dzial === dzial && z.temat === temat)
+      .map((z) => ({ ...z, wlasne: true, zrodlo: `Zadanie ${z.nr}` + (z.punkty ? ` (0–${z.punkty} pkt)` : "") })),
+  );
+  return [...z((a) => a.zadania), ...z((a) => a.otwarte)];
+}
+
+const tematy = (dzial) => TEMATY[dzial].map((t) => ({ ...t, zadania: zadaniaTematu(dzial, t.id), cwiczenia: cwiczeniaTematu(dzial, t.id) }));
 
 export const DZIALY = [
   {
@@ -213,14 +224,14 @@ export const EGZAMINY = [
 export const egzamin = (id) => EGZAMINY.find((e) => e.id === id) ?? EGZAMINY[0];
 
 export const RODZAJE = [
-  { id: "zadania", nazwa: "Zadania z arkuszy CKE", krotko: "Zadania" },
+  { id: "zadania", nazwa: "Zadania z arkuszy CKE i do ćwiczeń", krotko: "Zadania" },
   { id: "generator", nazwa: "Generator zadań", krotko: "Generator" },
   { id: "karty", nazwa: "Karty pracy", krotko: "Karty" },
 ];
 
 /** Czy dział ma jakieś materiały danego rodzaju (np. nowy dział może nie mieć jeszcze generatorów). */
 export function maMaterialy(d, rodzaj) {
-  if (rodzaj === "zadania") return d.tematy.some((t) => t.zadania.length);
+  if (rodzaj === "zadania") return d.tematy.some((t) => t.zadania.length || t.cwiczenia?.length);
   if (rodzaj === "generator") return d.generatory.length > 0;
   return d.pdf.length > 0 || d.generatory.length > 0;
 }

@@ -37,7 +37,12 @@ import { readdir, access } from "node:fs/promises";
 import { czesciTekstu } from "../assets/generatory/wspolne.js";
 import { TEMATY } from "../assets/arkusze/tematy.js";
 
-const FOLDERY = { "": new URL("../assets/arkusze/", import.meta.url), "e8/": new URL("../assets/arkusze-e8/", import.meta.url) };
+// Ten sam format mają zadania do ćwiczeń ułożone dla strony (assets/zadania/<dział>.js, argument np. zadania/liczby).
+const FOLDERY = {
+  "": new URL("../assets/arkusze/", import.meta.url),
+  "e8/": new URL("../assets/arkusze-e8/", import.meta.url),
+  "zadania/": new URL("../assets/zadania/", import.meta.url),
+};
 const repo = new URL("../", import.meta.url);
 const pliki = [];
 for (const [przedrostek, folder] of Object.entries(FOLDERY)) {
