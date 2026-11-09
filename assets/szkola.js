@@ -86,72 +86,80 @@ export const KLASY = [
   },
 
   // ───────────────────────── Liceum (zakres podstawowy) ─────────────────────────
+  // Kolejność i nazwy rozdziałów jak w podręczniku Kurczab, Kurczab, Świda, „Matematyka” (Pazdro, zakres podstawowy).
+  // nowe – tematy, których jeszcze nie ma na stronie (po dodaniu przenieść do tematy).
   {
     id: "lo1", egzamin: "matura", nazwa: "Klasa 1",
     rozdzialy: [
-      { id: "lo1-liczby", nazwa: "Liczby rzeczywiste i przedziały", opis: "Rodzaje liczb, przedziały, przybliżenia i błędy, rozwinięcia dziesiętne.", tematy: { "liczby": ["liczby-rzeczywiste"] }, luka: "brak działań na zbiorach (suma, iloczyn, różnica)" },
-      { id: "lo1-potegi-pierwiastki", nazwa: "Potęgi i pierwiastki", opis: "Potęgi o wykładniku całkowitym i wymiernym, pierwiastki, usuwanie niewymierności.", tematy: { "liczby": ["potegi", "pierwiastki"] } },
-      { id: "lo1-logarytmy", nazwa: "Logarytmy", opis: "Definicja i własności logarytmu, logarytm dziesiętny.", tematy: { "liczby": ["logarytmy"] } },
-      { id: "lo1-procenty", nazwa: "Procenty", opis: "Procent, podwyżki i obniżki, punkty procentowe, procent składany.", tematy: { "liczby": ["procenty"], "tekstowe": ["procenty-i-pieniadze"] } },
-      { id: "lo1-wyrazenia", nazwa: "Wyrażenia algebraiczne", opis: "Mnożenie sum, wyłączanie przed nawias, wzory skróconego mnożenia.", tematy: { "liczby": ["wyrazenia"], "dowody": ["dowody-algebraiczne"] } },
-      { id: "lo1-nierownosci", nazwa: "Nierówności i wartość bezwzględna", opis: "Nierówności liniowe, wartość bezwzględna, równania i nierówności z modułem.", tematy: { "liczby": ["nierownosci", "rownania", "liczby-rzeczywiste"] } },
-      { id: "lo1-uklady", nazwa: "Układy równań", opis: "Metoda podstawiania i przeciwnych współczynników, zadania tekstowe.", tematy: { "liczby": ["rownania"], "tekstowe": ["rownania-z-tresci"] } },
-      { id: "lo1-funkcje", nazwa: "Funkcje i ich własności", opis: "Pojęcie funkcji, wykres, monotoniczność, proporcjonalność odwrotna.", tematy: { "funkcje": ["wlasnosci-funkcji", "inne-funkcje"] } },
-      // Pazdro: klasa 2
-      { id: "lo1-przeksztalcanie-wykresow", nazwa: "Przekształcenia wykresów", opis: "Przesunięcia i symetrie wykresu funkcji.", tematy: { "funkcje": ["wlasnosci-funkcji"] } },
-      { id: "lo1-liniowa", nazwa: "Funkcja liniowa", opis: "Wykres i własności funkcji liniowej, równanie prostej, proste równoległe i prostopadłe.", tematy: { "funkcje": ["funkcja-liniowa"], "geometria": ["geometria-analityczna"] } },
-      { id: "lo1-trojkaty", nazwa: "Trójkąty: przystawanie i podobieństwo", opis: "Kąty w trójkącie, trójkąty przystające i podobne, twierdzenie Talesa.", tematy: { "geometria": ["planimetria"], "dowody": ["dowody-geometryczne"] } },
+      // Kurczab kl. 1, rozdz. 1 (także procenty, punkty procentowe, błędy przybliżeń)
+      { id: "lo1-zbiory-liczby", nazwa: "Zbiory liczbowe. Liczby rzeczywiste", opis: "Zbiory i działania na zbiorach, przedziały, równania i nierówności równoważne, procenty i punkty procentowe, przybliżenia i błędy.", tematy: { "liczby": ["liczby-rzeczywiste", "procenty", "rownania", "nierownosci"], "tekstowe": ["procenty-i-pieniadze"] }, nowe: ["zbiory"], luka: "brak działań na zbiorach i przedziałach; brak równań sprzecznych i tożsamościowych" },
+      // rozdz. 2 (w tym logika, dowód, logarytmy, średnie)
+      { id: "lo1-wyrazenia", nazwa: "Wyrażenia algebraiczne", opis: "Potęgi i pierwiastki, wzory skróconego mnożenia, logarytmy, zdania i dowody, przekształcanie wzorów.", tematy: { "liczby": ["potegi", "pierwiastki", "wyrazenia", "logarytmy"], "dowody": ["dowody-algebraiczne"] }, nowe: ["logika", "przeksztalcanie-wzorow-lo"], luka: "brak logiki (zdania, zaprzeczenia, kwantyfikatory), działań na wyrażeniach i przekształcania wzorów" },
+      // rozdz. 3
+      { id: "lo1-funkcje", nazwa: "Funkcje i ich własności", opis: "Pojęcie funkcji, wykres, dziedzina, zbiór wartości, miejsce zerowe, monotoniczność, odczytywanie własności z wykresu.", tematy: { "funkcje": ["wlasnosci-funkcji"] }, luka: "brak pojęcia funkcji, funkcji różnowartościowych i graficznego rozwiązywania równań" },
+      // rozdz. 4
+      { id: "lo1-liniowa", nazwa: "Funkcja liniowa", opis: "Proporcjonalność prosta, wykres, miejsce zerowe i współczynnik kierunkowy, zadania praktyczne.", tematy: { "funkcje": ["funkcja-liniowa"] } },
+      // rozdz. 5
+      { id: "lo1-uklady", nazwa: "Układy równań liniowych z dwiema niewiadomymi", opis: "Równanie z dwiema niewiadomymi, metoda podstawiania i przeciwnych współczynników, graficzne rozwiązywanie, zadania.", tematy: { "liczby": ["rownania"], "tekstowe": ["rownania-z-tresci"] }, nowe: ["uklady-rownan"], luka: "jedna karta na cały rozdział" },
+      // rozdz. 6
+      { id: "lo1-wybrane-funkcje", nazwa: "Podstawowe własności wybranych funkcji", opis: "Funkcja kwadratowa, proporcjonalność odwrotna, funkcja wykładnicza i logarytmiczna – wykresy i własności.", tematy: { "funkcje": ["funkcja-kwadratowa", "inne-funkcje"] } },
+      // rozdz. 7
+      { id: "lo1-trojkaty", nazwa: "Geometria płaska – pojęcia wstępne. Trójkąty", opis: "Proste, kąty, twierdzenie Talesa, Pitagorasa, wysokości i środkowe, przystawanie i podobieństwo trójkątów.", tematy: { "geometria": ["planimetria"], "dowody": ["dowody-geometryczne"] }, nowe: ["planimetria-podstawy"], luka: "brak środkowych, nierówności trójkąta, symetralnej i dwusiecznej" },
+      // rozdz. 8
+      { id: "lo1-trygonometria", nazwa: "Trygonometria kąta ostrego", opis: "Sinus, cosinus, tangens i cotangens w trójkącie prostokątnym, wartości dla 30°, 45°, 60°, związki między funkcjami.", tematy: { "geometria": ["trygonometria"] }, luka: "brak cotangensa i wyznaczania pozostałych funkcji z jednej" },
     ],
   },
   {
     id: "lo2", egzamin: "matura", nazwa: "Klasa 2",
     rozdzialy: [
-      { id: "lo2-kwadratowa", nazwa: "Funkcja kwadratowa", opis: "Wykres paraboli, wierzchołek, postać kanoniczna i iloczynowa, wartości największe i najmniejsze.", tematy: { "funkcje": ["funkcja-kwadratowa"], "dowody": ["optymalizacja"] } },
-      { id: "lo2-rownania-kw", nazwa: "Równania i nierówności kwadratowe", opis: "Delta, miejsca zerowe, wzory Viète’a, nierówności kwadratowe.", tematy: { "liczby": ["rownania", "nierownosci"], "funkcje": ["funkcja-kwadratowa"] } },
-      // Kolejność niepewna: u części wydawnictw wielomiany są w klasie 3.
-      { id: "lo2-wielomiany", nazwa: "Wielomiany", opis: "Rozkład wielomianu na czynniki, wyłączanie przed nawias i grupowanie, równania wielomianowe.", tematy: { "liczby": ["wyrazenia", "rownania"] } },
-      // NE: klasa 1 (wartość bezwzględna w rozdziale „Język matematyki”)
-      { id: "lo2-modul", nazwa: "Równania i nierówności z modułem", opis: "Wartość bezwzględna, równania i nierówności z wartością bezwzględną.", tematy: { "liczby": ["liczby-rzeczywiste", "rownania", "nierownosci"] } },
-      // Pazdro: klasa 1 (trygonometria kąta ostrego i wypukłego)
-      { id: "lo2-trygonometria", nazwa: "Trygonometria", opis: "Sinus, cosinus i tangens, wartości dla 30°, 45°, 60°, związki między funkcjami.", tematy: { "geometria": ["trygonometria"] } },
-      { id: "lo2-okregi", nazwa: "Okręgi i koła", opis: "Kąty w okręgu, styczna, okrąg wpisany i opisany, pole koła.", tematy: { "geometria": ["planimetria"], "dowody": ["dowody-geometryczne"] } },
-      { id: "lo2-pola-trojkaty", nazwa: "Pola figur i rozwiązywanie trójkątów", opis: "Pole trójkąta z sinusem, twierdzenie sinusów i cosinusów.", tematy: { "geometria": ["planimetria", "trygonometria"] } },
-      // NE: klasa 3 (Geometria analityczna); Pazdro: klasy 2 i 3
-      { id: "lo2-geom-analityczna", nazwa: "Geometria analityczna", opis: "Odcinek, prosta i okrąg w układzie współrzędnych, symetrie punktu.", tematy: { "geometria": ["geometria-analityczna"] } },
+      // rozdz. 1
+      { id: "lo2-przeksztalcenia", nazwa: "Przekształcenia wykresów funkcji", opis: "Wektor, przesunięcia wzdłuż osi i o wektor, symetrie wykresu, graficzne rozwiązywanie równań i nierówności.", tematy: { "funkcje": ["wlasnosci-funkcji"] }, nowe: ["wektory"], luka: "brak przesunięcia o wektor [p, q]; symetrie wykresu uchylone w ZP w 2024" },
+      // rozdz. 2
+      { id: "lo2-modul", nazwa: "Wartość bezwzględna: równania i nierówności", opis: "Wartość bezwzględna, odległość na osi liczbowej, proste równania i nierówności z wartością bezwzględną.", tematy: { "liczby": ["liczby-rzeczywiste", "rownania", "nierownosci"] } },
+      // rozdz. 3
+      { id: "lo2-kwadratowa", nazwa: "Funkcja kwadratowa", opis: "Postacie funkcji, miejsca zerowe, wykres, wzór z własności, równania i nierówności kwadratowe, optymalizacja.", tematy: { "funkcje": ["funkcja-kwadratowa"], "liczby": ["rownania", "nierownosci"], "dowody": ["optymalizacja"], "tekstowe": ["rownania-z-tresci"] }, luka: "brak wzoru funkcji z danych i zadań tekstowych kwadratowych" },
+      // rozdz. 4
+      { id: "lo2-okregi", nazwa: "Geometria płaska – okręgi i koła", opis: "Położenie prostej i okręgu oraz dwóch okręgów, kąty w kole, konstrukcje, okrąg opisany i wpisany w trójkąt.", tematy: { "geometria": ["planimetria"], "dowody": ["dowody-geometryczne"] }, luka: "brak położenia dwóch okręgów, okręgu opisanego i wpisanego w dowolny trójkąt" },
+      // rozdz. 5
+      { id: "lo2-trygonometria", nazwa: "Trygonometria", opis: "Funkcje trygonometryczne dowolnego kąta, tożsamości, wzory redukcyjne.", tematy: { "geometria": ["trygonometria"] }, luka: "brak kątów do 360° i wzorów redukcyjnych" },
+      // rozdz. 6
+      { id: "lo2-geom-analityczna", nazwa: "Geometria analityczna", opis: "Odcinek, równanie kierunkowe i ogólne prostej, równanie okręgu.", tematy: { "geometria": ["geometria-analityczna"] } },
+      // rozdz. 7
+      { id: "lo2-pola-trojkaty", nazwa: "Rozwiązywanie trójkątów. Pole trójkąta i koła", opis: "Twierdzenie sinusów i cosinusów, pole trójkąta, pola figur podobnych, pole koła i wycinka koła.", tematy: { "geometria": ["planimetria", "trygonometria"] } },
+      // rozdz. 8
+      { id: "lo2-wielomiany", nazwa: "Wielomiany", opis: "Pojęcie wielomianu, działania, równość wielomianów, twierdzenie Bezouta, rozkład na czynniki, równania wielomianowe.", tematy: { "liczby": ["wyrazenia", "rownania"] }, nowe: ["wielomiany"], luka: "brak pojęcia wielomianu, działań, Bezouta i rozkładu; wzory na sześciany i grupowanie w ZP zostały usunięte w 2024" },
     ],
   },
   {
     id: "lo3", egzamin: "matura", nazwa: "Klasa 3",
     rozdzialy: [
-      // Pazdro: klasa 4
-      { id: "lo3-wykladnicza", nazwa: "Funkcja wykładnicza i logarytmiczna", opis: "Wykres i własności funkcji wykładniczej i logarytmicznej, zastosowania.", tematy: { "funkcje": ["inne-funkcje"], "liczby": ["logarytmy"] } },
-      // Pazdro: klasy 2 i 3
-      { id: "lo3-geom-analityczna", nazwa: "Geometria analityczna", opis: "Odległość, środek odcinka, równanie okręgu, położenie okręgu i prostej.", tematy: { "geometria": ["geometria-analityczna"] }, luka: "brak wzajemnego położenia dwóch okręgów" },
-      { id: "lo3-ciagi", nazwa: "Ciągi – własności", opis: "Wzór ogólny, kolejne wyrazy, ciągi monotoniczne, wzór rekurencyjny.", tematy: { "funkcje": ["wzor-ogolny"] }, luka: "brak ciągów określonych rekurencyjnie" },
-      { id: "lo3-arytmetyczny", nazwa: "Ciąg arytmetyczny", opis: "Różnica, wyraz ogólny, suma początkowych wyrazów.", tematy: { "funkcje": ["ciag-arytmetyczny"], "tekstowe": ["ciagi-w-praktyce"] } },
-      { id: "lo3-geometryczny", nazwa: "Ciąg geometryczny", opis: "Iloraz, wyraz ogólny, suma wyrazów, procent składany.", tematy: { "funkcje": ["ciag-geometryczny"], "tekstowe": ["ciagi-w-praktyce", "procenty-i-pieniadze"] } },
-      { id: "lo3-wielosciany", nazwa: "Graniastosłupy i ostrosłupy", opis: "Przekątne i odcinki w bryłach, pole powierzchni, objętość, kąty w bryłach.", tematy: { "geometria": ["stereometria"] }, luka: "brak prostych i płaszczyzn w przestrzeni oraz przekrojów" },
-      // Pazdro: klasa 3
-      { id: "lo3-wymierne", nazwa: "Ułamki algebraiczne i funkcje wymierne", opis: "Skracanie ułamków z niewiadomą, równania z ułamkiem, funkcja homograficzna.", tematy: { "liczby": ["wyrazenia", "rownania"], "funkcje": ["inne-funkcje"] }, luka: "brak funkcji homograficznej i równań wymiernych" },
-      // NE: klasa 4
-      { id: "lo3-kombinatoryka", nazwa: "Kombinatoryka", opis: "Reguła mnożenia i dodawania, permutacje, wariacje.", tematy: { "statystyka": ["kombinatoryka"] } },
+      // rozdz. 1
+      { id: "lo3-wymierne", nazwa: "Ułamki algebraiczne. Równania wymierne", opis: "Skracanie, mnożenie i dzielenie ułamków algebraicznych, równania wymierne, funkcja homograficzna.", tematy: { "liczby": ["wyrazenia", "rownania"], "funkcje": ["inne-funkcje"], "tekstowe": ["rownania-z-tresci"] }, nowe: ["rownania-wymierne", "funkcja-homograficzna"], luka: "brak równań wymiernych, dziedziny ułamka algebraicznego i funkcji homograficznej" },
+      // rozdz. 2
+      { id: "lo3-ciagi", nazwa: "Ciągi liczbowe", opis: "Określenie i monotoniczność ciągu, ciąg arytmetyczny i geometryczny, sumy, lokaty i kredyty.", tematy: { "funkcje": ["wzor-ogolny", "ciag-arytmetyczny", "ciag-geometryczny"], "tekstowe": ["ciagi-w-praktyce", "procenty-i-pieniadze"] }, luka: "brak ciągów określonych rekurencyjnie i kredytów" },
+      // rozdz. 3
+      { id: "lo3-kombinatoryka", nazwa: "Kombinatoryka", opis: "Reguła mnożenia i reguła dodawania, zadania kombinatoryczne.", tematy: { "statystyka": ["kombinatoryka"] } },
+      // rozdz. 4
+      { id: "lo3-czworokaty", nazwa: "Geometria płaska – czworokąty", opis: "Podział czworokątów, trapezy, równoległoboki, wielokąty foremne, podobieństwo czworokątów.", tematy: { "geometria": ["planimetria"] }, nowe: ["czworokaty"], luka: "brak własności czworokątów" },
+      // rozdz. 5
+      { id: "lo3-pole-czworokata", nazwa: "Geometria płaska – pole czworokąta", opis: "Pole prostokąta, równoległoboku, rombu, trapezu, pola figur podobnych, skala mapy.", tematy: { "geometria": ["planimetria"] } },
+      // rozdz. 6
+      { id: "lo3-geom-analityczna", nazwa: "Geometria analityczna", opis: "Wektor w układzie współrzędnych, proste, równanie okręgu, położenie prostej i okręgu, przekształcenia w układzie współrzędnych.", tematy: { "geometria": ["geometria-analityczna"] }, nowe: ["wektory"], luka: "brak położenia prostej i okręgu; odległość punktu od prostej i pole trójkąta w układzie uchylone w ZP w 2024" },
     ],
   },
   {
     id: "lo4", egzamin: "matura", nazwa: "Klasa 4",
     rozdzialy: [
-      // Pazdro: klasa 3
-      { id: "lo4-kombinatoryka", nazwa: "Kombinatoryka", opis: "Reguła mnożenia i dodawania, permutacje, wariacje.", tematy: { "statystyka": ["kombinatoryka"] } },
-      { id: "lo4-prawdopodobienstwo", nazwa: "Rachunek prawdopodobieństwa", opis: "Zdarzenia losowe, prawdopodobieństwo klasyczne, zdarzenie przeciwne.", tematy: { "statystyka": ["prawdopodobienstwo"] }, luka: "brak wartości oczekiwanej i drzewka" },
-      // NE (starsze wydanie): klasa 3; Pazdro: klasa 4
-      { id: "lo4-statystyka", nazwa: "Statystyka", opis: "Średnia, mediana, dominanta, odchylenie standardowe.", tematy: { "statystyka": ["statystyka"] } },
-      // NE: klasa 3 w nowym wydaniu
-      { id: "lo4-wielosciany", nazwa: "Graniastosłupy i ostrosłupy", opis: "Powtórka: pole powierzchni i objętość wielościanów, kąty w bryłach.", tematy: { "geometria": ["stereometria"] }, luka: "brak prostych i płaszczyzn w przestrzeni oraz przekrojów" },
-      { id: "lo4-bryly-obrotowe", nazwa: "Bryły obrotowe", opis: "Walec, stożek, kula, bryły podobne.", tematy: { "geometria": ["stereometria"] } },
-      // Pazdro: klasa 4
-      { id: "lo4-wykladnicza", nazwa: "Funkcja wykładnicza i logarytmiczna", opis: "Powtórka: wykresy, własności i zastosowania.", tematy: { "funkcje": ["inne-funkcje"], "liczby": ["logarytmy"] } },
-      { id: "lo4-dowody", nazwa: "Dowody w matematyce", opis: "Dowody w algebrze i geometrii, dowody nie wprost.", tematy: { "dowody": ["dowody-algebraiczne", "dowody-geometryczne"] }, luka: "brak dowodów nie wprost" },
-      { id: "lo4-powtorzenie", nazwa: "Zadania tekstowe do matury", opis: "Powtórzenie przed maturą: ruch, praca, procenty, ciągi i optymalizacja z treści.", tematy: { "tekstowe": ["ruch-i-praca", "procenty-i-pieniadze", "rownania-z-tresci", "ciagi-w-praktyce"], "dowody": ["optymalizacja"] } },
+      // rozdz. 1
+      { id: "lo4-wykladnicza", nazwa: "Funkcja wykładnicza. Funkcja logarytmiczna", opis: "Własności i wykresy, równania i nierówności wykładnicze, równania logarytmiczne, zastosowania praktyczne.", tematy: { "funkcje": ["inne-funkcje"], "liczby": ["logarytmy", "potegi"] }, nowe: ["rownania-wykladnicze-logarytmiczne"], luka: "brak równań i nierówności wykładniczych oraz równań logarytmicznych" },
+      // rozdz. 2
+      { id: "lo4-statystyka-prawdopodobienstwo", nazwa: "Statystyka i rachunek prawdopodobieństwa", opis: "Prezentacja danych, średnia, mediana, moda; zdarzenia, prawdopodobieństwo klasyczne, doświadczenia wieloetapowe.", tematy: { "statystyka": ["statystyka", "kombinatoryka", "prawdopodobienstwo"] }, luka: "brak zdarzeń i drzewka; odchylenie standardowe i wartość oczekiwana uchylone w ZP w 2024" },
+      // rozdz. 3
+      { id: "lo4-wielosciany", nazwa: "Geometria przestrzenna – wielościany", opis: "Proste i płaszczyzny w przestrzeni, kąty w bryłach, graniastosłupy, ostrosłupy, pole powierzchni i objętość.", tematy: { "geometria": ["stereometria"] }, nowe: ["proste-i-plaszczyzny"], luka: "brak prostych i płaszczyzn w przestrzeni, rzutu i kąta z płaszczyzną; przekroje wielościanów uchylone w ZP" },
+      // rozdz. 4
+      { id: "lo4-bryly-obrotowe", nazwa: "Geometria przestrzenna – bryły obrotowe", opis: "Walec, stożek, kula i sfera, bryły obrotowe podobne, zadania różne.", tematy: { "geometria": ["stereometria"] }, luka: "brak przekrojów osiowych i brył z obrotu figur" },
+      // rozdz. 5 (33 h na powtórzenie i arkusze)
+      { id: "lo4-powtorzenie", nazwa: "Powtórzenie wiadomości przed maturą", opis: "Zadania tekstowe, dowody, optymalizacja i próbne arkusze.", tematy: { "tekstowe": ["ruch-i-praca", "procenty-i-pieniadze", "rownania-z-tresci", "ciagi-w-praktyce"], "dowody": ["dowody-algebraiczne", "dowody-geometryczne", "optymalizacja"] } },
     ],
   },
 ];
