@@ -88,5 +88,10 @@ export default {
       rysunek: "assets/arkusze-e8/rys/2022-maj-o18.png",
       rozwiazanie: "Obliczamy długość boku rombu.\n\nObwód rombu jest równy $52$ cm, czyli jeden bok rombu ma długość: $52 : 4 = 13$ cm.\n\nPrzekątne rombu dzielą się na połowy i przecinają się pod kątem prostym. Punkt przecięcia przekątnych oznaczamy jako $E$, tak jak na rysunku. Przekątna $AC$ ma długość $24$ cm, a jej połowa to $12$ cm.\n\n[rysunek]\n\nTrójkąt $BCE$ jest prostokątny. Oznaczamy połowę długości przekątnej $BD$ jako $x$ i obliczamy tę długość, korzystając z twierdzenia Pitagorasa:\n\n$x^2 + 12^2 = 13^2$\n\n$x^2 = 13^2 - 12^2$\n\n$x^2 = 169 - 144$\n\n$x = \\sqrt{25} = 5$ (cm)\n\nPonieważ $x$ stanowi połowę długości przekątnej $BD$, stąd\n\n$|BD| = 2x$\n\n$|BD| = 2 \\cdot 5 = 10$ (cm)\n\nOdpowiedź: Przekątna $BD$ ma długość $10$ cm.",
       rysunekRozwiazania: "assets/arkusze-e8/rys/2022-maj-o18-r.png" },
+    { nr: "19", dzial: "e8-bryly", temat: "objetosc", punkty: 3,
+      tresc: "Na rysunku przedstawiono siatkę graniastosłupa prawidłowego czworokątnego oraz zapisano niektóre wymiary tej siatki.\n\n[rysunek]\n\n**Oblicz objętość tego graniastosłupa. Zapisz obliczenia.**",
+      rysunek: "assets/arkusze-e8/rys/2022-maj-o19.png",
+      rozwiazanie: "Podstawą graniastosłupa prawidłowego czworokątnego jest kwadrat. Oznaczmy długość krawędzi podstawy graniastosłupa jako $a$. Wysokość graniastosłupa oznaczmy jako $H$.\n\n[rysunek]\n\nObliczamy długość krawędzi podstawy:\n\n$3a = 48$ (cm)\n\n$a = 16$ (cm)\n\nObliczamy wysokość tego graniastosłupa:\n\n$a + H = 41$\n\n$H = 41 - 16$\n\n$H = 25$ (cm)\n\nObliczamy objętość graniastosłupa:\n\n$V = a^2 \\cdot H$\n\n$V = 16^2 \\cdot 25 = 6400$ ($\\text{cm}^3$)\n\nOdpowiedź: Objętość graniastosłupa jest równa $6400$ $\\text{cm}^3$.",
+      rysunekRozwiazania: "assets/arkusze-e8/rys/2022-maj-o19-r.png" },
   ],
 };

@@ -100,5 +100,8 @@ export default {
     { nr: "20", dzial: "e8-figury", temat: "pitagoras", punkty: 3,
       tresc: "Obwód trójkąta równoramiennego jest równy $36$ cm. Ramię tego trójkąta jest o $3$ cm dłuższe od jego podstawy.\n\n**Oblicz pole tego trójkąta. Zapisz obliczenia.**",
       rozwiazanie: "Oznaczamy jako:\n\n$x$ – długość podstawy trójkąta\n\n$x + 3$ – długość ramienia trójkąta\n\nObliczamy długości boków trójkąta:\n\n$2(x + 3) + x = 36$\n\n$3x = 36 - 6$\n\n$x = 10$\n\n$x + 3 = 13$\n\nObliczamy wysokość trójkąta z twierdzenia Pitagorasa (wysokość dzieli podstawę na dwie części po $5$ cm):\n\n$h^2 + 5^2 = 13^2$\n\n$h^2 = 169 - 25 = 144$\n\n$h = 12$\n\nObliczamy pole trójkąta:\n\n$P = \\frac{10 \\cdot 12}{2} = 60$ ($\\text{cm}^2$)\n\nOdpowiedź: Pole trójkąta jest równe $60$ $\\text{cm}^2$." },
+    { nr: "21", dzial: "e8-bryly", temat: "objetosc", punkty: 3,
+      tresc: "Dany jest ostrosłup prawidłowy czworokątny, którego krawędź podstawy ma długość $3{,}5$ cm. Wysokość ostrosłupa jest o $8$ cm mniejsza od obwodu jego podstawy.\n\n**Oblicz objętość tego ostrosłupa. Zapisz obliczenia.**",
+      rozwiazanie: "Obliczamy pole kwadratu, który jest podstawą ostrosłupa:\n\n$P = (3{,}5)^2 = 12{,}25$ ($\\text{cm}^2$)\n\nObliczamy wysokość ostrosłupa:\n\n$H = 4 \\cdot 3{,}5 - 8 = 14 - 8 = 6$ (cm)\n\nObliczamy objętość ostrosłupa:\n\n$V = \\frac{1}{3} \\cdot 12{,}25 \\cdot 6 = 24{,}5$ ($\\text{cm}^3$)\n\nOdpowiedź: Objętość ostrosłupa jest równa $24{,}5$ $\\text{cm}^3$." },
   ],
 };

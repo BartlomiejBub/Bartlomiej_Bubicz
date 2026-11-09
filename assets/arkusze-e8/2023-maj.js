@@ -93,5 +93,9 @@ export default {
       tresc: "W czworokącie $ABCD$ o polu $48\\ \\text{cm}^2$ przekątna $AC$ ma długość $8$ cm i dzieli ten czworokąt na dwa trójkąty: $ABC$ i $ACD$ (zobacz rysunek). Wysokość trójkąta $ACD$ poprowadzona z wierzchołka $D$ do prostej $AC$ jest równa $2$ cm.\n\n[rysunek]\n\n**Oblicz wysokość trójkąta **$ABC$** poprowadzoną z wierzchołka **$B$** do prostej **$AC$**. Zapisz obliczenia.**",
       rysunek: "assets/arkusze-e8/rys/2023-maj-o18.png",
       rozwiazanie: "Pole czworokąta $ABCD$ jest równe sumie pól dwóch trójkątów: $ABC$ oraz $ACD$.\n\n$P_{ABCD} = P_{ABC} + P_{ACD}$\n\nZatem korzystając ze wzoru na pole trójkąta (dla trójkąta $ABC$ oraz trójkąta $ACD$), możemy obliczyć wysokość $h_B$ trójkąta $ABC$ poprowadzoną z wierzchołka $B$:\n\n$48 = \\frac{1}{2} \\cdot 8 \\cdot 2 + \\frac{1}{2} \\cdot 8 \\cdot h_B$\n\n$48 = 8 + 4h_B$\n\n$h_B = \\frac{40}{4} = 10$\n\nOdpowiedź: Wysokość trójkąta $ABC$ poprowadzona z wierzchołka $B$ jest równa $10$ cm." },
+    { nr: "19", dzial: "e8-bryly", temat: "objetosc", punkty: 3,
+      tresc: "Z pięciu prostopadłościennych klocków o jednakowych wymiarach ułożono figurę. Kształt i wybrane wymiary tej figury przedstawiono na rysunku.\n\n[rysunek]\n\n**Oblicz objętość jednego klocka. Zapisz obliczenia.**",
+      rysunek: "assets/arkusze-e8/rys/2023-maj-o19.png",
+      rozwiazanie: "Obliczamy długość najkrótszej krawędzi prostopadłościennego klocka:\n\n$23 \\text{ cm} - 20{,}5 \\text{ cm} = 2{,}5$ cm\n\nObliczamy długość najdłuższej krawędzi klocka:\n\n$20{,}5 \\text{ cm} - 2{,}5 \\text{ cm} = 18$ cm\n\nObliczamy objętość klocka:\n\n$V = 5 \\text{ cm} \\cdot 2{,}5 \\text{ cm} \\cdot 18 \\text{ cm} = 225$ $\\text{cm}^3$\n\nOdpowiedź: Objętość prostopadłościennego klocka jest równa $225$ $\\text{cm}^3$." },
   ],
 };

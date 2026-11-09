@@ -94,5 +94,10 @@ export default {
       rysunek: "assets/arkusze-e8/rys/2024-czerwiec-o18.png",
       rozwiazanie: "Oznaczamy na rysunku wymiary trawnika oraz długości ścieżek.\n\n[rysunek]\n\nObliczamy długość krótszego boku kwietnika:\n\n$9 - 2 \\cdot 2{,}5 = 4$ (m)\n\nObliczamy długość dłuższego boku kwietnika:\n\n$9 - 2 \\cdot 1{,}5 = 6$ (m)\n\nObliczamy pole powierzchni kwietnika:\n\n$P = 4 \\cdot 6 = 24$ ($\\text{m}^2$)\n\nOdpowiedź: Pole powierzchni kwietnika jest równe $24$ $\\text{m}^2$.",
       rysunekRozwiazania: "assets/arkusze-e8/rys/2024-czerwiec-o18-r.png" },
+    { nr: "19", dzial: "e8-bryly", temat: "objetosc", punkty: 3,
+      tresc: "Dany jest graniastosłup prawidłowy czworokątny, w którym zielone ściany są kwadratami.\n\nSuma długości jego krawędzi zaznaczonych pogrubioną linią na rysunku 1. jest równa $27$ cm.\n\nSuma długości jego krawędzi zaznaczonych pogrubioną linią na rysunku 2. jest równa $30$ cm.\n\n[rysunek]\n\n**Oblicz objętość tego graniastosłupa. Zapisz obliczenia.**",
+      rysunek: "assets/arkusze-e8/rys/2024-czerwiec-o19.png",
+      rozwiazanie: "Możemy zauważyć, że w porównaniu z rysunkiem 1. na rysunku 2. zaznaczono pogrubioną linią o jedną więcej krótszą krawędź graniastosłupa, a więc krótsza krawędź ma długość równą $3$ cm, gdyż:\n\n[rysunek]\n\n$30 \\text{ cm} - 27 \\text{ cm} = 3$ cm\n\nObliczamy sumę długości trzech krawędzi bocznych graniastosłupa zaznaczonych na rysunku 1. pogrubioną linią:\n\n$27 - (3 + 3) = 21$ (cm)\n\nZatem długość jednej krawędzi bocznej graniastosłupa jest równa:\n\n$21 : 3 = 7$ (cm)\n\nObliczamy objętość graniastosłupa:\n\n$V = 3^2 \\cdot 7 = 63$ ($\\text{cm}^3$)\n\nOdpowiedź: Objętość tego graniastosłupa jest równa $63$ $\\text{cm}^3$.",
+      rysunekRozwiazania: "assets/arkusze-e8/rys/2024-czerwiec-o19-r.png" },
   ],
 };

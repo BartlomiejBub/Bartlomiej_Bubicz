@@ -99,6 +99,10 @@ export default {
       ] },
   ],
   otwarte: [
+    { nr: "17", dzial: "e8-bryly", temat: "graniastoslupy", punkty: 2,
+      tresc: "Na rysunku przedstawiono dwie różne ściany prostopadłościanu. Jedna jest kwadratem o boku $5$ cm, a druga – prostokątem o bokach $3$ cm i $5$ cm.\n\n**Oblicz sumę długości wszystkich krawędzi prostopadłościanu o takich wymiarach. Zapisz obliczenia.**",
+      rozwiazanie: "Zauważamy, że prostopadłościan ma dwie kwadratowe ściany i cztery prostokątne.\n\n[rysunek]\n\nMa on zatem $8$ krawędzi o długości $5$ cm i $4$ krawędzie o długości $3$ cm. Suma długości wszystkich krawędzi tego prostopadłościanu jest zatem równa\n\n$8 \\cdot 5 + 4 \\cdot 3 = 40 + 12 = 52$ (cm)\n\nOdpowiedź: Suma długości wszystkich krawędzi prostopadłościanu jest równa $52$ cm.",
+      rysunekRozwiazania: "assets/arkusze-e8/rys/2017-grudzien-probny-o17-r.png" },
     { nr: "19", dzial: "e8-procenty", temat: "pieniadze", punkty: 2,
       tresc: "Na pływalni w marcu obowiązywała promocja.\n\nOgłoszenie: Jednorazowe wejście na pływalnię – $9$ zł. PROMOCJA!!! Co czwarte wejście gratis.\n\nWojtek był w marcu codziennie jeden raz na pływalni i wykorzystał wszystkie ulgi promocyjne.\n\n**Ile kosztowało go korzystanie z pływalni w marcu? Zapisz obliczenia.**",
       rozwiazanie: "Wojtek korzystał z gratisowego wejścia w następujących dniach marca: $4$, $8$, $12$, $16$, $20$, $24$ i $28$, czyli $7$ razy.\n\nWojtek zapłacił za $31 - 7 = 24$ wejścia.\n\n$24 \\cdot 9 = 216$\n\nOdpowiedź: Za korzystanie z pływalni przez cały marzec Wojtek zapłacił $216$ zł." },

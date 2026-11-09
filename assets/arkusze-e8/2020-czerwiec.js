@@ -95,5 +95,9 @@ export default {
     { nr: "20", dzial: "e8-figury", temat: "pola-obwody", punkty: 3,
       tresc: "Boisko szkolne ma kształt prostokąta o wymiarach $46$ m i $30$ m. Postanowiono posiać na nim trawę. Do obsiania $40$ m$^2$ powierzchni jest potrzebny jeden kilogram nasion trawy. Nasiona trawy są sprzedawane tylko w $10$-kilogramowych workach, po $163$ zł za jeden worek.\n\n**Oblicz koszt zakupu nasion trawy potrzebnych do obsiania tego boiska. Zapisz obliczenia.**",
       rozwiazanie: "Pole powierzchni boiska:\n\n$P = 46 \\cdot 30 = 1380$ (m$^2$)\n\nLiczba kilogramów nasion trawy potrzebnych do obsiania boiska:\n\n$1380 : 40 = 34{,}5$ (kg)\n\nLiczba worków:\n\n$34{,}5 : 10 = 3{,}45$, więc trzeba kupić $4$ worki nasion trawy.\n\nKoszt zakupu:\n\n$4 \\cdot 163 = 652$ (zł)\n\nOdpowiedź: Koszt zakupu nasion trawy był równy $652$ zł." },
+    { nr: "21", dzial: "e8-bryly", temat: "objetosc", punkty: 3,
+      tresc: "Podstawą ostrosłupa o wysokości $H$ jest kwadrat. Na rysunku przedstawiono siatkę i podano długości niektórych krawędzi tego ostrosłupa.\n\n[rysunek]\n\n**Oblicz objętość tego ostrosłupa. Zapisz obliczenia.**",
+      rysunek: "assets/arkusze-e8/rys/2020-czerwiec-o21.png",
+      rozwiazanie: "Pole podstawy ostrosłupa $P = a^2$\n\n$P = 5^2 = 25$ ($\\text{cm}^2$)\n\nWysokość $H$ ostrosłupa wyznaczamy z twierdzenia Pitagorasa:\n\n$H^2 + 5^2 = 13^2$\n\n$H^2 = 169 - 25$\n\n$H^2 = 144$\n\n$H = 12$ (cm)\n\nObjętość ostrosłupa obliczamy ze wzoru $V = \\frac{1}{3} \\cdot P \\cdot H$\n\n$V = \\frac{1}{3} \\cdot 25 \\cdot 12 = 100$ ($\\text{cm}^3$)\n\nOdpowiedź: Objętość ostrosłupa jest równa $100$ $\\text{cm}^3$." },
   ],
 };

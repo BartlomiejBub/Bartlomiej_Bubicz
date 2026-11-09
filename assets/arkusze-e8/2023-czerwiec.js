@@ -97,5 +97,10 @@ export default {
       tresc: "Na rysunku przedstawiono prostokąt $ABCD$, w którym bok $BC$ ma długość $4$ cm. Na bokach prostokąta zaznaczono punkty $E$ i $F$ oraz narysowano odcinki $EF$ i $FC$ tak, że powstały dwa jednakowe trójkąty $EAF$ i $FBC$. W obu trójkątach zaznaczono kąty o takiej samej mierze $\\alpha$. Odcinek $AE$ ma długość $3$ cm.\n\n[rysunek]\n\n**Oblicz pole prostokąta **$ABCD$**. Zapisz obliczenia.**",
       rysunek: "assets/arkusze-e8/rys/2023-czerwiec-o18.png",
       rozwiazanie: "Odcinek $BC$ jest bokiem prostokąta $ABCD$ oraz przyprostokątną trójkąta $FBC$ o długości $4$ cm.\n\nDługości przyprostokątnych trójkątów $AFE$ oraz $FBC$ są równe, zatem odcinek $AF$ ma długość $4$ cm, a odcinek $FB$ ma długość $3$ cm.\n\nDługość boku $AB$ prostokąta jest równa:\n\n$|AF| + |FB| = |AB|$\n\n$4\\ \\text{cm} + 3\\ \\text{cm} = 7\\ \\text{cm}$\n\nObliczamy pole prostokąta $ABCD$:\n\n$P_{ABCD} = |AB| \\cdot |BC|$\n\n$P_{ABCD} = 7\\ \\text{cm} \\cdot 4\\ \\text{cm} = 28\\ \\text{cm}^2$\n\nOdpowiedź: Pole prostokąta $ABCD$ jest równe $28$ cm$^2$." },
+    { nr: "19", dzial: "e8-bryly", temat: "objetosc", punkty: 3,
+      tresc: "Powierzchnia kartonu ma kształt prostokąta o wymiarach $8$ cm i $15$ cm. W czterech rogach tego kartonu wycięto kwadraty o boku $2{,}5$ cm. Z pozostałej części złożono pudełko.\n\n[rysunek]\n\n**Oblicz objętość tego pudełka. Zapisz obliczenia.**",
+      rysunek: "assets/arkusze-e8/rys/2023-czerwiec-o19.png",
+      rozwiazanie: "Oznaczamy bok wyciętego kwadratu jako $a = 2{,}5$ cm.\n\n[rysunek]\n\nObliczamy długość krawędzi prostopadłościennego pudełka, po wycięciu kwadratów:\n\n$b = 8 - 2 \\cdot 2{,}5 = 3$ cm\n\n$c = 15 - 2 \\cdot 2{,}5 = 10$ cm\n\nObliczamy objętość pudełka:\n\n$V = 2{,}5 \\text{ cm} \\cdot 3 \\text{ cm} \\cdot 10 \\text{ cm} = 75$ $\\text{cm}^3$\n\nOdpowiedź: Objętość tego pudełka jest równa $75$ $\\text{cm}^3$.",
+      rysunekRozwiazania: "assets/arkusze-e8/rys/2023-czerwiec-o19-r.png" },
   ],
 };

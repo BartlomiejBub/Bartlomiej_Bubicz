@@ -102,5 +102,9 @@ export default {
       rysunek: "assets/arkusze-e8/rys/2020-marzec-probny-o20.png",
       rozwiazanie: "[rysunek]\n\n$|AB| = 16$ cm\n\n$P_{ABCD} = \\frac{16 + 8}{2} \\cdot h$\n\n$72 = 12h$\n\n$h = 6$ (cm)\n\n$P_{AED} = \\frac{4 \\cdot 6}{2} = 12$ (cm$^2$)\n\nOdpowiedź: Pole trójkąta $AED$ jest równe $12$ cm$^2$.",
       rysunekRozwiazania: "assets/arkusze-e8/rys/2020-marzec-probny-o20-r.png" },
+    { nr: "21", dzial: "e8-bryly", temat: "objetosc", punkty: 3,
+      tresc: "Pudełko w kształcie prostopadłościanu o wymiarach przedstawionych na rysunku zawiera $32$ czekoladki. Każda czekoladka ma kształt prostopadłościanu o wymiarach $2$ cm, $2$ cm i $1{,}5$ cm.\n\n[rysunek]\n\n**Ile procent objętości pudełka stanowi objętość wszystkich czekoladek? Zapisz obliczenia.**",
+      rysunek: "assets/arkusze-e8/rys/2020-marzec-probny-o21.png",
+      rozwiazanie: "Obliczamy objętość pudełka:\n\n$V_p = 16 \\cdot 24 \\cdot 2{,}5 = 960$ ($\\text{cm}^3$)\n\nObliczamy objętość jednej czekoladki:\n\n$V_1 = 2 \\cdot 2 \\cdot 1{,}5 = 6$ ($\\text{cm}^3$)\n\nObliczamy objętość wszystkich czekoladek:\n\n$V_c = 32 \\cdot 6 = 192$ ($\\text{cm}^3$)\n\n$\\frac{V_c}{V_p} \\cdot 100\\% = \\frac{192}{960} \\cdot 100\\%$\n\n$= \\frac{1}{5} \\cdot 100\\% = 20\\%$\n\nOdpowiedź: Objętość czekoladek stanowi $20\\%$ objętości pudełka." },
   ],
 };
