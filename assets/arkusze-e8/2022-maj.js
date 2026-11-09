@@ -80,6 +80,9 @@ export default {
       rysunek: "assets/arkusze-e8/rys/2022-maj-15.png" },
   ],
   otwarte: [
+    { nr: "16", dzial: "e8-procenty", temat: "procent-liczby", punkty: 2,
+      tresc: "Do wykonania naszyjnika Hania przygotowała $4$ korale srebrne, $8$ korali czerwonych i kilka korali zielonych. Następnie ze wszystkich przygotowanych korali zrobiła naszyjnik. Zielone korale stanowią $20\\%$ wszystkich korali w zrobionym naszyjniku.\n\n**Oblicz, ile zielonych korali jest w naszyjniku. Zapisz obliczenia.**",
+      rozwiazanie: "Oznaczymy liczbę zielonych korali przez $x$.\n\nŁączna liczba korali srebrnych i czerwonych jest równa $4 + 8 = 12$.\n\nWszystkich korali jest $12 + x$.\n\nPonieważ zielone korale stanowią $20\\%$ wszystkich, to\n\n$x = 0{,}2 \\cdot (12 + x)$\n\n$x = 2{,}4 + 0{,}2x$\n\n$0{,}8x = 2{,}4$\n\n$x = 3$\n\nOdpowiedź: W naszyjniku są $3$ korale zielone." },
     { nr: "17", dzial: "e8-procenty", temat: "predkosc", punkty: 2,
       tresc: "Kierowca przejechał ze stałą prędkością trasę o długości $22{,}5$ km od godziny $7{:}50$ do godziny $8{:}05$.\n\n**Oblicz prędkość, z jaką kierowca przejechał tę trasę. Wynik wyraź w **$\\frac{\\mathrm{km}}{\\mathrm{h}}$**. Zapisz obliczenia.**",
       rozwiazanie: "Czas przejazdu od godziny $7{:}50$ do godziny $8{:}05$ jest równy $15$ minut.\n\nSkorzystamy ze wzoru na prędkość $v = \\frac{s}{t}$, gdzie:\n\n$v$ – prędkość\n\n$s = 22{,}5$ km – droga\n\n$t = 15$ minut $= 15 \\cdot \\frac{1}{60}$ h $= \\frac{1}{4}$ h – czas\n\n$v = \\frac{22{,}5 \\text{ km}}{\\frac{1}{4} \\text{ h}} = 22{,}5 \\cdot 4\\,\\frac{\\mathrm{km}}{\\mathrm{h}} = 90\\,\\frac{\\mathrm{km}}{\\mathrm{h}}$\n\nOdpowiedź: Kierowca jechał z prędkością $90\\,\\frac{\\mathrm{km}}{\\mathrm{h}}$." },

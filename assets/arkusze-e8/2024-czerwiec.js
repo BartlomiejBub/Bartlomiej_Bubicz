@@ -86,6 +86,10 @@ export default {
       poprawna: 0 },
   ],
   otwarte: [
+    { nr: "16", dzial: "e8-dane", temat: "prawdopodobienstwo", punkty: 2,
+      tresc: "Na diagramie przedstawiono rozkład liczby punktów zdobytych przez zawodników biorących udział w grze Kulki.\n\n[rysunek]\n\n**Oblicz prawdopodobieństwo, że losowo wybrany zawodnik zdobył w tej grze więcej niż **$20$** punktów. Zapisz obliczenia.**",
+      rysunek: "assets/arkusze-e8/rys/2024-czerwiec-o16.png",
+      rozwiazanie: "Obliczamy liczbę wszystkich zawodników biorących udział w grze Kulki:\n\n$1 + 2 + 4 + 3 + 1 = 11$\n\nObliczamy liczbę wszystkich zawodników, którzy zdobyli ponad $20$ punktów:\n\n$3 + 1 = 4$\n\nPrawdopodobieństwo, że losowo wybrany zawodnik zdobył ponad $20$ punktów, jest równe\n\n$\\frac{4}{11}$\n\nOdpowiedź: Prawdopodobieństwo, że losowo wybrany zawodnik zdobył ponad $20$ punktów, jest równe $\\frac{4}{11}$." },
     { nr: "17", dzial: "e8-wyrazenia", temat: "zadania-z-rownaniem", punkty: 3,
       tresc: "Jednakowe kubki sprzedawane są w dwóch rodzajach opakowań – małych i dużych. W małym opakowaniu jest dwa razy mniej kubków niż w dużym. W dwóch dużych opakowaniach i sześciu małych znajduje się łącznie $140$ kubków.\n\n**Oblicz, ile kubków jest w sześciu dużych opakowaniach. Zapisz obliczenia.**",
       rozwiazanie: "Oznaczmy liczbę kubków w dużym opakowaniu jako $d$ oraz liczbę kubków w małym opakowaniu jako $m$.\n\nW dużym opakowaniu jest dwa razy więcej kubków niż w małym opakowaniu, zatem:\n\n$d = 2m$, stąd $3d = 6m$\n\nW dwóch dużych opakowaniach i sześciu małych jest łącznie $140$ kubków, zapiszemy i rozwiążemy równanie:\n\n$2d + 6m = 140$\n\n$2d + 3d = 140$\n\n$5d = 140$\n\n$d = 28$\n\nObliczymy liczbę kubków w sześciu dużych opakowaniach:\n\n$28 \\cdot 6 = 168$\n\nOdpowiedź: W sześciu dużych opakowaniach jest $168$ kubków." },

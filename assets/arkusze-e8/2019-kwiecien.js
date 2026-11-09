@@ -83,6 +83,10 @@ export default {
       rysunek: "assets/arkusze-e8/rys/2019-kwiecien-15.png" },
   ],
   otwarte: [
+    { nr: "16", dzial: "e8-dane", temat: "odczytywanie-danych", punkty: 2,
+      tresc: "Na diagramie przedstawiono informacje, jaki procent meczów w ciągu całego sezonu drużyna piłkarska zakończyła wygraną, jaki – przegraną, a jaki – remisem.\n\n[rysunek]\n\n**W ciągu całego sezonu drużyna wygrała **$10$** meczów. Ile meczów w sezonie ta drużyna przegrała? Zapisz obliczenia.**",
+      rysunek: "assets/arkusze-e8/rys/2019-kwiecien-o16.png",
+      rozwiazanie: "$100\\% - (25\\% + 45\\%) = 30\\%$ – drużyna przegrała $30\\%$ meczów\n\n$25\\%$ to $10$ meczów\n\n$5\\%$ to $2$ mecze\n\n$30\\%$ to $12$ meczów – drużyna przegrała $12$ meczów\n\nOdpowiedź: Drużyna w ciągu całego sezonu przegrała $12$ meczów." },
     { nr: "17", dzial: "e8-procenty", temat: "predkosc", punkty: 2,
       tresc: "Samochód osobowy przebył drogę $120$ km w czasie $75$ minut. Prędkość średnia busa na tej samej trasie wyniosła $80\\,\\frac{\\mathrm{km}}{\\mathrm{h}}$.\n\n**O ile krótszy był czas przejazdu tej drogi samochodem osobowym od czasu przejazdu busem? Zapisz obliczenia.**",
       rozwiazanie: "Obliczamy czas przejazdu busa:\n\n$1$ h – $80$ km\n\n$0{,}5$ h – $40$ km\n\n$1{,}5$ h – $120$ km\n\nObliczamy różnicę: $1{,}5$ h $- 75$ min $= 90$ min $- 75$ min $= 15$ minut.\n\nOdpowiedź: Czas przejazdu tej trasy samochodem był o $15$ minut krótszy niż busem." },
