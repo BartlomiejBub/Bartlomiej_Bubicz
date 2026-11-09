@@ -640,6 +640,43 @@ export const WZORY = [
     ],
   },
   {
+    id: "symetralna-dwusieczna",
+    nazwa: "Symetralna odcinka i dwusieczna kąta",
+    wzory: [
+      {
+        nazwa: "Symetralna odcinka",
+        slownie: "Symetralna odcinka to prosta, która przechodzi przez **środek** odcinka i jest do niego **prostopadła**. Wyobraź sobie most nad rzeką: kładziesz deskę dokładnie w połowie między dwoma brzegami, pod kątem prostym. Każdy punkt symetralnej jest **tak samo daleko** od obu końców odcinka – gdy stoisz na symetralnej, masz tyle samo kroków do punktu $A$ co do punktu $B$.",
+        tex: "|PA| = |PB| \\quad \\text{dla } P \\text{ na symetralnej}",
+        litery: "$A$, $B$ – końce odcinka, $P$ – dowolny punkt symetralnej odcinka $AB$",
+        przyklad: "Odcinek $AB$ ma długość $10$ cm, a $S$ jest jego środkiem. Symetralna przechodzi przez $S$ pod kątem $90^\\circ$ i dzieli odcinek na dwa po $5$ cm. Jeśli punkt $P$ leży na symetralnej i $|PA| = 13$ cm, to także $|PB| = 13$ cm.",
+        uwaga: "Symetralna musi spełniać **oba** warunki: środek i kąt prosty. Prosta przez środek pod innym kątem nie jest symetralną, a prosta prostopadła, ale nie w środku, też nie. Symetralna jest osią symetrii odcinka.",
+      },
+      {
+        nazwa: "Dwusieczna kąta",
+        slownie: "Dwusieczna kąta to półprosta wychodząca z wierzchołka, która dzieli kąt **na dwa równe kąty**. To jak przekrojenie kawałka tortu dokładnie na pół. Każdy punkt dwusiecznej jest **tak samo daleko** od obu ramion kąta (odległość mierzymy prostopadle do ramienia).",
+        tex: "\\alpha \\to \\frac{\\alpha}{2} + \\frac{\\alpha}{2}",
+        litery: "$\\alpha$ – miara kąta, $\\frac{\\alpha}{2}$ – miara każdej z dwóch części",
+        przyklad: "Kąt ma miarę $70^\\circ$. Dwusieczna dzieli go na kąty po $70^\\circ : 2 = 35^\\circ$. Jeśli dwusieczna kąta ostrego dzieli go na $25^\\circ$ i $25^\\circ$, to cały kąt ma $50^\\circ$. W trójkącie równoramiennym dwusieczna kąta przy wierzchołku dzieli podstawę na dwie równe części.",
+        uwaga: "Dwusieczna dzieli **kąt**, a nie bok figury. Nie myl jej ze środkową (która kończy się w środku przeciwległego boku) ani z wysokością (prostopadłą do boku). W trójkącie dwusieczna na ogół nie wypada w środku boku.",
+      },
+      {
+        nazwa: "Konstrukcje cyrklem i linijką",
+        slownie: "Symetralną i dwusieczną można narysować bez kątomierza, samym **cyrklem i linijką**. Trzeba tylko zakreślać łuki o tym samym promieniu, a na końcu połączyć punkty, w których łuki się przecinają. Cyrkiel „przenosi” jednakowe odległości, więc przecięcia łuków są od siebie dokładnie tak samo oddalone.",
+        tex: "\\text{symetralna: dwa łuki z } A \\text{ i } B",
+        przyklad: "**Symetralna odcinka** $AB$: (1) ustaw cyrkiel na więcej niż połowę długości $AB$; (2) zakreśl łuk z punktu $A$ po obu stronach odcinka; (3) tym samym rozstawem zakreśl łuk z punktu $B$ – łuki przetną się w dwóch punktach; (4) połącz te dwa punkty prostą – to symetralna. **Dwusieczna kąta:** (1) zakreśl z wierzchołka łuk, który przetnie oba ramiona; (2) z obu punktów przecięcia zakreśl łuki o tym samym promieniu, tak żeby przecięły się wewnątrz kąta; (3) poprowadź półprostą od wierzchołka przez punkt przecięcia łuków.",
+        uwaga: "Nie zmieniaj rozstawu cyrkla między łukami z dwóch końców – promień ma być ten sam i większy niż połowa $AB$ (inaczej łuki się nie spotkają). Nie wycieraj łuków pomocniczych: na egzaminie to one pokazują, że konstrukcja jest poprawna.",
+      },
+    ],
+    jak: [
+      "Symetralna odcinka $AB$ to prosta prostopadła do $AB$ przez jego środek. Każdy jej punkt jest tak samo odległy od $A$ i $B$.",
+      "Dwusieczna kąta dzieli go na dwa równe kąty, a jej punkty są tak samo odległe od obu ramion.",
+      "Zadanie „punkt równo oddalony od dwóch punktów” – szukaj go na symetralnej tego odcinka.",
+      "Zadanie „punkt równo oddalony od dwóch prostych (ramion kąta)” – szukaj go na dwusiecznej.",
+      "Konstrukcja symetralnej: dwa łuki o tym samym promieniu (większym niż połowa odcinka) z obu końców, potem prosta przez ich punkty przecięcia.",
+      "Konstrukcja dwusiecznej: łuk z wierzchołka na ramionach, z jego punktów dwa łuki o tym samym promieniu, półprosta przez ich przecięcie.",
+    ],
+  },
+  {
     id: "dowody-w-geometrii",
     nazwa: "Proste dowody w geometrii",
     wzory: [

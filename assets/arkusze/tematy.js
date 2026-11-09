@@ -53,10 +53,12 @@ export const TEMATY = {
 
   // Egzamin ósmoklasisty (działy z przedrostkiem e8-). Podstawy to arytmetyka spoza arkuszy: wzory i generatory.
   "e8-podstawy": [
+    { id: "rachunki-pamieciowe", nazwa: "Rachunki pamięciowe" },            // przez dziesiątkę, mnożenie po kawałku, tabliczka, 10/100/1000, dzielenie w głowie
     { id: "dodawanie-odejmowanie", nazwa: "Dodawanie i odejmowanie pisemne" },
     { id: "mnozenie", nazwa: "Mnożenie pisemne" },
     { id: "dzielenie", nazwa: "Dzielenie pisemne" },
     { id: "kolejnosc-dzialan", nazwa: "Kolejność działań" },
+    { id: "zadania-tekstowe-dzialania", nazwa: "Zadania tekstowe na działaniach" }, // dane i szukane, o ile / ile razy więcej, dwa działania, rysunek, „od końca”
     { id: "liczby-ujemne", nazwa: "Liczby ujemne" },
     { id: "podzielnosc", nazwa: "Podzielność, NWD i NWW" },
     { id: "ulamki-zwykle", nazwa: "Ułamki: skracanie i wspólny mianownik" },
@@ -101,6 +103,7 @@ export const TEMATY = {
     { id: "pitagoras", nazwa: "Twierdzenie Pitagorasa" },                   // przekątna kwadratu, wysokość trójkąta równobocznego, 30-60-90
     { id: "uklad-wspolrzednych", nazwa: "Układ współrzędnych" },            // punkty, odcinki, środek i długość odcinka, figury w układzie
     { id: "symetrie", nazwa: "Symetrie" },                                // osiowa i środkowa, osie symetrii figur
+    { id: "symetralna-dwusieczna", nazwa: "Symetralna odcinka i dwusieczna kąta" }, // prostopadła przez środek, dzieli kąt na pół, konstrukcje cyrklem
     { id: "dowody-w-geometrii", nazwa: "Proste dowody w geometrii" },        // założenie i teza, dowody z kątami, trójkąt równoramienny, przystawanie, kontrprzykład
   ],
   "e8-bryly": [
@@ -114,6 +117,7 @@ export const TEMATY = {
   "e8-dane": [
     { id: "odczytywanie-danych", nazwa: "Tabele, diagramy i wykresy" },     // odczyt z tabel, diagramów słupkowych i kołowych, wykresów zależności
     { id: "srednia", nazwa: "Średnia arytmetyczna" },                       // średnia, brakująca liczba, zmiana średniej
+    { id: "mediana-dominanta", nazwa: "Mediana i dominanta" },              // wartość najczęstsza, wartość środkowa, mediana z tabeli, średnia a mediana
     { id: "zliczanie", nazwa: "Zliczanie możliwości" },                     // wypisywanie, reguła mnożenia, ile liczb, ile par
     { id: "prawdopodobienstwo", nazwa: "Prawdopodobieństwo" },              // kostka, monety, losowanie kul i kart
   ],

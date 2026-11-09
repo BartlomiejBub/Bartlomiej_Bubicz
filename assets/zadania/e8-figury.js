@@ -81,6 +81,13 @@ export default {
       opcje: ["$4{,}8$ cm", "$5$ cm", "$7$ cm", "$2{,}4$ cm"],
       poprawna: 0,
     },
+    // ---- symetralna odcinka i dwusieczna kąta ----
+    {
+      nr: "30", dzial: "e8-figury", temat: "symetralna-dwusieczna",
+      tresc: "Punkt $P$ leży na symetralnej odcinka $AB$. Wiadomo, że $|AB| = 10$ cm i $|PA| = 7$ cm. Długość odcinka $PB$ jest równa. **Wybierz właściwą odpowiedź.**",
+      opcje: ["$5$ cm", "$10$ cm", "$3$ cm", "$7$ cm"],
+      poprawna: 3,
+    },
   ],
   otwarte: [
     // ---- proste, półproste i odcinki ----
@@ -172,6 +179,17 @@ export default {
       nr: "29", dzial: "e8-figury", temat: "dowody-w-geometrii", punkty: 2,
       tresc: "Ola twierdzi: „Jeśli czworokąt ma wszystkie boki równe, to jest kwadratem”. Czy Ola ma rację? **Odpowiedź uzasadnij.**",
       rozwiazanie: "Ola nie ma racji. Żeby obalić zdanie ogólne, wystarczy podać jeden kontrprzykład: figurę, która spełnia założenie (ma równe boki), ale nie spełnia tezy (nie jest kwadratem).\n\nKontrprzykład: romb o boku $5$ cm i kątach $60^\\circ$ oraz $120^\\circ$.\n\nMa on cztery równe boki, więc założenie jest spełnione.\n\nNie ma jednak kątów prostych (ma kąty $60^\\circ$ i $120^\\circ$), więc nie jest kwadratem.\n\nOdpowiedź: Nie, Ola nie ma racji. Zdanie jest fałszywe, bo romb o kątach $60^\\circ$ i $120^\\circ$ ma równe boki i nie jest kwadratem.",
+    },
+    // ---- symetralna odcinka i dwusieczna kąta ----
+    {
+      nr: "31", dzial: "e8-figury", temat: "symetralna-dwusieczna", punkty: 2,
+      tresc: "Kąt $ABC$ ma miarę $84^\\circ$, a półprosta $BD$ jest jego dwusieczną. Punkt $E$ leży na dwusiecznej $BD$ w odległości $5$ cm od ramienia $BA$. Oblicz miarę kąta $DBC$ i podaj, w jakiej odległości od ramienia $BC$ leży punkt $E$. **Zapisz obliczenia.**",
+      rozwiazanie: "Dwusieczna dzieli kąt na dwa równe kąty, więc $\\angle DBC = 84^\\circ : 2 = 42^\\circ$.\n\nKażdy punkt dwusiecznej jest tak samo oddalony od obu ramion kąta, więc punkt $E$ jest od ramienia $BC$ w takiej samej odległości jak od ramienia $BA$, czyli $5$ cm.\n\nOdpowiedź: $\\angle DBC = 42^\\circ$, a odległość punktu $E$ od ramienia $BC$ to $5$ cm.",
+    },
+    {
+      nr: "32", dzial: "e8-figury", temat: "symetralna-dwusieczna", punkty: 3,
+      tresc: "Opisz słowami, jak za pomocą cyrkla i linijki skonstruować symetralną odcinka $AB$ o długości $6$ cm. Podaj, jaką długość ma każda z dwóch części, na które symetralna dzieli odcinek, i jaki kąt tworzy symetralna z odcinkiem $AB$. **Zapisz odpowiedź.**",
+      rozwiazanie: "Konstrukcja: (1) rozstawiam cyrkiel na odległość większą niż połowa $AB$, czyli większą niż $3$ cm, np. $4$ cm.\n\n(2) Zakreślam łuk o środku w punkcie $A$ po obu stronach odcinka.\n\n(3) Nie zmieniając rozstawu cyrkla, zakreślam łuk o środku w punkcie $B$ – łuki przecinają się w dwóch punktach.\n\n(4) Przez te dwa punkty prowadzę prostą – to symetralna odcinka $AB$.\n\nSymetralna przechodzi przez środek odcinka, więc dzieli go na dwie części po $6 : 2 = 3$ cm.\n\nSymetralna jest prostopadła do odcinka, więc tworzy z nim kąt $90^\\circ$.\n\nOdpowiedź: Konstrukcja jak wyżej; każda część ma $3$ cm, a symetralna tworzy z $AB$ kąt $90^\\circ$.",
     },
   ],
 };

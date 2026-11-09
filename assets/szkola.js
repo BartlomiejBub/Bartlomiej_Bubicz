@@ -10,7 +10,7 @@ export const KLASY = [
     id: "sp4", egzamin: "e8", nazwa: "Klasa 4",
     rozdzialy: [
       { id: "sp4-zapis-liczb", nazwa: "Zapis liczb naturalnych", opis: "System dziesiętny, liczby rzymskie, oś liczbowa, porównywanie i zaokrąglanie.", tematy: { "e8-liczby": ["systemy-zapisu", "os-liczbowa", "zaokraglanie"] } },
-      { id: "sp4-dzialania", nazwa: "Działania na liczbach naturalnych", opis: "Dodawanie, odejmowanie, mnożenie i dzielenie w pamięci, kolejność działań.", tematy: { "e8-podstawy": ["kolejnosc-dzialan", "dzielenie"] }, luka: "brak ćwiczeń rachunku w pamięci" },
+      { id: "sp4-dzialania", nazwa: "Działania na liczbach naturalnych", opis: "Dodawanie, odejmowanie, mnożenie i dzielenie w pamięci, kolejność działań.", tematy: { "e8-podstawy": ["rachunki-pamieciowe", "dzielenie", "kolejnosc-dzialan", "zadania-tekstowe-dzialania"] } },
       { id: "sp4-pisemne", nazwa: "Działania pisemne", opis: "Dodawanie, odejmowanie, mnożenie i dzielenie pisemne.", tematy: { "e8-podstawy": ["dodawanie-odejmowanie", "mnozenie", "dzielenie"] } },
       { id: "sp4-figury", nazwa: "Proste, odcinki i kąty", opis: "Proste i odcinki, proste równoległe i prostopadłe, mierzenie kątów, koło i okrąg, prostokąt i kwadrat.", tematy: { "e8-figury": ["proste-odcinki", "katy", "kola-i-okregi", "pola-obwody"] } },
       { id: "sp4-ulamki-zwykle", nazwa: "Ułamki zwykłe", opis: "Ułamek jako część całości, liczby mieszane, skracanie, dodawanie i odejmowanie.", tematy: { "e8-podstawy": ["ulamki-zwykle"], "e8-liczby": ["os-liczbowa"] } },
@@ -67,20 +67,20 @@ export const KLASY = [
       // GWO: klasa 7 (Figury geometryczne); NE: klasy 6 i 8
       { id: "sp7-figury", nazwa: "Kąty, trójkąty i czworokąty", opis: "Kąty, trójkąty i ich przystawanie, czworokąty, wielokąty foremne, pola.", tematy: { "e8-figury": ["katy", "trojkaty", "czworokaty", "pola-obwody"] } },
       // GWO: klasa 7; NE: klasa 8
-      { id: "sp7-statystyka", nazwa: "Statystyka", opis: "Odczytywanie danych, średnia arytmetyczna.", tematy: { "e8-dane": ["odczytywanie-danych", "srednia"] }, luka: "brak mediany i dominanty" },
+      { id: "sp7-statystyka", nazwa: "Statystyka", opis: "Odczytywanie danych, średnia arytmetyczna.", tematy: { "e8-dane": ["odczytywanie-danych", "srednia", "mediana-dominanta"] } },
     ],
   },
   {
     id: "sp8", egzamin: "e8", nazwa: "Klasa 8",
     rozdzialy: [
       // GWO: klasa 7 (Statystyka)
-      { id: "sp8-statystyka", nazwa: "Statystyka", opis: "Zbieranie i porządkowanie danych, diagramy, średnia arytmetyczna.", tematy: { "e8-dane": ["odczytywanie-danych", "srednia"] }, luka: "brak mediany i dominanty" },
+      { id: "sp8-statystyka", nazwa: "Statystyka", opis: "Zbieranie i porządkowanie danych, diagramy, średnia arytmetyczna.", tematy: { "e8-dane": ["odczytywanie-danych", "srednia", "mediana-dominanta"] } },
       { id: "sp8-algebra", nazwa: "Wyrażenia algebraiczne i równania", opis: "Przekształcanie wyrażeń, równania, wzory i zadania tekstowe.", tematy: { "e8-wyrazenia": ["wartosc-wyrazenia", "przeksztalcanie", "rownania", "zadania-z-rownaniem", "przeksztalcanie-wzorow"] } },
       { id: "sp8-figury", nazwa: "Figury na płaszczyźnie", opis: "Kąty, trójkąty, przystawanie trójkątów, twierdzenie Pitagorasa, proste dowody w geometrii.", tematy: { "e8-figury": ["katy", "trojkaty", "pitagoras", "dowody-w-geometrii"] } },
       { id: "sp8-wielokaty", nazwa: "Wielokąty", opis: "Własności czworokątów, wielokąty foremne, pola i obwody, figury w układzie.", tematy: { "e8-figury": ["czworokaty", "pola-obwody", "uklad-wspolrzednych"] } },
       { id: "sp8-bryly", nazwa: "Graniastosłupy i ostrosłupy", opis: "Siatki, pole powierzchni i objętość brył, przekątne i wysokości.", tematy: { "e8-bryly": ["graniastoslupy", "ostroslupy", "siatki", "pole-powierzchni", "objetosc", "przekatne-wysokosci"] } },
       { id: "sp8-kola", nazwa: "Koła i okręgi", opis: "Liczba π, długość okręgu, pole koła, półkola i ćwiartki koła, figury złożone z kół.", tematy: { "e8-figury": ["kola-i-okregi"] } },
-      { id: "sp8-symetrie", nazwa: "Symetrie", opis: "Symetria osiowa i środkowa, osie symetrii figur.", tematy: { "e8-figury": ["symetrie"] } },
+      { id: "sp8-symetrie", nazwa: "Symetrie", opis: "Symetria osiowa i środkowa, osie symetrii figur, symetralna odcinka i dwusieczna kąta.", tematy: { "e8-figury": ["symetrie", "symetralna-dwusieczna"] } },
       { id: "sp8-prawdopodobienstwo", nazwa: "Prawdopodobieństwo", opis: "Doświadczenia losowe, zliczanie możliwości, obliczanie prawdopodobieństwa.", tematy: { "e8-dane": ["zliczanie", "prawdopodobienstwo"] } },
     ],
   },

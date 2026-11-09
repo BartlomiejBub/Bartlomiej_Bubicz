@@ -165,6 +165,20 @@ export const WZORY = [
         przyklad: "$2(x + 3) - 3(x - 1) = 2x + 6 - 3x + 3 = -x + 9$. Sprawdzenie dla $x = 2$: $2 \\cdot 5 - 3 \\cdot 1 = 7$ i $-2 + 9 = 7$. Drugi przykład: $(x + 1)(x + 2) - x^2 = x^2 + 2x + x + 2 - x^2 = 3x + 2$.",
         uwaga: "W zadaniu zamkniętym często czeka pułapka na znaki. Przy $2(x + 3) - 3(x - 1)$ ktoś policzy $2x + 6 - 3x - 3 = -x + 3$, bo zapomni, że $-3 \\cdot (-1) = +3$. Zawsze sprawdź jedną liczbą: dla $x = 2$ poprawny wynik to $7$, a $-x + 3$ daje $1$.",
       },
+      {
+        nazwa: "Jednomian i suma algebraiczna",
+        slownie: "**Jednomian** to jeden „klocek” z liczby i liter pomnożonych przez siebie, np. $5x^2$ albo $-3ab$. Liczba z przodu to **współczynnik**, a litery to **część literowa**. **Suma algebraiczna** to kilka jednomianów połączonych plusami lub minusami – jak lista zakupów, w której każda pozycja to jeden **wyraz**. Znak przed jednomianem należy do niego.",
+        tex: "\\begin{gathered} 5x^2 \\text{: współczynnik } 5 \\\\ \\text{część literowa } x^2 \\\\ 3x^2 - 5x + 7 \\text{ – trzy wyrazy} \\end{gathered}",
+        przyklad: "W $-4ab$ współczynnik to $-4$, a część literowa to $ab$. W $x$ współczynnik to $1$, a w $-x$ to $-1$. Suma $3x^2 - 5x + 7$ ma trzy wyrazy: $3x^2$, $-5x$ i $7$ (to wyraz wolny, bez liter). Wyrazy podobne mają tę samą część literową, np. $3x$ i $-5x$.",
+        uwaga: "Minus jest częścią wyrazu: w $3x^2 - 5x + 7$ drugi wyraz to $-5x$, a nie $5x$. Jeśli przy literze nie widać liczby, współczynnik to $1$ (a przy minusie $-1$). Nie dodawaj wyrazów o różnych częściach literowych: $3x + 2x^2$ zostaje bez zmian.",
+      },
+      {
+        nazwa: "Mnożenie jednomianów",
+        slownie: "Mnożąc jednomiany, **mnożysz osobno liczby, a osobno litery**. Przy tych samych literach dodajesz wykładniki, bo $x \\cdot x^2 = x \\cdot x \\cdot x = x^3$. To jak składanie zamówienia: osobno liczysz, ile jest sztuk, a osobno, jakie to rzeczy.",
+        tex: "3x \\cdot 2x^2 = 6x^3 \\qquad -4a \\cdot 5b = -20ab",
+        przyklad: "$3x \\cdot 2x^2$: liczby $3 \\cdot 2 = 6$, litery $x \\cdot x^2 = x^3$, więc wynik to $6x^3$. $-4a \\cdot 5b$: liczby $-4 \\cdot 5 = -20$, litery $a \\cdot b = ab$, więc $-20ab$. $2x \\cdot 3x \\cdot x = 6x^3$.",
+        uwaga: "Przy mnożeniu **dodajesz** wykładniki ($x \\cdot x^2 = x^3$), a nie mnożysz ($x^2$ nie jest wynikiem). Nie myl z dodawaniem: $3x + 2x^2$ nie da się zapisać jednym jednomianem, a $3x \\cdot 2x^2 = 6x^3$ – tak.",
+      },
     ],
     jak: [
       "Najpierw rozpisz nawiasy: liczba przed nawiasem mnoży każdy wyraz, a minus przed nawiasem zmienia wszystkie znaki w środku.",
@@ -277,6 +291,14 @@ export const WZORY = [
         tex: "\\begin{gathered} 2x + 2(x + 5) = 46 \\\\ 4x + 10 = 46 \\\\ 4x = 36 \\\\ x = 9 \\end{gathered}",
         przyklad: "Obwód prostokąta to $46$ cm, a jeden bok jest o $5$ cm dłuższy od drugiego. Boki to $x$ i $x + 5$, a równanie $2x + 2(x + 5) = 46$ daje $x = 9$. Boki mają $9$ cm i $14$ cm; sprawdzenie: $2 \\cdot 9 + 2 \\cdot 14 = 18 + 28 = 46$. Trójkąt równoramienny o obwodzie $31$ cm, w którym ramię jest o $2$ cm dłuższe od podstawy: $x + 2(x + 2) = 31$, $3x + 4 = 31$, $x = 9$. Podstawa ma $9$ cm, a ramiona po $11$ cm.",
         uwaga: "Najczęstszy błąd: obwód prostokąta zapisany jako $x + (x + 5)$ – brakuje drugiej pary boków. Zwróć też uwagę na to, o co pytają: jeśli o **pole**, po znalezieniu boków trzeba je jeszcze pomnożyć: $9 \\cdot 14 = 126 \\text{ cm}^2$.",
+      },
+      {
+        nazwa: "Równanie z procentami",
+        slownie: "Gdy szukasz ceny **sprzed** obniżki lub podwyżki, oznacz ją przez $x$. Po obniżce o $20\\%$ zostaje $80\\%$ ceny, czyli $0{,}8x$, po podwyżce o $20\\%$ jest $120\\%$, czyli $1{,}2x$. Potem zapisz, że to jest równe podanej kwocie, i rozwiąż zwykłe równanie. To jak odwijanie prezentu: wiesz, ile jest w środku, i szukasz, ile było w całym pudełku.",
+        tex: "\\begin{gathered} 0{,}8x = 60 \\\\ x = 60 : 0{,}8 = 75 \\end{gathered}",
+        litery: "$x$ – cena przed obniżką (w zł)",
+        przyklad: "Cena po obniżce o $20\\%$ to $60$ zł. Ile kosztował towar przed obniżką? $x - 0{,}2x = 60$, czyli $0{,}8x = 60$, więc $x = 75$ zł. Sprawdzenie: $20\\%$ z $75$ to $15$, a $75 - 15 = 60$. Inny przykład: „$x$ powiększony o $10\\%$ daje $55$”: $1{,}1x = 55$, więc $x = 50$.",
+        uwaga: "Obniżka o $20\\%$ **nie** oznacza równania $x - 20 = 60$ (to odjęcie $20$ zł, a nie $20\\%$). Procent liczysz od $x$, więc po obniżce zostaje $0{,}8x$. Nie liczysz też $20\\%$ z $60$ i nie dodajesz do $60$, bo $20\\%$ dotyczy **starej** ceny.",
       },
     ],
     jak: [
@@ -398,6 +420,13 @@ export const WZORY = [
         litery: "$a$ – długość boku kwadratu, $O$ – jego obwód, $P$ – jego pole",
         przyklad: "Bok $1, 2, 3$: obwód $4, 8, 12$ – ilorazy $\\frac{O}{a}$ są stałe (zawsze $4$), więc proporcjonalność jest. Pole $1, 4, 9$ – ilorazy $\\frac{P}{a}$ to $1, 2, 3$, więc proporcjonalności nie ma. Wprost proporcjonalne są też: cena i liczba biletów (stała cena), droga i czas przy stałej prędkości ($s = v \\cdot t$).",
         uwaga: "Gdy jedna wielkość rośnie, a druga maleje (więcej robotników – krócej trwa praca), to nie jest proporcjonalność prosta i nie wolno liczyć „na krzyż” jak w zadaniach z cenami. Najpierw ustal kierunek: więcej – więcej (prosta) czy więcej – mniej.",
+      },
+      {
+        nazwa: "Podział w stosunku a : b : c",
+        slownie: "Gdy mówią, że kwotę dzielimy **w stosunku** $3 : 2 : 5$, to pierwsza osoba dostaje $3$ „porcje”, druga $2$, a trzecia $5$ – porcje są równe. To jak dzielenie czekolady na kostki: ktoś bierze $3$ kostki, ktoś $2$, ktoś $5$. Dodaj porcje, podziel całość przez ich liczbę (to wartość **jednej** porcji), a potem pomnóż.",
+        tex: "\\begin{gathered} 3 : 2 : 5 \\\\ 3 + 2 + 5 = 10 \\text{ części} \\\\ \\text{1 część} = \\text{całość} : 10 \\end{gathered}",
+        przyklad: "Dzielimy $200$ zł w stosunku $3 : 2 : 5$. Części jest $3 + 2 + 5 = 10$, jedna część to $200 : 10 = 20$ zł. Dostają: $3 \\cdot 20 = 60$ zł, $2 \\cdot 20 = 40$ zł, $5 \\cdot 20 = 100$ zł. Sprawdzenie: $60 + 40 + 100 = 200$.",
+        uwaga: "Nie dziel całości przez $3$ (liczbę osób), tylko przez **sumę** liczb ze stosunku. Na końcu dodaj wszystkie kwoty – mają dać całość. Gdy znasz tylko jedną część, np. „pierwsza osoba dostała $60$ zł”, policz jedną porcję ($60 : 3 = 20$) i dalej mnóż.",
       },
     ],
     jak: [

@@ -22,6 +22,71 @@ const MNOZENIE_24_35 = "\\begin{array}{rrrr}  &  & 2 & 4 \\\\ \\times &  & 3 & 5
 
 export const WZORY = [
   {
+    id: "rachunki-pamieciowe",
+    nazwa: "Rachunki pamięciowe",
+    wzory: [
+      {
+        nazwa: "Dodawanie i odejmowanie „przez dziesiątkę”",
+        slownie: "Gdy do liczby trzeba dodać kilka jedności i przekroczysz pełną dziesiątkę, **dojdź najpierw do dziesiątki**, a resztę dołóż potem. To jak wchodzenie po schodach: najpierw stajesz na podeście, potem idziesz dalej. Przy odejmowaniu robisz to samo w drugą stronę – schodzisz do pełnej dziesiątki, a resztę odejmujesz na końcu.",
+        tex: "38 + 7 = 38 + 2 + 5 = 45 \\qquad 52 - 6 = 52 - 2 - 4 = 46",
+        przyklad: "$38 + 7$: do $40$ brakuje $2$, więc $38 + 2 = 40$, a z $7$ zostało jeszcze $5$: $40 + 5 = 45$. $52 - 6$: najpierw $52 - 2 = 50$, z $6$ zostało $4$, więc $50 - 4 = 46$.",
+        uwaga: "Rozbij tę drugą liczbę dokładnie: $7 = 2 + 5$ (suma musi dać znów $7$). Przy odejmowaniu nie odejmuj $6$ jedności od dziesiątek „na odwrót”: $52 - 6$ nie jest $54$.",
+      },
+      {
+        nazwa: "Okrągłe liczby i „prawie okrągłe”",
+        slownie: "Z okrągłymi liczbami ($10$, $20$, $100$) liczy się najłatwiej. Gdy liczba jest **prawie okrągła** (np. $99$ albo $29$), zamień ją na okrągłą, policz, a potem **popraw o różnicę**. To jak płacenie banknotem: dajesz $100$ zł, a kasjer oddaje ci złotówkę reszty.",
+        tex: "99 + 56 = 100 + 56 - 1 = 155 \\qquad 83 - 29 = 83 - 30 + 1 = 54",
+        przyklad: "$47 + 30$: dziesiątki dodajesz osobno, $40 + 30 = 70$, więc $77$. $99 + 56$: dodaję $100$, czyli $156$, i oddaję $1$: $155$. $83 - 29$: odejmuję $30$ (wychodzi $53$), ale odjąłem o $1$ za dużo, więc dodaję $1$: $54$.",
+        uwaga: "Przy odejmowaniu liczby zaokrąglonej **w górę** ($29 \\to 30$) odjąłeś za dużo, więc wynik trzeba zwiększyć. Przy dodawaniu zaokrąglonej w górę ($99 \\to 100$) dodałeś za dużo, więc wynik trzeba zmniejszyć.",
+      },
+      {
+        nazwa: "Mnożenie „po kawałku”",
+        slownie: "Dużą liczbę rozbij na łatwe kawałki (np. dziesiątki i jedności), pomnóż każdy kawałek osobno i dodaj wyniki. To jak liczenie pieniędzy: osobno banknoty, osobno monety, a na końcu razem. Można też rozbić „od dołu”: $98$ to $100$ minus $2$.",
+        tex: "7 \\cdot 24 = 7 \\cdot 20 + 7 \\cdot 4 = 168 \\qquad 6 \\cdot 98 = 6 \\cdot 100 - 6 \\cdot 2",
+        litery: "Rozdzielność mnożenia: $a \\cdot (b + c) = a \\cdot b + a \\cdot c$",
+        przyklad: "$7 \\cdot 24$: $7 \\cdot 20 = 140$ i $7 \\cdot 4 = 28$, razem $140 + 28 = 168$. $6 \\cdot 98 = 6 \\cdot 100 - 6 \\cdot 2 = 600 - 12 = 588$. $3 \\cdot 45 = 3 \\cdot 40 + 3 \\cdot 5 = 120 + 15 = 135$.",
+        uwaga: "Pomnóż **oba** kawałki przez tę samą liczbę. Częsty błąd: $7 \\cdot 24 = 7 \\cdot 20 + 4$ (zapomniano pomnożyć czwórki przez $7$).",
+      },
+      {
+        nazwa: "Tabliczka mnożenia – sprytne sposoby",
+        slownie: "Jeśli któryś wynik wylatuje ci z głowy, nie musisz go znać na pamięć – możesz go **szybko wyliczyć**. Mnożenie przez $5$ to połowa mnożenia przez $10$ (połowa z pełnych dziesiątek). Mnożenie przez $9$ to mnożenie przez $10$ i odjęcie jednej porcji. Mnożenie przez $4$ to podwojenie dwa razy.",
+        tex: "5 \\cdot 8 = 80 : 2 = 40 \\qquad 9 \\cdot 7 = 70 - 7 = 63 \\qquad 4 \\cdot 6 = 12 \\cdot 2 = 24",
+        przyklad: "$9 \\cdot 4$ na palcach: wyciągnij obie dłonie, zegnij czwarty palec od lewej. Z lewej strony zostały $3$ palce (dziesiątki), z prawej $6$ palców (jedności): $36$. Sprawdzenie: $10 \\cdot 4 - 4 = 36$. $5 \\cdot 14$: $10 \\cdot 14 = 140$, połowa to $70$.",
+        uwaga: "Wyniki w tabliczce $9$ mają sumę cyfr równą $9$: $18$, $27$, $36$, $45$… Jeśli wyszło ci $9 \\cdot 6 = 56$, to suma cyfr $5 + 6 = 11$ nie zgadza się – poprawny wynik to $54$.",
+      },
+      {
+        nazwa: "Mnożenie i dzielenie przez 10, 100, 1000 i 0,1",
+        slownie: "Mnożąc przez $10$, $100$ lub $1000$, **przesuwasz przecinek w prawo** o tyle miejsc, ile jest zer (liczba całkowita ma „niewidoczny” przecinek na końcu, więc dopisujesz zera). Dzieląc – przesuwasz w lewo. Mnożenie przez $0{,}1$ to to samo co dzielenie przez $10$, bo dziesiąta część to jedna z dziesięciu równych części.",
+        tex: "4{,}5 \\cdot 100 = 450 \\qquad 36 : 10 = 3{,}6 \\qquad 70 \\cdot 0{,}1 = 7 \\qquad 8 : 0{,}1 = 80",
+        przyklad: "$3{,}27 \\cdot 10 = 32{,}7$, $0{,}6 \\cdot 1000 = 600$, $4500 : 100 = 45$, $9 : 10 = 0{,}9$. Gdy dzielimy przez $0{,}1$, wychodzi $10$ razy więcej: $8 : 0{,}1 = 80$ (w ósemce mieści się osiemdziesiąt dziesiątych).",
+        uwaga: "Nie wolno po prostu „dopisać zera” do liczby z przecinkiem: $2{,}5 \\cdot 10 = 25$, a nie $2{,}50$. Przecinek się przesuwa, a zero na końcu po przecinku nic nie zmienia.",
+      },
+      {
+        nazwa: "Przemienność i łączność – licz w sprytnej kolejności",
+        slownie: "Czynniki w mnożeniu możesz **zamieniać miejscami** i **łączyć w pary** w dowolny sposób, a wynik się nie zmieni. Wykorzystaj to: szukaj par, które dają okrągłą liczbę ($25 \\cdot 4 = 100$, $2 \\cdot 5 = 10$, $8 \\cdot 125 = 1000$). To jak układanie klocków: najpierw sklejasz te, które pasują, a dopiero potem resztę.",
+        tex: "25 \\cdot 7 \\cdot 4 = 25 \\cdot 4 \\cdot 7 = 100 \\cdot 7 = 700",
+        litery: "$a \\cdot b = b \\cdot a$, $(a \\cdot b) \\cdot c = a \\cdot (b \\cdot c)$. To samo działa w dodawaniu.",
+        przyklad: "$2 \\cdot 37 \\cdot 5 = (2 \\cdot 5) \\cdot 37 = 10 \\cdot 37 = 370$. W dodawaniu: $17 + 46 + 3 = (17 + 3) + 46 = 20 + 46 = 66$.",
+        uwaga: "To działa tylko przy **samym** mnożeniu albo **samym** dodawaniu. W odejmowaniu i dzieleniu kolejność jest ważna: $10 - 4 \\ne 4 - 10$ i $12 : 3 \\ne 3 : 12$.",
+      },
+      {
+        nazwa: "Dzielenie w pamięci – rozkład na łatwe kawałki",
+        slownie: "Dzielną rozbij na dwa kawałki, które łatwo podzielić przez dany dzielnik, podziel każdy i dodaj wyniki. To jak dzielenie dwóch kup cukierków po równo między kilka osób: każda kupka osobno, a potem zsumuj, ile dostała jedna osoba.",
+        tex: "96 : 4 = 80 : 4 + 16 : 4 = 20 + 4 = 24",
+        przyklad: "$156 : 6$: rozkładam $156 = 120 + 36$, więc $120 : 6 = 20$ i $36 : 6 = 6$, razem $26$. Dzielenie przez $5$ jest łatwe przez podwojenie: $85 : 5 = 170 : 10 = 17$. Sprawdzenie: $24 \\cdot 4 = 96$.",
+        uwaga: "Rozbijaj **dzielną** (to, co dzielisz), a nie dzielnik: $96 : 4 \\ne 96 : 2 + 96 : 2$. Dobierz kawałki tak, żeby każdy dzielił się przez dzielnik bez reszty ($80$ i $16$ dla czwórki).",
+      },
+    ],
+    jak: [
+      "Przeczytaj działanie i zapytaj: czy mogę dojść do okrągłej liczby (dziesiątki, setki)? Jeśli tak, rozbij drugą liczbę na dwa kawałki.",
+      "Gdy liczba jest prawie okrągła ($99$, $29$, $198$), policz z okrągłą i popraw wynik o różnicę (w dobrą stronę!).",
+      "Mnożenie: rozbij jedną liczbę na dziesiątki i jedności (albo na okrągłą minus mała), pomnóż każdy kawałek i dodaj lub odejmij.",
+      "Przy kilku czynnikach poszukaj par, które dają $10$, $100$ lub $1000$ ($2 \\cdot 5$, $25 \\cdot 4$, $8 \\cdot 125$), i pomnóż je najpierw.",
+      "Przez $10$, $100$, $1000$ przesuwaj przecinek (mnożenie – w prawo, dzielenie – w lewo); $\\cdot 0{,}1$ to $: 10$, a $: 0{,}1$ to $\\cdot 10$.",
+      "Dzielenie: rozbij dzielną na dwa kawałki, które łatwo dzielą się przez dzielnik. Na końcu sprawdź wynik mnożeniem lub oszacowaniem.",
+    ],
+  },
+  {
     id: "dodawanie-odejmowanie",
     nazwa: "Dodawanie i odejmowanie pisemne",
     wzory: [
@@ -213,6 +278,55 @@ export const WZORY = [
       "Policz mnożenia i dzielenia – po kolei od lewej do prawej.",
       "Policz dodawania i odejmowania – po kolei od lewej do prawej.",
       "W każdym kroku przepisz resztę wyrażenia bez zmian i wykonaj jedno działanie.",
+    ],
+  },
+  {
+    id: "zadania-tekstowe-dzialania",
+    nazwa: "Zadania tekstowe na działaniach",
+    wzory: [
+      {
+        nazwa: "Jak czytać zadanie: dane i szukane",
+        slownie: "Zadanie z treścią to mała historyjka z pytaniem na końcu. Przeczytaj ją dwa razy. Potem wypisz, co **wiadomo** (to są **dane**) i o co **pytają** (to jest **szukane**). To jak szukanie drogi z mapą: musisz wiedzieć, gdzie stoisz (dane) i dokąd idziesz (szukane).",
+        tex: "\\text{dane} \\;\\to\\; \\text{działanie} \\;\\to\\; \\text{szukane}",
+        przyklad: "„Ania ma $24$ zł, a Kasia ma $15$ zł. Ile złotych mają razem?” Dane: $24$ zł i $15$ zł. Szukane: suma pieniędzy. Działanie: $24 + 15 = 39$. Odpowiedź: razem mają $39$ zł.",
+        uwaga: "Nie bierz do działania pierwszych liczb z brzegu. Czasem w zadaniu jest liczba niepotrzebna (np. wiek kasjerki), a czasem liczbę trzeba najpierw obliczyć. Na końcu napisz odpowiedź zdaniem **z jednostką**.",
+      },
+      {
+        nazwa: "O ile więcej, a ile razy więcej",
+        slownie: "Pytanie **„o ile więcej”** porównuje liczby przez **odejmowanie** (jak daleko jedna jest od drugiej). Pytanie **„ile razy więcej”** porównuje je przez **dzielenie** (ile takich samych porcji się mieści). Zeszyt za $3$ zł i długopis za $12$ zł: długopis jest o $9$ zł droższy, ale $4$ razy droższy.",
+        tex: "\\text{o ile więcej} \\to \\text{odejmuj} \\qquad \\text{ile razy więcej} \\to \\text{dziel}",
+        przyklad: "Basia ma $12$ naklejek, a Olek $3$. Basia ma o $12 - 3 = 9$ naklejek więcej, czyli $12 : 3 = 4$ razy więcej. Gdy „Olek ma $5$ razy mniej niż Marta, a Marta ma $40$”, to Olek ma $40 : 5 = 8$. Gdy „Olek ma o $5$ mniej”, to ma $40 - 5 = 35$.",
+        uwaga: "„O $5$ więcej” i „$5$ razy więcej” to dwie różne rzeczy. Z $40$ dostaniesz $45$ albo $200$. Czytaj uważnie, czy w zadaniu stoi słowo „o”, czy „razy”.",
+      },
+      {
+        nazwa: "Zadania na dwa działania",
+        slownie: "W wielu zadaniach jedno działanie nie wystarczy. Najpierw policz coś **pomocniczego**, czego zadanie nie podało, a dopiero z tego dostaniesz odpowiedź. To jak droga z przesiadką: nie dojedziesz od razu, ale po drodze jest przystanek, który trzeba odwiedzić.",
+        tex: "\\text{krok 1: wynik pomocniczy} \\qquad \\text{krok 2: odpowiedź}",
+        przyklad: "„Zeszyt kosztuje $4$ zł, a długopis o $3$ zł więcej. Ile zapłacisz za $2$ zeszyty i długopis?” Krok 1: cena długopisu to $4 + 3 = 7$ zł. Krok 2: razem $2 \\cdot 4 + 7 = 8 + 7 = 15$ zł. Odpowiedź: zapłacisz $15$ zł.",
+        uwaga: "Zapisuj każdy krok osobno, ze słowami, co obliczasz („cena długopisu”, „razem”). Wtedy nie pomylisz liczb, a na egzaminie dostaniesz punkt za dobrą metodę.",
+      },
+      {
+        nazwa: "Rysunek i tabela pomagają",
+        slownie: "Gdy w zadaniu jest dużo liczb, **narysuj odcinek** (jedna część jednej wielkości to jeden kawałek) albo wpisz dane do **tabeli**. Wtedy widać, co jest większe, a co mniejsze i ile brakuje. To jak plan na kartce przed przesuwaniem mebli.",
+        tex: "\\begin{array}{c|c} & \\text{zł} \\\\ \\hline \\text{Ola} & 20 \\\\ \\text{Ala} & 20 + 8 \\\\ \\text{razem} & 48 \\end{array}",
+        przyklad: "„Ola i Ala mają razem $48$ zł, przy czym Ala ma o $8$ zł więcej.” Narysuj dwa odcinki: Ala jest dłuższa o $8$. Gdy odejmiesz $8$ od $48$, zostają dwie równe części: $40 : 2 = 20$ zł ma Ola, a Ala $28$ zł.",
+        uwaga: "Rysunek nie musi być ładny ani w skali, ma tylko pokazać, co z czym jest związane. Sprawdź na końcu, czy wynik pasuje do **wszystkich** zdań z treści ($20 + 28 = 48$ i $28 - 20 = 8$).",
+      },
+      {
+        nazwa: "Od końca – cofamy działania",
+        slownie: "Gdy wiesz, co **zostało na końcu**, a pytają o początek, idź **od tyłu**: każde działanie cofnij działaniem odwrotnym (dodawanie odejmowaniem, mnożenie dzieleniem) i to w odwrotnej kolejności. To jak odwijanie szalika: zdejmujesz warstwy w odwrotnej kolejności, niż je zakładałeś.",
+        tex: "+ \\leftrightarrow - \\qquad \\cdot \\leftrightarrow :",
+        przyklad: "„Pomyślałem liczbę, pomnożyłem przez $3$ i odjąłem $4$. Wyszło $20$.” Cofam: $20 + 4 = 24$, a potem $24 : 3 = 8$. Sprawdzenie: $8 \\cdot 3 = 24$, $24 - 4 = 20$. Zgadza się.",
+        uwaga: "Nie cofaj w tej samej kolejności, w jakiej zapisano działania. Najpierw cofasz **ostatnie** działanie. Gdyby dla $20$ najpierw podzielić przez $3$, wyszłoby coś, co nie jest liczbą całkowitą – to znak, że kolejność jest zła.",
+      },
+    ],
+    jak: [
+      "Przeczytaj zadanie dwa razy. Podkreśl pytanie i wypisz dane (z jednostkami).",
+      "Zdecyduj, co jest szukane i czego jeszcze brakuje, żeby to policzyć (to bywa wynik pomocniczy).",
+      "„O ile więcej / mniej” – odejmij. „Ile razy więcej / mniej” – podziel (albo pomnóż, gdy znasz „razy”).",
+      "Narysuj odcinki albo zrób tabelę, gdy liczb jest dużo albo gdy są dwie osoby do porównania.",
+      "Gdy znasz wynik końcowy, a pytają o początek, wykonaj działania odwrotne w odwrotnej kolejności (od końca).",
+      "Sprawdź wynik z treścią zadania (wstaw go do historyjki) i napisz odpowiedź pełnym zdaniem z jednostką.",
     ],
   },
   {

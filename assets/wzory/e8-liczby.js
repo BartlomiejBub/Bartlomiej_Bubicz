@@ -118,6 +118,22 @@ export const WZORY = [
         przyklad: "Pośrodku między $-3$ a $5$ leży $\\frac{-3 + 5}{2} = 1$ (od $-3$ do $1$ jest $4$, a od $1$ do $5$ też $4$). Między $\\frac{1}{3}$ a $\\frac{1}{2}$: $\\frac{1}{3} = \\frac{4}{12}$, $\\frac{1}{2} = \\frac{6}{12}$, więc środek to $\\frac{5}{12}$. Gdy środek to $4$, a jeden koniec to $1$, drugi koniec to $2 \\cdot 4 - 1 = 7$.",
         uwaga: "Nie dziel przez $2$ samej jednej liczby – dzielisz **sumę** obu końców. Gdy oba końce są ujemne, środek też jest ujemny: między $-6$ a $-2$ leży $-4$.",
       },
+      {
+        nazwa: "Zbiór liczb opisany nierównością i jego zaznaczanie na osi",
+        slownie: "Nierówność opisuje **całą grupę liczb**, a nie jedną. Zapis $x > -2$ czytamy: „$x$ jest większe od $-2$”, czyli wszystkie liczby na prawo od $-2$. Na osi zaznaczasz kropkę w $-2$ i rysujesz linię w stronę, w którą liczby pasują. **Pusta kropka** znaczy, że ta liczba do zbioru **nie należy** (znaki $<$ i $>$), a **pełna kropka** – że należy (znaki $\\le$ i $\\ge$). To jak bramka na parkingu: pusta kropka to miejsce zamknięte, a pełna – otwarte.",
+        tex: "x > -2 \\;\\to\\; \\circ\\!\\to \\qquad x \\le 3 \\;\\to\\; \\leftarrow\\!\\bullet \\qquad -1 \\le x < 3 \\;\\to\\; \\bullet\\!-\\!\\circ",
+        litery: "$\\circ$ – pusta kropka (liczba nie należy do zbioru), $\\bullet$ – pełna kropka (należy)",
+        przyklad: "Dla $x > -2$ liczby całkowite to $-1, 0, 1, 2, \\ldots$ (sama $-2$ nie pasuje). Dla $-1 \\le x < 3$ należą liczby całkowite $-1, 0, 1, 2$ (minus jeden tak, trójka nie). Dla $x \\le 3$ całkowite to $3, 2, 1, \\ldots$ – tu trójka pasuje.",
+        uwaga: "Zapis $-1 \\le x < 3$ to dwa warunki naraz: $x$ jest **co najmniej** $-1$ i **mniejsze** od $3$. Linia idzie w prawo przy znakach $>$ i $\\ge$ (liczby większe), a w lewo przy $<$ i $\\le$. Uważaj na liczby ujemne: $-3$ jest **mniejsze** od $-2$, więc $-3$ nie spełnia $x > -2$.",
+      },
+      {
+        nazwa: "Liczba przeciwna i liczba odwrotna",
+        slownie: "**Liczba przeciwna** do $a$ leży po drugiej stronie zera w **takiej samej odległości** – jak odbicie w lustrze postawionym na zerze. Jej suma z $a$ daje $0$. **Liczba odwrotna** do $a$ to taka, która pomnożona przez $a$ daje $1$. Dla ułamka wystarczy „odwrócić” go do góry nogami. Przeciwna – zmieniasz **znak**, odwrotna – zamieniasz **licznik z mianownikiem**.",
+        tex: "a + (-a) = 0 \\qquad a \\cdot \\frac{1}{a} = 1",
+        litery: "$-a$ – liczba przeciwna do $a$, $\\frac{1}{a}$ – liczba odwrotna do $a$ (dla $a \\ne 0$)",
+        przyklad: "Przeciwna do $5$ to $-5$, a do $-\\frac{2}{3}$ to $\\frac{2}{3}$. Odwrotna do $5$ to $\\frac{1}{5}$, odwrotna do $\\frac{2}{3}$ to $\\frac{3}{2}$, a do $0{,}5$ to $2$ (bo $0{,}5 \\cdot 2 = 1$). Liczba przeciwna do $0$ to $0$, a liczby odwrotnej do $0$ nie ma.",
+        uwaga: "Przeciwna i odwrotna to dwie różne rzeczy: przeciwna do $4$ to $-4$, a odwrotna to $\\frac{1}{4}$ (nie $-4$!). Odwrotna do liczby ujemnej też jest ujemna: odwrotna do $-2$ to $-\\frac{1}{2}$. Liczbę mieszaną najpierw zamień na ułamek niewłaściwy.",
+      },
     ],
     jak: [
       "Przy odczycie z osi znajdź dwie podpisane liczby, policz odstępy (nie kreski) i podziel różnicę przez liczbę odstępów – to wartość jednej kreski.",

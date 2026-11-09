@@ -157,6 +157,27 @@ export const WZORY = [
         uwaga: "Odsetki to tylko dopłata ($80$ zł), a nie cała kwota na koncie ($2080$ zł) – przeczytaj, o co pytają. Gdy lokata trwa dłużej i odsetki są dopisywane co roku, drugi rok liczysz już od nowej kwoty: $0{,}04 \\cdot 2080 = 83{,}2$ zł, a nie od pierwotnych $2000$ zł.",
       },
       {
+        nazwa: "VAT, cena netto i brutto",
+        slownie: "**VAT** to podatek, który państwo dolicza do ceny towaru. Cena **netto** to cena bez podatku, a cena **brutto** – ta, którą płacisz w sklepie. Najczęściej VAT to $23\\%$, więc brutto to $123\\%$ ceny netto, czyli $1{,}23$ razy tyle. To jak rachunek w restauracji, do którego dopisano dodatkową opłatę od całej kwoty.",
+        tex: "\\begin{gathered} \\text{brutto} = \\text{netto} \\cdot 1{,}23 \\\\ \\text{netto} = \\text{brutto} : 1{,}23 \\end{gathered}",
+        przyklad: "Cena netto to $200$ zł. VAT to $0{,}23 \\cdot 200 = 46$ zł, a cena brutto to $200 + 46 = 246$ zł (albo od razu $200 \\cdot 1{,}23 = 246$). W drugą stronę: w sklepie płacisz $123$ zł brutto. To $123\\%$ ceny netto, więc netto to $123 : 1{,}23 = 100$ zł, a VAT to $23$ zł.",
+        uwaga: "Cenę netto liczysz z dzielenia przez $1{,}23$, a nie przez odjęcie $23\\%$ od brutto. Z $123$ zł odjęcie $23\\%$ ($28{,}29$ zł) da $94{,}71$ zł – to zły wynik, bo $23\\%$ liczy się od ceny netto, a nie brutto.",
+      },
+      {
+        nazwa: "Rabat i prowizja",
+        slownie: "**Rabat** to zniżka: sklep zabiera część ceny, więc płacisz mniej (to obniżka, mnożysz przez liczbę mniejszą od $1$). **Prowizja** to dodatkowa płatność za usługę, np. dla pośrednika, banku albo sprzedawcy – to zwykle $p\\%$ z kwoty sprzedaży lub transakcji. Rabat zabiera ci pieniądze z ceny, a prowizja jest „opłatą za pomoc” liczoną od kwoty.",
+        tex: "\\begin{gathered} \\text{po rabacie } p\\%\\text{:} \\\\ \\text{cena} \\cdot \\left(1 - \\frac{p}{100}\\right) \\\\ \\text{prowizja} = \\frac{p}{100} \\cdot \\text{kwota} \\end{gathered}",
+        przyklad: "Buty kosztują $80$ zł i mają rabat $25\\%$. Rabat to $0{,}25 \\cdot 80 = 20$ zł, więc płacisz $80 - 20 = 60$ zł (albo $80 \\cdot 0{,}75 = 60$). Pośrednik sprzedał dla kogoś rower za $2000$ zł i dostaje prowizję $3\\%$: $0{,}03 \\cdot 2000 = 60$ zł.",
+        uwaga: "Rabat i prowizja są od różnych rzeczy: rabat pomniejsza cenę, którą płacisz, a prowizja to osobna kwota, którą dostaje pośrednik. Pytaj za każdym razem: od jakiej kwoty liczymy procent i czy kwota ma być **mniejsza**, czy **większa** niż wyjściowa.",
+      },
+      {
+        nazwa: "Podatek od odsetek na lokacie",
+        slownie: "Od zysku z lokaty bank pobiera **podatek** – w prostym przypadku $19\\%$ **odsetek** (tylko odsetek, a nie całej wpłaty). Zostaje ci więc $81\\%$ odsetek. To jak wygrana w konkursie, od której urząd zabiera swoją część, zanim dostaniesz nagrodę.",
+        tex: "\\begin{gathered} \\text{podatek} = 0{,}19 \\cdot \\text{odsetki} \\\\ \\text{zysk} = 0{,}81 \\cdot \\text{odsetki} \\end{gathered}",
+        przyklad: "Wpłacasz $5000$ zł na rok przy oprocentowaniu $4\\%$. Odsetki: $0{,}04 \\cdot 5000 = 200$ zł. Podatek: $0{,}19 \\cdot 200 = 38$ zł. Odsetki po podatku: $200 - 38 = 162$ zł. Na koncie po roku jest $5000 + 162 = 5162$ zł.",
+        uwaga: "Podatek liczysz od **odsetek**, a nie od całej kwoty na koncie ($19\\%$ z $5200$ zł byłoby błędem). Sprawdź w treści, czy pytają o kwotę **przed** podatkiem, czy **po** podatku.",
+      },
+      {
         nazwa: "Punkty procentowe a procenty",
         slownie: "**Punkt procentowy** to różnica między dwoma procentami, tak jak $5$ stopni to różnica między $20$ °C a $25$ °C. Procent mówi natomiast, o jaką **część** wartości wyjściowej coś wzrosło. Oprocentowanie lokaty z $4\\%$ na $5\\%$ rośnie więc o $1$ punkt procentowy, ale o $25\\%$, bo $\\frac{1}{4} = 25\\%$.",
         tex: "\\begin{gathered} 20\\% \\to 25\\% \\\\ \\text{o 5 punktów proc.} \\end{gathered} \\qquad \\begin{gathered} \\frac{5}{20} = 0{,}25 \\\\ \\text{o } 25\\% \\text{ więcej} \\end{gathered}",
