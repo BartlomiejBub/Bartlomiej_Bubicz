@@ -409,6 +409,10 @@ function czesciWzoru(tex) {
   return czesci.map((c) => c.trim()).filter(Boolean);
 }
 
+/** Pole karty wzoru: zwykle jeden akapit; tekst z „\n\n” (np. z tabelką prawdy) – kilka akapitów w jednym bloku. */
+const poleKarty = (klasa, t) =>
+  (t.includes("\n\n") ? wstaw(el("div", { class: `${klasa} wzor-akapity` }), t) : wstaw(el("p", { class: klasa }), t, { akapity: false }));
+
 function blokWzorow(d) {
   let temat = d.wzory[0];
   const tresc = el("div", { class: "wzory-tresc" });
@@ -418,11 +422,11 @@ function blokWzorow(d) {
       ...temat.wzory.map((w) =>
         el("div", { class: "wzor-karta" },
           wstaw(el("p", { class: "wzor-nazwa" }), w.nazwa, { akapity: false }),
-          w.slownie && wstaw(el("p", { class: "wzor-slownie" }), w.slownie, { akapity: false }),
+          w.slownie && poleKarty("wzor-slownie", w.slownie),
           el("div", { class: "wzor-tex" }, ...czesciWzoru(w.tex).map((t) => wstaw(el("div", { class: "wzor-czesc" }), `$${t}$`))),
-          w.litery && wstaw(el("p", { class: "wzor-uwaga" }), w.litery, { akapity: false }),
-          w.przyklad && wstaw(el("p", { class: "wzor-przyklad" }), `**Przykład:** ${w.przyklad}`, { akapity: false }),
-          w.uwaga && wstaw(el("p", { class: "wzor-uwaga" }), w.uwaga, { akapity: false }),
+          w.litery && poleKarty("wzor-uwaga", w.litery),
+          w.przyklad && poleKarty("wzor-przyklad", `**Przykład:** ${w.przyklad}`),
+          w.uwaga && poleKarty("wzor-uwaga", w.uwaga),
         ),
       ),
     );

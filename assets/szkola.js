@@ -94,7 +94,7 @@ export const KLASY = [
       // Kurczab kl. 1, rozdz. 1 (także procenty, punkty procentowe, błędy przybliżeń)
       { id: "lo1-zbiory-liczby", nazwa: "Zbiory liczbowe. Liczby rzeczywiste", opis: "Zbiory i działania na zbiorach, przedziały, równania i nierówności równoważne, procenty i punkty procentowe, przybliżenia i błędy.", tematy: { "liczby": ["liczby-rzeczywiste", "zbiory", "procenty", "rownania", "nierownosci"], "tekstowe": ["procenty-i-pieniadze"] } },
       // rozdz. 2 (w tym logika, dowód, logarytmy, średnie)
-      { id: "lo1-wyrazenia", nazwa: "Wyrażenia algebraiczne", opis: "Potęgi i pierwiastki, wzory skróconego mnożenia, logarytmy, zdania i dowody, przekształcanie wzorów.", tematy: { "liczby": ["potegi", "pierwiastki", "wyrazenia", "logarytmy"], "dowody": ["dowody-algebraiczne"] }, nowe: ["logika", "przeksztalcanie-wzorow-lo"], luka: "brak logiki (zdania, zaprzeczenia, kwantyfikatory) i przekształcania wzorów" },
+      { id: "lo1-wyrazenia", nazwa: "Wyrażenia algebraiczne", opis: "Potęgi i pierwiastki, wzory skróconego mnożenia, logarytmy, zdania i dowody, przekształcanie wzorów.", tematy: { "liczby": ["logika", "potegi", "pierwiastki", "logarytmy", "wyrazenia"], "dowody": ["dowody-algebraiczne"] } },
       // rozdz. 3
       { id: "lo1-funkcje", nazwa: "Funkcje i ich własności", opis: "Pojęcie funkcji, wykres, dziedzina, zbiór wartości, miejsce zerowe, monotoniczność, odczytywanie własności z wykresu.", tematy: { "funkcje": ["wlasnosci-funkcji"] } },
       // rozdz. 4
@@ -104,7 +104,7 @@ export const KLASY = [
       // rozdz. 6
       { id: "lo1-wybrane-funkcje", nazwa: "Podstawowe własności wybranych funkcji", opis: "Funkcja kwadratowa, proporcjonalność odwrotna, funkcja wykładnicza i logarytmiczna – wykresy i własności.", tematy: { "funkcje": ["funkcja-kwadratowa", "inne-funkcje"] } },
       // rozdz. 7
-      { id: "lo1-trojkaty", nazwa: "Geometria płaska – pojęcia wstępne. Trójkąty", opis: "Proste, kąty, twierdzenie Talesa, Pitagorasa, wysokości i środkowe, przystawanie i podobieństwo trójkątów.", tematy: { "geometria": ["planimetria"], "dowody": ["dowody-geometryczne"] }, nowe: ["planimetria-podstawy"], luka: "brak symetralnej i dwusiecznej jako zbiorów punktów" },
+      { id: "lo1-trojkaty", nazwa: "Geometria płaska – pojęcia wstępne. Trójkąty", opis: "Proste, kąty, twierdzenie Talesa, Pitagorasa, wysokości i środkowe, przystawanie i podobieństwo trójkątów.", tematy: { "geometria": ["planimetria"], "dowody": ["dowody-geometryczne"] } },
       // rozdz. 8
       { id: "lo1-trygonometria", nazwa: "Trygonometria kąta ostrego", opis: "Sinus, cosinus, tangens i cotangens w trójkącie prostokątnym, wartości dla 30°, 45°, 60°, związki między funkcjami.", tematy: { "geometria": ["trygonometria"] } },
     ],
@@ -113,7 +113,7 @@ export const KLASY = [
     id: "lo2", egzamin: "matura", nazwa: "Klasa 2",
     rozdzialy: [
       // rozdz. 1
-      { id: "lo2-przeksztalcenia", nazwa: "Przekształcenia wykresów funkcji", opis: "Wektor, przesunięcia wzdłuż osi i o wektor, symetrie wykresu, graficzne rozwiązywanie równań i nierówności.", tematy: { "funkcje": ["wlasnosci-funkcji"] }, nowe: ["wektory"], luka: "brak wektorów w układzie współrzędnych" },
+      { id: "lo2-przeksztalcenia", nazwa: "Przekształcenia wykresów funkcji", opis: "Wektor, przesunięcia wzdłuż osi i o wektor, symetrie wykresu, graficzne rozwiązywanie równań i nierówności.", tematy: { "funkcje": ["wlasnosci-funkcji"], "geometria": ["wektory"] } },
       // rozdz. 2
       { id: "lo2-modul", nazwa: "Wartość bezwzględna: równania i nierówności", opis: "Wartość bezwzględna, odległość na osi liczbowej, proste równania i nierówności z wartością bezwzględną.", tematy: { "liczby": ["liczby-rzeczywiste", "rownania", "nierownosci"] } },
       // rozdz. 3
@@ -136,7 +136,7 @@ export const KLASY = [
       // rozdz. 1
       { id: "lo3-wymierne", nazwa: "Ułamki algebraiczne. Równania wymierne", opis: "Skracanie, mnożenie i dzielenie ułamków algebraicznych, równania wymierne, funkcja homograficzna.", tematy: { "liczby": ["wyrazenia", "rownania-wymierne"], "funkcje": ["inne-funkcje", "funkcja-homograficzna"], "tekstowe": ["rownania-z-tresci"] } },
       // rozdz. 2
-      { id: "lo3-ciagi", nazwa: "Ciągi liczbowe", opis: "Określenie i monotoniczność ciągu, ciąg arytmetyczny i geometryczny, sumy, lokaty i kredyty.", tematy: { "funkcje": ["wzor-ogolny", "ciag-arytmetyczny", "ciag-geometryczny"], "tekstowe": ["ciagi-w-praktyce", "procenty-i-pieniadze"] }, luka: "brak kredytów spłacanych w ratach" },
+      { id: "lo3-ciagi", nazwa: "Ciągi liczbowe", opis: "Określenie i monotoniczność ciągu, ciąg arytmetyczny i geometryczny, sumy, lokaty i kredyty.", tematy: { "funkcje": ["wzor-ogolny", "ciag-arytmetyczny", "ciag-geometryczny"], "tekstowe": ["ciagi-w-praktyce", "procenty-i-pieniadze"] } },
       // rozdz. 3
       { id: "lo3-kombinatoryka", nazwa: "Kombinatoryka", opis: "Reguła mnożenia i reguła dodawania, zadania kombinatoryczne.", tematy: { "statystyka": ["kombinatoryka"] } },
       // rozdz. 4
@@ -144,7 +144,7 @@ export const KLASY = [
       // rozdz. 5
       { id: "lo3-pole-czworokata", nazwa: "Geometria płaska – pole czworokąta", opis: "Pole prostokąta, równoległoboku, rombu, trapezu, pola figur podobnych, skala mapy.", tematy: { "geometria": ["planimetria"] } },
       // rozdz. 6
-      { id: "lo3-geom-analityczna", nazwa: "Geometria analityczna", opis: "Wektor w układzie współrzędnych, proste, równanie okręgu, położenie prostej i okręgu, przekształcenia w układzie współrzędnych.", tematy: { "geometria": ["geometria-analityczna"] }, nowe: ["wektory"], luka: "brak wektorów i położenia prostej i okręgu w układzie współrzędnych" },
+      { id: "lo3-geom-analityczna", nazwa: "Geometria analityczna", opis: "Wektor w układzie współrzędnych, proste, równanie okręgu, położenie prostej i okręgu, przekształcenia w układzie współrzędnych.", tematy: { "geometria": ["geometria-analityczna", "wektory"] } },
     ],
   },
   {
@@ -153,7 +153,7 @@ export const KLASY = [
       // rozdz. 1
       { id: "lo4-wykladnicza", nazwa: "Funkcja wykładnicza. Funkcja logarytmiczna", opis: "Własności i wykresy, równania i nierówności wykładnicze, równania logarytmiczne, zastosowania praktyczne.", tematy: { "funkcje": ["inne-funkcje", "rownania-wykladnicze-logarytmiczne"], "liczby": ["logarytmy", "potegi"] } },
       // rozdz. 2
-      { id: "lo4-statystyka-prawdopodobienstwo", nazwa: "Statystyka i rachunek prawdopodobieństwa", opis: "Prezentacja danych, średnia, mediana, moda; zdarzenia, prawdopodobieństwo klasyczne, doświadczenia wieloetapowe.", tematy: { "statystyka": ["statystyka", "kombinatoryka", "prawdopodobienstwo"] }, luka: "brak zdarzeń i drzewka; odchylenie standardowe i wartość oczekiwana uchylone w ZP w 2024" },
+      { id: "lo4-statystyka-prawdopodobienstwo", nazwa: "Statystyka i rachunek prawdopodobieństwa", opis: "Prezentacja danych, średnia, mediana, moda; zdarzenia, prawdopodobieństwo klasyczne, doświadczenia wieloetapowe.", tematy: { "statystyka": ["statystyka", "kombinatoryka", "prawdopodobienstwo"] } },
       // rozdz. 3
       { id: "lo4-wielosciany", nazwa: "Geometria przestrzenna – wielościany", opis: "Proste i płaszczyzny w przestrzeni, kąty w bryłach, graniastosłupy, ostrosłupy, pole powierzchni i objętość.", tematy: { "geometria": ["proste-i-plaszczyzny", "stereometria"] } },
       // rozdz. 4

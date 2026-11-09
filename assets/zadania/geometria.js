@@ -141,6 +141,42 @@ export default {
       opcje: ["$30$", "$40$", "$60$", "$30\\sqrt{3}$"],
       poprawna: 2,
     },
+    // ---- planimetria: symetralna i dwusieczna ----
+    {
+      nr: "42", dzial: "geometria", temat: "planimetria",
+      tresc: "Punkt $P$ leży na symetralnej odcinka $AB$ o długości $10$, przy czym $|PA| = 13$. Odległość punktu $P$ od środka odcinka $AB$ jest równa. **Wybierz właściwą odpowiedź.**",
+      opcje: ["$8$", "$13$", "$12$", "$\\sqrt{194}$"],
+      poprawna: 2,
+    },
+    // ---- wektory ----
+    {
+      nr: "45", dzial: "geometria", temat: "wektory",
+      tresc: "Dane są punkty $A = (-2, 3)$ i $B = (4, -1)$. Współrzędne wektora $\\overrightarrow{AB}$ są równe. **Wybierz właściwą odpowiedź.**",
+      opcje: ["$[-6, 4]$", "$[2, 2]$", "$[6, 4]$", "$[6, -4]$"],
+      poprawna: 3,
+    },
+    {
+      nr: "46", dzial: "geometria", temat: "wektory",
+      tresc: "Dane są wektory $\\vec{u} = [3, -4]$ i $\\vec{w} = [-1, 2]$. **Oceń prawdziwość podanych zdań.** Zaznacz P, jeśli zdanie jest prawdziwe, albo F – jeśli jest fałszywe.",
+      czesci: [
+        { tekst: "Długość wektora $\\vec{u}$ jest równa $5$.", litery: "PF", poprawna: 0 },
+        { tekst: "$\\vec{u} + \\vec{w} = [2, 2]$", litery: "PF", poprawna: 1 },
+        { tekst: "$2\\vec{u} - \\vec{w} = [7, -10]$", litery: "PF", poprawna: 0 },
+      ],
+    },
+    {
+      nr: "47", dzial: "geometria", temat: "wektory",
+      tresc: "Punkt $A = (1, -2)$ przesunięto o wektor $\\vec{u} = [3, 5]$ i otrzymano punkt $A'$. Środkiem odcinka $AA'$ jest punkt. **Wybierz właściwą odpowiedź.**",
+      opcje: ["$(2, 1)$", "$\\left(\\frac{5}{2}, \\frac{1}{2}\\right)$", "$(4, 3)$", "$\\left(\\frac{3}{2}, \\frac{5}{2}\\right)$"],
+      poprawna: 1,
+    },
+    // ---- geometria analityczna: prosta i okrąg ----
+    {
+      nr: "51", dzial: "geometria", temat: "geometria-analityczna",
+      tresc: "Dany jest okrąg o równaniu $(x + 1)^{2} + (y - 3)^{2} = 16$ oraz prosta o równaniu $x = 3$. Liczba punktów wspólnych tej prostej i okręgu jest równa. **Wybierz właściwą odpowiedź.**",
+      opcje: ["$0$", "$1$", "$2$", "$4$"],
+      poprawna: 1,
+    },
   ],
   otwarte: [
     // ---- trygonometria ----
@@ -252,6 +288,44 @@ export default {
       nr: "41", dzial: "geometria", temat: "stereometria", punkty: 3,
       tresc: "Kąt rozwarcia stożka wynosi $60^{\\circ}$, a jego tworząca ma długość $10$. Oblicz pole przekroju osiowego i objętość tego stożka. **Zapisz obliczenia.**",
       rozwiazanie: "Przekrój osiowy to trójkąt równoramienny o ramionach $10$ i kącie $60^{\\circ}$ przy wierzchołku, więc jest równoboczny, a jego bok to $10$. Zatem średnica podstawy to $10$, czyli $r = 5$.\n\nWysokość stożka to wysokość trójkąta równobocznego: $h = \\frac{10\\sqrt{3}}{2} = 5\\sqrt{3}$.\n\nPole przekroju osiowego: $\\frac{1}{2} \\cdot 10 \\cdot 5\\sqrt{3} = 25\\sqrt{3}$.\n\nObjętość: $V = \\frac{1}{3}\\pi \\cdot 5^{2} \\cdot 5\\sqrt{3} = \\frac{125\\sqrt{3}}{3}\\pi$.\n\nOdpowiedź: pole przekroju to $25\\sqrt{3}$, objętość to $\\frac{125\\sqrt{3}}{3}\\pi$.",
+    },
+    // ---- planimetria: symetralna i dwusieczna ----
+    {
+      nr: "43", dzial: "geometria", temat: "planimetria", punkty: 2,
+      tresc: "Punkt $P$ leży wewnątrz kąta ostrego o wierzchołku $O$ na jego dwusiecznej, przy czym $|OP| = 10$, a odległość punktu $P$ od jednego z ramion kąta jest równa $6$. Oblicz odległość punktu $P$ od drugiego ramienia oraz odległość wierzchołka $O$ od rzutu prostokątnego punktu $P$ na ramię kąta. **Zapisz obliczenia.**",
+      rozwiazanie: "Punkty dwusiecznej kąta są jednakowo odległe od obu ramion kąta, więc odległość punktu $P$ od drugiego ramienia też jest równa $6$.\n\nNiech $R$ będzie rzutem prostokątnym punktu $P$ na ramię. Trójkąt $ORP$ jest prostokątny, $|PR| = 6$ (odległość od ramienia), $|OP| = 10$ (przeciwprostokątna).\n\nZ twierdzenia Pitagorasa: $|OR| = \\sqrt{10^{2} - 6^{2}} = \\sqrt{64} = 8$.\n\nOdpowiedź: Odległość od drugiego ramienia wynosi $6$, a odległość $|OR|$ jest równa $8$.",
+    },
+    {
+      nr: "44", dzial: "geometria", temat: "planimetria", punkty: 3,
+      tresc: "W trójkącie $ABC$ kąt przy wierzchołku $C$ jest prosty, $|AC| = 6$ i $|BC| = 8$. Symetralna boku $AC$ przecina bok $AB$ w punkcie $D$. Oblicz $|CD|$ i uzasadnij, że punkt $D$ jest środkiem okręgu opisanego na trójkącie $ABC$. **Zapisz obliczenia.**",
+      rozwiazanie: "Symetralna boku $AC$ jest prostopadła do $AC$ i przechodzi przez jego środek. Bok $BC$ też jest prostopadły do $AC$, więc symetralna jest równoległa do $BC$ i przechodzi przez środek $AC$. Zatem przecina $AB$ w jego środku: $D$ jest środkiem $AB$.\n\nZ twierdzenia Pitagorasa: $|AB| = \\sqrt{6^{2} + 8^{2}} = 10$, więc $|AD| = |DB| = 5$.\n\nPunkt $D$ leży na symetralnej odcinka $AC$, więc jest jednakowo odległy od jego końców: $|DC| = |DA| = 5$.\n\nWtedy $|DA| = |DB| = |DC| = 5$, więc punkt $D$ jest równo odległy od wierzchołków trójkąta, czyli jest środkiem okręgu opisanego, a promień tego okręgu to $5$.\n\nOdpowiedź: $|CD| = 5$, a punkt $D$ jest środkiem okręgu opisanego na trójkącie $ABC$.",
+    },
+    // ---- wektory ----
+    {
+      nr: "48", dzial: "geometria", temat: "wektory", punkty: 3,
+      tresc: "Dane są punkty $A = (1, 2)$, $B = (5, 4)$ i $C = (6, 7)$. Wyznacz współrzędne punktu $D$ tak, aby czworokąt $ABCD$ był równoległobokiem, a następnie oblicz długość przekątnej $BD$. **Zapisz obliczenia.**",
+      rozwiazanie: "W równoległoboku $ABCD$ wektory $\\overrightarrow{AB}$ i $\\overrightarrow{DC}$ są równe.\n\nObliczamy $\\overrightarrow{AB} = [5 - 1, 4 - 2] = [4, 2]$. Niech $D = (x, y)$, wtedy $\\overrightarrow{DC} = [6 - x, 7 - y]$.\n\nZ równości wektorów: $6 - x = 4$ i $7 - y = 2$, więc $x = 2$, $y = 5$. Zatem $D = (2, 5)$.\n\nSprawdzenie: środek $AC$ to $(3{,}5; 4{,}5)$ i środek $BD$ to $(3{,}5; 4{,}5)$, więc przekątne mają wspólny środek.\n\nPrzekątna $BD$: $\\overrightarrow{BD} = [2 - 5, 5 - 4] = [-3, 1]$, więc $|BD| = \\sqrt{9 + 1} = \\sqrt{10}$.\n\nOdpowiedź: $D = (2, 5)$, $|BD| = \\sqrt{10}$.",
+    },
+    {
+      nr: "49", dzial: "geometria", temat: "wektory", punkty: 3,
+      tresc: "Trójkąt $ABC$ o wierzchołkach $A = (0, 0)$, $B = (4, 0)$, $C = (1, 3)$ przesunięto o wektor $\\vec{u} = [-2, 5]$ i otrzymano trójkąt $A'B'C'$. Wyznacz współrzędne wierzchołków trójkąta $A'B'C'$ i sprawdź, że $|A'C'| = |AC|$. **Zapisz obliczenia.**",
+      rozwiazanie: "Przesunięcie o wektor $[-2, 5]$ zmienia współrzędne punktu $(x, y)$ na $(x - 2, y + 5)$.\n\n$A' = (0 - 2, 0 + 5) = (-2, 5)$, $B' = (4 - 2, 0 + 5) = (2, 5)$, $C' = (1 - 2, 3 + 5) = (-1, 8)$.\n\nDługość $|AC| = \\sqrt{1^{2} + 3^{2}} = \\sqrt{10}$.\n\nWektor $\\overrightarrow{A'C'} = [-1 - (-2), 8 - 5] = [1, 3]$, więc $|A'C'| = \\sqrt{1 + 9} = \\sqrt{10}$.\n\nObie długości są równe $\\sqrt{10}$.\n\nOdpowiedź: $A' = (-2, 5)$, $B' = (2, 5)$, $C' = (-1, 8)$ i $|A'C'| = |AC| = \\sqrt{10}$.",
+    },
+    {
+      nr: "50", dzial: "geometria", temat: "wektory", punkty: 2,
+      tresc: "Wektor $\\overrightarrow{AB} = [3, -4]$, gdzie $A = (a, 2)$ i $B = (5, b)$. Oblicz $a$ i $b$, a następnie długość wektora $\\overrightarrow{AB}$ oraz współrzędne środka odcinka $AB$. **Zapisz obliczenia.**",
+      rozwiazanie: "Współrzędne wektora to różnice współrzędnych końca i początku: $\\overrightarrow{AB} = [5 - a, b - 2]$.\n\nZ równości wektorów: $5 - a = 3$, więc $a = 2$, oraz $b - 2 = -4$, więc $b = -2$. Zatem $A = (2, 2)$ i $B = (5, -2)$.\n\nDługość: $|\\overrightarrow{AB}| = \\sqrt{3^{2} + (-4)^{2}} = \\sqrt{25} = 5$.\n\nŚrodek odcinka: $S = \\left(\\frac{2 + 5}{2}, \\frac{2 + (-2)}{2}\\right) = (3{,}5; 0)$.\n\nOdpowiedź: $a = 2$, $b = -2$, $|\\overrightarrow{AB}| = 5$, $S = (3{,}5; 0)$.",
+    },
+    // ---- geometria analityczna: prosta i okrąg ----
+    {
+      nr: "52", dzial: "geometria", temat: "geometria-analityczna", punkty: 3,
+      tresc: "Dla jakich wartości parametru $k$ prosta o równaniu $y = x + k$ jest styczna do okręgu o równaniu $x^{2} + y^{2} = 8$? **Zapisz obliczenia.**",
+      rozwiazanie: "Okrąg ma środek $S = (0, 0)$ i promień $r = \\sqrt{8} = 2\\sqrt{2}$.\n\nRównanie prostej w postaci ogólnej: $x - y + k = 0$. Odległość środka od prostej: $d = \\frac{|0 - 0 + k|}{\\sqrt{1^{2} + (-1)^{2}}} = \\frac{|k|}{\\sqrt{2}}$.\n\nProsta jest styczna, gdy $d = r$: $\\frac{|k|}{\\sqrt{2}} = 2\\sqrt{2}$, czyli $|k| = 2\\sqrt{2} \\cdot \\sqrt{2} = 4$.\n\nStąd $k = 4$ lub $k = -4$.\n\nSprawdzenie: dla $y = x + 4$ równanie $x^{2} + (x + 4)^{2} = 8$ daje $2x^{2} + 8x + 8 = 0$, czyli $(x + 2)^{2} = 0$, jedno rozwiązanie.\n\nOdpowiedź: $k = -4$ lub $k = 4$.",
+    },
+    {
+      nr: "53", dzial: "geometria", temat: "geometria-analityczna", punkty: 3,
+      tresc: "Prosta o równaniu $y = 3x - 5$ przecina okrąg o równaniu $(x - 2)^{2} + (y - 1)^{2} = 10$ w dwóch punktach. Wyznacz współrzędne tych punktów i oblicz długość otrzymanej cięciwy. **Zapisz obliczenia.**",
+      rozwiazanie: "Podstawiamy $y = 3x - 5$ do równania okręgu: $(x - 2)^{2} + (3x - 5 - 1)^{2} = 10$.\n\nWyrażenie w drugim nawiasie to $3x - 6 = 3(x - 2)$, więc $(x - 2)^{2} + 9(x - 2)^{2} = 10$, czyli $10(x - 2)^{2} = 10$ i $(x - 2)^{2} = 1$.\n\nStąd $x = 1$ lub $x = 3$. Dla $x = 1$: $y = 3 \\cdot 1 - 5 = -2$. Dla $x = 3$: $y = 3 \\cdot 3 - 5 = 4$.\n\nPunkty wspólne to $P = (1, -2)$ i $Q = (3, 4)$. Sprawdzenie: $(1 - 2)^{2} + (-2 - 1)^{2} = 10$ oraz $(3 - 2)^{2} + (4 - 1)^{2} = 10$.\n\nDługość cięciwy: $|PQ| = \\sqrt{(3 - 1)^{2} + (4 + 2)^{2}} = \\sqrt{4 + 36} = \\sqrt{40} = 2\\sqrt{10}$.\n\nOdpowiedź: Punkty wspólne to $(1, -2)$ i $(3, 4)$, a długość cięciwy to $2\\sqrt{10}$.",
     },
   ],
 };

@@ -117,6 +117,35 @@ export default {
       opcje: ["$6$", "$-9$", "$2$", "$18$"],
       poprawna: 0,
     },
+    // ---- logika ----
+    {
+      nr: "38", dzial: "liczby", temat: "logika",
+      tresc: "Zaprzeczeniem zdania „Liczba $x$ jest większa od $2$ i mniejsza od $7$” jest zdanie. **Wybierz właściwą odpowiedź.**",
+      opcje: ["$x \\leq 2$ i $x \\geq 7$", "$x < 2$ lub $x > 7$", "$x \\leq 2$ lub $x \\geq 7$", "$x \\geq 2$ lub $x \\leq 7$"],
+      poprawna: 2,
+    },
+    {
+      nr: "39", dzial: "liczby", temat: "logika",
+      tresc: "**Oceń prawdziwość podanych zdań.** Zaznacz P, jeśli zdanie jest prawdziwe, albo F – jeśli jest fałszywe.",
+      czesci: [
+        { tekst: "Zdanie „Dla każdej liczby rzeczywistej $x$ prawdziwa jest nierówność $x^{2} > x$” jest prawdziwe.", litery: "PF", poprawna: 1 },
+        { tekst: "Zaprzeczeniem zdania „Istnieje liczba rzeczywista $x$, dla której $x^{2} < 0$” jest zdanie „Dla każdej liczby rzeczywistej $x$ zachodzi $x^{2} \\geq 0$”.", litery: "PF", poprawna: 0 },
+        { tekst: "Implikacja „Jeśli $2 + 3 = 6$, to $5$ jest liczbą parzystą” jest fałszywa.", litery: "PF", poprawna: 1 },
+      ],
+    },
+    {
+      nr: "40", dzial: "liczby", temat: "logika",
+      tresc: "Kontrprzykładem dla zdania „Jeśli liczba naturalna dzieli się przez $4$, to dzieli się przez $8$” jest liczba. **Wybierz właściwą odpowiedź.**",
+      opcje: ["$16$", "$24$", "$32$", "$12$"],
+      poprawna: 3,
+    },
+    // ---- wyrazenia: przekształcanie wzorów ----
+    {
+      nr: "44", dzial: "liczby", temat: "wyrazenia",
+      tresc: "Pole trapezu o podstawach $a$ i $b$ oraz wysokości $h \\neq 0$ wyraża się wzorem $P = \\frac{(a + b) \\cdot h}{2}$. Po wyznaczeniu $b$ otrzymamy. **Wybierz właściwą odpowiedź.**",
+      opcje: ["$b = \\frac{2P - a}{h}$", "$b = \\frac{2P}{h} - a$", "$b = \\frac{P}{2h} - a$", "$b = 2Ph - a$"],
+      poprawna: 1,
+    },
   ],
   otwarte: [
     // ---- zbiory ----
@@ -224,6 +253,33 @@ export default {
       nr: "37", dzial: "liczby", temat: "rownania-wymierne", punkty: 3,
       tresc: "Rowerzysta pokonał trasę długości $36$ km ze stałą prędkością. Gdyby jechał z prędkością większą o $3$ km/h, przejechałby tę trasę o $1$ godzinę krócej. Oblicz, z jaką prędkością jechał rowerzysta. **Zapisz obliczenia.**",
       rozwiazanie: "Niech $x$ oznacza prędkość rowerzysty w km/h, $x > 0$. Czas jazdy to $\\frac{36}{x}$ godzin, a przy prędkości $x + 3$ byłoby to $\\frac{36}{x + 3}$ godzin.\n\nRóżnica czasów wynosi $1$ godzinę: $\\frac{36}{x} - \\frac{36}{x + 3} = 1$.\n\nMnożymy przez $x(x + 3)$: $36(x + 3) - 36x = x(x + 3)$, czyli $108 = x^{2} + 3x$.\n\nStąd $x^{2} + 3x - 108 = 0$. Delta: $9 + 432 = 441$, więc $x = \\frac{-3 - 21}{2} = -12$ lub $x = \\frac{-3 + 21}{2} = 9$.\n\nPrędkość nie może być ujemna, więc $x = 9$.\n\nSprawdzenie: $\\frac{36}{9} = 4$ h oraz $\\frac{36}{12} = 3$ h, różnica $1$ h.\n\nOdpowiedź: Rowerzysta jechał z prędkością $9$ km/h.",
+    },
+    // ---- logika ----
+    {
+      nr: "41", dzial: "liczby", temat: "logika", punkty: 2,
+      tresc: "Dane jest zdanie: „Dla każdej liczby rzeczywistej $x$ prawdziwa jest nierówność $(x - 1)^{2} > 0$”. Zapisz zaprzeczenie tego zdania i rozstrzygnij, które z tych dwóch zdań jest prawdziwe. **Zapisz obliczenia.**",
+      rozwiazanie: "Zaprzeczając zdanie z kwantyfikatorem „dla każdego”, zamieniamy go na „istnieje” i zaprzeczamy nierówność. Zaprzeczeniem $(x - 1)^{2} > 0$ jest $(x - 1)^{2} \\leq 0$.\n\nZaprzeczenie: „Istnieje liczba rzeczywista $x$, dla której $(x - 1)^{2} \\leq 0$”.\n\nDla $x = 1$ mamy $(1 - 1)^{2} = 0$, a $0 \\leq 0$ jest prawdą. Zatem zaprzeczenie jest prawdziwe, więc zdanie wyjściowe jest fałszywe (kontrprzykład: $x = 1$).\n\nOdpowiedź: Zaprzeczenie to „istnieje $x$, że $(x - 1)^{2} \\leq 0$”. Jest ono prawdziwe, a zdanie wyjściowe jest fałszywe.",
+    },
+    {
+      nr: "42", dzial: "liczby", temat: "logika", punkty: 3,
+      tresc: "Za pomocą tabeli wartości logicznych sprawdź, czy zdania $p \\Rightarrow q$ oraz $\\neg p \\lor q$ mają taką samą wartość logiczną dla każdego układu wartości zdań $p$ i $q$. **Zapisz obliczenia.**",
+      rozwiazanie: "Wypisujemy wszystkie cztery układy wartości $p$ i $q$ ($1$ – prawda, $0$ – fałsz).\n\nImplikacja $p \\Rightarrow q$ jest fałszywa tylko dla $p = 1$ i $q = 0$. Zaprzeczenie $\\neg p$ ma przeciwną wartość niż $p$, a alternatywa $\\neg p \\lor q$ jest fałszywa tylko wtedy, gdy oba składniki są fałszywe.\n\n| p | q | p ⇒ q | ¬p ∨ q |\n|---|---|---|---|\n| 1 | 1 | 1 | 1 |\n| 1 | 0 | 0 | 0 |\n| 0 | 1 | 1 | 1 |\n| 0 | 0 | 1 | 1 |\n\nPrzykładowo dla $p = 1$, $q = 0$: $\\neg p = 0$, więc $\\neg p \\lor q = 0 \\lor 0 = 0$, tak samo jak $p \\Rightarrow q$. W pozostałych wierszach też obie kolumny są równe.\n\nOdpowiedź: Tak, obie kolumny są identyczne, więc zdania $p \\Rightarrow q$ i $\\neg p \\lor q$ mają zawsze taką samą wartość logiczną.",
+    },
+    {
+      nr: "43", dzial: "liczby", temat: "logika", punkty: 3,
+      tresc: "Dane jest twierdzenie: „Jeśli czworokąt jest prostokątem, to jego przekątne mają równą długość”. a) Podaj założenie i tezę tego twierdzenia. b) Sformułuj twierdzenie odwrotne. c) Rozstrzygnij, czy twierdzenie odwrotne jest prawdziwe, i uzasadnij odpowiedź kontrprzykładem. **Zapisz odpowiedzi.**",
+      rozwiazanie: "a) Założenie: czworokąt jest prostokątem. Teza: przekątne tego czworokąta mają równą długość.\n\nb) Twierdzenie odwrotne zamienia założenie z tezą: „Jeśli przekątne czworokąta mają równą długość, to ten czworokąt jest prostokątem”.\n\nc) Twierdzenie odwrotne jest fałszywe. Kontrprzykładem jest trapez równoramienny, który nie jest prostokątem: jego przekątne mają równą długość, a kąty przy podstawie nie są proste. Przykład: trapez o wierzchołkach $(0, 0)$, $(4, 0)$, $(3, 2)$, $(1, 2)$. Jego przekątne mają długości $\\sqrt{3^{2} + 2^{2}} = \\sqrt{13}$ każda, a trapez nie jest prostokątem.\n\nOdpowiedź: a) założenie – czworokąt jest prostokątem, teza – przekątne są równe. b) „Jeśli przekątne czworokąta są równe, to jest on prostokątem”. c) Fałszywe, kontrprzykład: trapez równoramienny.",
+    },
+    // ---- wyrazenia: przekształcanie wzorów ----
+    {
+      nr: "45", dzial: "liczby", temat: "wyrazenia", punkty: 3,
+      tresc: "Opór zastępczy $R$ dwóch oporników połączonych równolegle opisuje wzór $\\frac{1}{R} = \\frac{1}{R_{1}} + \\frac{1}{R_{2}}$, gdzie $R$, $R_{1}$, $R_{2}$ są dodatnie i $R_{1} \\neq R$. Wyznacz z tego wzoru $R_{2}$, a następnie oblicz $R_{2}$ dla $R = 3$ i $R_{1} = 6$. **Zapisz obliczenia.**",
+      rozwiazanie: "Przenosimy $\\frac{1}{R_{1}}$ na lewą stronę: $\\frac{1}{R_{2}} = \\frac{1}{R} - \\frac{1}{R_{1}}$.\n\nSprowadzamy do wspólnego mianownika $R \\cdot R_{1}$: $\\frac{1}{R_{2}} = \\frac{R_{1} - R}{R \\cdot R_{1}}$.\n\nLiczba $R_{1} - R$ jest różna od zera (z założenia), więc możemy odwrócić ułamki: $R_{2} = \\frac{R \\cdot R_{1}}{R_{1} - R}$.\n\nDla $R = 3$ i $R_{1} = 6$: $R_{2} = \\frac{3 \\cdot 6}{6 - 3} = \\frac{18}{3} = 6$.\n\nSprawdzenie: $\\frac{1}{6} + \\frac{1}{6} = \\frac{1}{3}$.\n\nOdpowiedź: $R_{2} = \\frac{R \\cdot R_{1}}{R_{1} - R}$, a dla podanych danych $R_{2} = 6$.",
+    },
+    {
+      nr: "46", dzial: "liczby", temat: "wyrazenia", punkty: 2,
+      tresc: "Po $3$ latach na lokacie z roczną kapitalizacją odsetek i stopą $4\\%$ w skali roku zgromadzono $5624{,}32$ zł. Wyznacz ze wzoru $K = K_{0}(1 + p)^{n}$ kwotę początkową $K_{0}$ i oblicz jej wartość. **Zapisz obliczenia.**",
+      rozwiazanie: "Czynnik $(1 + p)^{n}$ jest dodatni, więc możemy przez niego podzielić obie strony wzoru: $K_{0} = \\frac{K}{(1 + p)^{n}}$.\n\nPodstawiamy $K = 5624{,}32$, $p = 0{,}04$, $n = 3$: $K_{0} = \\frac{5624{,}32}{1{,}04^{3}} = \\frac{5624{,}32}{1{,}124864} = 5000$.\n\nSprawdzenie: $5000 \\cdot 1{,}124864 = 5624{,}32$.\n\nOdpowiedź: $K_{0} = \\frac{K}{(1 + p)^{n}}$, wpłacono $5000$ zł.",
     },
   ],
 };

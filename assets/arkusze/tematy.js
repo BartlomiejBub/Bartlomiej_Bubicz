@@ -4,6 +4,7 @@ export const TEMATY = {
   liczby: [
     { id: "liczby-rzeczywiste", nazwa: "Liczby rzeczywiste" },     // I: przedziały, przybliżenia, wartość bezwzględna liczby
     { id: "zbiory", nazwa: "Zbiory i działania na zbiorach" },    // LO kl. 1: zbiory, przedziały, dopełnienie
+    { id: "logika", nazwa: "Logika: zdania i kwantyfikatory" },    // LO kl. 1: zdanie, spójniki, De Morgan, kwantyfikatory, twierdzenie odwrotne
     { id: "potegi", nazwa: "Potęgi" },                             // I.4, I.5
     { id: "pierwiastki", nazwa: "Pierwiastki" },                   // I.3, I.4
     { id: "logarytmy", nazwa: "Logarytmy" },                       // I.1 (logarytmowanie), I.6
@@ -31,6 +32,7 @@ export const TEMATY = {
     { id: "planimetria", nazwa: "Planimetria" },                   // VIII
     { id: "czworokaty-lo", nazwa: "Własności czworokątów" },       // VIII (podział czworokątów, trapezy, równoległoboki – luka)
     { id: "geometria-analityczna", nazwa: "Geometria analityczna" }, // IX
+    { id: "wektory", nazwa: "Wektory w układzie współrzędnych" }, // LO kl. 2: współrzędne wektora, działania, przesunięcie o wektor
     { id: "proste-i-plaszczyzny", nazwa: "Proste i płaszczyzny w przestrzeni" }, // X (proste i płaszczyzny, kąty w przestrzeni – luka)
     { id: "stereometria", nazwa: "Stereometria" },                 // X
   ],

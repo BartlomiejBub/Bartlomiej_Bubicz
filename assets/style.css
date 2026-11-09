@@ -625,6 +625,8 @@ input[type="radio"] { width: 18px; height: 18px; margin: 0; accent-color: var(--
 .rozwiazanie { margin-top: 12px; padding: 12px 14px; border-left: 4px solid var(--accent); border-radius: 6px; background: rgba(127, 127, 127, 0.06); }
 .rozwiazanie-tytul { margin: 0 0 6px; color: var(--muted); font-size: 0.85rem; font-weight: 600; }
 .wzor-slownie { margin: 2px 0 6px; color: var(--ink); }
+.wzor-akapity p { margin: 0 0 6px; }
+.wzor-akapity > :last-child { margin-bottom: 0; }
 .wzor-przyklad { margin: 0 0 4px; padding: 6px 8px; border-radius: 6px; background: var(--chip-bg, rgba(127, 127, 127, 0.08)); font-size: 0.9rem; }
 .jak {
   margin-top: 12px;
