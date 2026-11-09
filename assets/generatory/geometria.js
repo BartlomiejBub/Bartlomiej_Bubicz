@@ -1,5 +1,6 @@
 // Generatory zadań z działu „Geometria” (matura podstawowa, formuła 2023).
 // Kontrakt zadania i narzędzia: zob. wspolne.js. Każde zadanie budujemy od końca – z ładnej odpowiedzi.
+// Własności czworokątów, wektory oraz proste i płaszczyzny w przestrzeni: sekcje „Własności czworokątów”, „Wektory…”, „Proste i płaszczyzny…”.
 import { Q, q, texNawias, plusMinus, nawiasMinus } from "./wspolne.js";
 
 // --- Zapis LaTeX i drobne pomocnicze
@@ -716,6 +717,304 @@ function katyWielokat(r) {
   ]);
 }
 
+// --- Własności czworokątów
+
+/** Zdania o czworokątach: { t: zdanie, w: krótkie uzasadnienie }. */
+const ZDANIA_PRAWDZIWE = [
+  { t: "Każdy kwadrat jest rombem.", w: "Kwadrat ma cztery równe boki, więc jest rombem (o kątach prostych)." },
+  { t: "Każdy kwadrat jest prostokątem.", w: "Kwadrat ma cztery kąty proste, więc jest prostokątem (o równych bokach)." },
+  { t: "Każdy romb jest równoległobokiem.", w: "W rombie przeciwległe boki są równoległe, więc jest on równoległobokiem." },
+  { t: "Każdy prostokąt jest równoległobokiem.", w: "W prostokącie przeciwległe boki są równoległe, więc jest on równoległobokiem." },
+  { t: "Każdy równoległobok jest trapezem.", w: "Równoległobok ma dwie pary boków równoległych, a trapez wymaga co najmniej jednej pary." },
+  { t: "Każdy romb jest deltoidem.", w: "Romb ma dwie pary sąsiednich boków równych (nawet cztery równe boki), więc jest deltoidem." },
+  { t: "Przekątne rombu są prostopadłe.", w: "Przekątne rombu są prostopadłe, połowią się i dzielą jego kąty na pół." },
+  { t: "Przekątne prostokąta mają równe długości.", w: "Przekątne prostokąta są równe i dzielą się na połowy." },
+  { t: "Przekątne równoległoboku dzielą się na połowy.", w: "Punkt przecięcia przekątnych równoległoboku jest środkiem każdej z nich." },
+  { t: "Kąty przeciwległe równoległoboku mają równe miary.", w: "W równoległoboku kąty przeciwległe są równe, a kąty sąsiednie dają razem $180^{\\circ}$." },
+  { t: "W trapezie równoramiennym przekątne mają równe długości.", w: "Trapez równoramienny ma równe ramiona i równe przekątne." },
+  { t: "Na każdym prostokącie można opisać okrąg.", w: "Środek przecięcia przekątnych prostokąta jest jednakowo oddalony od wszystkich wierzchołków." },
+  { t: "W każdy romb można wpisać okrąg.", w: "W rombie sumy długości boków przeciwległych są równe (każda to $2a$), więc można w niego wpisać okrąg." },
+];
+
+const ZDANIA_FALSZYWE = [
+  { t: "Każdy romb jest kwadratem.", w: "Romb ma równe boki, ale jego kąty nie muszą być proste, np. kąty $60^{\\circ}$ i $120^{\\circ}$." },
+  { t: "Każdy prostokąt jest rombem.", w: "Prostokąt o bokach $3$ i $5$ ma kąty proste, ale boki nierówne, więc nie jest rombem." },
+  { t: "Każdy prostokąt jest kwadratem.", w: "Prostokąt o bokach $3$ i $5$ nie jest kwadratem." },
+  { t: "Każdy trapez jest równoległobokiem.", w: "Trapez może mieć tylko jedną parę boków równoległych, a równoległobok ma dwie pary." },
+  { t: "Każdy deltoid jest rombem.", w: "Deltoid ma tylko dwie pary sąsiednich boków równych, a romb ma wszystkie boki równe." },
+  { t: "Przekątne każdego równoległoboku mają równe długości.", w: "Równe przekątne ma prostokąt, ale np. równoległobok o kątach $60^{\\circ}$ i $120^{\\circ}$ ma przekątne różnej długości." },
+  { t: "Przekątne każdego równoległoboku są prostopadłe.", w: "Prostopadłe przekątne ma romb, ale prostokąt, który nie jest kwadratem, ma przekątne nieprostopadłe." },
+  { t: "Przekątne każdego trapezu dzielą się na połowy.", w: "Na połowy dzielą się przekątne równoległoboku, a trapez może nie być równoległobokiem." },
+  { t: "Przekątne każdego deltoidu dzielą się na połowy.", w: "W deltoidzie tylko jedna przekątna dzieli drugą na połowy." },
+  { t: "Przekątne każdego prostokąta są prostopadłe.", w: "Przekątne prostokąta, który nie jest kwadratem, nie są prostopadłe." },
+  { t: "Na każdym równoległoboku można opisać okrąg.", w: "Okrąg można opisać na równoległoboku tylko wtedy, gdy jest on prostokątem." },
+  { t: "W każdy trapez można wpisać okrąg.", w: "Okrąg można wpisać w czworokąt tylko wtedy, gdy sumy długości boków przeciwległych są równe." },
+  { t: "Każdy równoległobok ma cztery kąty proste.", w: "Cztery kąty proste ma tylko prostokąt." },
+];
+
+function czworokatyKaty(r) {
+  const wariant = r.pick(["suma", "suma", "trapez", "trapez", "deltoid", "podzial", "podzial"]);
+  if (wariant === "suma") return sumaKatowCzworokata(r);
+  if (wariant === "trapez") return trapezRownoleglobokKaty(r);
+  if (wariant === "deltoid") return deltoidKaty(r);
+  return podzialCzworokatow(r);
+}
+
+/** Trzy kąty, stosunek kątów albo okrąg opisany: suma kątów czworokąta i kąty przeciwległe. */
+function sumaKatowCzworokata(r) {
+  const typ = r.pick(["trzy", "stosunek", "okrag"]);
+  if (typ === "trzy") {
+    for (;;) {
+      const a = r.int(60, 130), b = r.int(60, 130), c = r.int(50, 130), d = 360 - a - b - c;
+      if (d < 40 || d > 150) continue;
+      const tresc = `W czworokącie wypukłym $ABCD$ kąt $DAB$ ma miarę $${a}^\\circ$, kąt $ABC$ ma miarę $${b}^\\circ$, a kąt $BCD$ ma miarę $${c}^\\circ$. Oblicz miarę kąta $CDA$.`;
+      return zadanieKat("CDA", d, tresc, [`Suma miar kątów czworokąta jest równa $360^\\circ$, więc $${miara("CDA")} = 360^\\circ - ${a}^\\circ - ${b}^\\circ - ${c}^\\circ = ${d}^\\circ$.`]);
+    }
+  }
+  if (typ === "stosunek") {
+    for (;;) {
+      const t = [r.int(1, 6), r.int(1, 6), r.int(1, 6), r.int(1, 6)];
+      const S = t[0] + t[1] + t[2] + t[3], najw = r.chance();
+      const wyb = najw ? Math.max(...t) : Math.min(...t);
+      if (360 % S !== 0 || new Set(t).size < 2 || Math.max(...t) * 2 >= S) continue;
+      const odp = (360 / S) * wyb;
+      const tresc = `Miary kątów czworokąta wypukłego są w stosunku $${t.join(" : ")}$. Oblicz miarę ${najw ? "największego" : "najmniejszego"} kąta tego czworokąta.`;
+      return jednoPole("k", "Miara kąta (w stopniach)", odp, `$${odp}^\\circ$`, tresc, [
+        `Miary kątów to $${t.map((v) => (v === 1 ? "x" : `${v}x`)).join("$, $")}$, a ich suma jest równa $360^\\circ$: $${S}x = 360^\\circ$, więc $x = ${360 / S}^\\circ$.`,
+        `${najw ? "Największy" : "Najmniejszy"} kąt ma miarę $${wyb} \\cdot ${360 / S}^\\circ = ${odp}^\\circ$.`,
+      ]);
+    }
+  }
+  const a = r.int(50, 130), b = r.int(50, 130);
+  const przeciwlegly = r.chance();
+  const [szukany, dany, wart] = przeciwlegly ? ["BCD", "DAB", a] : ["CDA", "ABC", b];
+  const tresc = `Na czworokącie $ABCD$ opisano okrąg. Kąt $DAB$ ma miarę $${a}^\\circ$, a kąt $ABC$ ma miarę $${b}^\\circ$. Oblicz miarę kąta $${szukany}$.`;
+  return zadanieKat(szukany, 180 - wart, tresc, [
+    "Czworokąt jest wpisany w okrąg, więc jego kąty przeciwległe dają razem $180^\\circ$.",
+    `Kątem przeciwległym do kąta $${dany}$ jest kąt $${szukany}$: $${miara(szukany)} = 180^\\circ - ${wart}^\\circ = ${180 - wart}^\\circ$.`,
+  ]);
+}
+
+/** Kąty trapezu równoramiennego i prostokątnego oraz równoległoboku z danym stosunkiem kątów. */
+function trapezRownoleglobokKaty(r) {
+  const typ = r.pick(["rownoramienny", "rownoramienny", "prostokatny", "rownoleglobok", "rownoleglobok"]);
+  if (typ === "rownoramienny") {
+    const x = r.int(50, 85);
+    if (r.chance()) {
+      const tresc = `W trapezie równoramiennym $ABCD$ o podstawach $AB$ i $CD$ kąt ostry przy wierzchołku $A$ ma miarę $${x}^\\circ$. Oblicz miarę kąta $BCD$.`;
+      return zadanieKat("BCD", 180 - x, tresc, [
+        `Kąty przy podstawie trapezu równoramiennego są równe, więc $${miara("ABC")} = ${miara("DAB")} = ${x}^\\circ$.`,
+        `Podstawy są równoległe, więc kąty przy ramieniu $BC$ dają razem $180^\\circ$: $${miara("BCD")} = 180^\\circ - ${x}^\\circ = ${180 - x}^\\circ$.`,
+      ]);
+    }
+    const tresc = `W trapezie równoramiennym $ABCD$ o podstawach $AB$ i $CD$ kąt rozwarty przy wierzchołku $D$ ma miarę $${180 - x}^\\circ$. Oblicz miarę kąta $ABC$.`;
+    return zadanieKat("ABC", x, tresc, [
+      `Podstawy są równoległe, więc kąty przy ramieniu $AD$ dają razem $180^\\circ$: $${miara("DAB")} = 180^\\circ - ${180 - x}^\\circ = ${x}^\\circ$.`,
+      `Kąty przy podstawie $AB$ są równe, więc $${miara("ABC")} = ${miara("DAB")} = ${x}^\\circ$.`,
+    ]);
+  }
+  if (typ === "prostokatny") {
+    const x = r.intBez(50, 130, 90);
+    const tresc = `W trapezie prostokątnym $ABCD$ o podstawach $AB$ i $CD$ kąty przy wierzchołkach $A$ i $D$ są proste. Kąt $ABC$ ma miarę $${x}^\\circ$. Oblicz miarę kąta $BCD$.`;
+    return zadanieKat("BCD", 180 - x, tresc, [
+      `Podstawy są równoległe, więc kąty przy ramieniu $BC$ dają razem $180^\\circ$.`,
+      `$${miara("BCD")} = 180^\\circ - ${x}^\\circ = ${180 - x}^\\circ$.`,
+    ]);
+  }
+  const k = r.pick([2, 3, 4, 5, 8]), al = 180 / (k + 1);
+  const pytamMaly = r.chance();
+  const [szukany, wart, powod] = pytamMaly
+    ? ["BCD", al, `Kąty przeciwległe równoległoboku są równe: $${miara("BCD")} = ${miara("DAB")} = ${al}^\\circ$.`]
+    : ["ADC", k * al, `Kąty przeciwległe równoległoboku są równe: $${miara("ADC")} = ${miara("ABC")} = ${k} \\cdot ${al}^\\circ = ${k * al}^\\circ$.`];
+  const tresc = `W równoległoboku $ABCD$ miara kąta $ABC$ jest $${k}$ razy większa od miary kąta $DAB$. Oblicz miarę kąta $${szukany}$.`;
+  return zadanieKat(szukany, wart, tresc, [
+    `Kąty sąsiednie równoległoboku dają razem $180^\\circ$. Niech $${miara("DAB")} = \\alpha$, wtedy $${miara("ABC")} = ${k}\\alpha$.`,
+    `$\\alpha + ${k}\\alpha = 180^\\circ$, czyli $${k + 1}\\alpha = 180^\\circ$, więc $\\alpha = ${al}^\\circ$.`,
+    powod,
+  ]);
+}
+
+/** Deltoid: kąty przy osi symetrii dane, szukamy kąta przy wierzchołku poza osią. */
+function deltoidKaty(r) {
+  for (;;) {
+    const a = r.int(40, 140), c = r.int(40, 140);
+    if ((a + c) % 2 !== 0) continue;
+    const b = (360 - a - c) / 2;
+    const tresc = `W deltoidzie $ABCD$ spełnione są równości $|AB| = |AD|$ oraz $|CB| = |CD|$. Kąt $DAB$ ma miarę $${a}^\\circ$, a kąt $BCD$ ma miarę $${c}^\\circ$. Oblicz miarę kąta $ABC$.`;
+    return zadanieKat("ABC", b, tresc, [
+      `Przekątna $AC$ jest osią symetrii deltoidu, więc $${miara("ABC")} = ${miara("CDA")}$.`,
+      `Suma miar kątów czworokąta jest równa $360^\\circ$: $${a}^\\circ + ${c}^\\circ + 2 \\cdot ${miara("ABC")} = 360^\\circ$.`,
+      `$${miara("ABC")} = \\frac{360^\\circ - ${a + c}^\\circ}{2} = ${b}^\\circ$.`,
+    ]);
+  }
+}
+
+/** Które zdanie o czworokątach jest fałszywe (albo prawdziwe). */
+function podzialCzworokatow(r) {
+  const szukamFalszywego = r.chance(0.6);
+  const [jedna, trzy] = szukamFalszywego ? [ZDANIA_FALSZYWE, ZDANIA_PRAWDZIWE] : [ZDANIA_PRAWDZIWE, ZDANIA_FALSZYWE];
+  const wybrane = r.pick(jedna);
+  const teksty = [wybrane, ...r.shuffle(trzy).slice(0, 3)];
+  const kolej = r.shuffle([0, 1, 2, 3]);
+  return {
+    tresc: szukamFalszywego ? "Wskaż zdanie fałszywe." : "Wskaż zdanie prawdziwe.",
+    pola: [{ id: "z", typ: "wybor", etykieta: "Zdanie", opcje: kolej.map((i) => teksty[i].t) }],
+    odpowiedz: { z: kolej.indexOf(0) },
+    wynik: wybrane.t,
+    rozwiazanie: [
+      `${szukamFalszywego ? "Fałszywe" : "Prawdziwe"} jest zdanie: ${wybrane.t}`,
+      wybrane.w,
+      `Pozostałe trzy zdania są ${szukamFalszywego ? "prawdziwe" : "fałszywe"}.`,
+    ],
+  };
+}
+
+function czworokatyBoki(r) {
+  const wariant = r.pick(["przekatne", "przekatne", "trapez", "trapez", "rownoleglobok", "opisany"]);
+  if (wariant === "przekatne") return r.chance(0.6) ? rombPrzekatne(r) : prostokatPrzekatna(r);
+  if (wariant === "trapez") return trapezBoki(r);
+  if (wariant === "rownoleglobok") return rownoleglobokPrzekatne(r);
+  return czworokatOpisany(r);
+}
+
+/** Romb: bok, obwód, druga przekątna i pole z połówek przekątnych (trójka pitagorejska). */
+function rombPrzekatne(r) {
+  const [p, s, c] = losujTrojke(r, 26);
+  const pyt = r.pick(["bok", "bok", "obwod", "przekatna", "pole"]);
+  const polowy = "Przekątne rombu są prostopadłe i dzielą się na połowy, więc bok jest przeciwprostokątną trójkąta prostokątnego, którego przyprostokątne są połowami przekątnych.";
+  if (pyt === "bok" || pyt === "obwod") {
+    const krok = `$a = \\sqrt{${p}^2 + ${s}^2} = \\sqrt{${c * c}} = ${c}$.`;
+    if (pyt === "bok") {
+      return jednoPole("a", "Długość boku", c, `$a = ${c}$`, `Przekątne rombu mają długości $${2 * p}$ i $${2 * s}$. Oblicz długość boku tego rombu.`, [polowy, krok]);
+    }
+    return jednoPole("o", "Obwód", 4 * c, `$${4 * c}$`, `Przekątne rombu mają długości $${2 * p}$ i $${2 * s}$. Oblicz obwód tego rombu.`, [polowy, krok, `Obwód: $4 \\cdot ${c} = ${4 * c}$.`]);
+  }
+  const [dana, szuk] = r.chance() ? [p, s] : [s, p];
+  const dane = `Bok rombu ma długość $${c}$, a jedna z jego przekątnych ma długość $${2 * dana}$.`;
+  const kroki = [
+    `Połowa danej przekątnej to $${dana}$. Połowa drugiej przekątnej z twierdzenia Pitagorasa: $\\sqrt{${c}^2 - ${dana}^2} = \\sqrt{${szuk * szuk}} = ${szuk}$.`,
+    `Druga przekątna ma długość $2 \\cdot ${szuk} = ${2 * szuk}$.`,
+  ];
+  if (pyt === "przekatna") return jednoPole("d", "Druga przekątna", 2 * szuk, `$${2 * szuk}$`, `${dane} Oblicz długość drugiej przekątnej tego rombu.`, kroki);
+  kroki.push(`Pole rombu: $P = \\frac{1}{2} \\cdot ${2 * dana} \\cdot ${2 * szuk} = ${2 * dana * szuk}$.`);
+  return jednoPole("P", "$P =$", 2 * dana * szuk, `$P = ${2 * dana * szuk}$`, `${dane} Oblicz pole tego rombu.`, kroki);
+}
+
+/** Prostokąt: przekątna, bok albo promień okręgu opisanego. */
+function prostokatPrzekatna(r) {
+  const typ = r.pick(["przekatna", "bok", "okrag"]);
+  const [a0, b0, c0] = r.pick(TROJKI);
+  const k = typ === "okrag" ? 2 : r.int(1, Math.floor(50 / c0));
+  const [a, b, c] = r.chance() ? [a0 * k, b0 * k, c0 * k] : [b0 * k, a0 * k, c0 * k];
+  if (typ === "przekatna") {
+    return jednoPole("d", "Długość przekątnej", c, `$d = ${c}$`, `Boki prostokąta mają długości $${a}$ i $${b}$. Oblicz długość przekątnej tego prostokąta.`, [
+      `$d = \\sqrt{${a}^2 + ${b}^2} = \\sqrt{${c * c}} = ${c}$.`,
+    ]);
+  }
+  if (typ === "bok") {
+    return jednoPole("b", "Długość drugiego boku", b, `$${b}$`, `Przekątna prostokąta ma długość $${c}$, a jeden z jego boków ma długość $${a}$. Oblicz długość drugiego boku tego prostokąta.`, [
+      "Przekątna i dwa boki prostokąta tworzą trójkąt prostokątny, w którym przekątna jest przeciwprostokątną.",
+      `$b = \\sqrt{${c}^2 - ${a}^2} = \\sqrt{${b * b}} = ${b}$.`,
+    ]);
+  }
+  return jednoPole("r", "Promień okręgu", c / 2, `$${c / 2}$`, `Boki prostokąta mają długości $${a}$ i $${b}$. Oblicz promień okręgu opisanego na tym prostokącie.`, [
+    `Środek okręgu opisanego na prostokącie to punkt przecięcia przekątnych, więc promień jest równy połowie przekątnej. Przekątna: $d = \\sqrt{${a}^2 + ${b}^2} = ${c}$.`,
+    `$r = ${c} : 2 = ${c / 2}$.`,
+  ]);
+}
+
+/** Trapez: odcinek łączący środki ramion, druga podstawa, wysokość i pole trapezu równoramiennego. */
+function trapezBoki(r) {
+  const typ = r.pick(["srodki", "drugaPodstawa", "wysokosc", "pole"]);
+  if (typ === "srodki") {
+    for (;;) {
+      const a = r.int(4, 20), b = r.int(4, 20);
+      if (a === b || (a + b) % 2 !== 0) continue;
+      return jednoPole("e", "Długość odcinka", (a + b) / 2, `$${(a + b) / 2}$`,
+        `Podstawy trapezu mają długości $${a}$ i $${b}$. Oblicz długość odcinka łączącego środki ramion tego trapezu.`, [
+          "Odcinek łączący środki ramion trapezu ma długość równą średniej długości podstaw.",
+          `Długość tego odcinka: $\\frac{${a} + ${b}}{2} = ${(a + b) / 2}$.`,
+        ]);
+    }
+  }
+  if (typ === "drugaPodstawa") {
+    for (;;) {
+      const e = r.int(4, 14), a = r.int(2, 2 * e - 2);
+      if (a === e) continue;
+      const b = 2 * e - a;
+      return jednoPole("b", "Druga podstawa", b, `$${b}$`,
+        `Odcinek łączący środki ramion trapezu ma długość $${e}$, a jedna z podstaw tego trapezu ma długość $${a}$. Oblicz długość drugiej podstawy.`, [
+          `Odcinek łączący środki ramion ma długość średniej podstaw: $\\frac{${a} + b}{2} = ${e}$.`,
+          `$${a} + b = ${2 * e}$, więc $b = ${b}$.`,
+        ]);
+    }
+  }
+  const [p, h, c] = losujTrojke(r, 25);
+  const krotsza = r.int(3, 10), dluzsza = krotsza + 2 * p;
+  const dane = `W trapezie równoramiennym podstawy mają długości $${dluzsza}$ i $${krotsza}$, a ramię ma długość $${c}$.`;
+  const kroki = [
+    `Wysokości poprowadzone z końców krótszej podstawy odcinają od dłuższej podstawy dwa równe odcinki o długości $\\frac{${dluzsza} - ${krotsza}}{2} = ${p}$.`,
+    `Z twierdzenia Pitagorasa wysokość $h = \\sqrt{${c}^2 - ${p}^2} = \\sqrt{${h * h}} = ${h}$.`,
+  ];
+  if (typ === "wysokosc") return jednoPole("h", "Wysokość", h, `$h = ${h}$`, `${dane} Oblicz wysokość tego trapezu.`, kroki);
+  const pole = (krotsza + p) * h;
+  kroki.push(`Pole: $P = \\frac{${dluzsza} + ${krotsza}}{2} \\cdot ${h} = ${krotsza + p} \\cdot ${h} = ${pole}$.`);
+  return jednoPole("P", "$P =$", pole, `$P = ${pole}$`, `${dane} Oblicz pole tego trapezu.`, kroki);
+}
+
+/** Równoległobok: przekątne połowią się (obwód trójkąta ABS, równanie na długości AS i SC). */
+function rownoleglobokPrzekatne(r) {
+  if (r.chance(0.5)) {
+    for (;;) {
+      const ab = r.int(4, 15), ac = 2 * r.int(3, 10), bd = 2 * r.int(3, 10);
+      const as = ac / 2, bs = bd / 2;
+      if (ab >= as + bs || ab <= Math.abs(as - bs)) continue;
+      return jednoPole("o", "Obwód", ab + as + bs, `$${ab + as + bs}$`,
+        `Przekątne równoległoboku $ABCD$ przecinają się w punkcie $S$. Wiadomo, że $|AB| = ${ab}$, $|AC| = ${ac}$ i $|BD| = ${bd}$. Oblicz obwód trójkąta $ABS$.`, [
+          `Przekątne równoległoboku dzielą się na połowy: $|AS| = ${ac} : 2 = ${as}$ oraz $|BS| = ${bd} : 2 = ${bs}$.`,
+          `Obwód trójkąta $ABS$: $|AB| + |AS| + |BS| = ${ab} + ${as} + ${bs} = ${ab + as + bs}$.`,
+        ]);
+    }
+  }
+  for (;;) {
+    const x0 = r.int(3, 12), v = r.int(6, 24), m = r.pick([2, 3]);
+    const p1 = v - x0, p2 = v - m * x0;
+    if (p1 === 0 || p2 === 0 || Math.abs(p1) > 15 || Math.abs(p2) > 25) continue;
+    const AS = sumaTex([[1, "x"], [p1, ""]]), SC = sumaTex([[m, "x"], [p2, ""]]);
+    return jednoPole("d", "$|AC| =$", 2 * v, `$|AC| = ${2 * v}$`,
+      `Przekątne równoległoboku $ABCD$ przecinają się w punkcie $S$, przy czym $|AS| = ${AS}$ oraz $|SC| = ${SC}$. Oblicz długość przekątnej $AC$.`, [
+        `Przekątne równoległoboku dzielą się na połowy, więc $|AS| = |SC|$, czyli $${AS} = ${SC}$.`,
+        `Stąd $x = ${x0}$, a $|AS| = ${x0} ${plusMinus(p1)} = ${v}$.`,
+        `$|AC| = 2 \\cdot |AS| = 2 \\cdot ${v} = ${2 * v}$.`,
+      ]);
+  }
+}
+
+/** Czworokąt opisany na okręgu: sumy boków przeciwległych są równe. */
+function czworokatOpisany(r) {
+  if (r.chance(0.5)) {
+    for (;;) {
+      const x0 = r.int(3, 10), k = r.int(1, 6), a = r.int(3, 12), b = 2 * x0 + k - a;
+      if (b < 2 || b > 14) continue;
+      return jednoPole("x", "$x =$", x0, `$x = ${x0}$`,
+        `W czworokąt, którego kolejne boki mają długości $x$, $${a}$, $x + ${k}$ i $${b}$, można wpisać okrąg. Oblicz $x$.`, [
+          "W czworokąt można wpisać okrąg, gdy sumy długości boków przeciwległych są równe. Boki przeciwległe to $x$ i $x + " + k + `$ oraz $${a}$ i $${b}$.`,
+          `$x + (x + ${k}) = ${a} + ${b}$, czyli $2x + ${k} = ${a + b}$.`,
+          `Stąd $x = ${x0}$.`,
+        ]);
+    }
+  }
+  for (;;) {
+    const ab = r.int(4, 12), bc = r.int(3, 10), cd = r.int(4, 12), ad = ab + cd - bc;
+    if (ad < 2) continue;
+    return jednoPole("d", "$|AD| =$", ad, `$|AD| = ${ad}$`,
+      `W czworokąt $ABCD$ można wpisać okrąg. Wiadomo, że $|AB| = ${ab}$, $|BC| = ${bc}$ i $|CD| = ${cd}$. Oblicz długość boku $AD$.`, [
+        `W czworokącie opisanym na okręgu sumy długości boków przeciwległych są równe: $|AB| + |CD| = |BC| + |AD|$.`,
+        `$${ab} + ${cd} = ${bc} + |AD|$, więc $|AD| = ${ab + cd} - ${bc} = ${ad}$.`,
+      ]);
+  }
+}
+
 // --- 5. Odcinek w układzie współrzędnych
 
 const UKLAD = "W kartezjańskim układzie współrzędnych $(x, y)$";
@@ -882,6 +1181,466 @@ function okragStyczny(r) {
     `Promień okręgu stycznego do osi $${osOx ? "Ox" : "Oy"}$ jest równy odległości środka od tej osi, czyli $|${osOx ? "y_S" : "x_S"}| = ${R}$.`,
     `$r^2 = ${R}^2 = ${R * R}$.`,
   ]);
+}
+
+// --- Wektory w układzie współrzędnych
+
+/** Wektor: wektTex(3, -2) -> "[3, -2]". */
+const wektTex = (p, s) => `[${tex(p)}, ${tex(s)}]`;
+
+const POLA_WEKTORA = [{ id: "p", typ: "liczba", etykieta: "$p =$" }, { id: "q", typ: "liczba", etykieta: "$q =$" }];
+
+/** Zadanie o współrzędnych wektora [p, q]: dwa pola. */
+const zadanieWektor = (tresc, p, s, rozwiazanie) => ({
+  tresc,
+  pola: POLA_WEKTORA,
+  odpowiedz: { p: Q.z(p), q: Q.z(s) },
+  wynik: `$${wektTex(p, s)}$`,
+  rozwiazanie,
+});
+
+function wektoryWspolrzedne(r) {
+  return r.pick([wspolrzedneWektora, dlugoscWektora, dzialaniaNaWektorach, parametryWektora])(r);
+}
+
+/** Współrzędne wektora AB albo BA: koniec minus początek. */
+function wspolrzedneWektora(r) {
+  for (;;) {
+    const x1 = r.int(-8, 8), y1 = r.int(-8, 8), x2 = r.int(-8, 8), y2 = r.int(-8, 8);
+    if (x1 === x2 && y1 === y2) continue;
+    const odA = r.chance(0.7);
+    const [pn, kn] = odA ? ["A", "B"] : ["B", "A"];
+    const [px, py, kx, ky] = odA ? [x1, y1, x2, y2] : [x2, y2, x1, y1];
+    const w = `\\overrightarrow{${pn}${kn}}`;
+    const tresc = r.pick([
+      `Dane są punkty $A = ${punktTex(x1, y1)}$ i $B = ${punktTex(x2, y2)}$. Wyznacz współrzędne wektora $${w}$.`,
+      `Oblicz współrzędne wektora $${w}$, gdy $A = ${punktTex(x1, y1)}$ oraz $B = ${punktTex(x2, y2)}$. Podaj je w postaci $[p, q]$.`,
+    ]);
+    return zadanieWektor(tresc, kx - px, ky - py, [
+      `Od współrzędnych końca odejmujemy współrzędne początku: $${w} = [x_{${kn}} - x_{${pn}}, y_{${kn}} - y_{${pn}}]$.`,
+      `$${w} = [${kx} - ${texNawias(px)}, ${ky} - ${texNawias(py)}] = ${wektTex(kx - px, ky - py)}$.`,
+    ]);
+  }
+}
+
+/** Długość wektora z jego współrzędnych albo z punktów A i B (trójka pitagorejska). */
+function dlugoscWektora(r) {
+  const [p, s, c] = losujTrojke(r, 26);
+  const u = [p * r.znak(), s * r.znak()];
+  const kwadraty = `\\sqrt{${texNawias(u[0])}^2 + ${texNawias(u[1])}^2} = \\sqrt{${c * c}} = ${c}`;
+  if (r.chance(0.5)) {
+    return jednoPole("d", "$|\\vec{u}| =$", c, `$|\\vec{u}| = ${c}$`, r.pick([
+      `Dany jest wektor $\\vec{u} = ${wektTex(u[0], u[1])}$. Oblicz długość wektora $\\vec{u}$.`,
+      `Oblicz długość wektora $\\vec{u}$ o współrzędnych $${wektTex(u[0], u[1])}$.`,
+    ]), [`$|\\vec{u}| = \\sqrt{p^2 + q^2} = ${kwadraty}$.`]);
+  }
+  const x1 = r.int(-7, 7), y1 = r.int(-7, 7);
+  return jednoPole("d", "$|\\overrightarrow{AB}| =$", c, `$|\\overrightarrow{AB}| = ${c}$`,
+    `Dane są punkty $A = ${punktTex(x1, y1)}$ i $B = ${punktTex(x1 + u[0], y1 + u[1])}$. Oblicz długość wektora $\\overrightarrow{AB}$.`, [
+      `$\\overrightarrow{AB} = [${x1 + u[0]} - ${texNawias(x1)}, ${y1 + u[1]} - ${texNawias(y1)}] = ${wektTex(u[0], u[1])}$.`,
+      `$|\\overrightarrow{AB}| = ${kwadraty}$.`,
+    ]);
+}
+
+/** Współrzędne wektora k·u + l·w albo długość sumy dwóch wektorów. */
+function dzialaniaNaWektorach(r) {
+  const a = r.intBez(-6, 6, 0), b = r.intBez(-6, 6, 0);
+  if (r.chance(0.65)) {
+    const c = r.intBez(-6, 6, 0), d = r.intBez(-6, 6, 0);
+    const k = r.pick([1, 2, 3, -1, -2]), l = r.pick([1, -1, 2, -2, 3]);
+    const wyr = sumaTex([[k, "\\vec{u}"], [l, "\\vec{w}"]]);
+    const skl = (m, lit) => (m === 1 ? lit : m === -1 ? `-${lit}` : `${m}${lit}`);
+    const rx = k * a + l * c, ry = k * b + l * d;
+    return zadanieWektor(`Dane są wektory $\\vec{u} = ${wektTex(a, b)}$ i $\\vec{w} = ${wektTex(c, d)}$. Oblicz współrzędne wektora $${wyr}$.`, rx, ry, [
+      `Mnożymy współrzędne przez liczby: $${skl(k, "\\vec{u}")} = ${wektTex(k * a, k * b)}$ oraz $${skl(l, "\\vec{w}")} = ${wektTex(l * c, l * d)}$.`,
+      `Dodajemy współrzędne: $${wektTex(k * a, k * b)} + ${wektTex(l * c, l * d)} = ${wektTex(rx, ry)}$.`,
+    ]);
+  }
+  const [p, s, wynik] = losujTrojke(r, 26);
+  const rx = p * r.znak(), ry = s * r.znak();
+  const c = rx - a, d = ry - b;
+  return jednoPole("d", "$|\\vec{u} + \\vec{w}| =$", wynik, `$|\\vec{u} + \\vec{w}| = ${wynik}$`,
+    `Dane są wektory $\\vec{u} = ${wektTex(a, b)}$ i $\\vec{w} = ${wektTex(c, d)}$. Oblicz długość wektora $\\vec{u} + \\vec{w}$.`, [
+      `$\\vec{u} + \\vec{w} = ${wektTex(a, b)} + ${wektTex(c, d)} = ${wektTex(rx, ry)}$.`,
+      `$|\\vec{u} + \\vec{w}| = \\sqrt{${texNawias(rx)}^2 + ${texNawias(ry)}^2} = \\sqrt{${wynik * wynik}} = ${wynik}$.`,
+    ]);
+}
+
+/** Niewiadome we współrzędnych punktów albo wektorów (z równości wektorów). */
+function parametryWektora(r) {
+  if (r.chance(0.5)) {
+    const p = r.intBez(-6, 6, 0), s = r.intBez(-6, 6, 0), xB = r.int(-6, 6), yA = r.int(-6, 6);
+    const a = xB - p, b = yA + s;
+    return {
+      tresc: `Wektor $\\overrightarrow{AB}$ ma współrzędne $${wektTex(p, s)}$, gdzie $A = (a, ${yA})$ i $B = (${xB}, b)$. Oblicz $a$ i $b$.`,
+      pola: [{ id: "a", typ: "liczba", etykieta: "$a =$" }, { id: "b", typ: "liczba", etykieta: "$b =$" }],
+      odpowiedz: { a: Q.z(a), b: Q.z(b) },
+      wynik: `$a = ${a}$, $b = ${b}$`,
+      rozwiazanie: [
+        `$\\overrightarrow{AB} = [${xB} - a, b - ${texNawias(yA)}]$, a z treści $\\overrightarrow{AB} = ${wektTex(p, s)}$.`,
+        `Porównujemy współrzędne: $${xB} - a = ${p}$, więc $a = ${a}$.`,
+        `$b - ${texNawias(yA)} = ${s}$, więc $b = ${b}$.`,
+      ],
+    };
+  }
+  const al = r.intBez(-5, 5, 0), be = r.int(-6, 6), ga = r.int(-6, 6), de = r.intBez(-5, 5, 0);
+  const m = ga - al, n = be - de;
+  const u1 = sumaTex([[1, "m"], [al, ""]]), w2 = sumaTex([[1, "n"], [de, ""]]);
+  return {
+    tresc: `Wektory $\\vec{u} = [${u1}, ${be}]$ i $\\vec{w} = [${ga}, ${w2}]$ są równe. Oblicz $m$ i $n$.`,
+    pola: [{ id: "m", typ: "liczba", etykieta: "$m =$" }, { id: "n", typ: "liczba", etykieta: "$n =$" }],
+    odpowiedz: { m: Q.z(m), n: Q.z(n) },
+    wynik: `$m = ${m}$, $n = ${n}$`,
+    rozwiazanie: [
+      "Wektory są równe, gdy mają równe odpowiednie współrzędne.",
+      `$${u1} = ${ga}$, więc $m = ${m}$.`,
+      `$${be} = ${w2}$, więc $n = ${n}$.`,
+    ],
+  };
+}
+
+function wektoryPrzesuniecie(r) {
+  return r.pick([obrazPunktu, punktWyjsciowy, rownoleglobokWektory, dlugoscPrzesuniecia])(r);
+}
+
+/** Obraz punktu albo wierzchołka trójkąta w przesunięciu o wektor. */
+function obrazPunktu(r) {
+  const x = r.int(-8, 8), y = r.int(-8, 8), p = r.intBez(-6, 6, 0), s = r.intBez(-6, 6, 0);
+  let tresc, nazwa;
+  if (r.chance(0.6)) {
+    nazwa = "A'";
+    tresc = `Punkt $A = ${punktTex(x, y)}$ przesunięto o wektor $\\vec{u} = ${wektTex(p, s)}$ i otrzymano punkt $A'$. Podaj współrzędne punktu $A'$.`;
+  } else {
+    nazwa = "C'";
+    const x1 = r.int(-8, 8), y1 = r.int(-8, 8), x2 = r.int(-8, 8), y2 = r.int(-8, 8);
+    if ((x2 - x1) * (y - y1) === (x - x1) * (y2 - y1)) return obrazPunktu(r);   // trzy punkty na jednej prostej
+    tresc = `Trójkąt o wierzchołkach $A = ${punktTex(x1, y1)}$, $B = ${punktTex(x2, y2)}$ i $C = ${punktTex(x, y)}$ przesunięto o wektor $\\vec{u} = ${wektTex(p, s)}$. Podaj współrzędne wierzchołka $C'$, który jest obrazem wierzchołka $C$.`;
+  }
+  const pn = nazwa[0];
+  return zadaniePunkt(tresc, nazwa, x + p, y + s, [
+    `Do współrzędnych punktu dodajemy współrzędne wektora $\\vec{u} = [p, q]$: $${nazwa} = (x_{${pn}} + p, y_{${pn}} + q)$.`,
+    `$${nazwa} = (${x} + ${texNawias(p)}, ${y} + ${texNawias(s)}) = ${punktTex(x + p, y + s)}$.`,
+  ]);
+}
+
+/** Punkt wyjściowy: odejmujemy współrzędne wektora od współrzędnych obrazu. */
+function punktWyjsciowy(r) {
+  const x = r.int(-8, 8), y = r.int(-8, 8), p = r.intBez(-6, 6, 0), s = r.intBez(-6, 6, 0);
+  return zadaniePunkt(
+    `Punkt $B' = ${punktTex(x + p, y + s)}$ jest obrazem punktu $B$ w przesunięciu o wektor $\\vec{u} = ${wektTex(p, s)}$. Oblicz współrzędne punktu $B$.`,
+    "B", x, y, [
+      "Przesunięcie dodało do współrzędnych punktu współrzędne wektora $\\vec{u} = [p, q]$, więc je odejmujemy: $B = (x_{B'} - p, y_{B'} - q)$.",
+      `$B = (${x + p} - ${texNawias(p)}, ${y + s} - ${texNawias(s)}) = ${punktTex(x, y)}$.`,
+    ]);
+}
+
+/** Czwarty wierzchołek równoległoboku ABCD z równości wektorów AB = DC. */
+function rownoleglobokWektory(r) {
+  for (;;) {
+    const xA = r.int(-7, 7), yA = r.int(-7, 7), xB = r.int(-7, 7), yB = r.int(-7, 7), xC = r.int(-7, 7), yC = r.int(-7, 7);
+    if ((xB - xA) * (yC - yA) === (xC - xA) * (yB - yA)) continue;     // A, B, C leżą na jednej prostej
+    const p = xB - xA, s = yB - yA, xD = xC - p, yD = yC - s;
+    if (Math.abs(xD) > 14 || Math.abs(yD) > 14) continue;
+    return zadaniePunkt(
+      `Punkty $A = ${punktTex(xA, yA)}$, $B = ${punktTex(xB, yB)}$ i $C = ${punktTex(xC, yC)}$ są kolejnymi wierzchołkami równoległoboku $ABCD$. Oblicz współrzędne wierzchołka $D$.`,
+      "D", xD, yD, [
+        `W równoległoboku $ABCD$ mamy $\\overrightarrow{AB} = \\overrightarrow{DC}$. Obliczamy $\\overrightarrow{AB} = ${wektTex(p, s)}$.`,
+        `$\\overrightarrow{DC} = [${xC} - x_D, ${yC} - y_D]$, więc $${xC} - x_D = ${p}$ oraz $${yC} - y_D = ${s}$.`,
+        `Stąd $x_D = ${xC} - ${texNawias(p)} = ${xD}$, $y_D = ${yC} - ${texNawias(s)} = ${yD}$.`,
+      ]);
+  }
+}
+
+/** Długość odcinka AA' przy przesunięciu o wektor jest równa długości wektora. */
+function dlugoscPrzesuniecia(r) {
+  const [p, s, c] = losujTrojke(r, 26);
+  const u = [p * r.znak(), s * r.znak()];
+  const x = r.int(-7, 7), y = r.int(-7, 7);
+  return jednoPole("d", "$|AA'| =$", c, `$|AA'| = ${c}$`,
+    `Punkt $A = ${punktTex(x, y)}$ przesunięto o wektor $\\vec{u} = ${wektTex(u[0], u[1])}$ i otrzymano punkt $A'$. Oblicz długość odcinka $AA'$.`, [
+      "Odcinek $AA'$ jest przedstawieniem wektora przesunięcia, więc jego długość jest równa długości wektora $\\vec{u}$.",
+      `$|AA'| = |\\vec{u}| = \\sqrt{${texNawias(u[0])}^2 + ${texNawias(u[1])}^2} = \\sqrt{${c * c}} = ${c}$.`,
+    ]);
+}
+
+// --- Proste i płaszczyzny w przestrzeni
+
+const PROSTOPADLOSCIAN = "prostopadłościan $ABCDEFGH$ (podstawa dolna $ABCD$, górna $EFGH$, krawędzie boczne $AE$, $BF$, $CG$, $DH$)";
+const WIERZCHOLKI_BRYLY = { A: [0, 0, 0], B: [1, 0, 0], C: [1, 1, 0], D: [0, 1, 0], E: [0, 0, 1], F: [1, 0, 1], G: [1, 1, 1], H: [0, 1, 1] };
+const KRAWEDZIE = ["AB", "BC", "CD", "AD", "EF", "FG", "GH", "EH", "AE", "BF", "CG", "DH"];
+const PRZEKATNE_SCIAN = ["AC", "BD", "EG", "FH", "AF", "BE", "BG", "CF", "CH", "DG", "AH", "DE"];
+const PROSTE_BRYLY = [...KRAWEDZIE, ...PRZEKATNE_SCIAN];
+const SCIANY = ["ABCD", "EFGH", "ABFE", "BCGF", "CDHG", "ADHE"];
+
+const pkt3 = (nazwa) => WIERZCHOLKI_BRYLY[nazwa];
+const roznica3 = (u, v) => u.map((x, i) => x - v[i]);
+const iloczynWekt3 = (u, v) => [u[1] * v[2] - u[2] * v[1], u[2] * v[0] - u[0] * v[2], u[0] * v[1] - u[1] * v[0]];
+const iloczynSkal3 = (u, v) => u[0] * v[0] + u[1] * v[1] + u[2] * v[2];
+const zerowy3 = (u) => u.every((x) => x === 0);
+
+/** Wzajemne położenie dwóch prostych przechodzących przez wierzchołki prostopadłościanu. */
+function polozenieProstych(l1, l2) {
+  const p1 = pkt3(l1[0]), d1 = roznica3(pkt3(l1[1]), p1);
+  const p2 = pkt3(l2[0]), d2 = roznica3(pkt3(l2[1]), p2);
+  const n = iloczynWekt3(d1, d2), w = roznica3(p2, p1);
+  if (zerowy3(n)) return zerowy3(iloczynWekt3(d1, w)) ? "ta sama" : "rownolegle";
+  return iloczynSkal3(n, w) === 0 ? "przecinajace" : "skosne";
+}
+
+/** Położenie prostej względem płaszczyzny ściany: leży, równoległa albo przebija; i czy jest prostopadła. */
+function polozenieProstejIPlaszczyzny(prosta, sciana) {
+  const p0 = pkt3(sciana[0]);
+  const n = iloczynWekt3(roznica3(pkt3(sciana[1]), p0), roznica3(pkt3(sciana[3]), p0));
+  const d = roznica3(pkt3(prosta[1]), pkt3(prosta[0]));
+  const prostopadla = zerowy3(iloczynWekt3(d, n));
+  if (iloczynSkal3(d, n) !== 0) return { polozenie: "przebija", prostopadla };
+  const lezy = iloczynSkal3(roznica3(pkt3(prosta[0]), p0), n) === 0;
+  return { polozenie: lezy ? "lezy" : "rownolegla", prostopadla: false };
+}
+
+function polozeniaPrzestrzenne(r) {
+  return r.pick([dwieProste, prostaIPlaszczyzna, polozenieProstychOpis, polozenieProstejOpis])(r);
+}
+
+const NAZWY_POLOZEN = { rownolegle: "równoległe", przecinajace: "przecinające się", skosne: "skośne" };
+const ZDANIA_POLOZEN = { rownolegle: "Proste są równoległe", przecinajace: "Proste przecinają się", skosne: "Proste są skośne" };
+
+/** Uzasadnienie wzajemnego położenia dwóch prostych x i y. */
+function opisPary(x, y, polozenie) {
+  const wspolny = [...x].find((lit) => y.includes(lit));
+  return {
+    skosne: `Proste $${x}$ i $${y}$ nie leżą w jednej płaszczyźnie, nie przecinają się i nie są równoległe, więc są skośne.`,
+    rownolegle: `Proste $${x}$ i $${y}$ leżą w jednej płaszczyźnie i nie mają punktów wspólnych, więc są równoległe.`,
+    przecinajace: wspolny
+      ? `Proste $${x}$ i $${y}$ mają wspólny punkt $${wspolny}$, więc się przecinają.`
+      : `Proste $${x}$ i $${y}$ leżą w jednej płaszczyźnie i nie są równoległe, więc się przecinają.`,
+  }[polozenie];
+}
+
+/** Jakie jest wzajemne położenie dwóch prostych (wybór z trzech możliwości). */
+function polozenieProstychOpis(r) {
+  const cel = r.pick(["skosne", "rownolegle", "przecinajace"]);
+  for (;;) {
+    const x = r.pick(PROSTE_BRYLY), y = r.pick(PROSTE_BRYLY);
+    if (x === y || polozenieProstych(x, y) !== cel) continue;
+    const klucze = r.shuffle(["skosne", "rownolegle", "przecinajace"]);
+    return {
+      tresc: `Dany jest ${PROSTOPADLOSCIAN}. Jakie jest wzajemne położenie prostych $${x}$ i $${y}$?`,
+      pola: [{ id: "p", typ: "wybor", etykieta: "Położenie", opcje: klucze.map((k) => `${ZDANIA_POLOZEN[k]}.`) }],
+      odpowiedz: { p: klucze.indexOf(cel) },
+      wynik: ZDANIA_POLOZEN[cel].toLowerCase(),
+      rozwiazanie: [opisPary(x, y, cel), "Proste skośne nie leżą w jednej płaszczyźnie; proste równoległe i przecinające się leżą."],
+    };
+  }
+}
+
+/** Klasa prostej względem płaszczyzny: leży, równoległa, prostopadła albo przecina (nie prostopadle). */
+const klasaProstej = (o) => (o.prostopadla ? "prostopadla" : o.polozenie);
+
+/** Uzasadnienie położenia prostej x względem płaszczyzny ściany. */
+function uzasadnienieProstej(x, sciana, klasa) {
+  const opisy = PROSTE_BRYLY.map((prosta) => ({ prosta, ...polozenieProstejIPlaszczyzny(prosta, sciana) }));
+  const d = roznica3(pkt3(x[1]), pkt3(x[0]));
+  const kierunek = (o) => roznica3(pkt3(o.prosta[1]), pkt3(o.prosta[0]));
+  const stopa = [...x].find((lit) => sciana.includes(lit));
+  if (klasa === "rownolegla") {
+    const rownolegla = opisy.find((o) => o.polozenie === "lezy" && zerowy3(iloczynWekt3(d, kierunek(o))));
+    return `Prosta $${x}$ nie ma punktów wspólnych z płaszczyzną $${sciana}$ i jest równoległa do prostej $${rownolegla.prosta}$, która leży w tej płaszczyźnie.`;
+  }
+  if (klasa === "prostopadla") {
+    const dwie = KRAWEDZIE.filter((k) => k.includes(stopa) && [...k].every((lit) => sciana.includes(lit)));
+    return `Prosta $${x}$ jest prostopadła do dwóch prostych $${dwie[0]}$ i $${dwie[1]}$, które leżą w płaszczyźnie $${sciana}$ i przecinają się w punkcie $${stopa}$. Zatem jest prostopadła do tej płaszczyzny.`;
+  }
+  if (klasa === "lezy") return `Punkty $${x[0]}$ i $${x[1]}$ leżą w płaszczyźnie $${sciana}$, więc cała prosta $${x}$ leży w tej płaszczyźnie.`;
+  const ukosna = opisy.find((o) => o.polozenie === "lezy" && o.prosta.includes(stopa) && iloczynSkal3(d, kierunek(o)) !== 0);
+  return `Prosta $${x}$ ma z płaszczyzną $${sciana}$ dokładnie jeden punkt wspólny, $${stopa}$, więc ją przecina. Nie jest prostopadła, bo nie jest prostopadła do prostej $${ukosna.prosta}$ leżącej w tej płaszczyźnie.`;
+}
+
+const OPISY_POLOZENIA = {
+  lezy: "Prosta leży w płaszczyźnie.",
+  rownolegla: "Prosta jest równoległa do płaszczyzny.",
+  przebija: "Prosta przecina płaszczyznę, ale nie jest do niej prostopadła.",
+  prostopadla: "Prosta jest prostopadła do płaszczyzny.",
+};
+
+/** Jakie jest położenie prostej względem płaszczyzny (wybór z czterech możliwości). */
+function polozenieProstejOpis(r) {
+  const cel = r.pick(["lezy", "rownolegla", "przebija", "prostopadla"]);
+  const sciana = r.pick(SCIANY);
+  const x = r.pick(PROSTE_BRYLY.filter((p) => klasaProstej(polozenieProstejIPlaszczyzny(p, sciana)) === cel));
+  const klucze = r.shuffle(["lezy", "rownolegla", "przebija", "prostopadla"]);
+  return {
+    tresc: `Dany jest ${PROSTOPADLOSCIAN}. Jakie jest położenie prostej $${x}$ względem płaszczyzny $${sciana}$?`,
+    pola: [{ id: "p", typ: "wybor", etykieta: "Położenie prostej", opcje: klucze.map((k) => OPISY_POLOZENIA[k]) }],
+    odpowiedz: { p: klucze.indexOf(cel) },
+    wynik: OPISY_POLOZENIA[cel].toLowerCase(),
+    rozwiazanie: [uzasadnienieProstej(x, sciana, cel)],
+  };
+}
+
+/** Która para prostych jest skośna (równoległa, przecinająca się). */
+function dwieProste(r) {
+  const cel = r.pick(["skosne", "skosne", "rownolegle", "przecinajace"]);
+  const losujProsta = () => (r.chance(0.7) ? r.pick(KRAWEDZIE) : r.pick(PROSTE_BRYLY));
+  const klucz = (p) => [...p].sort().join("-");
+  for (;;) {
+    const pary = [];
+    const uzyte = new Set();
+    for (let proba = 0; proba < 400 && pary.length < 4; proba++) {
+      const p = [losujProsta(), losujProsta()];
+      if (p[0] === p[1] || uzyte.has(klucz(p))) continue;
+      const polozenie = polozenieProstych(p[0], p[1]);
+      if (polozenie === "ta sama") continue;
+      if ((pary.length === 0) !== (polozenie === cel)) continue;      // pierwsza para spełnia warunek, pozostałe nie
+      pary.push({ p, polozenie });
+      uzyte.add(klucz(p));
+    }
+    if (pary.length < 4) continue;
+    const kolej = r.shuffle([0, 1, 2, 3]);
+    const [dobra] = pary;
+    const [x, y] = dobra.p;
+    const opis = opisPary(x, y, cel);
+    return {
+      tresc: `Dany jest ${PROSTOPADLOSCIAN}. Która z podanych par jest parą prostych ${{ skosne: "skośnych", rownolegle: "równoległych", przecinajace: "przecinających się" }[cel]}?`,
+      pola: [{ id: "p", typ: "wybor", etykieta: "Para prostych", opcje: kolej.map((i) => `$${pary[i].p[0]}$ i $${pary[i].p[1]}$`) }],
+      odpowiedz: { p: kolej.indexOf(0) },
+      wynik: `$${x}$ i $${y}$`,
+      rozwiazanie: [
+        opis,
+        `Pozostałe pary: ${pary.slice(1).map(({ p, polozenie }) => `$${p[0]}$ i $${p[1]}$ (${NAZWY_POLOZEN[polozenie]})`).join(", ")}.`,
+      ],
+    };
+  }
+}
+
+/** Która prosta jest równoległa do płaszczyzny (prostopadła do niej, leży w niej). */
+function prostaIPlaszczyzna(r) {
+  const cel = r.pick(["rownolegla", "rownolegla", "prostopadla", "lezy"]);
+  const sciana = r.pick(SCIANY);
+  const opisy = PROSTE_BRYLY.map((prosta) => ({ prosta, ...polozenieProstejIPlaszczyzny(prosta, sciana) }));
+  const spelnia = (o) => (cel === "prostopadla" ? o.prostopadla : o.polozenie === cel);
+  const dobra = r.pick(opisy.filter(spelnia));
+  const zle = r.shuffle(opisy.filter((o) => !spelnia(o))).slice(0, 3);
+  const kolej = r.shuffle([0, 1, 2, 3]);
+  const wszystkie = [dobra, ...zle];
+  const x = dobra.prosta;
+  const krok = uzasadnienieProstej(x, sciana, cel);
+  const opis = (o) => (o.polozenie === "lezy" ? "leży w płaszczyźnie" : o.polozenie === "rownolegla" ? "jest równoległa do płaszczyzny" : o.prostopadla ? "jest prostopadła do płaszczyzny" : "przebija płaszczyznę");
+  const pytanie = { rownolegla: "jest równoległa do płaszczyzny", prostopadla: "jest prostopadła do płaszczyzny", lezy: "leży w płaszczyźnie" }[cel];
+  return {
+    tresc: `Dany jest ${PROSTOPADLOSCIAN}. Która z podanych prostych ${pytanie} $${sciana}$?`,
+    pola: [{ id: "p", typ: "wybor", etykieta: "Prosta", opcje: kolej.map((i) => `$${wszystkie[i].prosta}$`) }],
+    odpowiedz: { p: kolej.indexOf(0) },
+    wynik: `$${x}$`,
+    rozwiazanie: [krok, `Pozostałe proste: ${zle.map((o) => `$${o.prosta}$ (${opis(o)})`).join(", ")}.`],
+  };
+}
+
+const PRZEKROJ_ABCD = "W prostopadłościanie $ABCDEFGH$ (podstawa dolna $ABCD$, górna $EFGH$, krawędzie boczne $AE$, $BF$, $CG$, $DH$)";
+
+function katyPrzestrzenne(r) {
+  const wariant = r.pick(["sinus", "tangens", "szczegolny", "szczegolny", "ostroslup", "ostroslup"]);
+  if (wariant === "sinus") return sinusPrzekatnej(r);
+  if (wariant === "tangens") return tangensPrzekatnej(r);
+  if (wariant === "szczegolny") return krawedzZKata(r);
+  return scianaBocznaIPodstawa(r);
+}
+
+/** Sinus kąta nachylenia przekątnej prostopadłościanu do podstawy (przekątna o całkowitej długości). */
+function sinusPrzekatnej(r) {
+  for (;;) {
+    const [x, y, z, d] = r.pick(CZWORKI);
+    const [ab, ad, ae] = r.shuffle([x, y, z]);
+    const w = q(ae, d);
+    if (w.d > 12) continue;
+    return jednoPole("w", `$${SIN} =$`, w, `$${SIN} = ${w.tex()}$`,
+      `${PRZEKROJ_ABCD} krawędzie wychodzące z wierzchołka $A$ mają długości $|AB| = ${ab}$, $|AD| = ${ad}$ i $|AE| = ${ae}$. Oblicz sinus kąta $\\alpha$ nachylenia przekątnej $AG$ do płaszczyzny podstawy $ABCD$.`, [
+        `Przekątna prostopadłościanu: $|AG| = \\sqrt{${ab}^2 + ${ad}^2 + ${ae}^2} = \\sqrt{${d * d}} = ${d}$.`,
+        "Rzutem przekątnej $AG$ na płaszczyznę $ABCD$ jest odcinek $AC$, a krawędź $CG$ jest prostopadła do podstawy. Kąt $\\alpha$ to kąt $GAC$ w trójkącie prostokątnym $ACG$.",
+        `$${SIN} = \\frac{|CG|}{|AG|} = \\frac{${ae}}{${d}}${w.tex() === `\\frac{${ae}}{${d}}` ? "" : ` = ${w.tex()}`}$.`,
+      ]);
+  }
+}
+
+/** Tangens kąta nachylenia przekątnej prostopadłościanu do podstawy (przekątna podstawy z trójki pitagorejskiej). */
+function tangensPrzekatnej(r) {
+  for (;;) {
+    const [a, b, c] = losujTrojke(r, 25);
+    const h = r.int(2, 15);
+    const w = q(h, c);
+    if (w.d > 12) continue;
+    return jednoPole("w", `$${TG} =$`, w, `$${TG} = ${w.tex()}$`,
+      `${PRZEKROJ_ABCD} krawędzie wychodzące z wierzchołka $A$ mają długości $|AB| = ${a}$, $|AD| = ${b}$ i $|AE| = ${h}$. Oblicz tangens kąta $\\alpha$ nachylenia przekątnej $AG$ do płaszczyzny podstawy $ABCD$.`, [
+        `Rzutem przekątnej $AG$ na płaszczyznę $ABCD$ jest przekątna podstawy $AC$: $|AC| = \\sqrt{${a}^2 + ${b}^2} = ${c}$.`,
+        `W trójkącie prostokątnym $ACG$ kąt prosty jest przy wierzchołku $C$, a $|CG| = |AE| = ${h}$.`,
+        `$${TG} = \\frac{|CG|}{|AC|} = \\frac{${h}}{${c}}${w.tex() === `\\frac{${h}}{${c}}` ? "" : ` = ${w.tex()}`}$.`,
+      ]);
+  }
+}
+
+/** Krawędź boczna prostopadłościanu z kąta nachylenia przekątnej (30°, 45°, 60°). */
+function krawedzZKata(r) {
+  const m = r.int(2, 12);
+  const wariant = r.pick(["30", "45", "60AC", "60AG"]);
+  const wstep = `${PRZEKROJ_ABCD}`;
+  const trojkat = "Rzutem przekątnej $AG$ na płaszczyznę $ABCD$ jest odcinek $AC$, a $CG$ jest prostopadły do podstawy. W trójkącie prostokątnym $ACG$ kąt $GAC$ jest szukanym kątem.";
+  if (wariant === "30") {
+    return jednoPole("c", "$|CG| =$", m, `$|CG| = ${m}$`,
+      `${wstep} przekątna $AG$ ma długość $${2 * m}$ i tworzy z płaszczyzną podstawy $ABCD$ kąt $30^\\circ$. Oblicz długość krawędzi $CG$.`, [
+        trojkat,
+        `$|CG| = |AG| \\cdot \\sin 30^\\circ = ${2 * m} \\cdot \\frac{1}{2} = ${m}$.`,
+      ]);
+  }
+  if (wariant === "45") {
+    return jednoPole("c", "$|CG| =$", m, `$|CG| = ${m}$`,
+      `${wstep} przekątna podstawy $AC$ ma długość $${m}$, a przekątna $AG$ tworzy z płaszczyzną podstawy $ABCD$ kąt $45^\\circ$. Oblicz długość krawędzi $CG$.`, [
+        trojkat,
+        `$\\operatorname{tg} 45^\\circ = \\frac{|CG|}{|AC|}$, więc $|CG| = ${m} \\cdot 1 = ${m}$.`,
+      ]);
+  }
+  if (wariant === "60AC") {
+    return jednoPole("k", "$k =$", m, `$|CG| = ${m}\\sqrt{3}$`,
+      `${wstep} przekątna podstawy $AC$ ma długość $${m}$, a przekątna $AG$ tworzy z płaszczyzną podstawy $ABCD$ kąt $60^\\circ$. Długość krawędzi $CG$ jest równa $k\\sqrt{3}$. Oblicz $k$.`, [
+        trojkat,
+        `$\\operatorname{tg} 60^\\circ = \\frac{|CG|}{|AC|}$, więc $|CG| = ${m} \\cdot \\sqrt{3} = ${m}\\sqrt{3}$, czyli $k = ${m}$.`,
+      ]);
+  }
+  return jednoPole("k", "$k =$", m, `$|CG| = ${m}\\sqrt{3}$`,
+    `${wstep} przekątna $AG$ ma długość $${2 * m}$ i tworzy z płaszczyzną podstawy $ABCD$ kąt $60^\\circ$. Długość krawędzi $CG$ jest równa $k\\sqrt{3}$. Oblicz $k$.`, [
+      trojkat,
+      `$|CG| = |AG| \\cdot \\sin 60^\\circ = ${2 * m} \\cdot \\frac{\\sqrt{3}}{2} = ${m}\\sqrt{3}$, czyli $k = ${m}$.`,
+    ]);
+}
+
+/** Ostrosłup prawidłowy czworokątny: kąt nachylenia ściany bocznej do podstawy (tangens, wysokość). */
+function scianaBocznaIPodstawa(r) {
+  const rr = r.int(2, 12), a = 2 * rr;
+  const wariant = r.pick(["tangens", "tangens", "45", "60"]);
+  const wstep = `Podstawą ostrosłupa prawidłowego czworokątnego $ABCDS$ jest kwadrat $ABCD$ o boku $${a}$.`;
+  const kat = `Niech $M$ będzie środkiem krawędzi $AB$, a $O$ środkiem podstawy. Kąt nachylenia ściany bocznej do płaszczyzny podstawy to kąt $SMO$, a $|OM| = \\frac{${a}}{2} = ${rr}$.`;
+  if (wariant === "tangens") {
+    for (;;) {
+      const H = r.int(2, 16), w = q(H, rr);
+      if (w.d > 12) continue;
+      return jednoPole("w", "$\\operatorname{tg} \\beta =$", w, `$\\operatorname{tg} \\beta = ${w.tex()}$`,
+        `${wstep} Wysokość tego ostrosłupa ma długość $${H}$. Oblicz tangens kąta $\\beta$ nachylenia ściany bocznej do płaszczyzny podstawy.`, [
+          kat,
+          `$\\operatorname{tg} \\beta = \\frac{|SO|}{|OM|} = \\frac{${H}}{${rr}}${w.tex() === `\\frac{${H}}{${rr}}` ? "" : ` = ${w.tex()}`}$.`,
+        ]);
+    }
+  }
+  if (wariant === "45") {
+    return jednoPole("H", "Wysokość", rr, `$H = ${rr}$`,
+      `${wstep} Ściana boczna jest nachylona do płaszczyzny podstawy pod kątem $45^\\circ$. Oblicz wysokość tego ostrosłupa.`, [
+        kat,
+        `$\\operatorname{tg} 45^\\circ = \\frac{|SO|}{|OM|} = 1$, więc $|SO| = |OM| = ${rr}$.`,
+      ]);
+  }
+  return jednoPole("k", "$k =$", rr, `$H = ${rr}\\sqrt{3}$`,
+    `${wstep} Ściana boczna jest nachylona do płaszczyzny podstawy pod kątem $60^\\circ$. Wysokość tego ostrosłupa jest równa $k\\sqrt{3}$. Oblicz $k$.`, [
+      kat,
+      `$\\operatorname{tg} 60^\\circ = \\frac{|SO|}{|OM|} = \\sqrt{3}$, więc $|SO| = ${rr}\\sqrt{3}$, czyli $k = ${rr}$.`,
+    ]);
 }
 
 // --- 7. Graniastosłupy i ostrosłupy
@@ -1088,8 +1847,14 @@ export const GENERATORY = [
   { id: "trojkat-prostokatny", temat: "trygonometria", nazwa: "Trójkąt prostokątny", opis: "Twierdzenie Pitagorasa, pole i obwód, wysokość opuszczona na przeciwprostokątną, boki z funkcji trygonometrycznych.", generuj: trojkatProstokatny },
   { id: "pola-figur", temat: "planimetria", nazwa: "Pola figur", opis: "Pola trójkąta, rombu, trapezu i równoległoboku, także zadania odwrotne.", generuj: polaFigur },
   { id: "katy", temat: "planimetria", nazwa: "Kąty i okręgi", opis: "Kąty w trójkącie, kąt wpisany i środkowy, kąty przy prostych równoległych, kąty wielokąta.", generuj: katy },
+  { id: "czworokaty-katy", temat: "czworokaty-lo", nazwa: "Rodzaje i kąty czworokątów", opis: "Podział czworokątów, suma kątów, kąty trapezu, równoległoboku i deltoidu, czworokąt wpisany w okrąg.", generuj: czworokatyKaty },
+  { id: "czworokaty-boki", temat: "czworokaty-lo", nazwa: "Boki i przekątne czworokątów", opis: "Romb, prostokąt, trapez, równoległobok i czworokąt opisany na okręgu: długości boków i przekątnych.", generuj: czworokatyBoki },
   { id: "odcinek", temat: "geometria-analityczna", nazwa: "Odcinek w układzie współrzędnych", opis: "Długość i środek odcinka, brakujący koniec odcinka, punkt symetryczny.", generuj: odcinek },
   { id: "okrag", temat: "geometria-analityczna", nazwa: "Równanie okręgu", opis: "Środek i promień okręgu z równania, kwadrat promienia okręgu przez dany punkt lub stycznego do osi.", generuj: okrag },
+  { id: "wektory-wspolrzedne", temat: "wektory", nazwa: "Współrzędne wektorów", opis: "Współrzędne i długość wektora, działania na wektorach, niewiadome we współrzędnych.", generuj: wektoryWspolrzedne },
+  { id: "wektory-przesuniecie", temat: "wektory", nazwa: "Przesunięcie o wektor", opis: "Obraz i punkt wyjściowy w przesunięciu, czwarty wierzchołek równoległoboku, długość przesunięcia.", generuj: wektoryPrzesuniecie },
+  { id: "przestrzen-polozenie", temat: "proste-i-plaszczyzny", nazwa: "Położenie w przestrzeni", opis: "Wzajemne położenie prostych oraz prostej i płaszczyzny w prostopadłościanie.", generuj: polozeniaPrzestrzenne },
+  { id: "przestrzen-katy", temat: "proste-i-plaszczyzny", nazwa: "Kąty w przestrzeni", opis: "Kąt przekątnej prostopadłościanu z podstawą i kąt ściany bocznej ostrosłupa z podstawą.", generuj: katyPrzestrzenne },
   { id: "graniastoslupy", temat: "stereometria", nazwa: "Graniastosłupy i ostrosłupy", opis: "Sześcian, prostopadłościan (objętość, pole, przekątna) i objętość ostrosłupa.", generuj: graniastoslupy },
   { id: "bryly-obrotowe", temat: "stereometria", nazwa: "Bryły obrotowe", opis: "Objętość i pole powierzchni walca, stożka i kuli jako wielokrotność liczby π.", generuj: brylyObrotowe },
 ];
