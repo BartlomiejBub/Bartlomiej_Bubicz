@@ -97,5 +97,8 @@ export default {
       tresc: "Dane są dwie osie liczbowe (zobacz rysunek).\n\nNa pierwszej z nich zaznaczono punkty $K$, $L$, $M$ oraz podano współrzędne punktów $K$ i $L$. Odcinek $KM$ jest podzielony na $9$ równych części.\n\nNa drugiej osi liczbowej zaznaczono punkty $P$, $R$, $S$ oraz podano współrzędne punktów $P$ i $S$. Odcinek $PS$ jest podzielony na $9$ równych części.\n\n[rysunek]\n\n**Oblicz iloczyn **$x \\cdot y$**. Zapisz obliczenia.**",
       rysunek: "assets/arkusze-e8/rys/2025-czerwiec-o19.png",
       rozwiazanie: "$x$ – współrzędna punktu $M$:\n\n$x = \\frac{5}{2} \\cdot 9 = 22{,}5$\n\n$y$ – współrzędna punktu $R$:\n\n$y = \\frac{18}{9} \\cdot 3 = 6$\n\nObliczamy iloczyn liczb $x \\cdot y$:\n\n$x \\cdot y = 22{,}5 \\cdot 6 = 135$\n\nOdpowiedź: Iloczyn liczb $x \\cdot y$ jest równy $135$." },
+    { nr: "20", dzial: "e8-figury", temat: "pitagoras", punkty: 3,
+      tresc: "Obwód trójkąta równoramiennego jest równy $36$ cm. Ramię tego trójkąta jest o $3$ cm dłuższe od jego podstawy.\n\n**Oblicz pole tego trójkąta. Zapisz obliczenia.**",
+      rozwiazanie: "Oznaczamy jako:\n\n$x$ – długość podstawy trójkąta\n\n$x + 3$ – długość ramienia trójkąta\n\nObliczamy długości boków trójkąta:\n\n$2(x + 3) + x = 36$\n\n$3x = 36 - 6$\n\n$x = 10$\n\n$x + 3 = 13$\n\nObliczamy wysokość trójkąta z twierdzenia Pitagorasa (wysokość dzieli podstawę na dwie części po $5$ cm):\n\n$h^2 + 5^2 = 13^2$\n\n$h^2 = 169 - 25 = 144$\n\n$h = 12$\n\nObliczamy pole trójkąta:\n\n$P = \\frac{10 \\cdot 12}{2} = 60$ ($\\text{cm}^2$)\n\nOdpowiedź: Pole trójkąta jest równe $60$ $\\text{cm}^2$." },
   ],
 };

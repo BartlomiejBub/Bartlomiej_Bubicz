@@ -89,5 +89,10 @@ export default {
     { nr: "17", dzial: "e8-wyrazenia", temat: "zadania-z-rownaniem", punkty: 3,
       tresc: "Jednakowe kubki sprzedawane są w dwóch rodzajach opakowań – małych i dużych. W małym opakowaniu jest dwa razy mniej kubków niż w dużym. W dwóch dużych opakowaniach i sześciu małych znajduje się łącznie $140$ kubków.\n\n**Oblicz, ile kubków jest w sześciu dużych opakowaniach. Zapisz obliczenia.**",
       rozwiazanie: "Oznaczmy liczbę kubków w dużym opakowaniu jako $d$ oraz liczbę kubków w małym opakowaniu jako $m$.\n\nW dużym opakowaniu jest dwa razy więcej kubków niż w małym opakowaniu, zatem:\n\n$d = 2m$, stąd $3d = 6m$\n\nW dwóch dużych opakowaniach i sześciu małych jest łącznie $140$ kubków, zapiszemy i rozwiążemy równanie:\n\n$2d + 6m = 140$\n\n$2d + 3d = 140$\n\n$5d = 140$\n\n$d = 28$\n\nObliczymy liczbę kubków w sześciu dużych opakowaniach:\n\n$28 \\cdot 6 = 168$\n\nOdpowiedź: W sześciu dużych opakowaniach jest $168$ kubków." },
+    { nr: "18", dzial: "e8-figury", temat: "pola-obwody", punkty: 2,
+      tresc: "Na trawniku w kształcie kwadratu o boku długości $9$ metrów wytyczono kwietnik w kształcie prostokąta tak, że jego boki są równoległe do boków trawnika. Do kwietnika prowadzą cztery ścieżki. Dwie krótsze ścieżki mają po $1{,}5$ m długości każda, a dwie dłuższe mają po $2{,}5$ m długości każda (zobacz rysunek).\n\n[rysunek]\n\n**Oblicz pole powierzchni wytyczonego kwietnika. Zapisz obliczenia.**",
+      rysunek: "assets/arkusze-e8/rys/2024-czerwiec-o18.png",
+      rozwiazanie: "Oznaczamy na rysunku wymiary trawnika oraz długości ścieżek.\n\n[rysunek]\n\nObliczamy długość krótszego boku kwietnika:\n\n$9 - 2 \\cdot 2{,}5 = 4$ (m)\n\nObliczamy długość dłuższego boku kwietnika:\n\n$9 - 2 \\cdot 1{,}5 = 6$ (m)\n\nObliczamy pole powierzchni kwietnika:\n\n$P = 4 \\cdot 6 = 24$ ($\\text{m}^2$)\n\nOdpowiedź: Pole powierzchni kwietnika jest równe $24$ $\\text{m}^2$.",
+      rysunekRozwiazania: "assets/arkusze-e8/rys/2024-czerwiec-o18-r.png" },
   ],
 };

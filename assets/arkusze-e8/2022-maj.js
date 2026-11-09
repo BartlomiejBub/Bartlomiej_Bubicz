@@ -83,5 +83,10 @@ export default {
     { nr: "17", dzial: "e8-procenty", temat: "predkosc", punkty: 2,
       tresc: "Kierowca przejechał ze stałą prędkością trasę o długości $22{,}5$ km od godziny $7{:}50$ do godziny $8{:}05$.\n\n**Oblicz prędkość, z jaką kierowca przejechał tę trasę. Wynik wyraź w **$\\frac{\\mathrm{km}}{\\mathrm{h}}$**. Zapisz obliczenia.**",
       rozwiazanie: "Czas przejazdu od godziny $7{:}50$ do godziny $8{:}05$ jest równy $15$ minut.\n\nSkorzystamy ze wzoru na prędkość $v = \\frac{s}{t}$, gdzie:\n\n$v$ – prędkość\n\n$s = 22{,}5$ km – droga\n\n$t = 15$ minut $= 15 \\cdot \\frac{1}{60}$ h $= \\frac{1}{4}$ h – czas\n\n$v = \\frac{22{,}5 \\text{ km}}{\\frac{1}{4} \\text{ h}} = 22{,}5 \\cdot 4\\,\\frac{\\mathrm{km}}{\\mathrm{h}} = 90\\,\\frac{\\mathrm{km}}{\\mathrm{h}}$\n\nOdpowiedź: Kierowca jechał z prędkością $90\\,\\frac{\\mathrm{km}}{\\mathrm{h}}$." },
+    { nr: "18", dzial: "e8-figury", temat: "pitagoras", punkty: 3,
+      tresc: "Dany jest romb $ABCD$. Obwód tego rombu jest równy $52$ cm, a przekątna $AC$ ma długość $24$ cm (zobacz rysunek poniżej).\n\n[rysunek]\n\n**Oblicz długość przekątnej **$BD$** rombu **$ABCD$**. Zapisz obliczenia.**",
+      rysunek: "assets/arkusze-e8/rys/2022-maj-o18.png",
+      rozwiazanie: "Obliczamy długość boku rombu.\n\nObwód rombu jest równy $52$ cm, czyli jeden bok rombu ma długość: $52 : 4 = 13$ cm.\n\nPrzekątne rombu dzielą się na połowy i przecinają się pod kątem prostym. Punkt przecięcia przekątnych oznaczamy jako $E$, tak jak na rysunku. Przekątna $AC$ ma długość $24$ cm, a jej połowa to $12$ cm.\n\n[rysunek]\n\nTrójkąt $BCE$ jest prostokątny. Oznaczamy połowę długości przekątnej $BD$ jako $x$ i obliczamy tę długość, korzystając z twierdzenia Pitagorasa:\n\n$x^2 + 12^2 = 13^2$\n\n$x^2 = 13^2 - 12^2$\n\n$x^2 = 169 - 144$\n\n$x = \\sqrt{25} = 5$ (cm)\n\nPonieważ $x$ stanowi połowę długości przekątnej $BD$, stąd\n\n$|BD| = 2x$\n\n$|BD| = 2 \\cdot 5 = 10$ (cm)\n\nOdpowiedź: Przekątna $BD$ ma długość $10$ cm.",
+      rysunekRozwiazania: "assets/arkusze-e8/rys/2022-maj-o18-r.png" },
   ],
 };
