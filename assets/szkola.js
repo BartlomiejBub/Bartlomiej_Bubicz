@@ -96,7 +96,7 @@ export const KLASY = [
       // rozdz. 2 (w tym logika, dowód, logarytmy, średnie)
       { id: "lo1-wyrazenia", nazwa: "Wyrażenia algebraiczne", opis: "Potęgi i pierwiastki, wzory skróconego mnożenia, logarytmy, zdania i dowody, przekształcanie wzorów.", tematy: { "liczby": ["potegi", "pierwiastki", "wyrazenia", "logarytmy"], "dowody": ["dowody-algebraiczne"] }, nowe: ["logika", "przeksztalcanie-wzorow-lo"], luka: "brak logiki (zdania, zaprzeczenia, kwantyfikatory) i przekształcania wzorów" },
       // rozdz. 3
-      { id: "lo1-funkcje", nazwa: "Funkcje i ich własności", opis: "Pojęcie funkcji, wykres, dziedzina, zbiór wartości, miejsce zerowe, monotoniczność, odczytywanie własności z wykresu.", tematy: { "funkcje": ["wlasnosci-funkcji"] }, luka: "brak pojęcia funkcji, funkcji różnowartościowych i graficznego rozwiązywania równań" },
+      { id: "lo1-funkcje", nazwa: "Funkcje i ich własności", opis: "Pojęcie funkcji, wykres, dziedzina, zbiór wartości, miejsce zerowe, monotoniczność, odczytywanie własności z wykresu.", tematy: { "funkcje": ["wlasnosci-funkcji"] } },
       // rozdz. 4
       { id: "lo1-liniowa", nazwa: "Funkcja liniowa", opis: "Proporcjonalność prosta, wykres, miejsce zerowe i współczynnik kierunkowy, zadania praktyczne.", tematy: { "funkcje": ["funkcja-liniowa"] } },
       // rozdz. 5
@@ -113,11 +113,11 @@ export const KLASY = [
     id: "lo2", egzamin: "matura", nazwa: "Klasa 2",
     rozdzialy: [
       // rozdz. 1
-      { id: "lo2-przeksztalcenia", nazwa: "Przekształcenia wykresów funkcji", opis: "Wektor, przesunięcia wzdłuż osi i o wektor, symetrie wykresu, graficzne rozwiązywanie równań i nierówności.", tematy: { "funkcje": ["wlasnosci-funkcji"] }, nowe: ["wektory"], luka: "brak przesunięcia o wektor [p, q]; symetrie wykresu uchylone w ZP w 2024" },
+      { id: "lo2-przeksztalcenia", nazwa: "Przekształcenia wykresów funkcji", opis: "Wektor, przesunięcia wzdłuż osi i o wektor, symetrie wykresu, graficzne rozwiązywanie równań i nierówności.", tematy: { "funkcje": ["wlasnosci-funkcji"] }, nowe: ["wektory"], luka: "brak wektorów w układzie współrzędnych" },
       // rozdz. 2
       { id: "lo2-modul", nazwa: "Wartość bezwzględna: równania i nierówności", opis: "Wartość bezwzględna, odległość na osi liczbowej, proste równania i nierówności z wartością bezwzględną.", tematy: { "liczby": ["liczby-rzeczywiste", "rownania", "nierownosci"] } },
       // rozdz. 3
-      { id: "lo2-kwadratowa", nazwa: "Funkcja kwadratowa", opis: "Postacie funkcji, miejsca zerowe, wykres, wzór z własności, równania i nierówności kwadratowe, optymalizacja.", tematy: { "funkcje": ["funkcja-kwadratowa"], "liczby": ["rownania", "nierownosci"], "dowody": ["optymalizacja"], "tekstowe": ["rownania-z-tresci"] }, luka: "brak wzoru funkcji z danych i zadań tekstowych kwadratowych" },
+      { id: "lo2-kwadratowa", nazwa: "Funkcja kwadratowa", opis: "Postacie funkcji, miejsca zerowe, wykres, wzór z własności, równania i nierówności kwadratowe, optymalizacja.", tematy: { "funkcje": ["funkcja-kwadratowa"], "liczby": ["rownania", "nierownosci"], "dowody": ["optymalizacja"], "tekstowe": ["rownania-z-tresci"] }, luka: "brak zadań tekstowych prowadzących do równań kwadratowych" },
       // rozdz. 4
       { id: "lo2-okregi", nazwa: "Geometria płaska – okręgi i koła", opis: "Położenie prostej i okręgu oraz dwóch okręgów, kąty w kole, konstrukcje, okrąg opisany i wpisany w trójkąt.", tematy: { "geometria": ["planimetria"], "dowody": ["dowody-geometryczne"] }, luka: "brak położenia dwóch okręgów, okręgu opisanego i wpisanego w dowolny trójkąt" },
       // rozdz. 5
@@ -134,9 +134,9 @@ export const KLASY = [
     id: "lo3", egzamin: "matura", nazwa: "Klasa 3",
     rozdzialy: [
       // rozdz. 1
-      { id: "lo3-wymierne", nazwa: "Ułamki algebraiczne. Równania wymierne", opis: "Skracanie, mnożenie i dzielenie ułamków algebraicznych, równania wymierne, funkcja homograficzna.", tematy: { "liczby": ["wyrazenia", "rownania"], "funkcje": ["inne-funkcje"], "tekstowe": ["rownania-z-tresci"] }, nowe: ["rownania-wymierne", "funkcja-homograficzna"], luka: "brak równań wymiernych, dziedziny ułamka algebraicznego i funkcji homograficznej" },
+      { id: "lo3-wymierne", nazwa: "Ułamki algebraiczne. Równania wymierne", opis: "Skracanie, mnożenie i dzielenie ułamków algebraicznych, równania wymierne, funkcja homograficzna.", tematy: { "liczby": ["wyrazenia", "rownania"], "funkcje": ["inne-funkcje", "funkcja-homograficzna"], "tekstowe": ["rownania-z-tresci"] }, nowe: ["rownania-wymierne"], luka: "brak równań wymiernych i dziedziny ułamka algebraicznego" },
       // rozdz. 2
-      { id: "lo3-ciagi", nazwa: "Ciągi liczbowe", opis: "Określenie i monotoniczność ciągu, ciąg arytmetyczny i geometryczny, sumy, lokaty i kredyty.", tematy: { "funkcje": ["wzor-ogolny", "ciag-arytmetyczny", "ciag-geometryczny"], "tekstowe": ["ciagi-w-praktyce", "procenty-i-pieniadze"] }, luka: "brak ciągów określonych rekurencyjnie i kredytów" },
+      { id: "lo3-ciagi", nazwa: "Ciągi liczbowe", opis: "Określenie i monotoniczność ciągu, ciąg arytmetyczny i geometryczny, sumy, lokaty i kredyty.", tematy: { "funkcje": ["wzor-ogolny", "ciag-arytmetyczny", "ciag-geometryczny"], "tekstowe": ["ciagi-w-praktyce", "procenty-i-pieniadze"] }, luka: "brak kredytów spłacanych w ratach" },
       // rozdz. 3
       { id: "lo3-kombinatoryka", nazwa: "Kombinatoryka", opis: "Reguła mnożenia i reguła dodawania, zadania kombinatoryczne.", tematy: { "statystyka": ["kombinatoryka"] } },
       // rozdz. 4
@@ -151,7 +151,7 @@ export const KLASY = [
     id: "lo4", egzamin: "matura", nazwa: "Klasa 4",
     rozdzialy: [
       // rozdz. 1
-      { id: "lo4-wykladnicza", nazwa: "Funkcja wykładnicza. Funkcja logarytmiczna", opis: "Własności i wykresy, równania i nierówności wykładnicze, równania logarytmiczne, zastosowania praktyczne.", tematy: { "funkcje": ["inne-funkcje"], "liczby": ["logarytmy", "potegi"] }, nowe: ["rownania-wykladnicze-logarytmiczne"], luka: "brak równań i nierówności wykładniczych oraz równań logarytmicznych" },
+      { id: "lo4-wykladnicza", nazwa: "Funkcja wykładnicza. Funkcja logarytmiczna", opis: "Własności i wykresy, równania i nierówności wykładnicze, równania logarytmiczne, zastosowania praktyczne.", tematy: { "funkcje": ["inne-funkcje", "rownania-wykladnicze-logarytmiczne"], "liczby": ["logarytmy", "potegi"] } },
       // rozdz. 2
       { id: "lo4-statystyka-prawdopodobienstwo", nazwa: "Statystyka i rachunek prawdopodobieństwa", opis: "Prezentacja danych, średnia, mediana, moda; zdarzenia, prawdopodobieństwo klasyczne, doświadczenia wieloetapowe.", tematy: { "statystyka": ["statystyka", "kombinatoryka", "prawdopodobienstwo"] }, luka: "brak zdarzeń i drzewka; odchylenie standardowe i wartość oczekiwana uchylone w ZP w 2024" },
       // rozdz. 3

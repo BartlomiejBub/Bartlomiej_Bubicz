@@ -18,6 +18,8 @@ export const TEMATY = {
     { id: "funkcja-liniowa", nazwa: "Funkcja liniowa" },           // V.5, V.6
     { id: "funkcja-kwadratowa", nazwa: "Funkcja kwadratowa" },     // V.7–V.10
     { id: "inne-funkcje", nazwa: "Inne funkcje" },                 // wykładnicza, proporcjonalność odwrotna
+    { id: "funkcja-homograficzna", nazwa: "Funkcja homograficzna" }, // LO kl. 3: y = a/(x − p) + q, asymptoty
+    { id: "rownania-wykladnicze-logarytmiczne", nazwa: "Równania i nierówności wykładnicze i logarytmiczne" }, // LO kl. 4
     { id: "wzor-ogolny", nazwa: "Wzór ogólny ciągu" },             // VI.1, VI.2
     { id: "ciag-arytmetyczny", nazwa: "Ciąg arytmetyczny" },       // VI.3, VI.4
     { id: "ciag-geometryczny", nazwa: "Ciąg geometryczny" },       // VI.5, VI.6
