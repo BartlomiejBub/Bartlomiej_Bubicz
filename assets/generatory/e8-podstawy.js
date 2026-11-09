@@ -1,6 +1,7 @@
 // Generatory zadań z działu „Egzamin ósmoklasisty – podstawy”: arytmetyka, której uczniowie często nie opanowali w szkole podstawowej.
 // Pisemne dodawanie, odejmowanie, mnożenie i dzielenie, kolejność działań, liczby ujemne, podzielność, NWD i NWW, ułamki zwykłe i dziesiętne.
 // Kontrakt zadania i narzędzia: zob. wspolne.js. Każdy generator ma pole temat – id tematu z assets/arkusze/tematy.js (dział "e8-podstawy").
+// Rachunki pamięciowe (sprytne sposoby liczenia bez kartki) i zadania tekstowe na działaniach (o ile / ile razy, dwa działania, rysunek, „od końca”) mają własne sekcje.
 // Rozwiązania są pisane prostym językiem. Rachunki pisemne pokazują układ kolumn jako tablicę KaTeX (sekcja „Zapis pisemnych działań”).
 // Odpowiedzi liczymy dokładnie na Q (bez liczb zmiennoprzecinkowych); ułamki zwykłe wpisuje się w dwóch polach: licznik i mianownik,
 // więc ułamka nieskróconego program nie uzna za poprawny.
@@ -234,6 +235,215 @@ function dzielenieTex(D, d) {
   });
   wiersze.push([rzad(n - String(ost).length, String(ost), { dod: ost > 0 ? "\\;\\leftarrow\\text{ reszta}" : "" })]);
   return { tex: tablicaTex(wiersze, 1, "l"), kroki, iloraz: Number(kroki.map((s) => s.q).join("")), reszta: ost };
+}
+
+// --- 0. Rachunki pamięciowe: przez dziesiątkę, liczby prawie okrągłe, mnożenie i dzielenie „po kawałku”, sprytne sposoby
+
+// Ceny w tych zadaniach to liczby od 11 do 199 zł, więc przedmioty są takie, które mogą tyle kosztować.
+const PRZEDMIOTY_PAMIEC = [["książka", "książki", "książek"], ["kurtka", "kurtki", "kurtek"], ["gra planszowa", "gry planszowe", "gier planszowych"], ["bilet na koncert", "bilety na koncert", "biletów na koncert"]];
+
+/** Treść zadania „k razy n”: samo działanie albo krótka historyjka z cenami (wtedy wynik jest w złotych). */
+function iloczynPamiec(r, k, n) {
+  if (r.chance(0.4)) return { tresc: `Kupiono ${ile(k, r.pick(PRZEDMIOTY_PAMIEC))} po $${n}$ zł. Ile złotych zapłacono za wszystkie? Policz w pamięci.`, et: "Wynik (w zł)" };
+  return { tresc: `Oblicz w pamięci: $${k} \\cdot ${n}$.`, et: "Wynik" };
+}
+
+function pamiecPrzezDziesiatke(r) {
+  if (r.chance(0.55)) {
+    const a = probuj(() => { const x = r.int(13, 196); return x % 10 >= 3 ? x : null; });
+    const brak = 10 - (a % 10), b = r.int(brak + 1, 9), reszta = b - brak;
+    return zad(
+      `Oblicz w pamięci: $${a} + ${b}$.`,
+      [pole("wynik", "Wynik")], { wynik: q(a + b) }, `$${a + b}$`,
+      [
+        `Liczbie $${a}$ brakuje $${brak}$ do pełnej dziesiątki, więc rozbijamy $${b}$ na $${brak} + ${reszta}$.`,
+        `Najpierw dochodzimy do dziesiątki: $${a} + ${brak} = ${a + brak}$.`,
+        `Potem dokładamy resztę: $${a + brak} + ${reszta} = ${a + b}$.`,
+      ],
+    );
+  }
+  const a = probuj(() => { const x = r.int(21, 196); return x % 10 >= 1 && x % 10 <= 7 ? x : null; });
+  const j = a % 10, b = r.int(j + 1, 9), reszta = b - j;
+  return zad(
+    `Oblicz w pamięci: $${a} - ${b}$.`,
+    [pole("wynik", "Wynik")], { wynik: q(a - b) }, `$${a - b}$`,
+    [
+      `Liczba $${a}$ ma $${j}$ ${lm(j, ["jedność", "jedności", "jedności"])}, więc rozbijamy $${b}$ na $${j} + ${reszta}$.`,
+      `Najpierw schodzimy do pełnej dziesiątki: $${a} - ${j} = ${a - j}$.`,
+      `Potem odejmujemy resztę: $${a - j} - ${reszta} = ${a - b}$.`,
+    ],
+  );
+}
+
+function pamiecPrawieOkragle(r) {
+  const baza = r.pick([10, 20, 30, 40, 50, 100, 100, 200]), e = r.pick([1, 1, 2]), c = baza - e;
+  const w = r.int(0, 2);
+  const prawie = `Liczba $${c}$ jest prawie okrągła: to $${baza}$ bez $${e}$.`;
+  if (w === 0) {
+    const n = r.int(12, 190);
+    return zad(
+      `Oblicz w pamięci: $${n} + ${c}$.`,
+      [pole("wynik", "Wynik")], { wynik: q(n + c) }, `$${n + c}$`,
+      [
+        prawie,
+        `Dodajemy okrągłą liczbę: $${n} + ${baza} = ${n + baza}$.`,
+        `Dodaliśmy o $${e}$ za dużo, więc tyle oddajemy: $${n + baza} - ${e} = ${n + c}$.`,
+      ],
+    );
+  }
+  if (w === 1) {
+    const n = r.int(c + 4, c + 150);
+    return zad(
+      `Oblicz w pamięci: $${n} - ${c}$.`,
+      [pole("wynik", "Wynik")], { wynik: q(n - c) }, `$${n - c}$`,
+      [
+        prawie,
+        `Odejmujemy okrągłą liczbę: $${n} - ${baza} = ${n - baza}$.`,
+        `Odjęliśmy o $${e}$ za dużo, więc tyle dodajemy z powrotem: $${n - baza} + ${e} = ${n - c}$.`,
+      ],
+    );
+  }
+  const k = r.int(3, 9), { tresc, et } = iloczynPamiec(r, k, c);
+  return zad(
+    tresc,
+    [pole("wynik", et)], { wynik: q(k * c) }, `$${k * c}$`,
+    [
+      prawie,
+      `Mnożymy przez okrągłą liczbę: $${k} \\cdot ${baza} = ${k * baza}$.`,
+      `Za każdym razem wzięliśmy o $${e}$ za dużo, a było tak $${k}$ razy, więc odejmujemy $${k} \\cdot ${e} = ${k * e}$.`,
+      `Wynik: $${k * baza} - ${k * e} = ${k * c}$.`,
+    ],
+  );
+}
+
+function pamiecKawalki(r) {
+  const k = r.int(3, 9), t = r.int(1, 9) * 10, u = r.int(1, 9), n = t + u;
+  const { tresc, et } = iloczynPamiec(r, k, n);
+  return zad(
+    tresc,
+    [pole("wynik", et)], { wynik: q(k * n) }, `$${k * n}$`,
+    [
+      `Rozbijamy $${n}$ na dziesiątki i jedności: $${n} = ${t} + ${u}$.`,
+      `Mnożymy osobno: $${k} \\cdot ${t} = ${k * t}$ oraz $${k} \\cdot ${u} = ${k * u}$. Pamiętamy, że przez $${k}$ mnożymy oba kawałki.`,
+      `Dodajemy: $${k * t} + ${k * u} = ${k * n}$.`,
+    ],
+  );
+}
+
+function pamiecDodawanieMnozenie(r) {
+  const w = r.int(0, 99);
+  if (w < 30) return pamiecPrzezDziesiatke(r);
+  if (w < 65) return pamiecPrawieOkragle(r);
+  return pamiecKawalki(r);
+}
+
+/** Mnożenie i dzielenie przez $0{,}1$: dziesiąta część to to samo co dzielenie przez 10, a dzielenie przez $0{,}1$ to mnożenie przez 10. */
+function pamiecDziesiata(r) {
+  const mnoz = r.chance(0.5), m = r.pick([0, 0, 1, 2]);
+  const x = probuj(() => { const n = r.int(m === 0 ? 2 : 1, m === 0 ? 99 : 999); return m > 0 && n % 10 === 0 ? null : q(n, 10 ** m); });
+  const wynik = mnoz ? x.div(10) : x.mul(10);
+  const xt = dz(x, m), wt = dz(wynik);
+  if (mnoz) {
+    return zad(
+      `Oblicz w pamięci: $${xt} \\cdot 0{,}1$.`,
+      [pole("wynik", "Wynik")], { wynik }, `$${wt}$`,
+      [
+        "Mnożenie przez $0{,}1$ to to samo co dzielenie przez $10$ (dziesiąta część to jedna z dziesięciu równych części).",
+        `Przecinek przesuwamy o $1$ miejsce w lewo: $${xt} : 10 = ${wt}$.`,
+      ],
+    );
+  }
+  return zad(
+    `Oblicz w pamięci: $${xt} : 0{,}1$.`,
+    [pole("wynik", "Wynik")], { wynik }, `$${wt}$`,
+    [
+      `Pytamy, ile razy $0{,}1$ mieści się w $${xt}$. W każdej całości mieści się $10$ razy, więc wychodzi $10$ razy więcej.`,
+      `Dzielenie przez $0{,}1$ to mnożenie przez $10$, czyli przecinek przesuwamy o $1$ miejsce w prawo: $${xt} \\cdot 10 = ${wt}$.`,
+      `Sprawdzenie: $${wt} \\cdot 0{,}1 = ${xt}$ – zgadza się.`,
+    ],
+  );
+}
+
+function pamiecPrzecinek(r) {
+  if (r.chance(0.4)) return pamiecDziesiata(r);
+  return r.chance(0.5) ? dziesietneMnozenieRzedu(r) : dziesietneDzielenieRzedu(r);
+}
+
+const PARY_OKRAGLE = [[25, 4, 100], [2, 5, 10], [50, 2, 100], [20, 5, 100], [8, 125, 1000], [4, 25, 100]];
+
+function pamiecPrzemiennosc(r) {
+  if (r.chance(0.6)) {
+    const [a, b, p] = r.pick(PARY_OKRAGLE), k = p === 1000 ? r.int(3, 9) : r.int(3, 19);
+    const kolej = r.chance(0.5) ? [a, k, b] : [b, k, a];
+    return zad(
+      `Oblicz w pamięci, szukając sprytnej kolejności: $${kolej.join(" \\cdot ")}$.`,
+      [pole("wynik", "Wynik")], { wynik: q(p * k) }, `$${p * k}$`,
+      [
+        `Szukamy dwóch czynników, które dają okrągłą liczbę: $${a} \\cdot ${b} = ${p}$.`,
+        `Mnożenie można robić w dowolnej kolejności, więc łączymy te dwa czynniki w parę: $(${a} \\cdot ${b}) \\cdot ${k}$.`,
+        `Teraz łatwo: $${p} \\cdot ${k} = ${p * k}$.`,
+      ],
+    );
+  }
+  const M = r.pick([20, 30, 40, 50, 100]), c = r.int(1, 9), a = M - c, k = r.int(11, 79);
+  return zad(
+    `Oblicz w pamięci, szukając sprytnej kolejności: $${a} + ${k} + ${c}$.`,
+    [pole("wynik", "Wynik")], { wynik: q(M + k) }, `$${M + k}$`,
+    [
+      `Szukamy dwóch składników, które dają okrągłą liczbę: $${a} + ${c} = ${M}$.`,
+      `Dodawanie też można robić w dowolnej kolejności, więc łączymy te dwa składniki: $(${a} + ${c}) + ${k}$.`,
+      `Teraz łatwo: $${M} + ${k} = ${M + k}$.`,
+    ],
+  );
+}
+
+function pamiecDzielenie(r) {
+  const d = r.int(3, 9), t = r.int(1, 9) * 10, u = r.int(1, 9), iloraz = t + u, D = d * iloraz;
+  const A = d * t, B = d * u;
+  const kontekst = r.chance(0.4);
+  return zad(
+    kontekst
+      ? `Między $${d}$ ${lm(d, ["osobę", "osoby", "osób"])} podzielono po równo $${D}$ zł. Ile złotych dostała każda osoba? Podziel w pamięci.`
+      : `Oblicz w pamięci: $${D} : ${d}$.`,
+    [pole("wynik", kontekst ? "Wynik (w zł)" : "Wynik")], { wynik: q(iloraz) }, `$${iloraz}$`,
+    [
+      `Rozbijamy dzielną na dwa kawałki, które dzielą się przez $${d}$ bez reszty: $${D} = ${A} + ${B}$.`,
+      `Dzielimy każdy kawałek: $${A} : ${d} = ${t}$ oraz $${B} : ${d} = ${u}$.`,
+      `Dodajemy wyniki: $${t} + ${u} = ${iloraz}$.`,
+      `Sprawdzenie mnożeniem: $${iloraz} \\cdot ${d} = ${D}$.`,
+    ],
+  );
+}
+
+function pamiecTabliczka(r) {
+  const typ = r.pick([9, 5, 4]), k = typ === 9 ? r.int(4, 19) : r.int(11, 49);
+  const wyr = r.chance(0.5) ? `${typ} \\cdot ${k}` : `${k} \\cdot ${typ}`;
+  const kroki = {
+    9: [
+      `Mnożenie przez $9$ to mnożenie przez $10$ i odjęcie jednej porcji: $9 \\cdot ${k} = 10 \\cdot ${k} - ${k}$.`,
+      `$10 \\cdot ${k} = ${10 * k}$.`,
+      `$${10 * k} - ${k} = ${9 * k}$.`,
+    ],
+    5: [
+      `Mnożenie przez $5$ to połowa mnożenia przez $10$: $5 \\cdot ${k} = 10 \\cdot ${k} : 2$.`,
+      `$10 \\cdot ${k} = ${10 * k}$.`,
+      `Połowa z $${10 * k}$ to $${10 * k} : 2 = ${5 * k}$.`,
+    ],
+    4: [
+      `Mnożenie przez $4$ to dwa razy podwojenie: $4 \\cdot ${k} = ${k} \\cdot 2 \\cdot 2$.`,
+      `Pierwsze podwojenie: $${k} \\cdot 2 = ${2 * k}$.`,
+      `Drugie podwojenie: $${2 * k} \\cdot 2 = ${4 * k}$.`,
+    ],
+  }[typ];
+  return zad(`Oblicz w pamięci, wybierając sprytny sposób: $${wyr}$.`, [pole("wynik", "Wynik")], { wynik: q(typ * k) }, `$${typ * k}$`, kroki);
+}
+
+function pamiecSprytne(r) {
+  const w = r.int(0, 99);
+  if (w < 25) return pamiecPrzecinek(r);
+  if (w < 50) return pamiecPrzemiennosc(r);
+  if (w < 80) return pamiecDzielenie(r);
+  return pamiecTabliczka(r);
 }
 
 // --- 1. Dodawanie pisemne
@@ -583,6 +793,278 @@ function kolejnoscDzialan(r) {
       ...kroki,
     ],
   );
+}
+
+// --- 6b. Zadania tekstowe na działaniach: dane i szukane, o ile / ile razy, dwa działania, rysunek, „od końca”
+
+const OSOBY_TEKST = [
+  { im: "Ola", k: true }, { im: "Kasia", k: true }, { im: "Ania", k: true }, { im: "Marta", k: true }, { im: "Zosia", k: true },
+  { im: "Kuba", k: false }, { im: "Tomek", k: false }, { im: "Olek", k: false }, { im: "Piotrek", k: false }, { im: "Bartek", k: false },
+];
+/** Forma czasownika zależnie od rodzaju osoby: rodz(osoba, "wydał", "wydała"). */
+const rodz = (o, m, k) => (o.k ? k : m);
+
+const ZBIORY_TEKST = [
+  ["naklejka", "naklejki", "naklejek"], ["karta", "karty", "kart"], ["znaczek", "znaczki", "znaczków"],
+  ["książka", "książki", "książek"], ["pocztówka", "pocztówki", "pocztówek"],
+];
+
+/** „O ile więcej” (odejmowanie) albo „ile razy więcej” (dzielenie): dwie osoby, dwie liczby. */
+function tekstowePorownanie(r) {
+  const [A, B] = r.shuffle(OSOBY_TEKST).slice(0, 2);
+  const f = r.pick(ZBIORY_TEKST), gen = f[2];
+  const razy = r.chance(0.5), wiecej = r.chance(0.5);
+  let a, b, m, d;
+  if (razy) { b = r.int(2, 12); m = r.int(2, 9); a = m * b; } else { b = r.int(5, 60); d = r.int(3, 40); a = b + d; }
+  const opis = `${A.im} ma ${ile(a, f)}, a ${B.im} ma ${ile(b, f)}.`;
+  if (razy) {
+    const pyt = wiecej ? `Ile razy więcej ${gen} ma ${A.im} niż ${B.im}?` : `Ile razy mniej ${gen} ma ${B.im} niż ${A.im}?`;
+    return zad(
+      `${opis} ${pyt}`,
+      [pole("wynik", "Wynik (ile razy)")], { wynik: q(m) }, `$${m}$`,
+      [
+        `Dane: $${a}$ i $${b}$. Szukane: ile razy jedna liczba jest większa od drugiej.`,
+        `Pytanie „ile razy” to dzielenie: większą liczbę dzielimy przez mniejszą, czyli $${a} : ${b} = ${m}$.`,
+        `Sprawdzenie: $${m} \\cdot ${b} = ${a}$ – zgadza się.`,
+        `Uwaga: różnica to $${a} - ${b} = ${a - b}$, ale pytają o „razy”, więc odpowiedzią jest $${m}$.`,
+      ],
+    );
+  }
+  const pyt = wiecej ? `O ile więcej ${gen} ma ${A.im} niż ${B.im}?` : `O ile mniej ${gen} ma ${B.im} niż ${A.im}?`;
+  return zad(
+    `${opis} ${pyt}`,
+    [pole("wynik", "Wynik (o ile)")], { wynik: q(d) }, `$${d}$`,
+    [
+      `Dane: $${a}$ i $${b}$. Szukane: o ile jedna liczba jest większa od drugiej.`,
+      `Pytanie „o ile” to odejmowanie: od większej liczby odejmujemy mniejszą, czyli $${a} - ${b} = ${d}$.`,
+      `Sprawdzenie: $${b} + ${d} = ${a}$ – zgadza się.`,
+      `Uwaga: iloraz $${a} : ${b}$ nie jest tu potrzebny, bo pytają o „o ile”, a nie o „ile razy”.`,
+    ],
+  );
+}
+
+/** Liczba drugiej osoby, gdy znamy liczbę pierwszej: „o … więcej / mniej” albo „… razy więcej / mniej”. */
+function tekstowePrzeliczenie(r) {
+  const [A, B] = r.shuffle(OSOBY_TEKST).slice(0, 2);
+  const f = r.pick(ZBIORY_TEKST), gen = f[2];
+  const razy = r.chance(0.5), wiecej = r.chance(0.5);
+  let M, x, tekst, kroki;
+  if (razy) {
+    const k = r.int(2, 9), n = r.int(2, 12);
+    M = wiecej ? n : n * k;
+    x = wiecej ? n * k : n;
+    tekst = `${A.im} ma $${k}$ razy ${wiecej ? "więcej" : "mniej"} ${gen} niż ${B.im}`;
+    kroki = [
+      `Słowa „$${k}$ razy ${wiecej ? "więcej" : "mniej"}” oznaczają ${wiecej ? "mnożenie" : "dzielenie"} (a nie dodawanie ani odejmowanie).`,
+      wiecej ? `${A.im} ma $${M} \\cdot ${k} = ${x}$ ${lm(x, f)}.` : `${A.im} ma $${M} : ${k} = ${x}$ ${lm(x, f)}.`,
+      wiecej ? `Sprawdzenie: $${x} : ${k} = ${M}$ – zgadza się.` : `Sprawdzenie: $${x} \\cdot ${k} = ${M}$ – zgadza się.`,
+    ];
+  } else {
+    const d = r.int(3, 14);
+    M = r.int(wiecej ? 5 : d + 2, 60);
+    x = wiecej ? M + d : M - d;
+    tekst = `${A.im} ma o $${d}$ ${lm(d, f)} ${wiecej ? "więcej" : "mniej"} niż ${B.im}`;
+    kroki = [
+      `Słowa „o $${d}$ ${wiecej ? "więcej" : "mniej"}” oznaczają ${wiecej ? "dodawanie" : "odejmowanie"} (a nie mnożenie ani dzielenie).`,
+      wiecej ? `${A.im} ma $${M} + ${d} = ${x}$ ${lm(x, f)}.` : `${A.im} ma $${M} - ${d} = ${x}$ ${lm(x, f)}.`,
+      wiecej ? `Sprawdzenie: $${x} - ${d} = ${M}$ – zgadza się.` : `Sprawdzenie: $${x} + ${d} = ${M}$ – zgadza się.`,
+    ];
+  }
+  return zad(
+    `${B.im} ma ${ile(M, f)}. ${tekst}. Ile ${gen} ma ${A.im}?`,
+    [pole("wynik", `Liczba ${gen}`)], { wynik: q(x) }, `$${x}$`,
+    [`Dane: ${B.im} ma $${M}$ ${gen}, a liczba ${gen} u ${A.im} zależy od niej. Szukane: ile ${gen} ma ${A.im}.`, ...kroki],
+  );
+}
+
+// Ceny w tych zadaniach to od 3 do 29 zł, a w treści stoi „jeden … droższy/tańszy”, więc przedmioty są rodzaju męskiego.
+const PRZEDMIOTY_CENY = [
+  { f: ["zeszyt", "zeszyty", "zeszytów"], dop: "zeszytu" },
+  { f: ["długopis", "długopisy", "długopisów"], dop: "długopisu" },
+  { f: ["kubek", "kubki", "kubków"], dop: "kubka" },
+  { f: ["piórnik", "piórniki", "piórników"], dop: "piórnika" },
+  { f: ["bilet", "bilety", "biletów"], dop: "biletu" },
+];
+
+/** Zadania na dwa działania: ceny z różnicą cen, reszta z banknotu, krzesła w rzędach, droga w dwa dni. */
+function tekstoweDwaDzialania(r) {
+  const w = r.int(0, 99);
+  if (w < 35) {
+    const [X, Y] = r.shuffle(PRZEDMIOTY_CENY).slice(0, 2);
+    const drozszy = r.chance(0.6), d = r.int(2, 9), p = r.int(d + 1, 20);
+    const py = drozszy ? p + d : p - d, n1 = r.int(2, 5), n2 = r.int(1, 5);
+    const suma = n1 * p + n2 * py;
+    return zad(
+      `Jeden ${X.f[0]} kosztuje $${p}$ zł, a jeden ${Y.f[0]} jest o $${d}$ zł ${drozszy ? "droższy" : "tańszy"}. Ile złotych zapłacimy za ${ile(n1, X.f)} i ${ile(n2, Y.f)}?`,
+      [pole("wynik", "Do zapłaty (w zł)")], { wynik: q(suma) }, `$${suma}$ zł`,
+      [
+        `Dane: ${X.f[0]} – $${p}$ zł, ${Y.f[0]} – o $${d}$ zł ${drozszy ? "więcej" : "mniej"}. Brakuje nam ceny ${Y.dop}, więc liczymy ją najpierw.`,
+        `Krok 1 (cena ${Y.dop}): $${p} ${drozszy ? "+" : "-"} ${d} = ${py}$ zł.`,
+        `Krok 2: za ${ile(n1, X.f)} płacimy $${n1} \\cdot ${p} = ${n1 * p}$ zł, a za ${ile(n2, Y.f)} płacimy $${n2} \\cdot ${py} = ${n2 * py}$ zł.`,
+        `Krok 3 (razem): $${n1 * p} + ${n2 * py} = ${suma}$ zł.`,
+        `Odpowiedź: zapłacimy $${suma}$ zł.`,
+      ],
+    );
+  }
+  if (w < 60) {
+    const f = r.pick(PRZEDMIOTY_CENY), m = r.int(3, 9), p = r.int(4, 18), razem = m * p;
+    const K = r.pick([50, 100, 200].filter((x) => x > razem));
+    return zad(
+      `Kupiono ${ile(m, f.f)} po $${p}$ zł i zapłacono banknotem $${K}$ zł. Ile złotych reszty wydano?`,
+      [pole("wynik", "Reszta (w zł)")], { wynik: q(K - razem) }, `$${K - razem}$ zł`,
+      [
+        `Dane: $${m}$ sztuk po $${p}$ zł, banknot $${K}$ zł. Szukane: reszta. Najpierw trzeba policzyć, ile kosztują zakupy.`,
+        `Krok 1 (koszt zakupów): $${m} \\cdot ${p} = ${razem}$ zł.`,
+        `Krok 2 (reszta): $${K} - ${razem} = ${K - razem}$ zł.`,
+        `Sprawdzenie: $${razem} + ${K - razem} = ${K}$ – zgadza się z banknotem.`,
+      ],
+    );
+  }
+  if (w < 80) {
+    const a = r.int(4, 12), b = r.int(8, 20), c = r.int(Math.max(8, a * b - 40), a * b - 3);
+    const wolne = a * b - c;
+    return zad(
+      `W sali ustawiono ${ile(a, ["rząd", "rzędy", "rzędów"])} po $${b}$ ${lm(b, ["krzesło", "krzesła", "krzeseł"])}. Na spotkaniu zajęto $${c}$ ${lm(c, ["krzesło", "krzesła", "krzeseł"])}. Ile krzeseł zostało wolnych?`,
+      [pole("wynik", "Liczba wolnych krzeseł")], { wynik: q(wolne) }, `$${wolne}$`,
+      [
+        `Dane: $${a}$ rzędów po $${b}$ krzeseł, zajęto $${c}$. Nie znamy liczby wszystkich krzeseł, więc liczymy ją najpierw.`,
+        `Krok 1 (wszystkie krzesła): $${a} \\cdot ${b} = ${a * b}$.`,
+        `Krok 2 (wolne): $${a * b} - ${c} = ${wolne}$.`,
+        `Odpowiedź: wolnych jest $${wolne}$ ${lm(wolne, ["krzesło", "krzesła", "krzeseł"])}.`,
+      ],
+    );
+  }
+  const os = r.pick(OSOBY_TEKST), wiecej = r.chance(0.6), d = r.int(5, 40), a = r.int(wiecej ? 20 : d + 10, 120);
+  const drugi = wiecej ? a + d : a - d;
+  return zad(
+    `${os.im} ${rodz(os, "przejechał", "przejechała")} pierwszego dnia $${a}$ km, a drugiego o $${d}$ km ${wiecej ? "więcej" : "mniej"}. Ile kilometrów ${rodz(os, "przejechał", "przejechała")} w ciągu tych dwóch dni?`,
+    [pole("wynik", "Droga (w km)")], { wynik: q(a + drugi) }, `$${a + drugi}$ km`,
+    [
+      `Dane: pierwszy dzień – $${a}$ km, drugi dzień – o $${d}$ km ${wiecej ? "więcej" : "mniej"}. Brakuje drogi z drugiego dnia.`,
+      `Krok 1 (drugi dzień): $${a} ${wiecej ? "+" : "-"} ${d} = ${drugi}$ km.`,
+      `Krok 2 (razem): $${a} + ${drugi} = ${a + drugi}$ km.`,
+      `Odpowiedź: w ciągu dwóch dni ${rodz(os, "przejechał", "przejechała")} $${a + drugi}$ km.`,
+    ],
+  );
+}
+
+function tekstowePorownaniaIDwaDzialania(r) {
+  const w = r.int(0, 99);
+  if (w < 30) return tekstowePorownanie(r);
+  if (w < 55) return tekstowePrzeliczenie(r);
+  return tekstoweDwaDzialania(r);
+}
+
+/** Dwie wielkości: znamy sumę i różnicę. Rysunek: dwa odcinki, jeden dłuższy o różnicę; po odjęciu różnicy zostają dwie równe części. */
+function tekstoweSumaRoznica(r) {
+  const x = r.int(6, 40), d = r.int(2, 14), S = 2 * x + d, duzy = x + d;
+  const pytajDuzy = r.chance(0.5), odp = pytajDuzy ? duzy : x;
+  const k = r.int(0, 2);
+  let tresc, etykieta, wyn;
+  if (k === 0) {
+    const [A, B] = r.shuffle(OSOBY_TEKST).slice(0, 2);
+    tresc = `${A.im} i ${B.im} mają razem $${S}$ zł. ${A.im} ma o $${d}$ zł więcej niż ${B.im}. Ile złotych ma ${pytajDuzy ? A.im : B.im}?`;
+    etykieta = "Liczba złotych"; wyn = `$${odp}$ zł`;
+  } else if (k === 1) {
+    tresc = `Dwie paczki ważą razem $${S}$ kg. Pierwsza paczka jest o $${d}$ kg cięższa od drugiej. Ile kilogramów waży ${pytajDuzy ? "pierwsza" : "druga"} paczka?`;
+    etykieta = "Masa (w kg)"; wyn = `$${odp}$ kg`;
+  } else {
+    tresc = `W klubie jest razem $${S}$ uczniów. Chłopców jest o $${d}$ więcej niż dziewcząt. ${pytajDuzy ? "Ilu jest chłopców" : "Ile jest dziewcząt"}?`;
+    etykieta = pytajDuzy ? "Liczba chłopców" : "Liczba dziewcząt"; wyn = `$${odp}$`;
+  }
+  return zad(
+    tresc,
+    [pole("wynik", etykieta)], { wynik: q(odp) }, wyn,
+    [
+      `Rysujemy dwa odcinki: jeden z nich (większa wielkość) jest dłuższy o $${d}$ od drugiego.`,
+      `Gdy od całości odejmiemy ten nadmiar, zostaną dwie równe części: $${S} - ${d} = ${S - d}$.`,
+      `Jedna część (mniejsza wielkość) to $${S - d} : 2 = ${x}$. Większa wielkość to $${x} + ${d} = ${duzy}$.`,
+      `Sprawdzenie: $${x} + ${duzy} = ${S}$ i $${duzy} - ${x} = ${d}$ – zgadza się. Pytają o ${pytajDuzy ? "większą" : "mniejszą"}, czyli $${odp}$.`,
+    ],
+  );
+}
+
+const DZIALANIA_POMYSLANE = [
+  { t: "add", gen: (r) => r.int(2, 20), p1: (a) => `dodałem do niej $${a}$`, p2: (a) => `dodałem $${a}$`, f: (x, a) => x + a, wprzod: (x, a, y) => `${x} + ${a} = ${y}`, wstecz: (y, a, x) => `${y} - ${a} = ${x}` },
+  { t: "sub", gen: (r) => r.int(2, 15), p1: (a) => `odjąłem od niej $${a}$`, p2: (a) => `odjąłem $${a}$`, f: (x, a) => x - a, wprzod: (x, a, y) => `${x} - ${a} = ${y}`, wstecz: (y, a, x) => `${y} + ${a} = ${x}` },
+  { t: "mul", gen: (r) => r.int(2, 9), p1: (a) => `pomnożyłem ją przez $${a}$`, p2: (a) => `pomnożyłem przez $${a}$`, f: (x, a) => x * a, wprzod: (x, a, y) => `${x} \\cdot ${a} = ${y}`, wstecz: (y, a, x) => `${y} : ${a} = ${x}` },
+  { t: "div", gen: (r) => r.int(2, 5), p1: (a) => `podzieliłem ją przez $${a}$`, p2: (a) => `podzieliłem przez $${a}$`, f: (x, a) => (x % a === 0 ? x / a : null), wprzod: (x, a, y) => `${x} : ${a} = ${y}`, wstecz: (y, a, x) => `${y} \\cdot ${a} = ${x}` },
+];
+const NAZWA_ODWROTNEGO = { add: "odejmowanie", sub: "dodawanie", mul: "dzielenie", div: "mnożenie" };
+
+/** „Pomyślałem liczbę…”: dwa działania, szukana jest liczba początkowa – cofamy działania w odwrotnej kolejności. */
+function tekstowePomyslana(r) {
+  const { x0, o1, a1, o2, a2, v1, R } = probuj(() => {
+    const [o1, o2] = r.shuffle(DZIALANIA_POMYSLANE).slice(0, 2);
+    const a1 = o1.gen(r), a2 = o2.gen(r), x0 = r.int(2, 30);
+    const v1 = o1.f(x0, a1);
+    if (v1 === null || v1 <= 0) return null;
+    const R = o2.f(v1, a2);
+    return R === null || R <= 0 || R > 150 ? null : { x0, o1, a1, o2, a2, v1, R };
+  });
+  return zad(
+    `Pomyślałem liczbę, ${o1.p1(a1)}, a otrzymany wynik ${o2.p2(a2)}. Na końcu wyszło $${R}$. Jaką liczbę pomyślałem?`,
+    [pole("wynik", "Pomyślana liczba")], { wynik: q(x0) }, `$${x0}$`,
+    [
+      "Gdy znamy wynik końcowy, cofamy działania: każde zastępujemy działaniem odwrotnym i robimy to w odwrotnej kolejności (od ostatniego do pierwszego).",
+      `Cofamy ostatnie działanie (${NAZWA_ODWROTNEGO[o2.t]}): $${o2.wstecz(R, a2, v1)}$.`,
+      `Cofamy pierwsze działanie (${NAZWA_ODWROTNEGO[o1.t]}): $${o1.wstecz(v1, a1, x0)}$.`,
+      `Sprawdzenie: $${o1.wprzod(x0, a1, v1)}$, a potem $${o2.wprzod(v1, a2, R)}$ – wychodzi $${R}$, więc pomyślana liczba to $${x0}$.`,
+    ],
+  );
+}
+
+/** Historyjki „od końca”: pieniądze (połowa i stała kwota) oraz pasażerowie w autobusie. */
+function tekstoweOdKonca(r) {
+  const w = r.int(0, 2);
+  const os = r.pick(OSOBY_TEKST), mu = rodz(os, "mu", "jej");
+  if (w === 0) {
+    const a = r.int(2, 15), R = r.int(3, 30), x = 2 * (R + a);
+    return zad(
+      `${os.im} ${rodz(os, "wydał", "wydała")} połowę swoich pieniędzy na bilet, a potem $${a}$ zł na lody. Zostało ${mu} $${R}$ zł. Ile złotych ${rodz(os, "miał", "miała")} ${os.im} na początku?`,
+      [pole("wynik", "Pieniądze na początku (w zł)")], { wynik: q(x) }, `$${x}$ zł`,
+      [
+        "Idziemy od końca i cofamy działania w odwrotnej kolejności: najpierw lody, potem bilet.",
+        `Przed lodami było $${R} + ${a} = ${R + a}$ zł.`,
+        `Te $${R + a}$ zł to połowa pieniędzy (drugą połowę wydano na bilet), więc na początku było $${R + a} \\cdot 2 = ${x}$ zł.`,
+        `Sprawdzenie: połowa z $${x}$ to $${x / 2}$, potem $${x / 2} - ${a} = ${R}$ – zgadza się.`,
+      ],
+    );
+  }
+  if (w === 1) {
+    const a = r.int(4, 30), R = r.int(3, 25), x = 2 * R + a;
+    return zad(
+      `${os.im} ${rodz(os, "wydał", "wydała")} $${a}$ zł na książkę, a potem połowę reszty pieniędzy na lody. Zostało ${mu} $${R}$ zł. Ile złotych ${rodz(os, "miał", "miała")} ${os.im} na początku?`,
+      [pole("wynik", "Pieniądze na początku (w zł)")], { wynik: q(x) }, `$${x}$ zł`,
+      [
+        "Idziemy od końca i cofamy działania w odwrotnej kolejności: najpierw lody, potem książka.",
+        `Zostało $${R}$ zł, czyli połowa reszty. Przed lodami było więc $${R} \\cdot 2 = ${2 * R}$ zł.`,
+        `Przed kupnem książki było $${2 * R} + ${a} = ${x}$ zł.`,
+        `Sprawdzenie: $${x} - ${a} = ${2 * R}$, połowa z $${2 * R}$ to $${R}$ – zgadza się.`,
+      ],
+    );
+  }
+  const s = r.int(10, 40), a = r.int(2, 9), b = r.int(2, 9), R = s - a + b;
+  // Czasownik zgadza się z liczbą: wysiadły 3 osoby, wysiadło 5 osób; jadą 22 osoby, jedzie 30 osób.
+  const osoby = (n) => ile(n, ["osoba", "osoby", "osób"]);
+  const wysiadly = lm(a, ["wysiadła", "wysiadły", "wysiadło"]), wsiadly = lm(b, ["wsiadła", "wsiadły", "wsiadło"]);
+  return zad(
+    `W autobusie jechało kilka osób. Na pierwszym przystanku ${wysiadly} ${osoby(a)}, a na drugim ${wsiadly} ${osoby(b)}. Teraz ${lm(R, ["jedzie", "jadą", "jedzie"])} ${osoby(R)}. Ile osób jechało na początku?`,
+    [pole("wynik", "Liczba osób na początku")], { wynik: q(s) }, `$${s}$`,
+    [
+      "Idziemy od końca i cofamy zdarzenia w odwrotnej kolejności: najpierw drugi przystanek, potem pierwszy.",
+      `Przed drugim przystankiem (${wsiadly} ${osoby(b)}, więc cofamy dodawanie): $${R} - ${b} = ${R - b}$.`,
+      `Przed pierwszym przystankiem (${wysiadly} ${osoby(a)}, więc cofamy odejmowanie): $${R - b} + ${a} = ${s}$.`,
+      `Sprawdzenie: $${s} - ${a} = ${s - a}$, potem $${s - a} + ${b} = ${R}$ – zgadza się.`,
+    ],
+  );
+}
+
+function tekstoweRysunekIOdKonca(r) {
+  const w = r.int(0, 99);
+  if (w < 35) return tekstoweSumaRoznica(r);
+  if (w < 70) return tekstowePomyslana(r);
+  return tekstoweOdKonca(r);
 }
 
 // --- 7. Liczby ujemne
@@ -1381,12 +1863,16 @@ function dziesietnePrzecinek(r) {
 // --- Lista generatorów
 
 export const GENERATORY = [
+  { id: "pamiec-dodawanie-mnozenie", nazwa: "Dodawanie i mnożenie w pamięci", opis: "Dodawanie i odejmowanie przez dziesiątkę, liczby prawie okrągłe (99, 29, 198) i mnożenie liczby dwucyfrowej „po kawałku”, także w krótkich zadaniach z cenami.", temat: "rachunki-pamieciowe", generuj: pamiecDodawanieMnozenie },
+  { id: "pamiec-sprytne", nazwa: "Sprytne rachunki w pamięci", opis: "Mnożenie i dzielenie przez 10, 100, 1000 i 0,1, sprytna kolejność czynników i składników, dzielenie w pamięci rozkładem na kawałki, mnożenie przez 4, 5 i 9.", temat: "rachunki-pamieciowe", generuj: pamiecSprytne },
   { id: "dodawanie-pisemne", nazwa: "Dodawanie pisemne", opis: "Dodawanie pisemne dwóch lub trzech liczb 3–5-cyfrowych z przenoszeniem („pamiętam 1”).", temat: "dodawanie-odejmowanie", generuj: dodawaniePisemne },
   { id: "odejmowanie-pisemne", nazwa: "Odejmowanie pisemne", opis: "Odejmowanie pisemne liczb 3–5-cyfrowych z „pożyczaniem”, także przez zera (np. 5003 − 1478).", temat: "dodawanie-odejmowanie", generuj: odejmowaniePisemne },
   { id: "mnozenie-pisemne", nazwa: "Mnożenie pisemne", opis: "Mnożenie pisemne: liczba 3–4-cyfrowa przez jednocyfrową, trzycyfrowa przez dwucyfrową, dwucyfrowa przez trzycyfrową (także z zerem w środku).", temat: "mnozenie", generuj: mnozeniePisemne },
   { id: "dzielenie-pisemne", nazwa: "Dzielenie pisemne bez reszty", opis: "Dzielenie pisemne liczby 3–4-cyfrowej przez jednocyfrową, bez reszty (także z zerem w wyniku), sprawdzanie mnożeniem.", temat: "dzielenie", generuj: dzielenieBezReszty },
   { id: "dzielenie-z-reszta", nazwa: "Dzielenie pisemne z resztą", opis: "Dzielenie pisemne z resztą: iloraz i reszta, także w zadaniach o paczkach i resztkach.", temat: "dzielenie", generuj: dzielenieZReszta },
   { id: "kolejnosc-dzialan", nazwa: "Kolejność działań", opis: "Wyrażenia z nawiasami, potęgami, mnożeniem, dzieleniem, dodawaniem i odejmowaniem, liczone w dobrej kolejności.", temat: "kolejnosc-dzialan", generuj: kolejnoscDzialan },
+  { id: "tekstowe-porownania-dwa-dzialania", nazwa: "Porównania i dwa działania", opis: "Zadania tekstowe: o ile więcej i ile razy więcej, liczba po „o … więcej” albo „… razy mniej”, zadania na dwa działania (ceny, reszta, krzesła w rzędach, droga w dwa dni).", temat: "zadania-tekstowe-dzialania", generuj: tekstowePorownaniaIDwaDzialania },
+  { id: "tekstowe-rysunek-od-konca", nazwa: "Rysunek i liczenie od końca", opis: "Suma i różnica dwóch wielkości (rysunek z odcinkami), „pomyślałem liczbę…” oraz historyjki rozwiązywane od końca (pieniądze, pasażerowie).", temat: "zadania-tekstowe-dzialania", generuj: tekstoweRysunekIOdKonca },
   { id: "liczby-ujemne", nazwa: "Liczby ujemne", opis: "Dodawanie i odejmowanie liczb ujemnych (termometr, oś liczbowa), mnożenie i dzielenie z minusami, krótkie wyrażenia z kolejnością działań.", temat: "liczby-ujemne", generuj: liczbyUjemne },
   { id: "nwd-nww", nazwa: "NWD i NWW", opis: "Największy wspólny dzielnik i najmniejsza wspólna wielokrotność dwóch liczb (rozkład na czynniki pierwsze), także w zadaniach o paczkach i autobusach.", temat: "podzielnosc", generuj: nwdNww },
   { id: "brakujaca-cyfra", nazwa: "Cechy podzielności – brakująca cyfra", opis: "Wstaw brakującą cyfrę tak, żeby liczba była podzielna przez 3, 4, 6 albo 9.", temat: "podzielnosc", generuj: brakujacaCyfra },

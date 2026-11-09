@@ -3,6 +3,7 @@
 // (te same pojęcia: kąty przyległe i wierzchołkowe, litery F, Z i C, kąt zewnętrzny, nierówność trójkąta, ruch między wierzchołkami itd.).
 // Generatory nie mają rysunków, więc każda figura jest opisana słowami: położenie kątów, boki równoległe, współrzędne punktów.
 // Kontrakt zadania i narzędzia: zob. wspolne.js. Każdy generator ma pole temat – id tematu z assets/arkusze/tematy.js (dział "e8-figury").
+// Dodatkowo: proste, półproste i odcinki (jednostki długości, łamana, odległość), koło i okrąg (wynik jako współczynnik przy π albo z π ≈ 3,14) oraz symetralna i dwusieczna.
 // Liczby są dobierane tak, żeby wszystko dało się policzyć w pamięci, bez kalkulatora. Pierwiastki ($\sqrt{2}$, $\sqrt{3}$) pojawiają się tylko tak,
 // że uczeń podaje liczbę przy pierwiastku albo wynik całkowity. Rozwiązania są pisane prostym językiem, kilka krótkich kroków.
 import { Q, q } from "./wspolne.js";
@@ -127,6 +128,231 @@ function zdaniaWybor(r, BANK, o) {
       kroki,
     );
   });
+}
+
+// --- 0. Proste, półproste i odcinki: długość odcinka i łamanej (przeliczanie jednostek), środek odcinka, proste prostopadłe i równoległe, odległość
+
+const ZESTAWY_LITER = [["A", "B", "C", "D"], ["K", "L", "M", "N"], ["P", "R", "S", "T"]];
+
+/** Dwa punkty na prostej i trzeci między nimi: |AB| i |BC| w różnych jednostkach, szukane |AC|. */
+function odcinkiSumaJednostek(r) {
+  const [A, B, C] = r.pick(ZESTAWY_LITER);
+  if (r.chance(0.6)) {
+    const x = r.int(25, 95), y = r.int(15, 85), wCm = r.chance(0.5);
+    const odp = wCm ? q(x + y, 10) : q(x + y);
+    return zad(
+      `Punkty $${A}$, $${B}$, $${C}$ leżą na jednej prostej, przy czym punkt $${B}$ leży między $${A}$ i $${C}$. Wiadomo, że $|${A}${B}| = ${dz(q(x, 10))}$ cm i $|${B}${C}| = ${y}$ mm. Ile ${wCm ? "centymetrów" : "milimetrów"} ma odcinek $${A}${C}$?`,
+      [pole("wynik", `Długość $${A}${C}$ (w ${wCm ? "cm" : "mm"})`)], { wynik: odp }, `$${dz(odp)}$ ${wCm ? "cm" : "mm"}`,
+      [
+        `Przed dodawaniem zamieniamy długości na tę samą jednostkę. Ponieważ $1$ cm $= 10$ mm, to $${dz(q(x, 10))}$ cm $= ${x}$ mm.`,
+        `Punkt $${B}$ leży między $${A}$ i $${C}$, więc $|${A}${C}| = |${A}${B}| + |${B}${C}|$. Liczymy: $${x} + ${y} = ${x + y}$ mm.`,
+        wCm ? `Zamieniamy na centymetry: $${x + y}$ mm $= ${dz(odp)}$ cm.` : `Pytają o milimetry, więc to już jest wynik: $${x + y}$ mm.`,
+      ],
+    );
+  }
+  const n = r.int(5, 24), y = r.int(10, 90);
+  return zad(
+    `Punkty $${A}$, $${B}$, $${C}$ leżą na jednej prostej, przy czym punkt $${B}$ leży między $${A}$ i $${C}$. Wiadomo, że $|${A}${B}| = ${dz(q(n, 10))}$ m i $|${B}${C}| = ${y}$ cm. Ile centymetrów ma odcinek $${A}${C}$?`,
+    [pole("wynik", `Długość $${A}${C}$ (w cm)`)], { wynik: q(10 * n + y) }, `$${10 * n + y}$ cm`,
+    [
+      `Zamieniamy długości na tę samą jednostkę. Ponieważ $1$ m $= 100$ cm, to $${dz(q(n, 10))}$ m $= ${10 * n}$ cm.`,
+      `Punkt $${B}$ leży między $${A}$ i $${C}$, więc $|${A}${C}| = ${10 * n} + ${y} = ${10 * n + y}$ cm.`,
+    ],
+  );
+}
+
+/** Środek odcinka i podział odcinka na części (stosunek, różnica). */
+function odcinkiPodzial(r) {
+  const [A, B, C] = r.pick(ZESTAWY_LITER);
+  const w = r.int(0, 3);
+  if (w === 0) {
+    const L = q(r.int(20, 198), 10), pytajPolowe = r.chance(0.6), pol = L.div(2);
+    return zad(
+      pytajPolowe
+        ? `Punkt $S$ jest środkiem odcinka $${A}${B}$. Odcinek $${A}${B}$ ma $${dz(L)}$ cm. Ile centymetrów ma odcinek $${A}S$?`
+        : `Punkt $S$ jest środkiem odcinka $${A}${B}$. Odcinek $${A}S$ ma $${dz(pol)}$ cm. Ile centymetrów ma odcinek $${A}${B}$?`,
+      [pole("wynik", "Długość (w cm)")], { wynik: pytajPolowe ? pol : L }, `$${dz(pytajPolowe ? pol : L)}$ cm`,
+      pytajPolowe
+        ? ["Środek dzieli odcinek na dwie równe części.", `$|${A}S| = |${A}${B}| : 2$, czyli $${dz(L)} : 2 = ${dz(pol)}$ cm.`]
+        : ["Środek dzieli odcinek na dwie równe części, więc cały odcinek jest dwa razy dłuższy od jego połowy.", `$|${A}${B}| = 2 \\cdot ${dz(pol)} = ${dz(L)}$ cm.`],
+    );
+  }
+  if (w === 1) {
+    const k = r.int(2, 4), x = r.int(2, 9), S = (k + 1) * x, pytajAC = r.chance(0.5);
+    return zad(
+      `Punkt $${C}$ leży na odcinku $${A}${B}$, przy czym $|${A}${B}| = ${S}$ cm, a odcinek $${A}${C}$ jest $${k}$ razy dłuższy od odcinka $${C}${B}$. Ile centymetrów ma odcinek $${pytajAC ? A + C : C + B}$?`,
+      [pole("wynik", `Długość $${pytajAC ? A + C : C + B}$ (w cm)`)], { wynik: q(pytajAC ? k * x : x) }, `$${pytajAC ? k * x : x}$ cm`,
+      [
+        `Niech odcinek $${C}${B}$ będzie jedną częścią. Wtedy odcinek $${A}${C}$ ma $${k}$ takie części, a cały odcinek $${A}${B}$ ma $${k} + 1 = ${k + 1}$ ${lm(k + 1, ["część", "części", "części"])}.`,
+        `Jedna część to $${S} : ${k + 1} = ${x}$ cm, więc $|${C}${B}| = ${x}$ cm i $|${A}${C}| = ${k} \\cdot ${x} = ${k * x}$ cm.`,
+        `Sprawdzenie: $${k * x} + ${x} = ${S}$ cm – zgadza się z całym odcinkiem.`,
+      ],
+    );
+  }
+  if (w === 2) {
+    const x = r.int(3, 20), d = r.int(2, 12), S = 2 * x + d, pytajDluzszy = r.chance(0.5);
+    const odp = pytajDluzszy ? x + d : x;
+    return zad(
+      `Punkt $${C}$ leży na odcinku $${A}${B}$, przy czym $|${A}${B}| = ${S}$ cm, a odcinek $${A}${C}$ jest o $${d}$ cm dłuższy od odcinka $${C}${B}$. Ile centymetrów ma odcinek $${pytajDluzszy ? A + C : C + B}$?`,
+      [pole("wynik", `Długość $${pytajDluzszy ? A + C : C + B}$ (w cm)`)], { wynik: q(odp) }, `$${odp}$ cm`,
+      [
+        `Gdy od odcinka $${A}${B}$ odejmiemy nadmiar $${d}$ cm, zostaną dwie równe części: $${S} - ${d} = ${S - d}$ cm.`,
+        `Jedna część to $${S - d} : 2 = ${x}$ cm – tyle ma odcinek $${C}${B}$. Odcinek $${A}${C}$ ma $${x} + ${d} = ${x + d}$ cm.`,
+        `Sprawdzenie: $${x + d} + ${x} = ${S}$ cm.`,
+      ],
+    );
+  }
+  const o = r.pick([[2, 3], [3, 4], [5, 6]]), x = r.int(2, 9);
+  const [a, b] = o;
+  return zad(
+    `Punkt $${C}$ leży na odcinku $${A}${B}$. Odcinek $${A}${C}$ ma $${a * x}$ cm, a odcinek $${C}${B}$ ma $${b * x}$ cm. Ile centymetrów ma odcinek $${A}${B}$?`,
+    [pole("wynik", `Długość $${A}${B}$ (w cm)`)], { wynik: q(a * x + b * x) }, `$${(a + b) * x}$ cm`,
+    [
+      `Punkt $${C}$ leży na odcinku $${A}${B}$, więc $|${A}${B}| = |${A}${C}| + |${C}${B}|$.`,
+      `$|${A}${B}| = ${a * x} + ${b * x} = ${(a + b) * x}$ cm.`,
+      `Środek tego odcinka leży w połowie drogi, czyli $${(a + b) * x} : 2 = ${dz(q((a + b) * x, 2))}$ cm od punktu $${A}$.`,
+    ],
+  );
+}
+
+const TROJKI_SKROTU = [[3, 4, 5], [6, 8, 10], [9, 12, 15], [5, 12, 13], [8, 15, 17], [12, 16, 20]];
+
+/** Łamana: suma odcinków w różnych jednostkach albo droga po bokach prostokąta i droga na skróty. */
+function odcinkiLamana(r) {
+  const [A, B, C, D] = r.pick(ZESTAWY_LITER);
+  if (r.chance(0.65)) {
+    const x = r.int(20, 60), y = r.int(15, 70), cm = r.int(1, 5), mm = r.int(1, 9);
+    const razem = x + y + 10 * cm + mm;
+    return zad(
+      `Łamana $${A}${B}${C}${D}$ składa się z trzech odcinków: $|${A}${B}| = ${dz(q(x, 10))}$ cm, $|${B}${C}| = ${y}$ mm i $|${C}${D}| = ${cm}$ cm $${mm}$ mm. Ile centymetrów ma długość tej łamanej?`,
+      [pole("wynik", "Długość łamanej (w cm)")], { wynik: q(razem, 10) }, `$${dz(q(razem, 10))}$ cm`,
+      [
+        `Długość łamanej to suma długości jej odcinków. Najpierw zamieniamy wszystko na milimetry ($1$ cm $= 10$ mm).`,
+        `$|${A}${B}| = ${x}$ mm, $|${B}${C}| = ${y}$ mm, $|${C}${D}| = ${10 * cm + mm}$ mm.`,
+        `Suma: $${x} + ${y} + ${10 * cm + mm} = ${razem}$ mm.`,
+        `Zamieniamy na centymetry: $${razem}$ mm $= ${dz(q(razem, 10))}$ cm.`,
+      ],
+    );
+  }
+  const [a, b, c] = r.pick(TROJKI_SKROTU);
+  return zad(
+    `Punkty $${A}$, $${B}$, $${C}$ to trzy wierzchołki prostokąta, przy czym $|${A}${B}| = ${a}$ cm, $|${B}${C}| = ${b}$ cm, a odcinek $${A}${C}$ ma $${c}$ cm. Spacerowicz idzie z $${A}$ do $${C}$ najpierw bokiem do $${B}$, a potem bokiem do $${C}$. O ile centymetrów ta droga jest dłuższa od drogi na skróty, czyli od odcinka $${A}${C}$?`,
+    [pole("wynik", "Różnica (w cm)")], { wynik: q(a + b - c) }, `$${a + b - c}$ cm`,
+    [
+      `Droga po bokach to łamana $${A}${B}${C}$. Jej długość to suma odcinków: $${a} + ${b} = ${a + b}$ cm.`,
+      `Droga na skróty to odcinek $${A}${C}$, który ma $${c}$ cm.`,
+      `Różnica: $${a + b} - ${c} = ${a + b - c}$ cm.`,
+    ],
+  );
+}
+
+function odcinkiILamana(r) {
+  return losuj(r, [[28, odcinkiSumaJednostek], [34, odcinkiPodzial], [38, odcinkiLamana]]);
+}
+
+const OPCJE_PROSTE = ["równoległe", "prostopadłe", "nachylone do siebie pod kątem $45^\\circ$", "takie same (leżą na sobie)"];
+
+/** Wniosek o dwóch prostych na kartce (trzy proste w jednej płaszczyźnie) albo odczytanie zapisu ∥ i ⊥. */
+function prosteWniosek(r) {
+  const [X, Y, Z] = r.shuffle(["k", "l", "m", "n"]).slice(0, 3);
+  const w = r.int(0, 5);
+  let tresc, odp, kroki;
+  if (w === 0) {
+    tresc = `Na kartce narysowano trzy proste. Proste $${X}$ i $${Y}$ są prostopadłe do prostej $${Z}$. Proste $${X}$ i $${Y}$ są:`;
+    odp = 0;
+    kroki = [`Dwie proste prostopadłe do tej samej trzeciej są równoległe – jak dwa słupki stojące prosto na tej samej poziomej podłodze.`];
+  } else if (w === 1) {
+    tresc = `Na kartce narysowano trzy różne proste. Prosta $${X}$ jest równoległa do prostej $${Z}$, a prosta $${Y}$ też jest równoległa do prostej $${Z}$. Proste $${X}$ i $${Y}$ są:`;
+    odp = 0;
+    kroki = [`Proste równoległe do tej samej trzeciej biegną w tym samym kierunku, więc są równoległe do siebie (a że są różne, nie leżą na sobie).`];
+  } else if (w === 2) {
+    tresc = `Na kartce narysowano trzy proste. Proste $${X}$ i $${Y}$ są równoległe, a prosta $${Z}$ jest prostopadła do prostej $${X}$. Proste $${Z}$ i $${Y}$ są:`;
+    odp = 1;
+    kroki = [`Prosta $${Y}$ biegnie tak samo jak $${X}$, więc kąt prosty między $${Z}$ i $${X}$ jest też kątem prostym między $${Z}$ i $${Y}$. Proste $${Z}$ i $${Y}$ są prostopadłe.`];
+  } else if (w === 3) {
+    tresc = `Na kartce narysowano trzy różne proste. Prosta $${X}$ jest prostopadła do prostej $${Y}$, a prosta $${Y}$ jest prostopadła do prostej $${Z}$. Proste $${X}$ i $${Z}$ są:`;
+    odp = 0;
+    kroki = [`Obie proste $${X}$ i $${Z}$ są prostopadłe do tej samej prostej $${Y}$, więc są równoległe do siebie (a że są różne, nie leżą na sobie).`];
+  } else if (w === 4) {
+    tresc = `Zapis $${X} \\parallel ${Y}$ oznacza, że proste $${X}$ i $${Y}$ są:`;
+    odp = 0;
+    kroki = [`Znak $\\parallel$ czytamy „jest równoległa do”: proste biegną obok siebie jak szyny kolejowe i nigdy się nie przetną.`];
+  } else {
+    tresc = `Zapis $${X} \\perp ${Y}$ oznacza, że proste $${X}$ i $${Y}$ są:`;
+    odp = 1;
+    kroki = [`Znak $\\perp$ czytamy „jest prostopadła do”: proste przecinają się pod kątem prostym, jak kreski znaku plus.`];
+  }
+  const m = mieszaj(r, OPCJE_PROSTE[odp], OPCJE_PROSTE.filter((_, i) => i !== odp));
+  return zad(tresc, [polew("proste", "Proste są", m.opcje)], { proste: m.ind }, OPCJE_PROSTE[odp], [
+    ...kroki,
+    `Odpowiedź: ${OPCJE_PROSTE[odp]}.`,
+  ]);
+}
+
+/** Odległość wierzchołka prostokąta od prostej zawierającej bok: mierzymy prostopadle, czyli wzdłuż boku prostokąta. */
+const ODLEGLOSCI_PROSTOKAT = [
+  { P: "D", L: "AB", seg: "DA", rowny: "BC", k: "b" },
+  { P: "C", L: "AB", seg: "CB", rowny: null, k: "b" },
+  { P: "A", L: "BC", seg: "AB", rowny: null, k: "a" },
+  { P: "D", L: "BC", seg: "DC", rowny: "AB", k: "a" },
+  { P: "A", L: "CD", seg: "AD", rowny: "BC", k: "b" },
+  { P: "B", L: "CD", seg: "BC", rowny: null, k: "b" },
+  { P: "B", L: "AD", seg: "BA", rowny: null, k: "a" },
+  { P: "C", L: "AD", seg: "CD", rowny: "AB", k: "a" },
+];
+
+function prosteOdlegloscProstokat(r) {
+  const [a, b] = probuj(() => { const x = r.int(4, 16), y = r.int(3, 12); return x !== y ? [x, y] : null; });
+  const t = r.pick(ODLEGLOSCI_PROSTOKAT), wart = t.k === "a" ? a : b;
+  return zad(
+    `Prostokąt $ABCD$ ma boki $|AB| = ${a}$ cm i $|BC| = ${b}$ cm. Ile centymetrów wynosi odległość punktu $${t.P}$ od prostej $${t.L}$?`,
+    [pole("wynik", "Odległość (w cm)")], { wynik: q(wart) }, `$${wart}$ cm`,
+    [
+      "Odległość punktu od prostej to długość odcinka poprowadzonego z tego punktu prostopadle do prostej – to najkrótsza droga.",
+      `W prostokącie kąty są proste, więc odcinek $${t.seg}$ jest prostopadły do prostej $${t.L}$. To on mierzy odległość punktu $${t.P}$ od tej prostej.`,
+      t.rowny ? `Boki przeciwległe prostokąta są równe, więc $|${t.seg}| = |${t.rowny}| = ${wart}$ cm.` : `$|${t.seg}| = ${wart}$ cm.`,
+    ],
+  );
+}
+
+/** Dwie proste równoległe są od siebie wszędzie tak samo daleko; punkt na prostej jest od niej w odległości 0. */
+function prosteOdlegloscRownolegle(r) {
+  const d = r.int(2, 15), naTej = r.chance(0.3);
+  if (naTej) {
+    return zad(
+      `Proste $k$ i $l$ są równoległe, a odległość między nimi to $${d}$ cm. Punkt $R$ leży na prostej $l$. Ile centymetrów wynosi odległość punktu $R$ od prostej $l$?`,
+      [pole("wynik", "Odległość (w cm)")], { wynik: q(0) }, "$0$ cm",
+      ["Punkt leży na tej prostej, więc nie trzeba do niej iść: odległość wynosi $0$.", `Liczba $${d}$ cm to odległość między prostymi $k$ i $l$ i tu nie jest potrzebna.`],
+    );
+  }
+  return zad(
+    `Proste $k$ i $l$ są równoległe. Punkt $P$ leży na prostej $k$ w odległości $${d}$ cm od prostej $l$. Punkt $Q$ też leży na prostej $k$, ale daleko od punktu $P$. Ile centymetrów wynosi odległość punktu $Q$ od prostej $l$?`,
+    [pole("wynik", "Odległość (w cm)")], { wynik: q(d) }, `$${d}$ cm`,
+    [
+      "Dwie proste równoległe są od siebie w każdym miejscu tak samo daleko (jak szyny kolejowe).",
+      `Punkt $Q$ leży na prostej $k$, więc jego odległość od prostej $l$ jest taka sama jak punktu $P$, czyli $${d}$ cm.`,
+    ],
+  );
+}
+
+/** Czego nie da się zmierzyć linijką: prosta i półprosta nie mają dwóch końców, odcinek ma. */
+function prosteCoMierzymy(r) {
+  const [X, Y] = r.shuffle(["A", "B", "C", "D", "K", "L", "M", "P", "R", "S"]).slice(0, 2);
+  const dobra = `odcinek $${X}${Y}$`, zle = [`prosta $${X}${Y}$`, `półprosta $${X}${Y}$`, `półprosta $${Y}${X}$`];
+  const m = mieszaj(r, dobra, zle);
+  return zad(
+    "Długość którego z obiektów można zmierzyć linijką?",
+    [polew("obiekt", "Obiekt", m.opcje)], { obiekt: m.ind }, dobra,
+    [
+      "Prosta jest nieskończona w obie strony, więc nie da się jej zmierzyć.",
+      "Półprosta ma początek, ale nie ma końca, więc też nie ma długości.",
+      `Odcinek $${X}${Y}$ ma dwa końce, więc jego długość można zmierzyć i zapisać $|${X}${Y}|$.`,
+    ],
+  );
+}
+
+function prosteIOdleglosc(r) {
+  return losuj(r, [[22, prosteWniosek], [32, prosteOdlegloscProstokat], [26, prosteOdlegloscRownolegle], [20, prosteCoMierzymy]]);
 }
 
 // --- 1. Kąty przyległe, wierzchołkowe i wokół punktu
@@ -753,6 +979,211 @@ function wielokatyIZdania(r) {
     [12, sumaKatowWielokata], [16, katWielokataForemnego], [14, brakujacyKatWielokata], [14, ileBokowZSumy],
     [44, (rr) => zdaniaWybor(rr, ZDANIA_CZWOROKATY, "o czworokątach")],
   ]);
+}
+
+// --- 6b. Koło i okrąg: promień, średnica, cięciwa, długość okręgu, pole koła, półkole i ćwiartka (wynik jako współczynnik przy π albo z π ≈ 3,14)
+
+const PIZZE_KOLA = ["Pizza", "Talerz", "Moneta", "Tort", "Zegar ścienny", "Pokrywka"];
+
+/** Promień i średnica w treści: „promień $r$ cm” albo „średnica $2r$ cm”. */
+function danePromienSrednica(r, rr) {
+  return r.chance(0.5)
+    ? { opis: `promień $${rr}$ cm`, kluczowe: `Podano promień: $r = ${rr}$ cm, a średnica to $d = 2 \\cdot ${rr} = ${2 * rr}$ cm.`, sred: false }
+    : { opis: `średnicę $${2 * rr}$ cm`, kluczowe: `Podano średnicę: $d = ${2 * rr}$ cm, więc promień to $r = ${2 * rr} : 2 = ${rr}$ cm.`, sred: true };
+}
+
+function okragPromienSrednica(r) {
+  const rr = r.int(2, 25);
+  const o = r.pick(PIZZE_KOLA);
+  if (r.chance(0.5)) {
+    return zad(
+      `${o} ma promień $${rr}$ cm. Ile centymetrów ma średnica?`,
+      [pole("wynik", "Średnica (w cm)")], { wynik: q(2 * rr) }, `$${2 * rr}$ cm`,
+      ["Średnica to dwa promienie w jednej linii, więc jest dwa razy dłuższa od promienia.", `$d = 2r = 2 \\cdot ${rr} = ${2 * rr}$ cm.`],
+    );
+  }
+  return zad(
+    `${o} ma średnicę $${2 * rr}$ cm. Ile centymetrów ma promień?`,
+    [pole("wynik", "Promień (w cm)")], { wynik: q(rr) }, `$${rr}$ cm`,
+    ["Promień to połowa średnicy.", `$r = d : 2 = ${2 * rr} : 2 = ${rr}$ cm.`, `Sprawdzenie: dwa promienie dają $2 \\cdot ${rr} = ${2 * rr}$ cm – tyle co średnica.`],
+  );
+}
+
+function okragCieciwa(r) {
+  const rr = r.pick([3, 4, 5, 6, 7, 8, 9, 10, 12]), d = 2 * rr;
+  const w = r.int(0, 2);
+  if (w === 0) {
+    return zad(
+      `Okrąg ma promień $${rr}$ cm. Ile centymetrów ma najdłuższa cięciwa tego okręgu?`,
+      [pole("wynik", "Długość (w cm)")], { wynik: q(d) }, `$${d}$ cm`,
+      ["Najdłuższą cięciwą okręgu jest jego średnica – cięciwa przechodząca przez środek.", `$d = 2r = 2 \\cdot ${rr} = ${d}$ cm.`],
+    );
+  }
+  if (w === 1) {
+    return zad(
+      `Najdłuższa cięciwa okręgu ma $${d}$ cm. Ile centymetrów ma promień tego okręgu?`,
+      [pole("wynik", "Promień (w cm)")], { wynik: q(rr) }, `$${rr}$ cm`,
+      ["Najdłuższa cięciwa to średnica, więc $d = " + d + "$ cm.", `Promień jest dwa razy krótszy: $r = ${d} : 2 = ${rr}$ cm.`],
+    );
+  }
+  return probuj(() => {
+    const dobra = r.int(rr, d - 1) + (r.chance(0.5) ? 0.5 : 0);
+    const zle = [...new Set([0.5, 1, 2, 3, 5, 8].map((x) => d + x))];
+    const wybrane = r.shuffle(zle).slice(0, 3);
+    const t = (x) => `$${dz(q(Math.round(x * 2), 2))}$ cm`;
+    const m = mieszaj(r, t(dobra), wybrane.map(t));
+    if (!m) return null;
+    return zad(
+      `Okrąg ma promień $${rr}$ cm. Które z podanych długości może mieć cięciwa tego okręgu?`,
+      [polew("ciec", "Długość cięciwy", m.opcje)], { ciec: m.ind }, t(dobra),
+      [
+        `Najdłuższa cięciwa to średnica: $d = 2 \\cdot ${rr} = ${d}$ cm. Żadna cięciwa nie jest od niej dłuższa.`,
+        ...[dobra, ...wybrane].sort((x, y) => x - y).map((x) => (x > d ? `$${dz(q(Math.round(x * 2), 2))} > ${d}$ – za długa na cięciwę.` : `$${dz(q(Math.round(x * 2), 2))} < ${d}$ – taka cięciwa jest możliwa.`)),
+      ],
+    );
+  });
+}
+
+function okragDlugosc(r) {
+  const rr = r.int(2, 20), dane = danePromienSrednica(r, rr);
+  const w = r.int(0, 3);
+  if (w <= 1) {
+    const L = dane.sred ? `$L = \\pi \\cdot ${2 * rr} = ${2 * rr}\\pi$` : `$L = 2 \\cdot ${rr} \\cdot \\pi = ${2 * rr}\\pi$`;
+    return zad(
+      `Okrąg ma ${dane.opis}. Jego długość jest równa $L = k\\pi$ cm. Ile wynosi $k$?`,
+      [pole("k", "$k =$")], { k: q(2 * rr) }, `$L = ${2 * rr}\\pi$ cm`,
+      [dane.kluczowe, `Długość okręgu to $L = 2\\pi r$ (albo $L = \\pi d$). Podstawiamy: ${L} cm.`, `Zostawiamy $\\pi$ w wyniku, więc $k = ${2 * rr}$.`],
+    );
+  }
+  if (w === 2) {
+    const pytajR = r.chance(0.6);
+    return zad(
+      `Długość okręgu jest równa $${2 * rr}\\pi$ cm. Ile centymetrów ma ${pytajR ? "promień" : "średnica"} tego okręgu?`,
+      [pole("wynik", pytajR ? "Promień (w cm)" : "Średnica (w cm)")], { wynik: q(pytajR ? rr : 2 * rr) }, `$${pytajR ? rr : 2 * rr}$ cm`,
+      [
+        `Z $L = 2\\pi r$ mamy $2\\pi r = ${2 * rr}\\pi$.`,
+        `Dzielimy obie strony przez $2\\pi$: $r = ${2 * rr}\\pi : 2\\pi = ${rr}$ cm.`,
+        pytajR ? "Pytają o promień, więc to jest wynik." : `Pytają o średnicę: $d = 2r = 2 \\cdot ${rr} = ${2 * rr}$ cm.`,
+      ],
+    );
+  }
+  const d = r.pick([10, 20, 30, 40, 50, 60, 70, 80, 100]), L = q(314 * d, 100);
+  return zad(
+    `Koło roweru ma średnicę $${d}$ cm. Ile centymetrów przejedzie rower w jednym pełnym obrocie koła? Przyjmij, że $\\pi \\approx 3{,}14$.`,
+    [pole("wynik", "Droga (w cm)")], { wynik: L }, `$${dz(L)}$ cm`,
+    [
+      "W jednym obrocie koło przetacza się po drodze równej długości swojego brzegu, czyli długości okręgu.",
+      `Mamy średnicę, więc $L = \\pi d$, czyli około $3{,}14 \\cdot ${d}$.`,
+      `$3{,}14 \\cdot ${d} = ${dz(L)}$ cm.`,
+    ],
+  );
+}
+
+function okragiPromienDlugosc(r) {
+  return losuj(r, [[22, okragPromienSrednica], [24, okragCieciwa], [54, okragDlugosc]]);
+}
+
+/** Pole koła i jego części: współczynnik przy π, przybliżenie 3,14, pole z obwodu, półkole, ćwiartka, koło w kwadracie. */
+function poleKolaWspolczynnik(r) {
+  const rr = r.int(2, 15), dane = danePromienSrednica(r, rr);
+  return zad(
+    `Koło ma ${dane.opis}. Jego pole jest równe $P = k\\pi\\ \\text{cm}^2$. Ile wynosi $k$?`,
+    [pole("k", "$k =$")], { k: q(rr * rr) }, `$P = ${rr * rr}\\pi\\ \\text{cm}^2$`,
+    [
+      dane.kluczowe,
+      `Pole koła to $P = \\pi r^2$ – we wzorze zawsze jest promień, a nie średnica.`,
+      `$P = \\pi \\cdot ${rr}^2 = ${rr * rr}\\pi$, więc $k = ${rr * rr}$.`,
+    ],
+  );
+}
+
+function poleKolaZPola(r) {
+  const rr = r.int(2, 15), pytajD = r.chance(0.4);
+  return zad(
+    `Pole koła jest równe $${rr * rr}\\pi\\ \\text{cm}^2$. Ile centymetrów ma ${pytajD ? "średnica" : "promień"} tego koła?`,
+    [pole("wynik", pytajD ? "Średnica (w cm)" : "Promień (w cm)")], { wynik: q(pytajD ? 2 * rr : rr) }, `$${pytajD ? 2 * rr : rr}$ cm`,
+    [
+      `Ze wzoru $P = \\pi r^2$ mamy $\\pi r^2 = ${rr * rr}\\pi$, więc $r^2 = ${rr * rr}$.`,
+      `Szukamy liczby, która pomnożona przez siebie daje $${rr * rr}$: $${rr} \\cdot ${rr} = ${rr * rr}$, więc $r = ${rr}$ cm.`,
+      pytajD ? `Pytają o średnicę: $d = 2r = ${2 * rr}$ cm.` : "Pytają o promień, więc to jest wynik.",
+    ],
+  );
+}
+
+function poleKolaPrzyblizenie(r) {
+  const rr = r.pick([2, 3, 4, 5, 6, 10, 20]), dane = danePromienSrednica(r, rr), P = q(314 * rr * rr, 100);
+  return zad(
+    `Koło ma ${dane.opis}. Oblicz jego pole, przyjmując $\\pi \\approx 3{,}14$ (wynik w $\\text{cm}^2$).`,
+    [pole("wynik", "Pole (w $\\text{cm}^2$)")], { wynik: P }, `$${dz(P)}\\ \\text{cm}^2$`,
+    [
+      dane.kluczowe,
+      `Z $P = \\pi r^2$ i $\\pi \\approx 3{,}14$ mamy $P \\approx 3{,}14 \\cdot ${rr * rr}$.`,
+      `$3{,}14 \\cdot ${rr * rr} = ${dz(P)}$, więc pole to $${dz(P)}\\ \\text{cm}^2$.`,
+    ],
+  );
+}
+
+function poleCzescKola(r) {
+  const polowa = r.chance(0.5), rr = polowa ? r.int(2, 12) : r.pick([2, 4, 6, 8, 10, 12]);
+  const nazwa = polowa ? "półkole" : "ćwiartka koła";
+  if (r.chance(0.5)) {
+    const P = q(rr * rr, polowa ? 2 : 4);
+    return zad(
+      `${cap(nazwa)} ma promień $${rr}$ cm. Jej pole jest równe $P = k\\pi\\ \\text{cm}^2$. Ile wynosi $k$?`,
+      [pole("k", "$k =$")], { k: P }, `$P = ${dz(P)}\\pi\\ \\text{cm}^2$`,
+      [
+        `Pole całego koła o promieniu $${rr}$ cm to $\\pi \\cdot ${rr}^2 = ${rr * rr}\\pi$ (w $\\text{cm}^2$).`,
+        `${cap(nazwa)} to ${polowa ? "połowa" : "jedna czwarta"} koła, więc dzielimy przez $${polowa ? 2 : 4}$: $${rr * rr}\\pi : ${polowa ? 2 : 4} = ${dz(P)}\\pi$.`,
+        `Zatem $k = ${dz(P)}$.`,
+      ],
+    );
+  }
+  const luk = q(rr, polowa ? 1 : 2), prost = 2 * rr;
+  return zad(
+    `${cap(nazwa)} ma promień $${rr}$ cm. Jej obwód (cały brzeg) jest równy $L = a + k\\pi$ cm. Podaj liczby $a$ i $k$.`,
+    [pole("a", "$a =$"), pole("k", "$k =$")], { a: q(prost), k: luk }, `$L = ${prost} + ${dz(luk)}\\pi$ cm`,
+    [
+      `Brzeg ${nazwa === "półkole" ? "półkola" : "ćwiartki"} to łuk i proste odcinki.`,
+      polowa
+        ? `Łuk to połowa okręgu: $\\frac{2\\pi \\cdot ${rr}}{2} = ${rr}\\pi$ cm. Prosty brzeg to średnica: $2 \\cdot ${rr} = ${2 * rr}$ cm.`
+        : `Łuk to ćwiartka okręgu: $\\frac{2\\pi \\cdot ${rr}}{4} = ${dz(luk)}\\pi$ cm. Prosty brzeg to dwa promienie: $2 \\cdot ${rr} = ${2 * rr}$ cm.`,
+      `Obwód: $L = ${prost} + ${dz(luk)}\\pi$ cm, więc $a = ${prost}$ i $k = ${dz(luk)}$.`,
+    ],
+  );
+}
+
+function poleKwadratBezKola(r) {
+  const a = r.pick([4, 6, 8, 10, 20]), rr = a / 2, kolo = q(314 * rr * rr, 100), wynik = q(a * a).sub(kolo);
+  return zad(
+    `W kwadracie o boku $${a}$ cm narysowano koło, które dotyka wszystkich czterech boków kwadratu. Ile $\\text{cm}^2$ wynosi pole części kwadratu leżącej poza kołem? Przyjmij, że $\\pi \\approx 3{,}14$.`,
+    [pole("wynik", "Pole (w $\\text{cm}^2$)")], { wynik }, `$${dz(wynik)}\\ \\text{cm}^2$`,
+    [
+      `Koło dotyka boków kwadratu, więc jego średnica jest równa bokowi kwadratu: $d = ${a}$ cm, a promień $r = ${rr}$ cm.`,
+      `Pole kwadratu: $${a} \\cdot ${a} = ${a * a}$. Pole koła: $3{,}14 \\cdot ${rr}^2 = ${dz(kolo)}$.`,
+      `Pole poza kołem: $${a * a} - ${dz(kolo)} = ${dz(wynik)}$ (w $\\text{cm}^2$).`,
+    ],
+  );
+}
+
+function poleZwiekszenieKola(r) {
+  const k = r.int(2, 5), rr = r.int(2, 9), pytajPole = r.chance(0.6);
+  return zad(
+    `Promień koła zwiększono $${k}$ razy (z $${rr}$ cm do $${k * rr}$ cm). Ile razy ${pytajPole ? "zwiększyło się pole tego koła" : "zwiększyła się długość okręgu"}?`,
+    [pole("wynik", "Ile razy")], { wynik: q(pytajPole ? k * k : k) }, `$${pytajPole ? k * k : k}$`,
+    pytajPole
+      ? [
+        `Pole koła o promieniu $${rr}$ cm to $\\pi \\cdot ${rr}^2 = ${rr * rr}\\pi$, a o promieniu $${k * rr}$ cm to $\\pi \\cdot ${k * rr}^2 = ${k * k * rr * rr}\\pi$.`,
+        `Iloraz: $${k * k * rr * rr}\\pi : ${rr * rr}\\pi = ${k * k}$. Pole rośnie $${k}^2 = ${k * k}$ razy, bo promień jest we wzorze podniesiony do kwadratu.`,
+      ]
+      : [
+        `Długość okręgu o promieniu $${rr}$ cm to $2\\pi \\cdot ${rr} = ${2 * rr}\\pi$, a o promieniu $${k * rr}$ cm to $2\\pi \\cdot ${k * rr} = ${2 * k * rr}\\pi$.`,
+        `Iloraz: $${2 * k * rr}\\pi : ${2 * rr}\\pi = ${k}$. Długość okręgu rośnie tyle samo razy co promień, bo we wzorze $L = 2\\pi r$ nie ma kwadratu.`,
+      ],
+  );
+}
+
+function poleKolaIPolkole(r) {
+  return losuj(r, [[18, poleKolaWspolczynnik], [14, poleKolaZPola], [16, poleKolaPrzyblizenie], [20, poleCzescKola], [12, poleKwadratBezKola], [10, poleZwiekszenieKola]]);
 }
 
 // --- 7. Pola i obwody: prostokąt, kwadrat, trójkąt, równoległobok, romb, trapez
@@ -1643,15 +2074,132 @@ function symetrieOsieISrodek(r) {
   return losuj(r, [[30, ileOsi], [26, ktoraFiguraMaOsie], [24, ktoraFiguraMaSrodek], [20, odlegloscSlownie]]);
 }
 
+// --- 14b. Symetralna odcinka i dwusieczna kąta: równe odległości, połowa odcinka i połowa kąta, dobór rozstawu cyrkla
+
+function symetralnaPunkt(r) {
+  const [A, B] = r.pick([["A", "B"], ["K", "L"], ["M", "N"]]), AB = r.int(6, 20), x = r.int(AB, AB + 15);
+  const w = r.int(0, 2);
+  if (w === 0) {
+    return zad(
+      `Punkt $P$ leży na symetralnej odcinka $${A}${B}$. Wiadomo, że $|${A}${B}| = ${AB}$ cm i $|P${A}| = ${x}$ cm. Ile centymetrów ma odcinek $P${B}$?`,
+      [pole("wynik", `Długość $P${B}$ (w cm)`)], { wynik: q(x) }, `$${x}$ cm`,
+      [
+        `Każdy punkt symetralnej jest tak samo daleko od obu końców odcinka, więc $|P${B}| = |P${A}|$.`,
+        `Zatem $|P${B}| = ${x}$ cm. Długość $|${A}${B}| = ${AB}$ cm nie jest tu potrzebna.`,
+      ],
+    );
+  }
+  if (w === 1) {
+    const pytajKat = r.chance(0.3);
+    return pytajKat
+      ? zad(
+        `Prosta $k$ jest symetralną odcinka $${A}${B}$. Jaki kąt (w stopniach) tworzy prosta $k$ z odcinkiem $${A}${B}$?`,
+        [pole("wynik", "Kąt (w stopniach)")], { wynik: q(90) }, "$90^\\circ$",
+        ["Symetralna odcinka jest do niego prostopadła, a przechodzi przez jego środek.", "Kąt prosty ma $90^\\circ$."],
+      )
+      : zad(
+        `Prosta $k$ jest symetralną odcinka $${A}${B}$ i przecina go w punkcie $S$. Wiadomo, że $|${A}${B}| = ${2 * AB}$ cm. Ile centymetrów ma odcinek $${A}S$?`,
+        [pole("wynik", `Długość $${A}S$ (w cm)`)], { wynik: q(AB) }, `$${AB}$ cm`,
+        ["Symetralna przechodzi przez środek odcinka i jest do niego prostopadła, więc $S$ jest środkiem odcinka.", `$|${A}S| = ${2 * AB} : 2 = ${AB}$ cm.`],
+      );
+  }
+  const d = r.int(3, 9) * 2;
+  const h = d / 2, dobra = h + r.int(1, 5), zle = [h, h - 1, h - 2];
+  const m = mieszaj(r, `$${dobra}$ cm`, zle.map((x) => `$${x}$ cm`));
+  return zad(
+    `Konstruujemy cyrklem i linijką symetralną odcinka $${A}${B}$ o długości $${d}$ cm: z obu końców zakreślamy łuki o tym samym promieniu. Który rozstaw cyrkla pozwoli skonstruować symetralną?`,
+    [polew("rozstaw", "Rozstaw cyrkla", m.opcje)], { rozstaw: m.ind }, `$${dobra}$ cm`,
+    [
+      `Połowa odcinka to $${d} : 2 = ${h}$ cm. Promień łuków musi być większy od połowy odcinka.`,
+      `Przy rozstawie $${h}$ cm łuki dotykają się tylko w jednym punkcie (na odcinku), a przy mniejszych w ogóle się nie spotykają.`,
+      `Dobry jest rozstaw $${dobra}$ cm, bo $${dobra} > ${h}$.`,
+    ],
+  );
+}
+
+function dwusiecznaKat(r) {
+  const w = r.int(0, 3);
+  if (w === 0) {
+    const a = r.int(10, 85) * 2;
+    return zad(
+      `Kąt $ABC$ ma miarę $${a}^\\circ$, a półprosta $BD$ jest jego dwusieczną. Ile stopni ma kąt $DBC$?`,
+      [pole("wynik", "Kąt $DBC$ (w stopniach)")], { wynik: q(a / 2) }, `$${a / 2}^\\circ$`,
+      ["Dwusieczna dzieli kąt na dwa równe kąty.", `Kąt $DBC$ ma $${a}^\\circ : 2 = ${a / 2}^\\circ$.`],
+    );
+  }
+  if (w === 1) {
+    const b = r.int(10, 85);
+    return zad(
+      `Półprosta $BD$ jest dwusieczną kąta $ABC$, przy czym kąt $ABD$ ma miarę $${b}^\\circ$. Ile stopni ma cały kąt $ABC$?`,
+      [pole("wynik", "Kąt $ABC$ (w stopniach)")], { wynik: q(2 * b) }, `$${2 * b}^\\circ$`,
+      ["Dwusieczna dzieli kąt na dwa równe kąty, więc cały kąt to dwa takie kąty.", `Kąt $ABC$ ma $2 \\cdot ${b}^\\circ = ${2 * b}^\\circ$.`],
+    );
+  }
+  if (w === 2) {
+    const d = r.int(2, 12), kat = r.int(5, 17) * 10;
+    return zad(
+      `Kąt $ABC$ ma miarę $${kat}^\\circ$, a półprosta $BD$ jest jego dwusieczną. Punkt $E$ leży na dwusiecznej $BD$ w odległości $${d}$ cm od ramienia $BA$. Ile centymetrów wynosi odległość punktu $E$ od ramienia $BC$?`,
+      [pole("wynik", "Odległość (w cm)")], { wynik: q(d) }, `$${d}$ cm`,
+      [
+        "Każdy punkt dwusiecznej jest tak samo daleko od obu ramion kąta (odległość mierzymy prostopadle do ramienia).",
+        `Odległość od ramienia $BC$ jest więc taka sama jak od ramienia $BA$, czyli $${d}$ cm. Miara kąta nie jest tu potrzebna.`,
+      ],
+    );
+  }
+  const x = r.int(5, 30);
+  return zad(
+    `W trójkącie równoramiennym $ABC$ ($|AC| = |BC|$) poprowadzono dwusieczną kąta przy wierzchołku $C$. Przecina ona podstawę $AB$ w punkcie $D$. Podstawa $AB$ ma $${x}$ cm. Ile centymetrów ma odcinek $AD$?`,
+    [pole("wynik", "Długość $AD$ (w cm)")], { wynik: q(x, 2) }, `$${dz(q(x, 2))}$ cm`,
+    [
+      "W trójkącie równoramiennym dwusieczna kąta przy wierzchołku dzieli podstawę na dwie równe części (to też oś symetrii trójkąta).",
+      `Odcinek $AD$ ma $${x} : 2 = ${dz(q(x, 2))}$ cm.`,
+    ],
+  );
+}
+
+function symetralnaWybor(r) {
+  const [A, B] = r.pick([["A", "B"], ["K", "L"], ["M", "N"]]);
+  if (r.chance(0.5)) {
+    const dobra = `symetralnej odcinka $${A}${B}$`;
+    const m = mieszaj(r, dobra, [`prostej $${A}${B}$`, `prostej przechodzącej przez punkt $${A}$ i prostopadłej do odcinka $${A}${B}$`, `prostej równoległej do odcinka $${A}${B}$ przechodzącej przez punkt $${B}$`]);
+    return zad(
+      `Punkt $P$ jest tak samo oddalony od punktów $${A}$ i $${B}$ (czyli $|P${A}| = |P${B}|$). Na której prostej leży punkt $P$?`,
+      [polew("prosta", "Punkt $P$ leży na", m.opcje)], { prosta: m.ind }, dobra,
+      [
+        "Punkty tak samo oddalone od dwóch punktów tworzą symetralną odcinka, który je łączy.",
+        `Symetralna odcinka $${A}${B}$ przechodzi przez jego środek i jest do niego prostopadła.`,
+      ],
+    );
+  }
+  const dobra = "dwusiecznej tego kąta";
+  const m = mieszaj(r, dobra, ["jednym z ramion tego kąta", "półprostej prostopadłej do jednego z ramion w wierzchołku kąta"]);
+  return zad(
+    "Punkt $P$ leży wewnątrz kąta i jest tak samo oddalony od obu ramion tego kąta. Na czym leży punkt $P$?",
+    [polew("polprosta", "Punkt $P$ leży na", m.opcje)], { polprosta: m.ind }, dobra,
+    [
+      "Punkty tak samo oddalone od obu ramion kąta leżą na jego dwusiecznej.",
+      "Dwusieczna dzieli kąt na dwa równe kąty.",
+    ],
+  );
+}
+
+function symetralnaIDwusieczna(r) {
+  return losuj(r, [[34, symetralnaPunkt], [34, dwusiecznaKat], [32, symetralnaWybor]]);
+}
+
 // --- Lista generatorów
 
 export const GENERATORY = [
+  { id: "odcinki-i-lamana", nazwa: "Odcinki i łamana", opis: "Długość odcinka z dwóch części w różnych jednostkach (cm i mm, m i cm), środek odcinka, podział odcinka w danym stosunku lub o daną różnicę, długość łamanej, droga po bokach i na skróty.", temat: "proste-odcinki", generuj: odcinkiILamana },
+  { id: "proste-rownolegle-odleglosc", nazwa: "Proste prostopadłe, równoległe, odległość", opis: "Wnioski o trzech prostych (równoległe i prostopadłe), znaki ∥ i ⊥, odległość punktu od prostej w prostokącie i między prostymi równoległymi, czego nie da się zmierzyć linijką.", temat: "proste-odcinki", generuj: prosteIOdleglosc },
   { id: "katy-przylegle-wierzcholkowe", nazwa: "Kąty przyległe, wierzchołkowe i wokół punktu", opis: "Kąt przyległy i wierzchołkowy, kąty wokół punktu, dwa kąty przyległe w danym stosunku lub różniące się o dane stopnie, kąt między półprostymi na prostej.", temat: "katy", generuj: katyPrzylegleWierzcholkowe },
   { id: "katy-proste-rownolegle", nazwa: "Kąty przy prostych równoległych", opis: "Dwie proste równoległe przecięte trzecią (położenie kątów opisane słowami): kąty odpowiadające (F), naprzemianległe (Z) i jednostronne (C), także w danym stosunku.", temat: "katy", generuj: katyProste },
   { id: "trojkaty-katy", nazwa: "Kąty w trójkącie", opis: "Trzeci kąt, drugi kąt ostry w trójkącie prostokątnym, trójkąt równoramienny, kąt zewnętrzny, kąty w danym stosunku.", temat: "trojkaty", generuj: trojkatyKaty },
   { id: "trojkaty-nierownosc-i-rodzaje", nazwa: "Nierówność trójkąta, rodzaje trójkątów, prawda czy fałsz", opis: "Z których odcinków powstanie trójkąt, możliwe długości trzeciego boku, obwód trójkąta równoramiennego, nazwa trójkąta po kątach i bokach, zdania prawda/fałsz o trójkątach.", temat: "trojkaty", generuj: trojkatyNierownosc },
   { id: "czworokaty-katy", nazwa: "Kąty czworokątów", opis: "Czwarty kąt czworokąta, kąty równoległoboku i rombu, trapezu równoramiennego i prostokątnego, kąty czworokąta lub równoległoboku w danym stosunku.", temat: "czworokaty", generuj: czworokatyKaty },
   { id: "wielokaty-i-wlasnosci", nazwa: "Wielokąty i własności czworokątów", opis: "Suma kątów wielokąta, kąt wielokąta foremnego, brakujący kąt pięciokąta i sześciokąta, liczba boków, zdania prawda/fałsz o czworokątach.", temat: "czworokaty", generuj: wielokatyIZdania },
+  { id: "okrag-promien-dlugosc", nazwa: "Promień, średnica, długość okręgu", opis: "Promień i średnica, najdłuższa cięciwa i możliwa długość cięciwy, długość okręgu jako wielokrotność liczby π, promień z długości okręgu, droga koła roweru z π ≈ 3,14.", temat: "kola-i-okregi", generuj: okragiPromienDlugosc },
+  { id: "kolo-pole-polkole", nazwa: "Pole koła, półkole, ćwiartka", opis: "Pole koła jako wielokrotność π, promień z pola, pole z π ≈ 3,14, pole i obwód półkola i ćwiartki koła, kwadrat z kołem, jak zmienia się pole i długość okręgu po zwiększeniu promienia.", temat: "kola-i-okregi", generuj: poleKolaIPolkole },
   { id: "pola-obwody-wzory", nazwa: "Pola i obwody: prostokąt, trójkąt, równoległobok, romb, trapez", opis: "Pole i obwód prostokąta i kwadratu, pole trójkąta, równoległoboku, rombu (z przekątnych) i trapezu, brakujący bok lub wysokość, obwód rombu z przekątnych.", temat: "pola-obwody", generuj: polaObwodyWzory },
   { id: "pola-figury-zlozone-i-jednostki", nazwa: "Figury złożone, jednostki pola, płytki", opis: "Pole i obwód figury w kształcie litery L, prostokąt bez trójkąta, ścieżka wokół basenu, zamiana m², dm², cm², liczba płytek, jak rośnie pole przy powiększeniu boków.", temat: "pola-obwody", generuj: figurySlozoneIJednostki },
   { id: "pitagoras-bok-trojkata", nazwa: "Twierdzenie Pitagorasa: trójki i zastosowania", opis: "Przeciwprostokątna i przyprostokątna (trójki 3-4-5, 5-12-13, 8-15-17, 7-24-25 i ich wielokrotności), przekątna prostokąta, drabina, trójkąt równoramienny, romb, trapez prostokątny.", temat: "pitagoras", generuj: pitagorasBokTrojkata },
@@ -1660,4 +2208,5 @@ export const GENERATORY = [
   { id: "uklad-figury-i-wierzcholki", nazwa: "Figury w układzie współrzędnych", opis: "Czwarty wierzchołek równoległoboku, prostokąta i kwadratu, pole trójkąta z bokiem równoległym do osi, pole i obwód prostokąta z dwóch wierzchołków.", temat: "uklad-wspolrzednych", generuj: ukladFigury },
   { id: "symetrie-w-ukladzie", nazwa: "Symetrie w układzie współrzędnych", opis: "Punkt symetryczny względem osi x, osi y, początku układu i prostej pionowej lub poziomej, odległość punktu od obrazu, symetria środkowa i środek symetrii.", temat: "symetrie", generuj: symetrieWUkladzie },
   { id: "symetrie-osie-i-srodek", nazwa: "Osie i środek symetrii figur", opis: "Liczba osi symetrii figur, która figura ma dokładnie tyle osi, która ma środek symetrii, odległość punktu od jego obrazu (symetria osiowa i środkowa).", temat: "symetrie", generuj: symetrieOsieISrodek },
+  { id: "symetralna-i-dwusieczna", nazwa: "Symetralna i dwusieczna", opis: "Równe odległości od końców odcinka i od ramion kąta, połowa odcinka i połowa kąta, dwusieczna w trójkącie równoramiennym, rozstaw cyrkla przy konstrukcji symetralnej, na której prostej leży punkt.", temat: "symetralna-dwusieczna", generuj: symetralnaIDwusieczna },
 ];

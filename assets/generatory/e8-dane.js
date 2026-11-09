@@ -2,6 +2,7 @@
 // zliczanie możliwości, prawdopodobieństwo. Zadania ćwiczą dokładnie to, co tłumaczą karty z assets/wzory/e8-dane.js.
 // Kontrakt zadania i narzędzia: zob. wspolne.js. Każdy generator ma pole temat – id tematu z assets/arkusze/tematy.js (dział "e8-dane").
 // Zadania nie mają rysunków: dane podajemy w tekście albo w małej tabeli KaTeX (dwie wąskie kolumny), diagramy i wykresy są opisane słowami.
+// Mediana i dominanta: z listy liczb, z tabeli liczności, po dopisaniu liczby oraz średnia a mediana (jedna bardzo duża wartość).
 // Liczby są dobrane tak, żeby wszystko dało się policzyć w pamięci, bez kalkulatora. Rozwiązania są pisane prostym językiem, kilka krótkich kroków.
 // Odpowiedzi liczymy dokładnie na Q (bez liczb zmiennoprzecinkowych); pola z ułamkiem przyjmują zarówno zapis zwykły (3/4), jak i dziesiętny (0,75).
 // Liczby możliwości w zadaniach o cyfrach są dodatkowo sprawdzane wyliczeniem wszystkich przypadków (błąd w rozkładzie na czynniki wyrzuca wyjątek).
@@ -735,6 +736,173 @@ function sredniaDwochGrup(r) {
   );
 }
 
+// --- 4b. Mediana i dominanta: z listy liczb, z tabeli liczności, po dopisaniu liczby, średnia a mediana
+
+const mediana = (sorted) => { const n = sorted.length; return n % 2 ? q(sorted[(n - 1) / 2]) : q(sorted[n / 2 - 1] + sorted[n / 2], 2); };
+const porzadkuj = (arr) => [...arr].sort((a, b) => a - b);
+const licznosci = (arr) => { const m = new Map(); arr.forEach((x) => m.set(x, (m.get(x) ?? 0) + 1)); return m; };
+const DANE_LISTY = [
+  { zdanie: (n) => `Oceny z kartkówek z matematyki (${n} ocen):`, lo: 1, hi: 6 },
+  { zdanie: (n) => `Czas dojścia do szkoły (w minutach) zapisany przez ${n} uczniów:`, lo: 3, hi: 25 },
+  { zdanie: (n) => `Liczba bramek strzelonych przez drużynę w ${n} meczach:`, lo: 0, hi: 6 },
+  { zdanie: (n) => `Wyniki ${n} zawodników w skoku w dal (w decymetrach):`, lo: 9, hi: 20 },
+  { zdanie: (n) => `Liczba pasażerów w autobusie na ${n} kolejnych przystankach:`, lo: 5, hi: 40 },
+];
+
+/** Losuje n liczb z przedziału tak, żeby najczęstsza wartość występowała c razy, a reszta mniej razy (unikalna dominanta albo dwie równe). */
+function listaZDominanta(r, n, lo, hi, dwie) {
+  return probuj(() => {
+    const dane = Array.from({ length: n }, () => r.int(lo, hi));
+    const m = licznosci(dane), max = Math.max(...m.values());
+    const top = [...m].filter(([, c]) => c === max).map(([v]) => v);
+    if (max < 2 || top.length !== (dwie ? 2 : 1)) return null;
+    return dane;
+  });
+}
+
+function dominantaIMedianaZListy(r) {
+  const k = r.pick(DANE_LISTY), w = r.int(0, 99);
+  const lista = (a) => a.map((x) => `$${x}$`).join(", ");
+  if (w < 35) {
+    const dwie = r.chance(0.3), n = dwie ? r.int(8, 10) : r.int(7, 10);
+    const dane = listaZDominanta(r, n, k.lo, Math.min(k.hi, k.lo + 7), dwie);
+    const m = licznosci(dane), max = Math.max(...m.values());
+    const top = [...m].filter(([, c]) => c === max).map(([v]) => v).sort((a, b) => a - b);
+    const licz = porzadkuj([...m.keys()]).filter((v) => m.get(v) >= 2).map((v) => `$${v}$ – ${m.get(v)} ${lm(m.get(v), ["raz", "razy", "razy"])}`);
+    return zad(
+      `${k.zdanie(n)} ${lista(dane)}. ${dwie ? "W tych danych są dwie dominanty. Podaj je." : "Podaj dominantę tych danych."}`,
+      dwie ? [{ id: "dom", typ: "zbior", ile: 2, etykieta: "Dominanty (dwie liczby)" }] : [pole("dom", "Dominanta")],
+      { dom: dwie ? top.map((x) => q(x)) : q(top[0]) },
+      dwie ? `$${top[0]}$ i $${top[1]}$` : `$${top[0]}$`,
+      [
+        "Dominanta to wartość, która występuje najczęściej, więc liczymy powtórzenia.",
+        `Wartości, które powtarzają się: ${licz.join(", ")}. Pozostałe występują po razie.`,
+        dwie ? `Najwięcej, czyli $${max}$ ${lm(max, ["raz", "razy", "razy"])}, występują dwie wartości: $${top[0]}$ i $${top[1]}$ – obie są dominantami.` : `Najczęściej, bo aż $${max}$ ${lm(max, ["raz", "razy", "razy"])}, występuje $${top[0]}$. Dominanta to wartość ($${top[0]}$), a nie liczba powtórzeń.`,
+      ],
+    );
+  }
+  const parzysta = w >= 70, n = parzysta ? r.pick([4, 6, 8]) : r.pick([5, 7, 9]);
+  const dane = Array.from({ length: n }, () => r.int(k.lo, k.hi));
+  const s = porzadkuj(dane), med = mediana(s);
+  const kroki = [
+    `Najpierw porządkujemy dane od najmniejszej do największej: ${lista(s)}.`,
+    parzysta
+      ? `Danych jest $${n}$, czyli parzyście wiele, więc mediana to średnia dwóch środkowych liczb, z miejsc $${n / 2}$ i $${n / 2 + 1}$: $${s[n / 2 - 1]}$ i $${s[n / 2]}$.`
+      : `Danych jest $${n}$, czyli nieparzyście wiele, więc mediana to liczba z miejsca $${(n + 1) / 2}$, dokładnie pośrodku: $${s[(n - 1) / 2]}$.`,
+  ];
+  if (parzysta) kroki.push(`Mediana: $(${s[n / 2 - 1]} + ${s[n / 2]}) : 2 = ${dz(med)}$.`);
+  return zad(
+    `${k.zdanie(n)} ${lista(dane)}. Oblicz medianę tych danych.`,
+    [pole("med", "Mediana")], { med }, `$${dz(med)}$`, kroki,
+  );
+}
+
+const TABELE_LICZNOSCI = [
+  { h1: "ocena", h2: "liczba uczniów", wartosci: [2, 3, 4, 5, 6], intro: "W tabeli podano, ile uczniów klasy 8b dostało daną ocenę z klasówki.", jednostka: "uczniów" },
+  { h1: "rodzeństwo", h2: "liczba uczniów", wartosci: [0, 1, 2, 3, 4], intro: "W tabeli podano, ilu uczniów ma daną liczbę rodzeństwa.", jednostka: "uczniów" },
+  { h1: "rozmiar buta", h2: "liczba osób", wartosci: [36, 37, 38, 39, 40, 41], intro: "W tabeli podano rozmiary butów uczniów jednej klasy.", jednostka: "osób" },
+  { h1: "liczba bramek", h2: "liczba meczów", wartosci: [0, 1, 2, 3, 4, 5], intro: "W tabeli podano, w ilu meczach drużyna strzeliła daną liczbę bramek.", jednostka: "meczów" },
+];
+
+function tabelaMedianaDominanta(r) {
+  return probuj(() => {
+    const k = r.pick(TABELE_LICZNOSCI), il = r.int(4, Math.min(5, k.wartosci.length));
+    const start = r.int(0, k.wartosci.length - il), wart = k.wartosci.slice(start, start + il);
+    const N = r.int(13, 28), licz = skladnik(r, il, N);
+    const max = Math.max(...licz);
+    const tabela = `\\begin{array}{c|c} \\text{${k.h1}} & \\text{${k.h2}} \\\\ \\hline ${wart.map((x, i) => `${x} & ${licz[i]}`).join(" \\\\ ")} \\end{array}`;
+    if (r.chance(0.4)) {
+      if (licz.filter((c) => c === max).length !== 1) return null;
+      const i = licz.indexOf(max);
+      return zad(
+        `${k.intro}\n\n$${tabela}$\n\nPodaj dominantę tych danych.`,
+        [pole("dom", "Dominanta")], { dom: q(wart[i]) }, `$${wart[i]}$`,
+        [
+          "Dominanta to wartość występująca najczęściej, więc szukamy największej liczby w drugiej kolumnie.",
+          `Największa liczność to $${max}$ – dotyczy wartości $${wart[i]}$.`,
+          `Dominanta to wartość ($${wart[i]}$), a nie jej liczność ($${max}$).`,
+        ],
+      );
+    }
+    let skum = 0;
+    const zakresy = wart.map((x, i) => { const od = skum + 1; skum += licz[i]; return { x, od, do: skum }; });
+    const poz = N % 2 ? [(N + 1) / 2] : [N / 2, N / 2 + 1];
+    const znajdz = (p) => zakresy.find((z) => p >= z.od && p <= z.do).x;
+    const vals = poz.map(znajdz), med = mediana(vals);
+    const opis = zakresy.map((z) => `$${z.x}$ – ${z.od === z.do ? `miejsce $${z.od}$` : `miejsca $${z.od}$–$${z.do}$`}`).join(", ");
+    return zad(
+      `${k.intro}\n\n$${tabela}$\n\nOblicz medianę tych danych.`,
+      [pole("med", "Mediana")], { med }, `$${dz(med)}$`,
+      [
+        `Wszystkich danych jest $${licz.join(" + ")} = ${N}$ (to suma drugiej kolumny, a nie liczba wierszy).`,
+        `Ustawiamy dane po kolei: ${opis}.`,
+        N % 2
+          ? `Danych jest nieparzyście wiele, więc mediana stoi na miejscu $${poz[0]}$. Tam jest $${vals[0]}$.`
+          : `Danych jest parzyście wiele, więc mediana to średnia z miejsc $${poz[0]}$ i $${poz[1]}$. Tam stoją $${vals[0]}$ i $${vals[1]}$.`,
+        N % 2 ? `Mediana to $${dz(med)}$.` : `Mediana: $(${vals[0]} + ${vals[1]}) : 2 = ${dz(med)}$.`,
+      ],
+    );
+  });
+}
+
+function medianaPoDopisaniu(r) {
+  const n = r.pick([5, 7, 4, 6]), lista = (a) => a.map((x) => `$${x}$`).join(", ");
+  const k = r.pick([{ lo: 1, hi: 6, rz: "ocen" }, { lo: 8, hi: 25, rz: "czasów dojazdu (w minutach)" }]);
+  const dane = Array.from({ length: n }, () => r.int(k.lo, k.hi)), x = r.int(k.lo, k.hi);
+  const nowe = porzadkuj([...dane, x]), N = n + 1, med = mediana(nowe);
+  const poz = N % 2 ? [(N + 1) / 2] : [N / 2, N / 2 + 1];
+  return zad(
+    `Zapisano ${n} ${k.rz}: ${lista(dane)}. Dopisano jeszcze jedną wartość: $${x}$. Oblicz medianę wszystkich ${N} wartości.`,
+    [pole("med", "Mediana")], { med }, `$${dz(med)}$`,
+    [
+      `Po dopisaniu mamy $${N}$ wartości. Porządkujemy je: ${lista(nowe)}.`,
+      N % 2 ? `Wartości jest nieparzyście wiele, więc mediana stoi na miejscu $${poz[0]}$: $${nowe[poz[0] - 1]}$.` : `Wartości jest parzyście wiele, więc mediana to średnia z miejsc $${poz[0]}$ i $${poz[1]}$: $${nowe[poz[0] - 1]}$ i $${nowe[poz[1] - 1]}$.`,
+      N % 2 ? `Mediana to $${dz(med)}$.` : `Mediana: $(${nowe[poz[0] - 1]} + ${nowe[poz[1] - 1]}) : 2 = ${dz(med)}$.`,
+    ],
+  );
+}
+
+/** Jedna bardzo duża wartość: średnia mocno rośnie, mediana prawie nie. */
+function sredniaIMedianaOdstajaca(r) {
+  return probuj(() => {
+    const n = r.pick([5, 7]);
+    const baza = r.int(6, 18), reszta = Array.from({ length: n - 1 }, () => baza + r.int(0, 6));
+    const duza = r.int(5, 9) * 10 + r.int(0, 9);
+    const dane = r.shuffle([...reszta, duza]), S = dane.reduce((a, b) => a + b, 0), sr = q(S, n);
+    if (!ladnaSrednia(sr)) return null;
+    const s = porzadkuj(dane), med = mediana(s), mniejszych = dane.filter((x) => x < Number(sr)).length;
+    const lista = dane.map((x) => `$${x}$`).join(", ");
+    if (r.chance(0.5)) {
+      const m = (() => { const op = r.shuffle(["mediana", "średnia arytmetyczna"]); return { opcje: op, ind: op.indexOf("mediana") }; })();
+      return zad(
+        `Kieszonkowe ${n === 5 ? "pięciu" : "siedmiu"} uczniów (w złotych): ${lista}. Jedna wartość jest dużo większa od pozostałych. Która z wielkości lepiej opisuje typowe kieszonkowe w tej grupie?`,
+        [polew("wielkosc", "Lepiej opisuje", m.opcje)], { wielkosc: m.ind }, "mediana",
+        [
+          `Średnia: $${S} : ${n} = ${dz(sr)}$ zł. Mediana (po uporządkowaniu, miejsce $${(n + 1) / 2}$): $${med.n}$ zł.`,
+          `Średnia jest większa niż kieszonkowe aż $${mniejszych}$ z $${n}$ osób – podciąga ją bardzo duża wartość $${duza}$.`,
+          "Mediana prawie nie reaguje na jedną ogromną wartość, więc lepiej pokazuje typowe kieszonkowe.",
+        ],
+      );
+    }
+    return zad(
+      `Kieszonkowe ${n === 5 ? "pięciu" : "siedmiu"} uczniów (w złotych): ${lista}. Oblicz średnią i medianę kieszonkowego.`,
+      [pole("sr", "Średnia (w zł)"), pole("med", "Mediana (w zł)")], { sr, med }, `średnia $${dz(sr)}$ zł, mediana $${dz(med)}$ zł`,
+      [
+        `Średnia: suma ${dane.map((x) => `$${x}$`).join(" + ")} to $${S}$, a $${S} : ${n} = ${dz(sr)}$.`,
+        `Mediana: po uporządkowaniu (${s.map((x) => `$${x}$`).join(", ")}) środkowa liczba, z miejsca $${(n + 1) / 2}$, to $${med.n}$.`,
+        `Średnia jest większa niż kieszonkowe $${mniejszych}$ z $${n}$ osób – podciąga ją duża wartość $${duza}$. Typowy wynik lepiej opisuje mediana.`,
+      ],
+    );
+  });
+}
+
+function medianaZTabeliISrednia(r) {
+  const w = r.int(0, 99);
+  if (w < 40) return tabelaMedianaDominanta(r);
+  if (w < 60) return medianaPoDopisaniu(r);
+  return sredniaIMedianaOdstajaca(r);
+}
+
 // =====================================================================================================================
 // TEMAT 3. Zliczanie możliwości
 // =====================================================================================================================
@@ -1450,6 +1618,8 @@ export const GENERATORY = [
   { id: "wykres-kolowy-i-zaleznosci", nazwa: "Wykres kołowy i wykres drogi w czasie", opis: "Wykres kołowy opisany słowami (kąt wycinka, liczba uczniów, procent pozostałego wycinka) oraz wykres drogi od czasu podany tabelą punktów: postój, prędkość na odcinku, największa prędkość, przejechana droga.", temat: "odczytywanie-danych", generuj: wykresKolowyIZaleznosci },
   { id: "srednia-suma-brakujaca", nazwa: "Średnia, suma i brakująca liczba", opis: "Średnia arytmetyczna kilku liczb w zadaniach z życia (oceny, bramki, wzrost, temperatura), suma ze średniej, brakująca liczba przy danej średniej, średnia dwóch, trzech i czterech liczb.", temat: "srednia", generuj: sredniaSumaBrak },
   { id: "zmiana-sredniej", nazwa: "Zmiana średniej, średnia z tabeli, dwie grupy", opis: "Nowa średnia po dopisaniu albo usunięciu liczby, co się stanie ze średnią, jaką liczbę dopisać, zmiana wszystkich liczb, średnia z tabeli liczności i średnia dwóch grup o różnej liczebności.", temat: "srednia", generuj: zmianaSredniej },
+  { id: "dominanta-i-mediana-z-listy", nazwa: "Dominanta i mediana z listy", opis: "Dominanta (także dwie dominanty) i mediana listy liczb z życia: oceny, czasy dojazdu, bramki, wyniki w skoku; mediana przy parzystej i nieparzystej liczbie danych.", temat: "mediana-dominanta", generuj: dominantaIMedianaZListy },
+  { id: "mediana-tabela-srednia", nazwa: "Mediana z tabeli, średnia a mediana", opis: "Dominanta i mediana z tabeli liczności, mediana po dopisaniu liczby, średnia i mediana przy jednej bardzo dużej wartości oraz wybór, która z nich lepiej opisuje typowy wynik.", temat: "mediana-dominanta", generuj: medianaZTabeliISrednia },
   { id: "liczby-z-cyfr-i-kody", nazwa: "Liczby i kody z cyfr", opis: "Ile liczb dwucyfrowych i trzycyfrowych można zapisać z danych cyfr (z powtórzeniami i bez, zero nie na początku, parzyste), ile liczb ma daną własność, ile jest kodów i zamków szyfrowych.", temat: "zliczanie", generuj: liczbyICyfry },
   { id: "zestawy-pary-kolejnosc", nazwa: "Zestawy, pary i ustawianie w kolejności", opis: "Reguła mnożenia w strojach, obiadach i trasach, uściski dłoni, mecze i odcinki (n·(n−1):2), liczba osób z liczby uścisków, wybór dwóch funkcji, ustawianie w kolejce i na półce.", temat: "zliczanie", generuj: zestawyIPary },
   { id: "kostka-monety-dwie-kostki", nazwa: "Kostka, dwie monety i dwie kostki", opis: "Prawdopodobieństwo zdarzeń przy rzucie kostką (parzysta, pierwsza, większa od k, dzielnik), dwiema monetami (orzeł i reszka) oraz dwiema kostkami (suma oczek, iloczyn, ta sama liczba).", temat: "prawdopodobienstwo", generuj: kostkaMonetyIKostki },
