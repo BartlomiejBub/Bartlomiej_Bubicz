@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 250" width="400" height="250" font-family="Arial, sans-serif" font-size="14" stroke="#000" stroke-width="1.5">
+<path d="M 100 20 H 300 V 220 H 100 Z M 300 120 A 100 100 0 1 0 100 120 A 100 100 0 1 0 300 120 Z" fill="#cccccc" fill-rule="evenodd"/>
+<circle cx="200" cy="120" r="100" fill="#ffffff"/>
+<text x="188" y="242" fill="#000" stroke="none">8 cm</text>
+<text x="60" y="124" fill="#000" stroke="none">8 cm</text>
+</svg>

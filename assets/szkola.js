@@ -12,7 +12,7 @@ export const KLASY = [
       { id: "sp4-zapis-liczb", nazwa: "Zapis liczb naturalnych", opis: "System dziesiętny, liczby rzymskie, oś liczbowa, porównywanie i zaokrąglanie.", tematy: { "e8-liczby": ["systemy-zapisu", "os-liczbowa", "zaokraglanie"] } },
       { id: "sp4-dzialania", nazwa: "Działania na liczbach naturalnych", opis: "Dodawanie, odejmowanie, mnożenie i dzielenie w pamięci, kolejność działań.", tematy: { "e8-podstawy": ["kolejnosc-dzialan", "dzielenie"] }, luka: "brak ćwiczeń rachunku w pamięci" },
       { id: "sp4-pisemne", nazwa: "Działania pisemne", opis: "Dodawanie, odejmowanie, mnożenie i dzielenie pisemne.", tematy: { "e8-podstawy": ["dodawanie-odejmowanie", "mnozenie", "dzielenie"] } },
-      { id: "sp4-figury", nazwa: "Proste, odcinki i kąty", opis: "Proste równoległe i prostopadłe, mierzenie kątów, wielokąty, prostokąt i kwadrat.", tematy: { "e8-figury": ["katy", "pola-obwody"] }, luka: "brak prostych, odcinków, mierzenia kątów i okręgu" },
+      { id: "sp4-figury", nazwa: "Proste, odcinki i kąty", opis: "Proste i odcinki, proste równoległe i prostopadłe, mierzenie kątów, koło i okrąg, prostokąt i kwadrat.", tematy: { "e8-figury": ["proste-odcinki", "katy", "kola-i-okregi", "pola-obwody"] } },
       { id: "sp4-ulamki-zwykle", nazwa: "Ułamki zwykłe", opis: "Ułamek jako część całości, liczby mieszane, skracanie, dodawanie i odejmowanie.", tematy: { "e8-podstawy": ["ulamki-zwykle"], "e8-liczby": ["os-liczbowa"] } },
       { id: "sp4-ulamki-dziesietne", nazwa: "Ułamki dziesiętne", opis: "Zapis, porównywanie, dodawanie i odejmowanie ułamków dziesiętnych.", tematy: { "e8-podstawy": ["ulamki-dziesietne"] } },
       { id: "sp4-pola-bryly", nazwa: "Pola figur i prostopadłościan", opis: "Pole prostokąta i kwadratu, siatka, pole powierzchni i objętość prostopadłościanu.", tematy: { "e8-figury": ["pola-obwody"], "e8-bryly": ["graniastoslupy", "siatki", "pole-powierzchni", "objetosc"] } },
@@ -24,7 +24,7 @@ export const KLASY = [
     id: "sp5", egzamin: "e8", nazwa: "Klasa 5",
     rozdzialy: [
       { id: "sp5-naturalne", nazwa: "Własności liczb naturalnych", opis: "Podzielność, dzielniki i wielokrotności, liczby pierwsze, kolejność działań.", tematy: { "e8-podstawy": ["podzielnosc", "kolejnosc-dzialan"], "e8-liczby": ["dzielniki"] } },
-      { id: "sp5-figury", nazwa: "Kąty i figury na płaszczyźnie", opis: "Rodzaje kątów, trójkąty i czworokąty, ich własności.", tematy: { "e8-figury": ["katy", "trojkaty", "czworokaty"] }, luka: "brak mierzenia i rysowania kątów" },
+      { id: "sp5-figury", nazwa: "Kąty i figury na płaszczyźnie", opis: "Rodzaje kątów, trójkąty i czworokąty, ich własności.", tematy: { "e8-figury": ["katy", "trojkaty", "czworokaty"] } },
       { id: "sp5-ulamki-zwykle", nazwa: "Ułamki zwykłe", opis: "Skracanie, rozszerzanie, porównywanie, dodawanie i odejmowanie ułamków.", tematy: { "e8-podstawy": ["ulamki-zwykle"], "e8-liczby": ["os-liczbowa"] } },
       { id: "sp5-ulamki-dziesietne", nazwa: "Ułamki dziesiętne", opis: "Działania na ułamkach dziesiętnych i zamiana jednostek.", tematy: { "e8-podstawy": ["ulamki-dziesietne"], "e8-liczby": ["ulamki-i-rozwiniecia"], "e8-procenty": ["jednostki"] } },
       { id: "sp5-pola", nazwa: "Pola figur", opis: "Pole równoległoboku, rombu, trójkąta i trapezu, jednostki pola.", tematy: { "e8-figury": ["pola-obwody"], "e8-procenty": ["jednostki"] } },
@@ -41,7 +41,7 @@ export const KLASY = [
       // GWO: klasa 5 (Liczby całkowite) i klasa 6 (Liczby dodatnie i ujemne)
       { id: "sp6-calkowite", nazwa: "Liczby całkowite", opis: "Mnożenie, dzielenie i odejmowanie liczb całkowitych, własności działań.", tematy: { "e8-podstawy": ["liczby-ujemne"], "e8-liczby": ["os-liczbowa"] } },
       { id: "sp6-ulamki-dzialania", nazwa: "Działania na ułamkach", opis: "Mnożenie i dzielenie ułamków, zaokrąglanie, ułamek liczby, kolejność działań.", tematy: { "e8-podstawy": ["mnozenie-ulamkow", "ulamki-dziesietne", "kolejnosc-dzialan"], "e8-liczby": ["ulamki-i-rozwiniecia", "zaokraglanie", "dzielniki"] } },
-      { id: "sp6-figury", nazwa: "Trójkąty i czworokąty", opis: "Kąty, trójkąty, czworokąty i ich pola, figury na kratce.", tematy: { "e8-figury": ["katy", "trojkaty", "czworokaty", "pola-obwody"] }, luka: "brak koła i okręgu (promień, średnica, rysowanie cyrklem)" },
+      { id: "sp6-figury", nazwa: "Trójkąty i czworokąty", opis: "Kąty, trójkąty, czworokąty i ich pola, koło i okrąg, figury na kratce.", tematy: { "e8-figury": ["katy", "trojkaty", "czworokaty", "kola-i-okregi", "pola-obwody"] } },
       // GWO: klasa 6 (Wyrażenia algebraiczne i równania) – zgodnie z NE
       { id: "sp6-rownania", nazwa: "Równania", opis: "Zapisywanie wyrażeń, rozwiązywanie równań i zadania tekstowe z równaniem.", tematy: { "e8-wyrazenia": ["zapisywanie-wyrazen", "wartosc-wyrazenia", "rownania", "zadania-z-rownaniem"] } },
       { id: "sp6-bryly", nazwa: "Bryły: objętość i pole powierzchni", opis: "Siatki brył, objętość, pole powierzchni, zamiana jednostek.", tematy: { "e8-bryly": ["graniastoslupy", "siatki", "pole-powierzchni", "objetosc"], "e8-procenty": ["jednostki"] } },
@@ -76,10 +76,10 @@ export const KLASY = [
       // GWO: klasa 7 (Statystyka)
       { id: "sp8-statystyka", nazwa: "Statystyka", opis: "Zbieranie i porządkowanie danych, diagramy, średnia arytmetyczna.", tematy: { "e8-dane": ["odczytywanie-danych", "srednia"] }, luka: "brak mediany i dominanty" },
       { id: "sp8-algebra", nazwa: "Wyrażenia algebraiczne i równania", opis: "Przekształcanie wyrażeń, równania, wzory i zadania tekstowe.", tematy: { "e8-wyrazenia": ["wartosc-wyrazenia", "przeksztalcanie", "rownania", "zadania-z-rownaniem", "przeksztalcanie-wzorow"] } },
-      { id: "sp8-figury", nazwa: "Figury na płaszczyźnie", opis: "Kąty, trójkąty, przystawanie trójkątów, twierdzenie Pitagorasa.", tematy: { "e8-figury": ["katy", "trojkaty", "pitagoras"] } },
+      { id: "sp8-figury", nazwa: "Figury na płaszczyźnie", opis: "Kąty, trójkąty, przystawanie trójkątów, twierdzenie Pitagorasa, proste dowody w geometrii.", tematy: { "e8-figury": ["katy", "trojkaty", "pitagoras", "dowody-w-geometrii"] } },
       { id: "sp8-wielokaty", nazwa: "Wielokąty", opis: "Własności czworokątów, wielokąty foremne, pola i obwody, figury w układzie.", tematy: { "e8-figury": ["czworokaty", "pola-obwody", "uklad-wspolrzednych"] } },
       { id: "sp8-bryly", nazwa: "Graniastosłupy i ostrosłupy", opis: "Siatki, pole powierzchni i objętość brył, przekątne i wysokości.", tematy: { "e8-bryly": ["graniastoslupy", "ostroslupy", "siatki", "pole-powierzchni", "objetosc", "przekatne-wysokosci"] } },
-      { id: "sp8-kola", nazwa: "Koła i okręgi", opis: "Obwód i pole koła, długość okręgu, koło i okrąg w zadaniach.", tematy: {}, luka: "brak całego działu: pole i obwód koła, długość okręgu" },
+      { id: "sp8-kola", nazwa: "Koła i okręgi", opis: "Liczba π, długość okręgu, pole koła, półkola i ćwiartki koła, figury złożone z kół.", tematy: { "e8-figury": ["kola-i-okregi"] } },
       { id: "sp8-symetrie", nazwa: "Symetrie", opis: "Symetria osiowa i środkowa, osie symetrii figur.", tematy: { "e8-figury": ["symetrie"] } },
       { id: "sp8-prawdopodobienstwo", nazwa: "Prawdopodobieństwo", opis: "Doświadczenia losowe, zliczanie możliwości, obliczanie prawdopodobieństwa.", tematy: { "e8-dane": ["zliczanie", "prawdopodobienstwo"] } },
     ],

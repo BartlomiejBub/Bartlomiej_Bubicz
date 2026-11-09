@@ -86,13 +86,16 @@ export const TEMATY = {
     { id: "czas-kalendarz", nazwa: "Czas, zegar i kalendarz" },             // godziny i minuty, daty, dni tygodnia, lata przestępne
   ],
   "e8-figury": [
-    { id: "katy", nazwa: "Kąty" },                                          // przyległe, wierzchołkowe, przy prostych równoległych
+    { id: "proste-odcinki", nazwa: "Proste, półproste i odcinki" },          // punkt, prosta, odcinek, prostopadłe i równoległe, odległość, łamana
+    { id: "katy", nazwa: "Kąty" },                                      // przyległe, wierzchołkowe, przy prostych równoległych
     { id: "trojkaty", nazwa: "Trójkąty" },                                  // suma kątów, rodzaje, nierówność trójkąta, przystawanie
     { id: "czworokaty", nazwa: "Czworokąty i wielokąty" },                  // własności czworokątów, kąty, wielokąty foremne
-    { id: "pola-obwody", nazwa: "Pola i obwody" },                          // wielokąty, figury złożone, jednostki pola
+    { id: "kola-i-okregi", nazwa: "Koło i okrąg" },                           // promień, średnica, liczba π, długość okręgu, pole koła
+    { id: "pola-obwody", nazwa: "Pola i obwody" },                         // wielokąty, figury złożone, jednostki pola
     { id: "pitagoras", nazwa: "Twierdzenie Pitagorasa" },                   // przekątna kwadratu, wysokość trójkąta równobocznego, 30-60-90
     { id: "uklad-wspolrzednych", nazwa: "Układ współrzędnych" },            // punkty, odcinki, środek i długość odcinka, figury w układzie
-    { id: "symetrie", nazwa: "Symetrie" },                                  // osiowa i środkowa, osie symetrii figur
+    { id: "symetrie", nazwa: "Symetrie" },                                // osiowa i środkowa, osie symetrii figur
+    { id: "dowody-w-geometrii", nazwa: "Proste dowody w geometrii" },        // założenie i teza, dowody z kątami, trójkąt równoramienny, przystawanie, kontrprzykład
   ],
   "e8-bryly": [
     { id: "graniastoslupy", nazwa: "Graniastosłupy" },                      // rodzaje, ściany, krawędzie, wierzchołki, sześcian i prostopadłościan
