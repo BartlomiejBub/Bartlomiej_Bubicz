@@ -104,9 +104,9 @@ export const KLASY = [
       // rozdz. 6
       { id: "lo1-wybrane-funkcje", nazwa: "Podstawowe własności wybranych funkcji", opis: "Funkcja kwadratowa, proporcjonalność odwrotna, funkcja wykładnicza i logarytmiczna – wykresy i własności.", tematy: { "funkcje": ["funkcja-kwadratowa", "inne-funkcje"] } },
       // rozdz. 7
-      { id: "lo1-trojkaty", nazwa: "Geometria płaska – pojęcia wstępne. Trójkąty", opis: "Proste, kąty, twierdzenie Talesa, Pitagorasa, wysokości i środkowe, przystawanie i podobieństwo trójkątów.", tematy: { "geometria": ["planimetria"], "dowody": ["dowody-geometryczne"] }, nowe: ["planimetria-podstawy"], luka: "brak środkowych, nierówności trójkąta, symetralnej i dwusiecznej" },
+      { id: "lo1-trojkaty", nazwa: "Geometria płaska – pojęcia wstępne. Trójkąty", opis: "Proste, kąty, twierdzenie Talesa, Pitagorasa, wysokości i środkowe, przystawanie i podobieństwo trójkątów.", tematy: { "geometria": ["planimetria"], "dowody": ["dowody-geometryczne"] }, nowe: ["planimetria-podstawy"], luka: "brak symetralnej i dwusiecznej jako zbiorów punktów" },
       // rozdz. 8
-      { id: "lo1-trygonometria", nazwa: "Trygonometria kąta ostrego", opis: "Sinus, cosinus, tangens i cotangens w trójkącie prostokątnym, wartości dla 30°, 45°, 60°, związki między funkcjami.", tematy: { "geometria": ["trygonometria"] }, luka: "brak cotangensa i wyznaczania pozostałych funkcji z jednej" },
+      { id: "lo1-trygonometria", nazwa: "Trygonometria kąta ostrego", opis: "Sinus, cosinus, tangens i cotangens w trójkącie prostokątnym, wartości dla 30°, 45°, 60°, związki między funkcjami.", tematy: { "geometria": ["trygonometria"] } },
     ],
   },
   {
@@ -119,9 +119,9 @@ export const KLASY = [
       // rozdz. 3
       { id: "lo2-kwadratowa", nazwa: "Funkcja kwadratowa", opis: "Postacie funkcji, miejsca zerowe, wykres, wzór z własności, równania i nierówności kwadratowe, optymalizacja.", tematy: { "funkcje": ["funkcja-kwadratowa"], "liczby": ["rownania", "nierownosci"], "dowody": ["optymalizacja"], "tekstowe": ["rownania-z-tresci"] }, luka: "brak zadań tekstowych prowadzących do równań kwadratowych" },
       // rozdz. 4
-      { id: "lo2-okregi", nazwa: "Geometria płaska – okręgi i koła", opis: "Położenie prostej i okręgu oraz dwóch okręgów, kąty w kole, konstrukcje, okrąg opisany i wpisany w trójkąt.", tematy: { "geometria": ["planimetria"], "dowody": ["dowody-geometryczne"] }, luka: "brak położenia dwóch okręgów, okręgu opisanego i wpisanego w dowolny trójkąt" },
+      { id: "lo2-okregi", nazwa: "Geometria płaska – okręgi i koła", opis: "Położenie prostej i okręgu oraz dwóch okręgów, kąty w kole, konstrukcje, okrąg opisany i wpisany w trójkąt.", tematy: { "geometria": ["planimetria"], "dowody": ["dowody-geometryczne"] } },
       // rozdz. 5
-      { id: "lo2-trygonometria", nazwa: "Trygonometria", opis: "Funkcje trygonometryczne dowolnego kąta, tożsamości, wzory redukcyjne.", tematy: { "geometria": ["trygonometria"] }, luka: "brak kątów do 360° i wzorów redukcyjnych" },
+      { id: "lo2-trygonometria", nazwa: "Trygonometria", opis: "Funkcje trygonometryczne dowolnego kąta, tożsamości, wzory redukcyjne.", tematy: { "geometria": ["trygonometria"] } },
       // rozdz. 6
       { id: "lo2-geom-analityczna", nazwa: "Geometria analityczna", opis: "Odcinek, równanie kierunkowe i ogólne prostej, równanie okręgu.", tematy: { "geometria": ["geometria-analityczna"] } },
       // rozdz. 7
@@ -140,11 +140,11 @@ export const KLASY = [
       // rozdz. 3
       { id: "lo3-kombinatoryka", nazwa: "Kombinatoryka", opis: "Reguła mnożenia i reguła dodawania, zadania kombinatoryczne.", tematy: { "statystyka": ["kombinatoryka"] } },
       // rozdz. 4
-      { id: "lo3-czworokaty", nazwa: "Geometria płaska – czworokąty", opis: "Podział czworokątów, trapezy, równoległoboki, wielokąty foremne, podobieństwo czworokątów.", tematy: { "geometria": ["planimetria"] }, nowe: ["czworokaty"], luka: "brak własności czworokątów" },
+      { id: "lo3-czworokaty", nazwa: "Geometria płaska – czworokąty", opis: "Podział czworokątów, trapezy, równoległoboki, wielokąty foremne, podobieństwo czworokątów.", tematy: { "geometria": ["planimetria", "czworokaty-lo"] } },
       // rozdz. 5
       { id: "lo3-pole-czworokata", nazwa: "Geometria płaska – pole czworokąta", opis: "Pole prostokąta, równoległoboku, rombu, trapezu, pola figur podobnych, skala mapy.", tematy: { "geometria": ["planimetria"] } },
       // rozdz. 6
-      { id: "lo3-geom-analityczna", nazwa: "Geometria analityczna", opis: "Wektor w układzie współrzędnych, proste, równanie okręgu, położenie prostej i okręgu, przekształcenia w układzie współrzędnych.", tematy: { "geometria": ["geometria-analityczna"] }, nowe: ["wektory"], luka: "brak położenia prostej i okręgu; odległość punktu od prostej i pole trójkąta w układzie uchylone w ZP w 2024" },
+      { id: "lo3-geom-analityczna", nazwa: "Geometria analityczna", opis: "Wektor w układzie współrzędnych, proste, równanie okręgu, położenie prostej i okręgu, przekształcenia w układzie współrzędnych.", tematy: { "geometria": ["geometria-analityczna"] }, nowe: ["wektory"], luka: "brak wektorów i położenia prostej i okręgu w układzie współrzędnych" },
     ],
   },
   {
@@ -155,9 +155,9 @@ export const KLASY = [
       // rozdz. 2
       { id: "lo4-statystyka-prawdopodobienstwo", nazwa: "Statystyka i rachunek prawdopodobieństwa", opis: "Prezentacja danych, średnia, mediana, moda; zdarzenia, prawdopodobieństwo klasyczne, doświadczenia wieloetapowe.", tematy: { "statystyka": ["statystyka", "kombinatoryka", "prawdopodobienstwo"] }, luka: "brak zdarzeń i drzewka; odchylenie standardowe i wartość oczekiwana uchylone w ZP w 2024" },
       // rozdz. 3
-      { id: "lo4-wielosciany", nazwa: "Geometria przestrzenna – wielościany", opis: "Proste i płaszczyzny w przestrzeni, kąty w bryłach, graniastosłupy, ostrosłupy, pole powierzchni i objętość.", tematy: { "geometria": ["stereometria"] }, nowe: ["proste-i-plaszczyzny"], luka: "brak prostych i płaszczyzn w przestrzeni, rzutu i kąta z płaszczyzną; przekroje wielościanów uchylone w ZP" },
+      { id: "lo4-wielosciany", nazwa: "Geometria przestrzenna – wielościany", opis: "Proste i płaszczyzny w przestrzeni, kąty w bryłach, graniastosłupy, ostrosłupy, pole powierzchni i objętość.", tematy: { "geometria": ["proste-i-plaszczyzny", "stereometria"] } },
       // rozdz. 4
-      { id: "lo4-bryly-obrotowe", nazwa: "Geometria przestrzenna – bryły obrotowe", opis: "Walec, stożek, kula i sfera, bryły obrotowe podobne, zadania różne.", tematy: { "geometria": ["stereometria"] }, luka: "brak przekrojów osiowych i brył z obrotu figur" },
+      { id: "lo4-bryly-obrotowe", nazwa: "Geometria przestrzenna – bryły obrotowe", opis: "Walec, stożek, kula i sfera, bryły obrotowe podobne, zadania różne.", tematy: { "geometria": ["stereometria"] } },
       // rozdz. 5 (33 h na powtórzenie i arkusze)
       { id: "lo4-powtorzenie", nazwa: "Powtórzenie wiadomości przed maturą", opis: "Zadania tekstowe, dowody, optymalizacja i próbne arkusze.", tematy: { "tekstowe": ["ruch-i-praca", "procenty-i-pieniadze", "rownania-z-tresci", "ciagi-w-praktyce"], "dowody": ["dowody-algebraiczne", "dowody-geometryczne", "optymalizacja"] } },
     ],

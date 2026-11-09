@@ -27,7 +27,9 @@ export const TEMATY = {
   geometria: [
     { id: "trygonometria", nazwa: "Trygonometria" },               // VII
     { id: "planimetria", nazwa: "Planimetria" },                   // VIII
+    { id: "czworokaty-lo", nazwa: "Własności czworokątów" },       // VIII (podział czworokątów, trapezy, równoległoboki – luka)
     { id: "geometria-analityczna", nazwa: "Geometria analityczna" }, // IX
+    { id: "proste-i-plaszczyzny", nazwa: "Proste i płaszczyzny w przestrzeni" }, // X (proste i płaszczyzny, kąty w przestrzeni – luka)
     { id: "stereometria", nazwa: "Stereometria" },                 // X
   ],
   statystyka: [
