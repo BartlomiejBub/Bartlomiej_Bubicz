@@ -30,7 +30,7 @@ export const WZORY = [
         slownie: "Gdy do liczby trzeba dodać kilka jedności i przekroczysz pełną dziesiątkę, **dojdź najpierw do dziesiątki**, a resztę dołóż potem. To jak wchodzenie po schodach: najpierw stajesz na podeście, potem idziesz dalej. Przy odejmowaniu robisz to samo w drugą stronę – schodzisz do pełnej dziesiątki, a resztę odejmujesz na końcu.",
         tex: "38 + 7 = 38 + 2 + 5 = 45 \\qquad 52 - 6 = 52 - 2 - 4 = 46",
         przyklad: "$38 + 7$: do $40$ brakuje $2$, więc $38 + 2 = 40$, a z $7$ zostało jeszcze $5$: $40 + 5 = 45$. $52 - 6$: najpierw $52 - 2 = 50$, z $6$ zostało $4$, więc $50 - 4 = 46$.",
-        uwaga: "Rozbij tę drugą liczbę dokładnie: $7 = 2 + 5$ (suma musi dać znów $7$). Przy odejmowaniu nie odejmuj $6$ jedności od dziesiątek „na odwrót”: $52 - 6$ nie jest $54$.",
+        uwaga: "Rozbij tę drugą liczbę dokładnie: $7 = 2 + 5$ (suma musi dać znów $7$). Przy odejmowaniu **odejmujesz** oba kawałki: $52 - 6 = 52 - 2 - 4$, a nie $52 - 2 + 4$ (to byłoby $54$).",
       },
       {
         nazwa: "Okrągłe liczby i „prawie okrągłe”",
@@ -72,7 +72,7 @@ export const WZORY = [
       {
         nazwa: "Dzielenie w pamięci – rozkład na łatwe kawałki",
         slownie: "Dzielną rozbij na dwa kawałki, które łatwo podzielić przez dany dzielnik, podziel każdy i dodaj wyniki. To jak dzielenie dwóch kup cukierków po równo między kilka osób: każda kupka osobno, a potem zsumuj, ile dostała jedna osoba.",
-        tex: "96 : 4 = 80 : 4 + 16 : 4 = 20 + 4 = 24",
+        tex: "96 : 4 = 80 : 4 + 16 : 4 \\qquad = 20 + 4 = 24",
         przyklad: "$156 : 6$: rozkładam $156 = 120 + 36$, więc $120 : 6 = 20$ i $36 : 6 = 6$, razem $26$. Dzielenie przez $5$ jest łatwe przez podwojenie: $85 : 5 = 170 : 10 = 17$. Sprawdzenie: $24 \\cdot 4 = 96$.",
         uwaga: "Rozbijaj **dzielną** (to, co dzielisz), a nie dzielnik: $96 : 4 \\ne 96 : 2 + 96 : 2$. Dobierz kawałki tak, żeby każdy dzielił się przez dzielnik bez reszty ($80$ i $16$ dla czwórki).",
       },
@@ -356,7 +356,7 @@ export const WZORY = [
       },
       {
         nazwa: "Odejmowanie liczby ujemnej",
-        slownie: "Odjąć dług to tak, jakby ktoś Ci go darował – jesteś bogatszy. Dlatego **odejmowanie liczby ujemnej zamieniamy na dodawanie** liczby dodatniej: $5 - (-3) = 5 + 3$. Z kolei dodanie liczby ujemnej to to samo co odjęcie: $5 + (-3) = 5 - 3$. Dwa minusy obok siebie dają plus.",
+        slownie: "Odjąć dług to tak, jakby ktoś ci go darował – jesteś bogatszy. Dlatego **odejmowanie liczby ujemnej zamieniamy na dodawanie** liczby dodatniej: $5 - (-3) = 5 + 3$. Z kolei dodanie liczby ujemnej to to samo co odjęcie: $5 + (-3) = 5 - 3$. Dwa minusy obok siebie dają plus.",
         tex: "a - (-b) = a + b \\qquad a + (-b) = a - b",
         litery: "$a$, $b$ – dowolne liczby",
         przyklad: "$5 - (-3) = 5 + 3 = 8$. Inny przykład: $-4 - (-9) = -4 + 9 = 5$ (jak ocieplenie o $9$ stopni z $-4$ °C).",
@@ -393,7 +393,7 @@ export const WZORY = [
       {
         nazwa: "Podzielność przez 3, 6 i 9: suma cyfr",
         slownie: "Dodaj wszystkie cyfry liczby. Jeśli ta suma dzieli się przez $3$, to cała liczba dzieli się przez $3$. Jeśli suma dzieli się przez $9$, to liczba dzieli się przez $9$. Przez $6$ dzieli się liczba, która jest **parzysta i ma sumę cyfr podzielną przez** $3$ (czyli dzieli się i przez $2$, i przez $3$).",
-        tex: "4185 \\to 4 + 1 + 8 + 5 = 18 \\qquad \\to \\text{dzieli się przez } 3 \\text{ i przez } 9",
+        tex: "4185 \\to 4 + 1 + 8 + 5 = 18 \\qquad \\to \\text{przez } 3 \\text{ i przez } 9",
         przyklad: "$4185$: suma cyfr to $18$, a $18$ dzieli się przez $3$ i przez $9$, więc $4185$ też ($4185 : 9 = 465$). $2346$: suma cyfr to $15$ – dzieli się przez $3$, ale nie przez $9$. Liczba jest parzysta, więc dzieli się też przez $6$ ($2346 : 6 = 391$).",
         uwaga: "Przez $9$ dzieli się tylko liczba z sumą cyfr podzielną przez $9$ – sama podzielność przez $3$ nie wystarcza (suma $15$ dzieli się przez $3$, ale nie przez $9$).",
       },
@@ -465,7 +465,7 @@ export const WZORY = [
       {
         nazwa: "Liczby mieszane i ułamki niewłaściwe",
         slownie: "Liczba mieszana $2\\frac{3}{4}$ to dwie całe pizze i jeszcze $3$ ćwiartki. Każda cała pizza to $4$ ćwiartki, więc dwie to $8$ ćwiartek, a razem z $3$ – $11$ ćwiartek: $\\frac{11}{4}$. W drugą stronę dzielimy licznik przez mianownik z resztą: iloraz to liczba całości, a reszta to nowy licznik.",
-        tex: "2\\frac{3}{4} = \\frac{2 \\cdot 4 + 3}{4} = \\frac{11}{4} \\qquad \\frac{11}{4} \\to 11 : 4 = 2 \\text{ reszta } 3 \\to 2\\frac{3}{4}",
+        tex: "2\\frac{3}{4} = \\frac{2 \\cdot 4 + 3}{4} = \\frac{11}{4} \\qquad \\frac{11}{4} \\to 11 : 4 = 2 \\qquad \\text{reszta } 3 \\to 2\\frac{3}{4}",
         przyklad: "$3\\frac{2}{5} = \\frac{3 \\cdot 5 + 2}{5} = \\frac{17}{5}$. Dodawanie liczb mieszanych: $1\\frac{1}{2} + 2\\frac{3}{4} = 1\\frac{2}{4} + 2\\frac{3}{4} = 3\\frac{5}{4} = 4\\frac{1}{4}$ (całości z całościami, ułamki z ułamkami).",
         uwaga: "$2\\frac{3}{4}$ to $2 + \\frac{3}{4}$, a nie $2 \\cdot \\frac{3}{4}$. Gdy mnożysz lub dzielisz liczby mieszane, zawsze najpierw zamień je na ułamki niewłaściwe.",
       },
@@ -515,7 +515,7 @@ export const WZORY = [
       {
         nazwa: "Liczby mieszane w mnożeniu i dzieleniu",
         slownie: "Liczby mieszane **zamieniamy najpierw na ułamki niewłaściwe**, a dopiero potem mnożymy lub dzielimy. Inaczej łatwo o pomyłkę, bo liczba mieszana to całość plus ułamek, a mnożenie dotyczy obu naraz.",
-        tex: "1\\frac{1}{2} \\cdot 2\\frac{2}{3} = \\frac{3}{2} \\cdot \\frac{8}{3} = \\frac{3 \\cdot 8}{2 \\cdot 3} = 4",
+        tex: "1\\frac{1}{2} \\cdot 2\\frac{2}{3} = \\frac{3}{2} \\cdot \\frac{8}{3} \\qquad = \\frac{3 \\cdot 8}{2 \\cdot 3} = 4",
         przyklad: "$2\\frac{1}{4} : 1\\frac{1}{2} = \\frac{9}{4} : \\frac{3}{2} = \\frac{9}{4} \\cdot \\frac{2}{3} = \\frac{18}{12} = \\frac{3}{2} = 1\\frac{1}{2}$.",
         uwaga: "Nie wolno mnożyć osobno całości, a osobno ułamków: $1\\frac{1}{2} \\cdot 2\\frac{2}{3}$ to nie $1 \\cdot 2 + \\frac{1}{2} \\cdot \\frac{2}{3}$.",
       },

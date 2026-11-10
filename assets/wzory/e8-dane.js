@@ -3,7 +3,7 @@
 // slownie tłumaczy zwykłymi słowami i porównaniem z życia (kino, pizza, naklejki, koszulki i spodnie, kolejka, worek z kulami),
 // przyklad pokazuje liczby krok po kroku (każdy wynik da się sprawdzić), uwaga to typowy błąd z egzaminu.
 // Karty nie mają rysunków, więc tabele są małe (dwie wąskie kolumny), a diagramy i wykresy opisane słowami (co leży na osi, jak biegnie linia).
-// Mediana nie występuje w szkole podstawowej, więc jej tu nie ma; zostaje średnia arytmetyczna, jej zmiany i średnia z tabeli.
+// Dział ma też kartę mediany i dominanty (mediana występuje na egzaminie ósmoklasisty), średnią arytmetyczną z jej zmianami i średnią z tabeli.
 // Na egzaminie nie ma karty wzorów ani kalkulatora, więc są tu też rzeczy do zapamiętania
 // (1% koła to 3,6°, suma = średnia · ile, reguła mnożenia, n·(n−1):2 par, 6 wyników kostki, 36 wyników dwóch kostek, P od 0 do 1).
 // Wiersze wzorów są krótkie (na telefonie mają ok. 290 px): części oddzielone \qquad zawijają się jedna pod drugą.
@@ -72,13 +72,20 @@ export const WZORY = [
         przyklad: "Dwie klasy mają $50$ i $55$ uczniów. Gdy oś zaczyna się od $0$, słupki są prawie równe ($55$ jest tylko o $10\\%$ więcej niż $50$). Gdy oś zaczyna się od $48$, słupki mają wysokości $50 - 48 = 2$ i $55 - 48 = 7$ jednostek, więc drugi wygląda na $3{,}5$ raza wyższy! Prawdziwy stosunek to $55 : 50 = 1{,}1$.",
         uwaga: "Przed wnioskami **zawsze sprawdź, od jakiej liczby zaczyna się oś** i ile wynosi jedna kreska. Porównuj liczby z podpisów, a nie wysokości słupków na oko. Przerwana oś (zygzak na osi) to ostrzeżenie, że część skali pominięto.",
       },
+      {
+        nazwa: "Wykres liniowy: temperatura i zmiany w czasie",
+        slownie: "Wykres liniowy to punkty połączone linią. Na osi poziomej jest czas (godzina, dzień), na pionowej – wielkość, np. temperatura. **Każdy punkt** to jeden pomiar. Linia w górę znaczy, że wartość rośnie, w dół – że maleje. Najwyższy punkt to największa wartość, a najniższy – najmniejsza. Wartości poniżej osi poziomej są **ujemne**, jak temperatura poniżej zera na termometrze.",
+        tex: "\\text{zmiana} = \\text{później} - \\text{wcześniej}",
+        przyklad: "O $6{:}00$ było $-2^\\circ\\text{C}$, o $12{:}00$ – $6^\\circ\\text{C}$, o $18{:}00$ – $3^\\circ\\text{C}$. Od $6{:}00$ do $12{:}00$ temperatura wzrosła o $6 - (-2) = 8^\\circ\\text{C}$. Od $12{:}00$ do $18{:}00$ spadła o $6 - 3 = 3^\\circ\\text{C}$. Największa temperatura była o $12{:}00$. Średnia z tych trzech pomiarów to $\\frac{-2 + 6 + 3}{3} = \\frac{7}{3} \\approx 2{,}3^\\circ\\text{C}$.",
+        uwaga: "Różnicę liczysz zawsze ostrożnie ze znakami: $6 - (-2) = 8$, a nie $4$. Nie odczytuj wartości „pomiędzy” punktami jako pewnych – linia tylko łączy pomiary. Sprawdź też, ile wynosi jedna kreska na obu osiach, zanim cokolwiek odczytasz.",
+      },
     ],
     jak: [
       "Przeczytaj tytuł, opisy osi i jednostki (zł, osoby, km, °C, tys.). Dopiero potem szukaj liczb.",
       "Tabela: znajdź właściwy wiersz i właściwą kolumnę. Diagram słupkowy: sprawdź, ile wynosi jedna kreska na osi, i odczytaj wysokość słupka.",
       "Pytanie „o ile więcej” – odejmij. „Ile razy więcej” – podziel większą liczbę przez mniejszą. „Jaka część” albo „jaki procent” – część podziel przez całość.",
       "Wykres kołowy: całe koło to $100\\%$ i $360^\\circ$, jeden procent to $3{,}6^\\circ$, a wszystkie wycinki dają razem $100\\%$.",
-      "Wykres drogi od czasu: linia pozioma – stoi, im bardziej stromo w górę, tym szybciej. Prędkość to droga : czas dla jednego odcinka.",
+      "Wykres drogi od czasu: linia pozioma – stoi, im bardziej stromo w górę, tym szybciej. Prędkość to droga : czas dla jednego odcinka. Wykres liniowy (np. temperatury): zmiana to „później minus wcześniej” (uważaj na wartości ujemne).",
       "Sprawdź, czy odpowiedź ma jednostkę i czy pasuje do pytania (liczba osób, kilometry, procent).",
     ],
   },
@@ -147,7 +154,7 @@ export const WZORY = [
       {
         nazwa: "Dominanta – wartość, która jest najczęściej",
         slownie: "Dominanta to ta wartość, która w danych **pojawia się najczęściej**. To jak „najpopularniejszy smak lodów”: sprzedawca patrzy, który smak kupowano najwięcej razy. Dominantę znajdziesz, **zliczając powtórzenia** (kreskami albo w tabeli).",
-        tex: "\\text{dominanta} = \\text{wartość o największej liczbie powtórzeń}",
+        tex: "\\text{dominanta} = \\text{najczęstsza wartość}",
         przyklad: "Oceny w klasie: $3, 4, 4, 5, 4, 2, 4$. Czwórka jest $4$ razy, a pozostałe po razie, więc dominanta to $4$. Buty w rozmiarach $36, 37, 37, 38, 38$: są **dwie** dominanty, $37$ i $38$.",
         uwaga: "Dominanta to **wartość** ($4$), a nie liczba jej powtórzeń ($4$ razy). Gdy wszystkie wartości występują tyle samo razy, dominanty nie ma, a gdy kilka wartości „remisuje”, jest ich kilka.",
       },

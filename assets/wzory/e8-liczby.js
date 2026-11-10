@@ -36,7 +36,7 @@ export const WZORY = [
       {
         nazwa: "Liczby ułożone z podanych cyfr",
         slownie: "Chcesz ułożyć **największą** liczbę z kilku cyfr? Ustaw je od największej do najmniejszej – najważniejsze miejsce (z lewej) dostaje najlepszą cyfrę, jak najcenniejszy banknot na wierzchu pliku. Najmniejszą układasz odwrotnie, ale **zero nie może stać na początku**, bo wtedy liczba straciłaby jedno miejsce.",
-        tex: "\\text{cyfry } 4,\\ 0,\\ 7: \\qquad \\text{największa } 740 \\qquad \\text{najmniejsza trzycyfrowa } 407",
+        tex: "\\text{cyfry } 4,\\ 0,\\ 7: \\qquad \\text{największa } 740 \\qquad \\text{najmniejsza } 407",
         przyklad: "Z cyfr $4$, $0$, $7$ (każdą użyj raz) ułożysz trzycyfrowe liczby $407$, $470$, $704$ i $740$ – razem $4$ liczby. Dlaczego nie $6$? Zero nie może być pierwsze: pierwsza cyfra – $2$ możliwości ($4$ lub $7$), druga – $2$ możliwości, trzecia – $1$, czyli $2 \\cdot 2 \\cdot 1 = 4$.",
         uwaga: "Liczba $047$ to po prostu $47$ – jest dwucyfrowa, więc nie liczy się jako trzycyfrowa. Sprawdź też w zadaniu, czy cyfry mogą się powtarzać.",
       },
@@ -172,7 +172,7 @@ export const WZORY = [
       {
         nazwa: "Kiedy rozwinięcie jest skończone?",
         slownie: "Rozwinięcie jest skończone wtedy, gdy ułamek da się rozszerzyć do mianownika $10$, $100$, $1000$ – jak ceny w groszach. Takie mianowniki dzielą się tylko przez $2$ i $5$. Dlatego **najpierw skróć ułamek**, potem rozłóż mianownik na czynniki pierwsze: same $2$ i $5$ – rozwinięcie skończone; choć jeden inny czynnik (np. $3$ lub $7$) – okresowe.",
-        tex: "\\begin{array}{l} b = 2^k \\cdot 5^m \\\\ \\Longrightarrow\\; \\text{rozwinięcie skończone} \\end{array} \\qquad\\qquad \\text{inny czynnik w } b \\;\\Longrightarrow\\; \\text{okresowe}",
+        tex: "\\begin{array}{l} b = 2^k \\cdot 5^m \\\\ \\Longrightarrow\\; \\text{rozwinięcie skończone} \\end{array} \\qquad\\qquad \\text{inny czynnik} \\;\\Rightarrow\\; \\text{okresowe}",
         litery: "$b$ – mianownik ułamka nieskracalnego, $k$ i $m$ – dowolne liczby $0, 1, 2, \\ldots$",
         przyklad: "$\\frac{7}{20}$: $20 = 2^2 \\cdot 5$ – tylko $2$ i $5$, więc rozwinięcie skończone ($0{,}35$). $\\frac{5}{12}$: $12 = 2^2 \\cdot 3$ – jest czynnik $3$, więc okresowe. $\\frac{9}{15}$: najpierw skracam do $\\frac{3}{5}$, więc skończone ($0{,}6$).",
         uwaga: "Nie patrz na mianownik przed skróceniem: w $\\frac{6}{15}$ mianownik $15 = 3 \\cdot 5$ ma trójkę, ale $\\frac{6}{15} = \\frac{2}{5} = 0{,}4$, czyli rozwinięcie jest skończone.",
@@ -180,7 +180,7 @@ export const WZORY = [
       {
         nazwa: "Która cyfra stoi na dalekim miejscu po przecinku?",
         slownie: "Rozwinięcie okresowe jest jak wzór na tapecie – powtarza się co kilka cyfr. Żeby znaleźć cyfrę na dalekim miejscu, **nie wypisuj ich wszystkich**. Podziel numer miejsca przez długość okresu: **reszta** mówi, którą cyfrą okresu jest szukana cyfra (reszta $0$ oznacza ostatnią cyfrę okresu).",
-        tex: "\\frac{3}{11} = 0{,}(27) \\qquad \\text{miejsce } 25: \\; 25 : 2 = 12 \\text{ reszty } 1 \\qquad \\Rightarrow\\; \\text{pierwsza cyfra okresu } (2)",
+        tex: "\\frac{3}{11} = 0{,}(27) \\qquad \\text{miejsce } 25: \\qquad 25 : 2 = 12 \\text{ reszta } 1 \\qquad \\Rightarrow\\; \\text{cyfra } 2",
         przyklad: "W $0{,}(27)$ okres ma $2$ cyfry. Miejsce $25$: $25 : 2 = 12$ i reszta $1$, więc to pierwsza cyfra okresu – $2$. Miejsce $100$: $100 : 2 = 50$ i reszta $0$, więc ostatnia cyfra okresu – $7$. W $0{,}(142857)$ (to $\\frac{1}{7}$) okres ma $6$ cyfr; na miejscu $20$: $20 : 6 = 3$ i reszta $2$, więc druga cyfra okresu – $4$.",
         uwaga: "Jeśli przed okresem stoją jeszcze inne cyfry (np. $0{,}12(345)$), najpierw je odlicz: miejsca $1$ i $2$ nie należą do okresu, więc numer miejsca w okresie to numer w rozwinięciu minus $2$.",
       },
@@ -208,7 +208,7 @@ export const WZORY = [
       {
         nazwa: "Dzielnik i wielokrotność",
         slownie: "**Dzielnik** liczby to liczba, która dzieli ją bez reszty – jak liczba osób, między które rozdasz po równo wszystkie cukierki. **Wielokrotność** to liczba z tabliczki mnożenia: wielokrotności $7$ to $7, 14, 21, 28, \\ldots$ Dzielniki i wielokrotności to dwie strony tej samej rzeczy.",
-        tex: "b = a \\cdot k \\qquad \\Longleftrightarrow\\; a \\text{ jest dzielnikiem } b \\qquad \\Longleftrightarrow\\; b \\text{ jest wielokrotnością } a",
+        tex: "b = a \\cdot k \\qquad \\Leftrightarrow\\; a \\text{ – dzielnik } b \\qquad \\Leftrightarrow\\; b \\text{ – wielokrotność } a",
         litery: "$a$, $b$, $k$ – liczby całkowite dodatnie",
         przyklad: "Dzielniki liczby $36$ szukamy parami: $1 \\cdot 36$, $2 \\cdot 18$, $3 \\cdot 12$, $4 \\cdot 9$, $6 \\cdot 6$. Jest ich $9$: $1, 2, 3, 4, 6, 9, 12, 18, 36$. Wielokrotności $8$: $8, 16, 24, 32, \\ldots$",
         uwaga: "Dzielników jest skończenie wiele (największy to sama liczba), a wielokrotności – nieskończenie wiele. Liczba $1$ dzieli każdą liczbę, a każda liczba jest dzielnikiem samej siebie i swoją własną wielokrotnością.",
@@ -244,6 +244,21 @@ export const WZORY = [
         przyklad: "$47 = 6 \\cdot 7 + 5$, więc $47$ daje resztę $5$ przy dzieleniu przez $6$. Liczby dające resztę $3$ przy dzieleniu przez $4$ to $4n + 3$: $3, 7, 11, 15, \\ldots$ Dziś jest środa – za $100$ dni będzie piątek, bo $100 = 14 \\cdot 7 + 2$, czyli dwa dni po środzie.",
         uwaga: "Przy dzieleniu przez $5$ możliwe reszty to tylko $0, 1, 2, 3, 4$. Reszta $0$ znaczy, że liczba dzieli się bez reszty. Reszta to nie ułamek: $47 : 6 = 7$ i reszta $5$, a nie $7{,}5$.",
       },
+      {
+        nazwa: "Podzielność sumy, różnicy i iloczynu",
+        slownie: "Jeśli dwie sterty cukierków da się podzielić po równo między $3$ osoby, to po złożeniu w jedną stertę też się da. Tak samo działa różnica. **Suma i różnica** liczb podzielnych przez $k$ jest podzielna przez $k$. **Iloczyn** dzieli się przez $k$, gdy **choć jeden czynnik** się dzieli. Uwaga: dwie liczby, które się nie dzielą, mogą w sumie dać liczbę podzielną – resztami też się dodaje.",
+        tex: "k \\mid a,\\ k \\mid b \\qquad \\Rightarrow k \\mid (a + b) \\qquad k \\mid a \\Rightarrow k \\mid a \\cdot b",
+        litery: "Zapis $k \\mid a$ czytamy: „$k$ dzieli $a$” (liczba $a$ jest podzielna przez $k$).",
+        przyklad: "Suma trzech kolejnych liczb: $n + (n + 1) + (n + 2) = 3n + 3 = 3(n + 1)$, więc zawsze dzieli się przez $3$. Iloczyn pięciu kolejnych liczb dzieli się przez $10$: wśród nich jest liczba parzysta i liczba podzielna przez $5$. Liczby $323$ i $160$ nie dzielą się przez $3$ (reszty $2$ i $1$), ale suma $323 + 160 = 483$ tak, bo $4 + 8 + 3 = 15$ (reszty $2 + 1 = 3$).",
+        uwaga: "Z tego, że **suma** dzieli się przez $k$, nie wynika, że dzielą się składniki: $5 + 7 = 12$ dzieli się przez $3$, a $5$ i $7$ nie. Przy iloczynie wystarczy jeden czynnik, przy sumie – muszą się dzielić **wszystkie** składniki (wtedy na pewno).",
+      },
+      {
+        nazwa: "Brakująca cyfra w liczbie podzielnej",
+        slownie: "Gdy jedną cyfrę zastąpiono znakiem „#”, sprawdź kolejno, które cyfry pasują do **każdego warunku z osobna**, a potem zostaw te, które pasują do wszystkich. Przez $2$, $4$, $5$ i $10$ patrzysz na końcówkę, przez $3$ i $9$ – na sumę cyfr.",
+        tex: "258\\#4 \\qquad \\#4 \\in \\{04, 24, 44, 64, 84\\} \\qquad 19 + \\# \\text{ nie przez } 3",
+        przyklad: "Liczba $258\\#4$ jest podzielna przez $4$ i niepodzielna przez $3$. Podzielność przez $4$: dwie ostatnie cyfry $\\#4$ muszą dzielić się przez $4$, czyli $04$, $24$, $44$, $64$, $84$, więc $\\# \\in \\{0, 2, 4, 6, 8\\}$. Suma cyfr to $2 + 5 + 8 + 4 + \\# = 19 + \\#$. Dla $\\# = 2$ jest $21$ i dla $\\# = 8$ jest $27$ – dzielą się przez $3$, więc odpadają. Zostaje $\\# \\in \\{0, 4, 6\\}$.",
+        uwaga: "Warunek „niepodzielna” też odrzuca cyfry, a nie tylko „podzielna” je wybiera. Sprawdź wynik na jednej z pozostałych cyfr: $25804$ dzieli się przez $4$ ($04$), a suma cyfr $19$ nie dzieli się przez $3$.",
+      },
     ],
     jak: [
       "Czy $a$ jest dzielnikiem $b$? Podziel $b$ przez $a$ – gdy nie ma reszty, to tak. Do szybkiego sprawdzenia użyj cech podzielności z działu „Podstawy: działania i ułamki”.",
@@ -251,7 +266,7 @@ export const WZORY = [
       "Czy liczba mniejsza od $100$ jest pierwsza? Sprawdź podzielność przez $2$, $3$, $5$ i $7$. Pamiętaj, że $1$ nie jest ani pierwsza, ani złożona.",
       "Rozkład na czynniki pierwsze: dziel przez kolejne liczby pierwsze, aż dojdziesz do $1$. NWD i NWW liczy się z takiego rozkładu (opis w „Podstawach”).",
       "W zadaniach o parzystości zapisz liczby jako $2n$ i $2n + 1$ albo sprawdź regułę na małych liczbach.",
-      "W zadaniach o reszcie zapisz $a = b \\cdot q + r$ i pamiętaj, że $r < b$.",
+      "W zadaniach o reszcie zapisz $a = b \\cdot q + r$ i pamiętaj, że $r < b$. Suma i różnica liczb podzielnych przez $k$ też dzieli się przez $k$.",
     ],
   },
   {
@@ -269,8 +284,8 @@ export const WZORY = [
       {
         nazwa: "Zaokrąglanie liczb dziesiętnych i ułamków",
         slownie: "Tak samo, tylko po przecinku: **do części dziesiątych** zostawiasz jedną cyfrę po przecinku, **do części setnych** – dwie, **do jedności** – żadnej. Decyduje cyfra tuż za ostatnią zostawioną, a resztę odcinasz. Jak w sklepie, gdzie ceny zaokrągla się do groszy, czyli do części setnych złotówki.",
-        tex: "3{,}476 \\approx 3 \\;\\text{(do jedności)} \\qquad 3{,}476 \\approx 3{,}5 \\;\\text{(do dziesiątych)} \\qquad 3{,}476 \\approx 3{,}48 \\;\\text{(do setnych)}",
-        litery: "Znak $\\approx$ czytamy „w przybliżeniu” albo „około”.",
+        tex: "\\text{do jedności: } 3 \\qquad \\text{do dziesiątych: } 3{,}5 \\qquad \\text{do setnych: } 3{,}48",
+        litery: "Wszystkie trzy przybliżenia dotyczą liczby $3{,}476$. Znak $\\approx$ czytamy „w przybliżeniu” albo „około”.",
         przyklad: "$\\frac{2}{3} = 0{,}666\\ldots \\approx 0{,}67$ (do setnych decyduje $6$, więc w górę), a $\\frac{1}{3} = 0{,}333\\ldots \\approx 0{,}33$. Liczba $0{,}996$ do setnych: decyduje $6$, więc $0{,}99 + 0{,}01 = 1{,}00$.",
         uwaga: "Zaokrąglając do części setnych zapisz dwie cyfry po przecinku, także gdy ostatnia to zero ($1{,}00$ albo $2{,}30$). Zaokrąglenie to tylko przybliżenie, więc piszemy $\\approx$, a nie $=$. Cyfra $9$ po zwiększeniu przenosi się dalej: $1996$ do dziesiątek to $2000$.",
       },
@@ -291,7 +306,7 @@ export const WZORY = [
       {
         nazwa: "W zadaniach z treścią: w górę czy w dół?",
         slownie: "O tym, w którą stronę zaokrąglić, decyduje pytanie, a nie cyfra. Pytanie „**ile pełnych**…” (ile pudełek da się napełnić) – zaokrąglasz **w dół**, bo niepełnego pudełka nie liczysz. Pytanie „ile potrzeba, **żeby wszystkich zmieścić**” (ile autobusów zamówić) – zaokrąglasz **w górę**, bo ostatni autobus też jedzie, choćby prawie pusty.",
-        tex: "\\text{ile pełnych} \\to \\text{w dół} \\qquad\\qquad \\begin{aligned} & \\text{ile potrzeba, żeby wystarczyło} \\\\ & \\to \\text{w górę} \\end{aligned}",
+        tex: "\\text{ile pełnych} \\to \\text{w dół} \\qquad\\qquad \\begin{gathered} \\text{ile potrzeba, żeby starczyło} \\\\ \\to \\text{w górę} \\end{gathered}",
         przyklad: "W szkole jest $250$ uczniów, a w autobusie $45$ miejsc: $250 : 45 \\approx 5{,}6$, więc trzeba $6$ autobusów ($5 \\cdot 45 = 225 < 250$). Ze $100$ ciastek zapakujesz paczki po $12$: $100 : 12 \\approx 8{,}3$, czyli $8$ pełnych paczek ($8 \\cdot 12 = 96$, zostają $4$ ciastka).",
         uwaga: "Zwykłe zaokrąglanie tu zawodzi: gdyby wyszło $5{,}2$ autobusa, i tak potrzeba $6$, choć $5{,}2$ zaokrągla się do $5$. Zawsze zapytaj siebie, czy „kawałek” jednostki (pół autobusu) jest w tym zadaniu możliwy.",
       },
@@ -355,6 +370,14 @@ export const WZORY = [
         przyklad: "$7\\,200\\,000 = 7{,}2 \\cdot 10^6$ (przecinek przesuwamy o $6$ miejsc w lewo). Warto znać: $10^3 = 1000$ (tysiąc), $10^6$ to milion, $10^9$ – miliard. Zapis $12 \\cdot 10^3$ nie jest wykładniczy, bo $12 > 10$; poprawnie $12 \\cdot 10^3 = 12\\,000 = 1{,}2 \\cdot 10^4$.",
         uwaga: "Liczba przed potęgą musi spełniać $1 \\le a < 10$: zapis $0{,}5 \\cdot 10^4$ trzeba zamienić na $5 \\cdot 10^3$. Ujemny wykładnik nie robi liczby ujemnej: $10^{-3} = \\frac{1}{1000} = 0{,}001$ to mała liczba dodatnia.",
       },
+      {
+        nazwa: "Ujemny wykładnik przy 10 i porównywanie liczb",
+        slownie: "Dodatni wykładnik przy dziesiątce mówi, ile razy przesuwasz przecinek **w prawo**. Ujemny wykładnik robi odwrotnie: **przecinek wędruje w lewo** o tyle miejsc, ile pokazuje liczba bez minusa, więc wychodzi liczba bardzo mała, jak grubość włosa. Żeby porównać kilka liczb zapisanych różnie, **zamień wszystkie na zwykły zapis dziesiętny** i dopiero wtedy porządkuj.",
+        tex: "10^{-1} = 0{,}1 \\qquad 10^{-3} = 0{,}001 \\qquad 10^{-n} = \\frac{1}{10^n}",
+        litery: "$n$ – liczba naturalna, tyle zer ma mianownik po zamianie na ułamek.",
+        przyklad: "$5{,}27 \\cdot 10^{-3}$: przecinek w lewo o $3$ miejsca, czyli $0{,}00527$. $1400 \\cdot 10^{-5}$: przecinek w lewo o $5$ miejsc (od końca $1400{,}0$), czyli $0{,}014$. W drugą stronę $0{,}0023 = 2{,}3 \\cdot 10^{-3}$. Kolejność liczb $x = 5{,}27 \\cdot 10^{-3} = 0{,}00527$, $y = 0{,}0023$, $z = 1400 \\cdot 10^{-5} = 0{,}014$ od najmniejszej: $y < x < z$. Mnożenie: $(2 \\cdot 10^3) \\cdot (3 \\cdot 10^4) = 6 \\cdot 10^7$.",
+        uwaga: "Ujemny wykładnik nie robi liczby ujemnej: $10^{-3}$ to $0{,}001$, a nie $-1000$ ani $-0{,}001$. Liczba $1400 \\cdot 10^{-5}$ nie jest zapisem wykładniczym (bo $1400 > 10$), ale da się ją porównać z innymi po zamianie na zapis dziesiętny. Liczba z większym ujemnym wykładnikiem nie musi być mniejsza – patrz też na liczbę przed potęgą.",
+      },
     ],
     jak: [
       "Gdy się pogubisz, rozpisz potęgę jako mnożenie: $2^4 = 2 \\cdot 2 \\cdot 2 \\cdot 2$.",
@@ -362,7 +385,7 @@ export const WZORY = [
       "Ta sama podstawa: mnożenie – dodaj wykładniki, dzielenie – odejmij. Różne podstawy sprowadź do jednej ($4 = 2^2$, $8 = 2^3$, $9 = 3^2$, $25 = 5^2$) albo policz wartości.",
       "Potęga potęgi: wykładniki mnożysz. Potęga iloczynu i ilorazu: podnieś do potęgi każdy czynnik.",
       "Pamiętaj: $a^0 = 1$ i $a^1 = a$, a sumy ani różnicy nie da się „rozdać”: $(a + b)^2 \\neq a^2 + b^2$.",
-      "Notacja wykładnicza: przesuń przecinek tak, by przed nim została jedna cyfra różna od zera; wykładnik to liczba przesunięć (w lewo plus, w prawo minus).",
+      "Notacja wykładnicza: przesuń przecinek tak, by przed nim została jedna cyfra różna od zera; wykładnik to liczba przesunięć (w lewo plus, w prawo minus). Liczby w różnych zapisach porównuj po zamianie na zwykły zapis dziesiętny.",
     ],
   },
   {
@@ -409,9 +432,16 @@ export const WZORY = [
       {
         nazwa: "Wyłączanie czynnika przed pierwiastek i włączanie",
         slownie: "**Wyłączanie**: jeśli pod pierwiastkiem jest czynnik, który jest kwadratem, możesz go „wypuścić” na zewnątrz jako jego pierwiastek – jak wyjęcie z pudełka rzeczy, które się nie mieszczą. Szukaj największego kwadratu ($4$, $9$, $16$, $25$, $36$…), który dzieli liczbę pod pierwiastkiem. **Włączanie** to ruch w drugą stronę: liczba przed pierwiastkiem wchodzi pod pierwiastek, ale **w kwadracie**.",
-        tex: "\\sqrt{12} = \\sqrt{4 \\cdot 3} = \\sqrt{4} \\cdot \\sqrt{3} = 2\\sqrt{3} \\qquad\\qquad 3\\sqrt{2} = \\sqrt{9 \\cdot 2} = \\sqrt{18}",
+        tex: "\\sqrt{12} = \\sqrt{4 \\cdot 3} = 2\\sqrt{3} \\qquad\\qquad 3\\sqrt{2} = \\sqrt{9 \\cdot 2} = \\sqrt{18}",
         przyklad: "$\\sqrt{75} = \\sqrt{25 \\cdot 3} = 5\\sqrt{3}$ oraz $\\sqrt{72} = \\sqrt{36 \\cdot 2} = 6\\sqrt{2}$. Włączanie: $4\\sqrt{3} = \\sqrt{16 \\cdot 3} = \\sqrt{48}$. Po wyłączeniu można dodawać: $\\sqrt{12} + \\sqrt{27} = 2\\sqrt{3} + 3\\sqrt{3} = 5\\sqrt{3}$.",
         uwaga: "Przy włączaniu liczba wchodzi pod pierwiastek **w kwadracie**: $3\\sqrt{2} = \\sqrt{18}$, a nie $\\sqrt{6}$ (bo $3^2 \\cdot 2 = 18$, a $3 \\cdot 2 = 6$ to częsty błąd). Przy wyłączaniu pod pierwiastkiem zostaje to, co zostało po wyjęciu kwadratu: $\\sqrt{12} = 2\\sqrt{3}$, a nie $2 \\cdot 3$ ani $4\\sqrt{3}$.",
+      },
+      {
+        nazwa: "Wyrażenia z pierwiastkami: nawias i porównanie z liczbą",
+        slownie: "Kreska pierwiastka działa jak **nawias**: najpierw policz wszystko, co jest pod nią, a dopiero potem pierwiastek. Gdy trzeba sprawdzić, czy wyrażenie typu $4 + \\sqrt{35}$ jest mniejsze od $10$, **zamknij pierwiastek między dwiema liczbami całkowitymi** (jak w karcie o szacowaniu) i dodaj resztę wyrażenia do obu końców.",
+        tex: "\\sqrt{9 + 16} = \\sqrt{25} = 5 \\qquad \\sqrt{9} + \\sqrt{16} = 7",
+        przyklad: "$\\sqrt{100 - 64} - 2 = \\sqrt{36} - 2 = 4$. Czy $4 + \\sqrt{35} < 10$? Skoro $25 < 35 < 36$, to $5 < \\sqrt{35} < 6$, więc $9 < 4 + \\sqrt{35} < 10$ – tak. Czy $17 - \\sqrt{48} < 10$? Z $36 < 48 < 49$ mamy $6 < \\sqrt{48} < 7$, więc $10 < 17 - \\sqrt{48} < 11$ – nie. Gdy granica wypada w środku, podnieś do kwadratu: $3 + \\sqrt{17} < 7$ znaczy $\\sqrt{17} < 4$, czyli $17 < 16$ – fałsz.",
+        uwaga: "Nie rozbijaj pierwiastka z sumy: $\\sqrt{9 + 16} = 5$, a nie $3 + 4 = 7$. Przy odejmowaniu pierwiastka **większy pierwiastek daje mniejszy wynik**: skoro $6 < \\sqrt{48} < 7$, to $17 - \\sqrt{48}$ leży między $17 - 7 = 10$ a $17 - 6 = 11$. Szacując, zawsze zapisz oba końce przedziału.",
       },
     ],
     jak: [
@@ -420,7 +450,7 @@ export const WZORY = [
       "Szacując: znajdź dwa kolejne kwadraty (sześciany) wokół liczby pod pierwiastkiem. Chcąc zaokrąglić, sprawdź kwadrat „połówki”, np. $4{,}5^2$.",
       "Mnożenie i dzielenie: wsadź pod jeden pierwiastek. Dodawać można tylko takie same pierwiastki ($3\\sqrt{2} + 5\\sqrt{2}$).",
       "Wyłączanie: znajdź największy kwadrat będący dzielnikiem liczby pod pierwiastkiem i wyłącz jego pierwiastek. Włączanie: podnieś liczbę przed pierwiastkiem do kwadratu i wciągnij pod pierwiastek.",
-      "Sprawdź podniesieniem do kwadratu: $(2\\sqrt{3})^2 = 4 \\cdot 3 = 12$.",
+      "Pierwiastek to nawias: najpierw policz to, co pod kreską ($\\sqrt{9 + 16} = 5$). Wyrażenie z pierwiastkiem porównaj z liczbą, szacując pierwiastek między dwiema kolejnymi liczbami całkowitymi. Sprawdź podniesieniem do kwadratu: $(2\\sqrt{3})^2 = 4 \\cdot 3 = 12$.",
     ],
   },
 ];
