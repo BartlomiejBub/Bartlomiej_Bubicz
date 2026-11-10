@@ -11,7 +11,8 @@ const TYPY = {
 };
 const TYPY_E8 = { ...TYPY, glowna: "Termin główny", probna: "Próbny CKE" };
 
-// --- Egzamin (Matura / Egzamin ósmoklasisty) i jego zakładki, adres: korepetycje.html#karty, #e8-cwiczenia itd.
+// --- Egzamin (Matura / Egzamin ósmoklasisty) i jego zakładki, adres: korepetycje.html#matury, #e8-cwiczenia itd.
+// Pierwsza zakładka egzaminu (Ćwiczenia) otwiera się, gdy w adresie nie ma zakładki albo jest nieznana (np. dawne #karty).
 // Wybrany egzamin jest w <body data-egzamin>; ćwiczenia (cwiczenia.js) słuchają zdarzenia "egzamin".
 
 const KLUCZ_EGZAMINU = "korepetycje.egzamin";

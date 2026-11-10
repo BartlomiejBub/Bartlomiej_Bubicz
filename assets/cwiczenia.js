@@ -12,6 +12,8 @@ const KLUCZ_DZIALU = "korepetycje.dzial";   // + "." + egzamin; dla matury bez p
 const KLUCZ_TRYBU = "korepetycje.tryb";     // "egzamin" (działy egzaminu) albo "szkola" (klasy i rozdziały)
 const KLUCZ_KLASY = "korepetycje.klasa";    // + "." + egzamin
 const KLUCZ_ROZDZIALU = "korepetycje.rozdzial";   // + "." + id klasy
+const KLUCZ_TEMATU = "korepetycje.temat";         // + "." + id działu albo rozdziału
+const KLUCZ_ZAKLADKI = "korepetycje.zakladka";    // ostatnio wybrana zakładka tematu: wzory, zadania, generator
 const ZADAN_NA_SPRAWDZIAN = 10;
 const ZADAN_NA_POWTORKE = 6;
 
@@ -23,6 +25,7 @@ const blad = document.getElementById("login-error");
 const wyborTrybu = document.getElementById("tryb-wybor");
 const wyborDzialu = document.getElementById("dzialy-wybor");
 const widok = document.getElementById("dzial");
+const spis = document.getElementById("spis");   // lista tematów w bocznej kolumnie (na komputerze)
 
 const biezacyEgzamin = () => egzamin(document.body.dataset.egzamin);
 const kluczDzialu = () => (biezacyEgzamin().id === "matura" ? KLUCZ_DZIALU : `${KLUCZ_DZIALU}.${biezacyEgzamin().id}`);
@@ -91,6 +94,7 @@ function pokazUcznia(uczen) {
     const inny = wszystkie.find((d) => d.egzamin !== e.id);
     wyborTrybu.hidden = true;
     wyborDzialu.hidden = true;
+    spis.hidden = true;
     widok.replaceChildren(
       el("div", { class: "empty" },
         el("strong", {}, "Brak materiałów"),
@@ -140,21 +144,132 @@ function pokazDzial(uczen, d, przyciski) {
   pamietaj(kluczDzialu(), d.id);
   for (const b of przyciski) b.setAttribute("aria-pressed", String(b.dataset.dzial === d.id));
   const widzi = (r) => ma(uczen, d.id, r) && maMaterialy(d, r);
-  widok.replaceChildren(el("p", { class: "section-intro" }, d.opis), ...materialy(d, widzi));
+  widok.replaceChildren(
+    el("p", { class: "section-intro dzial-opis" }, d.opis),
+    widokTematow(d, widzi, { klucz: `${KLUCZ_TEMATU}.${d.id}`, spis }),
+  );
 }
 
-/** Bloki z materiałami działu (albo rozdziału), które uczeń widzi. */
-function materialy(d, widzi) {
-  const ma = (pole) => d.tematy.some((t) => t[pole]?.length);
-  const bloki = [
-    widzi("zadania") && ma("cwiczenia") && blokZadan(d, OPIS_CWICZEN, { pole: "cwiczenia", tytul: "Zadania do ćwiczeń" }),
-    widzi("zadania") && ma("zadania") && blokZadan(d),
-    widzi("generator") && blokGeneratora(d),
-    widzi("karty") && blokKart(d),
-  ];
-  // Kartę wzorów widzi każdy, kto ma jakikolwiek dostęp do działu.
-  const wzory = d.wzory.length > 0 && blokWzorow(d);
-  return [wzory, ...bloki].filter(Boolean);
+// --- Materiały działu albo rozdziału: najpierw temat, potem jedna zakładka – wzory, zadania albo generator.
+// Dzięki temu na ekranie jest zawsze tylko to, czego uczeń teraz potrzebuje. Karty pracy obejmują cały dział,
+// więc są osobną pozycją na końcu listy tematów.
+
+const KARTY_DZIALU = "__karty";
+
+/** Zakładki tematu (tylko te, w których coś jest). dt – dział przycięty do jednego tematu. */
+function zakladkiTematu(d, dt, t, widzi) {
+  const ileZadan = t.zadania.length + (t.cwiczenia?.length ?? 0);
+  return [
+    dt.wzory.some((w) => w.wzory.length) && {
+      id: "wzory", nazwa: "Wzory",
+      pokaz: () => [blokWzorow(dt)],
+    },
+    widzi("zadania") && ileZadan > 0 && {
+      id: "zadania", nazwa: "Zadania", licznik: ileZadan,
+      pokaz: () => [
+        t.cwiczenia?.length && blokZadan(dt, OPIS_CWICZEN, { pole: "cwiczenia", tytul: "Zadania do ćwiczeń" }),
+        t.zadania.length && blokZadan(dt),
+      ].filter(Boolean),
+    },
+    widzi("generator") && dt.generatory.length > 0 && {
+      id: "generator", nazwa: "Generator", licznik: dt.generatory.length > 1 ? dt.generatory.length : null,
+      pokaz: () => [blokGeneratora(dt)],
+    },
+  ].filter(Boolean);
+}
+
+/** Wybór tematu i jego zakładki. spis – lista w bocznej kolumnie (na komputerze); na telefonie i bez spisu
+ *  temat wybiera się z rozwijanej listy albo z kilku przycisków nad treścią. */
+function widokTematow(d, widzi, { klucz, spis: boczny = null }) {
+  const tematy = d.tematy
+    .map((t) => ({ t, dt: przytnij(d, [t.id]) }))
+    .map((x) => ({ ...x, zakladki: zakladkiTematu(d, x.dt, x.t, widzi) }))
+    .filter((x) => x.zakladki.length);
+  const karty = widzi("karty") && { t: { id: KARTY_DZIALU, nazwa: d.rozdzial ? "Karty pracy z rozdziału" : "Karty pracy do druku" } };
+  const pozycje = [...tematy, karty].filter(Boolean);
+
+  const tresc = el("div", { class: "temat" });
+  if (!pozycje.length) {
+    if (boczny) boczny.hidden = true;
+    return el("div", { class: "empty" }, el("strong", {}, "Brak materiałów"), el("p", {}, "W tym dziale nie ma jeszcze nic dla Ciebie."));
+  }
+
+  // Lista w bocznej kolumnie (komputer) i rozwijana lista / przyciski nad treścią (telefon).
+  const przyciskiBoczne = pozycje.map((x, i) => {
+    const b = el("button", { class: `spis-temat${x === karty ? " spis-karty" : ""}`, type: "button", "data-temat": x.t.id },
+      x === karty ? x.t.nazwa : el("span", {}, el("span", { class: "spis-nr" }, `${i + 1}.`), ` ${x.t.nazwa}`));
+    b.addEventListener("click", () => wybierz(x, { przewin: true }));
+    return b;
+  });
+  if (boczny) {
+    boczny.replaceChildren(el("p", { class: "spis-tytul" }, d.rozdzial ? "Tematy rozdziału" : "Tematy"), ...przyciskiBoczne);
+    boczny.hidden = false;
+  }
+  const lista = el("select", { class: "temat-select", "aria-label": "Temat" },
+    ...pozycje.map((x, i) => el("option", { value: x.t.id }, x === karty ? `— ${x.t.nazwa}` : `${i + 1}. ${x.t.nazwa}`)));
+  lista.addEventListener("change", () => wybierz(pozycje.find((x) => x.t.id === lista.value)));
+  const malo = pozycje.length <= 6;
+  const chipy = pozycje.map((x) => {
+    const b = el("button", { class: "chip", type: "button", "data-temat": x.t.id }, x.t.nazwa);
+    b.addEventListener("click", () => wybierz(x));
+    return b;
+  });
+  const wyborTematu = malo && !boczny
+    ? el("div", { class: "chips wybor-tematu", role: "group", "aria-label": "Temat" }, ...chipy)
+    : el("label", { class: `wybor-tematu${boczny ? " z-boku" : ""}` }, el("span", { class: "field-label" }, "Temat"), lista);
+
+  function wybierz(x, { przewin = false } = {}) {
+    pamietaj(klucz, x.t.id);
+    lista.value = x.t.id;
+    for (const b of [...przyciskiBoczne, ...chipy]) {
+      if (b.dataset.temat === x.t.id) b.setAttribute("aria-current", "true");
+      else b.removeAttribute("aria-current");
+      if (b.classList.contains("chip")) b.setAttribute("aria-pressed", String(b.dataset.temat === x.t.id));
+    }
+    if (x === karty) {
+      tresc.replaceChildren(blokKart(d));
+    } else {
+      const i = tematy.indexOf(x);
+      const zapisana = przypomnij(KLUCZ_ZAKLADKI);
+      let biezaca = x.zakladki.find((z) => z.id === zapisana) ?? x.zakladki[0];
+      const panelZakladki = el("div", { class: "zakladka" });
+      const przyciski = x.zakladki.map((z) => {
+        const b = el("button", { class: "tab", type: "button", "aria-pressed": "false", "data-zakladka": z.id },
+          z.nazwa, z.licznik ? el("span", { class: "tab-licznik" }, String(z.licznik)) : null);
+        b.addEventListener("click", () => pokazZakladke(z, { zapisz: true }));
+        return b;
+      });
+      const pokazZakladke = (z, { zapisz = false } = {}) => {
+        biezaca = z;
+        if (zapisz) pamietaj(KLUCZ_ZAKLADKI, z.id);
+        for (const b of przyciski) b.setAttribute("aria-pressed", String(b.dataset.zakladka === z.id));
+        panelZakladki.replaceChildren(...z.pokaz());
+      };
+      const sasiad = (j, napis) => tematy[j] && el("button", { class: "btn", type: "button" }, napis(tematy[j].t.nazwa));
+      const poprzedni = sasiad(i - 1, (n) => `← ${n}`);
+      const nastepny = sasiad(i + 1, (n) => `${n} →`);
+      poprzedni?.addEventListener("click", () => wybierz(tematy[i - 1], { przewin: true }));
+      nastepny?.addEventListener("click", () => wybierz(tematy[i + 1], { przewin: true }));
+      tresc.replaceChildren(
+        el("div", { class: "temat-glowa" },
+          el("p", { class: "temat-nr" }, `Temat ${i + 1} z ${tematy.length}`),
+          el("h3", { class: "temat-tytul" }, x.t.nazwa),
+        ),
+        x.zakladki.length > 1 && el("div", { class: "tabs zakladki", role: "group", "aria-label": "Co chcesz zobaczyć" }, ...przyciski),
+        panelZakladki,
+        (poprzedni || nastepny) && el("nav", { class: "temat-dalej", "aria-label": "Inne tematy" }, poprzedni ?? el("span"), nastepny),
+      );
+      pokazZakladke(biezaca);
+    }
+    if (przewin) {
+      const gora = tresc.getBoundingClientRect().top;
+      if (gora < 0 || gora > innerHeight * 0.6) tresc.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }
+
+  const zapisany = pozycje.find((x) => x.t.id === przypomnij(klucz));
+  wybierz(zapisany ?? pozycje[0]);
+  return el("div", { class: "tematy" }, wyborTematu, tresc);
 }
 
 // --- Do szkoły: klasa, rozdział, który uczeń teraz przerabia, i materiały do niego
@@ -171,6 +286,7 @@ function pokazKlasy(uczen) {
   wyborDzialu.setAttribute("aria-label", "Klasa");
   wyborDzialu.replaceChildren(el("span", { class: "tabs-etykieta", "aria-hidden": "true" }, "Klasa"), ...przyciski);
   wyborDzialu.hidden = false;
+  spis.hidden = true;   // pokazKlase wypełni go rozdziałami klasy
   const zapisana = lista.find((k) => k.id === przypomnij(`${KLUCZ_KLASY}.${biezacyEgzamin().id}`));
   pokazKlase(uczen, zapisana ?? lista[0], przyciski);
 }
@@ -185,34 +301,56 @@ function pokazKlase(uczen, k, przyciski) {
     const widzi = (rodzaj) => (rodzaj === "karty" ? d.karty : maMaterialy(d, rodzaj));
     return { r, d, widzi, gotowy: d.wzory.length > 0 || ["zadania", "generator"].some(widzi) };
   });
-  const tresc = el("div", { class: "rozdzial" });
-  const wybierz = (x) => {
+  const tresc = el("div", { class: "rozdzial temat" });
+  const wybierz = (x, { przewin = false } = {}) => {
     pamietaj(`${KLUCZ_ROZDZIALU}.${k.id}`, x.r.id);
-    for (const c of chipy) c.setAttribute("aria-pressed", String(c.dataset.rozdzial === x.r.id));
+    lista.value = x.r.id;
+    for (const b of naLiscie) {
+      if (b.dataset.rozdzial === x.r.id) b.setAttribute("aria-current", "true");
+      else b.removeAttribute("aria-current");
+    }
+    const nr = rozdzialy.indexOf(x) + 1;
     tresc.replaceChildren(
+      el("div", { class: "temat-glowa" },
+        el("p", { class: "temat-nr" }, `${k.nazwa} · rozdział ${nr} z ${rozdzialy.length}`),
+        el("h3", { class: "temat-tytul" }, x.r.nazwa),
+        el("p", { class: "rozdzial-opis" }, x.r.opis),
+      ),
       blokPostepu(k, x.r),
-      el("h3", { class: "rozdzial-tytul" }, x.r.nazwa),
-      el("p", { class: "blok-intro" }, x.r.opis),
       ...kafelkiRozdzialu(uczen, k, x),
     );
+    if (przewin && tresc.getBoundingClientRect().top < 0) tresc.scrollIntoView({ behavior: "smooth", block: "start" });
   };
-  const chipy = rozdzialy.map((x, i) => {
-    const wkrotce = !Object.keys(x.r.tematy).length;
+
+  // Rozdziały: lista w bocznej kolumnie (komputer) i rozwijana lista nad treścią (telefon).
+  const opisBlokady = (x) => (!Object.keys(x.r.tematy).length
+    ? "Materiały do tego rozdziału dopiero przygotowuję."
+    : "Ten rozdział nie jest dla Ciebie odblokowany – zapytaj nauczyciela.");
+  const naLiscie = rozdzialy.map((x, i) => {
     const b = el("button", {
-      class: "chip", type: "button", "aria-pressed": "false", "data-rozdzial": x.r.id, disabled: !x.gotowy,
-      title: x.gotowy ? x.r.opis : wkrotce ? "Materiały do tego rozdziału dopiero przygotowuję." : "Ten rozdział nie jest dla Ciebie odblokowany – zapytaj nauczyciela.",
-    }, `${i + 1}. ${x.r.nazwa}`, wkrotce && el("span", { class: "chip-count" }, " · wkrótce"));
-    b.addEventListener("click", () => wybierz(x));
+      class: "spis-temat", type: "button", "data-rozdzial": x.r.id, disabled: !x.gotowy, title: x.gotowy ? null : opisBlokady(x),
+    }, el("span", {}, el("span", { class: "spis-nr" }, `${i + 1}.`), ` ${x.r.nazwa}`));
+    b.addEventListener("click", () => wybierz(x, { przewin: true }));
     return b;
   });
+  const lista = el("select", { class: "temat-select", "aria-label": "Rozdział" },
+    ...rozdzialy.map((x, i) => el("option", { value: x.r.id, disabled: !x.gotowy }, `${i + 1}. ${x.r.nazwa}${x.gotowy ? "" : " (niedostępny)"}`)));
+  lista.addEventListener("change", () => wybierz(rozdzialy.find((x) => x.r.id === lista.value)));
 
   const zablokowane = rozdzialy.some((x) => !x.gotowy && Object.keys(x.r.tematy).length);
   const gotowe = rozdzialy.filter((x) => x.gotowy);
   const zapisany = gotowe.find((x) => x.r.id === przypomnij(`${KLUCZ_ROZDZIALU}.${k.id}`));
+  if (gotowe.length) {
+    spis.replaceChildren(...[
+      el("p", { class: "spis-tytul" }, "Rozdziały"),
+      ...naLiscie,
+      zablokowane && el("p", { class: "spis-uwaga" }, "Wyszarzonych rozdziałów jeszcze nie masz – zapytaj nauczyciela."),
+    ].filter(Boolean));
+    spis.hidden = false;
+  }
   widok.replaceChildren(...[
-    el("p", { class: "section-intro" }, "Rozdziały w kolejności, w jakiej zwykle są w podręcznikach. Wybierz ten, który teraz przerabiasz w szkole – zobaczysz wyjaśnienia, ćwiczenia i zadania z egzaminów z tego tematu."),
-    el("div", { class: "chips rozdzialy", role: "group", "aria-label": `Rozdziały: ${k.nazwa.toLowerCase()}` }, ...chipy),
-    zablokowane && el("p", { class: "field-hint" }, "Wyszarzone rozdziały nie są jeszcze dla Ciebie odblokowane – zapytaj nauczyciela."),
+    el("p", { class: "section-intro dzial-opis" }, "Rozdziały są w kolejności z podręczników. Wybierz ten, który teraz przerabiasz w szkole."),
+    gotowe.length && el("label", { class: "wybor-tematu z-boku" }, el("span", { class: "field-label" }, "Rozdział"), lista),
     gotowe.length ? tresc : el("div", { class: "empty" },
       el("strong", {}, "Brak materiałów"),
       el("p", {}, "W tej klasie nie masz jeszcze odblokowanych rozdziałów. Daj znać nauczycielowi."),
@@ -251,7 +389,7 @@ function kafelkiRozdzialu(uczen, k, x) {
   const tryby = [
     {
       id: "nauka", nazwa: "Ucz się", opis: "wyjaśnienia i ćwiczenia z rozdziału",
-      pokaz: () => materialy(x.d, x.widzi),
+      pokaz: () => [widokTematow(x.d, x.widzi, { klucz: `${KLUCZ_TEMATU}.${x.d.id}` })],
     },
     {
       id: "sprawdzian", nazwa: "Przed sprawdzianem", opis: `${zadan(naSprawdzian)} z tego rozdziału`,
@@ -424,7 +562,7 @@ function blokWzorow(d) {
           wstaw(el("p", { class: "wzor-nazwa" }), w.nazwa, { akapity: false }),
           w.slownie && poleKarty("wzor-slownie", w.slownie),
           el("div", { class: "wzor-tex" }, ...czesciWzoru(w.tex).map((t) => wstaw(el("div", { class: "wzor-czesc" }), `$${t}$`))),
-          w.litery && poleKarty("wzor-uwaga", w.litery),
+          w.litery && poleKarty("wzor-litery", w.litery),
           w.przyklad && poleKarty("wzor-przyklad", `**Przykład:** ${w.przyklad}`),
           w.uwaga && poleKarty("wzor-uwaga", w.uwaga),
         ),
@@ -451,7 +589,7 @@ function blokWzorow(d) {
   return el("section", { class: "blok" },
     el("h3", {}, d.wzoryTytul ?? "Wzory i schematy"),
     el("p", { class: "blok-intro" }, d.wzoryOpis ?? "Najważniejsze wzory z każdego tematu i krótko, jak rozwiązywać typowe zadania."),
-    el("div", { class: "chips", role: "group", "aria-label": "Temat wzorów" }, ...przyciski),
+    przyciski.length > 1 && el("div", { class: "chips", role: "group", "aria-label": "Temat wzorów" }, ...przyciski),
     tresc,
   );
 }
@@ -496,7 +634,7 @@ function blokZadan(d, intro = opisZadan(d), { pole = "zadania", tytul = egzamin(
   return el("section", { class: "blok" },
     el("div", { class: "blok-head" }, el("h3", {}, tytul), licznik),
     el("p", { class: "blok-intro" }, intro),
-    el("div", { class: "chips", role: "group", "aria-label": "Temat zadań" }, ...przyciski),
+    przyciski.length > 1 && el("div", { class: "chips", role: "group", "aria-label": "Temat zadań" }, ...przyciski),
     lista,
   );
 }
@@ -633,7 +771,7 @@ function blokGeneratora(d) {
   return el("section", { class: "blok" },
     el("div", { class: "blok-head" }, el("h3", {}, "Generator zadań"), licznik),
     el("p", { class: "blok-intro" }, d.generatorOpis ?? `Zadania ${egzamin(d.egzamin).podobne}, za każdym razem z innymi liczbami. Wpisz wynik i kliknij „Sprawdź”.`),
-    el("div", { class: "chips", role: "group", "aria-label": "Temat zadań" }, ...tematy),
+    tematy.length > 1 && el("div", { class: "chips", role: "group", "aria-label": "Rodzaj zadań" }, ...tematy),
     karta,
   );
 }
