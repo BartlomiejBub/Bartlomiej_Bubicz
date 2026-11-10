@@ -146,6 +146,22 @@ export default {
       opcje: ["$b = \\frac{2P - a}{h}$", "$b = \\frac{2P}{h} - a$", "$b = \\frac{P}{2h} - a$", "$b = 2Ph - a$"],
       poprawna: 1,
     },
+    // ---- liczby rzeczywiste ----
+    {
+      nr: "47", dzial: "liczby", temat: "liczby-rzeczywiste",
+      tresc: "Liczba $a$ leży na osi liczbowej w odległości $4$ od liczby $-1$, a liczba $b$ leży w odległości $6$ od liczby $5$. Jaka jest największa możliwa odległość między liczbami $a$ i $b$? **Wybierz właściwą odpowiedź.**",
+      opcje: ["$8$", "$10$", "$16$", "$4$"],
+      poprawna: 2,
+    },
+    {
+      nr: "48", dzial: "liczby", temat: "liczby-rzeczywiste",
+      tresc: "**Oceń prawdziwość podanych zdań.** Zaznacz P, jeśli zdanie jest prawdziwe, albo F – jeśli jest fałszywe.",
+      czesci: [
+        { tekst: "Liczba $4{,}5 \\cdot 10^{-3}$ jest równa $0{,}0045$.", litery: "PF", poprawna: 0 },
+        { tekst: "Liczba $0{,}0072 \\cdot 10^{5}$ jest zapisana w notacji wykładniczej.", litery: "PF", poprawna: 1 },
+        { tekst: "Iloraz $(6 \\cdot 10^{5}) : (2 \\cdot 10^{-2})$ jest równy $3 \\cdot 10^{3}$.", litery: "PF", poprawna: 1 },
+      ],
+    },
   ],
   otwarte: [
     // ---- zbiory ----
@@ -280,6 +296,17 @@ export default {
       nr: "46", dzial: "liczby", temat: "wyrazenia", punkty: 2,
       tresc: "Po $3$ latach na lokacie z roczną kapitalizacją odsetek i stopą $4\\%$ w skali roku zgromadzono $5624{,}32$ zł. Wyznacz ze wzoru $K = K_{0}(1 + p)^{n}$ kwotę początkową $K_{0}$ i oblicz jej wartość. **Zapisz obliczenia.**",
       rozwiazanie: "Czynnik $(1 + p)^{n}$ jest dodatni, więc możemy przez niego podzielić obie strony wzoru: $K_{0} = \\frac{K}{(1 + p)^{n}}$.\n\nPodstawiamy $K = 5624{,}32$, $p = 0{,}04$, $n = 3$: $K_{0} = \\frac{5624{,}32}{1{,}04^{3}} = \\frac{5624{,}32}{1{,}124864} = 5000$.\n\nSprawdzenie: $5000 \\cdot 1{,}124864 = 5624{,}32$.\n\nOdpowiedź: $K_{0} = \\frac{K}{(1 + p)^{n}}$, wpłacono $5000$ zł.",
+    },
+    // ---- liczby rzeczywiste ----
+    {
+      nr: "49", dzial: "liczby", temat: "liczby-rzeczywiste", punkty: 3,
+      tresc: "Ola zmierzyła długość boiska i otrzymała $98$ m, chociaż dokładna długość boiska to $100$ m. Jej brat zmierzył długość stołu i otrzymał $2{,}45$ m, chociaż dokładna długość stołu to $2{,}5$ m. Oblicz błąd bezwzględny i błąd względny każdego z tych pomiarów, a następnie rozstrzygnij, który pomiar był dokładniejszy. **Zapisz obliczenia.**",
+      rozwiazanie: "Błąd bezwzględny to odległość wyniku pomiaru od wartości dokładnej.\n\nBoisko: $|100 - 98| = 2$ m.\n\nStół: $|2{,}5 - 2{,}45| = 0{,}05$ m.\n\nBłąd względny to błąd bezwzględny podzielony przez wartość dokładną, zapisany w procentach.\n\nBoisko: $\\frac{2}{100} \\cdot 100\\% = 2\\%$.\n\nStół: $\\frac{0{,}05}{2{,}5} \\cdot 100\\% = 2\\%$.\n\nBłąd bezwzględny pomiaru boiska jest większy, ale ten pomiar dotyczy dużo dłuższej wielkości. Błędy względne są równe, więc oba pomiary są tak samo dokładne.\n\nOdpowiedź: Błędy bezwzględne to $2$ m i $0{,}05$ m, błędy względne to $2\\%$ i $2\\%$. Oba pomiary są tak samo dokładne.",
+    },
+    {
+      nr: "50", dzial: "liczby", temat: "liczby-rzeczywiste", punkty: 3,
+      tresc: "Wyznacz wszystkie liczby $x$, których odległość od liczby $-3$ na osi liczbowej jest dwa razy większa niż odległość od liczby $7$. **Zapisz obliczenia.**",
+      rozwiazanie: "Odległość liczby $x$ od $-3$ to $|x - (-3)| = |x + 3|$, a od $7$ to $|x - 7|$. Z treści: $|x + 3| = 2|x - 7|$.\n\nDwie liczby mają równe wartości bezwzględne, gdy są równe albo przeciwne. Zatem $x + 3 = 2(x - 7)$ albo $x + 3 = -2(x - 7)$.\n\nPierwszy przypadek: $x + 3 = 2x - 14$, więc $x = 17$.\n\nDrugi przypadek: $x + 3 = -2x + 14$, więc $3x = 11$ i $x = \\frac{11}{3}$.\n\nSprawdzenie dla $17$: odległość od $-3$ to $20$, od $7$ to $10$, a $20 = 2 \\cdot 10$. Dla $\\frac{11}{3}$: odległość od $-3$ to $\\frac{20}{3}$, od $7$ to $\\frac{10}{3}$, a $\\frac{20}{3} = 2 \\cdot \\frac{10}{3}$.\n\nOdpowiedź: $x = 17$ lub $x = \\frac{11}{3}$.",
     },
   ],
 };

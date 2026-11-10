@@ -53,6 +53,35 @@ export default {
       opcje: ["o $10$ punktów procentowych, czyli o $25\\%$", "o $10\\%$, czyli o $25$ punktów procentowych", "o $25$ punktów procentowych, czyli o $10\\%$", "o $10$ punktów procentowych, czyli o $10\\%$"],
       poprawna: 0,
     },
+    // ---- równania z treści (dodatkowe) ----
+    {
+      nr: "19", dzial: "tekstowe", temat: "rownania-z-tresci",
+      tresc: "Suma cyfr pewnej liczby dwucyfrowej jest równa $12$. Po zamianie cyfr miejscami otrzymujemy liczbę o $18$ mniejszą od danej. Jaka to liczba? **Wybierz właściwą odpowiedź.**",
+      opcje: ["$57$", "$93$", "$75$", "$84$"],
+      poprawna: 2,
+    },
+    {
+      nr: "20", dzial: "tekstowe", temat: "rownania-z-tresci",
+      tresc: "W pudełku jest $14$ monet: dwuzłotowych i pięciozłotowych. Ich łączna wartość wynosi $43$ zł. Ile monet pięciozłotowych jest w pudełku? **Wybierz właściwą odpowiedź.**",
+      opcje: ["$4$", "$5$", "$9$", "$10$"],
+      poprawna: 1,
+    },
+    // ---- ciągi w praktyce (dodatkowe) ----
+    {
+      nr: "23", dzial: "tekstowe", temat: "ciagi-w-praktyce",
+      tresc: "Na stosie puszek w najniższej warstwie leży $15$ puszek, a w każdej następnej warstwie jest o $1$ puszkę mniej. Stos ma $9$ warstw. Ile puszek jest na całym stosie? **Wybierz właściwą odpowiedź.**",
+      opcje: ["$88$", "$99$", "$105$", "$135$"],
+      poprawna: 1,
+    },
+    {
+      nr: "24", dzial: "tekstowe", temat: "ciagi-w-praktyce",
+      tresc: "**Oceń prawdziwość podanych zdań.** Zaznacz P, jeśli zdanie jest prawdziwe, albo F – jeśli jest fałszywe.",
+      czesci: [
+        { tekst: "Jeśli co miesiąc odkładasz o $30$ zł więcej niż w poprzednim miesiącu, to kolejne kwoty tworzą ciąg arytmetyczny.", litery: "PF", poprawna: 0 },
+        { tekst: "Liczba bakterii podwaja się co godzinę, więc jej kolejne wartości tworzą ciąg arytmetyczny o różnicy $2$.", litery: "PF", poprawna: 1 },
+        { tekst: "Wartość maszyny maleje co roku o $10\\%$ wartości z poprzedniego roku, więc kolejne wartości tworzą ciąg geometryczny o ilorazie $0{,}9$.", litery: "PF", poprawna: 0 },
+      ],
+    },
   ],
   otwarte: [
     {
@@ -106,6 +135,28 @@ export default {
       nr: "18", dzial: "tekstowe", temat: "procenty-i-pieniadze", punkty: 3,
       tresc: "Oprocentowanie roczne pewnej lokaty wzrosło z $2{,}5\\%$ do $4\\%$. O ile punktów procentowych, a o ile procent wzrosło oprocentowanie? Pan Marek wpłacił na roczną lokatę $8000$ zł. Oblicz, o ile złotych większe będą jego odsetki przy nowym oprocentowaniu (przed odliczeniem podatku). **Zapisz obliczenia.**",
       rozwiazanie: "Zmiana w punktach procentowych to różnica: $4 - 2{,}5 = 1{,}5$ punktu procentowego.\n\nZmiana w procentach to porównanie z wartością początkową: $\\frac{1{,}5}{2{,}5} \\cdot 100\\% = 0{,}6 \\cdot 100\\% = 60\\%$.\n\nOdsetki roczne przy dawnym oprocentowaniu: $0{,}025 \\cdot 8000 = 200$ zł.\n\nOdsetki roczne przy nowym oprocentowaniu: $0{,}04 \\cdot 8000 = 320$ zł.\n\nRóżnica: $320 - 200 = 120$ zł (to samo: $0{,}015 \\cdot 8000 = 120$ zł).\n\nOdpowiedź: Oprocentowanie wzrosło o $1{,}5$ punktu procentowego, czyli o $60\\%$, a odsetki będą większe o $120$ zł.",
+    },
+    // ---- równania z treści (dodatkowe) ----
+    {
+      nr: "21", dzial: "tekstowe", temat: "rownania-z-tresci", punkty: 3,
+      tresc: "Prostokątny ogród ma wymiary $12$ m na $8$ m. Dookoła ogrodu, na zewnątrz, zbudowano ścieżkę o jednakowej szerokości na całej długości. Pole ścieżki wynosi $96$ m$^{2}$. Oblicz szerokość ścieżki. **Zapisz obliczenia.**",
+      rozwiazanie: "Niech $x$ oznacza szerokość ścieżki w metrach, $x > 0$. Ogród razem ze ścieżką jest prostokątem o bokach $12 + 2x$ i $8 + 2x$.\n\nPole ścieżki to pole dużego prostokąta bez pola ogrodu: $(12 + 2x)(8 + 2x) - 12 \\cdot 8 = 96$.\n\nWymnażamy: $96 + 24x + 16x + 4x^{2} - 96 = 96$, czyli $4x^{2} + 40x - 96 = 0$.\n\nDzielimy przez $4$: $x^{2} + 10x - 24 = 0$. Delta: $100 + 96 = 196$, więc $x = \\frac{-10 - 14}{2} = -12$ lub $x = \\frac{-10 + 14}{2} = 2$.\n\nSzerokość nie może być ujemna, więc odrzucamy $-12$. Zostaje $x = 2$.\n\nSprawdzenie: duży prostokąt ma wymiary $16$ m na $12$ m, jego pole to $192$ m$^{2}$, a $192 - 96 = 96$ m$^{2}$ to pole ścieżki.\n\nOdpowiedź: Ścieżka ma szerokość $2$ m.",
+    },
+    {
+      nr: "22", dzial: "tekstowe", temat: "rownania-z-tresci", punkty: 3,
+      tresc: "Sklep zmieszał kawę po $60$ zł za kilogram z kawą po $90$ zł za kilogram. Otrzymano $10$ kg mieszanki, której kilogram kosztuje $72$ zł. Ile kilogramów każdego gatunku kawy użyto? **Zapisz obliczenia.**",
+      rozwiazanie: "Niech $x$ oznacza liczbę kilogramów kawy tańszej (po $60$ zł), a $y$ – liczbę kilogramów kawy droższej (po $90$ zł).\n\nRazem jest $10$ kg: $x + y = 10$.\n\nMieszanka jest warta $10 \\cdot 72 = 720$ zł, więc $60x + 90y = 720$.\n\nZ pierwszego równania $y = 10 - x$. Wstawiamy do drugiego: $60x + 90(10 - x) = 720$, czyli $60x + 900 - 90x = 720$.\n\nStąd $-30x = -180$, więc $x = 6$ i $y = 10 - 6 = 4$.\n\nSprawdzenie: $6 + 4 = 10$ kg oraz $60 \\cdot 6 + 90 \\cdot 4 = 360 + 360 = 720$ zł.\n\nOdpowiedź: Użyto $6$ kg kawy po $60$ zł i $4$ kg kawy po $90$ zł.",
+    },
+    // ---- ciągi w praktyce (dodatkowe) ----
+    {
+      nr: "25", dzial: "tekstowe", temat: "ciagi-w-praktyce", punkty: 3,
+      tresc: "Piłka spada z wysokości $2{,}5$ m. Po każdym uderzeniu o podłogę odbija się na wysokość równą $60\\%$ poprzedniej wysokości. Oblicz, na jaką wysokość piłka odbije się po trzecim uderzeniu o podłogę, i po którym uderzeniu odbije się po raz pierwszy na wysokość mniejszą niż $0{,}5$ m. **Zapisz obliczenia.**",
+      rozwiazanie: "Kolejne wysokości (początkowa i po kolejnych odbiciach) tworzą ciąg geometryczny, w którym każdą wysokość mnożymy przez $q = 0{,}6$.\n\nPo pierwszym odbiciu: $2{,}5 \\cdot 0{,}6 = 1{,}5$ m. Po drugim: $1{,}5 \\cdot 0{,}6 = 0{,}9$ m. Po trzecim: $0{,}9 \\cdot 0{,}6 = 0{,}54$ m. Ten sam wynik daje wzór $2{,}5 \\cdot 0{,}6^{3} = 2{,}5 \\cdot 0{,}216 = 0{,}54$ m.\n\nWysokość $0{,}54$ m jest jeszcze większa niż $0{,}5$ m. Po czwartym odbiciu: $0{,}54 \\cdot 0{,}6 = 0{,}324$ m, a to jest mniej niż $0{,}5$ m.\n\nOdpowiedź: Po trzecim uderzeniu piłka odbije się na wysokość $0{,}54$ m. Po raz pierwszy mniej niż $0{,}5$ m będzie po czwartym uderzeniu.",
+    },
+    {
+      nr: "26", dzial: "tekstowe", temat: "ciagi-w-praktyce", punkty: 3,
+      tresc: "Pan Piotr przygotowuje się do biegu. W pierwszym tygodniu przebiegł $12$ km, a w każdym następnym tygodniu o $3$ km więcej niż w poprzednim. Oblicz, w którym tygodniu przebiegnie $60$ km, i ile kilometrów przebiegnie łącznie od pierwszego tygodnia do tego tygodnia włącznie. **Zapisz obliczenia.**",
+      rozwiazanie: "Tygodniowe dystanse tworzą ciąg arytmetyczny o pierwszym wyrazie $a_{1} = 12$ i różnicy $r = 3$. Wzór ogólny: $a_{n} = 12 + (n - 1) \\cdot 3$.\n\nSzukamy $n$, dla którego $a_{n} = 60$: $12 + 3(n - 1) = 60$, czyli $3(n - 1) = 48$ i $n - 1 = 16$, więc $n = 17$.\n\nŁączny dystans to suma $17$ początkowych wyrazów: $S_{17} = \\frac{12 + 60}{2} \\cdot 17 = 36 \\cdot 17 = 612$ km.\n\nOdpowiedź: Pan Piotr przebiegnie $60$ km w $17$. tygodniu, a łącznie przebiegnie $612$ km.",
     },
   ],
 };

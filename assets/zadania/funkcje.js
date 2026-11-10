@@ -125,6 +125,29 @@ export default {
       opcje: ["$15$", "$31$", "$16$", "$9$"],
       poprawna: 0,
     },
+    // ---- inne funkcje (proporcjonalność odwrotna, wykładnicza) ----
+    {
+      nr: "34", dzial: "funkcje", temat: "inne-funkcje",
+      tresc: "Wykres funkcji $f(x) = \\frac{a}{x}$ przechodzi przez punkt $(-4, 3)$. Wartość $f(6)$ jest równa. **Wybierz właściwą odpowiedź.**",
+      opcje: ["$2$", "$-2$", "$-18$", "$-\\frac{1}{2}$"],
+      poprawna: 1,
+    },
+    {
+      nr: "35", dzial: "funkcje", temat: "inne-funkcje",
+      tresc: "Dane są funkcje $g(x) = 2^{x} - 3$ oraz $h(x) = \\left(\\frac{1}{2}\\right)^{x}$. **Oceń prawdziwość podanych zdań.** Zaznacz P, jeśli zdanie jest prawdziwe, albo F – jeśli jest fałszywe.",
+      czesci: [
+        { tekst: "Wykres funkcji $g$ przecina oś $Oy$ w punkcie $(0, -2)$.", litery: "PF", poprawna: 0 },
+        { tekst: "Zbiór wartości funkcji $g$ jest równy $(0, +\\infty)$.", litery: "PF", poprawna: 1 },
+        { tekst: "Punkt $(-2, 4)$ należy do wykresu funkcji $h$.", litery: "PF", poprawna: 0 },
+      ],
+    },
+    // ---- funkcja homograficzna ----
+    {
+      nr: "38", dzial: "funkcje", temat: "funkcja-homograficzna",
+      tresc: "W których punktach wykres funkcji $f(x) = \\frac{3x - 6}{x + 1}$ przecina osie układu współrzędnych? **Wybierz właściwą odpowiedź.**",
+      opcje: ["$(-1, 0)$ i $(0, -6)$", "$(2, 0)$ i $(0, 6)$", "$(2, 0)$ i $(0, -6)$", "$(-2, 0)$ i $(0, -6)$"],
+      poprawna: 2,
+    },
   ],
   otwarte: [
     // ---- własności funkcji ----
@@ -210,6 +233,28 @@ export default {
       nr: "33", dzial: "funkcje", temat: "wzor-ogolny", punkty: 3,
       tresc: "Ciąg $(a_{n})$ jest określony wzorami $a_{1} = 10$ oraz $a_{n+1} = a_{n} + n - 4$ dla $n \\geq 1$. Oblicz wyrazy $a_{2}$, $a_{3}$, $a_{4}$, $a_{5}$, $a_{6}$, a następnie zbadaj, czy ciąg jest monotoniczny. **Zapisz obliczenia.**",
       rozwiazanie: "Liczymy po kolei: $a_{2} = a_{1} + 1 - 4 = 10 - 3 = 7$, $a_{3} = 7 + 2 - 4 = 5$, $a_{4} = 5 + 3 - 4 = 4$, $a_{5} = 4 + 4 - 4 = 4$, $a_{6} = 4 + 5 - 4 = 5$.\n\nZ przepisu mamy $a_{n+1} - a_{n} = n - 4$.\n\nDla $n = 1, 2, 3$ różnica jest ujemna ($-3, -2, -1$), więc wyrazy maleją: $10, 7, 5, 4$. Dla $n = 4$ różnica jest równa $0$. Dla $n \\geq 5$ różnica jest dodatnia, więc wyrazy rosną: $4, 5, 7, \\dots$.\n\nRóżnica zmienia znak, więc ciąg nie jest ani rosnący, ani malejący.\n\nOdpowiedź: $a_{2} = 7$, $a_{3} = 5$, $a_{4} = 4$, $a_{5} = 4$, $a_{6} = 5$; ciąg nie jest monotoniczny.",
+    },
+    // ---- inne funkcje (wykładnicza, logarytmiczna) ----
+    {
+      nr: "36", dzial: "funkcje", temat: "inne-funkcje", punkty: 3,
+      tresc: "Powierzchnię stawu pokrywa rzęsa wodna. Dziś zajmuje ona $3$ m$^{2}$, a jej powierzchnia podwaja się co $2$ dni. Pole pokryte rzęsą po $t$ dniach opisuje funkcja $S(t) = 3 \\cdot 2^{\\frac{t}{2}}$. Oblicz, ile metrów kwadratowych zajmie rzęsa po $6$ dniach, a następnie po ilu dniach zajmie ona $96$ m$^{2}$. **Zapisz obliczenia.**",
+      rozwiazanie: "Po $6$ dniach: $S(6) = 3 \\cdot 2^{\\frac{6}{2}} = 3 \\cdot 2^{3} = 3 \\cdot 8 = 24$ m$^{2}$.\n\nSzukamy $t$, dla którego $S(t) = 96$: $3 \\cdot 2^{\\frac{t}{2}} = 96$.\n\nDzielimy przez $3$: $2^{\\frac{t}{2}} = 32$.\n\nZapisujemy $32$ jako potęgę liczby $2$: $32 = 2^{5}$, więc $2^{\\frac{t}{2}} = 2^{5}$.\n\nPotęgi o tej samej podstawie są równe, gdy mają równe wykładniki: $\\frac{t}{2} = 5$, czyli $t = 10$.\n\nSprawdzenie: $S(10) = 3 \\cdot 2^{5} = 96$.\n\nOdpowiedź: Po $6$ dniach rzęsa zajmie $24$ m$^{2}$, a $96$ m$^{2}$ zajmie po $10$ dniach.",
+    },
+    {
+      nr: "37", dzial: "funkcje", temat: "inne-funkcje", punkty: 3,
+      tresc: "Wykres funkcji $f(x) = \\log_{a} x$ przechodzi przez punkt $\\left(\\frac{1}{4}, 2\\right)$. Wyznacz podstawę $a$ logarytmu i oblicz $f(8)$. Rozstrzygnij, czy funkcja $f$ jest rosnąca, czy malejąca, i porównaj wartości $f(3)$ oraz $f(5)$. **Zapisz obliczenia.**",
+      rozwiazanie: "Punkt $\\left(\\frac{1}{4}, 2\\right)$ leży na wykresie, więc $\\log_{a} \\frac{1}{4} = 2$, czyli $a^{2} = \\frac{1}{4}$.\n\nPodstawa logarytmu jest dodatnia, więc $a = \\frac{1}{2}$ i $f(x) = \\log_{\\frac{1}{2}} x$.\n\nObliczamy $f(8)$: szukamy wykładnika $y$, dla którego $\\left(\\frac{1}{2}\\right)^{y} = 8$. Ponieważ $8 = 2^{3} = \\left(\\frac{1}{2}\\right)^{-3}$, mamy $f(8) = -3$.\n\nPodstawa $\\frac{1}{2}$ leży między $0$ a $1$, więc funkcja $f$ jest malejąca.\n\nLiczba $3$ jest mniejsza od $5$, a funkcja jest malejąca, więc $f(3) > f(5)$.\n\nOdpowiedź: $a = \\frac{1}{2}$, $f(8) = -3$, funkcja jest malejąca, $f(3) > f(5)$.",
+    },
+    // ---- funkcja homograficzna ----
+    {
+      nr: "39", dzial: "funkcje", temat: "funkcja-homograficzna", punkty: 3,
+      tresc: "W naczyniu jest $20$ kg roztworu soli kuchennej, w którym znajdują się $4$ kg soli. Do naczynia dosypano $x$ kg soli i cała sól się rozpuściła. Stężenie soli w roztworze (jako ułamek masy roztworu) opisuje funkcja $c(x) = \\frac{4 + x}{20 + x}$ dla $x \\geq 0$. Zapisz wzór funkcji $c$ w postaci $\\frac{a}{x - p} + q$, podaj asymptotę poziomą jej wykresu i wyjaśnij, co ona oznacza w tej sytuacji. Oblicz, ile kilogramów soli trzeba dosypać, żeby stężenie wyniosło $50\\%$. **Zapisz obliczenia.**",
+      rozwiazanie: "W liczniku wyodrębniamy mianownik: $4 + x = (x + 20) - 16$.\n\nZatem $c(x) = \\frac{(x + 20) - 16}{x + 20} = 1 - \\frac{16}{x + 20} = \\frac{-16}{x - (-20)} + 1$.\n\nMamy $a = -16$, $p = -20$, $q = 1$. Asymptota pozioma to prosta $y = 1$.\n\nZnaczenie: stężenie rośnie wraz z dosypywaną solą, ale zawsze jest mniejsze od $1$, czyli od $100\\%$. Mimo że dosypujemy coraz więcej soli, stężenie tylko zbliża się do $1$ i nigdy go nie osiąga.\n\nStężenie $50\\%$ to $\\frac{1}{2}$: $\\frac{4 + x}{20 + x} = \\frac{1}{2}$. Mnożymy na krzyż: $2(4 + x) = 20 + x$, czyli $8 + 2x = 20 + x$, więc $x = 12$.\n\nSprawdzenie: $c(12) = \\frac{16}{32} = \\frac{1}{2}$.\n\nOdpowiedź: $c(x) = \\frac{-16}{x + 20} + 1$, asymptota pozioma $y = 1$ (stężenie nigdy nie osiągnie $100\\%$), trzeba dosypać $12$ kg soli.",
+    },
+    {
+      nr: "40", dzial: "funkcje", temat: "funkcja-homograficzna", punkty: 3,
+      tresc: "Dana jest funkcja $f(x) = -\\frac{2}{x - 3} + 1$. Podaj przedziały, w których funkcja $f$ jest rosnąca. Wskaż dwie liczby $x_{1} < x_{2}$ z dziedziny funkcji, dla których $f(x_{1}) > f(x_{2})$. Rozwiąż równanie $f(x) = 0$ i wyznacz wszystkie liczby $m$, dla których prosta $y = m$ ma z wykresem funkcji $f$ punkt wspólny. **Zapisz obliczenia.**",
+      rozwiazanie: "Funkcja jest w postaci $\\frac{a}{x - p} + q$ z $a = -2$, $p = 3$, $q = 1$. Dziedzina to $\\mathbb{R} \\setminus \\{3\\}$.\n\nDla $a < 0$ funkcja rośnie osobno na każdej gałęzi hiperboli, czyli w przedziałach $(-\\infty, 3)$ i $(3, +\\infty)$.\n\nWybieramy liczby po przeciwnych stronach asymptoty $x = 3$, np. $x_{1} = 2$ i $x_{2} = 4$. Wtedy $f(2) = -\\frac{2}{-1} + 1 = 3$ oraz $f(4) = -\\frac{2}{1} + 1 = -1$, więc $f(2) > f(4)$ mimo że $2 < 4$. To nie jest sprzeczność: funkcja rośnie w każdym z przedziałów osobno, ale nie w całej dziedzinie.\n\nRównanie $f(x) = 0$: $-\\frac{2}{x - 3} + 1 = 0$, więc $\\frac{2}{x - 3} = 1$, czyli $x - 3 = 2$ i $x = 5$. Liczba $5$ należy do dziedziny.\n\nZbiór wartości to $\\mathbb{R} \\setminus \\{1\\}$, bo ułamek $-\\frac{2}{x - 3}$ nigdy nie jest równy zero, więc $f(x)$ nigdy nie jest równe $1$. Prosta $y = m$ ma punkt wspólny z wykresem dla $m \\neq 1$ (prosta $y = 1$ jest asymptotą).\n\nOdpowiedź: $f$ rośnie w $(-\\infty, 3)$ i w $(3, +\\infty)$; np. $x_{1} = 2$, $x_{2} = 4$; miejsce zerowe $x = 5$; $m \\in \\mathbb{R} \\setminus \\{1\\}$.",
     },
   ],
 };
