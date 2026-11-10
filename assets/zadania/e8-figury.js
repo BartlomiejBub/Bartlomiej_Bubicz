@@ -101,6 +101,19 @@ export default {
       opcje: ["$(-3, -4)$", "$(3, 4)$", "$(4, -3)$", "$(3, -4)$"],
       poprawna: 3,
     },
+    // ---- symetralna odcinka i dwusieczna kąta (dalsze) ----
+    {
+      nr: "41", dzial: "e8-figury", temat: "symetralna-dwusieczna",
+      tresc: "Dwusieczna kąta ostrego dzieli go na dwa kąty. Jeden z nich ma miarę $27^\\circ$. Jaką miarę ma cały kąt? **Wybierz właściwą odpowiedź.**",
+      opcje: ["$13{,}5^\\circ$", "$63^\\circ$", "$54^\\circ$", "$27^\\circ$"],
+      poprawna: 2,
+    },
+    {
+      nr: "42", dzial: "e8-figury", temat: "symetralna-dwusieczna",
+      tresc: "Punkt $P$ leży na symetralnej odcinka $AB$, przy czym $|AB| = 10$ cm i $|PA| = 8$ cm. Jaki obwód ma trójkąt $ABP$? **Wybierz właściwą odpowiedź.**",
+      opcje: ["$26$ cm", "$18$ cm", "$28$ cm", "$16$ cm"],
+      poprawna: 0,
+    },
   ],
   otwarte: [
     // ---- proste, półproste i odcinki ----
@@ -235,6 +248,17 @@ export default {
       nr: "40", dzial: "e8-figury", temat: "dowody-w-geometrii", punkty: 2,
       tresc: "Marek mówi: „Jeśli czworokąt ma dwa kąty proste, to jest prostokątem”. Czy Marek ma rację? **Odpowiedź uzasadnij.**",
       rozwiazanie: "Marek nie ma racji. Żeby pokazać, że zdanie ogólne jest fałszywe, wystarczy jeden kontrprzykład: czworokąt, który ma dwa kąty proste, ale nie jest prostokątem.\n\nKontrprzykład: czworokąt $ABCD$, w którym kąty $A$ i $D$ są proste, $|AD| = 4$ cm, $|AB| = 7$ cm i $|CD| = 4$ cm (to trapez, w którym ramię $AD$ jest prostopadłe do obu podstaw).\n\nMa on dwa kąty proste, więc założenie Marka jest spełnione.\n\nW prostokącie przeciwległe boki są równe. Tutaj boki $AB$ i $CD$ są przeciwległe, ale $7$ cm $\\neq 4$ cm, więc to nie jest prostokąt.\n\nOdpowiedź: Nie, Marek nie ma racji. Czworokąt z dwoma kątami prostymi i bokami $|AD| = 4$ cm, $|AB| = 7$ cm, $|CD| = 4$ cm nie jest prostokątem.",
+    },
+    // ---- symetralna odcinka i dwusieczna kąta (dalsze) ----
+    {
+      nr: "43", dzial: "e8-figury", temat: "symetralna-dwusieczna", punkty: 2,
+      tresc: "Kąt $AOB$ ma miarę $132^\\circ$. Półprosta $OC$ jest dwusieczną kąta $AOB$, a półprosta $OD$ jest dwusieczną kąta $AOC$. Oblicz miary kątów $AOC$, $COD$ i $DOB$. **Zapisz obliczenia.**",
+      rozwiazanie: "Dwusieczna kąta $AOB$ dzieli go na dwa równe kąty: $\\angle AOC = 132^\\circ : 2 = 66^\\circ$. Kąt $COB$ też ma $66^\\circ$.\n\nPółprosta $OD$ dzieli kąt $AOC$ na dwa równe kąty: $\\angle COD = 66^\\circ : 2 = 33^\\circ$ (i $\\angle AOD = 33^\\circ$).\n\nKąt $DOB$ składa się z kątów $DOC$ i $COB$: $\\angle DOB = 33^\\circ + 66^\\circ = 99^\\circ$.\n\nSprawdzenie: $\\angle AOD + \\angle DOB = 33^\\circ + 99^\\circ = 132^\\circ$.\n\nOdpowiedź: $\\angle AOC = 66^\\circ$, $\\angle COD = 33^\\circ$, $\\angle DOB = 99^\\circ$.",
+    },
+    {
+      nr: "44", dzial: "e8-figury", temat: "symetralna-dwusieczna", punkty: 3,
+      tresc: "Obwód trójkąta $ABC$ jest równy $30$ cm, a boki $AB$ i $BC$ mają długości $8$ cm i $9$ cm. Symetralna boku $AB$ przecina bok $AC$ w punkcie $D$. Oblicz długość boku $AC$ oraz obwód trójkąta $BCD$. **Zapisz obliczenia.**",
+      rozwiazanie: "Bok $AC$: $30 - 8 - 9 = 13$ cm.\n\nPunkt $D$ leży na symetralnej odcinka $AB$, więc jest tak samo daleko od jego końców: $|DA| = |DB|$.\n\nObwód trójkąta $BCD$ to $|BC| + |CD| + |DB|$. Zamieniamy $|DB|$ na $|DA|$: $|BC| + |CD| + |DA|$.\n\nPunkt $D$ leży na boku $AC$, więc $|CD| + |DA| = |AC| = 13$ cm.\n\nObwód: $9 + 13 = 22$ cm.\n\nOdpowiedź: $|AC| = 13$ cm, a obwód trójkąta $BCD$ wynosi $22$ cm.",
     },
   ],
 };
