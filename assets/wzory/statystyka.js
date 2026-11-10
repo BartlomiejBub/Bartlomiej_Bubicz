@@ -174,6 +174,14 @@ export const WZORY = [
         uwaga: "Zdarzenia sprzyjające licz tak samo jak wszystkie wyniki: z tą samą kolejnością i z tym samym zwracaniem.",
       },
       {
+        nazwa: "Losowanie kilku elementów naraz",
+        slownie: "Gdy losujesz kilka elementów naraz, kolejność nie ma znaczenia. Wszystkich wyników jest tyle, ile jest sposobów wyboru grupy. Elementy sprzyjające też liczysz jako wybór grup.",
+        tex: "|\\Omega| = \\binom{n}{k} \\qquad P(A) = \\frac{|A|}{|\\Omega|}",
+        litery: "$n$ – liczba wszystkich elementów, $k$ – ile losujesz",
+        przyklad: "W urnie jest $5$ kul białych i $3$ czarne. Losujesz $2$ kule naraz. $|\\Omega| = \\binom{8}{2} = 28$. Obie białe: $\\binom{5}{2} = 10$ sposobów, więc $P = \\frac{10}{28} = \\frac{5}{14}$.",
+        uwaga: "To samo zadanie można policzyć drzewkiem bez zwracania: $\\frac{5}{8} \\cdot \\frac{4}{7} = \\frac{20}{56} = \\frac{5}{14}$.",
+      },
+      {
         nazwa: "Doświadczenie losowe i zbiór wyników",
         slownie: "Doświadczenie losowe to coś, czego wyniku nie znasz z góry, np. rzut kostką. Pojedynczy możliwy wynik to zdarzenie elementarne. Zbiór wszystkich takich wyników oznaczamy $\\Omega$. Gdy doświadczenie ma kilka kroków, liczbę wyników liczysz regułą mnożenia.",
         tex: "|\\Omega| = n_{1} \\cdot n_{2} \\cdot \\ldots \\cdot n_{k}",
@@ -216,7 +224,7 @@ export const WZORY = [
       {
         nazwa: "Drzewko – dodawanie gałęzi",
         slownie: "Czasem do zdarzenia prowadzi kilka dróg. Policz każdą drogę (mnożąc gałęzie), a potem dodaj wyniki tych dróg. Mnożysz wzdłuż, dodajesz w poprzek.",
-        tex: "P(A) = P(\\text{droga}_{1}) + P(\\text{droga}_{2}) + \\ldots",
+        tex: "P(A) = P(\\text{droga}_{1}) \\qquad + P(\\text{droga}_{2}) + \\ldots",
         litery: "$\\text{droga}_{i}$ – kolejne drogi na drzewku, które kończą się zdarzeniem $A$",
         przyklad: "Urna I: $2$ białe i $3$ czarne, urna II: $4$ białe i $1$ czarna. Rzucasz monetą: orzeł – losujesz z I, reszka – z II. Biała kula: $\\frac{1}{2} \\cdot \\frac{2}{5} + \\frac{1}{2} \\cdot \\frac{4}{5} = \\frac{1}{5} + \\frac{2}{5} = \\frac{3}{5}$. Dla czterech białych i dwóch czarnych (bez zwracania) różne kolory to $\\frac{4}{6} \\cdot \\frac{2}{5} + \\frac{2}{6} \\cdot \\frac{4}{5} = \\frac{8}{15}$.",
         uwaga: "Pytanie „co najmniej raz” często łatwiej zrobić przez zdarzenie przeciwne: $1 - P(\\text{nigdy})$.",
@@ -242,6 +250,14 @@ export const WZORY = [
         litery: "$\\bar{a}$ – średnia, $a_{1}, a_{2}, \\ldots, a_{n}$ – kolejne liczby (dane), $n$ – ile jest tych liczb",
         przyklad: "Oceny: $2, 4, 4, 5, 5$. Suma to $20$, ocen jest $5$, więc średnia to $\\frac{20}{5} = 4$.",
         uwaga: "Gdy znasz średnią i liczbę danych, suma to średnia razy liczba danych. Średnia $4$ z $5$ ocen daje sumę $5 \\cdot 4 = 20$. Przydaje się, gdy dopisujesz lub usuwasz liczbę.",
+      },
+      {
+        nazwa: "Dopisanie lub usunięcie danej",
+        slownie: "Gdy dopisujesz do danych nową liczbę, nie licz wszystkiego od nowa. Policz starą sumę (średnia razy liczba danych), dodaj nową liczbę i podziel przez nową liczbę danych. Z odwrotnym zadaniem (jaka liczba) układasz równanie.",
+        tex: "\\bar{a}_{\\text{nowa}} = \\frac{n \\cdot \\bar{a} + x}{n + 1}",
+        litery: "$n$ – liczba danych na początku, $\\bar{a}$ – ich średnia, $x$ – dopisana liczba",
+        przyklad: "Cztery liczby mają średnią $6$, więc suma to $24$. Jaką piątą liczbę dopisać, żeby średnia wyniosła $7$? $\\frac{24 + x}{5} = 7$, więc $24 + x = 35$ i $x = 11$.",
+        uwaga: "Dzielisz przez nową liczbę danych ($5$), a nie przez starą. Przy usuwaniu danej odejmujesz ją od sumy i dzielisz przez $n - 1$.",
       },
       {
         nazwa: "Średnia ważona",

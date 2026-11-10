@@ -780,7 +780,7 @@ input[type="radio"] { width: 18px; height: 18px; margin: 0; accent-color: var(--
   font-weight: 700;
 }
 /* Części wzoru (rozdzielone \qquad) stoją obok siebie, a na wąskim ekranie jedna pod drugą. */
-.wzor-tex { display: flex; flex-wrap: wrap; justify-content: center; column-gap: 2.5em; margin: 4px 0 6px; color: var(--ink); font-size: 1.05em; }
+.wzor-tex { display: flex; flex-wrap: wrap; justify-content: center; column-gap: 2.5em; margin: 4px 0 6px; color: var(--ink); }
 .wzor-czesc { min-width: 0; max-width: 100%; }
 .wzor-czesc .wzor { padding: 0 6px; }   /* KaTeX wystaje czasem o 1–2 px – bez tego pojawiałby się pasek przewijania */
 .wzor-tex .wzor { margin: 0 0 4px; }
