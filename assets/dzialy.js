@@ -68,6 +68,7 @@ export const DZIALY = [
     generatory: LICZBY,
     pdf: [
       { nazwa: "Karta pracy: Liczby i równania", plik: "karty/liczby-i-rownania.pdf", opis: "17 zadań na 2 stronach + odpowiedzi" },
+      { nazwa: "Karta pracy: Liczby i równania (2)", plik: "karty/liczby-i-rownania-2.pdf", opis: "zbiory, logika, wielomiany, równania wymierne, układy – 17 zadań + odpowiedzi" },
     ],
   },
   {
@@ -80,6 +81,7 @@ export const DZIALY = [
     generatory: FUNKCJE,
     pdf: [
       { nazwa: "Karta pracy: Funkcje i ciągi", plik: "karty/funkcje-i-ciagi.pdf", opis: "17 zadań na 2 stronach + odpowiedzi" },
+      { nazwa: "Karta pracy: Funkcje (2)", plik: "karty/funkcje-i-ciagi-2.pdf", opis: "dziedzina, przesunięcia, wykładnicza, logarytm, homograficzna – 17 zadań + odpowiedzi" },
     ],
   },
   {
@@ -92,6 +94,7 @@ export const DZIALY = [
     generatory: GEOMETRIA,
     pdf: [
       { nazwa: "Karta pracy: Geometria", plik: "karty/geometria.pdf", opis: "17 zadań na 2 stronach + odpowiedzi" },
+      { nazwa: "Karta pracy: Geometria (2)", plik: "karty/geometria-2.pdf", opis: "czworokąty, wektory, proste i płaszczyzny – 17 zadań + odpowiedzi" },
     ],
   },
   {
