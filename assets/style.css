@@ -653,6 +653,8 @@ input[type="radio"] { width: 18px; height: 18px; margin: 0; accent-color: var(--
   .uklad:has(.spis[hidden]) { display: block; margin-top: 0; }
   .uklad:has(.spis[hidden]) > .boczny { display: none; }
   .wybor-tematu.z-boku { display: none; }
+  /* Działy egzaminu ósmoklasisty mają długie nazwy – na komputerze zawijają się do drugiego rzędu zamiast przewijać */
+  #dzialy-wybor { flex-wrap: wrap; overflow: visible; }
   .uklad #dzial > .section-intro:first-child { margin-top: 0; }
 }
 

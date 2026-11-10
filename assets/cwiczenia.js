@@ -3,7 +3,7 @@
 import { el } from "./dom.js";
 import { zaloguj, zalogowany, wyloguj, ma, tematyUcznia, dostepUcznia } from "./dostep.js";
 import {
-  DZIALY, KARTY, egzamin, maMaterialy, przytnij, klasy, dzialRozdzialu, wczesniejszeRozdzialy, przerobioneTematy, postepDoEgzaminu,
+  DZIALY, KARTY, zadanNaGenerator, egzamin, maMaterialy, przytnij, klasy, dzialRozdzialu, wczesniejszeRozdzialy, przerobioneTematy, postepDoEgzaminu,
 } from "./dzialy.js";
 import { losownik, sprawdz } from "./generatory/wspolne.js";
 import { wstaw } from "./matematyka.js";
@@ -912,7 +912,7 @@ function widokZadania(z, { temat, poprawne, nastepne }) {
 // --- Karty pracy
 
 function blokKart(d) {
-  const ile = zadan(d.generatory.length * KARTY.zadanNaGenerator);
+  const ile = zadan(d.generatory.length * zadanNaGenerator(d));
   const skad = d.rozdzial ? `rozdzial=${d.id}` : `dzial=${d.id}`;
   const losowa = el("a", { class: "btn", href: `karta.html?${skad}`, target: "_blank", rel: "noopener" }, "Wylosuj nową kartę");
   losowa.addEventListener("click", () => {

@@ -144,7 +144,9 @@ export const DZIALY = [
     tematy: tematy("e8-podstawy"),
     wzory: WZORY_E8_PODSTAWY,
     generatory: E8_PODSTAWY,
-    pdf: [],
+    pdf: [
+      { nazwa: "Karta pracy: Działania i ułamki", plik: "karty/e8-podstawy.pdf", opis: "15 zadań na 2 stronach + odpowiedzi" },
+    ],
   },
   {
     id: "e8-liczby",
@@ -156,7 +158,9 @@ export const DZIALY = [
     tematy: tematy("e8-liczby"),
     wzory: WZORY_E8_LICZBY,
     generatory: E8_LICZBY,
-    pdf: [],
+    pdf: [
+      { nazwa: "Karta pracy: Liczby i działania", plik: "karty/e8-liczby.pdf", opis: "15 zadań na 2 stronach + odpowiedzi" },
+    ],
   },
   {
     id: "e8-wyrazenia",
@@ -168,7 +172,9 @@ export const DZIALY = [
     tematy: tematy("e8-wyrazenia"),
     wzory: WZORY_E8_WYRAZENIA,
     generatory: E8_WYRAZENIA,
-    pdf: [],
+    pdf: [
+      { nazwa: "Karta pracy: Wyrażenia i równania", plik: "karty/e8-wyrazenia.pdf", opis: "15 zadań na 2 stronach + odpowiedzi" },
+    ],
   },
   {
     id: "e8-procenty",
@@ -180,7 +186,9 @@ export const DZIALY = [
     tematy: tematy("e8-procenty"),
     wzory: WZORY_E8_PROCENTY,
     generatory: E8_PROCENTY,
-    pdf: [],
+    pdf: [
+      { nazwa: "Karta pracy: Procenty i zastosowania", plik: "karty/e8-procenty.pdf", opis: "15 zadań na 2 stronach + odpowiedzi" },
+    ],
   },
   {
     id: "e8-figury",
@@ -192,7 +200,9 @@ export const DZIALY = [
     tematy: tematy("e8-figury"),
     wzory: WZORY_E8_FIGURY,
     generatory: E8_FIGURY,
-    pdf: [],
+    pdf: [
+      { nazwa: "Karta pracy: Figury płaskie", plik: "karty/e8-figury.pdf", opis: "15 zadań na 2 stronach + odpowiedzi" },
+    ],
   },
   {
     id: "e8-bryly",
@@ -204,19 +214,23 @@ export const DZIALY = [
     tematy: tematy("e8-bryly"),
     wzory: WZORY_E8_BRYLY,
     generatory: E8_BRYLY,
-    pdf: [],
+    pdf: [
+      { nazwa: "Karta pracy: Bryły", plik: "karty/e8-bryly.pdf", opis: "15 zadań na 2 stronach + odpowiedzi" },
+    ],
   },
   {
     id: "e8-dane",
     egzamin: "e8",
     nazwa: "Dane i prawdopodobieństwo",
-    opis: "Tabele, diagramy i wykresy, średnia arytmetyczna, zliczanie możliwości i prawdopodobieństwo.",
+    opis: "Tabele, diagramy i wykresy, średnia arytmetyczna, mediana i dominanta, zliczanie możliwości i prawdopodobieństwo.",
     wzoryTytul: "Co trzeba umieć – krok po kroku",
     wzoryOpis: "Na egzaminie nie ma karty wzorów, więc tu jest wszystko, co trzeba zapamiętać, wytłumaczone prostymi słowami i na przykładach.",
     tematy: tematy("e8-dane"),
     wzory: WZORY_E8_DANE,
     generatory: E8_DANE,
-    pdf: [],
+    pdf: [
+      { nazwa: "Karta pracy: Dane i prawdopodobieństwo", plik: "karty/e8-dane.pdf", opis: "15 zadań na 2 stronach + odpowiedzi" },
+    ],
   },
 ];
 
@@ -242,6 +256,9 @@ export function maMaterialy(d, rodzaj) {
 /** Karty z generatora: ile stałych kart (1, 2, …) ma każdy dział i ile zadań z każdego generatora trafia na kartę.
  *  Gotowe karty w PDF (pole pdf działu) robi skrypt tools/zrob-karty.mjs. */
 export const KARTY = { ile: 3, zadanNaGenerator: 2 };
+
+/** Przy wielu generatorach (ponad 10) na kartę trafia jedno zadanie z każdego, żeby karta nie miała 30–40 zadań. */
+export const zadanNaGenerator = (d) => (d.generatory.length > 10 ? 1 : KARTY.zadanNaGenerator);
 
 /** Dział ograniczony do wybranych tematów (null = cały dział): zadania, wzory i generatory tych tematów.
  *  Karta pracy w PDF obejmuje cały dział, więc przy ograniczeniu zostają tylko karty z generatora. */
@@ -366,7 +383,7 @@ export function dzialRozdzialu(klasa, r, dostep = { tematy: () => null, ma: () =
 /** Zadania karty pracy – te same dla tego samego klucza (np. "karta/2" albo "losowa/123456"). */
 export function zadaniaKarty(d, klucz) {
   return d.generatory.flatMap((g) =>
-    Array.from({ length: KARTY.zadanNaGenerator }, (_, i) => ({
+    Array.from({ length: zadanNaGenerator(d) }, (_, i) => ({
       temat: g.nazwa,
       ...g.generuj(losownik(ziarno(`${d.id}/${klucz}/${g.id}/${i}`))),
     })),
