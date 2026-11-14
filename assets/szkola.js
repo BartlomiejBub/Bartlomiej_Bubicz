@@ -114,7 +114,7 @@ export const KLASY = [
   {
     id: "lo1", egzamin: "matura", nazwa: "Klasa 1", etap: "Liceum i technikum", podrecznik: "Matematyka 1, zakres podstawowy (Pazdro)",
     rozdzialy: [
-      { id: "lo1-liczby", nr: "1", nazwa: "Zbiory liczbowe. Liczby rzeczywiste", opis: "Zbiory i działania na nich, przedziały, równania i nierówności, procenty i punkty procentowe, przybliżenia.",
+      { id: "lo1-liczby", nr: "1", nazwa: "Zbiory liczbowe. Liczby rzeczywiste", opis: "Zbiory i działania na nich, przedziały, równania i nierówności, procenty i punkty procentowe, przybliżenia.", plik: "lo1/liczby.js",
         lekcje: ["Zbiór. Działania na zbiorach", "Zbiory liczbowe. Oś liczbowa", "Prawa działań w zbiorze liczb rzeczywistych", "Przedziały", "Zbiór liczb naturalnych i zbiór liczb całkowitych", "Przypomnienie i uzupełnienie wiadomości o równaniach", "Rozwiązywanie równań metodą równań równoważnych", "Nierówność z jedną niewiadomą", "Procenty", "Punkty procentowe", "Przybliżenia, błąd bezwzględny i względny, szacowanie"] },
       { id: "lo1-wyrazenia", nr: "2", nazwa: "Wyrażenia algebraiczne", opis: "Potęgi i pierwiastki, wzory skróconego mnożenia, logarytmy, zdania i dowody, przekształcanie wzorów.",
         lekcje: ["Potęga o wykładniku naturalnym", "Pierwiastek arytmetyczny. Pierwiastek stopnia nieparzystego z liczby ujemnej", "Działania na wyrażeniach algebraicznych", "Wzory skróconego mnożenia stopnia 2", "Potęga o wykładniku całkowitym ujemnym", "Potęga o wykładniku wymiernym", "Potęga o wykładniku rzeczywistym", "Określenie logarytmu", "Zastosowania logarytmów", "Zdanie. Zaprzeczenie zdania", "Zdania złożone. Zaprzeczenia zdań złożonych", "Definicja. Twierdzenie. Dowód twierdzenia", "Przekształcanie wzorów"] },
