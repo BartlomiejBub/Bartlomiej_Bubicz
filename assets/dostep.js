@@ -57,8 +57,12 @@ export function tematyUcznia(uczen, dzial) {
   return uczen.tematy?.[dzial] ?? null;
 }
 
-/** Dostęp ucznia w postaci, której używa dzialRozdzialu (dzialy.js). */
-export const dostepUcznia = (uczen) => ({ tematy: (id) => tematyUcznia(uczen, id), ma: (id, rodzaj) => ma(uczen, id, rodzaj) });
+/** Czy uczeń widzi rozdział klasy (widok „Do szkoły”): pole szkola w uczniowie.js to lista id rozdziałów. */
+export function maRozdzial(uczen, id) {
+  if (!uczen) return false;
+  if (uczen.dostep === "wszystko") return true;
+  return (uczen.szkola ?? []).includes(id);
+}
 
 /** Czy uczeń ma dostęp do rodzaju materiałów ("zadania", "generator", "karty") w dziale. */
 export function ma(uczen, dzial, rodzaj) {

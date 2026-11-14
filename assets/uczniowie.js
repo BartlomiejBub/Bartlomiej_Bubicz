@@ -14,6 +14,8 @@
 //          e8-figury (Figury płaskie), e8-bryly (Bryły), e8-dane (Dane i prawdopodobieństwo)
 // tematy – opcjonalnie: tylko wybrane tematy działu, np. tematy: { funkcje: ["funkcja-liniowa", "funkcja-kwadratowa"] }
 //          (id tematów w pliku assets/arkusze/tematy.js; bez tego pola uczeń widzi cały dział)
+// szkola – opcjonalnie: rozdziały z widoku „Do szkoły”, np. szkola: ["sp5-figury", "lo1-trygonometria"]
+//          (id rozdziałów w pliku assets/szkola.js; każdy rozdział ma własne materiały dla swojej klasy)
 //
 // Repozytorium jest publiczne – zamiast nazwisk wpisuj samo imię albo pseudonim.
 
@@ -28,6 +30,6 @@ export const UCZNIOWIE = [
   { imie: "Anastazja", kod: "68c3a01af55e1829f2b748f40c6f1db39ca40d513200e7f642c10d89359493a7", dostep: { liczby: ["zadania", "generator", "karty"], funkcje: ["zadania", "generator", "karty"], geometria: ["zadania", "generator", "karty"] }, tematy: { liczby: ["liczby-rzeczywiste", "zbiory", "potegi", "pierwiastki", "logarytmy", "procenty", "rownania", "uklady-rownan", "nierownosci"], funkcje: ["funkcja-liniowa"], geometria: ["planimetria"] } },
   { imie: "Olek", kod: "95d43da9db709d1047613f202e5229839e4a8a082e9c1805451a66e7720409ef", dostep: { "e8-podstawy": ["zadania", "generator", "karty"], "e8-liczby": ["zadania", "generator", "karty"] }, tematy: { "e8-podstawy": ["rachunki-pamieciowe", "dodawanie-odejmowanie", "mnozenie", "dzielenie", "liczby-ujemne", "podzielnosc", "ulamki-zwykle", "mnozenie-ulamkow", "ulamki-dziesietne"], "e8-liczby": ["os-liczbowa", "ulamki-i-rozwiniecia", "dzielniki"] } },
   { imie: "Uczennica", kod: "bff321e72b0cff12e5640049daa0c88297b7a5f77193b98ae3ad2ecdc11e67bf", dostep: { "e8-podstawy": ["zadania", "generator", "karty"], "e8-liczby": ["zadania", "generator", "karty"], "e8-figury": ["zadania", "generator", "karty"] }, tematy: { "e8-podstawy": ["rachunki-pamieciowe", "dodawanie-odejmowanie", "mnozenie", "dzielenie", "liczby-ujemne", "podzielnosc", "ulamki-zwykle", "mnozenie-ulamkow", "ulamki-dziesietne"], "e8-liczby": ["os-liczbowa", "ulamki-i-rozwiniecia", "dzielniki"], "e8-figury": ["proste-odcinki", "katy"] } },
-  { imie: "Mateusz", kod: "9738ca9a02077fd3a1282643031faffc6027506a5d2d150b4887282bd0e38dc2", dostep: { liczby: ["zadania", "generator", "karty"], geometria: ["zadania", "generator", "karty"] }, tematy: { liczby: ["liczby-rzeczywiste"], geometria: ["trygonometria"] } },
+  { imie: "Mateusz", kod: "9738ca9a02077fd3a1282643031faffc6027506a5d2d150b4887282bd0e38dc2", dostep: { liczby: ["zadania", "generator", "karty"], geometria: ["zadania", "generator", "karty"] }, tematy: { liczby: ["liczby-rzeczywiste"], geometria: ["trygonometria"] }, szkola: ["lo1-trygonometria"] },
   { imie: "Julka", kod: "2e01dfb7b1b08f9d73862f1f91e7a0184ea4394a72506e20d4b020850f7f4085", dostep: { funkcje: ["zadania", "generator", "karty"] }, tematy: { funkcje: ["funkcja-kwadratowa"] } },
 ];

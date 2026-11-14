@@ -3,6 +3,7 @@ import { el } from "./dom.js";
 import { SOL, UCZNIOWIE } from "./uczniowie.js";
 import { skrotKodu, normalizujKod } from "./dostep.js";
 import { DZIALY, EGZAMINY, RODZAJE } from "./dzialy.js";
+import { KLASY } from "./szkola.js";
 
 const ALFABET = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";   // bez I, O, 0, 1 – łatwo je pomylić
 
@@ -22,6 +23,8 @@ const NAGLOWEK = `// Uczniowie i ich dostęp do ćwiczeń.
 //          e8-figury (Figury płaskie), e8-bryly (Bryły), e8-dane (Dane i prawdopodobieństwo)
 // tematy – opcjonalnie: tylko wybrane tematy działu, np. tematy: { funkcje: ["funkcja-liniowa", "funkcja-kwadratowa"] }
 //          (id tematów w pliku assets/arkusze/tematy.js; bez tego pola uczeń widzi cały dział)
+// szkola – opcjonalnie: rozdziały z widoku „Do szkoły”, np. szkola: ["sp5-figury", "lo1-trygonometria"]
+//          (id rozdziałów w pliku assets/szkola.js; każdy rozdział ma własne materiały dla swojej klasy)
 //
 // Repozytorium jest publiczne – zamiast nazwisk wpisuj samo imię albo pseudonim.
 `;
@@ -32,6 +35,7 @@ const lista = UCZNIOWIE.map((u) => ({
   wszystko: u.dostep === "wszystko",
   dzialy: Object.fromEntries(DZIALY.map((d) => [d.id, new Set(u.dostep === "wszystko" ? [] : u.dostep?.[d.id] ?? [])])),
   tematy: Object.fromEntries(Object.entries(u.tematy ?? {}).map(([d, t]) => [d, new Set(t)])),   // brak działu = cały dział
+  szkola: new Set(u.szkola ?? []),   // rozdziały klas (widok „Do szkoły”)
   nowyKod: null,
 }));
 let zmiany = false;
@@ -61,6 +65,8 @@ function tekstPliku() {
         .filter((d) => u.tematy[d.id] && u.dzialy[d.id].size)
         .map((d) => `${klucz(d.id)}: [${d.tematy.filter((t) => u.tematy[d.id].has(t.id)).map((t) => `"${t.id}"`).join(", ")}]`);
       if (tematy.length) dostep += `, tematy: { ${tematy.join(", ")} }`;
+      const szkola = KLASY.flatMap((k) => k.rozdzialy).filter((r) => u.szkola.has(r.id)).map((r) => `"${r.id}"`);
+      if (szkola.length) dostep += `, szkola: [${szkola.join(", ")}]`;
     }
     return `  { imie: ${JSON.stringify(u.imie.trim() || "Uczeń")}, kod: "${u.kod}", dostep: ${dostep} },`;
   });
@@ -129,7 +135,7 @@ function wiersz(u) {
   });
 
   return el("tr", {},
-    el("th", { scope: "row" }, imie, u.nowyKod && el("small", { class: "new-code" }, `Kod: ${u.nowyKod}`), !u.wszystko && edytorTematow(u)),
+    el("th", { scope: "row" }, imie, u.nowyKod && el("small", { class: "new-code" }, `Kod: ${u.nowyKod}`), !u.wszystko && edytorTematow(u), !u.wszystko && edytorRozdzialow(u)),
     ...pola,
     el("td", {}, wszystko),
     el("td", {}, usun),
@@ -158,6 +164,27 @@ function edytorTematow(u) {
         zmieniono();
       });
       return el("label", { class: "tematy-opcja" }, cb, ` ${t.nazwa}`);
+    }),
+  ));
+  return el("details", { class: "tematy-edytor" }, podsumowanie, ...grupy);
+}
+
+/** Rozdziały klas (widok „Do szkoły”), które uczeń widzi – niezależnie od działów egzaminu. */
+function edytorRozdzialow(u) {
+  const opis = () => (u.szkola.size ? `Rozdziały w klasach: ${u.szkola.size}` : "Rozdziały w klasach: brak");
+  const podsumowanie = el("summary", {}, opis());
+  const grupy = KLASY.map((k) => el("fieldset", { class: "tematy-dzial" },
+    el("legend", {}, `${k.nazwa} – ${k.etap}`),
+    ...k.rozdzialy.map((r) => {
+      const cb = el("input", { type: "checkbox" });
+      cb.checked = u.szkola.has(r.id);
+      cb.addEventListener("change", () => {
+        if (cb.checked) u.szkola.add(r.id);
+        else u.szkola.delete(r.id);
+        podsumowanie.textContent = opis();
+        zmieniono();
+      });
+      return el("label", { class: "tematy-opcja" }, cb, ` ${r.nr}. ${r.nazwa}${r.plik ? "" : " (w przygotowaniu)"}`);
     }),
   ));
   return el("details", { class: "tematy-edytor" }, podsumowanie, ...grupy);
@@ -203,6 +230,7 @@ document.getElementById("nowy-uczen").addEventListener("submit", async (e) => {
     wszystko: false,
     dzialy: Object.fromEntries(DZIALY.map((d) => [d.id, new Set()])),
     tematy: {},
+    szkola: new Set(),
     nowyKod: kod.toUpperCase(),
   });
   ok.textContent = `Dodano: ${imie}. Zapisz kod ${kod.toUpperCase()} i przekaż go uczniowi, a w tabeli zaznacz, do czego ma dostęp.`;

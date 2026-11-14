@@ -1,16 +1,16 @@
 // Karta pracy do druku: karta.html?dzial=liczby&nr=2 (stała) albo ?dzial=liczby&ziarno=123 (wylosowana);
-// zamiast działu może być rozdział z widoku „Do szkoły”: karta.html?rozdzial=sp5-ulamki&nr=1.
+// zamiast działu może być rozdział z widoku „Do szkoły”: karta.html?rozdzial=sp5-ulamki-zwykle&nr=1 (zadania z jego generatorów).
 import { el } from "./dom.js";
-import { zalogowany, ma, dostepUcznia } from "./dostep.js";
-import { dzial as znajdzDzial, rozdzial as znajdzRozdzial, dzialRozdzialu, egzamin, zadaniaKarty, KARTY } from "./dzialy.js";
+import { zalogowany, ma, maRozdzial } from "./dostep.js";
+import { dzial as znajdzDzial, rozdzial as znajdzRozdzial, wczytajRozdzial, egzamin, zadaniaKarty, KARTY } from "./dzialy.js";
 import { wstaw } from "./matematyka.js";
 
 const parametry = new URLSearchParams(location.search);
 const uczen = zalogowany();
 const r = znajdzRozdzial(parametry.get("rozdzial"));
-const d = r ? dzialRozdzialu(r.klasa, r.rozdzial, dostepUcznia(uczen)) : znajdzDzial(parametry.get("dzial"));
+const d = r ? await wczytajRozdzial(r.klasa, r.rozdzial).catch(() => null) : znajdzDzial(parametry.get("dzial"));
 const skad = r ? `rozdzial=${d.id}` : `dzial=${d?.id}`;
-const podpis = r ? `klasa ${r.klasa.nazwa.replace(/^Klasa /, "")}, ${r.klasa.egzamin === "e8" ? "szkoła podstawowa" : "liceum"}` : egzamin(d?.egzamin).opis;
+const podpis = r ? `${r.klasa.nazwa.toLowerCase()}, ${r.klasa.etap.toLowerCase()}` : egzamin(d?.egzamin).opis;
 const nr = Number(parametry.get("nr")) || 0;
 const ziarno = parametry.get("ziarno") ?? "";
 const karta = document.getElementById("karta");
@@ -69,11 +69,11 @@ document.getElementById("nowa").addEventListener("click", (e) => {
   location.href = `karta.html?${skad}&ziarno=${crypto.getRandomValues(new Uint32Array(1))[0]}`;
 });
 
-if (!d || !((nr >= 1 && nr <= KARTY.ile) || /^\d+$/.test(ziarno))) {
+if (!d || !d.generatory.length || !((nr >= 1 && nr <= KARTY.ile) || /^\d+$/.test(ziarno))) {
   komunikat("Nie ma takiej karty", "Sprawdź link albo wybierz kartę z listy w ćwiczeniach.");
 } else if (!uczen) {
   komunikat("Zaloguj się", "Karty pracy są dostępne po zalogowaniu kodem ucznia.");
-} else if (r ? !d.karty : !ma(uczen, d.id, "karty")) {
+} else if (r ? !maRozdzial(uczen, r.rozdzial.id) : !ma(uczen, d.id, "karty")) {
   komunikat("Brak dostępu", `Nie masz dostępu do kart pracy z tego ${r ? "rozdziału" : "działu"}.`);
 } else {
   pokaz();

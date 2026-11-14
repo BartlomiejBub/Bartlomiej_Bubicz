@@ -275,9 +275,10 @@ export function przytnij(d, tematy) {
 
 export const dzial = (id) => DZIALY.find((d) => d.id === id) ?? null;
 
-// --- Widok „Do szkoły”: klasy i rozdziały w kolejności z podręczników (assets/szkola.js)
+// --- Widok „Do szkoły”: klasy i rozdziały w kolejności z podręczników (assets/szkola.js).
+// Każdy rozdział ma własne materiały w assets/klasy/<plik> – wczytywane dopiero, gdy uczeń go otworzy.
 
-/** Klasy szkoły, z której zdaje się dany egzamin: "e8" – szkoła podstawowa, "matura" – liceum. */
+/** Klasy szkoły, z której zdaje się dany egzamin: "e8" – szkoła podstawowa, "matura" – liceum i technikum. */
 export const klasy = (egz) => KLASY.filter((k) => k.egzamin === egz);
 
 /** Rozdział o danym id razem z jego klasą albo null. */
@@ -289,95 +290,35 @@ export function rozdzial(id) {
   return null;
 }
 
-/** Rozdziały przerobione przed danym: wcześniejsze w tej klasie i wszystkie z niższych klas tej samej szkoły. */
-export function wczesniejszeRozdzialy(klasa, r) {
-  const wynik = [];
-  for (const k of klasy(klasa.egzamin)) {
-    for (const x of k.rozdzialy) {
-      if (x === r) return wynik;
-      wynik.push({ klasa: k, rozdzial: x });
-    }
+const wczytane = new Map();
+
+/** Materiały rozdziału jako dział, który umieją pokazać widoki ćwiczeń: tematy z zadaniami, ściągi (pole wzory)
+ *  i generatory. Plik rozdziału: export default { tematy: [{ id, nazwa, sciaga, jak?, zadania?, otwarte?, generatory? }] }. */
+export async function wczytajRozdzial(klasa, r) {
+  if (!r.plik) return null;
+  if (!wczytane.has(r.id)) {
+    wczytane.set(r.id, import(`./klasy/${r.plik}`).then(({ default: m }) => {
+      const zadania = (t) => [...(t.zadania ?? []), ...(t.otwarte ?? [])].map((z) => ({
+        ...z, temat: t.id, wlasne: true, zrodlo: `Zadanie ${z.nr}` + (z.punkty ? ` (0–${z.punkty} pkt)` : ""),
+      }));
+      return {
+        id: r.id,
+        rozdzial: true,
+        klasa,
+        egzamin: klasa.egzamin,
+        nazwa: r.nazwa,
+        opis: r.opis,
+        wzoryTytul: "Ściąga",
+        wzoryOpis: "Najważniejsze rzeczy z tego tematu: krótko, z przykładem.",
+        generatorOpis: "Zadania z tego tematu, za każdym razem z innymi liczbami. Wpisz wynik i kliknij „Sprawdź”.",
+        tematy: m.tematy.map((t) => ({ id: t.id, nazwa: t.nazwa, zadania: [], cwiczenia: zadania(t) })),
+        wzory: m.tematy.filter((t) => t.sciaga?.length).map((t) => ({ id: t.id, nazwa: t.nazwa, wzory: t.sciaga, jak: t.jak })),
+        generatory: m.tematy.flatMap((t) => (t.generatory ?? []).map((g) => ({ ...g, temat: t.id }))),
+        pdf: r.pdf ?? [],
+      };
+    }));
   }
-  return wynik;
-}
-
-/** Jaką część każdego tematu uczeń ma za sobą przed danym rozdziałem: "dział/temat" → od 0 do 1.
- *  Temat wraca w kilku rozdziałach (np. pola figur w klasach 4–8), więc liczy się, ile z nich już było. */
-export function udzialTematow(klasa, r) {
-  const wszystkie = klasy(klasa.egzamin).flatMap((k) => k.rozdzialy);
-  const teraz = wszystkie.indexOf(r);
-  const licznik = new Map();   // "dział/temat" → { razem, bylo }
-  wszystkie.forEach((x, i) => {
-    for (const [d, ids] of Object.entries(x.tematy)) {
-      for (const t of ids) {
-        const l = licznik.get(`${d}/${t}`) ?? { razem: 0, bylo: 0 };
-        l.razem++;
-        if (i < teraz) l.bylo++;
-        licznik.set(`${d}/${t}`, l);
-      }
-    }
-  });
-  return new Map([...licznik].map(([klucz, l]) => [klucz, l.bylo / l.razem]));
-}
-
-/** Tematy przerobione do końca przed danym rozdziałem (wszystkie ich rozdziały już były) – jako rozdział dla dzialRozdzialu. */
-export function przerobioneTematy(klasa, r) {
-  const tematy = {};
-  for (const [klucz, udzial] of udzialTematow(klasa, r)) {
-    if (udzial < 1) continue;
-    const [d, t] = klucz.split("/");
-    (tematy[d] ??= []).push(t);
-  }
-  return { id: `${r.id}-przerobione`, nazwa: r.nazwa, opis: r.opis, tematy };
-}
-
-/** Postęp do egzaminu przed danym rozdziałem, od 0 do 1: przerobiona część tematów ważona liczbą zadań z arkuszy w temacie. */
-export function postepDoEgzaminu(klasa, r) {
-  const udzial = udzialTematow(klasa, r);
-  let razem = 0;
-  let za = 0;
-  for (const d of DZIALY.filter((x) => x.egzamin === klasa.egzamin)) {
-    for (const t of d.tematy) {
-      razem += t.zadania.length;
-      za += t.zadania.length * (udzial.get(`${d.id}/${t.id}`) ?? 0);
-    }
-  }
-  return razem ? za / razem : 0;
-}
-
-/** Rozdział jako jeden dział: tematy (zadania z arkuszy), wzory i generatory z działów, do których prowadzi.
- *  dostep – co widzi uczeń: tematy(id działu) → lista id tematów albo null (cały dział), ma(id działu, rodzaj).
- *  karty – czy uczeń może drukować karty pracy z generatorów tego rozdziału (karty z generatora wymagają też generatora). */
-export function dzialRozdzialu(klasa, r, dostep = { tematy: () => null, ma: () => true }) {
-  const czesci = Object.entries(r.tematy).map(([id, wybrane]) => {
-    const swoje = dostep.tematy(id);
-    const d = przytnij(dzial(id), swoje ? wybrane.filter((t) => swoje.includes(t)) : wybrane);
-    const ma = (rodzaj) => dostep.ma(id, rodzaj);
-    return {
-      d,
-      tematy: ma("zadania") ? d.tematy : [],
-      wzory: ["zadania", "generator", "karty"].some(ma) ? d.wzory : [],
-      generatory: ma("generator") ? d.generatory : [],
-      karty: ma("karty") && ma("generator"),
-    };
-  });
-  const pierwszy = czesci[0]?.d;
-  return {
-    id: r.id,
-    rozdzial: true,
-    klasa,
-    egzamin: klasa.egzamin,
-    nazwa: r.nazwa,
-    opis: r.opis,
-    wzoryTytul: pierwszy?.wzoryTytul,
-    wzoryOpis: pierwszy?.wzoryOpis,
-    generatorOpis: pierwszy?.generatorOpis,
-    tematy: czesci.flatMap((c) => c.tematy),
-    wzory: czesci.flatMap((c) => c.wzory),
-    generatory: czesci.flatMap((c) => c.generatory),
-    karty: czesci.some((c) => c.karty && c.generatory.length),
-    pdf: [],
-  };
+  return wczytane.get(r.id);
 }
 
 /** Zadania karty pracy – te same dla tego samego klucza (np. "karta/2" albo "losowa/123456"). */
