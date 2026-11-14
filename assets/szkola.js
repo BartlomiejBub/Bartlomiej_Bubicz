@@ -92,7 +92,7 @@ export const KLASY = [
   {
     id: "sp8", egzamin: "e8", nazwa: "Klasa 8", etap: "Szkoła podstawowa", podrecznik: "Matematyka z kluczem 8 (Nowa Era)",
     rozdzialy: [
-      { id: "sp8-statystyka", nr: "I", nazwa: "Statystyka i prawdopodobieństwo", opis: "Diagramy i wykresy, średnia arytmetyczna, porządkowanie danych, proste doświadczenia losowe.",
+      { id: "sp8-statystyka", nr: "I", nazwa: "Statystyka i prawdopodobieństwo", opis: "Diagramy i wykresy, średnia arytmetyczna, porządkowanie danych, proste doświadczenia losowe.", plik: "sp8/statystyka.js",
         lekcje: ["Diagramy i wykresy", "Średnia arytmetyczna", "Zbieranie i porządkowanie danych", "Czy statystyka mówi prawdę", "Proste doświadczenia losowe"] },
       { id: "sp8-wyrazenia", nr: "II", nazwa: "Wyrażenia algebraiczne i równania", opis: "Liczby na osi, wyrażenia algebraiczne, mnożenie sum algebraicznych, równania.",
         lekcje: ["Liczby na osi liczbowej", "Wyrażenia algebraiczne", "Mnożenie sum algebraicznych", "Równania"] },
