@@ -18,7 +18,7 @@ export const KLASY = [
   {
     id: "sp4", egzamin: "e8", nazwa: "Klasa 4", etap: "Szkoła podstawowa", podrecznik: "Klucz do matematyki 4 (Nowa Era, 2026)",
     rozdzialy: [
-      { id: "sp4-start", nr: "I", nazwa: "Zaczynamy przygodę z matematyką", opis: "Zegary i kalendarz, cyfry rzymskie, mierzenie i matematyka wokół nas.",
+      { id: "sp4-start", nr: "I", nazwa: "Zaczynamy przygodę z matematyką", opis: "Zegary i kalendarz, cyfry rzymskie, mierzenie i matematyka wokół nas.", plik: "sp4/start.js",
         lekcje: ["Gdzie kryje się matematyka?", "Zegary", "Kalendarz", "Cyfry rzymskie", "Wzdłuż i wszerz", "Matematyka jest dla każdego"] },
       { id: "sp4-dodawanie", nr: "II", nazwa: "Dodawanie i odejmowanie", opis: "Zapis liczb i oś liczbowa, dodawanie i odejmowanie w pamięci, szacowanie, sprytne liczenie.",
         lekcje: ["Jak zapisujemy liczby", "Oś liczbowa", "Dodawanie i odejmowanie w pamięci", "Szacowanie", "Sprytne dodawanie", "Sprytne odejmowanie"] },
