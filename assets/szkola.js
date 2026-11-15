@@ -75,7 +75,7 @@ export const KLASY = [
     rozdzialy: [
       { id: "sp7-procenty", nr: "I", nazwa: "Proporcjonalność i procenty", opis: "Proporcjonalność prosta, procent liczby, liczba z jej procentu, o ile procent więcej lub mniej.", plik: "sp7/procenty.js",
         lekcje: ["Proporcjonalność prosta", "Ułamek liczby", "Co to jest procent", "Obliczanie procentu danej liczby", "Wyznaczanie liczby, gdy dany jest jej procent", "O ile procent więcej, o ile procent mniej", "Obliczenia procentowe"] },
-      { id: "sp7-potegi", nr: "II", nazwa: "Potęgi", opis: "Potęga o wykładniku naturalnym, działania na potęgach, notacja wykładnicza.",
+      { id: "sp7-potegi", nr: "II", nazwa: "Potęgi", opis: "Potęga o wykładniku naturalnym, działania na potęgach, notacja wykładnicza.", plik: "sp7/potegi.js",
         lekcje: ["Potęga o wykładniku naturalnym", "Potęgi o tych samych podstawach", "Własności potęgowania", "Notacja wykładnicza", "Obliczenia w notacji wykładniczej"] },
       { id: "sp7-pierwiastki", nr: "III", nazwa: "Pierwiastki", opis: "Pierwiastek kwadratowy i sześcienny, szacowanie, własności i działania na pierwiastkach.",
         lekcje: ["Pierwiastek kwadratowy", "Szacowanie pierwiastków", "Własności pierwiastkowania", "Pierwiastek trzeciego stopnia", "Działania na pierwiastkach sześciennych", "Działania na potęgach i pierwiastkach"] },
