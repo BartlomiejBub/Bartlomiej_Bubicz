@@ -96,7 +96,7 @@ export const KLASY = [
         lekcje: ["Diagramy i wykresy", "Średnia arytmetyczna", "Zbieranie i porządkowanie danych", "Czy statystyka mówi prawdę", "Proste doświadczenia losowe"] },
       { id: "sp8-wyrazenia", nr: "II", nazwa: "Wyrażenia algebraiczne i równania", opis: "Liczby na osi, wyrażenia algebraiczne, mnożenie sum algebraicznych, równania.", plik: "sp8/wyrazenia.js",
         lekcje: ["Liczby na osi liczbowej", "Wyrażenia algebraiczne", "Mnożenie sum algebraicznych", "Równania"] },
-      { id: "sp8-figury", nr: "III", nazwa: "Figury na płaszczyźnie", opis: "Własności kątów, twierdzenie i dowód, nierówność trójkąta.",
+      { id: "sp8-figury", nr: "III", nazwa: "Figury na płaszczyźnie", opis: "Własności kątów, twierdzenie i dowód, nierówność trójkąta.", plik: "sp8/figury.js",
         lekcje: ["Własności kątów", "Kąty – zadania", "Twierdzenie matematyczne i jego dowód", "Nierówność trójkąta"] },
       { id: "sp8-wielokaty", nr: "IV", nazwa: "Wielokąty", opis: "Figury przystające, cechy przystawania trójkątów, wielokąty foremne.",
         lekcje: ["Figury przystające", "Cechy przystawania trójkątów", "Przystawanie trójkątów w dowodach twierdzeń", "Wielokąty foremne"] },
