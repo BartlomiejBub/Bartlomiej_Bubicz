@@ -98,7 +98,7 @@ export const KLASY = [
         lekcje: ["Liczby na osi liczbowej", "Wyrażenia algebraiczne", "Mnożenie sum algebraicznych", "Równania"] },
       { id: "sp8-figury", nr: "III", nazwa: "Figury na płaszczyźnie", opis: "Własności kątów, twierdzenie i dowód, nierówność trójkąta.", plik: "sp8/figury.js",
         lekcje: ["Własności kątów", "Kąty – zadania", "Twierdzenie matematyczne i jego dowód", "Nierówność trójkąta"] },
-      { id: "sp8-wielokaty", nr: "IV", nazwa: "Wielokąty", opis: "Figury przystające, cechy przystawania trójkątów, wielokąty foremne.",
+      { id: "sp8-wielokaty", nr: "IV", nazwa: "Wielokąty", opis: "Figury przystające, cechy przystawania trójkątów, wielokąty foremne.", plik: "sp8/wielokaty.js",
         lekcje: ["Figury przystające", "Cechy przystawania trójkątów", "Przystawanie trójkątów w dowodach twierdzeń", "Wielokąty foremne"] },
       { id: "sp8-bryly", nr: "V", nazwa: "Geometria przestrzenna", opis: "Graniastosłupy i ostrosłupy: objętość i pole powierzchni.",
         lekcje: ["Graniastosłupy", "Objętość graniastosłupa", "Pole powierzchni graniastosłupa", "Ostrosłupy", "Objętość ostrosłupa", "Pole powierzchni ostrosłupa", "Graniastosłupy i ostrosłupy – zadania", "Bryły – zadania"] },
