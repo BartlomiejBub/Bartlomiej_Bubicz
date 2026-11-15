@@ -39,7 +39,7 @@ export const KLASY = [
         lekcje: ["Płaszczyzna, proste i półproste", "Kąty. Rodzaje kątów", "Mierzenie kątów", "Rodzaje i własności trójkątów", "Własności niektórych trójkątów", "Wysokość trójkąta", "Równoległoboki", "Wysokość równoległoboku", "Trapezy", "Klasyfikacja czworokątów"] },
       { id: "sp5-ulamki-zwykle", nr: "III", nazwa: "Ułamki zwykłe", opis: "Skracanie i rozszerzanie, dodawanie i odejmowanie, mnożenie i dzielenie ułamków, ułamek liczby, odwrotności.",
         lekcje: ["Ułamek jako część i jako iloraz", "Rozszerzanie i skracanie ułamków", "Dodawanie i odejmowanie ułamków o tych samych mianownikach", "Dodawanie i odejmowanie ułamków o różnych mianownikach", "Mnożenie ułamka przez liczbę naturalną. Ułamek liczby", "Mnożenie ułamków", "Odwrotności liczb", "Dzielenie ułamków", "Działania na ułamkach"] },
-      { id: "sp5-ulamki-dziesietne", nr: "IV", nazwa: "Ułamki dziesiętne", opis: "Dodawanie, odejmowanie, mnożenie i dzielenie ułamków dziesiętnych, zamiana jednostek.",
+      { id: "sp5-ulamki-dziesietne", nr: "IV", nazwa: "Ułamki dziesiętne", opis: "Dodawanie, odejmowanie, mnożenie i dzielenie ułamków dziesiętnych, zamiana jednostek.", plik: "sp5/ulamki-dziesietne.js",
         lekcje: ["Ułamek dziesiętny", "Dodawanie i odejmowanie ułamków dziesiętnych", "Mnożenie ułamków dziesiętnych", "Dzielenie ułamków dziesiętnych", "Zamiana jednostek"] },
       { id: "sp5-pola", nr: "V", nazwa: "Pola figur", opis: "Pole równoległoboku, rombu, trójkąta i trapezu, jednostki pola.",
         lekcje: ["Pole figury", "Pole równoległoboku i rombu", "Pole trójkąta", "Pole trapezu", "Różne jednostki pola"] },
