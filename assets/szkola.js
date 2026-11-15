@@ -22,7 +22,7 @@ export const KLASY = [
         lekcje: ["Gdzie kryje się matematyka?", "Zegary", "Kalendarz", "Cyfry rzymskie", "Wzdłuż i wszerz", "Matematyka jest dla każdego"] },
       { id: "sp4-dodawanie", nr: "II", nazwa: "Dodawanie i odejmowanie", opis: "Zapis liczb i oś liczbowa, dodawanie i odejmowanie w pamięci, szacowanie, sprytne liczenie.", plik: "sp4/dodawanie.js",
         lekcje: ["Jak zapisujemy liczby", "Oś liczbowa", "Dodawanie i odejmowanie w pamięci", "Szacowanie", "Sprytne dodawanie", "Sprytne odejmowanie"] },
-      { id: "sp4-mnozenie", nr: "III", nazwa: "Mnożenie i dzielenie", opis: "Zadania tekstowe, tabliczka mnożenia i dzielenia, sprytne mnożenie i dzielenie.",
+      { id: "sp4-mnozenie", nr: "III", nazwa: "Mnożenie i dzielenie", opis: "Zadania tekstowe, tabliczka mnożenia i dzielenia, sprytne mnożenie i dzielenie.", plik: "sp4/mnozenie.js",
         lekcje: ["Jak rozwiązywać zadania tekstowe", "Tabliczka mnożenia", "Tabliczka dzielenia", "Sprytne mnożenie", "Sprytne dzielenie"] },
       { id: "sp4-figury", nr: "IV", nazwa: "Figury geometryczne", opis: "Punkty, odcinki i proste, mierzenie i jednostki długości, prostokąty, wielokąty i obwód.",
         lekcje: ["Punkty, odcinki i proste", "Mierzenie. Jednostki długości", "Prostokąty i kwadraty", "Wielokąty", "Obwód wielokąta"] },
