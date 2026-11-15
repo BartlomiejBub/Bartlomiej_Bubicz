@@ -77,7 +77,7 @@ export const KLASY = [
         lekcje: ["Proporcjonalność prosta", "Ułamek liczby", "Co to jest procent", "Obliczanie procentu danej liczby", "Wyznaczanie liczby, gdy dany jest jej procent", "O ile procent więcej, o ile procent mniej", "Obliczenia procentowe"] },
       { id: "sp7-potegi", nr: "II", nazwa: "Potęgi", opis: "Potęga o wykładniku naturalnym, działania na potęgach, notacja wykładnicza.", plik: "sp7/potegi.js",
         lekcje: ["Potęga o wykładniku naturalnym", "Potęgi o tych samych podstawach", "Własności potęgowania", "Notacja wykładnicza", "Obliczenia w notacji wykładniczej"] },
-      { id: "sp7-pierwiastki", nr: "III", nazwa: "Pierwiastki", opis: "Pierwiastek kwadratowy i sześcienny, szacowanie, własności i działania na pierwiastkach.",
+      { id: "sp7-pierwiastki", nr: "III", nazwa: "Pierwiastki", opis: "Pierwiastek kwadratowy i sześcienny, szacowanie, własności i działania na pierwiastkach.", plik: "sp7/pierwiastki.js",
         lekcje: ["Pierwiastek kwadratowy", "Szacowanie pierwiastków", "Własności pierwiastkowania", "Pierwiastek trzeciego stopnia", "Działania na pierwiastkach sześciennych", "Działania na potęgach i pierwiastkach"] },
       { id: "sp7-wyrazenia", nr: "IV", nazwa: "Wyrażenia algebraiczne", opis: "Zapisywanie wyrażeń, sumy algebraiczne, opuszczanie nawiasów, porządkowanie wyrazów.",
         lekcje: ["Od wzorków do wzorów", "Suma algebraiczna i jej wyrazy", "Opuszczanie nawiasów", "Porządkowanie wyrazów w sumach algebraicznych", "Wyrażenia algebraiczne i procenty"] },
