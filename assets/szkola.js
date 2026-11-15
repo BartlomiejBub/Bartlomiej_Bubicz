@@ -33,7 +33,7 @@ export const KLASY = [
   {
     id: "sp5", egzamin: "e8", nazwa: "Klasa 5", etap: "Szkoła podstawowa", podrecznik: "Matematyka z kluczem 5 (Nowa Era)",
     rozdzialy: [
-      { id: "sp5-liczby", nr: "I", nazwa: "Liczby naturalne", opis: "Działania w pamięci i pisemne, potęgi, kolejność działań, cyfry rzymskie, podzielność, liczby pierwsze.",
+      { id: "sp5-liczby", nr: "I", nazwa: "Liczby naturalne", opis: "Działania w pamięci i pisemne, potęgi, kolejność działań, cyfry rzymskie, podzielność, liczby pierwsze.", plik: "sp5/liczby.js",
         lekcje: ["Działania pamięciowe", "Potęgowanie", "Kolejność wykonywania działań", "Cyfry rzymskie", "Obliczenia przybliżone", "Dodawanie i odejmowanie pisemne", "Mnożenie pisemne", "Dzielenie i podzielność", "Liczby pierwsze i złożone", "Dzielenie pisemne"] },
       { id: "sp5-figury", nr: "II", nazwa: "Figury geometryczne", opis: "Proste i półproste, kąty i ich mierzenie, trójkąty i ich wysokości, równoległoboki, trapezy i podział czworokątów.",
         lekcje: ["Płaszczyzna, proste i półproste", "Kąty. Rodzaje kątów", "Mierzenie kątów", "Rodzaje i własności trójkątów", "Własności niektórych trójkątów", "Wysokość trójkąta", "Równoległoboki", "Wysokość równoległoboku", "Trapezy", "Klasyfikacja czworokątów"] },
