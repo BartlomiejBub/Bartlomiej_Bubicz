@@ -15,7 +15,7 @@ const SCENARIUSZE = [
   { rz: "cukierków", bie: "cukierki", gen: "torebek", kazde: "każdej torebce" },
   { rz: "jabłek", bie: "jabłka", gen: "koszyków", kazde: "każdym koszyku" },
   { rz: "gruszek", bie: "gruszki", gen: "skrzynek", kazde: "każdej skrzynce" },
-  { rz: "książek", bie: "książki", gen: "regałów", kazde: "każdym regale" },
+  { rz: "zeszytów", bie: "zeszyty", gen: "paczek", kazde: "każdej paczce" },
   { rz: "tulipanów", bie: "tulipany", gen: "wazonów", kazde: "każdym wazonie" },
   { rz: "skarpetek", bie: "skarpetki", gen: "szuflad", kazde: "każdej szufladzie" },
   { rz: "naklejek", bie: "naklejki", gen: "kopert", kazde: "każdej kopercie" },
@@ -595,7 +595,7 @@ export default {
         "Znajdź podstawę (duża liczba) i wykładnik (mały numerek u góry).",
         "Zapisz mnożenie: przy wykładniku $2$ dwie takie same liczby, przy wykładniku $3$ trzy takie same liczby.",
         "Mnóż po kolei. Przy trzeciej potędze najpierw pierwsze dwie liczby, potem wynik razy trzecia.",
-        "Sprawdź, czy nie pomnożyłeś podstawy przez wykładnik: $4^3$ to $64$, a nie $12$.",
+        "Sprawdź, czy podstawa nie została pomnożona przez wykładnik: $4^3$ to $64$, a nie $12$.",
       ],
       zadania: [
         {
@@ -654,7 +654,7 @@ export default {
           generuj(r) {
             const rodzaj = r.pick(["kw", "kw", "szes", "szes", "dziesiec"]);
             if (rodzaj === "kw") {
-              const a = r.int(2, 12);
+              const a = r.int(2, 10);
               const w = a * a;
               const tresc = r.pick([`Oblicz $${a}^2$.`, `Oblicz drugą potęgę liczby $${a}$.`, `Podnieś liczbę $${a}$ do kwadratu.`]);
               return {
@@ -746,7 +746,7 @@ export default {
                 rozwiazanie: [`Najpierw potęga: $${a}^2 = ${a * a}$.`, `Potem mnożenie: $${c} \\cdot ${a * a} = ${w}$.`],
               };
             }
-            const a = r.int(2, 12);
+            const a = r.int(2, 10);
             const P = a * a;
             return {
               tresc: r.pick([`Jaka liczba pomnożona przez siebie daje $${P}$?`, `Jaka liczba spełnia równość $\\square^2 = ${P}$?`]),

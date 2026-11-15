@@ -28,6 +28,16 @@ const WIELOKATY_D = ["trójkąta", "czworokąta", "pięciokąta", "sześciokąta
 /** Czego dotyczą zadania o kawałkach (dopełniacz). */
 const KAWALKI = ["sznurka", "wstążki", "listwy", "kabla", "tasiemki"];
 
+/** Liczba do wzoru: od pięciu cyfr z cienkimi odstępami, 12345 -> "12\,345" (liczby czterocyfrowe bez odstępu). */
+const t = (n) => (n >= 10000 ? String(n).replace(/\B(?=(\d{3})+(?!\d))/g, "\\,") : String(n));
+
+/** Nazwy jednostek długości w dopełniaczu liczby mnogiej: „ile metrów”. */
+const JD = { mm: "milimetrów", cm: "centymetrów", dm: "decymetrów", m: "metrów", km: "kilometrów" };
+
+/** „3 boki”, „5 boków”; „3 wierzchołki”, „5 wierzchołków” (n od 3 do 9). */
+const bokow = (n) => `$${n}$ ${n <= 4 ? "boki" : "boków"}`;
+const wierzch = (n) => `$${n}$ ${n <= 4 ? "wierzchołki" : "wierzchołków"}`;
+
 /** Jednostki: większa, mniejsza i ile mniejszych mieści się w większej. */
 const JEDNOSTKI = [
   { duza: "cm", mala: "mm", f: 10 },
@@ -165,7 +175,7 @@ export default {
               wynik: `$${razem}$`,
               rozwiazanie: [
                 odcinki
-                  ? `Liczymy po kolei: z pierwszego punktu wychodzi $${n - 1}$ odcinków, z drugiego dochodzą nowe (odcinka, który już liczyliśmy, nie liczymy drugi raz), i tak dalej.`
+                  ? `Liczymy po kolei: z pierwszego punktu wychodzi $${n - 1}$ ${n - 1 <= 4 ? "odcinki" : "odcinków"}, z drugiego dochodzą nowe (odcinka, który już liczyliśmy, nie liczymy drugi raz), i tak dalej.`
                   : `Przez każde dwa punkty przechodzi jedna prosta, więc proste liczymy tak samo jak odcinki: z pierwszego punktu do pozostałych, potem nowe z drugiego, i tak dalej.`,
                 `$${kolejno.join(" + ")} = ${razem}$.`,
               ],
@@ -185,7 +195,7 @@ export default {
               const y = r.int(2, 30);
               const z = r.int(2, 30);
               return {
-                tresc: `Punkty $${A}$, $${B}$, $${C}$ i $${D}$ leżą na jednej prostej w tej kolejności. Wiadomo, że $|${A}${B}| = ${x}$ ${jedn}, $|${B}${C}| = ${y}$ ${jedn} i $|${C}${D}| = ${z}$ ${jedn}. Ile ${jedn} ma odcinek $${A}${D}$?`,
+                tresc: `Punkty $${A}$, $${B}$, $${C}$ i $${D}$ leżą na jednej prostej w tej kolejności. Wiadomo, że $|${A}${B}| = ${x}$ ${jedn}, $|${B}${C}| = ${y}$ ${jedn} i $|${C}${D}| = ${z}$ ${jedn}. Ile ${JD[jedn]} ma odcinek $${A}${D}$?`,
                 pola: [{ id: "w", typ: "liczba", etykieta: `Długość w ${jedn}` }],
                 odpowiedz: { w: x + y + z },
                 wynik: `$${x + y + z}$`,
@@ -197,7 +207,7 @@ export default {
               const x = r.int(2, 40);
               const y = r.int(2, 40);
               return {
-                tresc: `Punkt $${Z}$ leży na odcinku $${X}${Y}$. Wiadomo, że $|${X}${Z}| = ${x}$ ${jedn} i $|${Z}${Y}| = ${y}$ ${jedn}. Ile ${jedn} ma odcinek $${X}${Y}$?`,
+                tresc: `Punkt $${Z}$ leży na odcinku $${X}${Y}$. Wiadomo, że $|${X}${Z}| = ${x}$ ${jedn} i $|${Z}${Y}| = ${y}$ ${jedn}. Ile ${JD[jedn]} ma odcinek $${X}${Y}$?`,
                 pola: [{ id: "w", typ: "liczba", etykieta: `Długość w ${jedn}` }],
                 odpowiedz: { w: x + y },
                 wynik: `$${x + y}$`,
@@ -209,7 +219,7 @@ export default {
               const y = r.int(2, 40);
               const s = x + y;
               return {
-                tresc: `Punkt $${Z}$ leży na odcinku $${X}${Y}$. Wiadomo, że $|${X}${Y}| = ${s}$ ${jedn} i $|${X}${Z}| = ${x}$ ${jedn}. Ile ${jedn} ma odcinek $${Z}${Y}$?`,
+                tresc: `Punkt $${Z}$ leży na odcinku $${X}${Y}$. Wiadomo, że $|${X}${Y}| = ${s}$ ${jedn} i $|${X}${Z}| = ${x}$ ${jedn}. Ile ${JD[jedn]} ma odcinek $${Z}${Y}$?`,
                 pola: [{ id: "w", typ: "liczba", etykieta: `Długość w ${jedn}` }],
                 odpowiedz: { w: y },
                 wynik: `$${y}$`,
@@ -219,7 +229,7 @@ export default {
             const h = r.int(2, 40);
             if (tryb === 2) {
               return {
-                tresc: `Punkt $${Z}$ jest środkiem odcinka $${X}${Y}$, który ma $${2 * h}$ ${jedn}. Ile ${jedn} ma odcinek $${X}${Z}$?`,
+                tresc: `Punkt $${Z}$ jest środkiem odcinka $${X}${Y}$, który ma $${2 * h}$ ${jedn}. Ile ${JD[jedn]} ma odcinek $${X}${Z}$?`,
                 pola: [{ id: "w", typ: "liczba", etykieta: `Długość w ${jedn}` }],
                 odpowiedz: { w: h },
                 wynik: `$${h}$`,
@@ -227,7 +237,7 @@ export default {
               };
             }
             return {
-              tresc: `Punkt $${Z}$ jest środkiem odcinka $${X}${Y}$. Odcinek $${X}${Z}$ ma $${h}$ ${jedn}. Ile ${jedn} ma odcinek $${X}${Y}$?`,
+              tresc: `Punkt $${Z}$ jest środkiem odcinka $${X}${Y}$. Odcinek $${X}${Z}$ ma $${h}$ ${jedn}. Ile ${JD[jedn]} ma odcinek $${X}${Y}$?`,
               pola: [{ id: "w", typ: "liczba", etykieta: `Długość w ${jedn}` }],
               odpowiedz: { w: 2 * h },
               wynik: `$${2 * h}$`,
@@ -348,14 +358,14 @@ export default {
                 tresc: `Zamień $${x}$ ${duza} $${y}$ ${mala} na ${mala}.`,
                 pola: [{ id: "w", typ: "liczba", etykieta: `Liczba: ${mala}` }],
                 odpowiedz: { w: x * f + y },
-                wynik: `$${x * f + y}$ ${mala}`,
-                rozwiazanie: [`$1$ ${duza} to $${f}$ ${mala}, więc $${x}$ ${duza} to $${x} \\cdot ${f} = ${x * f}$ ${mala}.`, `Dodajemy resztę: $${x * f} + ${y} = ${x * f + y}$ ${mala}.`],
+                wynik: `$${t(x * f + y)}$ ${mala}`,
+                rozwiazanie: [`$1$ ${duza} to $${f}$ ${mala}, więc $${x}$ ${duza} to $${x} \\cdot ${f} = ${t(x * f)}$ ${mala}.`, `Dodajemy resztę: $${t(x * f)} + ${y} = ${t(x * f + y)}$ ${mala}.`],
               };
             }
             if (tryb === 1) {
               const T = x * f + y;
               return {
-                tresc: `Zapisz $${T}$ ${mala} w ${duza} i ${mala}.`,
+                tresc: `Zapisz $${t(T)}$ ${mala} w ${duza} i ${mala}.`,
                 pola: [
                   { id: "a", typ: "liczba", etykieta: `Pełne ${duza}` },
                   { id: "b", typ: "liczba", etykieta: `Zostaje ${mala}` },
@@ -363,29 +373,29 @@ export default {
                 odpowiedz: { a: x, b: y },
                 wynik: `$${x}$ ${duza} $${y}$ ${mala}`,
                 rozwiazanie: [
-                  `Z $${T}$ ${mala} bierzemy tyle pełnych ${duza}, ile się da. $${x}$ ${duza} to $${x} \\cdot ${f} = ${x * f}$ ${mala}.`,
-                  `Zostaje: $${T} - ${x * f} = ${y}$ ${mala}.`,
-                  `Zatem $${T}$ ${mala} to $${x}$ ${duza} $${y}$ ${mala}.`,
+                  `Z $${t(T)}$ ${mala} bierzemy tyle pełnych ${duza}, ile się da. $${x}$ ${duza} to $${x} \\cdot ${f} = ${t(x * f)}$ ${mala}.`,
+                  `Zostaje: $${t(T)} - ${t(x * f)} = ${y}$ ${mala}.`,
+                  `Zatem $${t(T)}$ ${mala} to $${x}$ ${duza} $${y}$ ${mala}.`,
                 ],
               };
             }
             if (tryb === 2) {
               const z = r.int(2, 30);
               return {
-                tresc: `Ile ${mala} ma $${z}$ ${duza}?`,
+                tresc: `Ile ${JD[mala]} ma $${z}$ ${duza}?`,
                 pola: [{ id: "w", typ: "liczba", etykieta: `Liczba: ${mala}` }],
                 odpowiedz: { w: z * f },
-                wynik: `$${z * f}$ ${mala}`,
-                rozwiazanie: [`Zamieniamy na mniejszą jednostkę, więc mnożymy. W $1$ ${duza} jest $${f}$ ${mala}.`, `$${z} \\cdot ${f} = ${z * f}$ ${mala}.`],
+                wynik: `$${t(z * f)}$ ${mala}`,
+                rozwiazanie: [`Zamieniamy na mniejszą jednostkę, więc mnożymy. W $1$ ${duza} jest $${f}$ ${mala}.`, `$${z} \\cdot ${f} = ${t(z * f)}$ ${mala}.`],
               };
             }
             const z = r.int(2, 30);
             return {
-              tresc: `Ile ${duza} ma $${z * f}$ ${mala}?`,
+              tresc: `Ile ${JD[duza]} ma $${t(z * f)}$ ${mala}?`,
               pola: [{ id: "w", typ: "liczba", etykieta: `Liczba: ${duza}` }],
               odpowiedz: { w: z },
               wynik: `$${z}$ ${duza}`,
-              rozwiazanie: [`Zamieniamy na większą jednostkę, więc dzielimy. W $1$ ${duza} jest $${f}$ ${mala}.`, `$${z * f} : ${f} = ${z}$ ${duza}. Sprawdzenie: $${z} \\cdot ${f} = ${z * f}$.`],
+              rozwiazanie: [`Zamieniamy na większą jednostkę, więc dzielimy. W $1$ ${duza} jest $${f}$ ${mala}.`, `$${t(z * f)} : ${f} = ${z}$ ${duza}. Sprawdzenie: $${z} \\cdot ${f} = ${t(z * f)}$.`],
             };
           },
         },
@@ -765,17 +775,17 @@ export default {
                 pola: [{ id: "w", typ: "liczba", etykieta: "Liczba" }],
                 odpowiedz: { w: n },
                 wynik: `$${n}$`,
-                rozwiazanie: [`Nazwa „${WIELOKATY[n - 3]}” mówi, że wielokąt ma $${n}$ boków.`, `Wierzchołków jest tyle samo co boków, więc $${n}$.`],
+                rozwiazanie: [`Nazwa „${WIELOKATY[n - 3]}” mówi, że wielokąt ma ${bokow(n)}.`, `Wierzchołków jest tyle samo co boków, więc $${n}$.`],
               };
             }
             if (tryb === 1) {
               const n = r.int(3, 8);
               return {
-                tresc: `Wielokąt ma $${n}$ ${co}. Jak się nazywa ten wielokąt?`,
+                tresc: `Wielokąt ma ${co === "boków" ? bokow(n) : wierzch(n)}. Jak się nazywa ten wielokąt?`,
                 pola: [{ id: "w", typ: "wybor", etykieta: "Nazwa", opcje: WIELOKATY.slice(0, 6) }],
                 odpowiedz: { w: n - 3 },
                 wynik: WIELOKATY[n - 3],
-                rozwiazanie: [`Boków i wierzchołków jest tyle samo, więc wielokąt ma $${n}$ boków.`, `Wielokąt o $${n}$ bokach to ${WIELOKATY[n - 3]}.`],
+                rozwiazanie: [`Boków i wierzchołków jest tyle samo, więc wielokąt ma ${bokow(n)}.`, `Wielokąt o $${n}$ bokach to ${WIELOKATY[n - 3]}.`],
               };
             }
             const a = r.int(3, 8);
@@ -785,7 +795,7 @@ export default {
               pola: [{ id: "w", typ: "liczba", etykieta: "Razem" }],
               odpowiedz: { w: a + b },
               wynik: `$${a + b}$`,
-              rozwiazanie: [`${wielka(WIELOKATY[a - 3])} ma $${a}$ boków, a ${WIELOKATY[b - 3]} ma $${b}$ boków. Wierzchołków jest tyle samo co boków.`, `Dodajemy: $${a} + ${b} = ${a + b}$.`],
+              rozwiazanie: [`${wielka(WIELOKATY[a - 3])} ma ${bokow(a)}, a ${WIELOKATY[b - 3]} ma ${bokow(b)}. Wierzchołków jest tyle samo co boków.`, `Dodajemy: $${a} + ${b} = ${a + b}$.`],
             };
           },
         },

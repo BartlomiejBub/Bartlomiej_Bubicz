@@ -42,7 +42,7 @@ export default {
       sciaga: [
         {
           nazwa: "Cyfry i miejsca w liczbie",
-        slownie: "Każdą liczbę zapisujemy dziesięcioma cyframi: $0$, $1$, $2$, $3$, $4$, $5$, $6$, $7$, $8$, $9$. O wartości cyfry decyduje miejsce, na którym stoi. Miejsca liczymy od prawej: jedności, dziesiątki, setki, tysiące, dziesiątki tysięcy, setki tysięcy.",
+          slownie: "Każdą liczbę zapisujemy dziesięcioma cyframi: $0$, $1$, $2$, $3$, $4$, $5$, $6$, $7$, $8$, $9$. O wartości cyfry decyduje miejsce, na którym stoi. Miejsca liczymy od prawej: jedności, dziesiątki, setki, tysiące, dziesiątki tysięcy, setki tysięcy.",
           przyklad: "W liczbie $25\\,306$ cyfra $5$ stoi na miejscu tysięcy, więc oznacza $5000$. Cyfra $3$ stoi na miejscu setek i oznacza $300$.",
           uwaga: "Ta sama cyfra w różnych miejscach znaczy co innego: w liczbie $353$ pierwsza trójka to $300$, a ostatnia tylko $3$.",
         },
@@ -81,7 +81,7 @@ export default {
         },
         {
           nr: "2",
-          tresc: "Liczba $40\\,000+3000+60+8$ zapisana cyframi to **Wybierz właściwą odpowiedź.**",
+          tresc: "Jak zapisać cyframi liczbę $40\\,000+3000+60+8$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$43\\,608$", "$43\\,068$", "$40\\,368$", "$4368$"],
           poprawna: 1,
         },
@@ -102,7 +102,7 @@ export default {
         },
         {
           nr: "5",
-          tresc: "Liczbę dwa miliony trzysta tysięcy czterdzieści zapisujemy cyframi tak: **Wybierz właściwą odpowiedź.**",
+          tresc: "Jak zapisać cyframi liczbę: dwa miliony trzysta tysięcy czterdzieści? **Wybierz właściwą odpowiedź.**",
           opcje: ["$230\\,040$", "$2\\,030\\,040$", "$2\\,300\\,400$", "$2\\,300\\,040$"],
           poprawna: 3,
         },
@@ -148,7 +148,7 @@ export default {
               const d = c[ile - 1 - k];
               const w = d * 10 ** k;
               return {
-                tresc: `Ile wynosi wartość cyfry $${d}$ w liczbie $${t(N)}$?`,
+                tresc: `Jaką wartość ma cyfra $${d}$ w liczbie $${t(N)}$?`,
                 pola: [{ id: "w", typ: "liczba", etykieta: "Wartość" }],
                 odpowiedz: { w },
                 wynik: `$${t(w)}$`,
@@ -196,7 +196,7 @@ export default {
               const odp = duza ? Math.max(...opcje) : Math.min(...opcje);
               const rosnaco = [...opcje].sort((x, y) => x - y);
               return {
-                tresc: `Która z liczb jest ${duza ? "największa" : "najmniejsza"}?`,
+                tresc: `Która z liczb jest ${duza ? "największa" : "najmniejsza"}: ${opcje.slice(0, 3).map((n) => `$${t(n)}$`).join(", ")} czy $${t(opcje[3])}$?`,
                 pola: [{ id: "w", typ: "wybor", etykieta: "Odpowiedź", opcje: opcje.map((n) => `$${t(n)}$`) }],
                 odpowiedz: { w: opcje.indexOf(odp) },
                 wynik: `$${t(odp)}$`,
@@ -251,7 +251,7 @@ export default {
         {
           nazwa: "Odczytywanie liczb z podziałki",
           slownie: "Policz, na ile równych części podzielono odcinek między dwiema liczbami. Jedna część jest tyle razy krótsza od całego odcinka, ile jest części.",
-          tex: "\\text{część}=\\text{odległość}:\\text{liczba części}",
+          tex: "\\text{odległość}:\\text{liczba części}",
           przyklad: "Między $0$ i $100$ jest $5$ równych części. Jedna część to $100:5=20$, więc kolejne punkty to $20$, $40$, $60$, $80$.",
           uwaga: "Licz części (przerwy między kreskami), a nie same kreski: $5$ części to $6$ kresek razem z końcami.",
         },
@@ -263,7 +263,7 @@ export default {
         },
         {
           nazwa: "Liczba w połowie drogi",
-          slownie: "Liczba leżąca w połowie drogi między dwiema liczbami: policz odległość, weź jej połowę i dodaj do mniejszej liczby.",
+          slownie: "Żeby znaleźć liczbę w połowie drogi między dwiema liczbami, policz odległość między nimi, weź jej połowę i dodaj ją do mniejszej liczby.",
           przyklad: "Między $40$ i $100$: odległość $100-40=60$, jej połowa to $30$, a środek to $40+30=70$.",
           uwaga: "Środek to nie jest połowa większej liczby: połowa liczby $100$ to $50$, a nie $70$.",
         },
@@ -390,7 +390,7 @@ export default {
             const d = r.int(5, a - 1 > 300 ? 300 : a - 1);
             const w = prawo ? a + d : a - d;
             return {
-              tresc: `Punkt $M$ przedstawia na osi liczbę $${a}$. Jaką liczbę przedstawia punkt leżący o $${d}$ jednostek na ${prawo ? "prawo" : "lewo"} od punktu $M$?`,
+              tresc: `Punkt $M$ przedstawia na osi liczbę $${a}$. Jaką liczbę przedstawia punkt leżący o $${d}$ ${d % 10 >= 2 && d % 10 <= 4 && !(d % 100 >= 12 && d % 100 <= 14) ? "jednostki" : "jednostek"} na ${prawo ? "prawo" : "lewo"} od punktu $M$?`,
               pola: [{ id: "w", typ: "liczba", etykieta: "Liczba" }],
               odpowiedz: { w },
               wynik: `$${w}$`,
@@ -424,7 +424,7 @@ export default {
         },
         {
           nazwa: "Brakująca liczba i sprawdzanie",
-          slownie: "Dodawanie i odejmowanie „odwracają się”: brakujący składnik to suma bez drugiego składnika, brakujący odjemnik to odjemna bez różnicy, a brakująca odjemna to różnica plus odjemnik. Wynik odejmowania sprawdzamy dodawaniem.",
+          slownie: "Brakujący składnik: od sumy odejmij drugi składnik. Brakujący odjemnik: od odjemnej odejmij różnicę. Brakująca odjemna: do różnicy dodaj odjemnik. Wynik odejmowania sprawdzamy dodawaniem.",
           tex: "52-17=35\\qquad35+17=52",
           przyklad: "W równości $\\square+17=52$ brakuje składnika: $52-17=35$. W równości $52-\\square=35$ brakuje odjemnika: $52-35=17$.",
           uwaga: "Szukając odjemnika, odejmujemy różnicę od odjemnej. Nie dodajemy ich do siebie.",
@@ -451,7 +451,7 @@ export default {
       zadania: [
         {
           nr: "15",
-          tresc: "W działaniu $84-29=55$ liczba $29$ jest **Wybierz właściwą odpowiedź.**",
+          tresc: "Jak nazywa się liczba $29$ w działaniu $84-29=55$? **Wybierz właściwą odpowiedź.**",
           opcje: ["różnicą", "odjemną", "odjemnikiem", "sumą"],
           poprawna: 2,
         },
@@ -605,19 +605,19 @@ export default {
       zadania: [
         {
           nr: "22",
-          tresc: "Liczbę $4386$ zaokrąglono do setek. Otrzymano **Wybierz właściwą odpowiedź.**",
+          tresc: "Liczbę $4386$ zaokrąglono do setek. Jaką liczbę otrzymano? **Wybierz właściwą odpowiedź.**",
           opcje: ["$4300$", "$4390$", "$4400$", "$4000$"],
           poprawna: 2,
         },
         {
           nr: "23",
-          tresc: "Liczbę $27\\,500$ zaokrąglono do tysięcy. Otrzymano **Wybierz właściwą odpowiedź.**",
+          tresc: "Liczbę $27\\,500$ zaokrąglono do tysięcy. Jaką liczbę otrzymano? **Wybierz właściwą odpowiedź.**",
           opcje: ["$27\\,000$", "$28\\,000$", "$27\\,500$", "$30\\,000$"],
           poprawna: 1,
         },
         {
           nr: "24",
-          tresc: "Oszacuj sumę $302+597+198$, zaokrąglając każdy składnik do setek. Otrzymasz **Wybierz właściwą odpowiedź.**",
+          tresc: "Oszacuj sumę $302+597+198$, zaokrąglając każdy składnik do setek. Jaki wynik otrzymasz? **Wybierz właściwą odpowiedź.**",
           opcje: ["$1100$", "$1200$", "$1000$", "$1097$"],
           poprawna: 0,
         },
@@ -670,7 +670,9 @@ export default {
               wynik: `$${t(w)}$`,
               rozwiazanie: [
                 `Patrzymy na cyfrę tuż za miejscem ${MIEJSCA[k]}: jest to $${c}$.`,
-                c >= 5 ? `Cyfra $${c}$ jest równa $5$ lub większa, więc zwiększamy cyfrę na miejscu ${MIEJSCA[k]} o $1$.` : `Cyfra $${c}$ jest mniejsza niż $5$, więc cyfrę na miejscu ${MIEJSCA[k]} zostawiamy.`,
+                c >= 5
+                  ? `Cyfra $${c}$ jest równa $5$ lub większa, więc zwiększamy cyfrę na miejscu ${MIEJSCA[k]} o $1$${Math.floor(N / p) % 10 === 9 ? " (z $9$ robi się $10$: piszemy $0$ i dodajemy $1$ na następnym miejscu)" : ""}.`
+                  :`Cyfra $${c}$ jest mniejsza niż $5$, więc cyfrę na miejscu ${MIEJSCA[k]} zostawiamy.`,
                 `Dalsze cyfry zamieniamy na zera: $${t(w)}$.`,
               ],
             };

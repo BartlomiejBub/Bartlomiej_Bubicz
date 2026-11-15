@@ -138,13 +138,13 @@ export default {
           nazwa: "Dodawanie i odejmowanie w pamięci",
           slownie: "Rozbij drugą liczbę na dziesiątki i jedności albo dobij do pełnej dziesiątki lub setki. Dodawaj i odejmuj po kawałku.",
           tex: "47+38=47+30+8=77+8=85",
-          przyklad: "$58 + 27$: dobijam do pełnej dziesiątki, $58 + 2 = 60$, a potem $60 + 25 = 85$. Odejmowanie: $83 - 29$ to $83 - 30 + 1 = 54$.",
+          przyklad: "$58 + 27$: dobijamy do pełnej dziesiątki, $58 + 2 = 60$, a potem $60 + 25 = 85$. Odejmowanie: $83 - 29$ to $83 - 30 + 1 = 54$.",
           uwaga: "Gdy odejmujesz za dużo (np. $30$ zamiast $29$), pamiętaj, żeby oddać różnicę.",
         },
         {
           nazwa: "Mnożenie w pamięci",
           slownie: "Rozbij jedną liczbę na dziesiątki i jedności, pomnóż osobno i dodaj wyniki. Mnożenie przez $5$ to połowa mnożenia przez $10$.",
-          tex: "14\\cdot 6=10\\cdot 6+4\\cdot 6\\qquad =60+24=84",
+          tex: "14\\cdot 6=10\\cdot 6+4\\cdot 6\\qquad 60+24=84",
           przyklad: "$15 \\cdot 6 = 10 \\cdot 6 + 5 \\cdot 6 = 60 + 30 = 90$. Przez $5$: $48 \\cdot 5$, bo $48 \\cdot 10 = 480$, a połowa z $480$ to $240$.",
           uwaga: "Nie zapomnij o drugiej części: $14 \\cdot 6$ to nie $60 + 4$.",
         },
@@ -164,7 +164,7 @@ export default {
         "Przyjrzyj się liczbom. Czy jedna jest bliska pełnej dziesiątki lub setki (np. $99$, $198$)?",
         "Rozbij jedną liczbę na wygodne części: dziesiątki i jedności albo setki.",
         "Policz osobno każdą część w pamięci.",
-        "Złóż wynik i sprawdź, czy ma sens (czy jest mniej więcej taki, jak się spodziewałeś).",
+        "Złóż wynik i sprawdź, czy ma sens (czy jest mniej więcej taki, jak można było oczekiwać).",
       ],
       zadania: [
         {
@@ -188,7 +188,7 @@ export default {
         {
           nr: "4",
           tresc: "Ile to jest $60 \\cdot 700$? **Wybierz właściwą odpowiedź.**",
-          opcje: ["$4\\,200$", "$420$", "$42\\,000$", "$420\\,000$"],
+          opcje: ["$4200$", "$420$", "$42\\,000$", "$420\\,000$"],
           poprawna: 2,
         },
         {
@@ -234,7 +234,9 @@ export default {
               odp = a - b;
               tresc = r.pick([`Oblicz w pamięci: $${a} - ${b}$.`, `Odejmij w pamięci $${b}$ od $${a}$.`, `Ile to jest $${a} - ${b}$?`]);
               const pelna = (d + 1) * 10;
-              rozw = [`Liczba $${b}$ jest blisko pełnej dziesiątki $${pelna}$ (brakuje $${pelna - b}$).`, `Odejmujemy $${pelna}$: $${a} - ${pelna} = ${a - pelna}$.`, `Odjęliśmy o $${pelna - b}$ za dużo, więc oddajemy: $${a - pelna} + ${pelna - b} = ${odp}$.`];
+              rozw = j >= 6
+                ? [`Liczba $${b}$ jest blisko pełnej dziesiątki $${pelna}$ (brakuje $${pelna - b}$).`, `Odejmujemy $${pelna}$: $${a} - ${pelna} = ${a - pelna}$.`, `Odjęliśmy o $${pelna - b}$ za dużo, więc oddajemy: $${a - pelna} + ${pelna - b} = ${odp}$.`]
+                : [`Rozbijamy odjemnik: $${b} = ${d * 10} + ${j}$.`, `Najpierw dziesiątki: $${a} - ${d * 10} = ${a - d * 10}$.`, `Potem jedności: $${a - d * 10} - ${j} = ${odp}$.`];
             } else if (typ === 2) {
               const a = 10 * r.int(12, 90), b = 10 * r.int(12, 90);
               const dodaj = r.chance(0.5) || a === b;
@@ -247,7 +249,7 @@ export default {
               const cel = sto ? 100 : 1000;
               const n = sto ? r.int(11, 99) : 10 * r.int(11, 99);
               odp = cel - n;
-              tresc = r.pick([`Ile brakuje do $${cel}$ liczbie $${n}$? Wpisz liczbę, którą trzeba dodać.`, `Jaką liczbę trzeba dodać do $${n}$, żeby otrzymać $${cel}$?`]);
+              tresc = r.pick([`Ile brakuje liczbie $${n}$ do $${cel}$? Wpisz liczbę, którą trzeba dodać.`, `Jaką liczbę trzeba dodać do $${n}$, żeby otrzymać $${cel}$?`]);
               const doDziesiatki = (10 - (n % 10)) % 10;
               if (!sto) rozw = [`Obie liczby kończą się zerem, więc liczymy dziesiątkami: $${cel / 10} - ${n / 10} = ${odp / 10}$.`, `Dopisujemy zero: $${odp}$.`];
               else if (doDziesiatki === 0) rozw = [`Odejmujemy: $${cel} - ${n} = ${odp}$.`, `Sprawdzenie: $${n} + ${odp} = ${cel}$.`];
@@ -283,8 +285,8 @@ export default {
               const u = r.int(2, 9), q = r.int(2, 12), s = r.int(1, 2), t = s + r.int(0, 1);
               const b = u * 10 ** s, a = u * q * 10 ** t;
               odp = q * 10 ** (t - s);
-              tresc = r.pick([`Oblicz w pamięci: $${a} : ${b}$.`, `Ile to jest $${a} : ${b}$?`]);
-              rozw = [`Skreślamy z obu liczb ${s === 1 ? "po jednym zerze" : "po dwa zera"}: $${a / 10 ** s} : ${u}$.`, `$${a / 10 ** s} : ${u} = ${odp}$.`];
+              tresc = r.pick([`Oblicz w pamięci: $${T(a)} : ${b}$.`, `Ile to jest $${T(a)} : ${b}$?`]);
+              rozw = [`Skreślamy z obu liczb ${s === 1 ? "po jednym zerze" : "po dwa zera"}: $${T(a / 10 ** s)} : ${u}$.`, `$${T(a / 10 ** s)} : ${u} = ${odp}$.`];
             } else {
               const n = r.int(12, 99);
               odp = n * 5;
@@ -313,7 +315,7 @@ export default {
         {
           nazwa: "Kwadraty i sześciany",
           slownie: "Druga potęga to kwadrat liczby, a trzecia potęga to sześcian liczby. Warto znać je na pamięć.",
-          tex: "a^2=a\\cdot a\\qquad a^3=a\\cdot a\\cdot a",
+          tex: "5^2=5\\cdot 5=25\\qquad 2^3=2\\cdot 2\\cdot 2=8",
           przyklad: "Kwadraty: $1$, $4$, $9$, $16$, $25$, $36$, $49$, $64$, $81$, $100$. Sześciany: $1$, $8$, $27$, $64$, $125$, $1000$. Na przykład $6^2 = 36$, a $4^3 = 4 \\cdot 4 \\cdot 4 = 64$.",
         },
         {
@@ -476,8 +478,8 @@ export default {
         {
           nazwa: "Zaokrąglanie liczb",
           slownie: "Patrzymy na cyfrę zaraz za miejscem, do którego zaokrąglamy. Jeśli to $0$, $1$, $2$, $3$ albo $4$, cyfrę zostawiamy. Jeśli $5$, $6$, $7$, $8$ albo $9$, zwiększamy ją o $1$. Dalsze cyfry zamieniamy na zera.",
-          przyklad: "$3\\,462$ do setek to $3\\,500$ (cyfra dziesiątek to $6$). $3\\,462$ do dziesiątek to $3\\,460$ (cyfra jedności to $2$).",
-          uwaga: "$1\\,950$ do setek to $2\\,000$, bo po zwiększeniu $19$ setek o $1$ mamy $20$ setek.",
+          przyklad: "$3462$ do setek to $3500$ (cyfra dziesiątek to $6$). $3462$ do dziesiątek to $3460$ (cyfra jedności to $2$).",
+          uwaga: "$1950$ do setek to $2000$, bo po zwiększeniu $19$ setek o $1$ mamy $20$ setek.",
         },
         {
           nazwa: "Szacowanie wyniku",
@@ -508,14 +510,14 @@ export default {
         },
         {
           nr: "18",
-          tresc: "Rok $\\mathrm{MMXXIV}$ to rok: **Wybierz właściwą odpowiedź.**",
+          tresc: "Jaki rok zapisano jako $\\mathrm{MMXXIV}$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$2014$", "$2026$", "$2034$", "$2024$"],
           poprawna: 3,
         },
         {
           nr: "19",
-          tresc: "Liczbę $7\\,382$ zaokrąglono do setek. Otrzymano: **Wybierz właściwą odpowiedź.**",
-          opcje: ["$7\\,300$", "$7\\,400$", "$7\\,380$", "$7\\,000$"],
+          tresc: "Liczbę $7382$ zaokrąglono do setek. Jaką liczbę otrzymano? **Wybierz właściwą odpowiedź.**",
+          opcje: ["$7300$", "$7400$", "$7380$", "$7000$"],
           poprawna: 1,
         },
         {
@@ -530,7 +532,7 @@ export default {
           czesci: [
             { tekst: "$\\mathrm{CDXL}$ oznacza liczbę $440$.", litery: "PF", poprawna: 0 },
             { tekst: "$\\mathrm{IC}$ jest poprawnym zapisem liczby $99$.", litery: "PF", poprawna: 1 },
-            { tekst: "Liczba $4\\,449$ zaokrąglona do setek to $4\\,500$.", litery: "PF", poprawna: 1 },
+            { tekst: "Liczba $4449$ zaokrąglona do setek to $4500$.", litery: "PF", poprawna: 1 },
           ],
         },
       ],
@@ -538,7 +540,7 @@ export default {
         {
           nr: "22",
           punkty: 2,
-          tresc: "Zapisz cyframi rzymskimi liczby $38$ i $1949$. **Zapisz, jak do nich doszedłeś.**",
+          tresc: "Zapisz cyframi rzymskimi liczby $38$ i $1949$. **Zapisz obliczenia.**",
           rozwiazanie: "$38 = 10 + 10 + 10 + 5 + 1 + 1 + 1$, czyli $\\mathrm{XXXVIII}$.\n\n$1949 = 1000 + 900 + 40 + 9$.\n\nZapisujemy kolejno: $1000 = \\mathrm{M}$, $900 = \\mathrm{CM}$, $40 = \\mathrm{XL}$, $9 = \\mathrm{IX}$, czyli $\\mathrm{MCMXLIX}$.\n\nOdpowiedź: $38 = \\mathrm{XXXVIII}$, $1949 = \\mathrm{MCMXLIX}$.",
         },
         {
@@ -568,7 +570,7 @@ export default {
                 rozwiazanie: [`Dzielimy zapis na części: ${czesci}.`, `Ich wartości to $${wartosci}$.`, `Dodajemy: $${n}$.`],
               };
             }
-            const kand = [n - 1, n + 1, n + 10, n - 10, n + 5, n - 5, n + 100, n - 100].filter((x) => x >= 1 && x <= 3999 && doRzymskich(x) !== zapis);
+            const kand = [n - 1, n + 1, n + 10, n - 10, n + 5, n - 5, n + 100, n - 100].filter((x) => x >= 1 && x <= 3000 && doRzymskich(x) !== zapis);
             const zle = r.shuffle([...new Set(kand.map(doRzymskich))]).slice(0, 3);
             const opcje = r.shuffle([zapis, ...zle]);
             return {
@@ -627,7 +629,7 @@ export default {
         {
           nazwa: "Odejmowanie pisemne",
           slownie: "Odejmujemy kolumnami od prawej. Gdy na górze jest mniejsza cyfra niż na dole, pożyczamy $1$ z sąsiedniej kolumny po lewej: tam jest o $1$ mniej, a tu mamy dodatkowe $10$.",
-          przyklad: "$523 - 278$: jedności $13 - 8 = 5$ (pożyczka). Dziesiątki zostało $1$, więc znów pożyczamy: $11 - 7 = 4$. Setki zostały $4$, więc $4 - 2 = 2$. Wynik: $245$.",
+          przyklad: "$523 - 278$: jedności $13 - 8 = 5$ (pożyczka). W kolumnie dziesiątek zostało $1$, więc znów pożyczamy: $11 - 7 = 4$. W kolumnie setek zostały $4$, więc $4 - 2 = 2$. Wynik: $245$.",
           uwaga: "Sprawdzenie: dodaj wynik do odjemnika. $245 + 278 = 523$, więc wynik jest dobry.",
         },
         {
@@ -647,19 +649,19 @@ export default {
         {
           nr: "24",
           tresc: "Ile to jest $4578 + 2964$? **Wybierz właściwą odpowiedź.**",
-          opcje: ["$7\\,442$", "$6\\,542$", "$7\\,542$", "$7\\,552$"],
+          opcje: ["$7442$", "$6542$", "$7542$", "$7552$"],
           poprawna: 2,
         },
         {
           nr: "25",
           tresc: "Ile to jest $6004 - 2857$? **Wybierz właściwą odpowiedź.**",
-          opcje: ["$3\\,147$", "$3\\,257$", "$4\\,153$", "$3\\,153$"],
+          opcje: ["$3147$", "$3257$", "$4153$", "$3153$"],
           poprawna: 0,
         },
         {
           nr: "26",
           tresc: "Ile to jest $236 \\cdot 40$? **Wybierz właściwą odpowiedź.**",
-          opcje: ["$944$", "$9\\,440$", "$94\\,400$", "$9\\,040$"],
+          opcje: ["$944$", "$9440$", "$94\\,400$", "$9040$"],
           poprawna: 1,
         },
         {
@@ -824,14 +826,14 @@ export default {
         {
           nazwa: "Podzielność przez 2, 5, 10, 100",
           slownie: "Przez $2$ dzieli się liczba kończąca się cyfrą $0$, $2$, $4$, $6$ lub $8$. Przez $5$ – kończąca się $0$ lub $5$. Przez $10$ – kończąca się $0$. Przez $100$ – kończąca się dwoma zerami.",
-          przyklad: "$4\\,730$ dzieli się przez $2$, $5$ i $10$, ale nie przez $100$. $2\\,500$ dzieli się przez $100$.",
+          przyklad: "$4730$ dzieli się przez $2$, $5$ i $10$, ale nie przez $100$. $2500$ dzieli się przez $100$.",
           uwaga: "Liczba kończąca się cyfrą $5$ dzieli się przez $5$, ale nie przez $10$.",
         },
         {
           nazwa: "Podzielność przez 3 i 9",
           slownie: "Dodaj wszystkie cyfry liczby. Jeśli suma dzieli się przez $3$, to liczba dzieli się przez $3$. Jeśli suma dzieli się przez $9$, to liczba dzieli się przez $9$.",
-          przyklad: "$4\\,725$: suma cyfr $4 + 7 + 2 + 5 = 18$. Liczba $18$ dzieli się przez $3$ i przez $9$, więc $4\\,725$ też. Kończy się cyfrą $5$, więc dzieli się też przez $5$.",
-          uwaga: "Liczba $1\\,236$ ma sumę cyfr $12$. Dzieli się przez $3$, ale nie dzieli się przez $9$.",
+          przyklad: "$4725$: suma cyfr $4 + 7 + 2 + 5 = 18$. Liczba $18$ dzieli się przez $3$ i przez $9$, więc $4725$ też. Kończy się cyfrą $5$, więc dzieli się też przez $5$.",
+          uwaga: "Liczba $1236$ ma sumę cyfr $12$. Dzieli się przez $3$, ale nie dzieli się przez $9$.",
         },
         {
           nazwa: "Liczby pierwsze i złożone",
@@ -855,7 +857,7 @@ export default {
         {
           nr: "32",
           tresc: "Która z liczb jest podzielna przez $9$? **Wybierz właściwą odpowiedź.**",
-          opcje: ["$1\\,236$", "$2\\,358$", "$3\\,450$", "$5\\,420$"],
+          opcje: ["$1236$", "$2358$", "$3450$", "$5420$"],
           poprawna: 1,
         },
         {
@@ -1050,7 +1052,7 @@ export default {
         {
           nr: "41",
           tresc: "Ile to jest $7308 : 9$? **Wybierz właściwą odpowiedź.**",
-          opcje: ["$82$", "$802$", "$812$", "$8\\,012$"],
+          opcje: ["$82$", "$802$", "$812$", "$8012$"],
           poprawna: 2,
         },
         {
@@ -1106,7 +1108,7 @@ export default {
             const a = b * q;
             const w = dzielPisemnie(a, b);
             const SCEN = [
-              `Rozdzielono po równo $${T(a)}$ zł między $${b}$ osób. Ile złotych dostała jedna osoba?`,
+              `Rozdzielono po równo $${T(a)}$ zł między $${b}$ ${b % 10 >= 2 && b % 10 <= 4 && !(b % 100 >= 12 && b % 100 <= 14) ? "osoby" : "osób"}. Ile złotych dostała jedna osoba?`,
               `$${T(a)}$ cukierków włożono po równo do $${b}$ pudełek. Ile cukierków jest w jednym pudełku?`,
               `Oblicz pisemnie $${T(a)} : ${b}$.`,
               `Podziel pisemnie $${T(a)}$ przez $${b}$.`,

@@ -180,11 +180,12 @@ export default {
                 rozwiazanie.push(`Najpierw dodajemy godziny: ${hm(start)} + ${dh} h = ${hm(teraz)}.`);
               }
               if (dm) {
-                if (teraz % 60 + dm >= 60) {
+                const wstep = dh ? "Potem minuty" : "Dodajemy minuty";
+                if (teraz % 60 + dm > 60) {
                   const brak = 60 - (teraz % 60);
-                  rozwiazanie.push(`Potem minuty: do pełnej godziny brakuje ${brak} min, zostaje ${dm - brak} min, więc jest ${hm(koniec)}.`);
+                  rozwiazanie.push(`${wstep}: do pełnej godziny brakuje ${brak} min, zostaje ${dm - brak} min, więc jest ${hm(koniec)}.`);
                 } else {
-                  rozwiazanie.push(`Potem minuty: ${hm(teraz)} + ${dm} min = ${hm(koniec)}.`);
+                  rozwiazanie.push(`${wstep}: ${hm(teraz)} + ${dm} min = ${hm(koniec)}.`);
                 }
               }
               return {
@@ -231,7 +232,7 @@ export default {
                     czesci.push(km);
                     rozwiazanie.push(`Od ${kh}:00 do ${hm(k)} mija ${km} min.`);
                   }
-                  rozwiazanie.push(`Razem: ${czesci.join(" + ")} = ${k - s} min.`);
+                  if (czesci.length > 1) rozwiazanie.push(`Razem: ${czesci.join(" + ")} = ${k - s} min.`);
                 }
                 return {
                   tresc: `${kto} zaczyna się o ${hm(s)} i kończy o ${hm(k)}. Ile minut trwa?`,
@@ -423,7 +424,9 @@ export default {
             const idx = wstecz ? (dzis - zostaje + 7) % 7 : (dzis + zostaje) % 7;
             const rozwiazanie = [
               `Tydzień ma $7$ dni: $${n} = ${tygodnie} \\cdot 7 + ${zostaje}$.`,
-              `Po ${tygodnie} ${forma(tygodnie, "tygodniu", "tygodniach", "tygodniach")} jest znów ${DNI_TYG[dzis]}.`,
+              wstecz
+                ? `${tygodnie} ${forma(tygodnie, "tydzień", "tygodnie", "tygodni")} temu był ten sam dzień tygodnia co dziś: ${DNI_TYG[dzis]}.`
+                : `Po ${tygodnie} ${forma(tygodnie, "tygodniu", "tygodniach", "tygodniach")} jest znów ${DNI_TYG[dzis]}.`,
             ];
             if (zostaje === 0) {
               rozwiazanie.push(`Żaden dzień nie zostaje, więc to ${DNI_TYG[idx]}.`);
@@ -490,13 +493,13 @@ export default {
       zadania: [
         {
           nr: "15",
-          tresc: "Liczba XLIV zapisana zwykłymi cyframi to. **Wybierz właściwą odpowiedź.**",
+          tresc: "Jaką liczbę zapisano cyframi rzymskimi XLIV? **Wybierz właściwą odpowiedź.**",
           opcje: ["64", "66", "46", "44"],
           poprawna: 3,
         },
         {
           nr: "16",
-          tresc: "Liczbę 1994 zapisujemy cyframi rzymskimi jako. **Wybierz właściwą odpowiedź.**",
+          tresc: "Jak zapisać liczbę 1994 cyframi rzymskimi? **Wybierz właściwą odpowiedź.**",
           opcje: ["MCMXCIV", "MXMIV", "MCMXCVI", "MCDXCIV"],
           poprawna: 0,
         },
@@ -508,7 +511,7 @@ export default {
         },
         {
           nr: "18",
-          tresc: "Wiek XVIII to lata. **Wybierz właściwą odpowiedź.**",
+          tresc: "Które lata należą do wieku XVIII? **Wybierz właściwą odpowiedź.**",
           opcje: ["1801–1900", "1701–1800", "1700–1799", "1601–1700"],
           poprawna: 1,
         },
@@ -542,7 +545,7 @@ export default {
           nazwa: "Rzymskie na zwykłe",
           opis: "Odczytaj liczbę zapisaną cyframi rzymskimi i zapisz ją zwykłymi cyframi.",
           generuj(r) {
-            const [a, b] = r.pick([[4, 49], [20, 399], [100, 1999], [400, 3999]]);
+            const [a, b] = r.pick([[4, 49], [20, 399], [100, 1999], [400, 3000]]);
             const n = r.int(a, b);
             const rz = rzymska(n);
             const cz = rozklad(n);
@@ -568,11 +571,11 @@ export default {
           nazwa: "Zapis rzymski",
           opis: "Wybierz poprawny zapis danej liczby cyframi rzymskimi (wśród typowych błędów).",
           generuj(r) {
-            const n = r.int(4, 3999);
+            const n = r.int(4, 3000);
             const rz = rzymska(n);
             const cz = rozklad(n);
             const kandydaci = r.shuffle([dodawana(n), odwrocona(rz)]).filter((s) => s !== rz);
-            const inne = r.shuffle([1, -1, 10, -10, 5, -5, 100, -100, 50, -50, 4, -4, 9, -9]).map((d) => n + d).filter((x) => x >= 1 && x <= 3999).map(rzymska);
+            const inne = r.shuffle([1, -1, 10, -10, 5, -5, 100, -100, 50, -50, 4, -4, 9, -9]).map((d) => n + d).filter((x) => x >= 1 && x <= 3000).map(rzymska);
             const zle = [];
             for (const s of [...kandydaci, ...inne]) {
               if (s !== rz && !zle.includes(s)) zle.push(s);
@@ -660,7 +663,7 @@ export default {
         },
         {
           nr: "25",
-          tresc: "Droga ma 2350 m. Zapisana w kilometrach i metrach to. **Wybierz właściwą odpowiedź.**",
+          tresc: "Droga ma 2350 m. Jak zapisać jej długość w kilometrach i metrach? **Wybierz właściwą odpowiedź.**",
           opcje: ["2 km 35 m", "23 km 50 m", "235 km", "2 km 350 m"],
           poprawna: 3,
         },
@@ -766,7 +769,9 @@ export default {
             if (tryb === "suma") {
               const ods = r.shuffle(czesci);
               return {
-                tresc: `Ścieżka składa się z trzech odcinków o długościach ${ods.map(([u, v]) => `${v} ${u}`).join(", ")}. Ile ${DLUG_D[z.koniec]} ma cała ścieżka?`,
+                tresc: z.koniec === "m"
+                  ? `Ścieżka składa się z trzech odcinków o długościach ${ods.map(([u, v]) => `${v} ${u}`).join(", ")}. Ile metrów ma cała ścieżka?`
+                  : `Ola narysowała trzy odcinki o długościach ${ods.map(([u, v]) => `${v} ${u}`).join(", ")}. Ile ${DLUG_D[z.koniec]} mają razem?`,
                 pola: [{ id: "w", typ: "liczba", etykieta: `Długość: ${z.koniec}` }],
                 odpowiedz: { w: q(sumaCzesci) },
                 wynik: `$${sumaCzesci}$ ${z.koniec}`,
@@ -781,7 +786,9 @@ export default {
             const ods = czesci.slice(0, 2);
             const razemOdc = ods.reduce((s, [u, v]) => s + v * f(u), 0);
             return {
-              tresc: `Z taśmy o długości ${calosc} ${z.koniec} odcięto kawałki: ${ods.map(([u, v]) => `${v} ${u}`).join(" i ")}. Ile ${DLUG_D[z.koniec]} taśmy zostało?`,
+              tresc: z.koniec === "m"
+                ? `Trasa rajdu ma ${calosc} m. Rowerzyści przejechali już odcinki: ${ods.map(([u, v]) => `${v} ${u}`).join(" i ")}. Ile metrów trasy im zostało?`
+                : `Z taśmy o długości ${calosc} ${z.koniec} odcięto kawałki: ${ods.map(([u, v]) => `${v} ${u}`).join(" i ")}. Ile ${DLUG_D[z.koniec]} taśmy zostało?`,
               pola: [{ id: "w", typ: "liczba", etykieta: `Zostało: ${z.koniec}` }],
               odpowiedz: { w: q(calosc - razemOdc) },
               wynik: `$${calosc - razemOdc}$ ${z.koniec}`,

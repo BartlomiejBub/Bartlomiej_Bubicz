@@ -14,17 +14,18 @@ const wielka = (s) => s.charAt(0).toUpperCase() + s.slice(1);
 
 /**
  * Miejsca z rzeczami: bez liczebników przy rzeczach w mianowniku (żeby nie mylić „5 ołówków” z „3 ołówki”).
- * loc – „w 3 pudełkach”, gen – „do 3 pudełek”, kazde – „w każdym pudełku”, rz – „po 5 ołówków”.
+ * loc – „w 3 pudełkach”, gen – „do 3 pudełek”, kazde – „w każdym pudełku”, rz – „po 5 ołówków”,
+ * rozl(n) – „Rozłożono je po równo do 3 pudełek”, ukl(k) – „Wkładamy je do pudełek, po 5 w każdym pudełku”.
  */
 const MIEJSCA = [
-  { loc: "pudełkach", gen: "pudełek", kazde: "każdym pudełku", rz: "ołówków" },
-  { loc: "rzędach", gen: "rzędów", kazde: "każdym rzędzie", rz: "krzeseł" },
-  { loc: "torebkach", gen: "torebek", kazde: "każdej torebce", rz: "cukierków" },
-  { loc: "koszykach", gen: "koszyków", kazde: "każdym koszyku", rz: "jabłek" },
-  { loc: "skrzynkach", gen: "skrzynek", kazde: "każdej skrzynce", rz: "gruszek" },
-  { loc: "regałach", gen: "regałów", kazde: "każdym regale", rz: "książek" },
-  { loc: "wazonach", gen: "wazonów", kazde: "każdym wazonie", rz: "tulipanów" },
-  { loc: "szufladach", gen: "szuflad", kazde: "każdej szufladzie", rz: "skarpetek" },
+  { loc: "pudełkach", gen: "pudełek", kazde: "w każdym pudełku", rz: "ołówków", rozl: (n) => `Rozłożono je po równo do ${n} pudełek`, ukl: (k) => `Wkładamy je do pudełek, po ${k} w każdym pudełku` },
+  { loc: "rzędach", gen: "rzędów", kazde: "w każdym rzędzie", rz: "krzeseł", rozl: (n) => `Ustawiono je po równo w ${n} rzędach`, ukl: (k) => `Ustawiamy je w rzędach, po ${k} w każdym rzędzie` },
+  { loc: "torebkach", gen: "torebek", kazde: "w każdej torebce", rz: "cukierków", rozl: (n) => `Rozsypano je po równo do ${n} torebek`, ukl: (k) => `Wsypujemy je do torebek, po ${k} w każdej torebce` },
+  { loc: "koszykach", gen: "koszyków", kazde: "w każdym koszyku", rz: "jabłek", rozl: (n) => `Rozłożono je po równo do ${n} koszyków`, ukl: (k) => `Wkładamy je do koszyków, po ${k} w każdym koszyku` },
+  { loc: "skrzynkach", gen: "skrzynek", kazde: "w każdej skrzynce", rz: "gruszek", rozl: (n) => `Rozłożono je po równo do ${n} skrzynek`, ukl: (k) => `Układamy je w skrzynkach, po ${k} w każdej skrzynce` },
+  { loc: "regałach", gen: "regałów", kazde: "na każdym regale", rz: "książek", rozl: (n) => `Ustawiono je po równo na ${n} regałach`, ukl: (k) => `Ustawiamy je na regałach, po ${k} na każdym regale` },
+  { loc: "wazonach", gen: "wazonów", kazde: "w każdym wazonie", rz: "tulipanów", rozl: (n) => `Włożono je po równo do ${n} wazonów`, ukl: (k) => `Wkładamy je do wazonów, po ${k} w każdym wazonie` },
+  { loc: "szufladach", gen: "szuflad", kazde: "w każdej szufladzie", rz: "skarpetek", rozl: (n) => `Rozłożono je po równo do ${n} szuflad`, ukl: (k) => `Wkładamy je do szuflad, po ${k} w każdej szufladzie` },
 ];
 
 /** Dwie osoby i czasowniki do zadań „ile razy więcej”; kwoty podajemy w jednostkach, które się nie odmieniają. */
@@ -62,7 +63,7 @@ export default {
         {
           nazwa: "Ile razy, a o ile",
           slownie: "„Ile razy więcej” albo „ile razy mniej” to mnożenie i dzielenie. „O ile więcej” albo „o ile mniej” to dodawanie i odejmowanie.",
-          przyklad: "Ania ma $12$ zł. Bartek ma $3$ razy więcej: $3 \\cdot 12 = 36$ zł. Gdyby miał o $3$ zł więcej, miałby $12 + 3 = 15$ zł. Ile razy więcej ma Bartek? $36 : 12 = 3$.",
+          przyklad: "Ania ma $12$ zł. Bartek ma $3$ razy więcej: $3 \\cdot 12 = 36$ zł. Kasia ma o $3$ zł więcej niż Ania: $12 + 3 = 15$ zł. Ile razy więcej ma Bartek niż Ania? $36 : 12 = 3$.",
           uwaga: "„Trzy razy więcej” to nie to samo co „o trzy więcej”. Przeczytaj uważnie, które to jest.",
         },
         {
@@ -149,7 +150,7 @@ export default {
             }
             if (tryb === 1) {
               return {
-                tresc: `${wielka(c.rz)} jest razem $${R}$. Rozłożono je po równo do $${n}$ ${c.gen}. Ile ${c.rz} jest w ${c.kazde}?`,
+                tresc: `${wielka(c.rz)} jest razem $${R}$. ${c.rozl(`$${n}$`)}. Ile ${c.rz} jest ${c.kazde}?`,
                 pola: [{ id: "w", typ: "liczba", etykieta: "W jednym miejscu" }],
                 odpowiedz: { w: k },
                 wynik: `$${k}$`,
@@ -157,7 +158,7 @@ export default {
               };
             }
             return {
-              tresc: `${wielka(c.rz)} jest razem $${R}$. Wkładamy je do ${c.gen}, po $${k}$ w ${c.kazde}. Ile ${c.gen} potrzeba?`,
+              tresc: `${wielka(c.rz)} jest razem $${R}$. ${c.ukl(`$${k}$`)}. Ile ${c.gen} potrzeba?`,
               pola: [{ id: "w", typ: "liczba", etykieta: "Potrzeba" }],
               odpowiedz: { w: n },
               wynik: `$${n}$`,
@@ -289,7 +290,7 @@ export default {
         },
         {
           nr: "9",
-          tresc: "W działaniu $6 \\cdot 9 = 54$ liczba $54$ jest **Wybierz właściwą odpowiedź.**",
+          tresc: "Jak nazywa się liczba $54$ w działaniu $6 \\cdot 9 = 54$? **Wybierz właściwą odpowiedź.**",
           opcje: ["iloczynem", "czynnikiem", "ilorazem", "różnicą"],
           poprawna: 0,
         },
@@ -448,7 +449,7 @@ export default {
       zadania: [
         {
           nr: "15",
-          tresc: "W działaniu $56 : 8 = 7$ liczba $8$ jest **Wybierz właściwą odpowiedź.**",
+          tresc: "Jak nazywa się liczba $8$ w działaniu $56 : 8 = 7$? **Wybierz właściwą odpowiedź.**",
           opcje: ["dzielną", "ilorazem", "dzielnikiem", "iloczynem"],
           poprawna: 2,
         },
@@ -605,7 +606,7 @@ export default {
         },
         {
           nazwa: "Prawie okrągła liczba",
-          slownie: "Gdy czynnik jest tuż przy $100$ albo $1000$, mnożymy przez okrągłą liczbę i poprawiamy wynik: jeśli czynnik jest za mały, odejmujemy, a jeśli za duży, dodajemy.",
+          slownie: "Gdy czynnik jest tuż przy $100$ albo $1000$, mnożymy przez okrągłą liczbę i poprawiamy wynik. Czynnik trochę mniejszy od okrągłej liczby: poprawkę odejmujemy. Czynnik trochę większy: poprawkę dodajemy.",
           przyklad: "$9 \\cdot 98 = 9 \\cdot 100 - 9 \\cdot 2 = 900 - 18 = 882$. A $9 \\cdot 102 = 900 + 18 = 918$.",
           uwaga: "Poprawkę mnożymy przez drugi czynnik: odejmujemy $9 \\cdot 2$, a nie samo $2$.",
         },
@@ -700,7 +701,7 @@ export default {
               wynik: `$${t(w)}$`,
               rozwiazanie: [
                 `Najpierw mnożymy liczby bez zer: $${a} \\cdot ${b} = ${a * b}$.`,
-                `W obu czynnikach jest razem ${ZERA[i + j]}, więc dopisujemy je do wyniku.`,
+                `W obu czynnikach są razem ${ZERA[i + j]}, więc dopisujemy je do wyniku.`,
                 `$${t(x)} \\cdot ${t(y)} = ${t(w)}$.`,
               ],
             };
@@ -748,7 +749,7 @@ export default {
                 rozwiazanie: [
                   pod ? `$${b} = ${R} - ${d}$, czyli liczba $${b}$ jest o $${d}$ mniejsza od $${R}$.` : `$${b} = ${R} + ${d}$, czyli liczba $${b}$ jest o $${d}$ większa od $${R}$.`,
                   `$${a} \\cdot ${R} = ${t(a * R)}$ oraz $${a} \\cdot ${d} = ${a * d}$.`,
-                  pod ? `Mnożyliśmy przez za dużą liczbę, więc odejmujemy: $${t(a * R)} - ${a * d} = ${t(w)}$.` : `Mnożyliśmy przez za małą liczbę, więc dodajemy: $${t(a * R)} + ${a * d} = ${t(w)}$.`,
+                  pod ? `Liczba $${b}$ jest mniejsza od $${R}$, więc poprawkę odejmujemy: $${t(a * R)} - ${a * d} = ${t(w)}$.` : `Liczba $${b}$ jest większa od $${R}$, więc poprawkę dodajemy: $${t(a * R)} + ${a * d} = ${t(w)}$.`,
                 ],
               };
             }
@@ -842,8 +843,8 @@ export default {
         },
         {
           nr: "32",
-          tresc: "Aby podzielić liczbę przez $5$, można ją **Wybierz właściwą odpowiedź.**",
-          opcje: ["podzielić przez $2$ i pomnożyć przez $10$", "pomnożyć przez $2$ i podzielić przez $10$", "podzielić przez $10$ i pomnożyć przez $5$", "pomnożyć przez $5$ i podzielić przez $10$"],
+          tresc: "Jak można na skróty podzielić liczbę przez $5$? **Wybierz właściwą odpowiedź.**",
+          opcje: ["Podzielić przez $2$ i pomnożyć przez $10$.", "Pomnożyć przez $2$ i podzielić przez $10$.", "Podzielić przez $10$ i pomnożyć przez $5$.", "Pomnożyć przez $5$ i podzielić przez $10$."],
           poprawna: 1,
         },
         {
