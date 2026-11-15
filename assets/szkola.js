@@ -20,7 +20,7 @@ export const KLASY = [
     rozdzialy: [
       { id: "sp4-start", nr: "I", nazwa: "Zaczynamy przygodę z matematyką", opis: "Zegary i kalendarz, cyfry rzymskie, mierzenie i matematyka wokół nas.", plik: "sp4/start.js",
         lekcje: ["Gdzie kryje się matematyka?", "Zegary", "Kalendarz", "Cyfry rzymskie", "Wzdłuż i wszerz", "Matematyka jest dla każdego"] },
-      { id: "sp4-dodawanie", nr: "II", nazwa: "Dodawanie i odejmowanie", opis: "Zapis liczb i oś liczbowa, dodawanie i odejmowanie w pamięci, szacowanie, sprytne liczenie.",
+      { id: "sp4-dodawanie", nr: "II", nazwa: "Dodawanie i odejmowanie", opis: "Zapis liczb i oś liczbowa, dodawanie i odejmowanie w pamięci, szacowanie, sprytne liczenie.", plik: "sp4/dodawanie.js",
         lekcje: ["Jak zapisujemy liczby", "Oś liczbowa", "Dodawanie i odejmowanie w pamięci", "Szacowanie", "Sprytne dodawanie", "Sprytne odejmowanie"] },
       { id: "sp4-mnozenie", nr: "III", nazwa: "Mnożenie i dzielenie", opis: "Zadania tekstowe, tabliczka mnożenia i dzielenia, sprytne mnożenie i dzielenie.",
         lekcje: ["Jak rozwiązywać zadania tekstowe", "Tabliczka mnożenia", "Tabliczka dzielenia", "Sprytne mnożenie", "Sprytne dzielenie"] },
