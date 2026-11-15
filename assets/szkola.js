@@ -26,7 +26,7 @@ export const KLASY = [
         lekcje: ["Jak rozwiązywać zadania tekstowe", "Tabliczka mnożenia", "Tabliczka dzielenia", "Sprytne mnożenie", "Sprytne dzielenie"] },
       { id: "sp4-figury", nr: "IV", nazwa: "Figury geometryczne", opis: "Punkty, odcinki i proste, mierzenie i jednostki długości, prostokąty, wielokąty i obwód.", plik: "sp4/figury.js",
         lekcje: ["Punkty, odcinki i proste", "Mierzenie. Jednostki długości", "Prostokąty i kwadraty", "Wielokąty", "Obwód wielokąta"] },
-      { id: "sp4-wiecej", nr: "V", nazwa: "Więcej o liczbach i działaniach", opis: "Dzielenie z resztą, podzielność, druga i trzecia potęga, kolejność działań.",
+      { id: "sp4-wiecej", nr: "V", nazwa: "Więcej o liczbach i działaniach", opis: "Dzielenie z resztą, podzielność, druga i trzecia potęga, kolejność działań.", plik: "sp4/wiecej.js",
         lekcje: ["Dzielenie z resztą", "Podzielność", "Druga i trzecia potęga", "Kolejność wykonywania działań"] },
     ],
   },
