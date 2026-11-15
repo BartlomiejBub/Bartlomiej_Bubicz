@@ -24,7 +24,7 @@ export const KLASY = [
         lekcje: ["Jak zapisujemy liczby", "Oś liczbowa", "Dodawanie i odejmowanie w pamięci", "Szacowanie", "Sprytne dodawanie", "Sprytne odejmowanie"] },
       { id: "sp4-mnozenie", nr: "III", nazwa: "Mnożenie i dzielenie", opis: "Zadania tekstowe, tabliczka mnożenia i dzielenia, sprytne mnożenie i dzielenie.", plik: "sp4/mnozenie.js",
         lekcje: ["Jak rozwiązywać zadania tekstowe", "Tabliczka mnożenia", "Tabliczka dzielenia", "Sprytne mnożenie", "Sprytne dzielenie"] },
-      { id: "sp4-figury", nr: "IV", nazwa: "Figury geometryczne", opis: "Punkty, odcinki i proste, mierzenie i jednostki długości, prostokąty, wielokąty i obwód.",
+      { id: "sp4-figury", nr: "IV", nazwa: "Figury geometryczne", opis: "Punkty, odcinki i proste, mierzenie i jednostki długości, prostokąty, wielokąty i obwód.", plik: "sp4/figury.js",
         lekcje: ["Punkty, odcinki i proste", "Mierzenie. Jednostki długości", "Prostokąty i kwadraty", "Wielokąty", "Obwód wielokąta"] },
       { id: "sp4-wiecej", nr: "V", nazwa: "Więcej o liczbach i działaniach", opis: "Dzielenie z resztą, podzielność, druga i trzecia potęga, kolejność działań.",
         lekcje: ["Dzielenie z resztą", "Podzielność", "Druga i trzecia potęga", "Kolejność wykonywania działań"] },
