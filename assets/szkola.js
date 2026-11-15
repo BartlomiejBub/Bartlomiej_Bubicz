@@ -35,7 +35,7 @@ export const KLASY = [
     rozdzialy: [
       { id: "sp5-liczby", nr: "I", nazwa: "Liczby naturalne", opis: "Działania w pamięci i pisemne, potęgi, kolejność działań, cyfry rzymskie, podzielność, liczby pierwsze.", plik: "sp5/liczby.js",
         lekcje: ["Działania pamięciowe", "Potęgowanie", "Kolejność wykonywania działań", "Cyfry rzymskie", "Obliczenia przybliżone", "Dodawanie i odejmowanie pisemne", "Mnożenie pisemne", "Dzielenie i podzielność", "Liczby pierwsze i złożone", "Dzielenie pisemne"] },
-      { id: "sp5-figury", nr: "II", nazwa: "Figury geometryczne", opis: "Proste i półproste, kąty i ich mierzenie, trójkąty i ich wysokości, równoległoboki, trapezy i podział czworokątów.",
+      { id: "sp5-figury", nr: "II", nazwa: "Figury geometryczne", opis: "Proste i półproste, kąty i ich mierzenie, trójkąty i ich wysokości, równoległoboki, trapezy i podział czworokątów.", plik: "sp5/figury.js",
         lekcje: ["Płaszczyzna, proste i półproste", "Kąty. Rodzaje kątów", "Mierzenie kątów", "Rodzaje i własności trójkątów", "Własności niektórych trójkątów", "Wysokość trójkąta", "Równoległoboki", "Wysokość równoległoboku", "Trapezy", "Klasyfikacja czworokątów"] },
       { id: "sp5-ulamki-zwykle", nr: "III", nazwa: "Ułamki zwykłe", opis: "Skracanie i rozszerzanie, dodawanie i odejmowanie, mnożenie i dzielenie ułamków, ułamek liczby, odwrotności.",
         lekcje: ["Ułamek jako część i jako iloraz", "Rozszerzanie i skracanie ułamków", "Dodawanie i odejmowanie ułamków o tych samych mianownikach", "Dodawanie i odejmowanie ułamków o różnych mianownikach", "Mnożenie ułamka przez liczbę naturalną. Ułamek liczby", "Mnożenie ułamków", "Odwrotności liczb", "Dzielenie ułamków", "Działania na ułamkach"] },
