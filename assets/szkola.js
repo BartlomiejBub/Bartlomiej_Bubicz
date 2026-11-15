@@ -102,7 +102,7 @@ export const KLASY = [
         lekcje: ["Figury przystające", "Cechy przystawania trójkątów", "Przystawanie trójkątów w dowodach twierdzeń", "Wielokąty foremne"] },
       { id: "sp8-bryly", nr: "V", nazwa: "Geometria przestrzenna", opis: "Graniastosłupy i ostrosłupy: objętość i pole powierzchni.", plik: "sp8/bryly.js",
         lekcje: ["Graniastosłupy", "Objętość graniastosłupa", "Pole powierzchni graniastosłupa", "Ostrosłupy", "Objętość ostrosłupa", "Pole powierzchni ostrosłupa", "Graniastosłupy i ostrosłupy – zadania", "Bryły – zadania"] },
-      { id: "sp8-kola", nr: "VII", nazwa: "Koła i okręgi. Symetrie", opis: "Długość okręgu i pole koła, oś i środek symetrii, symetralna odcinka i dwusieczna kąta.",
+      { id: "sp8-kola", nr: "VII", nazwa: "Koła i okręgi. Symetrie", opis: "Długość okręgu i pole koła, oś i środek symetrii, symetralna odcinka i dwusieczna kąta.", plik: "sp8/kola.js",
         lekcje: ["Długość okręgu", "Pole koła", "Długość okręgu i pole koła – zadania", "Oś symetrii i środek symetrii", "Symetralna odcinka i dwusieczna kąta"] },
       { id: "sp8-prawdopodobienstwo", nr: "VIII", nazwa: "Rachunek prawdopodobieństwa", opis: "Reguła mnożenia i obliczanie prawdopodobieństwa.",
         lekcje: ["Reguła mnożenia", "Zastosowania reguły mnożenia", "Obliczanie prawdopodobieństwa", "Kombinatoryka a prawdopodobieństwo"] },
