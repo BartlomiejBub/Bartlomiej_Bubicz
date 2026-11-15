@@ -73,7 +73,7 @@ export const KLASY = [
   {
     id: "sp7", egzamin: "e8", nazwa: "Klasa 7", etap: "Szkoła podstawowa", podrecznik: "Matematyka z kluczem 7 (Nowa Era)",
     rozdzialy: [
-      { id: "sp7-procenty", nr: "I", nazwa: "Proporcjonalność i procenty", opis: "Proporcjonalność prosta, procent liczby, liczba z jej procentu, o ile procent więcej lub mniej.",
+      { id: "sp7-procenty", nr: "I", nazwa: "Proporcjonalność i procenty", opis: "Proporcjonalność prosta, procent liczby, liczba z jej procentu, o ile procent więcej lub mniej.", plik: "sp7/procenty.js",
         lekcje: ["Proporcjonalność prosta", "Ułamek liczby", "Co to jest procent", "Obliczanie procentu danej liczby", "Wyznaczanie liczby, gdy dany jest jej procent", "O ile procent więcej, o ile procent mniej", "Obliczenia procentowe"] },
       { id: "sp7-potegi", nr: "II", nazwa: "Potęgi", opis: "Potęga o wykładniku naturalnym, działania na potęgach, notacja wykładnicza.",
         lekcje: ["Potęga o wykładniku naturalnym", "Potęgi o tych samych podstawach", "Własności potęgowania", "Notacja wykładnicza", "Obliczenia w notacji wykładniczej"] },
