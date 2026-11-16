@@ -14,7 +14,8 @@ function tekstyZadania(z) {
 export function bledyTekstu(t, { scisle = false } = {}) {
   const wynik = [];
   if ((t.match(/\$/g) ?? []).length % 2) wynik.push(`niesparowane $ w: ${t.slice(0, 100)}`);
-  const podejrzane = scisle ? /NaN|undefined|Infinity|\[object|\+ -|- -|\+ \+|\b1x\b|\^\{1\}|\+\s*0x|--/ : /NaN|undefined|\[object/;
+  // „1x” tylko jako samodzielny współczynnik – nie w środku liczby dziesiętnej, np. $1{,}1x$ albo $0{,}1x$.
+  const podejrzane = scisle ? /NaN|undefined|Infinity|\[object|\+ -|- -|\+ \+|(?<![\w.,}])1x\b|\^\{1\}|\+\s*0x|--/ : /NaN|undefined|\[object/;
   if (podejrzane.test(t)) wynik.push(`podejrzany zapis: ${t.slice(0, 100)}`);
   if (katex) {
     for (const c of czesciTekstu(t).filter((c) => c.tex)) {
