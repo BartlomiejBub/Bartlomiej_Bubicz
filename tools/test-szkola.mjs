@@ -138,6 +138,21 @@ for (const k of KLASY) {
   }
 }
 
+// --- Dostęp uczniów do rozdziałów (assets/uczniowie.js): pola szkola i szkolaTematy muszą wskazywać istniejące rozdziały i tematy
+const { UCZNIOWIE } = await import("../assets/uczniowie.js");
+const rozdzialyPoId = new Map(KLASY.flatMap((k) => k.rozdzialy.map((r) => [r.id, r])));
+for (const u of UCZNIOWIE) {
+  const gu = `uczeń ${u.imie}`;
+  for (const id of u.szkola ?? []) if (!rozdzialyPoId.has(id)) blad(gu, `nieznany rozdział ${id}`);
+  for (const [id, tematy] of Object.entries(u.szkolaTematy ?? {})) {
+    if (!(u.szkola ?? []).includes(id)) blad(gu, `szkolaTematy dla rozdziału spoza listy szkola: ${id}`);
+    const r = rozdzialyPoId.get(id);
+    if (!r?.plik) continue;
+    const m = (await import(`../assets/klasy/${r.plik}`)).default;
+    for (const t of tematy) if (!m.tematy.some((x) => x.id === t)) blad(gu, `nieznany temat ${t} w rozdziale ${id}`);
+  }
+}
+
 const gotowe = KLASY.map((k) => `${k.id}: ${k.rozdzialy.filter((r) => r.plik).length}/${k.rozdzialy.length}`).join(", ");
 console.log(`Rozdziały z materiałami: ${gotowe}`);
 if (podsumowanie.length) console.log(podsumowanie.join("\n"));

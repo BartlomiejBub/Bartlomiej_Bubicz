@@ -1,7 +1,7 @@
 // Ćwiczenia dla zalogowanych uczniów: zadania z arkuszy CKE, generator zadań i karty pracy.
 // Pokazuje działy egzaminu wybranego na stronie (<body data-egzamin>, zmienia go korepetycje.js).
 import { el } from "./dom.js";
-import { zaloguj, zalogowany, wyloguj, ma, maRozdzial, tematyUcznia } from "./dostep.js";
+import { zaloguj, zalogowany, wyloguj, ma, maRozdzial, tematyUcznia, tematyRozdzialuUcznia } from "./dostep.js";
 import {
   DZIALY, EGZAMINY, KARTY, zadanNaGenerator, egzamin, maMaterialy, przytnij, klasy, wczytajRozdzial,
 } from "./dzialy.js";
@@ -132,7 +132,7 @@ function pokazTryb(uczen, dostepne, swojeKlasy, tryb) {
   pamietaj(KLUCZ_TRYBU, tryb);
   for (const b of wyborTrybu.children) b.setAttribute("aria-pressed", String(b.dataset.tryb === tryb));
   if (tryb === "szkola") {
-    pokazKlasy(swojeKlasy);
+    pokazKlasy(uczen, swojeKlasy);
     return;
   }
   const przyciski = dostepne.map((d) => {
@@ -281,23 +281,23 @@ function widokTematow(d, widzi, { klucz, spis: boczny = null }) {
 
 // --- Do szkoły: klasa, rozdział z podręcznika i jego własne materiały (assets/klasy/…)
 
-function pokazKlasy(lista) {
+function pokazKlasy(uczen, lista) {
   // Na przyciskach same numery klas, żeby wszystkie zmieściły się na telefonie.
   const przyciski = lista.map((x) => {
     const b = el("button", { class: "tab", type: "button", "aria-pressed": "false", "aria-label": x.k.nazwa, "data-klasa": x.k.id },
       x.k.nazwa.replace(/^Klasa /, ""));
-    b.addEventListener("click", () => pokazKlase(x, przyciski));
+    b.addEventListener("click", () => pokazKlase(uczen, x, przyciski));
     return b;
   });
   wyborDzialu.setAttribute("aria-label", "Klasa");
   wyborDzialu.replaceChildren(el("span", { class: "tabs-etykieta", "aria-hidden": "true" }, "Klasa"), ...przyciski);
   wyborDzialu.hidden = lista.length < 2;
   const zapisana = lista.find((x) => x.k.id === przypomnij(`${KLUCZ_KLASY}.${biezacyEgzamin().id}`));
-  pokazKlase(zapisana ?? lista[0], przyciski);
+  pokazKlase(uczen, zapisana ?? lista[0], przyciski);
 }
 
 /** Klasa: rozdziały ucznia (lista z boku na komputerze, rozwijana nad treścią na telefonie) i materiały wybranego rozdziału. */
-function pokazKlase({ k, rozdzialy }, przyciski) {
+function pokazKlase(uczen, { k, rozdzialy }, przyciski) {
   pamietaj(`${KLUCZ_KLASY}.${k.egzamin}`, k.id);
   for (const b of przyciski) b.setAttribute("aria-pressed", String(b.dataset.klasa === k.id));
 
@@ -314,7 +314,9 @@ function pokazKlase({ k, rozdzialy }, przyciski) {
       else b.removeAttribute("aria-current");
     }
     tresc.replaceChildren(naglowekRozdzialu(k, r), el("p", { class: "muted" }, "Wczytuję materiały…"));
-    const d = await wczytajRozdzial(k, r).catch(() => null);
+    // Uczeń może mieć tylko wybrane tematy rozdziału (szkolaTematy w uczniowie.js).
+    const caly = await wczytajRozdzial(k, r).catch(() => null);
+    const d = caly && przytnij(caly, tematyRozdzialuUcznia(uczen, r.id));
     if (wybrany !== r) return;   // w międzyczasie uczeń wybrał inny rozdział
     tresc.replaceChildren(
       naglowekRozdzialu(k, r),

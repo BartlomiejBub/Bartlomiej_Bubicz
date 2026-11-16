@@ -2,7 +2,7 @@
 import { el } from "./dom.js";
 import { SOL, UCZNIOWIE } from "./uczniowie.js";
 import { skrotKodu, normalizujKod } from "./dostep.js";
-import { DZIALY, EGZAMINY, RODZAJE } from "./dzialy.js";
+import { DZIALY, EGZAMINY, RODZAJE, wczytajRozdzial } from "./dzialy.js";
 import { KLASY } from "./szkola.js";
 
 const ALFABET = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";   // bez I, O, 0, 1 – łatwo je pomylić
@@ -25,6 +25,8 @@ const NAGLOWEK = `// Uczniowie i ich dostęp do ćwiczeń.
 //          (id tematów w pliku assets/arkusze/tematy.js; bez tego pola uczeń widzi cały dział)
 // szkola – opcjonalnie: rozdziały z widoku „Do szkoły”, np. szkola: ["sp5-figury", "lo1-trygonometria"]
 //          (id rozdziałów w pliku assets/szkola.js; każdy rozdział ma własne materiały dla swojej klasy)
+// szkolaTematy – opcjonalnie: tylko wybrane tematy rozdziału, np. szkolaTematy: { "sp5-figury": ["proste-polproste", "katy-rodzaje"] }
+//          (id tematów w pliku rozdziału w assets/klasy/; bez tego pola uczeń widzi cały rozdział)
 //
 // Repozytorium jest publiczne – zamiast nazwisk wpisuj samo imię albo pseudonim.
 `;
@@ -36,6 +38,7 @@ const lista = UCZNIOWIE.map((u) => ({
   dzialy: Object.fromEntries(DZIALY.map((d) => [d.id, new Set(u.dostep === "wszystko" ? [] : u.dostep?.[d.id] ?? [])])),
   tematy: Object.fromEntries(Object.entries(u.tematy ?? {}).map(([d, t]) => [d, new Set(t)])),   // brak działu = cały dział
   szkola: new Set(u.szkola ?? []),   // rozdziały klas (widok „Do szkoły”)
+  szkolaTematy: Object.fromEntries(Object.entries(u.szkolaTematy ?? {}).map(([r, t]) => [r, new Set(t)])),   // brak rozdziału = cały rozdział
   nowyKod: null,
 }));
 let zmiany = false;
@@ -67,6 +70,10 @@ function tekstPliku() {
       if (tematy.length) dostep += `, tematy: { ${tematy.join(", ")} }`;
       const szkola = KLASY.flatMap((k) => k.rozdzialy).filter((r) => u.szkola.has(r.id)).map((r) => `"${r.id}"`);
       if (szkola.length) dostep += `, szkola: [${szkola.join(", ")}]`;
+      const tematySzkoly = KLASY.flatMap((k) => k.rozdzialy)
+        .filter((r) => u.szkola.has(r.id) && u.szkolaTematy[r.id])
+        .map((r) => `${klucz(r.id)}: [${[...u.szkolaTematy[r.id]].map((t) => `"${t}"`).join(", ")}]`);
+      if (tematySzkoly.length) dostep += `, szkolaTematy: { ${tematySzkoly.join(", ")} }`;
     }
     return `  { imie: ${JSON.stringify(u.imie.trim() || "Uczeń")}, kod: "${u.kod}", dostep: ${dostep} },`;
   });
@@ -178,13 +185,39 @@ function edytorRozdzialow(u) {
     ...k.rozdzialy.map((r) => {
       const cb = el("input", { type: "checkbox" });
       cb.checked = u.szkola.has(r.id);
+      // Tematy rozdziału (wczytywane z jego pliku): wszystkie zaznaczone = cały rozdział.
+      const tematy = el("div", { class: "tematy-rozdzialu" });
+      const pokazTematy = async () => {
+        tematy.replaceChildren();
+        if (!cb.checked || !r.plik) return;
+        const d = await wczytajRozdzial(k, r).catch(() => null);
+        if (!d || !cb.checked) return;
+        tematy.replaceChildren(...d.tematy.map((t) => {
+          const c = el("input", { type: "checkbox" });
+          c.checked = !u.szkolaTematy[r.id] || u.szkolaTematy[r.id].has(t.id);
+          c.addEventListener("change", () => {
+            const wybrane = new Set(d.tematy
+              .filter((x) => (x.id === t.id ? c.checked : !u.szkolaTematy[r.id] || u.szkolaTematy[r.id].has(x.id)))
+              .map((x) => x.id));
+            if (wybrane.size === d.tematy.length) delete u.szkolaTematy[r.id];
+            else u.szkolaTematy[r.id] = wybrane;
+            zmieniono();
+          });
+          return el("label", { class: "tematy-opcja" }, c, ` ${t.nazwa}`);
+        }));
+      };
       cb.addEventListener("change", () => {
         if (cb.checked) u.szkola.add(r.id);
-        else u.szkola.delete(r.id);
+        else {
+          u.szkola.delete(r.id);
+          delete u.szkolaTematy[r.id];
+        }
         podsumowanie.textContent = opis();
         zmieniono();
+        pokazTematy();
       });
-      return el("label", { class: "tematy-opcja" }, cb, ` ${r.nr}. ${r.nazwa}${r.plik ? "" : " (w przygotowaniu)"}`);
+      pokazTematy();
+      return el("div", {}, el("label", { class: "tematy-opcja" }, cb, ` ${r.nr}. ${r.nazwa}${r.plik ? "" : " (w przygotowaniu)"}`), tematy);
     }),
   ));
   return el("details", { class: "tematy-edytor" }, podsumowanie, ...grupy);
@@ -231,6 +264,7 @@ document.getElementById("nowy-uczen").addEventListener("submit", async (e) => {
     dzialy: Object.fromEntries(DZIALY.map((d) => [d.id, new Set()])),
     tematy: {},
     szkola: new Set(),
+    szkolaTematy: {},
     nowyKod: kod.toUpperCase(),
   });
   ok.textContent = `Dodano: ${imie}. Zapisz kod ${kod.toUpperCase()} i przekaż go uczniowi, a w tabeli zaznacz, do czego ma dostęp.`;

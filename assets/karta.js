@@ -1,14 +1,15 @@
 // Karta pracy do druku: karta.html?dzial=liczby&nr=2 (stała) albo ?dzial=liczby&ziarno=123 (wylosowana);
 // zamiast działu może być rozdział z widoku „Do szkoły”: karta.html?rozdzial=sp5-ulamki-zwykle&nr=1 (zadania z jego generatorów).
 import { el } from "./dom.js";
-import { zalogowany, ma, maRozdzial } from "./dostep.js";
-import { dzial as znajdzDzial, rozdzial as znajdzRozdzial, wczytajRozdzial, egzamin, zadaniaKarty, KARTY } from "./dzialy.js";
+import { zalogowany, ma, maRozdzial, tematyRozdzialuUcznia } from "./dostep.js";
+import { dzial as znajdzDzial, rozdzial as znajdzRozdzial, wczytajRozdzial, przytnij, egzamin, zadaniaKarty, KARTY } from "./dzialy.js";
 import { wstaw } from "./matematyka.js";
 
 const parametry = new URLSearchParams(location.search);
 const uczen = zalogowany();
 const r = znajdzRozdzial(parametry.get("rozdzial"));
-const d = r ? await wczytajRozdzial(r.klasa, r.rozdzial).catch(() => null) : znajdzDzial(parametry.get("dzial"));
+const caly = r && await wczytajRozdzial(r.klasa, r.rozdzial).catch(() => null);
+const d = r ? caly && przytnij(caly, tematyRozdzialuUcznia(uczen, r.rozdzial.id)) : znajdzDzial(parametry.get("dzial"));
 const skad = r ? `rozdzial=${d.id}` : `dzial=${d?.id}`;
 const podpis = r ? `${r.klasa.nazwa.toLowerCase()}, ${r.klasa.etap.toLowerCase()}` : egzamin(d?.egzamin).opis;
 const nr = Number(parametry.get("nr")) || 0;

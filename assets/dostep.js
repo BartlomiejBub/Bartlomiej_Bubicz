@@ -64,6 +64,12 @@ export function maRozdzial(uczen, id) {
   return (uczen.szkola ?? []).includes(id);
 }
 
+/** Tematy rozdziału, które uczeń widzi: lista id tematów albo null, gdy widzi cały rozdział. */
+export function tematyRozdzialuUcznia(uczen, id) {
+  if (!uczen || uczen.dostep === "wszystko") return null;
+  return uczen.szkolaTematy?.[id] ?? null;
+}
+
 /** Czy uczeń ma dostęp do rodzaju materiałów ("zadania", "generator", "karty") w dziale. */
 export function ma(uczen, dzial, rodzaj) {
   if (!uczen) return false;
