@@ -83,7 +83,7 @@ export const KLASY = [
         lekcje: ["Od wzorków do wzorów", "Suma algebraiczna i jej wyrazy", "Opuszczanie nawiasów", "Porządkowanie wyrazów w sumach algebraicznych", "Wyrażenia algebraiczne i procenty"] },
       { id: "sp7-rownania", nr: "V", nazwa: "Równania", opis: "Rozwiązywanie równań, zadania tekstowe (także z procentami), przekształcanie wzorów.", plik: "sp7/rownania.js",
         lekcje: ["Co to jest równanie", "Rozwiązywanie równań", "Zadania tekstowe", "Zadania tekstowe z procentami", "Przekształcanie wzorów"] },
-      { id: "sp7-pitagoras", nr: "VI", nazwa: "Trójkąty prostokątne", opis: "Twierdzenie Pitagorasa, przekątna kwadratu, wysokość trójkąta równobocznego.",
+      { id: "sp7-pitagoras", nr: "VI", nazwa: "Trójkąty prostokątne", opis: "Twierdzenie Pitagorasa, przekątna kwadratu, wysokość trójkąta równobocznego.", plik: "sp7/pitagoras.js",
         lekcje: ["Twierdzenie Pitagorasa", "Twierdzenie Pitagorasa – zadania", "Kwadrat i jego połowa", "Trójkąt równoboczny i jego połowa"] },
       { id: "sp7-uklad", nr: "VII", nazwa: "Układ współrzędnych", opis: "Kratka i układ współrzędnych, punkty, długości i pola, odcinki w układzie współrzędnych.",
         lekcje: ["Geometria kartki w kratkę", "Punkty w układzie współrzędnych", "Długości i pola w układzie współrzędnych", "Odcinki w układzie współrzędnych"] },
