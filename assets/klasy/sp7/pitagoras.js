@@ -73,7 +73,7 @@ export default {
           slownie: "Trójkąt prostokątny ma jeden kąt prosty. Dwa boki przy kącie prostym to przyprostokątne. Trzeci bok leży naprzeciw kąta prostego i nazywa się przeciwprostokątna.",
           litery: "$a$, $b$ – przyprostokątne, $c$ – przeciwprostokątna.",
           przyklad: "Trójkąt ma boki $3$, $4$ i $5$, a kąt prosty jest naprzeciw boku $5$. Zatem $5$ to przeciwprostokątna, a $3$ i $4$ to przyprostokątne.",
-          uwaga: "Przeciwprostokątna jest zawsze najdłuższym bokiem. Nie musi być na dole rysunku, bo zależy to od tego, jak obrócono trójkąt.",
+          uwaga: "Przeciwprostokątna jest zawsze najdłuższym bokiem. Może być narysowana w dowolnym miejscu, bo trójkąt można obrócić.",
         },
         {
           nazwa: "Twierdzenie Pitagorasa",
@@ -275,7 +275,7 @@ export default {
           tex: "d^2=a^2+b^2",
           litery: "$a$, $b$ – boki prostokąta, $d$ – przekątna.",
           przyklad: "Ekran telewizora ma $80$ cm szerokości i $60$ cm wysokości. Wtedy $d^2=6400+3600=10\\,000$, więc przekątna ma $100$ cm.",
-          uwaga: "Przekątna jest krótsza niż suma boków. Po przekątnej jest skrót: idąc wzdłuż boków przejdziesz $80+60=140$, a po przekątnej tylko $100$.",
+          uwaga: "Przekątna jest krótsza niż suma boków. Po przekątnej jest skrót: idąc wzdłuż boków przejdziesz $80+60=140$ cm, a po przekątnej tylko $100$ cm.",
         },
         {
           nazwa: "Wysokość trójkąta równoramiennego",
@@ -603,8 +603,7 @@ export default {
             }
             if (tryb === 1) {
               const k = r.int(2, 15);
-              const rzecz = r.pick(["kwadratowego kafelka", "kwadratowej chusty", "kwadratowego obrazu", "kwadratowego placu zabaw"]);
-              const jedn = r.pick(["cm", "dm"]);
+              const [rzecz, jedn] = r.pick([["kwadratowego kafelka", "cm"], ["kwadratowej chusty", "dm"], ["kwadratowego obrazu", "cm"], ["kwadratowego placu zabaw", "m"]]);
               return {
                 tresc: `Przekątna ${rzecz} ma długość $${k}\\sqrt2$ ${jedn}. Ile ${jedn} ma bok?`,
                 pola: [pole("w", "Bok $=$")],
@@ -782,13 +781,13 @@ export default {
           opis: "Wysokość, bok, pole albo obwód trójkąta równobocznego. Wynik podaj jako współczynnik przy $\\sqrt3$ albo liczbę.",
           generuj(r) {
             const tryb = r.int(0, 3);
-            const rzecz = r.pick(["Trójkąt równoboczny", "Chorągiewka w kształcie trójkąta równobocznego", "Ściana namiotu w kształcie trójkąta równobocznego"]);
+            const rzecz = r.pick(["Trójkąt równoboczny", "Chorągiewka w kształcie trójkąta równobocznego", "Płytka w kształcie trójkąta równobocznego"]);
             const wzorH = `Wysokość trójkąta równobocznego o boku $a$ to $h=\\frac{a\\sqrt3}{2}$.`;
             if (tryb === 0) {
               const a = 2 * r.int(1, 12);
               const k = a / 2;
               return {
-                tresc: `${rzecz} ma bok $${a}$ cm. Jego wysokość ma długość $k\\sqrt3$ cm. Podaj liczbę $k$.`,
+                tresc: `${rzecz} ma bok $${a}$ cm. Wysokość tego trójkąta ma długość $k\\sqrt3$ cm. Podaj liczbę $k$.`,
                 pola: [pole("w", "$k=$")],
                 odpowiedz: { w: q(k) },
                 wynik: `$${k}$`,
@@ -809,7 +808,7 @@ export default {
               const a = 2 * r.int(1, 10);
               const k = (a / 2) ** 2;
               return {
-                tresc: `${rzecz} ma bok $${a}$ cm. Jego pole ma wartość $k\\sqrt3$ cm$^2$. Podaj liczbę $k$.`,
+                tresc: `${rzecz} ma bok $${a}$ cm. Pole tego trójkąta ma wartość $k\\sqrt3$ cm$^2$. Podaj liczbę $k$.`,
                 pola: [pole("w", "$k=$")],
                 odpowiedz: { w: q(k) },
                 wynik: `$${k}$`,
@@ -822,7 +821,7 @@ export default {
             }
             const k = r.int(1, 10);
             return {
-              tresc: `${rzecz} ma wysokość $${ck(k, 3)}$ cm. Oblicz jego obwód (w cm).`,
+              tresc: `${rzecz} ma wysokość $${ck(k, 3)}$ cm. Oblicz obwód tego trójkąta (w cm).`,
               pola: [pole("w", "Obwód (cm) $=$")],
               odpowiedz: { w: q(6 * k) },
               wynik: `$${6 * k}$ cm`,

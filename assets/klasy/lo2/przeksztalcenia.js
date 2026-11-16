@@ -177,13 +177,13 @@ export default {
       jak: [
         "Zapisz, który wektor jest dany i jaki ma początek oraz koniec.",
         "Pamiętaj: wektor równy danemu ma ten sam kierunek, zwrot i długość.",
-        "W równoległoboku $ABCD$ równe są $\\overrightarrow{AB}=\\overrightarrow{DC}$ i $\\overrightarrow{AD}=\\overrightarrow{BC}$ (to samo ustawienie liter, początek i koniec w tej kolejności).",
+        "W równoległoboku $ABCD$ równe są $\\overrightarrow{AB}=\\overrightarrow{DC}$ i $\\overrightarrow{AD}=\\overrightarrow{BC}$ (przeciwległe boki, strzałki skierowane w tę samą stronę).",
         "Gdy zamienisz początek z końcem, dostaniesz wektor przeciwny, a nie równy.",
       ],
       zadania: [
         {
           nr: "1",
-          tresc: "Czworokąt $ABCD$ jest równoległobokiem. Wektor równy wektorowi $\\overrightarrow{BC}$ to. **Wybierz właściwą odpowiedź.**",
+          tresc: "Czworokąt $ABCD$ jest równoległobokiem. Który wektor jest równy wektorowi $\\overrightarrow{BC}$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\overrightarrow{CB}$", "$\\overrightarrow{AB}$", "$\\overrightarrow{AD}$", "$\\overrightarrow{DC}$"],
           poprawna: 2,
         },
@@ -204,13 +204,13 @@ export default {
         },
         {
           nr: "4",
-          tresc: "Czworokąt $ABCD$ jest równoległobokiem. Wektorem przeciwnym do wektora $\\overrightarrow{DA}$ jest. **Wybierz właściwą odpowiedź.**",
+          tresc: "Czworokąt $ABCD$ jest równoległobokiem. Który wektor jest przeciwny do wektora $\\overrightarrow{DA}$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\overrightarrow{CB}$", "$\\overrightarrow{DC}$", "$\\overrightarrow{AB}$", "$\\overrightarrow{BC}$"],
           poprawna: 3,
         },
         {
           nr: "5",
-          tresc: "Odcinek $PQ$ o długości $6$ przesunięto o wektor długości $4$, który nie jest równoległy do prostej $PQ$. Obrazem odcinka jest odcinek $P'Q'$. Czworokąt $PQQ'P'$ jest zawsze. **Wybierz właściwą odpowiedź.**",
+          tresc: "Odcinek $PQ$ o długości $6$ przesunięto o wektor długości $4$, który nie jest równoległy do prostej $PQ$. Obrazem odcinka jest odcinek $P'Q'$. Jakim czworokątem jest zawsze czworokąt $PQQ'P'$? **Wybierz właściwą odpowiedź.**",
           opcje: ["prostokątem", "równoległobokiem", "rombem", "trapezem, który nie jest równoległobokiem"],
           poprawna: 1,
         },
@@ -330,19 +330,19 @@ export default {
       zadania: [
         {
           nr: "8",
-          tresc: "Dane są punkty $A=(-2,3)$ i $B=(4,-1)$. Współrzędne wektora $\\overrightarrow{AB}$ to. **Wybierz właściwą odpowiedź.**",
+          tresc: "Dane są punkty $A=(-2,3)$ i $B=(4,-1)$. Jakie współrzędne ma wektor $\\overrightarrow{AB}$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$[-6,4]$", "$[6,4]$", "$[6,-4]$", "$[2,2]$"],
           poprawna: 2,
         },
         {
           nr: "9",
-          tresc: "Długość wektora $\\vec{u}=[-5,12]$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Ile wynosi długość wektora $\\vec{u}=[-5,12]$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$7$", "$17$", "$169$", "$13$"],
           poprawna: 3,
         },
         {
           nr: "10",
-          tresc: "Punkt $P=(-1,4)$ przesunięto o wektor $[3,-6]$. Otrzymano punkt. **Wybierz właściwą odpowiedź.**",
+          tresc: "Punkt $P=(-1,4)$ przesunięto o wektor $[3,-6]$. Jakie współrzędne ma otrzymany punkt? **Wybierz właściwą odpowiedź.**",
           opcje: ["$(2,-2)$", "$(-4,10)$", "$(2,2)$", "$(-2,2)$"],
           poprawna: 0,
         },
@@ -357,13 +357,13 @@ export default {
         },
         {
           nr: "12",
-          tresc: "Punkty $A=(1,1)$, $B=(6,2)$, $C=(8,6)$ są kolejnymi wierzchołkami równoległoboku $ABCD$. Wierzchołek $D$ ma współrzędne. **Wybierz właściwą odpowiedź.**",
+          tresc: "Punkty $A=(1,1)$, $B=(6,2)$, $C=(8,6)$ są kolejnymi wierzchołkami równoległoboku $ABCD$. Jakie współrzędne ma wierzchołek $D$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$(13,7)$", "$(3,5)$", "$(-1,-3)$", "$(15,9)$"],
           poprawna: 1,
         },
         {
           nr: "13",
-          tresc: "Dane są punkty $A=(1,m)$ i $B=(4,5)$. Wektor $\\overrightarrow{AB}$ jest równy wektorowi $[3,-2]$ dla. **Wybierz właściwą odpowiedź.**",
+          tresc: "Dane są punkty $A=(1,m)$ i $B=(4,5)$. Dla jakiej wartości $m$ wektor $\\overrightarrow{AB}$ jest równy wektorowi $[3,-2]$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$m=3$", "$m=-7$", "$m=7$", "$m=-3$"],
           poprawna: 2,
         },
@@ -523,19 +523,19 @@ export default {
       zadania: [
         {
           nr: "16",
-          tresc: "Wykres funkcji $f(x)=x^2$ przesunięto o wektor $[4,0]$. Otrzymany wykres jest wykresem funkcji. **Wybierz właściwą odpowiedź.**",
+          tresc: "Wykres funkcji $f(x)=x^2$ przesunięto o wektor $[4,0]$. Wykresem której funkcji jest otrzymany wykres? **Wybierz właściwą odpowiedź.**",
           opcje: ["$y=x^2+4$", "$y=(x+4)^2$", "$y=x^2-4$", "$y=(x-4)^2$"],
           poprawna: 3,
         },
         {
           nr: "17",
-          tresc: "Wykres funkcji $g(x)=\\frac{1}{x+3}$ otrzymano z wykresu funkcji $y=\\frac{1}{x}$ przez przesunięcie o wektor. **Wybierz właściwą odpowiedź.**",
+          tresc: "Wykres funkcji $g(x)=\\frac{1}{x+3}$ otrzymano z wykresu funkcji $y=\\frac{1}{x}$ przez przesunięcie. Jaki to wektor? **Wybierz właściwą odpowiedź.**",
           opcje: ["$[3,0]$", "$[0,3]$", "$[-3,0]$", "$[0,-3]$"],
           poprawna: 2,
         },
         {
           nr: "18",
-          tresc: "Funkcja $f$ ma dokładnie dwa miejsca zerowe: $-2$ i $1$. Miejscami zerowymi funkcji $g(x)=f(x-5)$ są liczby. **Wybierz właściwą odpowiedź.**",
+          tresc: "Funkcja $f$ ma dokładnie dwa miejsca zerowe: $-2$ i $1$. Jakie są miejsca zerowe funkcji $g(x)=f(x-5)$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$-7$ i $-4$", "$3$ i $6$", "$-2$ i $1$", "$-10$ i $5$"],
           poprawna: 1,
         },
@@ -550,7 +550,7 @@ export default {
         },
         {
           nr: "20",
-          tresc: "Wykres funkcji $f(x)=2x+1$ przesunięto o wektor $[3,0]$. Wzór funkcji otrzymanej po przesunięciu to. **Wybierz właściwą odpowiedź.**",
+          tresc: "Wykres funkcji $f(x)=2x+1$ przesunięto o wektor $[3,0]$. Jaki wzór ma funkcja otrzymana po przesunięciu? **Wybierz właściwą odpowiedź.**",
           opcje: ["$g(x)=2x-2$", "$g(x)=2x+7$", "$g(x)=2x-5$", "$g(x)=2x+4$"],
           poprawna: 2,
         },
@@ -666,25 +666,25 @@ export default {
       zadania: [
         {
           nr: "23",
-          tresc: "Wykres funkcji $f(x)=x^2$ przesunięto o wektor $[0,-5]$. Otrzymany wykres jest wykresem funkcji. **Wybierz właściwą odpowiedź.**",
+          tresc: "Wykres funkcji $f(x)=x^2$ przesunięto o wektor $[0,-5]$. Wykresem której funkcji jest otrzymany wykres? **Wybierz właściwą odpowiedź.**",
           opcje: ["$y=(x-5)^2$", "$y=x^2+5$", "$y=(x+5)^2$", "$y=x^2-5$"],
           poprawna: 3,
         },
         {
           nr: "24",
-          tresc: "Wykres funkcji $g(x)=\\frac{1}{x}+2$ otrzymano z wykresu funkcji $y=\\frac{1}{x}$ przez przesunięcie o wektor. **Wybierz właściwą odpowiedź.**",
+          tresc: "Wykres funkcji $g(x)=\\frac{1}{x}+2$ otrzymano z wykresu funkcji $y=\\frac{1}{x}$ przez przesunięcie. Jaki to wektor? **Wybierz właściwą odpowiedź.**",
           opcje: ["$[2,0]$", "$[0,2]$", "$[-2,0]$", "$[0,-2]$"],
           poprawna: 1,
         },
         {
           nr: "25",
-          tresc: "Funkcja $f$ ma zbiór wartości $\\langle -1,5\\rangle$. Zbiorem wartości funkcji $g(x)=f(x)+3$ jest. **Wybierz właściwą odpowiedź.**",
+          tresc: "Funkcja $f$ ma zbiór wartości $\\langle -1,5\\rangle$. Jaki jest zbiór wartości funkcji $g(x)=f(x)+3$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\langle -1,5\\rangle$", "$\\langle -4,2\\rangle$", "$\\langle 2,8\\rangle$", "$\\langle -1,8\\rangle$"],
           poprawna: 2,
         },
         {
           nr: "26",
-          tresc: "Wykres funkcji $f(x)=x^2$ przesunięto o wektor $[-1,4]$. Wzór otrzymanej funkcji to. **Wybierz właściwą odpowiedź.**",
+          tresc: "Wykres funkcji $f(x)=x^2$ przesunięto o wektor $[-1,4]$. Jaki wzór ma otrzymana funkcja? **Wybierz właściwą odpowiedź.**",
           opcje: ["$g(x)=(x-1)^2+4$", "$g(x)=(x+1)^2+4$", "$g(x)=(x+1)^2-4$", "$g(x)=(x-1)^2-4$"],
           poprawna: 1,
         },
@@ -699,7 +699,7 @@ export default {
         },
         {
           nr: "28",
-          tresc: "Wykres funkcji $f(x)=2x$ przesunięto o wektor $[0,-6]$. Miejscem zerowym otrzymanej funkcji jest. **Wybierz właściwą odpowiedź.**",
+          tresc: "Wykres funkcji $f(x)=2x$ przesunięto o wektor $[0,-6]$. Jakie jest miejsce zerowe otrzymanej funkcji? **Wybierz właściwą odpowiedź.**",
           opcje: ["$-3$", "$6$", "$3$", "$-6$"],
           poprawna: 2,
         },
@@ -844,19 +844,19 @@ export default {
       zadania: [
         {
           nr: "31",
-          tresc: "Wykresy funkcji $f(x)=x^2$ i $g(x)=2x+3$ przecinają się w punktach $(-1,1)$ i $(3,9)$. Rozwiązaniem równania $x^2=2x+3$ jest. **Wybierz właściwą odpowiedź.**",
+          tresc: "Wykresy funkcji $f(x)=x^2$ i $g(x)=2x+3$ przecinają się w punktach $(-1,1)$ i $(3,9)$. Jakie są rozwiązania równania $x^2=2x+3$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$x=-1$", "$x=-1$ lub $x=3$", "$x=1$ lub $x=9$", "$x=3$"],
           poprawna: 1,
         },
         {
           nr: "32",
-          tresc: "Wykresy funkcji $f(x)=x^2$ i $g(x)=2x+3$ przecinają się w punktach $(-1,1)$ i $(3,9)$. Rozwiązaniem nierówności $x^2<2x+3$ jest zbiór. **Wybierz właściwą odpowiedź.**",
+          tresc: "Wykresy funkcji $f(x)=x^2$ i $g(x)=2x+3$ przecinają się w punktach $(-1,1)$ i $(3,9)$. Jaki zbiór jest rozwiązaniem nierówności $x^2<2x+3$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$(-1,3)$", "$(-\\infty,-1)\\cup(3,+\\infty)$", "$\\langle -1,3\\rangle$", "$(1,9)$"],
           poprawna: 0,
         },
         {
           nr: "33",
-          tresc: "Równanie $(x-2)^2+3=m$ ma dwa różne rozwiązania dla. **Wybierz właściwą odpowiedź.**",
+          tresc: "Dla jakich wartości $m$ równanie $(x-2)^2+3=m$ ma dwa różne rozwiązania? **Wybierz właściwą odpowiedź.**",
           opcje: ["$m\\in(-\\infty,3)$", "$m\\in\\langle 3,+\\infty)$", "$m=3$", "$m\\in(3,+\\infty)$"],
           poprawna: 3,
         },
@@ -871,13 +871,13 @@ export default {
         },
         {
           nr: "35",
-          tresc: "Wykres funkcji $y=\\frac{1}{x}$ przecina prostą $y=x$ w punktach $(-1,-1)$ i $(1,1)$. Rozwiązaniem nierówności $\\frac{1}{x}<x$ jest zbiór. **Wybierz właściwą odpowiedź.**",
+          tresc: "Wykres funkcji $y=\\frac{1}{x}$ przecina prostą $y=x$ w punktach $(-1,-1)$ i $(1,1)$. Jaki zbiór jest rozwiązaniem nierówności $\\frac{1}{x}<x$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$(-1,1)$", "$(-\\infty,-1)\\cup(0,1)$", "$(-1,0)\\cup(1,+\\infty)$", "$(1,+\\infty)$"],
           poprawna: 2,
         },
         {
           nr: "36",
-          tresc: "Wykresy funkcji $y=x+1$ i $y=-x+5$ przecinają się w punkcie $(2,3)$. Rozwiązaniem nierówności $x+1\\ge -x+5$ jest zbiór. **Wybierz właściwą odpowiedź.**",
+          tresc: "Wykresy funkcji $y=x+1$ i $y=-x+5$ przecinają się w punkcie $(2,3)$. Jaki zbiór jest rozwiązaniem nierówności $x+1\\ge -x+5$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$(2,+\\infty)$", "$(-\\infty,2\\rangle$", "$\\langle 3,+\\infty)$", "$\\langle 2,+\\infty)$"],
           poprawna: 3,
         },

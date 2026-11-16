@@ -72,7 +72,7 @@ export default {
         },
         {
           nazwa: "Prostopadłościan i sześcian",
-          slownie: "Prostopadłościan ma $6$ ścian (prostokątów), $12$ krawędzi i $8$ wierzchołków. Ściany leżące naprzeciw siebie są takie same. Krawędzi są trzy grupy po $4$ równe. Sześcian ma wszystkie krawędzie równe, więc wszystkie ściany są kwadratami.",
+          slownie: "Prostopadłościan ma $6$ ścian (prostokątów), $12$ krawędzi i $8$ wierzchołków. Ściany leżące naprzeciw siebie są takie same. Jego krawędzie tworzą trzy grupy, a w każdej grupie są $4$ równe krawędzie. Sześcian ma wszystkie krawędzie równe, więc wszystkie ściany są kwadratami.",
           tex: "4\\cdot(a+b+c)\\qquad 12\\cdot a",
           litery: "$a$, $b$, $c$ – wymiary prostopadłościanu. Drugi wzór: $a$ – krawędź sześcianu. Oba wzory dają sumę długości wszystkich krawędzi.",
           przyklad: "Prostopadłościan $5$ cm, $3$ cm i $2$ cm: $4 \\cdot (5+3+2) = 4 \\cdot 10 = 40$ cm. Sześcian o krawędzi $3$ cm: $12 \\cdot 3 = 36$ cm.",
@@ -250,7 +250,7 @@ export default {
         {
           nazwa: "Bryła z klocków",
           slownie: "Policz klocki w jednej warstwie: rzędy razy klocki w rzędzie. Potem pomnóż przez liczbę warstw.",
-          przyklad: "W warstwie są $3$ rzędy po $4$ klocki: $3 \\cdot 4 = 12$. Warstwy są $2$: $12 \\cdot 2 = 24$ klocki.",
+          przyklad: "W warstwie są $3$ rzędy po $4$ klocki: $3 \\cdot 4 = 12$. Warstw jest $2$: $12 \\cdot 2 = 24$ klocki.",
           uwaga: "Nie dodawaj liczby rzędów, klocków i warstw. Je się mnoży.",
         },
         {
@@ -691,7 +691,7 @@ export default {
           nazwa: "Siatka sześcianu",
           slownie: "Siatka sześcianu składa się z $6$ jednakowych kwadratów. Sześcian ma $11$ różnych siatek.",
           przyklad: "Cztery kwadraty w jednym rzędzie to ściany boczne. Jeden kwadrat nad rzędem to góra, a jeden pod rzędem to dół.",
-          uwaga: "Dwa kwadraty nad rzędem nie dadzą siatki: oba przykryłyby górę, a dołu by zabrakło.",
+          uwaga: "Jeśli oba brakujące kwadraty dokleisz nad rzędem, siatki nie będzie: oba przykryłyby górę, a dołu by zabrakło.",
         },
         {
           nazwa: "Rząd ścian bocznych",

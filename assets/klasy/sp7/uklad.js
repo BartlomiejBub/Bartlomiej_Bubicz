@@ -20,8 +20,8 @@ const pole = (id, etykieta) => ({ id, typ: "liczba", etykieta });
 const sq = (x) => `\\sqrt{${x}}`;
 /** Liczba ujemna w nawiasie: nb(-3) = "(-3)". */
 const nb = (v) => (v < 0 ? `(${v})` : `${v}`);
-/** Punkt w zapisie z polskiego podręcznika: (3; -2). */
-const P = (x, y) => `(${x};\\,${y})`;
+/** Punkt: (3, -2); gdy któraś współrzędna jest ułamkiem dziesiętnym (przecinek), średnik: (2{,}5; 3). */
+const P = (x, y) => (`${x}${y}`.includes("{,}") ? `(${x};\\,${y})` : `(${x},\\,${y})`);
 /** Poprawna polska forma po liczbie: pl(1, "kratkę", "kratki", "kratek"). */
 const pl = (n, f1, f2, f5) => {
   const a = Math.abs(n);
@@ -308,71 +308,71 @@ export default {
       sciaga: [
         {
           nazwa: "Układ współrzędnych",
-          slownie: "To dwie prostopadłe osie liczbowe. Oś $Ox$ jest pozioma, a oś $Oy$ pionowa. Przecinają się w punkcie $O=(0;\\,0)$. Punkt zapisujemy jako parę liczb: najpierw ruch w prawo lub w lewo, potem w górę lub w dół.",
-          tex: "P=(x;\\,y)",
+          slownie: "To dwie prostopadłe osie liczbowe. Oś $Ox$ jest pozioma, a oś $Oy$ pionowa. Przecinają się w punkcie $O=(0,\\,0)$. Punkt zapisujemy jako parę liczb: najpierw ruch w prawo lub w lewo, potem w górę lub w dół.",
+          tex: "P=(x,\\,y)",
           litery: "$x$ – pierwsza współrzędna (w prawo lub w lewo od osi $Oy$), $y$ – druga współrzędna (w górę lub w dół od osi $Ox$).",
-          przyklad: "$A=(3;\\,2)$: $3$ jednostki w prawo i $2$ w górę. $B=(-2;\\,-4)$: $2$ jednostki w lewo i $4$ w dół.",
-          uwaga: "Kolejność ma znaczenie: $(3;\\,2)$ i $(2;\\,3)$ to dwa różne punkty.",
+          przyklad: "$A=(3,\\,2)$: $3$ jednostki w prawo i $2$ w górę. $B=(-2,\\,-4)$: $2$ jednostki w lewo i $4$ w dół.",
+          uwaga: "Kolejność ma znaczenie: $(3,\\,2)$ i $(2,\\,3)$ to dwa różne punkty.",
         },
         {
           nazwa: "Ćwiartki układu",
           slownie: "Osie dzielą płaszczyznę na cztery ćwiartki. Numerujemy je przeciwnie do ruchu wskazówek zegara, zaczynając od prawej górnej. O ćwiartce decydują znaki współrzędnych.",
-          tex: "\\text{I}:\\ (+;\\,+)\\qquad\\text{II}:\\ (-;\\,+)\\qquad\\text{III}:\\ (-;\\,-)\\qquad\\text{IV}:\\ (+;\\,-)",
-          przyklad: "Punkt $(-4;\\,3)$ ma pierwszą współrzędną ujemną, a drugą dodatnią, więc leży w II ćwiartce.",
+          tex: "\\text{I}:\\ (+,\\,+)\\qquad\\text{II}:\\ (-,\\,+)\\qquad\\text{III}:\\ (-,\\,-)\\qquad\\text{IV}:\\ (+,\\,-)",
+          przyklad: "Punkt $(-4,\\,3)$ ma pierwszą współrzędną ujemną, a drugą dodatnią, więc leży w II ćwiartce.",
           uwaga: "Punkty leżące na osiach nie należą do żadnej ćwiartki.",
         },
         {
           nazwa: "Punkty na osiach",
           slownie: "Punkt na osi $Ox$ ma drugą współrzędną równą $0$. Punkt na osi $Oy$ ma pierwszą współrzędną równą $0$. Początek układu leży na obu osiach.",
-          tex: "Ox:\\ (a;\\,0)\\qquad Oy:\\ (0;\\,b)",
-          przyklad: "Punkt $(5;\\,0)$ leży na osi $Ox$, a punkt $(0;\\,-3)$ na osi $Oy$.",
+          tex: "Ox:\\ (a,\\,0)\\qquad Oy:\\ (0,\\,b)",
+          przyklad: "Punkt $(5,\\,0)$ leży na osi $Ox$, a punkt $(0,\\,-3)$ na osi $Oy$.",
           uwaga: "Łatwo pomylić osie. Na osi $Ox$ zero jest na drugim miejscu, a na osi $Oy$ na pierwszym.",
         },
         {
           nazwa: "Odbicie i przesunięcie punktu",
           slownie: "Odbicie względem osi $Ox$ zmienia znak drugiej współrzędnej, a względem osi $Oy$ zmienia znak pierwszej. Przesuwając punkt, dodajesz liczby do współrzędnych: w prawo i w górę dodatnie, w lewo i w dół ujemne.",
-          tex: "Ox:\\ (x;\\,-y)\\qquad Oy:\\ (-x;\\,y)",
-          przyklad: "Punkt $(4;\\,-1)$ odbity względem osi $Oy$ to $(-4;\\,-1)$. Przesunięty o $3$ w lewo i $5$ w górę: $(4-3;\\,-1+5)=(1;\\,4)$.",
+          tex: "Ox:\\ (x,\\,-y)\\qquad Oy:\\ (-x,\\,y)",
+          przyklad: "Punkt $(4,\\,-1)$ odbity względem osi $Oy$ to $(-4,\\,-1)$. Przesunięty o $3$ w lewo i $5$ w górę: $(4-3,\\,-1+5)=(1,\\,4)$.",
           uwaga: "Przy odbiciu względem osi $Ox$ zmienia się druga współrzędna, a pierwsza zostaje.",
         },
       ],
       jak: [
-        "Czytając punkt $(x;\\,y)$, zacznij od początku układu: najpierw $x$ w poziomie, potem $y$ w pionie.",
+        "Czytając punkt $(x,\\,y)$, zacznij od początku układu: najpierw $x$ w poziomie, potem $y$ w pionie.",
         "Ćwiartkę wskażesz po znakach obu współrzędnych. Jeśli któraś jest zerem, punkt leży na osi.",
         "Przy przesunięciu dodaj do $x$ ruch w poziomie, a do $y$ ruch w pionie. Pamiętaj o znakach.",
       ],
       zadania: [
         {
           nr: "8",
-          tresc: "W której ćwiartce układu współrzędnych leży punkt $A=(-4;\\,3)$? **Wybierz właściwą odpowiedź.**",
+          tresc: "W której ćwiartce układu współrzędnych leży punkt $A=(-4,\\,3)$? **Wybierz właściwą odpowiedź.**",
           opcje: ["w I ćwiartce", "w II ćwiartce", "w III ćwiartce", "w IV ćwiartce"],
           poprawna: 1,
         },
         {
           nr: "9",
           tresc: "Który z podanych punktów leży na osi $Oy$? **Wybierz właściwą odpowiedź.**",
-          opcje: ["$(4;\\,0)$", "$(4;\\,4)$", "$(-3;\\,0)$", "$(0;\\,-3)$"],
+          opcje: ["$(4,\\,0)$", "$(4,\\,4)$", "$(-3,\\,0)$", "$(0,\\,-3)$"],
           poprawna: 3,
         },
         {
           nr: "10",
           tresc: "Punkt $C$ leży $3$ jednostki na lewo od osi $Oy$ i $2$ jednostki poniżej osi $Ox$. Jakie ma współrzędne? **Wybierz właściwą odpowiedź.**",
-          opcje: ["$(3;\\,2)$", "$(-2;\\,-3)$", "$(-3;\\,-2)$", "$(3;\\,-2)$"],
+          opcje: ["$(3,\\,2)$", "$(-2,\\,-3)$", "$(-3,\\,-2)$", "$(3,\\,-2)$"],
           poprawna: 2,
         },
         {
           nr: "11",
           tresc: "Oceń zdania. **Dla każdego zdania wybierz P, jeśli jest prawdziwe, albo F, jeśli jest fałszywe.**",
           czesci: [
-            { tekst: "Punkt $(0;\\,0)$ jest początkiem układu współrzędnych.", litery: "PF", poprawna: 0 },
-            { tekst: "Punkt $(-2;\\,5)$ leży w IV ćwiartce.", litery: "PF", poprawna: 1 },
-            { tekst: "Punkty $(1;\\,3)$ i $(3;\\,1)$ to ten sam punkt.", litery: "PF", poprawna: 1 },
+            { tekst: "Punkt $(0,\\,0)$ jest początkiem układu współrzędnych.", litery: "PF", poprawna: 0 },
+            { tekst: "Punkt $(-2,\\,5)$ leży w IV ćwiartce.", litery: "PF", poprawna: 1 },
+            { tekst: "Punkty $(1,\\,3)$ i $(3,\\,1)$ to ten sam punkt.", litery: "PF", poprawna: 1 },
           ],
         },
         {
           nr: "12",
-          tresc: "Punkt $A=(5;\\,-2)$ odbito względem osi $Ox$. Jakie współrzędne ma obraz punktu $A$? **Wybierz właściwą odpowiedź.**",
-          opcje: ["$(5;\\,2)$", "$(-5;\\,-2)$", "$(-5;\\,2)$", "$(2;\\,-5)$"],
+          tresc: "Punkt $A=(5,\\,-2)$ odbito względem osi $Ox$. Jakie współrzędne ma obraz punktu $A$? **Wybierz właściwą odpowiedź.**",
+          opcje: ["$(5,\\,2)$", "$(-5,\\,-2)$", "$(-5,\\,2)$", "$(2,\\,-5)$"],
           poprawna: 0,
         },
       ],
@@ -380,14 +380,14 @@ export default {
         {
           nr: "13",
           punkty: 2,
-          tresc: "Punkt $P=(-6;\\,4)$ przesunięto o $5$ jednostek w prawo, a potem o $7$ jednostek w dół. Otrzymano punkt $Q$. Podaj współrzędne punktu $Q$ i napisz, w której ćwiartce leży. **Zapisz obliczenia.**",
-          rozwiazanie: "Ruch w prawo zwiększa pierwszą współrzędną: $-6+5=-1$.\n\nRuch w dół zmniejsza drugą współrzędną: $4-7=-3$.\n\nZatem $Q=(-1;\\,-3)$. Obie współrzędne są ujemne, więc punkt leży w III ćwiartce.\n\nOdpowiedź: $Q=(-1;\\,-3)$ i leży w III ćwiartce.",
+          tresc: "Punkt $P=(-6,\\,4)$ przesunięto o $5$ jednostek w prawo, a potem o $7$ jednostek w dół. Otrzymano punkt $Q$. Podaj współrzędne punktu $Q$ i napisz, w której ćwiartce leży. **Zapisz obliczenia.**",
+          rozwiazanie: "Ruch w prawo zwiększa pierwszą współrzędną: $-6+5=-1$.\n\nRuch w dół zmniejsza drugą współrzędną: $4-7=-3$.\n\nZatem $Q=(-1,\\,-3)$. Obie współrzędne są ujemne, więc punkt leży w III ćwiartce.\n\nOdpowiedź: $Q=(-1,\\,-3)$ i leży w III ćwiartce.",
         },
         {
           nr: "14",
           punkty: 2,
-          tresc: "Punkt $M=(a;\\,b)$ leży w IV ćwiartce. W której ćwiartce leży punkt $N=(-a;\\,b)$, a w której punkt $K=(b;\\,a)$? **Zapisz uzasadnienie.**",
-          rozwiazanie: "W IV ćwiartce pierwsza współrzędna jest dodatnia, a druga ujemna: $a>0$ i $b<0$.\n\nPunkt $N=(-a;\\,b)$: pierwsza współrzędna $-a$ jest ujemna, druga $b$ też. Zatem $N$ leży w III ćwiartce.\n\nPunkt $K=(b;\\,a)$: pierwsza współrzędna $b$ jest ujemna, druga $a$ dodatnia. Zatem $K$ leży w II ćwiartce.\n\nOdpowiedź: $N$ leży w III ćwiartce, a $K$ w II ćwiartce.",
+          tresc: "Punkt $M=(a,\\,b)$ leży w IV ćwiartce. W której ćwiartce leży punkt $N=(-a,\\,b)$, a w której punkt $K=(b,\\,a)$? **Zapisz uzasadnienie.**",
+          rozwiazanie: "W IV ćwiartce pierwsza współrzędna jest dodatnia, a druga ujemna: $a>0$ i $b<0$.\n\nPunkt $N=(-a,\\,b)$: pierwsza współrzędna $-a$ jest ujemna, druga $b$ też. Zatem $N$ leży w III ćwiartce.\n\nPunkt $K=(b,\\,a)$: pierwsza współrzędna $b$ jest ujemna, druga $a$ dodatnia. Zatem $K$ leży w II ćwiartce.\n\nOdpowiedź: $N$ leży w III ćwiartce, a $K$ w II ćwiartce.",
         },
       ],
       generatory: [
@@ -412,7 +412,7 @@ export default {
                 rozwiazanie: [
                   `Pierwsza współrzędna to $${x}$: jest ${dodatnia(x)}. Druga to $${y}$: jest ${dodatnia(y)}.`,
                   idx < 4
-                    ? `Znaki $(${x > 0 ? "+" : "-"};\\,${y > 0 ? "+" : "-"})$ oznaczają ${CWIARTKI[idx]} ćwiartkę.`
+                    ? `Znaki $(${x > 0 ? "+" : "-"},\\,${y > 0 ? "+" : "-"})$ oznaczają ${CWIARTKI[idx]} ćwiartkę.`
                     : idx === 4 ? `Druga współrzędna jest równa $0$, więc punkt leży na osi $Ox$.` : `Pierwsza współrzędna jest równa $0$, więc punkt leży na osi $Oy$.`,
                 ],
               };
@@ -449,7 +449,7 @@ export default {
             const polaXY = [pole("x", "$x'=$"), pole("y", "$y'=$")];
             if (tryb === 0) {
               return {
-                tresc: `Punkt $A=${P(x, y)}$ odbito względem osi $Ox$ (osi poziomej). Podaj współrzędne obrazu $A'=(x';\\,y')$.`,
+                tresc: `Punkt $A=${P(x, y)}$ odbito względem osi $Ox$ (osi poziomej). Podaj współrzędne obrazu $A'=(x',\\,y')$.`,
                 pola: polaXY,
                 odpowiedz: { x: q(x), y: q(-y) },
                 wynik: `$A'=${P(x, -y)}$`,
@@ -461,7 +461,7 @@ export default {
             }
             if (tryb === 1) {
               return {
-                tresc: `Punkt $B=${P(x, y)}$ odbito względem osi $Oy$ (osi pionowej). Podaj współrzędne obrazu $B'=(x';\\,y')$.`,
+                tresc: `Punkt $B=${P(x, y)}$ odbito względem osi $Oy$ (osi pionowej). Podaj współrzędne obrazu $B'=(x',\\,y')$.`,
                 pola: polaXY,
                 odpowiedz: { x: q(-x), y: q(y) },
                 wynik: `$B'=${P(-x, y)}$`,
@@ -478,7 +478,7 @@ export default {
             const dx = lewo ? -p : p;
             const dy = gora ? s : -s;
             return {
-              tresc: `Punkt $C=${P(x, y)}$ przesunięto o ${jedn(p)} w ${lewo ? "lewo" : "prawo"} i o ${jedn(s)} w ${gora ? "górę" : "dół"}. Podaj współrzędne nowego punktu $C'=(x';\\,y')$.`,
+              tresc: `Punkt $C=${P(x, y)}$ przesunięto o ${jedn(p)} w ${lewo ? "lewo" : "prawo"} i o ${jedn(s)} w ${gora ? "górę" : "dół"}. Podaj współrzędne nowego punktu $C'=(x',\\,y')$.`,
               pola: polaXY,
               odpowiedz: { x: q(x + dx), y: q(y + dy) },
               wynik: `$C'=${P(x + dx, y + dy)}$`,
@@ -502,7 +502,7 @@ export default {
           slownie: "Gdy końce odcinka mają taką samą drugą współrzędną, odcinek jest poziomy. Jego długość to odległość między pierwszymi współrzędnymi: większa liczba minus mniejsza. Gdy takie same są pierwsze współrzędne, odcinek jest pionowy i liczysz różnicę drugich.",
           tex: "|AB|=|x_B-x_A|\\qquad|AB|=|y_B-y_A|",
           litery: "Pierwszy wzór dla odcinka poziomego, drugi dla pionowego.",
-          przyklad: "$A=(-3;\\,2)$ i $B=(4;\\,2)$. Druga współrzędna jest wspólna, więc $|AB|=4-(-3)=7$.",
+          przyklad: "$A=(-3,\\,2)$ i $B=(4,\\,2)$. Druga współrzędna jest wspólna, więc $|AB|=4-(-3)=7$.",
           uwaga: "Przy liczbie ujemnej uważaj na znak: $4-(-3)=7$, a nie $1$.",
         },
         {
@@ -510,7 +510,7 @@ export default {
           slownie: "Jeśli boki prostokąta są równoległe do osi, to jeden bok ma długość różnicy pierwszych współrzędnych, a drugi różnicy drugich. Takie wymiary pozwalają policzyć pole i obwód.",
           tex: "P=a\\cdot b\\qquad O=2a+2b",
           litery: "$a$, $b$ – boki prostokąta.",
-          przyklad: "Przeciwległe wierzchołki to $A=(-2;\\,-1)$ i $C=(4;\\,3)$. Wtedy $a=4-(-2)=6$, $b=3-(-1)=4$, więc $P=24$ i $O=20$.",
+          przyklad: "Przeciwległe wierzchołki to $A=(-2,\\,-1)$ i $C=(4,\\,3)$. Wtedy $a=4-(-2)=6$, $b=3-(-1)=4$, więc $P=24$ i $O=20$.",
           uwaga: "Pole to iloczyn boków, a nie iloczyn współrzędnych punktów.",
         },
         {
@@ -518,13 +518,13 @@ export default {
           slownie: "Gdy dwa wierzchołki mają taką samą drugą współrzędną, bok między nimi jest poziomy i jest podstawą. Wysokość to różnica drugiej współrzędnej trzeciego wierzchołka i drugiej współrzędnej podstawy.",
           tex: "P=\\frac{1}{2}\\cdot a\\cdot h",
           litery: "$a$ – podstawa, $h$ – wysokość.",
-          przyklad: "$A=(-2;\\,0)$, $B=(4;\\,0)$, $C=(1;\\,-3)$. Podstawa $a=6$, wysokość $h=|{-3}-0|=3$, więc $P=\\frac{1}{2}\\cdot6\\cdot3=9$.",
+          przyklad: "$A=(-2,\\,0)$, $B=(4,\\,0)$, $C=(1,\\,-3)$. Podstawa $a=6$, wysokość $h=|{-3}-0|=3$, więc $P=\\frac{1}{2}\\cdot6\\cdot3=9$.",
           uwaga: "Pierwsza współrzędna punktu $C$ nie zmienia pola. Wysokość liczymy w pionie.",
         },
         {
           nazwa: "Czwarty wierzchołek prostokąta",
           slownie: "W prostokącie o bokach równoległych do osi wierzchołki powtarzają swoje współrzędne. Brakujący wierzchołek ma pierwszą współrzędną taką samą jak wierzchołek leżący nad nim albo pod nim, a drugą taką samą jak wierzchołek leżący obok.",
-          przyklad: "$A=(1;\\,1)$, $B=(5;\\,1)$, $C=(5;\\,4)$. Wierzchołek $D$ leży nad $A$ i obok $C$, więc $D=(1;\\,4)$.",
+          przyklad: "$A=(1,\\,1)$, $B=(5,\\,1)$, $C=(5,\\,4)$. Wierzchołek $D$ leży nad $A$ i obok $C$, więc $D=(1,\\,4)$.",
           uwaga: "Warto zrobić szkic, bo łatwo pomylić, który wierzchołek jest obok, a który nad.",
         },
       ],
@@ -537,19 +537,19 @@ export default {
       zadania: [
         {
           nr: "15",
-          tresc: "Jaką długość ma odcinek $AB$, jeśli $A=(-3;\\,2)$ i $B=(4;\\,2)$? **Wybierz właściwą odpowiedź.**",
+          tresc: "Jaką długość ma odcinek $AB$, jeśli $A=(-3,\\,2)$ i $B=(4,\\,2)$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$1$", "$7$", "$12$", "$-7$"],
           poprawna: 1,
         },
         {
           nr: "16",
-          tresc: "Boki prostokąta $ABCD$ są równoległe do osi układu współrzędnych. Wierzchołki $A=(-2;\\,-1)$ i $C=(4;\\,3)$ są przeciwległe. Jakie jest pole tego prostokąta? **Wybierz właściwą odpowiedź.**",
+          tresc: "Boki prostokąta $ABCD$ są równoległe do osi układu współrzędnych. Wierzchołki $A=(-2,\\,-1)$ i $C=(4,\\,3)$ są przeciwległe. Jakie jest pole tego prostokąta? **Wybierz właściwą odpowiedź.**",
           opcje: ["$20$", "$10$", "$24$", "$12$"],
           poprawna: 2,
         },
         {
           nr: "17",
-          tresc: "Trójkąt $ABC$ ma wierzchołki $A=(1;\\,1)$, $B=(7;\\,1)$ i $C=(3;\\,5)$. Jakie jest pole tego trójkąta? **Wybierz właściwą odpowiedź.**",
+          tresc: "Trójkąt $ABC$ ma wierzchołki $A=(1,\\,1)$, $B=(7,\\,1)$ i $C=(3,\\,5)$. Jakie jest pole tego trójkąta? **Wybierz właściwą odpowiedź.**",
           opcje: ["$12$", "$24$", "$18$", "$10$"],
           poprawna: 0,
         },
@@ -557,15 +557,15 @@ export default {
           nr: "18",
           tresc: "Oceń zdania. **Dla każdego zdania wybierz P, jeśli jest prawdziwe, albo F, jeśli jest fałszywe.**",
           czesci: [
-            { tekst: "Odcinek o końcach $(-5;\\,-2)$ i $(-5;\\,6)$ ma długość $8$.", litery: "PF", poprawna: 0 },
-            { tekst: "Odcinek o końcach $(2;\\,3)$ i $(-4;\\,3)$ ma długość $2$.", litery: "PF", poprawna: 1 },
-            { tekst: "Kwadrat o wierzchołkach $(0;\\,0)$, $(3;\\,0)$, $(3;\\,3)$ i $(0;\\,3)$ ma pole $9$.", litery: "PF", poprawna: 0 },
+            { tekst: "Odcinek o końcach $(-5,\\,-2)$ i $(-5,\\,6)$ ma długość $8$.", litery: "PF", poprawna: 0 },
+            { tekst: "Odcinek o końcach $(2,\\,3)$ i $(-4,\\,3)$ ma długość $2$.", litery: "PF", poprawna: 1 },
+            { tekst: "Kwadrat o wierzchołkach $(0,\\,0)$, $(3,\\,0)$, $(3,\\,3)$ i $(0,\\,3)$ ma pole $9$.", litery: "PF", poprawna: 0 },
           ],
         },
         {
           nr: "19",
-          tresc: "Trzy wierzchołki prostokąta $ABCD$ o bokach równoległych do osi to $A=(-1;\\,2)$, $B=(5;\\,2)$ i $C=(5;\\,-3)$. Jakie współrzędne ma wierzchołek $D$? **Wybierz właściwą odpowiedź.**",
-          opcje: ["$(-1;\\,3)$", "$(-3;\\,-1)$", "$(-5;\\,-3)$", "$(-1;\\,-3)$"],
+          tresc: "Trzy wierzchołki prostokąta $ABCD$ o bokach równoległych do osi to $A=(-1,\\,2)$, $B=(5,\\,2)$ i $C=(5,\\,-3)$. Jakie współrzędne ma wierzchołek $D$? **Wybierz właściwą odpowiedź.**",
+          opcje: ["$(-1,\\,3)$", "$(-3,\\,-1)$", "$(-5,\\,-3)$", "$(-1,\\,-3)$"],
           poprawna: 3,
         },
       ],
@@ -573,13 +573,13 @@ export default {
         {
           nr: "20",
           punkty: 2,
-          tresc: "Prostokąt $ABCD$ ma wierzchołki $A=(-4;\\,-2)$, $B=(3;\\,-2)$, $C=(3;\\,1)$ i $D=(-4;\\,1)$. Oblicz jego pole i obwód. **Zapisz obliczenia.**",
+          tresc: "Prostokąt $ABCD$ ma wierzchołki $A=(-4,\\,-2)$, $B=(3,\\,-2)$, $C=(3,\\,1)$ i $D=(-4,\\,1)$. Oblicz jego pole i obwód. **Zapisz obliczenia.**",
           rozwiazanie: "Bok $AB$ jest poziomy: $|AB|=3-(-4)=7$.\n\nBok $BC$ jest pionowy: $|BC|=1-(-2)=3$.\n\nPole: $7\\cdot3=21$. Obwód: $2\\cdot7+2\\cdot3=20$.\n\nOdpowiedź: Pole prostokąta to $21$, a obwód $20$.",
         },
         {
           nr: "21",
           punkty: 3,
-          tresc: "Trójkąt $ABC$ ma wierzchołki $A=(-2;\\,1)$, $B=(6;\\,1)$ i $C=(0;\\,-5)$. a) Oblicz pole trójkąta $ABC$. b) Punkt $C$ zastąpiono punktem $C'=(5;\\,-7)$. Oblicz pole trójkąta $ABC'$. **Zapisz obliczenia.**",
+          tresc: "Trójkąt $ABC$ ma wierzchołki $A=(-2,\\,1)$, $B=(6,\\,1)$ i $C=(0,\\,-5)$. a) Oblicz pole trójkąta $ABC$. b) Punkt $C$ zastąpiono punktem $C'=(5,\\,-7)$. Oblicz pole trójkąta $ABC'$. **Zapisz obliczenia.**",
           rozwiazanie: "a) Bok $AB$ jest poziomy: $|AB|=6-(-2)=8$. Wysokość to odległość punktu $C$ od prostej poziomej przez $A$ i $B$: $|1-(-5)|=6$. Pole: $\\frac{1}{2}\\cdot8\\cdot6=24$.\n\nb) Podstawa jest ta sama, $8$. Nowa wysokość: $|1-(-7)|=8$. Pole: $\\frac{1}{2}\\cdot8\\cdot8=32$.\n\nOdpowiedź: a) Pole to $24$. b) Pole to $32$.",
         },
       ],
@@ -675,7 +675,7 @@ export default {
             const dane = [0, 1, 2, 3].filter((i) => i !== brak).map((i) => `$${nazwy[i]}=${P(V[i][0], V[i][1])}$`);
             const [ex, ey] = V[brak];
             return {
-              tresc: `Boki prostokąta $ABCD$ są równoległe do osi układu współrzędnych. Trzy jego wierzchołki to ${dane[0]}, ${dane[1]} i ${dane[2]}. Podaj współrzędne wierzchołka $${nazwy[brak]}=(x;\\,y)$.`,
+              tresc: `Boki prostokąta $ABCD$ są równoległe do osi układu współrzędnych. Trzy jego wierzchołki to ${dane[0]}, ${dane[1]} i ${dane[2]}. Podaj współrzędne wierzchołka $${nazwy[brak]}=(x,\\,y)$.`,
               pola: [pole("x", "$x=$"), pole("y", "$y=$")],
               odpowiedz: { x: q(ex), y: q(ey) },
               wynik: `$${nazwy[brak]}=${P(ex, ey)}$`,
@@ -699,14 +699,14 @@ export default {
           slownie: "Odcinek $AB$ jest przeciwprostokątną trójkąta prostokątnego. Jego przyprostokątne to różnice współrzędnych w poziomie i w pionie. Potem używamy twierdzenia Pitagorasa.",
           tex: "a=|x_B-x_A|\\qquad b=|y_B-y_A|\\qquad|AB|=\\sqrt{a^2+b^2}",
           litery: "$a$ – różnica pierwszych współrzędnych, $b$ – różnica drugich współrzędnych.",
-          przyklad: "$A=(-1;\\,1)$, $B=(4;\\,13)$. Mamy $a=5$, $b=12$, więc $|AB|^2=25+144=169$ i $|AB|=13$.",
+          przyklad: "$A=(-1,\\,1)$, $B=(4,\\,13)$. Mamy $a=5$, $b=12$, więc $|AB|^2=25+144=169$ i $|AB|=13$.",
           uwaga: "Nie dodawaj samych różnic: $5+12=17$, a odcinek ma $13$. Zawsze dodajemy kwadraty.",
         },
         {
           nazwa: "Długość z pierwiastkiem",
           slownie: "Gdy $a^2+b^2$ nie jest kwadratem liczby całkowitej, zostaw pierwiastek i uprość go: wyłącz największy kwadrat spod pierwiastka.",
           tex: "\\sqrt{45}=\\sqrt{9\\cdot5}=3\\sqrt5",
-          przyklad: "$A=(0;\\,0)$, $B=(6;\\,3)$. Wtedy $|AB|^2=36+9=45$, więc $|AB|=\\sqrt{45}=3\\sqrt5$.",
+          przyklad: "$A=(0,\\,0)$, $B=(6,\\,3)$. Wtedy $|AB|^2=36+9=45$, więc $|AB|=\\sqrt{45}=3\\sqrt5$.",
           uwaga: "Nie zostawiaj $\\sqrt{45}$, jeśli da się uprościć. Sprawdź, czy $4$, $9$, $16$ lub $25$ dzieli liczbę pod pierwiastkiem.",
         },
         {
@@ -714,14 +714,14 @@ export default {
           slownie: "Środek odcinka leży w połowie drogi między końcami. Jego współrzędne to średnie arytmetyczne odpowiednich współrzędnych końców: dodajesz i dzielisz przez $2$.",
           tex: "x_S=\\frac{x_A+x_B}{2}\\qquad y_S=\\frac{y_A+y_B}{2}",
           litery: "$S$ – środek odcinka $AB$.",
-          przyklad: "$A=(-5;\\,2)$, $B=(3;\\,6)$. Wtedy $x_S=\\frac{-5+3}{2}=-1$, $y_S=\\frac{2+6}{2}=4$, czyli $S=(-1;\\,4)$.",
+          przyklad: "$A=(-5,\\,2)$, $B=(3,\\,6)$. Wtedy $x_S=\\frac{-5+3}{2}=-1$, $y_S=\\frac{2+6}{2}=4$, czyli $S=(-1,\\,4)$.",
           uwaga: "Współrzędne dodajemy, a nie odejmujemy. Wynik może być ułamkiem, np. $2{,}5$.",
         },
         {
           nazwa: "Drugi koniec odcinka",
           slownie: "Gdy znasz jeden koniec i środek, możesz znaleźć drugi koniec. Środek jest średnią końców, więc współrzędną końca $B$ dostajesz, mnożąc współrzędną środka przez $2$ i odejmując współrzędną końca $A$.",
           tex: "x_B=2x_S-x_A\\qquad y_B=2y_S-y_A",
-          przyklad: "$S=(2;\\,1)$, $A=(-1;\\,4)$. Wtedy $x_B=2\\cdot2-(-1)=5$ i $y_B=2\\cdot1-4=-2$, czyli $B=(5;\\,-2)$.",
+          przyklad: "$S=(2,\\,1)$, $A=(-1,\\,4)$. Wtedy $x_B=2\\cdot2-(-1)=5$ i $y_B=2\\cdot1-4=-2$, czyli $B=(5,\\,-2)$.",
           uwaga: "Nie wystarczy dodać $S$ do $A$. Sprawdź wynik: średnia z $A$ i $B$ musi dać $S$.",
         },
       ],
@@ -734,35 +734,35 @@ export default {
       zadania: [
         {
           nr: "22",
-          tresc: "Jaką długość ma odcinek $AB$, jeśli $A=(1;\\,2)$ i $B=(7;\\,10)$? **Wybierz właściwą odpowiedź.**",
+          tresc: "Jaką długość ma odcinek $AB$, jeśli $A=(1,\\,2)$ i $B=(7,\\,10)$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$14$", "$10$", "$48$", "$\\sqrt{14}$"],
           poprawna: 1,
         },
         {
           nr: "23",
-          tresc: "Jaką długość ma odcinek $AB$, jeśli $A=(-3;\\,1)$ i $B=(1;\\,5)$? **Wybierz właściwą odpowiedź.**",
+          tresc: "Jaką długość ma odcinek $AB$, jeśli $A=(-3,\\,1)$ i $B=(1,\\,5)$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$8$", "$32$", "$\\sqrt{8}$", "$4\\sqrt2$"],
           poprawna: 3,
         },
         {
           nr: "24",
-          tresc: "Jakie współrzędne ma środek odcinka $AB$, jeśli $A=(-3;\\,4)$ i $B=(7;\\,-2)$? **Wybierz właściwą odpowiedź.**",
-          opcje: ["$(2;\\,1)$", "$(4;\\,2)$", "$(-5;\\,3)$", "$(5;\\,-3)$"],
+          tresc: "Jakie współrzędne ma środek odcinka $AB$, jeśli $A=(-3,\\,4)$ i $B=(7,\\,-2)$? **Wybierz właściwą odpowiedź.**",
+          opcje: ["$(2,\\,1)$", "$(4,\\,2)$", "$(-5,\\,3)$", "$(5,\\,-3)$"],
           poprawna: 0,
         },
         {
           nr: "25",
-          tresc: "Punkt $S=(1;\\,-2)$ jest środkiem odcinka $AB$, a $A=(-3;\\,4)$. Jakie współrzędne ma punkt $B$? **Wybierz właściwą odpowiedź.**",
-          opcje: ["$(-1;\\,1)$", "$(-7;\\,10)$", "$(5;\\,-8)$", "$(2;\\,-3)$"],
+          tresc: "Punkt $S=(1,\\,-2)$ jest środkiem odcinka $AB$, a $A=(-3,\\,4)$. Jakie współrzędne ma punkt $B$? **Wybierz właściwą odpowiedź.**",
+          opcje: ["$(-1,\\,1)$", "$(-7,\\,10)$", "$(5,\\,-8)$", "$(2,\\,-3)$"],
           poprawna: 2,
         },
         {
           nr: "26",
           tresc: "Oceń zdania. **Dla każdego zdania wybierz P, jeśli jest prawdziwe, albo F, jeśli jest fałszywe.**",
           czesci: [
-            { tekst: "Odcinek o końcach $(0;\\,0)$ i $(6;\\,8)$ ma długość $10$.", litery: "PF", poprawna: 0 },
-            { tekst: "Środkiem odcinka o końcach $(-4;\\,-6)$ i $(2;\\,0)$ jest punkt $(-1;\\,3)$.", litery: "PF", poprawna: 1 },
-            { tekst: "Odcinek o końcach $(0;\\,0)$ i $(2;\\,2)$ ma długość $2\\sqrt2$.", litery: "PF", poprawna: 0 },
+            { tekst: "Odcinek o końcach $(0,\\,0)$ i $(6,\\,8)$ ma długość $10$.", litery: "PF", poprawna: 0 },
+            { tekst: "Środkiem odcinka o końcach $(-4,\\,-6)$ i $(2,\\,0)$ jest punkt $(-1,\\,3)$.", litery: "PF", poprawna: 1 },
+            { tekst: "Odcinek o końcach $(0,\\,0)$ i $(2,\\,2)$ ma długość $2\\sqrt2$.", litery: "PF", poprawna: 0 },
           ],
         },
       ],
@@ -770,13 +770,13 @@ export default {
         {
           nr: "27",
           punkty: 2,
-          tresc: "Dane są punkty $A=(-2;\\,-1)$ i $B=(4;\\,7)$. Oblicz długość odcinka $AB$ i podaj współrzędne środka tego odcinka. **Zapisz obliczenia.**",
-          rozwiazanie: "Różnice współrzędnych: $a=4-(-2)=6$ oraz $b=7-(-1)=8$.\n\n$|AB|^2=6^2+8^2=36+64=100$, więc $|AB|=10$.\n\nŚrodek: $x_S=\\frac{-2+4}{2}=1$ oraz $y_S=\\frac{-1+7}{2}=3$.\n\nOdpowiedź: $|AB|=10$, a środek odcinka to $S=(1;\\,3)$.",
+          tresc: "Dane są punkty $A=(-2,\\,-1)$ i $B=(4,\\,7)$. Oblicz długość odcinka $AB$ i podaj współrzędne środka tego odcinka. **Zapisz obliczenia.**",
+          rozwiazanie: "Różnice współrzędnych: $a=4-(-2)=6$ oraz $b=7-(-1)=8$.\n\n$|AB|^2=6^2+8^2=36+64=100$, więc $|AB|=10$.\n\nŚrodek: $x_S=\\frac{-2+4}{2}=1$ oraz $y_S=\\frac{-1+7}{2}=3$.\n\nOdpowiedź: $|AB|=10$, a środek odcinka to $S=(1,\\,3)$.",
         },
         {
           nr: "28",
           punkty: 3,
-          tresc: "Trójkąt $ABC$ ma wierzchołki $A=(-2;\\,-1)$, $B=(6;\\,-1)$ i $C=(6;\\,5)$. Oblicz obwód i pole tego trójkąta. **Zapisz obliczenia.**",
+          tresc: "Trójkąt $ABC$ ma wierzchołki $A=(-2,\\,-1)$, $B=(6,\\,-1)$ i $C=(6,\\,5)$. Oblicz obwód i pole tego trójkąta. **Zapisz obliczenia.**",
           rozwiazanie: "Bok $AB$ jest poziomy: $|AB|=6-(-2)=8$. Bok $BC$ jest pionowy: $|BC|=5-(-1)=6$.\n\nBok $AC$ jest ukośny: $|AC|^2=8^2+6^2=64+36=100$, więc $|AC|=10$.\n\nObwód: $8+6+10=24$.\n\nKąt przy wierzchołku $B$ jest prosty, więc pole to $\\frac{1}{2}\\cdot8\\cdot6=24$.\n\nOdpowiedź: Obwód trójkąta to $24$, a pole to $24$.",
         },
       ],
@@ -823,7 +823,7 @@ export default {
             const [x1, x2] = przesun(r, dx, 9);
             const [y1, y2] = przesun(r, dy, 9);
             return {
-              tresc: `Dane są punkty $A=${P(x1, y1)}$ i $B=${P(x2, y2)}$. Długość odcinka $AB$ można zapisać jako $k\\sqrt{m}$, gdzie $k$ i $m$ są liczbami naturalnymi, a $m$ jest możliwie najmniejsze. Podaj $k$ i $m$.`,
+              tresc: `Dane są punkty $A=${P(x1, y1)}$ i $B=${P(x2, y2)}$. Długość odcinka $AB$ zapisz w postaci $k\\sqrt{m}$, wyłączając jak największy czynnik przed pierwiastek ($k$ i $m$ są liczbami naturalnymi). Podaj $k$ i $m$.`,
               pola: [pole("k", "$k=$"), pole("m", "$m=$")],
               odpowiedz: { k: q(k), m: q(m) },
               wynik: `$|AB|=${k === 1 ? "" : k}${sq(m)}$`,
@@ -852,7 +852,7 @@ export default {
             const sx = q(xa + xb, 2);
             const sy = q(ya + yb, 2);
             return {
-              tresc: `Punkty $A=${P(xa, ya)}$ i $B=${P(xb, yb)}$ są końcami odcinka $AB$. Podaj współrzędne środka $S=(x;\\,y)$ tego odcinka.`,
+              tresc: `Punkty $A=${P(xa, ya)}$ i $B=${P(xb, yb)}$ są końcami odcinka $AB$. Podaj współrzędne środka $S=(x,\\,y)$ tego odcinka.`,
               pola: [pole("x", "$x=$"), pole("y", "$y=$")],
               odpowiedz: { x: sx, y: sy },
               wynik: `$S=${P(dec(sx), dec(sy))}$`,
@@ -879,7 +879,7 @@ export default {
               return xb === xa && yb === ya ? null : { xs, ys, xa, ya, xb, yb };
             });
             return {
-              tresc: `Punkt $S=${P(xs, ys)}$ jest środkiem odcinka $AB$, a $A=${P(xa, ya)}$. Podaj współrzędne punktu $B=(x;\\,y)$.`,
+              tresc: `Punkt $S=${P(xs, ys)}$ jest środkiem odcinka $AB$, a $A=${P(xa, ya)}$. Podaj współrzędne punktu $B=(x,\\,y)$.`,
               pola: [pole("x", "$x=$"), pole("y", "$y=$")],
               odpowiedz: { x: q(xb), y: q(yb) },
               wynik: `$B=${P(xb, yb)}$`,
