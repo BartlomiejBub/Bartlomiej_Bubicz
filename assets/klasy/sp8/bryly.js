@@ -672,8 +672,8 @@ export default {
         },
         {
           nr: "24",
-          tresc: "Ściany boczne ostrosłupa prawidłowego czworokątnego są. **Wybierz właściwą odpowiedź.**",
-          opcje: ["prostokątami", "kwadratami", "takimi samymi trójkątami równoramiennymi", "trapezami"],
+          tresc: "Jakimi figurami są ściany boczne ostrosłupa prawidłowego czworokątnego? **Wybierz właściwą odpowiedź.**",
+          opcje: ["prostokątami", "kwadratami", "takimi samymi trójkątami równoramiennymi", "trapezami równoramiennymi"],
           poprawna: 2,
         },
         {

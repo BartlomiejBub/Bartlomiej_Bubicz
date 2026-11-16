@@ -114,7 +114,8 @@ export default {
         {
           nazwa: "Jaka to część całości",
           slownie: "Aby zamienić liczbę z diagramu na procent, dzielimy ją przez sumę wszystkich danych i mnożymy przez $100\\%$.",
-          tex: "p=\\frac{\\text{część}}{\\text{całość}}\\cdot100\\%",
+          tex: "p=\\frac{k}{N}\\cdot100\\%",
+          litery: "$k$ – część (liczba odczytana z diagramu), $N$ – całość (suma wszystkich danych), $p$ – szukany procent.",
           przyklad: "Z $25$ uczniów $8$ wybrało banana: $\\frac{8}{25}\\cdot100\\%=32\\%$.",
           uwaga: "Całość to suma wszystkich słupków, a nie najwyższy słupek.",
         },
@@ -282,7 +283,8 @@ export default {
         {
           nazwa: "Średnia arytmetyczna",
           slownie: "Dodajemy wszystkie liczby i dzielimy sumę przez to, ile ich jest. Średnia mówi, ile miałaby każda liczba, gdyby wszystkie były równe.",
-          tex: "\\text{średnia}=\\frac{\\text{suma liczb}}{\\text{ile ich jest}}",
+          tex: "\\text{średnia}=\\frac{S}{n}",
+          litery: "$S$ – suma wszystkich liczb, $n$ – ile ich jest.",
           przyklad: "Oceny: $3$, $4$, $4$, $5$. Suma: $3+4+4+5=16$. Są $4$ oceny, więc średnia to $16:4=4$.",
           uwaga: "Dzielimy przez liczbę wszystkich liczb, a nie przez ich sumę. Średnia leży zawsze między najmniejszą a największą liczbą.",
         },
@@ -311,7 +313,7 @@ export default {
       zadania: [
         {
           nr: "8",
-          tresc: "Temperatury w południe w pięciu kolejnych dniach: $12^\\circ$C, $15^\\circ$C, $11^\\circ$C, $16^\\circ$C, $16^\\circ$C. Średnia temperatura z tych dni jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Temperatury w południe w pięciu kolejnych dniach: $12^\\circ$C, $15^\\circ$C, $11^\\circ$C, $16^\\circ$C, $16^\\circ$C. Ile wynosi średnia temperatura z tych dni? **Wybierz właściwą odpowiedź.**",
           opcje: ["$16^\\circ$C", "$70^\\circ$C", "$14^\\circ$C", "$15^\\circ$C"],
           poprawna: 2,
         },
@@ -433,7 +435,7 @@ export default {
             const KONT = [
               { nLista: [3, 4, 5, 6], mLo: 3, mHi: 5, xLo: 1, xHi: 6, tekst: (n, m, x) => `Średnia ocen Kasi z $${n}$ sprawdzianów jest równa $${m}$. Z kolejnego sprawdzianu Kasia dostała $${x}$. Jaka jest teraz średnia jej ocen?`, et: "Nowa średnia $=$" },
               { nLista: [4, 5, 9], mLo: 175, mHi: 190, xLo: 170, xHi: 200, tekst: (n, m, x) => `Średni wzrost $${n}$ koszykarzy w drużynie wynosi $${m}$ cm. Do drużyny dołączył nowy zawodnik o wzroście $${x}$ cm. Jaki jest teraz średni wzrost drużyny (w cm)?`, et: "Nowa średnia $=$" },
-              { nLista: [3, 4, 5, 7], mLo: 6, mHi: 12, xLo: 2, xHi: 20, tekst: (n, m, x) => `Średni czas biegu na $60$ m w grupie $${n}$ uczniów to $${m}$ s. Spóźniony uczeń też pobiegł i miał czas $${x}$ s. Jaka jest teraz średnia dla wszystkich uczniów (w sekundach)?`, et: "Nowa średnia $=$" },
+              { nLista: [3, 4, 5, 7], mLo: 8, mHi: 11, xLo: 7, xHi: 14, tekst: (n, m, x) => `Średni czas biegu na $60$ m w grupie $${n}$ uczniów to $${m}$ s. Spóźniony uczeń też pobiegł i miał czas $${x}$ s. Jaka jest teraz średnia dla wszystkich uczniów (w sekundach)?`, et: "Nowa średnia $=$" },
             ];
             const k = r.pick(KONT);
             return probuj(() => {
@@ -502,25 +504,25 @@ export default {
       zadania: [
         {
           nr: "15",
-          tresc: "Rozmiary butów dziesięciu uczniów: $36, 37, 37, 38, 39, 37, 38, 40, 37, 38$. Dominanta tych danych jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Rozmiary butów dziesięciu uczniów: $36, 37, 37, 38, 39, 37, 38, 40, 37, 38$. Ile wynosi dominanta tych danych? **Wybierz właściwą odpowiedź.**",
           opcje: ["$37$", "$38$", "$4$", "$37{,}5$"],
           poprawna: 0,
         },
         {
           nr: "16",
-          tresc: "Czasy biegu siedmiu uczniów (w sekundach): $14, 11, 16, 12, 15, 13, 24$. Mediana tych czasów jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Czasy biegu siedmiu uczniów (w sekundach): $14, 11, 16, 12, 15, 13, 24$. Ile wynosi mediana tych czasów? **Wybierz właściwą odpowiedź.**",
           opcje: ["$12$", "$15$", "$14$", "$24$"],
           poprawna: 2,
         },
         {
           nr: "17",
-          tresc: "Wiek sześciu zawodników (w latach): $8, 12, 9, 15, 10, 14$. Mediana tych liczb jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Wiek sześciu zawodników (w latach): $8, 12, 9, 15, 10, 14$. Ile wynosi mediana tych liczb? **Wybierz właściwą odpowiedź.**",
           opcje: ["$10$", "$12$", "$11{,}5$", "$11$"],
           poprawna: 3,
         },
         {
           nr: "18",
-          tresc: `W klasie zapytano $25$ uczniów, ile mają rodzeństwa.\n\n${TAB18}\n\nŚrednia liczba rodzeństwa przypadająca na ucznia jest równa. **Wybierz właściwą odpowiedź.**`,
+          tresc: `W klasie zapytano $25$ uczniów, ile mają rodzeństwa.\n\n${TAB18}\n\nIle wynosi średnia liczba rodzeństwa przypadająca na ucznia? **Wybierz właściwą odpowiedź.**`,
           opcje: ["$1{,}5$", "$1{,}2$", "$12$", "$6{,}25$"],
           poprawna: 1,
         },
@@ -776,7 +778,7 @@ export default {
           nr: "27",
           punkty: 2,
           tresc: "Kieszonkowe pięciu uczniów (w złotych): $15, 20, 15, 25, 75$. Oblicz średnią i medianę. Która z tych liczb lepiej pokazuje, ile pieniędzy zwykle mają ci uczniowie? Uzasadnij. **Zapisz obliczenia.**",
-          rozwiazanie: "Suma: $15+20+15+25+75=150$, więc średnia to $150:5=30$ zł.\n\nPo uporządkowaniu: $15, 15, 20, 25, 75$. Środkowa liczba to $20$, więc mediana wynosi $20$ zł.\n\nPo $30$ zł ma tylko jedna osoba, a cztery osoby mają mniej, nawet tylko $15$ zł. Średnia jest zawyżona przez jedną dużą kwotę $75$ zł.\n\nOdpowiedź: średnia to $30$ zł, mediana $20$ zł. Lepiej pokazuje to mediana, bo jedna bardzo duża liczba prawie jej nie zmienia.",
+          rozwiazanie: "Suma: $15+20+15+25+75=150$, więc średnia to $150:5=30$ zł.\n\nPo uporządkowaniu: $15, 15, 20, 25, 75$. Środkowa liczba to $20$, więc mediana wynosi $20$ zł.\n\nWięcej niż $30$ zł ma tylko jedna osoba, a cztery osoby mają mniej, niektóre nawet tylko $15$ zł. Średnia jest zawyżona przez jedną dużą kwotę $75$ zł.\n\nOdpowiedź: średnia to $30$ zł, mediana $20$ zł. Lepiej pokazuje to mediana, bo jedna bardzo duża liczba prawie jej nie zmienia.",
         },
         {
           nr: "28",
@@ -907,13 +909,13 @@ export default {
       zadania: [
         {
           nr: "29",
-          tresc: "Rzucamy raz symetryczną sześcienną kostką do gry. Prawdopodobieństwo, że wypadnie liczba oczek większa od $4$, jest równe. **Wybierz właściwą odpowiedź.**",
+          tresc: "Rzucamy raz symetryczną sześcienną kostką do gry. Jakie jest prawdopodobieństwo, że wypadnie liczba oczek większa od $4$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\frac{1}{6}$", "$\\frac{1}{2}$", "$\\frac{1}{3}$", "$\\frac{2}{3}$"],
           poprawna: 2,
         },
         {
           nr: "30",
-          tresc: "W pudełku są klocki: $4$ czerwone, $6$ niebieskich i $5$ żółtych. Losujemy jeden klocek. Prawdopodobieństwo, że wylosowany klocek nie będzie niebieski, jest równe. **Wybierz właściwą odpowiedź.**",
+          tresc: "W pudełku są klocki: $4$ czerwone, $6$ niebieskich i $5$ żółtych. Losujemy jeden klocek. Jakie jest prawdopodobieństwo, że wylosowany klocek nie będzie niebieski? **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\frac{2}{5}$", "$\\frac{3}{2}$", "$\\frac{4}{15}$", "$\\frac{3}{5}$"],
           poprawna: 3,
         },
@@ -928,7 +930,7 @@ export default {
         },
         {
           nr: "32",
-          tresc: "Na loterii jest $100$ losów, z czego $8$ wygrywających. Kupujemy jeden los. Prawdopodobieństwo wygranej jest równe. **Wybierz właściwą odpowiedź.**",
+          tresc: "Na loterii jest $100$ losów, z czego $8$ wygrywających. Kupujemy jeden los. Jakie jest prawdopodobieństwo wygranej? **Wybierz właściwą odpowiedź.**",
           opcje: ["$92\\%$", "$8\\%$", "$80\\%$", "$\\frac{1}{8}$"],
           poprawna: 1,
         },
@@ -959,10 +961,12 @@ export default {
           nazwa: "Losowanie kulek",
           opis: "W woreczku są kulki albo klocki w kilku kolorach – oblicz prawdopodobieństwo wylosowania wybranego koloru.",
           generuj(r) {
+            // kol: [przymiotnik w lp, w mn (2–4), w dopełniaczu mn (5 i więcej)]; rzeczownik: [1, 2–4, 5+]
             const RZ = [
-              { gdzie: "W woreczku są kulki:", los: "jedną kulkę", wyl: "wylosowana kulka", kol: [["czerwonych", "czerwona"], ["zielonych", "zielona"], ["niebieskich", "niebieska"], ["żółtych", "żółta"]] },
-              { gdzie: "W pudełku są klocki:", los: "jeden klocek", wyl: "wylosowany klocek", kol: [["czerwonych", "czerwony"], ["zielonych", "zielony"], ["niebieskich", "niebieski"], ["żółtych", "żółty"]] },
+              { gdzie: "W woreczku są:", rz: ["kulka", "kulki", "kulek"], los: "jedną kulkę", wyl: "wylosowana kulka", kol: [["czerwona", "czerwone", "czerwonych"], ["zielona", "zielone", "zielonych"], ["niebieska", "niebieskie", "niebieskich"], ["żółta", "żółte", "żółtych"]] },
+              { gdzie: "W pudełku są:", rz: ["klocek", "klocki", "klocków"], los: "jeden klocek", wyl: "wylosowany klocek", kol: [["czerwony", "czerwone", "czerwonych"], ["zielony", "zielone", "zielonych"], ["niebieski", "niebieskie", "niebieskich"], ["żółty", "żółte", "żółtych"]] },
             ];
+            const forma = (n, [a, b, c]) => (n === 1 ? a : n >= 2 && n <= 4 ? b : c);
             const o = r.pick(RZ);
             return probuj(() => {
               const il = r.int(3, 4);
@@ -971,20 +975,20 @@ export default {
               const n = sum(licz);
               const tryb = r.int(0, 2);
               const [i, j] = r.shuffle(kol.map((_, t) => t));
-              const opis = `${o.gdzie} ${kol.map((c, t) => `$${licz[t]}$ ${c[0]}`).join(", ")}. Losujemy ${o.los}.`;
+              const opis = `${o.gdzie} ${kol.map((c, t) => `$${licz[t]}$ ${forma(licz[t], o.rz)} ${forma(licz[t], c)}`).join(", ")}. Losujemy ${o.los}.`;
               const wszystkie = `Wszystkich jest: $${licz.join(" + ")} = ${n}$.`;
               let k, pyt, kroki;
               if (tryb === 0) {
                 k = licz[i];
-                pyt = `będzie ${kol[i][1]}`;
-                kroki = [wszystkie, `Sprzyjających (${kol[i][0]}) jest $${k}$.`];
+                pyt = `będzie ${kol[i][0]}`;
+                kroki = [wszystkie, `Sprzyjających (${kol[i][2]}) jest $${k}$.`];
               } else if (tryb === 1) {
                 k = n - licz[i];
-                pyt = `nie będzie ${kol[i][1]}`;
+                pyt = `nie będzie ${kol[i][0]}`;
                 kroki = [wszystkie, `Wyniki sprzyjające to wszystkie inne: $${n} - ${licz[i]} = ${k}$.`];
               } else {
                 k = licz[i] + licz[j];
-                pyt = `będzie ${kol[i][1]} lub ${kol[j][1]}`;
+                pyt = `będzie ${kol[i][0]} lub ${kol[j][0]}`;
                 kroki = [wszystkie, `Sprzyjających jest: $${licz[i]} + ${licz[j]} = ${k}$.`];
               }
               const w = q(k, n);

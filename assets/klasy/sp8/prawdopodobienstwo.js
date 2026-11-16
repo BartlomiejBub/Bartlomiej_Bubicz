@@ -126,7 +126,7 @@ export default {
         "Zapisz, z jakich kroków składa się wybór (np. bluzka, spodnie, buty).",
         "Dla każdego kroku policz, na ile sposobów można go wykonać. Jeśli coś nie może się powtórzyć, w kolejnym kroku jest o jedną możliwość mniej.",
         "Pomnóż liczby z kolejnych kroków.",
-        "Sprawdź, czy nic nie pominąłeś. Przy małych liczbach możesz wypisać wszystkie możliwości i je policzyć.",
+        "Sprawdź, czy nic nie zostało pominięte. Przy małych liczbach możesz wypisać wszystkie możliwości i je policzyć.",
       ],
       zadania: [
         {
@@ -524,25 +524,25 @@ export default {
       zadania: [
         {
           nr: "15",
-          tresc: "Rzucamy dwiema sześciennymi kostkami do gry (jedną białą i jedną czerwoną). Prawdopodobieństwo, że suma oczek będzie równa $5$, jest równe. **Wybierz właściwą odpowiedź.**",
+          tresc: "Rzucamy dwiema sześciennymi kostkami do gry (jedną białą i jedną czerwoną). Jakie jest prawdopodobieństwo, że suma oczek będzie równa $5$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\frac{1}{9}$", "$\\frac{1}{6}$", "$\\frac{1}{4}$", "$\\frac{1}{12}$"],
           poprawna: 0,
         },
         {
           nr: "16",
-          tresc: "Rzucamy dwa razy symetryczną monetą. Prawdopodobieństwo, że wypadnie dokładnie jeden orzeł, jest równe. **Wybierz właściwą odpowiedź.**",
+          tresc: "Rzucamy dwa razy symetryczną monetą. Jakie jest prawdopodobieństwo, że wypadnie dokładnie jeden orzeł? **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\frac{1}{4}$", "$\\frac{1}{2}$", "$\\frac{1}{3}$", "$\\frac{3}{4}$"],
           poprawna: 1,
         },
         {
           nr: "17",
-          tresc: "Rzucamy dwiema sześciennymi kostkami do gry. Prawdopodobieństwo, że na obu kostkach wypadnie parzysta liczba oczek, jest równe. **Wybierz właściwą odpowiedź.**",
+          tresc: "Rzucamy dwiema sześciennymi kostkami do gry. Jakie jest prawdopodobieństwo, że na obu kostkach wypadnie parzysta liczba oczek? **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\frac{1}{2}$", "$\\frac{1}{3}$", "$\\frac{1}{4}$", "$\\frac{1}{9}$"],
           poprawna: 2,
         },
         {
           nr: "18",
-          tresc: "Rzucamy trzy razy symetryczną monetą. Prawdopodobieństwo, że wypadnie co najmniej jeden orzeł, jest równe. **Wybierz właściwą odpowiedź.**",
+          tresc: "Rzucamy trzy razy symetryczną monetą. Jakie jest prawdopodobieństwo, że wypadnie co najmniej jeden orzeł? **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\frac{1}{8}$", "$\\frac{3}{8}$", "$\\frac{3}{4}$", "$\\frac{7}{8}$"],
           poprawna: 3,
         },
@@ -713,25 +713,25 @@ export default {
       zadania: [
         {
           nr: "22",
-          tresc: "Kłódka na rower ma kod z trzech cyfr. Na każdym pokrętle jest cyfra od $0$ do $9$. Ktoś wybiera kod na chybił trafił. Prawdopodobieństwo, że od razu trafi właściwy kod, jest równe. **Wybierz właściwą odpowiedź.**",
+          tresc: "Kłódka na rower ma kod z trzech cyfr. Na każdym pokrętle jest cyfra od $0$ do $9$. Ktoś wybiera kod na chybił trafił. Jakie jest prawdopodobieństwo, że od razu trafi właściwy kod? **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\frac{1}{30}$", "$\\frac{1}{100}$", "$\\frac{1}{1000}$", "$\\frac{1}{10000}$"],
           poprawna: 2,
         },
         {
           nr: "23",
-          tresc: "Z cyfr $1, 2, 3, 4$ układamy liczby dwucyfrowe (cyfry mogą się powtarzać) i losujemy jedną z nich. Prawdopodobieństwo, że wylosowana liczba ma dwie różne cyfry, jest równe. **Wybierz właściwą odpowiedź.**",
+          tresc: "Z cyfr $1, 2, 3, 4$ układamy liczby dwucyfrowe (cyfry mogą się powtarzać) i losujemy jedną z nich. Jakie jest prawdopodobieństwo, że wylosowana liczba ma dwie różne cyfry? **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\frac{1}{4}$", "$\\frac{3}{4}$", "$\\frac{1}{2}$", "$\\frac{2}{3}$"],
           poprawna: 1,
         },
         {
           nr: "24",
-          tresc: "Ala, Bartek i Celina stają losowo w kolejce do kasy. Prawdopodobieństwo, że Ala będzie pierwsza, jest równe. **Wybierz właściwą odpowiedź.**",
+          tresc: "Ala, Bartek i Celina stają losowo w kolejce do kasy. Jakie jest prawdopodobieństwo, że Ala będzie pierwsza? **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\frac{1}{3}$", "$\\frac{1}{6}$", "$\\frac{1}{2}$", "$\\frac{2}{3}$"],
           poprawna: 0,
         },
         {
           nr: "25",
-          tresc: "W pudełku jest $5$ kartek ponumerowanych liczbami od $1$ do $5$. Losujemy kolejno dwie kartki, nie odkładając pierwszej z powrotem. Prawdopodobieństwo, że obie liczby będą parzyste, jest równe. **Wybierz właściwą odpowiedź.**",
+          tresc: "W pudełku jest $5$ kartek ponumerowanych liczbami od $1$ do $5$. Losujemy kolejno dwie kartki, nie odkładając pierwszej z powrotem. Jakie jest prawdopodobieństwo, że obie liczby będą parzyste? **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\frac{4}{25}$", "$\\frac{1}{5}$", "$\\frac{2}{5}$", "$\\frac{1}{10}$"],
           poprawna: 3,
         },

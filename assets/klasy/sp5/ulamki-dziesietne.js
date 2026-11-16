@@ -169,13 +169,13 @@ export default {
         },
         {
           nr: "2",
-          tresc: "Ułamek $\\frac{9}{100}$ zapisany w postaci dziesiętnej to: **Wybierz właściwą odpowiedź.**",
+          tresc: "Jak zapisać ułamek $\\frac{9}{100}$ w postaci dziesiętnej? **Wybierz właściwą odpowiedź.**",
           opcje: ["$0{,}9$", "$0{,}009$", "$9{,}1$", "$0{,}09$"],
           poprawna: 3,
         },
         {
           nr: "3",
-          tresc: "Ułamek $\\frac{3}{4}$ zapisany w postaci dziesiętnej to: **Wybierz właściwą odpowiedź.**",
+          tresc: "Jak zapisać ułamek $\\frac{3}{4}$ w postaci dziesiętnej? **Wybierz właściwą odpowiedź.**",
           opcje: ["$0{,}75$", "$0{,}34$", "$0{,}25$", "$3{,}4$"],
           poprawna: 0,
         },
@@ -335,7 +335,7 @@ export default {
           slownie: "Piszemy liczby jedna pod drugą tak, żeby przecinek stał pod przecinkiem. Dodajemy kolumnami od prawej, jak liczby naturalne. Przecinek w wyniku piszemy pod przecinkami.",
           tex: "\\begin{array}{r}12{,}45\\\\ +\\ 3{,}70\\\\ \\hline 16{,}15\\end{array}",
           przyklad: "$12{,}45 + 3{,}7$: dopisuję zero, $3{,}7 = 3{,}70$. Setne: $5 + 0 = 5$. Dziesiąte: $4 + 7 = 11$, piszę $1$ i pamiętam $1$. Jedności: $2 + 3 + 1 = 6$. Dziesiątki: $1$. Wynik: $16{,}15$.",
-          uwaga: "Nie dodawaj „pod spodem” cyfr o różnych wartościach. Nie wolno dodać $0{,}6$ do setnych z drugiej liczby.",
+          uwaga: "Dodajemy tylko cyfry z tej samej kolumny. W działaniu $12{,}45 + 3{,}7$ nie wolno dodać $7$ dziesiątych do $5$ setnych.",
         },
         {
           nazwa: "Odejmowanie pisemne",
@@ -356,7 +356,7 @@ export default {
           slownie: "Zaokrąglij liczby do całości i policz w pamięci. Wynik dokładny powinien być bliski oszacowaniu. Dodawanie sprawdzamy odejmowaniem, a odejmowanie dodawaniem.",
           tex: "4{,}8+5{,}15\\approx 5+5=10",
           przyklad: "Dokładnie $4{,}8 + 5{,}15 = 9{,}95$, a oszacowanie to $10$. Pasuje. Ceny w złotych mają dwa miejsca po przecinku: $4{,}50$ zł to $4$ zł $50$ gr.",
-          uwaga: "Gdy wynik odejmowania wyszedł większy od odjemnej, to gdzieś jest błąd.",
+          uwaga: "Gdy wynik odejmowania wyszedł większy od liczby, od której odejmujemy, to gdzieś jest błąd.",
         },
       ],
       jak: [
@@ -536,7 +536,7 @@ export default {
         },
         {
           nazwa: "Mnożenie przez 0,1; 0,01; 0,001",
-          slownie: "Mnożenie przez $0{,}1$ to to samo, co dzielenie przez $10$. Przesuwamy przecinek w lewo: o jedno miejsce przy $0{,}1$, o dwa przy $0{,}01$, o trzy przy $0{,}001$.",
+          slownie: "Mnożenie przez $0{,}1$ daje to samo co dzielenie przez $10$. Przesuwamy przecinek w lewo: o jedno miejsce przy $0{,}1$, o dwa przy $0{,}01$, o trzy przy $0{,}001$.",
           tex: "45\\cdot 0{,}1=4{,}5\\qquad 45\\cdot 0{,}01=0{,}45",
           przyklad: "$3{,}6 \\cdot 0{,}1 = 0{,}36$ i $250 \\cdot 0{,}01 = 2{,}5$. Dalej $8 \\cdot 0{,}5 = 4$, bo $0{,}5$ to połowa.",
           uwaga: "Mnożenie przez liczbę mniejszą od $1$ zmniejsza wynik. Iloczyn $8 \\cdot 0{,}5$ jest mniejszy od $8$.",
@@ -545,7 +545,7 @@ export default {
       jak: [
         "Zapisz działanie i policz, ile miejsc po przecinku mają oba czynniki razem.",
         "Pomnóż liczby tak, jakby nie miały przecinków (pisemnie albo w pamięci).",
-        "Odlicz od prawej w wyniku tyle miejsc, ile policzyłeś, i wstaw przecinek. Gdy brakuje cyfr, dopisz zera z przodu.",
+        "Odlicz od prawej w wyniku tyle miejsc, ile miały razem czynniki, i wstaw przecinek. Gdy brakuje cyfr, dopisz zera z przodu.",
         "Sprawdź, czy wynik ma sens: $0{,}5 \\cdot 8$ to połowa z $8$, czyli $4$.",
       ],
       zadania: [
@@ -650,7 +650,7 @@ export default {
               odpowiedz: { w: qd(n, p + j) },
               wynik: `$${ds(n, p + j)}$`,
               rozwiazanie: [
-                `Mnożenie przez $${mn}$ to to samo, co dzielenie przez $${10 ** j}$.`,
+                `Mnożenie przez $${mn}$ daje to samo co dzielenie przez $${10 ** j}$.`,
                 `Przesuwamy przecinek w lewo o ${miejsc(j)} (gdy brakuje cyfr, dopisujemy zera z przodu): $${fixed(n, p)} \\cdot ${mn} = ${ds(n, p + j)}$.`,
               ],
             };
@@ -747,7 +747,7 @@ export default {
       jak: [
         "Gdy dzielnik ma przecinek, przesuń przecinek w obu liczbach o tyle samo miejsc w prawo. Dzielnik ma zostać liczbą naturalną.",
         "Podziel jak liczby naturalne. Jeśli zabraknie cyfr w dzielnej, dopisz zera na jej końcu.",
-        "W wyniku postaw przecinek tam, gdzie w dzielnej przekroczyłeś przecinek.",
+        "W wyniku postaw przecinek w chwili, gdy w dzieleniu dojdziesz do przecinka w dzielnej.",
         "Sprawdź mnożeniem: wynik razy dzielnik ma dać dzielną.",
       ],
       zadania: [
@@ -796,7 +796,7 @@ export default {
           nr: "28",
           punkty: 3,
           tresc: "Cztery koleżanki kupiły wspólnie piłkę za $37{,}80$ zł i podzieliły koszt po równo. Potem każda dołożyła jeszcze $2{,}55$ zł na torbę. Ile złotych w sumie wydała każda z koleżanek? **Zapisz obliczenia.**",
-          rozwiazanie: "Koszt piłki na jedną osobę: $37{,}80 : 4$.\n\nDzielimy $378 : 4 = 94{,}5$, a w wyniku mają być dwa miejsca po przecinku, więc $37{,}80 : 4 = 9{,}45$.\n\nSprawdzenie: $4 \\cdot 9{,}45 = 37{,}80$.\n\nDodajemy dopłatę na torbę: $9{,}45 + 2{,}55 = 12{,}00$.\n\nOdpowiedź: Każda koleżanka wydała w sumie $12$ zł.",
+          rozwiazanie: "Koszt piłki na jedną osobę: $37{,}80 : 4$.\n\nDzielimy pisemnie: $37 : 4 = 9$ reszty $1$, piszemy przecinek, $18 : 4 = 4$ reszty $2$, $20 : 4 = 5$. Zatem $37{,}80 : 4 = 9{,}45$.\n\nSprawdzenie: $4 \\cdot 9{,}45 = 37{,}80$.\n\nDodajemy dopłatę na torbę: $9{,}45 + 2{,}55 = 12{,}00$.\n\nOdpowiedź: Każda koleżanka wydała w sumie $12$ zł.",
         },
       ],
       generatory: [
@@ -825,7 +825,7 @@ export default {
             if (P === 2 && Nfull % 10 !== 0 && d >= 5 && r.chance(0.3)) {
               const rzecz = r.pick(["batoników", "zeszytów", "długopisów", "bułek", "lizaków"]);
               return {
-                tresc: `Zapłacono $${sk}$ zł za $${d}$ takich samych ${rzecz}. Ile złotych kosztuje jeden?`,
+                tresc: `Zapłacono $${sk}$ zł za $${d}$ takich samych ${rzecz}. Ile złotych kosztuje jedna sztuka?`,
                 pola: [{ id: "w", typ: "liczba", etykieta: "Cena jednego (zł)" }],
                 odpowiedz: { w: qd(n, P) },
                 wynik: `$${ds(n, P)}$ zł`,
@@ -915,7 +915,7 @@ export default {
               odpowiedz: { w: qd(wynN, p) },
               wynik: `$${ds(wynN, p)}$`,
               rozwiazanie: [
-                `Dzielenie przez $${dz}$ to to samo, co mnożenie przez $${10 ** j}$.`,
+                `Dzielenie przez $${dz}$ daje to samo co mnożenie przez $${10 ** j}$.`,
                 `Przesuwamy przecinek w prawo o ${miejsc(j)} (gdy brakuje cyfr, dopisujemy zera): $${fixed(n, p)} : ${dz} = ${ds(wynN, p)}$.`,
               ],
             };
@@ -931,7 +931,7 @@ export default {
       sciaga: [
         {
           nazwa: "Jednostki długości",
-          slownie: "Przy zamianie jednostek ważne jest, ile razy jedna jednostka mieści się w drugiej. Warto znać tę tabelkę na pamięć.",
+          slownie: "Przy zamianie jednostek ważne jest, ile razy jedna jednostka mieści się w drugiej. Warto znać te zależności na pamięć.",
           tex: "1\\ \\text{km}=1000\\ \\text{m}\\qquad 1\\ \\text{m}=100\\ \\text{cm}\\qquad 1\\ \\text{cm}=10\\ \\text{mm}",
           przyklad: "$2{,}35$ m $= 235$ cm, bo $2{,}35 \\cdot 100 = 235$. Dalej $1{,}2$ km $= 1200$ m i $45$ mm $= 4{,}5$ cm.",
         },
@@ -945,12 +945,12 @@ export default {
           nazwa: "Jak zamieniać jednostki",
           slownie: "Z większej jednostki na mniejszą mnożymy (przecinek idzie w prawo). Z mniejszej na większą dzielimy (przecinek idzie w lewo). Mnożymy lub dzielimy przez $10$, $100$ albo $1000$.",
           przyklad: "Z metrów na centymetry mnożymy: $3{,}4$ m $= 3{,}4 \\cdot 100 = 340$ cm. Z gramów na kilogramy dzielimy: $2500$ g $= 2500 : 1000 = 2{,}5$ kg.",
-          uwaga: "Większa jednostka, to mniejsza liczba. $2$ m to $200$ cm, a nie $0{,}02$ cm. Zawsze sprawdź, czy wynik ma sens.",
+          uwaga: "Im większa jednostka, tym mniejsza liczba. $2$ m to $200$ cm, a nie $0{,}02$ cm. Zawsze sprawdź, czy wynik ma sens.",
         },
         {
           nazwa: "Zapis w dwóch jednostkach",
           slownie: "Mniejszą jednostkę zamień na część większej jednostki i dodaj całości. Aby zapisać w dwóch jednostkach, całości zostaw, a część po przecinku zamień na mniejszą jednostkę.",
-          tex: "3\\ \\text{m}\\ 25\\ \\text{cm}=3{,}25\\ \\text{m}",
+          tex: "3\\ \\text{m}\\ 25\\ \\text{cm}\\qquad=3{,}25\\ \\text{m}",
           przyklad: "$2$ kg $350$ g $= 2{,}35$ kg. Dalej $4$ zł $5$ gr $= 4{,}05$ zł. W drugą stronę $1{,}8$ m to $1$ m $80$ cm.",
           uwaga: "$5$ gr to $0{,}05$ zł, a nie $0{,}5$ zł. Zapis $4$ zł $5$ gr to $4{,}05$ zł, a nie $4{,}5$ zł.",
         },
@@ -976,7 +976,7 @@ export default {
         },
         {
           nr: "31",
-          tresc: "Zapisz $4$ zł $7$ gr w złotych. **Wybierz właściwą odpowiedź.**",
+          tresc: "Jak zapisać $4$ zł $7$ gr w złotych? **Wybierz właściwą odpowiedź.**",
           opcje: ["$4{,}7$ zł", "$47$ zł", "$4{,}07$ zł", "$4{,}007$ zł"],
           poprawna: 2,
         },

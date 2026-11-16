@@ -92,13 +92,13 @@ export default {
       zadania: [
         {
           nr: "1",
-          tresc: "Jeden z dwóch kątów przyległych ma miarę $112^\\circ$. Drugi kąt ma miarę. **Wybierz właściwą odpowiedź.**",
+          tresc: "Jeden z dwóch kątów przyległych ma miarę $112^\\circ$. Jaką miarę ma drugi kąt? **Wybierz właściwą odpowiedź.**",
           opcje: ["$78^\\circ$", "$68^\\circ$", "$112^\\circ$", "$248^\\circ$"],
           poprawna: 1,
         },
         {
           nr: "2",
-          tresc: "Dwie proste przecinają się i tworzą cztery kąty. Jeden z nich ma miarę $40^\\circ$. Miary pozostałych trzech kątów to. **Wybierz właściwą odpowiedź.**",
+          tresc: "Dwie proste przecinają się i tworzą cztery kąty. Jeden z nich ma miarę $40^\\circ$. Jakie miary mają pozostałe trzy kąty? **Wybierz właściwą odpowiedź.**",
           opcje: [
             "$40^\\circ$, $50^\\circ$ i $50^\\circ$",
             "$140^\\circ$, $140^\\circ$ i $140^\\circ$",
@@ -109,13 +109,13 @@ export default {
         },
         {
           nr: "3",
-          tresc: "Proste $k$ i $l$ są równoległe, a prosta $m$ je przecina. Kąt przy prostej $k$ ma miarę $70^\\circ$. Kąt odpowiadający do niego przy prostej $l$ ma miarę. **Wybierz właściwą odpowiedź.**",
+          tresc: "Proste $k$ i $l$ są równoległe, a prosta $m$ je przecina. Kąt przy prostej $k$ ma miarę $70^\\circ$. Jaką miarę ma kąt odpowiadający do niego przy prostej $l$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$70^\\circ$", "$110^\\circ$", "$20^\\circ$", "$140^\\circ$"],
           poprawna: 0,
         },
         {
           nr: "4",
-          tresc: "Dwa kąty trójkąta mają miary $48^\\circ$ i $75^\\circ$. Trzeci kąt tego trójkąta ma miarę. **Wybierz właściwą odpowiedź.**",
+          tresc: "Dwa kąty trójkąta mają miary $48^\\circ$ i $75^\\circ$. Jaką miarę ma trzeci kąt tego trójkąta? **Wybierz właściwą odpowiedź.**",
           opcje: ["$123^\\circ$", "$132^\\circ$", "$105^\\circ$", "$57^\\circ$"],
           poprawna: 3,
         },
@@ -283,31 +283,31 @@ export default {
       zadania: [
         {
           nr: "8",
-          tresc: "W trójkącie dwa kąty mają miary $35^\\circ$ i $80^\\circ$. Kąt zewnętrzny tego trójkąta, przyległy do trzeciego kąta, ma miarę. **Wybierz właściwą odpowiedź.**",
+          tresc: "W trójkącie dwa kąty mają miary $35^\\circ$ i $80^\\circ$. Jaką miarę ma kąt zewnętrzny tego trójkąta, przyległy do trzeciego kąta? **Wybierz właściwą odpowiedź.**",
           opcje: ["$115^\\circ$", "$65^\\circ$", "$145^\\circ$", "$100^\\circ$"],
           poprawna: 0,
         },
         {
           nr: "9",
-          tresc: "W trójkącie równoramiennym kąt między ramionami ma miarę $40^\\circ$. Każdy z kątów przy podstawie ma miarę. **Wybierz właściwą odpowiedź.**",
+          tresc: "W trójkącie równoramiennym kąt między ramionami ma miarę $40^\\circ$. Jaką miarę ma każdy z kątów przy podstawie? **Wybierz właściwą odpowiedź.**",
           opcje: ["$140^\\circ$", "$40^\\circ$", "$50^\\circ$", "$70^\\circ$"],
           poprawna: 3,
         },
         {
           nr: "10",
-          tresc: "Trójkąt równoramienny ma jeden kąt o mierze $100^\\circ$. Miary dwóch pozostałych kątów to. **Wybierz właściwą odpowiedź.**",
+          tresc: "Trójkąt równoramienny ma jeden kąt o mierze $100^\\circ$. Jakie miary mają dwa pozostałe kąty? **Wybierz właściwą odpowiedź.**",
           opcje: ["$80^\\circ$ i $80^\\circ$", "$40^\\circ$ i $40^\\circ$", "$50^\\circ$ i $50^\\circ$", "$100^\\circ$ i $100^\\circ$"],
           poprawna: 1,
         },
         {
           nr: "11",
-          tresc: "Kąty trójkąta mają miary $x$, $x+20^\\circ$ i $x+40^\\circ$. Największy z tych kątów ma miarę. **Wybierz właściwą odpowiedź.**",
+          tresc: "Kąty trójkąta mają miary $x$, $x+20^\\circ$ i $x+40^\\circ$. Jaką miarę ma największy z tych kątów? **Wybierz właściwą odpowiedź.**",
           opcje: ["$80^\\circ$", "$40^\\circ$", "$60^\\circ$", "$100^\\circ$"],
           poprawna: 0,
         },
         {
           nr: "12",
-          tresc: "W równoległoboku jeden kąt ma miarę $65^\\circ$. Miary pozostałych trzech kątów to. **Wybierz właściwą odpowiedź.**",
+          tresc: "W równoległoboku jeden kąt ma miarę $65^\\circ$. Jakie miary mają pozostałe trzy kąty? **Wybierz właściwą odpowiedź.**",
           opcje: [
             "$65^\\circ$, $65^\\circ$ i $65^\\circ$",
             "$25^\\circ$, $65^\\circ$ i $25^\\circ$",
@@ -510,7 +510,7 @@ export default {
       zadania: [
         {
           nr: "16",
-          tresc: "W twierdzeniu „Jeśli czworokąt jest kwadratem, to ma cztery kąty proste” tezą jest. **Wybierz właściwą odpowiedź.**",
+          tresc: "W twierdzeniu „Jeśli czworokąt jest kwadratem, to ma cztery kąty proste” – co jest tezą? **Wybierz właściwą odpowiedź.**",
           opcje: ["czworokąt ma cztery kąty proste", "czworokąt jest kwadratem", "czworokąt ma cztery boki", "kwadrat jest prostokątem"],
           poprawna: 0,
         },
@@ -522,7 +522,7 @@ export default {
         },
         {
           nr: "18",
-          tresc: "Chcemy udowodnić, że suma dwóch kolejnych liczb naturalnych jest nieparzysta. Dwie kolejne liczby naturalne zapisujemy jako. **Wybierz właściwą odpowiedź.**",
+          tresc: "Chcemy udowodnić, że suma dwóch kolejnych liczb naturalnych jest nieparzysta. Jak zapisujemy dwie kolejne liczby naturalne? **Wybierz właściwą odpowiedź.**",
           opcje: ["$2n$ i $2n+2$", "$n$ i $n+2$", "$2n$ i $2n+1$", "$n$ i $n+1$"],
           poprawna: 3,
         },
@@ -537,7 +537,7 @@ export default {
         },
         {
           nr: "20",
-          tresc: "Trzy kolejne liczby parzyste zapisujemy jako $2n$, $2n+2$, $2n+4$. Ich suma po uproszczeniu jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Trzy kolejne liczby parzyste zapisujemy jako $2n$, $2n+2$, $2n+4$. Ile wynosi ich suma po uproszczeniu? **Wybierz właściwą odpowiedź.**",
           opcje: ["$6n+4$", "$6n+6$", "$6n+2$", "$8n+6$"],
           poprawna: 1,
         },
@@ -668,7 +668,7 @@ export default {
         },
         {
           nr: "24",
-          tresc: "Dwa boki trójkąta mają długości $5$ cm i $8$ cm. Trzeci bok może mieć długość. **Wybierz właściwą odpowiedź.**",
+          tresc: "Dwa boki trójkąta mają długości $5$ cm i $8$ cm. Jaką długość może mieć trzeci bok? **Wybierz właściwą odpowiedź.**",
           opcje: ["$3$ cm", "$13$ cm", "$2$ cm", "$12$ cm"],
           poprawna: 3,
         },
@@ -680,7 +680,7 @@ export default {
         },
         {
           nr: "26",
-          tresc: "W trójkącie równoramiennym dwa boki mają długości $5$ cm i $11$ cm. Obwód tego trójkąta jest równy. **Wybierz właściwą odpowiedź.**",
+          tresc: "W trójkącie równoramiennym dwa boki mają długości $5$ cm i $11$ cm. Jaki obwód ma ten trójkąt? **Wybierz właściwą odpowiedź.**",
           opcje: ["$22$ cm", "$27$ cm", "$16$ cm", "$21$ cm"],
           poprawna: 1,
         },

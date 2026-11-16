@@ -108,19 +108,19 @@ export default {
       zadania: [
         {
           nr: "1",
-          tresc: "Punkt $A$ ma na osi liczbowej współrzędną $-4$, a punkt $B$ współrzędną $7$. Odległość między punktami $A$ i $B$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Punkt $A$ ma na osi liczbowej współrzędną $-4$, a punkt $B$ współrzędną $7$. Jaka jest odległość między punktami $A$ i $B$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$3$", "$-11$", "$11$", "$28$"],
           poprawna: 2,
         },
         {
           nr: "2",
-          tresc: "Wartość wyrażenia $|-6|-|2|$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Jaką wartość ma wyrażenie $|-6|-|2|$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$4$", "$8$", "$-8$", "$-4$"],
           poprawna: 0,
         },
         {
           nr: "3",
-          tresc: "Punkty $A=-5$ i $B=9$ leżą na osi liczbowej. Współrzędna środka odcinka $AB$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Punkty $A=-5$ i $B=9$ leżą na osi liczbowej. Jaka jest współrzędna środka odcinka $AB$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$4$", "$7$", "$-7$", "$2$"],
           poprawna: 3,
         },
@@ -313,25 +313,25 @@ export default {
       zadania: [
         {
           nr: "8",
-          tresc: "Wyrażenie $6a+5-(2a-3)$ po uproszczeniu jest równe. **Wybierz właściwą odpowiedź.**",
+          tresc: "Do jakiej postaci upraszcza się wyrażenie $6a+5-(2a-3)$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$4a+2$", "$4a+8$", "$8a+8$", "$8a+2$"],
           poprawna: 1,
         },
         {
           nr: "9",
-          tresc: "Wartość wyrażenia $4-3x$ dla $x=-2$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Jaką wartość ma wyrażenie $4-3x$ dla $x=-2$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$-2$", "$-10$", "$10$", "$2$"],
           poprawna: 2,
         },
         {
           nr: "10",
-          tresc: "Ania ma $x$ kart. Bartek ma o $5$ kart mniej niż Ania, a Celina ma $3$ razy więcej kart niż Ania. Wyrażenie opisujące, ile kart mają razem wszyscy troje, to. **Wybierz właściwą odpowiedź.**",
+          tresc: "Ania ma $x$ kart. Bartek ma o $5$ kart mniej niż Ania, a Celina ma $3$ razy więcej kart niż Ania. Które wyrażenie opisuje, ile kart mają razem wszyscy troje? **Wybierz właściwą odpowiedź.**",
           opcje: ["$5x+5$", "$3x-5$", "$4x-5$", "$5x-5$"],
           poprawna: 3,
         },
         {
           nr: "11",
-          tresc: "Dla $a=-3$ wartość wyrażenia $2a-(a+4)$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Jaką wartość ma wyrażenie $2a-(a+4)$ dla $a=-3$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$-7$", "$1$", "$-5$", "$-13$"],
           poprawna: 0,
         },
@@ -536,25 +536,25 @@ export default {
       zadania: [
         {
           nr: "15",
-          tresc: "Wyrażenie $3(2x-5)$ po wymnożeniu jest równe. **Wybierz właściwą odpowiedź.**",
+          tresc: "Jaką postać ma wyrażenie $3(2x-5)$ po wymnożeniu? **Wybierz właściwą odpowiedź.**",
           opcje: ["$6x-5$", "$5x-2$", "$6x-15$", "$6x+15$"],
           poprawna: 2,
         },
         {
           nr: "16",
-          tresc: "Wyrażenie $-2(x-4)$ po wymnożeniu jest równe. **Wybierz właściwą odpowiedź.**",
+          tresc: "Jaką postać ma wyrażenie $-2(x-4)$ po wymnożeniu? **Wybierz właściwą odpowiedź.**",
           opcje: ["$-2x-8$", "$-2x+8$", "$2x-8$", "$-2x+4$"],
           poprawna: 1,
         },
         {
           nr: "17",
-          tresc: "Wyrażenie $(x+3)(x+4)$ po wymnożeniu i uproszczeniu jest równe. **Wybierz właściwą odpowiedź.**",
+          tresc: "Jaką postać ma wyrażenie $(x+3)(x+4)$ po wymnożeniu i uproszczeniu? **Wybierz właściwą odpowiedź.**",
           opcje: ["$x^2+12$", "$x^2+7x+7$", "$2x+7$", "$x^2+7x+12$"],
           poprawna: 3,
         },
         {
           nr: "18",
-          tresc: "Wyrażenie $(x+5)^2$ jest równe. **Wybierz właściwą odpowiedź.**",
+          tresc: "Któremu wyrażeniu jest równe $(x+5)^2$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$x^2+10x+25$", "$x^2+25$", "$x^2+5x+25$", "$x^2+10x+10$"],
           poprawna: 0,
         },
@@ -740,19 +740,19 @@ export default {
       zadania: [
         {
           nr: "22",
-          tresc: "Rozwiązaniem równania $3x-7=11$ jest. **Wybierz właściwą odpowiedź.**",
+          tresc: "Jakie jest rozwiązanie równania $3x-7=11$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$18$", "$\\frac{4}{3}$", "$6$", "$-6$"],
           poprawna: 2,
         },
         {
           nr: "23",
-          tresc: "Rozwiązaniem równania $2(x+4)=5x-4$ jest. **Wybierz właściwą odpowiedź.**",
+          tresc: "Jakie jest rozwiązanie równania $2(x+4)=5x-4$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\frac{8}{3}$", "$4$", "$-4$", "$12$"],
           poprawna: 1,
         },
         {
           nr: "24",
-          tresc: "Rozwiązaniem proporcji $\\frac{4}{x}=\\frac{6}{9}$ jest. **Wybierz właściwą odpowiedź.**",
+          tresc: "Jakie jest rozwiązanie proporcji $\\frac{4}{x}=\\frac{6}{9}$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$6$", "$\\frac{8}{3}$", "$9$", "$\\frac{27}{2}$"],
           poprawna: 0,
         },
@@ -921,12 +921,12 @@ export default {
               const b = r.int(1, 20);
               const c = a * x0 + b;
               return {
-                tresc: `Pomyślałem liczbę. Gdy pomnożę ją przez $${a}$ i dodam $${b}$, otrzymam $${c}$. Jaką liczbę pomyślałem?`,
+                tresc: `Pewną liczbę pomnożono przez $${a}$ i dodano $${b}$. Otrzymano $${c}$. Jaka to liczba?`,
                 pola: [pole("x", "Liczba $=$")],
                 odpowiedz: { x: q(x0) },
                 wynik: `$${x0}$`,
                 rozwiazanie: [
-                  "Niech $x$ oznacza pomyślaną liczbę.",
+                  "Niech $x$ oznacza szukaną liczbę.",
                   `Równanie z treści: $${a}x + ${b} = ${c}$.`,
                   `Odejmujemy $${b}$ od obu stron: $${a}x = ${c - b}$.`,
                   `Dzielimy przez $${a}$: $x = ${c - b} : ${a} = ${x0}$.`,

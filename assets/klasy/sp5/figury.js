@@ -63,11 +63,18 @@ export default {
           uwaga: "Proste równoległe są zawsze w tej samej odległości od siebie i nie mają żadnego wspólnego punktu.",
         },
         {
-          nazwa: "Trzy proste naraz",
-          slownie: "Dwie proste prostopadłe do tej samej prostej są równoległe. Prosta prostopadła do jednej z dwóch prostych równoległych jest prostopadła także do drugiej.",
-          tex: "a\\perp c,\\ b\\perp c\\ \\Rightarrow\\ a\\parallel b\\qquad a\\parallel b,\\ c\\perp a\\ \\Rightarrow\\ c\\perp b",
+          nazwa: "Dwie proste prostopadłe do trzeciej",
+          slownie: "Dwie proste prostopadłe do tej samej prostej są równoległe.",
+          tex: "a\\perp c,\\ b\\perp c\\qquad\\Rightarrow\\qquad a\\parallel b",
           litery: "$a$, $b$, $c$ – proste leżące na jednej płaszczyźnie (na kartce).",
           przyklad: "Lewa i prawa krawędź kartki są prostopadłe do dolnej krawędzi, więc są równoległe do siebie.",
+        },
+        {
+          nazwa: "Prosta prostopadła do dwóch równoległych",
+          slownie: "Prosta prostopadła do jednej z dwóch prostych równoległych jest prostopadła także do drugiej.",
+          tex: "a\\parallel b,\\ c\\perp a\\qquad\\Rightarrow\\qquad c\\perp b",
+          litery: "$a$, $b$, $c$ – proste leżące na jednej płaszczyźnie (na kartce).",
+          przyklad: "Górna i dolna krawędź kartki są równoległe. Lewa krawędź jest prostopadła do górnej, więc jest też prostopadła do dolnej.",
         },
         {
           nazwa: "Rodzaje kątów",
@@ -99,7 +106,7 @@ export default {
         },
         {
           nr: "2",
-          tresc: "Wierzchołkiem kąta $\\angle PQR$ jest punkt. **Wybierz właściwą odpowiedź.**",
+          tresc: "Który punkt jest wierzchołkiem kąta $\\angle PQR$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$P$", "$Q$", "$R$", "każdy z trzech punktów"],
           poprawna: 1,
         },
@@ -233,7 +240,7 @@ export default {
           nazwa: "Kąt na zegarze",
           slownie: "Tarcza zegara to kąt pełny, czyli $360^\\circ$, podzielony na $12$ równych części. Między sąsiednimi godzinami jest więc $30^\\circ$.",
           tex: "360^\\circ:12=30^\\circ",
-          przyklad: "O godzinie 4:00 wskazówki dzieli $4$ godziny, czyli $4\\cdot 30^\\circ = 120^\\circ$.",
+          przyklad: "O godzinie 4:00 między wskazówkami są $4$ godziny, czyli kąt $4\\cdot 30^\\circ = 120^\\circ$.",
           uwaga: "Liczymy krótszą drogę, czyli najwyżej $6$ godzin. O godzinie 8:00 mniejszy kąt to $4\\cdot 30^\\circ = 120^\\circ$, a nie $8\\cdot 30^\\circ$.",
         },
       ],
@@ -393,13 +400,13 @@ export default {
       zadania: [
         {
           nr: "14",
-          tresc: "Trójkąt ma boki długości $6$ cm, $6$ cm i $9$ cm. Ze względu na długości boków jest to trójkąt. **Wybierz właściwą odpowiedź.**",
+          tresc: "Trójkąt ma boki długości $6$ cm, $6$ cm i $9$ cm. Jaki to trójkąt ze względu na długości boków? **Wybierz właściwą odpowiedź.**",
           opcje: ["równoboczny", "równoramienny", "różnoboczny", "żaden z wymienionych"],
           poprawna: 1,
         },
         {
           nr: "15",
-          tresc: "Dwa kąty trójkąta mają miary $48^\\circ$ i $67^\\circ$. Trzeci kąt ma miarę. **Wybierz właściwą odpowiedź.**",
+          tresc: "Dwa kąty trójkąta mają miary $48^\\circ$ i $67^\\circ$. Jaką miarę ma trzeci kąt? **Wybierz właściwą odpowiedź.**",
           opcje: ["$115^\\circ$", "$75^\\circ$", "$65^\\circ$", "$132^\\circ$"],
           poprawna: 2,
         },
@@ -414,7 +421,7 @@ export default {
         },
         {
           nr: "17",
-          tresc: "W trójkącie równoramiennym kąt przy wierzchołku ma $50^\\circ$. Każdy z kątów przy podstawie ma. **Wybierz właściwą odpowiedź.**",
+          tresc: "W trójkącie równoramiennym kąt przy wierzchołku ma $50^\\circ$. Ile stopni ma każdy z kątów przy podstawie? **Wybierz właściwą odpowiedź.**",
           opcje: ["$65^\\circ$", "$130^\\circ$", "$40^\\circ$", "$50^\\circ$"],
           poprawna: 0,
         },
@@ -441,7 +448,7 @@ export default {
           nr: "20",
           punkty: 3,
           tresc: "W trójkącie prostokątnym jeden kąt ostry jest o $20^\\circ$ większy od drugiego kąta ostrego. Oblicz miary wszystkich kątów tego trójkąta. **Zapisz obliczenia.**",
-          rozwiazanie: "Kąt prosty ma $90^\\circ$, a dwa kąty ostre dają razem $180^\\circ - 90^\\circ = 90^\\circ$.\n\nGdyby oba kąty ostre były równe, to po odjęciu $20^\\circ$ zostałoby $90^\\circ - 20^\\circ = 70^\\circ$ do podziału na dwa równe kąty.\n\nMniejszy kąt ostry: $70^\\circ : 2 = 35^\\circ$. Większy: $35^\\circ + 20^\\circ = 55^\\circ$.\n\nSprawdzenie: $90^\\circ + 35^\\circ + 55^\\circ = 180^\\circ$.\n\nOdpowiedź: kąty trójkąta mają $90^\\circ$, $35^\\circ$ i $55^\\circ$.",
+          rozwiazanie: "Kąt prosty ma $90^\\circ$, a dwa kąty ostre dają razem $180^\\circ - 90^\\circ = 90^\\circ$.\n\nGdyby większy kąt ostry był o $20^\\circ$ mniejszy, oba kąty byłyby równe i miałyby razem $90^\\circ - 20^\\circ = 70^\\circ$.\n\nMniejszy kąt ostry: $70^\\circ : 2 = 35^\\circ$. Większy: $35^\\circ + 20^\\circ = 55^\\circ$.\n\nSprawdzenie: $90^\\circ + 35^\\circ + 55^\\circ = 180^\\circ$.\n\nOdpowiedź: kąty trójkąta mają $90^\\circ$, $35^\\circ$ i $55^\\circ$.",
         },
       ],
       generatory: [
@@ -553,13 +560,13 @@ export default {
         },
         {
           nr: "22",
-          tresc: "Wysokość trójkąta tworzy z podstawą kąt o mierze. **Wybierz właściwą odpowiedź.**",
+          tresc: "Jaką miarę ma kąt między wysokością trójkąta a podstawą, na którą ta wysokość opada? **Wybierz właściwą odpowiedź.**",
           opcje: ["$45^\\circ$", "$60^\\circ$", "$90^\\circ$", "$180^\\circ$"],
           poprawna: 2,
         },
         {
           nr: "23",
-          tresc: "Trójkąt prostokątny ma przyprostokątne długości $5$ cm i $12$ cm. Wysokość opuszczona na przyprostokątną o długości $5$ cm ma długość. **Wybierz właściwą odpowiedź.**",
+          tresc: "Trójkąt prostokątny ma przyprostokątne długości $5$ cm i $12$ cm. Wysokość opuszczona na przyprostokątną o długości $5$ cm. Jaką długość ma ta wysokość? **Wybierz właściwą odpowiedź.**",
           opcje: ["$12$ cm", "$5$ cm", "$17$ cm", "$7$ cm"],
           poprawna: 0,
         },
@@ -711,19 +718,19 @@ export default {
       zadania: [
         {
           nr: "27",
-          tresc: "Jeden z kątów równoległoboku ma $65^\\circ$. Kąt leżący naprzeciw niego ma. **Wybierz właściwą odpowiedź.**",
+          tresc: "Jeden z kątów równoległoboku ma $65^\\circ$. Ile stopni ma kąt leżący naprzeciw niego? **Wybierz właściwą odpowiedź.**",
           opcje: ["$115^\\circ$", "$65^\\circ$", "$25^\\circ$", "$130^\\circ$"],
           poprawna: 1,
         },
         {
           nr: "28",
-          tresc: "Jeden z kątów równoległoboku ma $72^\\circ$. Kąt leżący przy tym samym boku ma. **Wybierz właściwą odpowiedź.**",
+          tresc: "Jeden z kątów równoległoboku ma $72^\\circ$. Ile stopni ma kąt leżący przy tym samym boku (sąsiedni)? **Wybierz właściwą odpowiedź.**",
           opcje: ["$18^\\circ$", "$72^\\circ$", "$118^\\circ$", "$108^\\circ$"],
           poprawna: 3,
         },
         {
           nr: "29",
-          tresc: "Boki równoległoboku mają długości $7$ cm i $9$ cm. Obwód tego równoległoboku wynosi. **Wybierz właściwą odpowiedź.**",
+          tresc: "Boki równoległoboku mają długości $7$ cm i $9$ cm. Jaki obwód ma ten równoległobok? **Wybierz właściwą odpowiedź.**",
           opcje: ["$32$ cm", "$16$ cm", "$63$ cm", "$28$ cm"],
           poprawna: 0,
         },
@@ -738,12 +745,12 @@ export default {
         },
         {
           nr: "31",
-          tresc: "Wysokość równoległoboku to odcinek, który. **Wybierz właściwą odpowiedź.**",
+          tresc: "Jaki odcinek jest wysokością równoległoboku? **Wybierz właściwą odpowiedź.**",
           opcje: [
-            "łączy dwa przeciwległe wierzchołki",
-            "łączy środki dwóch przeciwległych boków",
-            "łączy dwa równoległe boki i jest do nich prostopadły",
-            "dzieli kąt na dwa równe kąty",
+            "odcinek łączący dwa przeciwległe wierzchołki",
+            "odcinek łączący środki dwóch przeciwległych boków",
+            "odcinek łączący dwa równoległe boki i prostopadły do nich",
+            "odcinek dzielący kąt na dwa równe kąty",
           ],
           poprawna: 2,
         },
@@ -872,13 +879,13 @@ export default {
       zadania: [
         {
           nr: "34",
-          tresc: "Trapez to czworokąt, który. **Wybierz właściwą odpowiedź.**",
-          opcje: ["ma dokładnie dwa kąty proste", "ma co najmniej jedną parę boków równoległych", "ma wszystkie boki równe", "ma dwie pary boków równoległych"],
+          tresc: "Który opis jest poprawną definicją trapezu? **Wybierz właściwą odpowiedź.**",
+          opcje: ["czworokąt, który ma dokładnie dwa kąty proste", "czworokąt, który ma co najmniej jedną parę boków równoległych", "czworokąt, który ma wszystkie boki równe", "czworokąt, który ma dwie pary boków równoległych"],
           poprawna: 1,
         },
         {
           nr: "35",
-          tresc: "W trapezie $ABCD$ boki $AB$ i $CD$ są równoległe. Kąt przy wierzchołku $A$ ma $75^\\circ$. Kąt przy wierzchołku $D$, leżący przy tym samym ramieniu, ma. **Wybierz właściwą odpowiedź.**",
+          tresc: "W trapezie $ABCD$ boki $AB$ i $CD$ są równoległe. Kąt przy wierzchołku $A$ ma $75^\\circ$. Ile stopni ma kąt przy wierzchołku $D$ (oba kąty leżą przy ramieniu $AD$)? **Wybierz właściwą odpowiedź.**",
           opcje: ["$105^\\circ$", "$75^\\circ$", "$115^\\circ$", "$285^\\circ$"],
           poprawna: 0,
         },
@@ -899,7 +906,7 @@ export default {
         },
         {
           nr: "38",
-          tresc: "W trapezie równoramiennym jeden kąt przy dłuższej podstawie ma $70^\\circ$. Drugi kąt przy tej samej podstawie ma. **Wybierz właściwą odpowiedź.**",
+          tresc: "W trapezie równoramiennym jeden kąt przy dłuższej podstawie ma $70^\\circ$. Ile stopni ma drugi kąt przy tej samej podstawie? **Wybierz właściwą odpowiedź.**",
           opcje: ["$110^\\circ$", "$70^\\circ$", "$20^\\circ$", "$140^\\circ$"],
           poprawna: 1,
         },

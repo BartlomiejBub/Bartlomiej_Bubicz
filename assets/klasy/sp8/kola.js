@@ -453,7 +453,7 @@ export default {
         {
           nazwa: "Od długości do pola",
           slownie: "W zadaniu mamy często jedną wielkość, a pytają o drugą. Najpierw znajdź promień, potem policz to, o co pytają.",
-          tex: "L=2\\pi r\\ \\Rightarrow\\ r\\ \\Rightarrow\\ P=\\pi r^2",
+          tex: "L=2\\pi r\\ \\Rightarrow\\ r\\qquad r\\ \\Rightarrow\\ P=\\pi r^2",
           przyklad: "Okrąg ma długość $10\\pi$ cm. Stąd $r=5$ cm. Pole koła o tym promieniu: $\\pi\\cdot5^2=25\\pi$ cm$^2$.",
           uwaga: "Nie wstawiaj długości okręgu do wzoru na pole. Najpierw policz promień.",
         },
@@ -656,7 +656,7 @@ export default {
         {
           nazwa: "Oś symetrii",
           slownie: "Oś symetrii to prosta, po której można złożyć figurę tak, że obie połowy dokładnie się pokrywają, jak w lustrze. Figura może mieć jedną oś, kilka osi albo żadnej.",
-          przyklad: "Kwadrat ma $4$ osie, prostokąt (nie kwadrat) $2$, trójkąt równoboczny $3$, trójkąt równoramienny (nie równoboczny) $1$. Okrąg ma osi nieskończenie wiele: każdą prostą przez środek.",
+          przyklad: "Kwadrat ma $4$ osie, prostokąt (nie kwadrat) $2$, trójkąt równoboczny $3$, trójkąt równoramienny (nie równoboczny) $1$. Okrąg ma nieskończenie wiele osi: każda prosta przechodząca przez jego środek jest osią symetrii.",
           uwaga: "Przekątna prostokąta, który nie jest kwadratem, nie jest osią symetrii. Połowy po złożeniu się nie pokryją.",
         },
         {
@@ -875,7 +875,7 @@ export default {
         {
           nazwa: "Dwusieczna kąta",
           slownie: "Dwusieczna kąta to półprosta zaczynająca się w wierzchołku kąta, która dzieli go na dwa równe kąty. Każdy punkt dwusiecznej leży tak samo daleko od obu ramion kąta. Odległość punktu od ramienia mierzymy prostopadle.",
-          tex: "\\alpha\\to\\frac{\\alpha}{2}\\ \\text{i}\\ \\frac{\\alpha}{2}",
+          tex: "\\alpha=\\frac{\\alpha}{2}+\\frac{\\alpha}{2}",
           litery: "$\\alpha$ – miara kąta.",
           przyklad: "Kąt $70^\\circ$ dzieli się na dwa kąty po $35^\\circ$. Punkt dwusiecznej jest $4$ cm od jednego ramienia, więc jest też $4$ cm od drugiego.",
           uwaga: "Każdy z dwóch kątów ma miarę $\\alpha:2$, a nie $\\alpha$.",

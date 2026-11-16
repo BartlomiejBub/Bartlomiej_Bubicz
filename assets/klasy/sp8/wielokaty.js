@@ -104,13 +104,13 @@ export default {
         },
         {
           nr: "2",
-          tresc: "Trójkąty $ABC$ i $KLM$ są przystające (w tej kolejności). Wiemy, że $|AB|=6$ cm, $|BC|=8$ cm i $|AC|=10$ cm. Bok $LM$ ma długość. **Wybierz właściwą odpowiedź.**",
+          tresc: "Trójkąty $ABC$ i $KLM$ są przystające (w tej kolejności). Wiemy, że $|AB|=6$ cm, $|BC|=8$ cm i $|AC|=10$ cm. Jaką długość ma bok $LM$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$6$ cm", "$8$ cm", "$10$ cm", "$24$ cm"],
           poprawna: 1,
         },
         {
           nr: "3",
-          tresc: "Trójkąty $PQR$ i $XYZ$ są przystające (w tej kolejności). W trójkącie $PQR$ kąt przy $Q$ ma $50^\\circ$, a kąt przy $R$ ma $70^\\circ$. Kąt przy wierzchołku $X$ ma miarę. **Wybierz właściwą odpowiedź.**",
+          tresc: "Trójkąty $PQR$ i $XYZ$ są przystające (w tej kolejności). W trójkącie $PQR$ kąt przy $Q$ ma $50^\\circ$, a kąt przy $R$ ma $70^\\circ$. Jaką miarę ma kąt przy wierzchołku $X$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$50^\\circ$", "$70^\\circ$", "$60^\\circ$", "$120^\\circ$"],
           poprawna: 2,
         },
@@ -542,19 +542,19 @@ export default {
       zadania: [
         {
           nr: "16",
-          tresc: "Odcinki $AB$ i $CD$ przecinają się w punkcie $O$, który jest środkiem każdego z nich. Trójkąty $AOC$ i $BOD$ są przystające z cechy. **Wybierz właściwą odpowiedź.**",
+          tresc: "Odcinki $AB$ i $CD$ przecinają się w punkcie $O$, który jest środkiem każdego z nich. Z której cechy wynika, że trójkąty $AOC$ i $BOD$ są przystające? **Wybierz właściwą odpowiedź.**",
           opcje: ["bbb", "kbk", "bkb", "z żadnej cechy"],
           poprawna: 2,
         },
         {
           nr: "17",
-          tresc: "Odcinki $AB$ i $CD$ przecinają się w punkcie $O$, który jest środkiem każdego z nich. Wiadomo, że $|AO|=4$ cm, $|CO|=5$ cm i $|AC|=9$ cm. Bok $BD$ ma długość. **Wybierz właściwą odpowiedź.**",
+          tresc: "Odcinki $AB$ i $CD$ przecinają się w punkcie $O$, który jest środkiem każdego z nich. Wiadomo, że $|AO|=4$ cm, $|CO|=5$ cm i $|AC|=9$ cm. Jaką długość ma bok $BD$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$4$ cm", "$9$ cm", "$5$ cm", "$18$ cm"],
           poprawna: 1,
         },
         {
           nr: "18",
-          tresc: "W równoległoboku $ABCD$ prowadzimy przekątną $AC$. Kąty $BAC$ i $DCA$ są równe, bo są. **Wybierz właściwą odpowiedź.**",
+          tresc: "W równoległoboku $ABCD$ prowadzimy przekątną $AC$. Kąty $BAC$ i $DCA$ są równe. Jakimi kątami są? **Wybierz właściwą odpowiedź.**",
           opcje: [
             "kątami wierzchołkowymi",
             "kątami przyległymi",
@@ -574,7 +574,7 @@ export default {
         },
         {
           nr: "20",
-          tresc: "W trójkącie $ABC$ mamy $|AC|=|BC|$, a punkt $M$ jest środkiem boku $AB$. Trójkąty $AMC$ i $BMC$ są przystające z cechy. **Wybierz właściwą odpowiedź.**",
+          tresc: "W trójkącie $ABC$ mamy $|AC|=|BC|$, a punkt $M$ jest środkiem boku $AB$. Z której cechy wynika, że trójkąty $AMC$ i $BMC$ są przystające? **Wybierz właściwą odpowiedź.**",
           opcje: ["bbb", "bkb", "kbk", "nie są przystające"],
           poprawna: 0,
         },
@@ -759,19 +759,19 @@ export default {
       zadania: [
         {
           nr: "24",
-          tresc: "Kąt wewnętrzny pięciokąta foremnego ma miarę. **Wybierz właściwą odpowiedź.**",
+          tresc: "Jaką miarę ma kąt wewnętrzny pięciokąta foremnego? **Wybierz właściwą odpowiedź.**",
           opcje: ["$72^\\circ$", "$108^\\circ$", "$120^\\circ$", "$540^\\circ$"],
           poprawna: 1,
         },
         {
           nr: "25",
-          tresc: "Suma kątów wewnętrznych ośmiokąta jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Ile wynosi suma kątów wewnętrznych ośmiokąta? **Wybierz właściwą odpowiedź.**",
           opcje: ["$1440^\\circ$", "$1260^\\circ$", "$720^\\circ$", "$1080^\\circ$"],
           poprawna: 3,
         },
         {
           nr: "26",
-          tresc: "Obwód sześciokąta foremnego jest równy $42$ cm. Odcinek łączący środek sześciokąta z jego wierzchołkiem ma długość. **Wybierz właściwą odpowiedź.**",
+          tresc: "Obwód sześciokąta foremnego jest równy $42$ cm. Jaką długość ma odcinek łączący środek sześciokąta z jego wierzchołkiem? **Wybierz właściwą odpowiedź.**",
           opcje: ["$6$ cm", "$14$ cm", "$7$ cm", "$21$ cm"],
           poprawna: 2,
         },

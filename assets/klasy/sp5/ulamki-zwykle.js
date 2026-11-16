@@ -84,7 +84,7 @@ export default {
           nazwa: "Porównywanie ułamków",
           slownie: "Gdy mianowniki są takie same, większy jest ułamek z większym licznikiem. Gdy liczniki są takie same, większy jest ułamek z mniejszym mianownikiem.",
           przyklad: "$\\frac{5}{9}>\\frac{2}{9}$, bo $5>2$. Natomiast $\\frac{3}{4}>\\frac{3}{8}$, bo ćwiartki są większe niż ósemki.",
-          uwaga: "Im więcej części dzielimy całość, tym mniejsza jest jedna część.",
+          uwaga: "Na im więcej części dzielimy całość, tym mniejsza jest jedna część.",
         },
       ],
       jak: [
@@ -95,13 +95,13 @@ export default {
       zadania: [
         {
           nr: "1",
-          tresc: "Tort podzielono na $12$ równych kawałków. Kasia zjadła $5$ kawałków. Część tortu, którą zjadła Kasia, to. **Wybierz właściwą odpowiedź.**",
+          tresc: "Tort podzielono na $12$ równych kawałków. Kasia zjadła $5$ kawałków. Jaką część tortu zjadła Kasia? **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\frac{7}{12}$", "$\\frac{5}{12}$", "$\\frac{12}{5}$", "$\\frac{5}{7}$"],
           poprawna: 1,
         },
         {
           nr: "2",
-          tresc: "Ułamek niewłaściwy $\\frac{17}{5}$ zapisany jako liczba mieszana jest równy. **Wybierz właściwą odpowiedź.**",
+          tresc: "Jak zapisać ułamek niewłaściwy $\\frac{17}{5}$ jako liczbę mieszaną? **Wybierz właściwą odpowiedź.**",
           opcje: ["$3\\frac{1}{5}$", "$2\\frac{3}{5}$", "$5\\frac{2}{3}$", "$3\\frac{2}{5}$"],
           poprawna: 3,
         },
@@ -242,7 +242,7 @@ export default {
           nazwa: "Wspólny mianownik",
           slownie: "Aby porównać ułamki o różnych mianownikach, rozszerzamy je tak, żeby miały ten sam mianownik. Potem porównujemy liczniki.",
           przyklad: "Porównujemy $\\frac{1}{4}$ i $\\frac{1}{6}$. Wspólny mianownik to $12$: $\\frac{3}{12}$ i $\\frac{2}{12}$. Zatem $\\frac{1}{4}>\\frac{1}{6}$.",
-          uwaga: "Wspólny mianownik to liczba, do której dzielą się oba mianowniki, np. $12$ dla $4$ i $6$.",
+          uwaga: "Wspólny mianownik to liczba, która dzieli się przez oba mianowniki, np. $12$ dla $4$ i $6$.",
         },
       ],
       jak: [
@@ -260,13 +260,13 @@ export default {
         },
         {
           nr: "9",
-          tresc: "Ułamek $\\frac{18}{24}$ skrócono do postaci nieskracalnej. Otrzymano. **Wybierz właściwą odpowiedź.**",
+          tresc: "Ułamek $\\frac{18}{24}$ skrócono do postaci nieskracalnej. Jaki ułamek otrzymano? **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\frac{3}{4}$", "$\\frac{9}{12}$", "$\\frac{6}{8}$", "$\\frac{2}{3}$"],
           poprawna: 0,
         },
         {
           nr: "10",
-          tresc: "Rozszerzamy ułamek $\\frac{5}{8}$ tak, żeby miał mianownik $40$: $\\frac{5}{8}=\\frac{?}{40}$. Brakująca liczba to. **Wybierz właściwą odpowiedź.**",
+          tresc: "Rozszerzamy ułamek $\\frac{5}{8}$ tak, żeby miał mianownik $40$: $\\frac{5}{8}=\\frac{?}{40}$. Jaka liczba jest brakującym licznikiem? **Wybierz właściwą odpowiedź.**",
           opcje: ["$37$", "$25$", "$8$", "$35$"],
           poprawna: 1,
         },
@@ -297,7 +297,7 @@ export default {
           nr: "14",
           punkty: 3,
           tresc: "Ustaw ułamki $\\frac{2}{3}$, $\\frac{3}{4}$ i $\\frac{5}{8}$ w kolejności od najmniejszego do największego. **Zapisz obliczenia.**",
-          rozwiazanie: "Szukamy wspólnego mianownika. Liczby $3$, $4$ i $8$ dzielą się przez $24$.\n\n$\\frac{2}{3}=\\frac{2\\cdot 8}{3\\cdot 8}=\\frac{16}{24}$.\n\n$\\frac{3}{4}=\\frac{3\\cdot 6}{4\\cdot 6}=\\frac{18}{24}$ oraz $\\frac{5}{8}=\\frac{5\\cdot 3}{8\\cdot 3}=\\frac{15}{24}$.\n\nPorównujemy liczniki: $15<16<18$.\n\nOdpowiedź: $\\frac{5}{8}<\\frac{2}{3}<\\frac{3}{4}$.",
+          rozwiazanie: "Szukamy wspólnego mianownika. Liczba $24$ dzieli się przez $3$, przez $4$ i przez $8$.\n\n$\\frac{2}{3}=\\frac{2\\cdot 8}{3\\cdot 8}=\\frac{16}{24}$.\n\n$\\frac{3}{4}=\\frac{3\\cdot 6}{4\\cdot 6}=\\frac{18}{24}$ oraz $\\frac{5}{8}=\\frac{5\\cdot 3}{8\\cdot 3}=\\frac{15}{24}$.\n\nPorównujemy liczniki: $15<16<18$.\n\nOdpowiedź: $\\frac{5}{8}<\\frac{2}{3}<\\frac{3}{4}$.",
         },
       ],
       generatory: [
@@ -306,7 +306,7 @@ export default {
           nazwa: "Skracanie ułamka",
           opis: "Skróć ułamek do postaci nieskracalnej albo znajdź liczbę, przez którą go skrócono.",
           generuj(r) {
-            const [p, m] = prosty(r, 2, 12);
+            const [p, m] = prosty(r, 2, 9);
             const k = r.int(2, 9);
             const L = p * k, M = m * k;
             if (r.chance(0.35)) {
@@ -389,7 +389,7 @@ export default {
         {
           nazwa: "Różne mianowniki",
           slownie: "Najpierw rozszerzamy ułamki do wspólnego mianownika. Potem liczymy tak jak przy takich samych mianownikach.",
-          tex: "\\frac{1}{2}+\\frac{1}{3}=\\frac{3}{6}+\\frac{2}{6}=\\frac{5}{6}",
+          tex: "\\frac{1}{2}+\\frac{1}{3}\\qquad=\\frac{3}{6}+\\frac{2}{6}\\qquad=\\frac{5}{6}",
           przyklad: "$\\frac{3}{4}-\\frac{1}{6}=\\frac{9}{12}-\\frac{2}{12}=\\frac{7}{12}$.",
           uwaga: "Wspólnym mianownikiem może być też iloczyn mianowników. Na końcu sprawdź, czy wynik da się skrócić.",
         },
@@ -402,7 +402,7 @@ export default {
         {
           nazwa: "Odejmowanie od całości",
           slownie: "Całość zamieniamy na ułamek o takim samym mianowniku, jak drugi ułamek. Przydaje się, gdy pytamy, ile zostało.",
-          tex: "1-\\frac{3}{8}=\\frac{8}{8}-\\frac{3}{8}=\\frac{5}{8}",
+          tex: "1-\\frac{3}{8}\\qquad=\\frac{8}{8}-\\frac{3}{8}\\qquad=\\frac{5}{8}",
           przyklad: "$3-\\frac{2}{5}=2\\frac{5}{5}-\\frac{2}{5}=2\\frac{3}{5}$.",
         },
       ],
@@ -420,19 +420,19 @@ export default {
         },
         {
           nr: "16",
-          tresc: "Suma $\\frac{1}{2}+\\frac{1}{3}$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Ile wynosi suma $\\frac{1}{2}+\\frac{1}{3}$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\frac{2}{5}$", "$\\frac{2}{6}$", "$\\frac{5}{6}$", "$\\frac{1}{6}$"],
           poprawna: 2,
         },
         {
           nr: "17",
-          tresc: "Różnica $\\frac{7}{8}-\\frac{1}{4}$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Ile wynosi różnica $\\frac{7}{8}-\\frac{1}{4}$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\frac{6}{4}$", "$\\frac{3}{4}$", "$\\frac{1}{2}$", "$\\frac{5}{8}$"],
           poprawna: 3,
         },
         {
           nr: "18",
-          tresc: "Suma $2\\frac{3}{5}+1\\frac{4}{5}$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Ile wynosi suma $2\\frac{3}{5}+1\\frac{4}{5}$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$4\\frac{7}{5}$", "$3\\frac{7}{10}$", "$3\\frac{2}{5}$", "$4\\frac{2}{5}$"],
           poprawna: 3,
         },
@@ -599,15 +599,15 @@ export default {
         },
         {
           nazwa: "Mnożenie dwóch ułamków",
-          slownie: "Mnożymy liczniki przez siebie i mianowniki przez siebie. Przed mnożeniem warto skrócić „na krzyż”.",
-          tex: "\\frac{a}{b}\\cdot\\frac{c}{d}=\\frac{a\\cdot c}{b\\cdot d}",
-          przyklad: "$\\frac{2}{3}\\cdot\\frac{3}{4}=\\frac{2\\cdot 3}{3\\cdot 4}=\\frac{6}{12}=\\frac{1}{2}$.",
+          slownie: "Mnożymy liczniki przez siebie i mianowniki przez siebie. Przed mnożeniem warto skrócić licznik jednego ułamka z mianownikiem drugiego.",
+          tex: "\\frac{a}{b}\\cdot\\frac{c}{d}\\qquad=\\frac{a\\cdot c}{b\\cdot d}",
+          przyklad: "$\\frac{2}{3}\\cdot\\frac{3}{4}=\\frac{2\\cdot 3}{3\\cdot 4}=\\frac{6}{12}=\\frac{1}{2}$. Szybciej: trójka w liczniku i trójka w mianowniku się skracają, zostaje $\\frac{2}{4}=\\frac{1}{2}$.",
           uwaga: "Przy mnożeniu nie szukamy wspólnego mianownika. To jest potrzebne tylko przy dodawaniu i odejmowaniu.",
         },
         {
           nazwa: "Liczby mieszane w mnożeniu",
           slownie: "Liczbę mieszaną najpierw zamieniamy na ułamek niewłaściwy. Dopiero potem mnożymy.",
-          tex: "1\\frac{1}{2}\\cdot 2\\frac{2}{3}=\\frac{3}{2}\\cdot\\frac{8}{3}=4",
+          tex: "1\\frac{1}{2}\\cdot 2\\frac{2}{3}\\qquad=\\frac{3}{2}\\cdot\\frac{8}{3}\\qquad=4",
           przyklad: "$\\frac{3}{2}\\cdot\\frac{8}{3}=\\frac{24}{6}=4$.",
           uwaga: "Nie mnóż osobno całości i osobno ułamków. To daje zły wynik.",
         },
@@ -621,7 +621,7 @@ export default {
       zadania: [
         {
           nr: "23",
-          tresc: "Iloczyn $\\frac{2}{5}\\cdot 3$ jest równy. **Wybierz właściwą odpowiedź.**",
+          tresc: "Ile wynosi iloczyn $\\frac{2}{5}\\cdot 3$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\frac{6}{15}$", "$\\frac{2}{15}$", "$\\frac{6}{5}$", "$\\frac{5}{6}$"],
           poprawna: 2,
         },
@@ -633,7 +633,7 @@ export default {
         },
         {
           nr: "25",
-          tresc: "Iloczyn $\\frac{2}{3}\\cdot\\frac{3}{8}$ jest równy. **Wybierz właściwą odpowiedź.**",
+          tresc: "Ile wynosi iloczyn $\\frac{2}{3}\\cdot\\frac{3}{8}$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\frac{5}{11}$", "$\\frac{16}{9}$", "$\\frac{1}{4}$", "$\\frac{3}{4}$"],
           poprawna: 2,
         },
@@ -648,13 +648,13 @@ export default {
         },
         {
           nr: "27",
-          tresc: "Iloczyn $1\\frac{1}{2}\\cdot 2\\frac{2}{3}$ jest równy. **Wybierz właściwą odpowiedź.**",
+          tresc: "Ile wynosi iloczyn $1\\frac{1}{2}\\cdot 2\\frac{2}{3}$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$2\\frac{1}{3}$", "$3\\frac{1}{3}$", "$4\\frac{1}{6}$", "$4$"],
           poprawna: 3,
         },
         {
           nr: "28",
-          tresc: "Prostokątna tablica ma wymiary $\\frac{2}{3}$ m i $\\frac{3}{5}$ m. Pole tej tablicy jest równe. **Wybierz właściwą odpowiedź.**",
+          tresc: "Prostokątna tablica ma wymiary $\\frac{2}{3}$ m i $\\frac{3}{5}$ m. Jakie jest pole tej tablicy? **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\frac{2}{5}\\ \\text{m}^2$", "$\\frac{38}{15}\\ \\text{m}^2$", "$\\frac{19}{15}\\ \\text{m}^2$", "$\\frac{5}{8}\\ \\text{m}^2$"],
           poprawna: 0,
         },
@@ -778,14 +778,14 @@ export default {
         {
           nazwa: "Dzielenie ułamków",
           slownie: "Dzielenie zamieniamy na mnożenie przez odwrotność drugiej liczby (tej, przez którą dzielimy).",
-          tex: "\\frac{a}{b}:\\frac{c}{d}=\\frac{a}{b}\\cdot\\frac{d}{c}",
+          tex: "\\frac{a}{b}:\\frac{c}{d}\\qquad=\\frac{a}{b}\\cdot\\frac{d}{c}",
           przyklad: "$\\frac{3}{4}:\\frac{9}{8}=\\frac{3}{4}\\cdot\\frac{8}{9}=\\frac{24}{36}=\\frac{2}{3}$.",
           uwaga: "Odwracamy tylko drugi ułamek (dzielnik). Pierwszy zostaje bez zmian.",
         },
         {
           nazwa: "Ile razy się mieści?",
           slownie: "Dzielenie odpowiada na pytanie, ile razy jedna liczba mieści się w drugiej.",
-          przyklad: "$\\frac{3}{4}:\\frac{1}{4}=3$, bo ćwiartka mieści się w $\\frac{3}{4}$ trzy razy. Z $2$ pizz po $\\frac{1}{3}$ pizzy mamy $2:\\frac{1}{3}=2\\cdot 3=6$ kawałków.",
+          przyklad: "$\\frac{3}{4}:\\frac{1}{4}=3$, bo ćwiartka mieści się w $\\frac{3}{4}$ trzy razy. Ile kawałków po $\\frac{1}{3}$ pizzy wyjdzie z $2$ pizz? $2:\\frac{1}{3}=2\\cdot 3=6$ kawałków.",
           uwaga: "Dzieląc przez ułamek mniejszy od $1$, dostajemy wynik większy od dzielnej.",
         },
       ],
@@ -798,25 +798,25 @@ export default {
       zadania: [
         {
           nr: "31",
-          tresc: "Odwrotnością liczby $2\\frac{1}{3}$ jest. **Wybierz właściwą odpowiedź.**",
+          tresc: "Jaka liczba jest odwrotnością liczby $2\\frac{1}{3}$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$3\\frac{1}{2}$", "$\\frac{1}{7}$", "$\\frac{7}{3}$", "$\\frac{3}{7}$"],
           poprawna: 3,
         },
         {
           nr: "32",
-          tresc: "Iloczyn liczby $\\frac{4}{9}$ i jej odwrotności jest równy. **Wybierz właściwą odpowiedź.**",
+          tresc: "Ile wynosi iloczyn liczby $\\frac{4}{9}$ i jej odwrotności? **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\frac{16}{81}$", "$1$", "$0$", "$\\frac{4}{9}$"],
           poprawna: 1,
         },
         {
           nr: "33",
-          tresc: "Iloraz $\\frac{3}{5}:6$ jest równy. **Wybierz właściwą odpowiedź.**",
+          tresc: "Ile wynosi iloraz $\\frac{3}{5}:6$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\frac{1}{10}$", "$\\frac{18}{5}$", "$\\frac{3}{11}$", "$\\frac{1}{2}$"],
           poprawna: 0,
         },
         {
           nr: "34",
-          tresc: "Iloraz $\\frac{2}{3}:\\frac{4}{9}$ jest równy. **Wybierz właściwą odpowiedź.**",
+          tresc: "Ile wynosi iloraz $\\frac{2}{3}:\\frac{4}{9}$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\frac{8}{27}$", "$\\frac{2}{3}$", "$1\\frac{1}{2}$", "$\\frac{3}{4}$"],
           poprawna: 2,
         },
@@ -986,13 +986,13 @@ export default {
       zadania: [
         {
           nr: "39",
-          tresc: "Wartość wyrażenia $\\frac{1}{2}+\\frac{1}{3}\\cdot\\frac{3}{4}$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Jaką wartość ma wyrażenie $\\frac{1}{2}+\\frac{1}{3}\\cdot\\frac{3}{4}$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\frac{5}{8}$", "$\\frac{1}{4}$", "$\\frac{3}{4}$", "$\\frac{5}{6}$"],
           poprawna: 2,
         },
         {
           nr: "40",
-          tresc: "Wartość wyrażenia $\\left(\\frac{3}{4}-\\frac{1}{2}\\right):\\frac{1}{8}$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Jaką wartość ma wyrażenie $\\left(\\frac{3}{4}-\\frac{1}{2}\\right):\\frac{1}{8}$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\frac{1}{2}$", "$2$", "$\\frac{1}{32}$", "$\\frac{5}{8}$"],
           poprawna: 1,
         },
@@ -1019,7 +1019,7 @@ export default {
         },
         {
           nr: "44",
-          tresc: "Wartość wyrażenia $2\\frac{1}{2}:\\frac{5}{6}-1\\frac{1}{3}$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Jaką wartość ma wyrażenie $2\\frac{1}{2}:\\frac{5}{6}-1\\frac{1}{3}$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\frac{3}{4}$", "$4\\frac{1}{3}$", "$1\\frac{2}{3}$", "$1\\frac{1}{3}$"],
           poprawna: 2,
         },
