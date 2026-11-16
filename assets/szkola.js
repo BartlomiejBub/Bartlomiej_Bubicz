@@ -54,7 +54,7 @@ export const KLASY = [
     rozdzialy: [
       { id: "sp6-calkowite", nr: "I", nazwa: "Liczby całkowite", opis: "Liczby dodatnie i ujemne, dodawanie, odejmowanie, mnożenie i dzielenie liczb całkowitych.", plik: "sp6/calkowite.js",
         lekcje: ["Liczby dodatnie i ujemne", "Dodawanie liczb całkowitych", "Mnożenie i dzielenie liczb całkowitych", "Odejmowanie liczb całkowitych", "Własności działań na liczbach całkowitych"] },
-      { id: "sp6-dzialania-1", nr: "II", nazwa: "Działania na liczbach, cz. 1", opis: "Zadania tekstowe, kalkulator, dzielniki i wielokrotności, dodawanie i odejmowanie ułamków.",
+      { id: "sp6-dzialania-1", nr: "II", nazwa: "Działania na liczbach, cz. 1", opis: "Zadania tekstowe, kalkulator, dzielniki i wielokrotności, dodawanie i odejmowanie ułamków.", plik: "sp6/dzialania-1.js",
         lekcje: ["Sposoby na zadania tekstowe", "Obliczenia na kalkulatorze", "Liczby naturalne", "Dzielniki i wielokrotności", "Ułamki", "Dodawanie liczb dodatnich", "Odejmowanie liczb dodatnich", "Dodawanie i odejmowanie"] },
       { id: "sp6-dzialania-2", nr: "III", nazwa: "Działania na liczbach, cz. 2", opis: "Mnożenie i dzielenie ułamków, zaokrąglanie, ułamek liczby, kolejność działań.",
         lekcje: ["Mnożenie", "Dzielenie", "Dzielenie pisemne", "Zaokrąglanie ułamków dziesiętnych. Ułamki okresowe", "Ułamek liczby", "Ułamek liczby – zadania", "Kolejność wykonywania działań"] },
