@@ -85,7 +85,7 @@ export const KLASY = [
         lekcje: ["Co to jest równanie", "Rozwiązywanie równań", "Zadania tekstowe", "Zadania tekstowe z procentami", "Przekształcanie wzorów"] },
       { id: "sp7-pitagoras", nr: "VI", nazwa: "Trójkąty prostokątne", opis: "Twierdzenie Pitagorasa, przekątna kwadratu, wysokość trójkąta równobocznego.", plik: "sp7/pitagoras.js",
         lekcje: ["Twierdzenie Pitagorasa", "Twierdzenie Pitagorasa – zadania", "Kwadrat i jego połowa", "Trójkąt równoboczny i jego połowa"] },
-      { id: "sp7-uklad", nr: "VII", nazwa: "Układ współrzędnych", opis: "Kratka i układ współrzędnych, punkty, długości i pola, odcinki w układzie współrzędnych.",
+      { id: "sp7-uklad", nr: "VII", nazwa: "Układ współrzędnych", opis: "Kratka i układ współrzędnych, punkty, długości i pola, odcinki w układzie współrzędnych.", plik: "sp7/uklad.js",
         lekcje: ["Geometria kartki w kratkę", "Punkty w układzie współrzędnych", "Długości i pola w układzie współrzędnych", "Odcinki w układzie współrzędnych"] },
     ],
   },
