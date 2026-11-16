@@ -62,7 +62,7 @@ export const KLASY = [
         lekcje: ["Okrąg i koło. Odległość punktu od prostej", "Kąty", "Trójkąty", "Czworokąty", "Pola czworokątów", "Figury na kratce"] },
       { id: "sp6-rownania", nr: "V", nazwa: "Równania", opis: "Czym jest równanie, sprawdzanie rozwiązania, rozwiązywanie równań i zadania tekstowe.", plik: "sp6/rownania.js",
         lekcje: ["Równania, czyli skąd my to znamy", "Sprawdzanie rozwiązania", "Jak rozwiązać równanie", "Trudniejsze równania", "Zadania tekstowe"] },
-      { id: "sp6-bryly", nr: "VI", nazwa: "Bryły", opis: "Objętość brył, zamiana jednostek, siatki i pole powierzchni.",
+      { id: "sp6-bryly", nr: "VI", nazwa: "Bryły", opis: "Objętość brył, zamiana jednostek, siatki i pole powierzchni.", plik: "sp6/bryly.js",
         lekcje: ["Bryły i ich objętość", "Zamiana jednostek", "Siatki brył", "Pole powierzchni bryły"] },
       { id: "sp6-matematyka-i-my", nr: "VII", nazwa: "Matematyka i my", opis: "Tabele, diagramy i wykresy, procenty, prędkość, droga i czas, wzory, plan, mapa i skala.",
         lekcje: ["Tabele", "Diagramy i wykresy", "Procenty", "Prędkość, droga, czas", "Korzystanie ze wzorów", "Plan, mapa i skala"] },
