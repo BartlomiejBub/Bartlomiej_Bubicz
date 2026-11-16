@@ -47,6 +47,9 @@ function dziel(w, x) {
   return `Dzielimy obie strony przez $${w}$: $x = ${x.tex()}$.`;
 }
 
+/** „punkt procentowy” z poprawną odmianą: 1 punkt, 2 punkty, 5 punktów. */
+const ppl = (n) => (n === 1 ? "punkt procentowy" : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? "punkty procentowe" : "punktów procentowych");
+
 const nwd = (a, b) => (b ? nwd(b, a % b) : Math.abs(a));
 const nww = (a, b) => (a / nwd(a, b)) * b;
 
@@ -151,7 +154,7 @@ export default {
           nr: "7",
           punkty: 3,
           tresc: "W klasie jest $28$ uczniów. Na koszykówkę chodzi $15$ z nich, na pływanie $12$, a na oba te zajęcia $7$ uczniów. Ilu uczniów nie chodzi na żadne z tych zajęć? Ilu chodzi tylko na pływanie? **Zapisz obliczenia.**",
-          rozwiazanie: "Niech $A$ – uczniowie chodzący na koszykówkę, $B$ – na pływanie. Wtedy $|A|=15$, $|B|=12$, $|A\\cap B|=7$.\n\nNa co najmniej jedne zajęcia chodzi $|A\\cup B|=15+12-7=20$ uczniów.\n\nNa żadne zajęcia nie chodzi $28-20=8$ uczniów.\n\nTylko na pływanie chodzi $|B|-|A\\cap B|=12-7=5$ uczniów.\n\nOdpowiedź: na żadne zajęcia chodzi $8$ uczniów, tylko na pływanie $5$ uczniów.",
+          rozwiazanie: "Niech $A$ – uczniowie chodzący na koszykówkę, $B$ – na pływanie. Wtedy $|A|=15$, $|B|=12$, $|A\\cap B|=7$.\n\nNa co najmniej jedne zajęcia chodzi $|A\\cup B|=15+12-7=20$ uczniów.\n\nNa żadne zajęcia nie chodzi $28-20=8$ uczniów.\n\nTylko na pływanie chodzi $|B|-|A\\cap B|=12-7=5$ uczniów.\n\nOdpowiedź: na żadne z tych zajęć nie chodzi $8$ uczniów, a tylko na pływanie chodzi $5$ uczniów.",
         },
       ],
       generatory: [
@@ -1144,7 +1147,7 @@ export default {
                   pola: [{ id: "w", typ: "liczba", etykieta: "Punkty procentowe" }],
                   odpowiedz: { w: d },
                   wynik: `$${d}$ p.p.`,
-                  rozwiazanie: ["Punkty procentowe to różnica dwóch wartości podanych w procentach.", `$${Math.max(p1, p2)} - ${Math.min(p1, p2)} = ${d}$ punktów procentowych.`],
+                  rozwiazanie: ["Punkty procentowe to różnica dwóch wartości podanych w procentach.", `$${Math.max(p1, p2)} - ${Math.min(p1, p2)} = ${d}$ ${ppl(d)}.`],
                 };
               }
               const v = q(d, p1).mul(100);
@@ -1155,7 +1158,7 @@ export default {
                 odpowiedz: { w: v },
                 wynik: `$${dec(v)}\\%$`,
                 rozwiazanie: [
-                  `Zmiana: $${Math.max(p1, p2)} - ${Math.min(p1, p2)} = ${d}$ punktów procentowych.`,
+                  `Zmiana: $${Math.max(p1, p2)} - ${Math.min(p1, p2)} = ${d}$ ${ppl(d)}.`,
                   `Procent zmiany liczymy od wartości początkowej: $\\frac{${d}}{${p1}} \\cdot 100\\% = ${dec(v)}\\%$.`,
                 ],
               };
@@ -1169,9 +1172,9 @@ export default {
           generuj(r) {
             const tryb = r.pick(["zaokraglanie", "bezwzgledny", "wzgledny"]);
             if (tryb === "zaokraglanie") {
-              const N = r.int(1500, 98000);
-              const x = q(N, 1000);
               const miejsce = r.pick(["jedności", "części dziesiątych", "dziesiątek"]);
+              const N = r.int(miejsce === "dziesiątek" ? 15000 : 1500, 98000);
+              const x = q(N, 1000);
               const cyfra = miejsce === "jedności" ? Math.floor(N / 100) % 10 : miejsce === "części dziesiątych" ? Math.floor(N / 10) % 10 : Math.floor(N / 1000) % 10;
               const zaokr = (v) => Math.floor(v + 0.5);
               const wynik = miejsce === "jedności" ? q(zaokr(N / 1000)) : miejsce === "części dziesiątych" ? q(zaokr(N / 100), 10) : q(10 * zaokr(N / 10000));

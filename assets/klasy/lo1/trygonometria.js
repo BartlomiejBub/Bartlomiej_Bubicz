@@ -593,10 +593,10 @@ export default {
         },
         {
           nazwa: "Kąt z dwóch boków",
-          slownie: "Gdy znasz dwa boki, policz stosunek z definicji jednej funkcji. Kąt odczytaj ze ściągi (dla $30^\\circ$, $45^\\circ$, $60^\\circ$) albo z tablic lub kalkulatora.",
+          slownie: "Gdy znasz dwa boki, policz stosunek z definicji jednej funkcji. Kąt odczytaj ze ściągi (dla $30^\\circ$, $45^\\circ$ i $60^\\circ$).",
           tex: "\\operatorname{tg}\\alpha=\\frac{a}{b}",
           przyklad: "Dla $a = 4\\sqrt{3}$ i $b = 4$: $\\operatorname{tg}\\alpha = \\sqrt{3}$, więc $\\alpha = 60^\\circ$, a drugi kąt ma $30^\\circ$.",
-          uwaga: "Z samej wartości funkcji kąt odczytasz bez tablic tylko dla $30^\\circ$, $45^\\circ$ i $60^\\circ$.",
+          uwaga: "Z samej wartości funkcji kąt odczytasz tylko dla $30^\\circ$, $45^\\circ$ i $60^\\circ$.",
         },
         {
           nazwa: "Zadania z życia",
@@ -657,7 +657,7 @@ export default {
           nr: "28",
           punkty: 3,
           tresc: "W trójkącie prostokątnym $ABC$ kąt prosty jest przy wierzchołku $C$, $|AC| = 8$ i $|BC| = 8\\sqrt{3}$. Rozwiąż ten trójkąt: oblicz miary kątów ostrych i długość przeciwprostokątnej. **Zapisz obliczenia.**",
-          rozwiazanie: "Przyprostokątna $BC$ leży naprzeciw kąta $A$, więc $\\operatorname{tg} A = \\frac{|BC|}{|AC|} = \\frac{8\\sqrt{3}}{8} = \\sqrt{3}$.\n\nZ tabeli wartości: $\\operatorname{tg} 60^\\circ = \\sqrt{3}$, więc $\\angle A = 60^\\circ$ i $\\angle B = 90^\\circ - 60^\\circ = 30^\\circ$.\n\nPrzeciwprostokątna z twierdzenia Pitagorasa: $|AB| = \\sqrt{8^2 + (8\\sqrt{3})^2} = \\sqrt{64 + 192} = \\sqrt{256} = 16$.\n\nOdpowiedź: $\\angle A = 60^\\circ$, $\\angle B = 30^\\circ$, $|AB| = 16$.",
+          rozwiazanie: "Przyprostokątna $BC$ leży naprzeciw kąta $A$, więc $\\operatorname{tg} A = \\frac{|BC|}{|AC|} = \\frac{8\\sqrt{3}}{8} = \\sqrt{3}$.\n\nZe ściągi:$\\operatorname{tg} 60^\\circ = \\sqrt{3}$, więc $\\angle A = 60^\\circ$ i $\\angle B = 90^\\circ - 60^\\circ = 30^\\circ$.\n\nPrzeciwprostokątna z twierdzenia Pitagorasa: $|AB| = \\sqrt{8^2 + (8\\sqrt{3})^2} = \\sqrt{64 + 192} = \\sqrt{256} = 16$.\n\nOdpowiedź: $\\angle A = 60^\\circ$, $\\angle B = 30^\\circ$, $|AB| = 16$.",
         },
       ],
       generatory: [
