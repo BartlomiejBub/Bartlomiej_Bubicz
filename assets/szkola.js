@@ -81,7 +81,7 @@ export const KLASY = [
         lekcje: ["Pierwiastek kwadratowy", "Szacowanie pierwiastków", "Własności pierwiastkowania", "Pierwiastek trzeciego stopnia", "Działania na pierwiastkach sześciennych", "Działania na potęgach i pierwiastkach"] },
       { id: "sp7-wyrazenia", nr: "IV", nazwa: "Wyrażenia algebraiczne", opis: "Zapisywanie wyrażeń, sumy algebraiczne, opuszczanie nawiasów, porządkowanie wyrazów.", plik: "sp7/wyrazenia.js",
         lekcje: ["Od wzorków do wzorów", "Suma algebraiczna i jej wyrazy", "Opuszczanie nawiasów", "Porządkowanie wyrazów w sumach algebraicznych", "Wyrażenia algebraiczne i procenty"] },
-      { id: "sp7-rownania", nr: "V", nazwa: "Równania", opis: "Rozwiązywanie równań, zadania tekstowe (także z procentami), przekształcanie wzorów.",
+      { id: "sp7-rownania", nr: "V", nazwa: "Równania", opis: "Rozwiązywanie równań, zadania tekstowe (także z procentami), przekształcanie wzorów.", plik: "sp7/rownania.js",
         lekcje: ["Co to jest równanie", "Rozwiązywanie równań", "Zadania tekstowe", "Zadania tekstowe z procentami", "Przekształcanie wzorów"] },
       { id: "sp7-pitagoras", nr: "VI", nazwa: "Trójkąty prostokątne", opis: "Twierdzenie Pitagorasa, przekątna kwadratu, wysokość trójkąta równobocznego.",
         lekcje: ["Twierdzenie Pitagorasa", "Twierdzenie Pitagorasa – zadania", "Kwadrat i jego połowa", "Trójkąt równoboczny i jego połowa"] },
