@@ -137,7 +137,7 @@ export default {
         },
         {
           nr: "3",
-          tresc: "Wartość wyrażenia $\\sqrt{0{,}36}$ jest równa: **Wybierz właściwą odpowiedź.**",
+          tresc: "Ile wynosi $\\sqrt{0{,}36}$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$0{,}6$", "$0{,}18$", "$0{,}06$", "$6$"],
           poprawna: 0,
         },
@@ -380,13 +380,13 @@ export default {
       zadania: [
         {
           nr: "9",
-          tresc: "Liczba $\\sqrt{20}$ leży między: **Wybierz właściwą odpowiedź.**",
+          tresc: "Między którymi kolejnymi liczbami całkowitymi leży liczba $\\sqrt{20}$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$3$ i $4$", "$4$ i $5$", "$5$ i $6$", "$10$ i $11$"],
           poprawna: 1,
         },
         {
           nr: "10",
-          tresc: "Najmniejsza liczba całkowita większa od $\\sqrt{40}$ to: **Wybierz właściwą odpowiedź.**",
+          tresc: "Jaka jest najmniejsza liczba całkowita większa od $\\sqrt{40}$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$7$", "$6$", "$8$", "$20$"],
           poprawna: 0,
         },
@@ -413,7 +413,7 @@ export default {
         },
         {
           nr: "14",
-          tresc: "Kwadratowa działka ma pole $70$ m$^2$. Długość jej boku jest liczbą z przedziału: **Wybierz właściwą odpowiedź.**",
+          tresc: "Kwadratowa działka ma pole $70$ m$^2$. W jakim przedziale mieści się długość jej boku? **Wybierz właściwą odpowiedź.**",
           opcje: ["od $7$ m do $8$ m", "od $9$ m do $10$ m", "od $35$ m do $36$ m", "od $8$ m do $9$ m"],
           poprawna: 3,
         },
@@ -422,7 +422,7 @@ export default {
         {
           nr: "15",
           punkty: 2,
-          tresc: "Oszacuj $\\sqrt{80}$: zapisz, między którymi kolejnymi liczbami całkowitymi leży, i powiedz, do której z nich jest bliżej. **Zapisz obliczenia.**",
+          tresc: "Oszacuj $\\sqrt{80}$: zapisz, między którymi kolejnymi liczbami całkowitymi leży, i wskaż, do której z nich jest bliżej. **Zapisz obliczenia.**",
           rozwiazanie: "Szukamy kwadratów liczb całkowitych blisko $80$: $8^2=64$ i $9^2=81$.\n\nSkoro $64<80<81$, to $8<\\sqrt{80}<9$.\n\nLiczba $80$ jest tuż przy $81$ (różnica to $1$), a od $64$ dzieli ją $16$. Zatem $\\sqrt{80}$ jest bliżej $9$.\n\nOdpowiedź: $8<\\sqrt{80}<9$ i $\\sqrt{80}$ jest bliżej liczby $9$.",
         },
         {
@@ -570,25 +570,25 @@ export default {
       zadania: [
         {
           nr: "17",
-          tresc: "Wartość iloczynu $\\sqrt2\\cdot\\sqrt8$ jest równa: **Wybierz właściwą odpowiedź.**",
+          tresc: "Ile wynosi iloczyn $\\sqrt2\\cdot\\sqrt8$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\sqrt{10}$", "$16$", "$2$", "$4$"],
           poprawna: 3,
         },
         {
           nr: "18",
-          tresc: "Wartość ilorazu $\\sqrt{75}:\\sqrt3$ jest równa: **Wybierz właściwą odpowiedź.**",
+          tresc: "Ile wynosi iloraz $\\sqrt{75}:\\sqrt3$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$25$", "$5$", "$\\sqrt{72}$", "$\\sqrt{78}$"],
           poprawna: 1,
         },
         {
           nr: "19",
-          tresc: "Liczba $\\sqrt{50}$ jest równa: **Wybierz właściwą odpowiedź.**",
+          tresc: "Jak inaczej zapisać liczbę $\\sqrt{50}$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$25\\sqrt2$", "$5\\sqrt{10}$", "$5\\sqrt2$", "$10\\sqrt5$"],
           poprawna: 2,
         },
         {
           nr: "20",
-          tresc: "Liczba $3\\sqrt5$ jest równa: **Wybierz właściwą odpowiedź.**",
+          tresc: "Jak inaczej zapisać liczbę $3\\sqrt5$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\sqrt{45}$", "$\\sqrt{15}$", "$\\sqrt{8}$", "$\\sqrt{225}$"],
           poprawna: 0,
         },
@@ -603,7 +603,7 @@ export default {
         },
         {
           nr: "22",
-          tresc: "Wartość iloczynu $\\sqrt{0{,}16}\\cdot\\sqrt{100}$ jest równa: **Wybierz właściwą odpowiedź.**",
+          tresc: "Ile wynosi iloczyn $\\sqrt{0{,}16}\\cdot\\sqrt{100}$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$0{,}4$", "$40$", "$4$", "$1{,}6$"],
           poprawna: 2,
         },
@@ -789,7 +789,7 @@ export default {
         },
         {
           nr: "26",
-          tresc: "Wartość wyrażenia $\\sqrt[3]{-64}$ jest równa: **Wybierz właściwą odpowiedź.**",
+          tresc: "Ile wynosi $\\sqrt[3]{-64}$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$4$", "$-8$", "$-4$", "$-16$"],
           poprawna: 2,
         },
@@ -816,7 +816,7 @@ export default {
         },
         {
           nr: "30",
-          tresc: "Iloczyn $\\sqrt[3]{16}\\cdot\\sqrt[3]{4}$ jest równy: **Wybierz właściwą odpowiedź.**",
+          tresc: "Ile wynosi iloczyn $\\sqrt[3]{16}\\cdot\\sqrt[3]{4}$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\sqrt[3]{20}$", "$2$", "$8$", "$4$"],
           poprawna: 3,
         },
@@ -1031,7 +1031,7 @@ export default {
           tex: "\\sqrt{a^{2n}}=a^n\\qquad\\sqrt[3]{a^{3n}}=a^n",
           litery: "$a\\ge0$, $n$ – liczba naturalna.",
           przyklad: "$\\sqrt{2^6}=\\sqrt{(2^3)^2}=2^3=8$. Podobnie $\\sqrt[3]{2^6}=\\sqrt[3]{(2^2)^3}=2^2=4$.",
-          uwaga: "Wykładnik dzielimy przez $2$ (albo $3$). $\\sqrt{3^4}=3^2=9$, a nie $3^{4-2}$ czy $3^{4}:2$ równe $40{,}5$.",
+          uwaga: "Wykładnik dzielimy przez $2$ (albo $3$). $\\sqrt{3^6}=3^3=27$, a nie $3^{6-2}=3^4=81$.",
         },
         {
           nazwa: "Dodawanie takich samych pierwiastków",
@@ -1056,13 +1056,13 @@ export default {
       zadania: [
         {
           nr: "33",
-          tresc: "Wartość wyrażenia $(\\sqrt7)^2$ jest równa: **Wybierz właściwą odpowiedź.**",
+          tresc: "Ile wynosi $(\\sqrt7)^2$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$49$", "$14$", "$\\sqrt{14}$", "$7$"],
           poprawna: 3,
         },
         {
           nr: "34",
-          tresc: "Liczba $\\sqrt{3^4}$ jest równa: **Wybierz właściwą odpowiedź.**",
+          tresc: "Ile wynosi $\\sqrt{3^4}$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$2$", "$9$", "$12$", "$81$"],
           poprawna: 1,
         },
@@ -1074,7 +1074,7 @@ export default {
         },
         {
           nr: "36",
-          tresc: "Suma $\\sqrt8+\\sqrt{18}$ jest równa: **Wybierz właściwą odpowiedź.**",
+          tresc: "Ile wynosi suma $\\sqrt8+\\sqrt{18}$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\sqrt{26}$", "$6\\sqrt2$", "$13\\sqrt2$", "$5\\sqrt2$"],
           poprawna: 3,
         },

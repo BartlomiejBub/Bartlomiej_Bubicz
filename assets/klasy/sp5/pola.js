@@ -742,10 +742,10 @@ export default {
             const p = ((a + b) * h) / 2;
             const [A, B, C, D] = r.pick([["A", "B", "C", "D"], ["K", "L", "M", "N"], ["P", "Q", "R", "S"]]);
             const stol = r.chance();
-            const u = stol ? "m" : r.pick(["cm", "dm", "m"]);
+            const u = stol ? "dm" : r.pick(["cm", "dm", "m"]);
             return {
               tresc: stol
-                ? `Blat stołu ma kształt trapezu o podstawach $${a}$ m i $${b}$ m. Odległość między podstawami wynosi $${h}$ m. Ile metrów kwadratowych ma pole blatu?`
+                ? `Blat stołu ma kształt trapezu o podstawach $${a}$ dm i $${b}$ dm. Odległość między podstawami wynosi $${h}$ dm. Ile decymetrów kwadratowych ma pole blatu?`
                 : `Trapez $${A}${B}${C}${D}$ ma podstawy $${a}$ ${u} i $${b}$ ${u} oraz wysokość $${h}$ ${u}. Oblicz pole tego trapezu.`,
               pola: [{ id: "w", typ: "liczba", etykieta: et(u) }],
               odpowiedz: { w: p },
@@ -811,11 +811,11 @@ export default {
           slownie: "Pole mierzymy w jednostkach kwadratowych: mm$^2$, cm$^2$, dm$^2$, m$^2$, km$^2$. Metr kwadratowy to pole kwadratu o boku $1$ m.",
           tex: "1\\ \\text{m}^2=1\\ \\text{m}\\cdot1\\ \\text{m}",
           przyklad: "Pole znaczka podajemy w cm$^2$, pole pokoju w m$^2$, a pole kraju w km$^2$.",
-          uwaga: "Metr kwadratowy to nie to samo co dwa metry.",
+          uwaga: "Metr kwadratowy to pole, a metr to długość. Dlatego $1$ m$^2$ to nie to samo co $2$ m.",
         },
         {
           nazwa: "Mniejsze jednostki pola",
-          slownie: "Sąsiednie jednostki pola różnią się $100$ razy. Bok kwadratu o boku $1$ dm ma $10$ cm, więc jego pole to $10 \\cdot 10 = 100$ cm$^2$.",
+          slownie: "Sąsiednie jednostki pola różnią się $100$ razy. Kwadrat o boku $1$ dm ma bok $10$ cm, więc jego pole to $10 \\cdot 10 = 100$ cm$^2$.",
           tex: "1\\ \\text{cm}^2=100\\ \\text{mm}^2\\qquad1\\ \\text{dm}^2=100\\ \\text{cm}^2\\qquad1\\ \\text{m}^2=100\\ \\text{dm}^2\\qquad1\\ \\text{m}^2=10\\,000\\ \\text{cm}^2",
           przyklad: "$3$ m$^2$ to $3 \\cdot 100 = 300$ dm$^2$.",
           uwaga: "Przy polu mnożymy przez $100$, a nie przez $10$ jak przy długości.",

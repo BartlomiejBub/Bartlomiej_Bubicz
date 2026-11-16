@@ -71,7 +71,7 @@ export default {
           slownie: "Liczymy schodkami: najpierw do najbliższej pełnej godziny, potem pełne godziny, a na końcu reszta minut. Na koniec wszystko dodajemy.",
           tex: "8{:}45\\to 9{:}00\\to 11{:}00\\to 11{:}20",
           przyklad: "Od $8{:}45$ do $11{:}20$: do $9{:}00$ jest $15$ min, do $11{:}00$ jest $2$ h, czyli $120$ min, a potem $20$ min. Razem $15 + 120 + 20 = 155$ min, czyli $2$ h $35$ min.",
-          uwaga: "Nie odejmuj godzin jak ułamków dziesiętnych. Wynik $11{,}20 - 8{,}45$ nie ma sensu, bo w godzinie jest $60$ minut, a nie $100$.",
+          uwaga: "Nie odejmuj godzin jak ułamków dziesiętnych. Od $8{:}45$ do $11{:}20$ nie liczymy $11{,}20 - 8{,}45$, bo w godzinie jest $60$ minut, a nie $100$.",
         },
         {
           nazwa: "Wiek i cyfry rzymskie",
@@ -216,22 +216,23 @@ export default {
             }
             const czesci = [];
             const kroki = [];
+            const dni = (n) => mn(n, "dzień", "dni", "dni");
             if (dotykaLutego) kroki.push(przestepny ? "Rok jest przestępny, więc luty ma $29$ dni." : "Rok jest zwykły, więc luty ma $28$ dni.");
             let ile;
             if (m1 === m2) {
               ile = d2 - d1;
-              kroki.push(`Obie daty są w tym samym miesiącu, więc odejmujemy: $${d2} - ${d1} = ${ile}$ dni.`);
+              kroki.push(`Obie daty są w tym samym miesiącu, więc odejmujemy: $${d2} - ${d1} = ${ile}$ ${dni(ile)}.`);
             } else {
               czesci.push(L[m1] - d1);
-              kroki.push(`Do końca miesiąca (${MIES_MIA[m1]} ma $${L[m1]}$ dni): $${L[m1]} - ${d1} = ${L[m1] - d1}$ dni.`);
+              kroki.push(`Do końca miesiąca (${MIES_MIA[m1]} ma $${L[m1]}$ dni): $${L[m1]} - ${d1} = ${L[m1] - d1}$ ${dni(L[m1] - d1)}.`);
               for (let m = m1 + 1; m < m2; m++) {
                 czesci.push(L[m]);
                 kroki.push(`Cały miesiąc (${MIES_MIA[m]}) to $${L[m]}$ dni.`);
               }
               czesci.push(d2);
-              kroki.push(`W ostatnim miesiącu dochodzi $${d2}$ dni.`);
+              kroki.push(`W ostatnim miesiącu dochodzi $${d2}$ ${dni(d2)}.`);
               ile = czesci.reduce((a, b) => a + b, 0);
-              kroki.push(`Dodajemy: $${czesci.join(" + ")} = ${ile}$ dni.`);
+              kroki.push(`Dodajemy: $${czesci.join(" + ")} = ${ile}$ ${dni(ile)}.`);
             }
             const rok = dotykaLutego ? (przestepny ? " To rok przestępny." : " To rok nieprzestępny.") : "";
             const tresc = r.pick([
@@ -266,13 +267,13 @@ export default {
         {
           nazwa: "Zamiana jednostek",
           slownie: "Gdy zamieniasz na mniejszą jednostkę, liczba wychodzi większa, więc mnożymy. Gdy zamieniasz na większą jednostkę, liczba wychodzi mniejsza, więc dzielimy.",
-          tex: "3{,}2\\text{ kg}=3{,}2\\cdot 1000\\text{ g}=3200\\text{ g}",
+          tex: "3{,}2\\text{ kg}=3200\\text{ g}",
           przyklad: "$450$ cm na metry: metr jest większą jednostką, więc dzielimy przez $100$. Wychodzi $4{,}5$ m. Mnożenie i dzielenie przez $10$, $100$ i $1000$ to przesuwanie przecinka.",
           uwaga: "Najpierw pomyśl: czy liczba ma wyjść większa, czy mniejsza? Jeśli $2$ kg zamieniasz na gramy, nie może wyjść $0{,}002$.",
         },
         {
           nazwa: "Pieniądze i reszta",
-          slownie: "Złoty ma $100$ groszy. Ceny zapisujemy z dwoma miejscami po przecinku. Reszta to pieniądze, które płacisz, minus cena zakupów.",
+          slownie: "Złoty ma $100$ groszy. Ceny zapisujemy z dwoma miejscami po przecinku. Reszta to pieniądze, które oddaje sprzedawca. Liczymy ją tak: zapłata minus cena zakupów.",
           tex: "1\\text{ zł}=100\\text{ gr}\\qquad \\text{reszta}=\\text{zapłata}-\\text{cena}",
           przyklad: "$3$ bułki po $0{,}80$ zł kosztują $3 \\cdot 0{,}80 = 2{,}40$ zł. Płacę $5$ zł, więc reszta to $5 - 2{,}40 = 2{,}60$ zł.",
           uwaga: "$4{,}5$ zł to $4$ zł $50$ gr, a nie $4$ zł $5$ gr. Pięć groszy to $0{,}05$ zł.",
@@ -280,7 +281,7 @@ export default {
         {
           nazwa: "Cena i ilość towaru",
           slownie: "Gdy znasz cenę jednego kilograma, to cenę kilku kilogramów liczysz mnożeniem. Żeby porównać dwa sklepy, policz, ile kosztuje taka sama ilość towaru, na przykład $1$ kg.",
-          tex: "\\text{koszt}=\\text{ilość}\\cdot\\text{cena za }1\\text{ kg}",
+          tex: "\\text{koszt}=\\text{ilość}\\cdot\\text{cena}",
           przyklad: "$2{,}5$ kg jabłek po $4$ zł za kilogram kosztuje $2{,}5 \\cdot 4 = 10$ zł. Dalej: $2$ kg za $9$ zł to $4{,}50$ zł za $1$ kg, więc taniej niż $5$ zł za $1$ kg.",
           uwaga: "Nie porównuj cen paczek o różnej masie. Najpierw policz cenę $1$ kg (albo $100$ g) w obu sklepach.",
         },
@@ -462,7 +463,7 @@ export default {
         },
         {
           nazwa: "Dzielenie po równo",
-          slownie: "Średnia pokazuje, ile dostanie każdy, gdy wszystko połączymy i podzielimy po równo. Średnia jest zawsze między najmniejszą a największą liczbą.",
+          slownie: "Średnia pokazuje, ile dostanie każdy, gdy wszystko połączymy i podzielimy po równo. Średnia nie jest mniejsza od najmniejszej liczby ani większa od największej.",
           przyklad: "W trzech koszykach jest $4$, $6$ i $8$ jabłek. Razem $18$ jabłek. Po równo to $18 : 3 = 6$ jabłek w koszyku. Średnia $6$ leży między $4$ a $8$.",
           uwaga: "Średnia nie musi być liczbą z listy. Średnia z liczb $3$ i $4$ to $3{,}5$.",
         },
@@ -548,7 +549,7 @@ export default {
               for (;;) {
                 n = Array.from({ length: c }, () => r.int(100, 190));
                 const s = n.reduce((a, b) => a + b, 0);
-                if (c !== 3 || s % 3 === 0) break;
+                if ((s * 10) % c === 0) break;
               }
               const s = n.reduce((a, b) => a + b, 0);
               const sr = q(s, 10 * c);
@@ -637,7 +638,7 @@ export default {
           nazwa: "Liczby dodatnie i ujemne",
           slownie: "Na termometrze temperatura powyżej zera to liczba dodatnia, a poniżej zera to liczba ujemna. Liczby ujemne mają przed sobą minus. Zero nie jest ani dodatnie, ani ujemne.",
           tex: "-5<0<3",
-          przyklad: "$-3$°C to trzy stopnie poniżej zera. Piętro $-2$ to drugi poziom garażu pod ziemią. Saldo $-15$ zł znaczy, że jesteśmy winni $15$ zł.",
+          przyklad: "$-3$°C to trzy stopnie poniżej zera. Piętro $-2$ to drugi poziom garażu pod ziemią. Dług $15$ zł można zapisać jako $-15$ zł.",
           uwaga: "$-3$ i $3$ to dwie różne liczby. Minus mówi, że liczba leży po drugiej stronie zera.",
         },
         {
@@ -659,7 +660,7 @@ export default {
           slownie: "Liczby przeciwne leżą w takiej samej odległości od zera, ale po różnych stronach. Liczby całkowite to liczby naturalne, zero i liczby przeciwne do naturalnych: $\\ldots, -2, -1, 0, 1, 2, \\ldots$",
           tex: "7\\text{ i }-7\\qquad -4\\text{ i }4",
           przyklad: "Przeciwna do $7$ to $-7$. Przeciwna do $-4$ to $4$. Przeciwna do $0$ to $0$. Liczba $-2{,}5$ nie jest całkowita, bo leży między $-3$ a $-2$.",
-          uwaga: "Liczba przeciwna to nie to samo co odwrotna. Przeciwna do $8$ to $-8$, a odwrotna to $\\frac{1}{8}$.",
+          uwaga: "Liczba przeciwna nie musi być ujemna. Przeciwna do $-4$ to $4$, czyli liczba dodatnia.",
         },
       ],
       jak: [
@@ -678,7 +679,7 @@ export default {
         {
           nr: "23",
           tresc: "Jaka liczba jest przeciwna do liczby $-8$? **Wybierz właściwą odpowiedź.**",
-          opcje: ["$\\frac{1}{8}$", "$-8$", "$0$", "$8$"],
+          opcje: ["$-8$", "$0$", "$-16$", "$8$"],
           poprawna: 3,
         },
         {
@@ -804,7 +805,7 @@ export default {
           slownie: "Zaczynamy w miejscu pierwszej liczby. Gdy dodajemy liczbę dodatnią, idziemy w prawo. Gdy dodajemy liczbę ujemną, idziemy w lewo.",
           tex: "3+(-5)=-2",
           przyklad: "$-2 + 6$: zaczynamy w $-2$ i idziemy $6$ kroków w prawo. Dochodzimy do $4$. Dalej: $3 + (-5)$: zaczynamy w $3$ i idziemy $5$ kroków w lewo, dochodzimy do $-2$.",
-          uwaga: "Liczbę ujemną w działaniu zapisujemy w nawiasie, np. $3 + (-5)$. Bez nawiasu dwa znaki stoją obok siebie i trudno się połapać.",
+          uwaga: "Liczbę ujemną w działaniu zapisujemy w nawiasie, np. $3 + (-5)$. Bez nawiasu dwa znaki stoją obok siebie i łatwo się pomylić.",
         },
         {
           nazwa: "Liczby o tych samych znakach",
@@ -979,7 +980,7 @@ export default {
       sciaga: [
         {
           nazwa: "O ile różnią się liczby",
-          slownie: "Żeby sprawdzić, o ile jedna liczba jest większa od drugiej, policzymy kroki na osi liczbowej od mniejszej do większej. Liczba kroków to odpowiedź.",
+          slownie: "Żeby sprawdzić, o ile jedna liczba jest większa od drugiej, policz kroki na osi liczbowej od mniejszej do większej. Liczba kroków to odpowiedź.",
           tex: "3\\to 8:\\ 8-3=5",
           przyklad: "$3$ i $8$ różnią się o $5$, bo od $3$ do $8$ jest $5$ kroków. Dalej: od $-9$ do $-4$ jest $5$ kroków, bo odległości od zera to $9$ i $4$, a $9 - 4 = 5$.",
           uwaga: "Liczba kroków jest zawsze dodatnia. Mówimy „o $5$”, a nie „o $-5$”.",
@@ -993,14 +994,14 @@ export default {
         },
         {
           nazwa: "Liczba o tyle większa lub mniejsza",
-          slownie: "Liczba o $k$ większa leży $k$ kroków na prawo. Liczba o $k$ mniejsza leży $k$ kroków na lewo. Możemy zapisać to dodawaniem.",
+          slownie: "Liczba o kilka większa leży tyle samo kroków na prawo. Liczba o kilka mniejsza leży tyle samo kroków na lewo. Możemy zapisać to dodawaniem.",
           tex: "-8+5=-3\\qquad 1+(-4)=-3",
           przyklad: "O $5$ większa od $-8$ to $-8 + 5 = -3$. O $4$ mniejsza od $1$: idziemy $4$ kroki w lewo ($0$, $-1$, $-2$, $-3$), więc $1 + (-4) = -3$.",
           uwaga: "O $3$ mniejsza od $-2$ to $-5$, a nie $-1$. Mniejsza liczba leży po lewej.",
         },
         {
           nazwa: "Najwyższa i najniższa wartość",
-          slownie: "Gdy chcemy wiedzieć, jak bardzo różnią się wszystkie wyniki, szukamy najmniejszej i największej liczby i liczymy, o ile się różnią.",
+          slownie: "Gdy chcesz wiedzieć, jak bardzo różnią się wszystkie wyniki, znajdź najmniejszą i największą liczbę. Potem policz, o ile się różnią.",
           przyklad: "Temperatury w tygodniu: $-4$°C, $2$°C, $-1$°C, $5$°C. Najzimniej było $-4$°C, a najcieplej $5$°C. Różnica: $4 + 5 = 9$ stopni.",
           uwaga: "Najmniejsza liczba to ta najbardziej na lewo, a nie ta z najmniejszą cyfrą. Wśród $-4$ i $2$ najmniejsza jest $-4$.",
         },

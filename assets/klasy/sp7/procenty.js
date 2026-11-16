@@ -393,7 +393,7 @@ export default {
       sciaga: [
         {
           nazwa: "Procent",
-          slownie: "Procent to jedna setna całości. Cała całość to $100\\%$, połowa to $50\\%$.",
+          slownie: "Procent to jedna setna całości. Cała całość to $100\\%$, a jej połowa to $50\\%$.",
           tex: "1\\%=\\frac{1}{100}=0{,}01",
           przyklad: "$1\\%$ z $300$ zł to $300:100=3$ zł. Cała kwota to $100\\%$, czyli $300$ zł, a połowa to $50\\%$, czyli $150$ zł.",
           uwaga: "$30\\%$ klasy to $30$ osób tylko wtedy, gdy w klasie jest $100$ osób. Procent to część całości, a nie liczba sztuk.",
@@ -442,13 +442,13 @@ export default {
         },
         {
           nr: "16",
-          tresc: "Ułamek $\\frac{7}{20}$ zapisany w procentach to: **Wybierz właściwą odpowiedź.**",
+          tresc: "Ile procent to ułamek $\\frac{7}{20}$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$7\\%$", "$20\\%$", "$35\\%$", "$3{,}5\\%$"],
           poprawna: 2,
         },
         {
           nr: "17",
-          tresc: "W klasie jest $25$ uczniów, a $40\\%$ z nich to chłopcy. Ilu uczniów to dziewczęta? **Wybierz właściwą odpowiedź.**",
+          tresc: "W klasie jest $25$ uczniów, a $40\\%$ z nich to chłopcy. Ile dziewcząt jest w tej klasie? **Wybierz właściwą odpowiedź.**",
           opcje: ["$15$", "$10$", "$60$", "$35$"],
           poprawna: 0,
         },
@@ -478,8 +478,8 @@ export default {
         {
           nr: "21",
           punkty: 2,
-          tresc: "W sklepie jest $40$ koszulek, a $14$ z nich jest niebieskich. Jaki procent koszulek jest niebieskich? Jaki procent koszulek nie jest niebieski? **Zapisz obliczenia.**",
-          rozwiazanie: "Niebieskie koszulki to ułamek $\\frac{14}{40}=\\frac{7}{20}$ wszystkich.\n\nZapisujemy go z mianownikiem $100$: $\\frac{7}{20}=\\frac{35}{100}=35\\%$.\n\nWszystkie koszulki to $100\\%$, więc pozostałe to $100\\%-35\\%=65\\%$.\n\nOdpowiedź: Niebieskich koszulek jest $35\\%$, a nie niebieskich $65\\%$.",
+          tresc: "W sklepie jest $40$ koszulek, a $14$ z nich jest niebieskich. Jaki procent koszulek jest niebieskich? Jaki procent koszulek ma inny kolor? **Zapisz obliczenia.**",
+          rozwiazanie: "Niebieskie koszulki to ułamek $\\frac{14}{40}=\\frac{7}{20}$ wszystkich.\n\nZapisujemy go z mianownikiem $100$: $\\frac{7}{20}=\\frac{35}{100}=35\\%$.\n\nWszystkie koszulki to $100\\%$, więc pozostałe to $100\\%-35\\%=65\\%$.\n\nOdpowiedź: Niebieskich koszulek jest $35\\%$, a koszulek w innym kolorze $65\\%$.",
         },
       ],
       generatory: [
@@ -537,7 +537,7 @@ export default {
               if (!p.calkowita) return null;
               const t = r.pick([
                 `W klasie jest $${N}$ uczniów, a $${k}$ z nich jedzie na wycieczkę. Jaki procent klasy stanowią ci uczniowie? Podaj liczbę bez znaku %.`,
-                `Pudełko zawiera $${N}$ kredek, a $${k}$ z nich jest czerwonych. Jaki procent kredek stanowią czerwone? Podaj liczbę bez znaku %.`,
+                `W pudełku jest $${N}$ kredek. Czerwonych kredek jest $${k}$. Jaki procent wszystkich kredek stanowią czerwone? Podaj liczbę bez znaku %.`,
                 `Ola ma $${N}$ zł. Wydała $${k}$ zł. Jaki procent swoich pieniędzy wydała? Podaj liczbę bez znaku %.`,
               ]);
               return {
@@ -683,7 +683,7 @@ export default {
             const KONT = [
               { t: (p, A) => `Zniżka $${p}\\%$ obniżyła cenę o $${A}$ zł. Ile złotych kosztował towar przed obniżką?`, et: "Cena $=$" },
               { t: (p, A) => `Ala zebrała $${A}$ zł, czyli $${p}\\%$ potrzebnej kwoty. Ile złotych potrzeba w sumie?`, et: "Kwota $=$" },
-              { t: (p, A) => `Psa ma $${A}$ uczniów, czyli $${p}\\%$ wszystkich uczniów szkoły. Ilu uczniów jest w szkole?`, et: "Liczba uczniów $=$" },
+              { t: (p, A) => `Liczba uczniów jeżdżących do szkoły rowerem to $${A}$, czyli $${p}\\%$ wszystkich uczniów szkoły. Ilu uczniów jest w szkole?`, et: "Liczba uczniów $=$" },
               { t: (p, A) => `Turysta przeszedł $${A}$ km, czyli $${p}\\%$ całej trasy. Ile kilometrów ma cała trasa?`, et: "Długość trasy $=$" },
               { t: (p, A) => `Liczba stron przeczytanych przez Martę to $${A}$, czyli $${p}\\%$ wszystkich stron książki. Ile stron ma cała książka?`, et: "Liczba stron $=$" },
               { t: (p, A) => `Drużyna zdobyła $${A}$ punktów, czyli $${p}\\%$ wszystkich punktów możliwych do zdobycia. Ile punktów można było zdobyć?`, et: "Liczba punktów $=$" },
@@ -795,13 +795,13 @@ export default {
         },
         {
           nr: "31",
-          tresc: "Liczbę $80$ zwiększono o $15\\%$. Otrzymano liczbę: **Wybierz właściwą odpowiedź.**",
+          tresc: "Liczbę $80$ zwiększono o $15\\%$. Jaką liczbę otrzymano? **Wybierz właściwą odpowiedź.**",
           opcje: ["$95$", "$12$", "$68$", "$92$"],
           poprawna: 3,
         },
         {
           nr: "32",
-          tresc: "Liczba $60$ stanowi jaki procent liczby $40$? **Wybierz właściwą odpowiedź.**",
+          tresc: "Jaki procent liczby $40$ stanowi liczba $60$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$40\\%$", "$50\\%$", "$150\\%$", "$20\\%$"],
           poprawna: 2,
         },
@@ -839,7 +839,7 @@ export default {
               { w: (s, B) => `Cena biletu wzrosła z $${s}$ zł do $${B}$ zł. O ile procent wzrosła cena biletu?`, m: (s, B) => `Cena biletu spadła z $${B}$ zł do $${s}$ zł. O ile procent spadła cena biletu?` },
               { w: (s, B) => `W szkolnym klubie było $${s}$ osób, a teraz jest $${B}$ osób. O ile procent wzrosła liczba osób w klubie?`, m: (s, B) => `W szkolnym klubie było $${B}$ osób, a teraz jest $${s}$ osób. O ile procent zmalała liczba osób w klubie?` },
               { w: (s, B) => `Czas biegu Kuby wzrósł z $${s}$ s do $${B}$ s. O ile procent wzrósł czas biegu?`, m: (s, B) => `Czas biegu Kuby skrócił się z $${B}$ s do $${s}$ s. O ile procent skrócił się czas biegu?` },
-              { w: (s, B) => `Masa paczki wzrosła z $${s}$ dag do $${B}$ dag. O ile procent wzrosła masa paczki?`, m: (s, B) => `Masa paczki zmalała z $${B}$ dag do $${s}$ dag. O ile procent zmalała masa paczki?` },
+              { w: (s, B) => `Masa paczki wzrosła z $${s}$ g do $${B}$ g. O ile procent wzrosła masa paczki?`, m: (s, B) => `Masa paczki zmalała z $${B}$ g do $${s}$ g. O ile procent zmalała masa paczki?` },
             ];
             const k = r.pick(KONT);
             const tryb = r.int(0, 2);

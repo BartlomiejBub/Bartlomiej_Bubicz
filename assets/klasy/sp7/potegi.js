@@ -51,6 +51,13 @@ function normuj(v, e) {
   return { v, e };
 }
 
+/** Poprawna forma rzeczownika po liczbie: 1 miejsce, 2 miejsca, 5 miejsc. */
+function mn(n, a, b, c) {
+  const m10 = n % 10, m100 = n % 100;
+  if (n === 1) return a;
+  return m10 >= 2 && m10 <= 4 && !(m100 >= 12 && m100 <= 14) ? b : c;
+}
+
 /** Powtarza losowanie, aż f() zwróci zadanie (wartość różną od null); f używa tego samego losownika, więc wynik jest powtarzalny. */
 function probuj(f, proby = 2000) {
   for (let i = 0; i < proby; i++) {
@@ -137,13 +144,13 @@ export default {
         },
         {
           nr: "2",
-          tresc: "Wartość wyrażenia $(-3)^3$ jest równa: **Wybierz właściwą odpowiedź.**",
+          tresc: "Jaka jest wartość wyrażenia $(-3)^3$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$27$", "$-27$", "$-9$", "$9$"],
           poprawna: 1,
         },
         {
           nr: "3",
-          tresc: "Iloczyn $5\\cdot5\\cdot5\\cdot5$ można zapisać jako: **Wybierz właściwą odpowiedź.**",
+          tresc: "Jak zapisać iloczyn $5\\cdot5\\cdot5\\cdot5$ w postaci potęgi? **Wybierz właściwą odpowiedź.**",
           opcje: ["$4^{5}$", "$20$", "$5^{3}$", "$5^{4}$"],
           poprawna: 3,
         },
@@ -195,7 +202,7 @@ export default {
               const [a, n] = probuj(() => {
                 const a = r.int(2, 10);
                 const n = r.int(2, 6);
-                return a ** n <= 20000 ? [a, n] : null;
+                return a ** n <= 5000 ? [a, n] : null;
               });
               const w = a ** n;
               const kroki = [
@@ -345,31 +352,31 @@ export default {
       zadania: [
         {
           nr: "9",
-          tresc: "Wynik działania $3^4\\cdot3^5$ to: **Wybierz właściwą odpowiedź.**",
+          tresc: "Jak zapisać wynik działania $3^4\\cdot3^5$ w postaci jednej potęgi? **Wybierz właściwą odpowiedź.**",
           opcje: ["$3^{20}$", "$9^{9}$", "$3^{9}$", "$9^{20}$"],
           poprawna: 2,
         },
         {
           nr: "10",
-          tresc: "Wynik działania $7^8:7^3$ to: **Wybierz właściwą odpowiedź.**",
+          tresc: "Jak zapisać wynik działania $7^8:7^3$ w postaci jednej potęgi? **Wybierz właściwą odpowiedź.**",
           opcje: ["$7^{11}$", "$7^{5}$", "$1^{5}$", "$7^{24}$"],
           poprawna: 1,
         },
         {
           nr: "11",
-          tresc: "Liczba $2^5\\cdot2^3:2^4$ jest równa: **Wybierz właściwą odpowiedź.**",
+          tresc: "Czemu jest równa liczba $2^5\\cdot2^3:2^4$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$2^{12}$", "$4^{4}$", "$2^{4}$", "$2^{11}$"],
           poprawna: 2,
         },
         {
           nr: "12",
-          tresc: "Liczba $2^{10}:2^{10}$ jest równa: **Wybierz właściwą odpowiedź.**",
+          tresc: "Czemu jest równa liczba $2^{10}:2^{10}$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$0$", "$2$", "$2^{20}$", "$1$"],
           poprawna: 3,
         },
         {
           nr: "13",
-          tresc: "Liczba $4\\cdot2^3$ jest równa: **Wybierz właściwą odpowiedź.**",
+          tresc: "Czemu jest równa liczba $4\\cdot2^3$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$2^{5}$", "$8^{3}$", "$2^{6}$", "$2^{4}$"],
           poprawna: 0,
         },
@@ -460,7 +467,7 @@ export default {
           generuj(r) {
             const a = r.int(2, 9);
             const tryb = r.int(0, 2);
-            const tr = (x) => `Jaka liczba powinna stać w miejscu kwadratu, aby równość była prawdziwa? $${x}$`;
+            const tr = (x) => `Jaka liczba powinna stać w miejscu symbolu $\\square$ w równości $${x}$, aby była prawdziwa?`;
             if (tryb === 0) {
               const m = r.int(2, 8);
               const p = r.int(2, 8);
@@ -541,7 +548,7 @@ export default {
           nazwa: "Taki sam wykładnik",
           slownie: "Gdy wykładniki są takie same, a podstawy różne, możemy podstawy pomnożyć (albo podzielić), a wykładnik przepisać. To sprytny sposób liczenia w pamięci.",
           tex: "a^n\\cdot b^n=(a\\cdot b)^n\\qquad a^n:b^n=(a:b)^n",
-          przyklad: "$2^4\\cdot5^4=(2\\cdot5)^4=10^4=10000$ oraz $12^3:6^3=(12:6)^3=2^3=8$.",
+          przyklad: "$2^4\\cdot5^4=(2\\cdot5)^4=10^4=10\\,000$ oraz $12^3:6^3=(12:6)^3=2^3=8$.",
           uwaga: "To działa tylko przy takich samych wykładnikach. W $2^3\\cdot5^2$ wykładniki są różne, więc podstaw nie połączymy.",
         },
       ],
@@ -554,7 +561,7 @@ export default {
       zadania: [
         {
           nr: "17",
-          tresc: "Liczba $(3^2)^4$ jest równa: **Wybierz właściwą odpowiedź.**",
+          tresc: "Czemu jest równa liczba $(3^2)^4$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$3^{6}$", "$3^{8}$", "$3^{16}$", "$6^{8}$"],
           poprawna: 1,
         },
@@ -566,7 +573,7 @@ export default {
         },
         {
           nr: "19",
-          tresc: "Liczba $2^3\\cdot5^3$ jest równa: **Wybierz właściwą odpowiedź.**",
+          tresc: "Czemu jest równa liczba $2^3\\cdot5^3$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$10^{3}$", "$7^{3}$", "$10^{6}$", "$10^{9}$"],
           poprawna: 0,
         },
@@ -603,7 +610,7 @@ export default {
           nr: "24",
           punkty: 3,
           tresc: "Oblicz sprytnie, korzystając z własności potęgowania: a) $2^5\\cdot5^5$, b) $18^3:9^3$, c) $\\left(\\frac{1}{2}\\right)^4\\cdot2^4$. **Zapisz obliczenia.**",
-          rozwiazanie: "a) Wykładniki są takie same, więc mnożymy podstawy: $2^5\\cdot5^5=(2\\cdot5)^5=10^5=100000$.\n\nb) Dzielimy podstawy: $18^3:9^3=(18:9)^3=2^3=8$.\n\nc) $\\left(\\frac{1}{2}\\right)^4\\cdot2^4=\\left(\\frac{1}{2}\\cdot2\\right)^4=1^4=1$.\n\nOdpowiedź: a) $100000$, b) $8$, c) $1$.",
+          rozwiazanie: "a) Wykładniki są takie same, więc mnożymy podstawy: $2^5\\cdot5^5=(2\\cdot5)^5=10^5=100\\,000$.\n\nb) Dzielimy podstawy: $18^3:9^3=(18:9)^3=2^3=8$.\n\nc) $\\left(\\frac{1}{2}\\right)^4\\cdot2^4=\\left(\\frac{1}{2}\\cdot2\\right)^4=1^4=1$.\n\nOdpowiedź: a) $100\\,000$, b) $8$, c) $1$.",
         },
       ],
       generatory: [
@@ -634,7 +641,7 @@ export default {
                 const a = r.pick([2, 2, 3, 5, 10]);
                 const m = r.int(2, 5);
                 const n = r.int(2, 5);
-                const lim = { 2: 16, 3: 10, 5: 7, 10: 4 }[a];
+                const lim = { 2: 12, 3: 8, 5: 5, 10: 5 }[a];
                 return m * n <= lim ? [a, m, n] : null;
               });
               const s = m * n;
@@ -763,14 +770,14 @@ export default {
       zadania: [
         {
           nr: "25",
-          tresc: "Liczbę $5\\,300\\,000$ zapisano w notacji wykładniczej. Który zapis jest poprawny? **Wybierz właściwą odpowiedź.**",
+          tresc: "Który zapis liczby $5\\,300\\,000$ w notacji wykładniczej jest poprawny? **Wybierz właściwą odpowiedź.**",
           opcje: ["$5{,}3\\cdot10^{5}$", "$5{,}3\\cdot10^{6}$", "$53\\cdot10^{6}$", "$5{,}3\\cdot10^{7}$"],
           poprawna: 1,
         },
         {
           nr: "26",
-          tresc: "Liczba $4{,}2\\cdot10^4$ jest równa: **Wybierz właściwą odpowiedź.**",
-          opcje: ["$4\\,200$", "$420\\,000$", "$42\\,000$", "$4\\,200\\,000$"],
+          tresc: "Ile wynosi liczba $4{,}2\\cdot10^4$ zapisana bez potęgi? **Wybierz właściwą odpowiedź.**",
+          opcje: ["$4200$", "$420\\,000$", "$42\\,000$", "$4\\,200\\,000$"],
           poprawna: 2,
         },
         {
@@ -781,7 +788,7 @@ export default {
         },
         {
           nr: "28",
-          tresc: "Odległość Ziemi od Słońca to około $150\\,000\\,000$ km. W notacji wykładniczej zapisujemy ją tak: **Wybierz właściwą odpowiedź.**",
+          tresc: "Odległość Ziemi od Słońca to około $150\\,000\\,000$ km. Jak zapisać tę odległość w notacji wykładniczej? **Wybierz właściwą odpowiedź.**",
           opcje: ["$1{,}5\\cdot10^{7}$ km", "$1{,}5\\cdot10^{9}$ km", "$1{,}5\\cdot10^{8}$ km", "$1{,}5\\cdot10^{6}$ km"],
           poprawna: 2,
         },
@@ -846,7 +853,7 @@ export default {
                 wynik: pytaj ? `$${k}$` : `$${dz(a)}$`,
                 rozwiazanie: [
                   `Przesuwamy przecinek tak, żeby przed nim została jedna cyfra różna od zera: dostajemy $${dz(a)}$.`,
-                  `Przecinek przesunęliśmy o $${k}$ miejsc w lewo, więc wykładnik to $${k}$.`,
+                  `Przecinek przesunęliśmy o $${k}$ ${mn(k, "miejsce", "miejsca", "miejsc")} w lewo, więc wykładnik to $${k}$.`,
                   `Zatem $${N}=${notacja(a, k)}$.`,
                 ],
               };
@@ -881,7 +888,7 @@ export default {
               wynik: `$${-j}$`,
               rozwiazanie: [
                 `Przesuwamy przecinek w prawo tak, żeby przed nim została jedna cyfra różna od zera: dostajemy $${dz(a)}$.`,
-                `Przecinek przesunęliśmy o $${j}$ miejsc w prawo, więc wykładnik jest ujemny: $-${j}$.`,
+                `Przecinek przesunęliśmy o $${j}$ ${mn(j, "miejsce", "miejsca", "miejsc")} w prawo, więc wykładnik jest ujemny: $-${j}$.`,
                 `Zatem $${zapis}=${notacja(a, -j)}$.`,
               ],
             };
@@ -1130,8 +1137,8 @@ export default {
             const t = m * 10 ** (k - 6);
             const co = r.pick([
               "Sonda kosmiczna jest od Ziemi w odległości",
-              "Pewna planeta jest od Słońca w odległości",
-              "Satelita jest od stacji naziemnej w odległości",
+              "Pewna asteroida jest od Ziemi w odległości",
+              "Statek kosmiczny jest od stacji kontroli lotów w odległości",
             ]);
             return {
               tresc: `Światło biegnie z prędkością około $3\\cdot10^5$ km na sekundę. ${co} $${notacja(a, k)}$ km. Po ilu sekundach sygnał świetlny pokona tę odległość?`,
