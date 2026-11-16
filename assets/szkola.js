@@ -137,7 +137,7 @@ export const KLASY = [
     rozdzialy: [
       { id: "lo2-przeksztalcenia", nr: "1", nazwa: "Przekształcenia wykresów funkcji", opis: "Wektory, przesunięcie wykresu wzdłuż osi, rozwiązywanie równań i nierówności z wykresu.", plik: "lo2/przeksztalcenia.js",
         lekcje: ["Wektor na płaszczyźnie", "Wektor w układzie współrzędnych", "Przesunięcie równoległe wzdłuż osi OX", "Przesunięcie równoległe wzdłuż osi OY", "Zastosowanie wykresów funkcji do rozwiązywania równań i nierówności"] },
-      { id: "lo2-modul", nr: "2", nazwa: "Wartość bezwzględna", opis: "Wartość bezwzględna, odległość na osi liczbowej, proste równania z wartością bezwzględną.",
+      { id: "lo2-modul", nr: "2", nazwa: "Wartość bezwzględna", opis: "Wartość bezwzględna, odległość na osi liczbowej, proste równania z wartością bezwzględną.", plik: "lo2/modul.js",
         lekcje: ["Wartość bezwzględna liczby rzeczywistej", "Odległość między liczbami na osi liczbowej", "Proste równania z wartością bezwzględną"] },
       { id: "lo2-kwadratowa", nr: "3", nazwa: "Funkcja kwadratowa", opis: "Postać ogólna, kanoniczna i iloczynowa, wykres, wartość najmniejsza i największa, równania i nierówności kwadratowe.", plik: "lo2/kwadratowa.js",
         lekcje: ["Przypomnienie wiadomości z klasy 1", "Związek postaci ogólnej z kanoniczną", "Miejsca zerowe. Postać iloczynowa", "Szkicowanie wykresów. Odczytywanie własności", "Wyznaczanie wzoru funkcji kwadratowej", "Najmniejsza i największa wartość w przedziale domkniętym", "Zadania optymalizacyjne", "Równania kwadratowe", "Nierówności kwadratowe", "Zadania prowadzące do równań i nierówności kwadratowych"] },
