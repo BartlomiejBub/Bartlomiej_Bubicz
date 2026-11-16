@@ -56,7 +56,7 @@ export const KLASY = [
         lekcje: ["Liczby dodatnie i ujemne", "Dodawanie liczb całkowitych", "Mnożenie i dzielenie liczb całkowitych", "Odejmowanie liczb całkowitych", "Własności działań na liczbach całkowitych"] },
       { id: "sp6-dzialania-1", nr: "II", nazwa: "Działania na liczbach, cz. 1", opis: "Zadania tekstowe, kalkulator, dzielniki i wielokrotności, dodawanie i odejmowanie ułamków.", plik: "sp6/dzialania-1.js",
         lekcje: ["Sposoby na zadania tekstowe", "Obliczenia na kalkulatorze", "Liczby naturalne", "Dzielniki i wielokrotności", "Ułamki", "Dodawanie liczb dodatnich", "Odejmowanie liczb dodatnich", "Dodawanie i odejmowanie"] },
-      { id: "sp6-dzialania-2", nr: "III", nazwa: "Działania na liczbach, cz. 2", opis: "Mnożenie i dzielenie ułamków, zaokrąglanie, ułamek liczby, kolejność działań.",
+      { id: "sp6-dzialania-2", nr: "III", nazwa: "Działania na liczbach, cz. 2", opis: "Mnożenie i dzielenie ułamków, zaokrąglanie, ułamek liczby, kolejność działań.", plik: "sp6/dzialania-2.js",
         lekcje: ["Mnożenie", "Dzielenie", "Dzielenie pisemne", "Zaokrąglanie ułamków dziesiętnych. Ułamki okresowe", "Ułamek liczby", "Ułamek liczby – zadania", "Kolejność wykonywania działań"] },
       { id: "sp6-figury", nr: "IV", nazwa: "Figury na płaszczyźnie", opis: "Okrąg i koło, kąty, trójkąty, czworokąty i ich pola, figury na kratce.",
         lekcje: ["Okrąg i koło. Odległość punktu od prostej", "Kąty", "Trójkąty", "Czworokąty", "Pola czworokątów", "Figury na kratce"] },
