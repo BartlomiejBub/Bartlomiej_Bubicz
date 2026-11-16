@@ -58,7 +58,7 @@ export const KLASY = [
         lekcje: ["Sposoby na zadania tekstowe", "Obliczenia na kalkulatorze", "Liczby naturalne", "Dzielniki i wielokrotności", "Ułamki", "Dodawanie liczb dodatnich", "Odejmowanie liczb dodatnich", "Dodawanie i odejmowanie"] },
       { id: "sp6-dzialania-2", nr: "III", nazwa: "Działania na liczbach, cz. 2", opis: "Mnożenie i dzielenie ułamków, zaokrąglanie, ułamek liczby, kolejność działań.", plik: "sp6/dzialania-2.js",
         lekcje: ["Mnożenie", "Dzielenie", "Dzielenie pisemne", "Zaokrąglanie ułamków dziesiętnych. Ułamki okresowe", "Ułamek liczby", "Ułamek liczby – zadania", "Kolejność wykonywania działań"] },
-      { id: "sp6-figury", nr: "IV", nazwa: "Figury na płaszczyźnie", opis: "Okrąg i koło, kąty, trójkąty, czworokąty i ich pola, figury na kratce.",
+      { id: "sp6-figury", nr: "IV", nazwa: "Figury na płaszczyźnie", opis: "Okrąg i koło, kąty, trójkąty, czworokąty i ich pola, figury na kratce.", plik: "sp6/figury.js",
         lekcje: ["Okrąg i koło. Odległość punktu od prostej", "Kąty", "Trójkąty", "Czworokąty", "Pola czworokątów", "Figury na kratce"] },
       { id: "sp6-rownania", nr: "V", nazwa: "Równania", opis: "Czym jest równanie, sprawdzanie rozwiązania, rozwiązywanie równań i zadania tekstowe.",
         lekcje: ["Równania, czyli skąd my to znamy", "Sprawdzanie rozwiązania", "Jak rozwiązać równanie", "Trudniejsze równania", "Zadania tekstowe"] },
