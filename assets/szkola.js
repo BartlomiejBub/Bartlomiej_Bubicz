@@ -52,7 +52,7 @@ export const KLASY = [
   {
     id: "sp6", egzamin: "e8", nazwa: "Klasa 6", etap: "Szkoła podstawowa", podrecznik: "Matematyka z kluczem 6 (Nowa Era)",
     rozdzialy: [
-      { id: "sp6-calkowite", nr: "I", nazwa: "Liczby całkowite", opis: "Liczby dodatnie i ujemne, dodawanie, odejmowanie, mnożenie i dzielenie liczb całkowitych.",
+      { id: "sp6-calkowite", nr: "I", nazwa: "Liczby całkowite", opis: "Liczby dodatnie i ujemne, dodawanie, odejmowanie, mnożenie i dzielenie liczb całkowitych.", plik: "sp6/calkowite.js",
         lekcje: ["Liczby dodatnie i ujemne", "Dodawanie liczb całkowitych", "Mnożenie i dzielenie liczb całkowitych", "Odejmowanie liczb całkowitych", "Własności działań na liczbach całkowitych"] },
       { id: "sp6-dzialania-1", nr: "II", nazwa: "Działania na liczbach, cz. 1", opis: "Zadania tekstowe, kalkulator, dzielniki i wielokrotności, dodawanie i odejmowanie ułamków.",
         lekcje: ["Sposoby na zadania tekstowe", "Obliczenia na kalkulatorze", "Liczby naturalne", "Dzielniki i wielokrotności", "Ułamki", "Dodawanie liczb dodatnich", "Odejmowanie liczb dodatnich", "Dodawanie i odejmowanie"] },
