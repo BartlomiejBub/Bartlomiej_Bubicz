@@ -41,7 +41,7 @@ export const KLASY = [
         lekcje: ["Ułamek jako część i jako iloraz", "Rozszerzanie i skracanie ułamków", "Dodawanie i odejmowanie ułamków o tych samych mianownikach", "Dodawanie i odejmowanie ułamków o różnych mianownikach", "Mnożenie ułamka przez liczbę naturalną. Ułamek liczby", "Mnożenie ułamków", "Odwrotności liczb", "Dzielenie ułamków", "Działania na ułamkach"] },
       { id: "sp5-ulamki-dziesietne", nr: "IV", nazwa: "Ułamki dziesiętne", opis: "Dodawanie, odejmowanie, mnożenie i dzielenie ułamków dziesiętnych, zamiana jednostek.", plik: "sp5/ulamki-dziesietne.js",
         lekcje: ["Ułamek dziesiętny", "Dodawanie i odejmowanie ułamków dziesiętnych", "Mnożenie ułamków dziesiętnych", "Dzielenie ułamków dziesiętnych", "Zamiana jednostek"] },
-      { id: "sp5-pola", nr: "V", nazwa: "Pola figur", opis: "Pole równoległoboku, rombu, trójkąta i trapezu, jednostki pola.",
+      { id: "sp5-pola", nr: "V", nazwa: "Pola figur", opis: "Pole równoległoboku, rombu, trójkąta i trapezu, jednostki pola.", plik: "sp5/pola.js",
         lekcje: ["Pole figury", "Pole równoległoboku i rombu", "Pole trójkąta", "Pole trapezu", "Różne jednostki pola"] },
       { id: "sp5-matematyka-i-my", nr: "VI", nazwa: "Matematyka i my", opis: "Kalendarz i zegar, miary i pieniądze, średnia arytmetyczna, liczby ujemne i dodawanie liczb całkowitych.",
         lekcje: ["Kalendarz i zegar", "Miary, wagi i pieniądze", "Średnia arytmetyczna", "Liczby dodatnie i ujemne", "Dodawanie liczb całkowitych", "O ile różnią się liczby"] },
