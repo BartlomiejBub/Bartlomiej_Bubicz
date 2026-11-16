@@ -135,7 +135,7 @@ export const KLASY = [
   {
     id: "lo2", egzamin: "matura", nazwa: "Klasa 2", etap: "Liceum i technikum", podrecznik: "Matematyka 2, zakres podstawowy (Pazdro)",
     rozdzialy: [
-      { id: "lo2-przeksztalcenia", nr: "1", nazwa: "Przekształcenia wykresów funkcji", opis: "Wektory, przesunięcie wykresu wzdłuż osi, rozwiązywanie równań i nierówności z wykresu.",
+      { id: "lo2-przeksztalcenia", nr: "1", nazwa: "Przekształcenia wykresów funkcji", opis: "Wektory, przesunięcie wykresu wzdłuż osi, rozwiązywanie równań i nierówności z wykresu.", plik: "lo2/przeksztalcenia.js",
         lekcje: ["Wektor na płaszczyźnie", "Wektor w układzie współrzędnych", "Przesunięcie równoległe wzdłuż osi OX", "Przesunięcie równoległe wzdłuż osi OY", "Zastosowanie wykresów funkcji do rozwiązywania równań i nierówności"] },
       { id: "lo2-modul", nr: "2", nazwa: "Wartość bezwzględna", opis: "Wartość bezwzględna, odległość na osi liczbowej, proste równania z wartością bezwzględną.",
         lekcje: ["Wartość bezwzględna liczby rzeczywistej", "Odległość między liczbami na osi liczbowej", "Proste równania z wartością bezwzględną"] },
