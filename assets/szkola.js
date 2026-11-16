@@ -43,7 +43,7 @@ export const KLASY = [
         lekcje: ["Ułamek dziesiętny", "Dodawanie i odejmowanie ułamków dziesiętnych", "Mnożenie ułamków dziesiętnych", "Dzielenie ułamków dziesiętnych", "Zamiana jednostek"] },
       { id: "sp5-pola", nr: "V", nazwa: "Pola figur", opis: "Pole równoległoboku, rombu, trójkąta i trapezu, jednostki pola.",
         lekcje: ["Pole figury", "Pole równoległoboku i rombu", "Pole trójkąta", "Pole trapezu", "Różne jednostki pola"] },
-      { id: "sp5-matematyka-i-my", nr: "VI", nazwa: "Matematyka i my", opis: "Kalendarz i zegar, miary i pieniądze, średnia arytmetyczna, liczby ujemne i dodawanie liczb całkowitych.",
+      { id: "sp5-matematyka-i-my", nr: "VI", nazwa: "Matematyka i my", opis: "Kalendarz i zegar, miary i pieniądze, średnia arytmetyczna, liczby ujemne i dodawanie liczb całkowitych.", plik: "sp5/matematyka-i-my.js",
         lekcje: ["Kalendarz i zegar", "Miary, wagi i pieniądze", "Średnia arytmetyczna", "Liczby dodatnie i ujemne", "Dodawanie liczb całkowitych", "O ile różnią się liczby"] },
       { id: "sp5-bryly", nr: "VII", nazwa: "Figury przestrzenne", opis: "Bryły, objętość i pojemność, objętość prostopadłościanu, siatki prostopadłościanów i graniastosłupów.",
         lekcje: ["Bryły", "Objętość i pojemność", "Objętość prostopadłościanu", "Siatki prostopadłościanów", "Siatki graniastosłupów"] },
