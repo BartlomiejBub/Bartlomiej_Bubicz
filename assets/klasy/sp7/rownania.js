@@ -211,7 +211,7 @@ export default {
         {
           nr: "7",
           punkty: 2,
-          tresc: "Paweł miał $x$ zł. Kupił bilet za $12$ zł i zostało mu $18$ zł. Zapisz równanie opisujące tę sytuację. Sprawdź, czy Paweł mógł mieć na początku $20$ zł, a czy $30$ zł. **Zapisz obliczenia.**",
+          tresc: "Paweł miał $x$ zł. Kupił bilet za $12$ zł i zostało mu $18$ zł. Zapisz równanie opisujące tę sytuację. Sprawdź, czy Paweł mógł mieć na początku $20$ zł i czy mógł mieć $30$ zł. **Zapisz obliczenia.**",
           rozwiazanie: "Po zakupie Paweł miał $x-12$ zł, a to jest $18$ zł.\n\nRównanie: $x-12=18$.\n\nDla $x=20$: $L=20-12=8$, a $P=18$. Strony nie są równe.\n\nDla $x=30$: $L=30-12=18$ oraz $P=18$. Strony są równe.\n\nOdpowiedź: Równanie to $x-12=18$. Paweł miał na początku $30$ zł, a nie $20$ zł.",
         },
       ],
@@ -591,7 +591,7 @@ export default {
               const x = r.int(6, 30);
               const S = 2 * x + d;
               return {
-                tresc: `${A} jest o $${d}$ ${lat(d)} starsza od ${B}. Razem mają $${S}$ ${lat(S)}. Ile lat ma ${B}?`,
+                tresc: `${A} jest o $${d}$ ${lat(d)} starsza od ${Bd}. Razem mają $${S}$ ${lat(S)}. Ile lat ma ${B}?`,
                 pola: [pole("x", "Wiek (w latach) $=$")],
                 odpowiedz: { x: q(x) },
                 wynik: `$${x}$`,

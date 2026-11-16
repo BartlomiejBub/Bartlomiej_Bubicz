@@ -521,11 +521,12 @@ export default {
           uwaga: "Zestawiaj część z częścią albo całość z całością. Nie dziel $|OA|$ przez $|OD|$.",
         },
         {
-          nazwa: "Twierdzenie odwrotne",
-          slownie: "Jeśli odcinki wyznaczone na ramionach kąta są proporcjonalne, to proste $AC$ i $BD$ są równoległe.",
-          tex: "\\frac{|OA|}{|OB|}=\\frac{|OC|}{|OD|}\\qquad\\Rightarrow\\ AC\\parallel BD",
-          przyklad: "Dla $|OA|=4$, $|OB|=6$, $|OC|=6$, $|OD|=9$: $\\frac{4}{6}=\\frac{6}{9}=\\frac{2}{3}$, więc $AC\\parallel BD$.",
-          uwaga: "Ułamki porównuj po skróceniu albo mnożąc na krzyż: $4\\cdot9=6\\cdot6$.",
+          nazwa: "Trzy proste równoległe",
+          slownie: "Gdy kilka prostych równoległych przetnie dwie inne proste, odcinki wyznaczone na jednej z nich są proporcjonalne do odpowiednich odcinków na drugiej.",
+          tex: "\\frac{a}{b}=\\frac{c}{d}",
+          litery: "$a$, $b$ – kolejne odcinki na pierwszej prostej, $c$, $d$ – odpowiadające im odcinki na drugiej.",
+          przyklad: "Odcinki $4$ i $6$ na jednej prostej, a na drugiej pierwszy ma $10$: $\\frac{4}{6}=\\frac{10}{d}$, więc $d=15$.",
+          uwaga: "Zestawiaj odcinki w tej samej kolejności na obu prostych.",
         },
         {
           nazwa: "Rozwiązywanie proporcji",
@@ -558,8 +559,8 @@ export default {
           nr: "18",
           tresc: "Punkty $A$, $B$ leżą na jednym ramieniu kąta o wierzchołku $O$ ($A$ między $O$ i $B$), a punkty $C$, $D$ na drugim ($C$ między $O$ i $D$). **Dla każdego zdania wybierz P, jeśli jest prawdziwe, albo F, jeśli jest fałszywe.**",
           czesci: [
-            { tekst: "Gdy $|OA|=2$, $|OB|=5$, $|OC|=4$ i $|OD|=10$, to proste $AC$ i $BD$ są równoległe.", litery: "PF", poprawna: 0 },
-            { tekst: "Gdy $|OA|=3$, $|OB|=7$, $|OC|=6$ i $|OD|=15$, to proste $AC$ i $BD$ są równoległe.", litery: "PF", poprawna: 1 },
+            { tekst: "Gdy $AC\\parallel BD$, $|OA|=2$, $|OB|=5$ i $|OC|=4$, to $|OD|=10$.", litery: "PF", poprawna: 0 },
+            { tekst: "Gdy $AC\\parallel BD$, $|OA|=3$, $|OB|=7$ i $|OC|=6$, to $|OD|=15$.", litery: "PF", poprawna: 1 },
             { tekst: "Gdy $AC\\parallel BD$ i $|OA|=|AB|$, to $|OC|=|CD|$.", litery: "PF", poprawna: 0 },
           ],
         },
@@ -628,23 +629,25 @@ export default {
         },
         {
           id: "tales-rownolegle",
-          nazwa: "Czy proste są równoległe",
-          opis: "Sprawdź z twierdzenia odwrotnego do Talesa, czy proste AC i BD są równoległe.",
+          nazwa: "Trzy proste równoległe",
+          opis: "Trzy proste równoległe przecinają dwie inne proste – oblicz brakujący odcinek z proporcji.",
           generuj(r) {
-            const p = r.int(1, 6), s = r.int(p + 1, 8), t = r.int(1, 4), u = r.intBez(1, 4, t);
-            const rownolegle = r.chance();
-            const OA = p * t, OB = s * t, OC = p * u;
-            const OD = s * u + (rownolegle ? 0 : r.pick([1, 2]));
-            const l = frakcja(OA, OB), pr = frakcja(OC, OD);
+            const p = r.int(1, 6), s = r.intBez(1, 6, p), t = r.int(1, 4), u = r.intBez(1, 4, t);
+            const a = p * t, b = s * t, c = p * u, d = s * u;
+            const pierwszy = r.chance();
+            // znany jest pierwszy odcinek na drugiej prostej (szukany drugi) albo odwrotnie
+            const [znany, szukany, rownanie, dzialanie] = pierwszy
+              ? [c, d, `\\frac{${a}}{${b}} = \\frac{${c}}{x}`, `x = \\frac{${b}\\cdot ${c}}{${a}} = ${d}`]
+              : [d, c, `\\frac{${a}}{${b}} = \\frac{x}{${d}}`, `x = \\frac{${a}\\cdot ${d}}{${b}} = ${c}`];
             return {
-              tresc: `Punkty $A$, $B$ leżą na jednym ramieniu kąta o wierzchołku $O$ ($A$ między $O$ i $B$), a punkty $C$, $D$ na drugim ($C$ między $O$ i $D$). Wiadomo, że $|OA| = ${OA}$, $|OB| = ${OB}$, $|OC| = ${OC}$ i $|OD| = ${OD}$. Czy proste $AC$ i $BD$ są równoległe?`,
-              pola: [{ id: "w", typ: "wybor", etykieta: "Odpowiedź", opcje: ["Tak, są równoległe", "Nie, nie są równoległe"] }],
-              odpowiedz: { w: rownolegle ? 0 : 1 },
-              wynik: rownolegle ? "Tak, są równoległe" : "Nie, nie są równoległe",
+              tresc: `Trzy proste równoległe przecinają dwie inne proste. Na pierwszej z nich wyznaczają kolejno odcinki o długościach $${a}$ i $${b}$. Na drugiej prostej ${pierwszy ? "pierwszy" : "drugi"} odcinek ma długość $${znany}$. Jaką długość ma ${pierwszy ? "drugi" : "pierwszy"} odcinek na drugiej prostej?`,
+              pola: [{ id: "w", typ: "liczba", etykieta: "Długość odcinka" }],
+              odpowiedz: { w: szukany },
+              wynik: `$${szukany}$`,
               rozwiazanie: [
-                "Sprawdzamy twierdzenie odwrotne do twierdzenia Talesa: porównujemy $\\frac{|OA|}{|OB|}$ z $\\frac{|OC|}{|OD|}$.",
-                `$\\frac{|OA|}{|OB|} = ${l}$ oraz $\\frac{|OC|}{|OD|} = ${pr}$.`,
-                rownolegle ? "Ułamki są równe, więc proste $AC$ i $BD$ są równoległe." : "Ułamki są różne, więc proste $AC$ i $BD$ nie są równoległe.",
+                "Z twierdzenia Talesa odcinki na obu prostych są proporcjonalne (w tej samej kolejności).",
+                `Oznaczamy szukaną długość przez $x$: $${rownanie}$.`,
+                `Mnożymy na krzyż: $${dzialanie}$.`,
               ],
             };
           },

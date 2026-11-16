@@ -458,7 +458,7 @@ export default {
         },
         {
           nr: "18",
-          tresc: "Osiem jednakowo wydajnych robotników wykonuje pewną pracę w $15$ dni. Tę samą pracę $10$ takich robotników wykona w ciągu (liczba dni). **Wybierz właściwą odpowiedź.**",
+          tresc: "Osiem jednakowo wydajnych robotników wykonuje pewną pracę w $15$ dni. W ile dni tę samą pracę wykona $10$ takich robotników? **Wybierz właściwą odpowiedź.**",
           opcje: ["$18{,}75$", "$17$", "$12$", "$13$"],
           poprawna: 2,
         },

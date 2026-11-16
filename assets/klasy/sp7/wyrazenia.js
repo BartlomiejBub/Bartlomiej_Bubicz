@@ -194,7 +194,7 @@ export default {
             const n = r.int(2, 9);
             let tresc, poprawne, bledne, krok;
             if (typ === 0) {
-              tresc = `Kuba ma $x$ lat. Jego mama jest o $${k + 20}$ lat starsza od Kuby. Które wyrażenie opisuje wiek mamy?`;
+              tresc = `Kuba ma $x$ lat. Jego mama jest o $${k + 20}$ ${k + 20 < 25 ? "lata" : "lat"} starsza od Kuby. Które wyrażenie opisuje wiek mamy?`;
               poprawne = `x + ${k + 20}`;
               bledne = [`${k + 20}x`, `x - ${k + 20}`, `${k + 20} - x`];
               krok = `„O $${k + 20}$ lat starsza” to dodawanie: $x + ${k + 20}$.`;

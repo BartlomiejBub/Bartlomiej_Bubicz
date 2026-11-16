@@ -281,13 +281,13 @@ export default {
         },
         {
           nr: "9",
-          tresc: "Proste o równaniach $y = 2x - 1$ oraz $y = 2x + 3$ są wykresami równań układu. Ten układ. **Wybierz właściwą odpowiedź.**",
+          tresc: "Wykresami równań pewnego układu są proste $y = 2x - 1$ oraz $y = 2x + 3$. Który opis tego układu jest prawdziwy? **Wybierz właściwą odpowiedź.**",
           opcje: ["ma dokładnie jedno rozwiązanie", "ma dokładnie dwa rozwiązania", "ma nieskończenie wiele rozwiązań", "nie ma rozwiązań"],
           poprawna: 3,
         },
         {
           nr: "10",
-          tresc: "Układ równań $\\begin{cases} x - 2y = 4 \\\\ 2x - 4y = 8 \\end{cases}$. **Wybierz właściwą odpowiedź.**",
+          tresc: "Który opis układu równań $\\begin{cases} x - 2y = 4 \\\\ 2x - 4y = 8 \\end{cases}$ jest prawdziwy? **Wybierz właściwą odpowiedź.**",
           opcje: ["nie ma rozwiązań", "ma dokładnie jedno rozwiązanie", "ma nieskończenie wiele rozwiązań", "ma dokładnie dwa rozwiązania"],
           poprawna: 2,
         },
