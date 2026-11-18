@@ -179,7 +179,7 @@ export const KLASY = [
         lekcje: ["Sposoby prezentowania danych", "Średnia z próby", "Mediana i moda z próby", "Kombinatoryka – powtórzenie", "Doświadczenie losowe", "Zdarzenia. Działania na zdarzeniach", "Określenie prawdopodobieństwa", "Prawdopodobieństwo klasyczne", "Doświadczenie losowe wieloetapowe"] },
       { id: "lo4-wielosciany", nr: "3", nazwa: "Geometria przestrzenna – wielościany", opis: "Proste i płaszczyzny w przestrzeni, kąty, graniastosłupy i ostrosłupy: pole powierzchni i objętość.",
         lekcje: ["Płaszczyzny i proste w przestrzeni", "Prostopadłość prostych i płaszczyzn", "Rzut równoległy na płaszczyznę", "Twierdzenie o trzech prostych prostopadłych", "Kąt między prostą a płaszczyzną. Kąt dwuścienny", "Graniastosłupy", "Ostrosłupy", "Siatka wielościanu. Pole powierzchni", "Objętość wielościanów", "Wielościany podobne"] },
-      { id: "lo4-obrotowe", nr: "4", nazwa: "Geometria przestrzenna – bryły obrotowe", opis: "Walec, stożek i kula: pole powierzchni i objętość, bryły podobne.",
+      { id: "lo4-obrotowe", nr: "4", nazwa: "Geometria przestrzenna – bryły obrotowe", opis: "Walec, stożek i kula: pole powierzchni i objętość, bryły podobne.", plik: "lo4/obrotowe.js",
         lekcje: ["Walec", "Stożek", "Kula i sfera", "Bryły obrotowe podobne", "Bryły obrotowe – zadania różne"] },
     ],
   },
