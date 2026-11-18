@@ -147,7 +147,7 @@ export const KLASY = [
         lekcje: ["Trygonometria kąta ostrego – powtórzenie", "Sinus, cosinus, tangens i cotangens dowolnego kąta", "Podstawowe tożsamości trygonometryczne", "Wybrane wzory redukcyjne"] },
       { id: "lo2-analityczna", nr: "6", nazwa: "Geometria analityczna", opis: "Odcinek w układzie współrzędnych, równanie kierunkowe i ogólne prostej, równanie okręgu.", plik: "lo2/analityczna.js",
         lekcje: ["Odcinek w układzie współrzędnych", "Równanie kierunkowe prostej", "Równanie ogólne prostej", "Równanie okręgu"] },
-      { id: "lo2-pola", nr: "7", nazwa: "Rozwiązywanie trójkątów. Pole koła i trójkąta", opis: "Twierdzenie cosinusów, pole trójkąta, pola figur podobnych, pole koła i wycinka.",
+      { id: "lo2-pola", nr: "7", nazwa: "Rozwiązywanie trójkątów. Pole koła i trójkąta", opis: "Twierdzenie cosinusów, pole trójkąta, pola figur podobnych, pole koła i wycinka.", plik: "lo2/pola.js",
         lekcje: ["Twierdzenie cosinusów", "Zastosowanie twierdzenia cosinusów", "Pole figury płaskiej", "Pole trójkąta, cz. 1", "Pole trójkąta, cz. 2", "Pola trójkątów podobnych", "Pole koła, pole wycinka koła", "Pole w dowodzeniu twierdzeń"] },
       { id: "lo2-wielomiany", nr: "8", nazwa: "Wielomiany", opis: "Pojęcie wielomianu, działania, równość wielomianów, pierwiastek wielomianu, rozkład na czynniki, równania.",
         lekcje: ["Wielomiany jednej zmiennej", "Dodawanie, odejmowanie i mnożenie wielomianów", "Równość wielomianów", "Pierwiastek wielomianu", "Rozkładanie wielomianów na czynniki", "Równania wielomianowe", "Zadania prowadzące do równań wielomianowych"] },
