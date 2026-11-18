@@ -166,7 +166,7 @@ export const KLASY = [
         lekcje: ["Podział czworokątów. Trapezoidy", "Trapezy", "Równoległoboki", "Wielokąty. Wielokąt foremny", "Podobieństwo. Czworokąty podobne"] },
       { id: "lo3-pola", nr: "5", nazwa: "Geometria płaska – pole czworokąta", opis: "Pola prostokąta, równoległoboku, rombu i trapezu, pola figur podobnych, skala mapy.",
         lekcje: ["Pole prostokąta. Pole kwadratu", "Pole równoległoboku. Pole rombu", "Pole trapezu", "Pole czworokąta – zadania różne", "Pola figur podobnych", "Mapa. Skala mapy"] },
-      { id: "lo3-analityczna", nr: "6", nazwa: "Geometria analityczna", opis: "Wektor i podział odcinka, proste w układzie współrzędnych, równanie okręgu, przekształcenia.",
+      { id: "lo3-analityczna", nr: "6", nazwa: "Geometria analityczna", opis: "Wektor i podział odcinka, proste w układzie współrzędnych, równanie okręgu, przekształcenia.", plik: "lo3/analityczna.js",
         lekcje: ["Wektor w układzie współrzędnych. Podział odcinka", "Proste w układzie współrzędnych", "Równanie okręgu. Prosta i okrąg", "Zadania różne z geometrii analitycznej", "Wybrane przekształcenia geometryczne w układzie współrzędnych"] },
     ],
   },
