@@ -156,7 +156,7 @@ export const KLASY = [
   {
     id: "lo3", egzamin: "matura", nazwa: "Klasa 3", etap: "Liceum i technikum", podrecznik: "Matematyka 3, zakres podstawowy (Pazdro)",
     rozdzialy: [
-      { id: "lo3-wymierne", nr: "1", nazwa: "Ułamki algebraiczne. Równania wymierne", opis: "Skracanie, mnożenie i dzielenie ułamków algebraicznych, równania wymierne, funkcja homograficzna.",
+      { id: "lo3-wymierne", nr: "1", nazwa: "Ułamki algebraiczne. Równania wymierne", opis: "Skracanie, mnożenie i dzielenie ułamków algebraicznych, równania wymierne, funkcja homograficzna.", plik: "lo3/wymierne.js",
         lekcje: ["Ułamek algebraiczny. Skracanie i rozszerzanie", "Mnożenie i dzielenie ułamków algebraicznych", "Równania wymierne", "Zadania tekstowe prowadzące do równań wymiernych", "Funkcja homograficzna"] },
       { id: "lo3-ciagi", nr: "2", nazwa: "Ciągi liczbowe", opis: "Określenie i monotoniczność ciągu, ciąg arytmetyczny i geometryczny, sumy, lokaty i kredyty.",
         lekcje: ["Określenie ciągu. Sposoby opisywania ciągów", "Monotoniczność ciągów", "Ciąg arytmetyczny", "Suma początkowych wyrazów ciągu arytmetycznego", "Ciąg geometryczny", "Suma początkowych wyrazów ciągu geometrycznego", "Ciąg arytmetyczny i geometryczny – zadania różne", "Lokaty pieniężne i kredyty bankowe"] },
