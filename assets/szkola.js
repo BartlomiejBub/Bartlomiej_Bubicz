@@ -145,7 +145,7 @@ export const KLASY = [
         lekcje: ["Powtórzenie geometrii z klasy 1", "Okrąg. Położenie prostej i okręgu", "Wzajemne położenie dwóch okręgów", "Kąty i koła", "Twierdzenie o stycznej i siecznej", "Wybrane konstrukcje geometryczne", "Okrąg opisany na trójkącie", "Okrąg wpisany w trójkąt"] },
       { id: "lo2-trygonometria", nr: "5", nazwa: "Trygonometria", opis: "Powtórzenie kąta ostrego, funkcje trygonometryczne dowolnego kąta, tożsamości, wzory redukcyjne.", plik: "lo2/trygonometria.js",
         lekcje: ["Trygonometria kąta ostrego – powtórzenie", "Sinus, cosinus, tangens i cotangens dowolnego kąta", "Podstawowe tożsamości trygonometryczne", "Wybrane wzory redukcyjne"] },
-      { id: "lo2-analityczna", nr: "6", nazwa: "Geometria analityczna", opis: "Odcinek w układzie współrzędnych, równanie kierunkowe i ogólne prostej, równanie okręgu.",
+      { id: "lo2-analityczna", nr: "6", nazwa: "Geometria analityczna", opis: "Odcinek w układzie współrzędnych, równanie kierunkowe i ogólne prostej, równanie okręgu.", plik: "lo2/analityczna.js",
         lekcje: ["Odcinek w układzie współrzędnych", "Równanie kierunkowe prostej", "Równanie ogólne prostej", "Równanie okręgu"] },
       { id: "lo2-pola", nr: "7", nazwa: "Rozwiązywanie trójkątów. Pole koła i trójkąta", opis: "Twierdzenie cosinusów, pole trójkąta, pola figur podobnych, pole koła i wycinka.",
         lekcje: ["Twierdzenie cosinusów", "Zastosowanie twierdzenia cosinusów", "Pole figury płaskiej", "Pole trójkąta, cz. 1", "Pole trójkąta, cz. 2", "Pola trójkątów podobnych", "Pole koła, pole wycinka koła", "Pole w dowodzeniu twierdzeń"] },
