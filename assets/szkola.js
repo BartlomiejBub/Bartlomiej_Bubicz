@@ -173,7 +173,7 @@ export const KLASY = [
   {
     id: "lo4", egzamin: "matura", nazwa: "Klasa 4", etap: "Liceum i technikum", podrecznik: "Matematyka 4, zakres podstawowy (Pazdro)",
     rozdzialy: [
-      { id: "lo4-wykladnicza", nr: "1", nazwa: "Funkcja wykładnicza. Funkcja logarytmiczna", opis: "Potęgi i logarytmy, wykresy funkcji wykładniczej i logarytmicznej, równania, zastosowania.",
+      { id: "lo4-wykladnicza", nr: "1", nazwa: "Funkcja wykładnicza. Funkcja logarytmiczna", opis: "Potęgi i logarytmy, wykresy funkcji wykładniczej i logarytmicznej, równania, zastosowania.", plik: "lo4/wykladnicza.js",
         lekcje: ["Potęga o wykładniku rzeczywistym – powtórzenie", "Funkcja wykładnicza i jej własności", "Przekształcenia wykresów funkcji wykładniczych", "Równania wykładnicze", "Nierówności wykładnicze", "Logarytm – powtórzenie", "Funkcja logarytmiczna", "Przekształcenia wykresów funkcji logarytmicznych", "Równania logarytmiczne", "Zastosowania w praktyce"] },
       { id: "lo4-statystyka", nr: "2", nazwa: "Statystyka. Rachunek prawdopodobieństwa", opis: "Prezentowanie danych, średnia, mediana i moda, kombinatoryka, zdarzenia i prawdopodobieństwo klasyczne.", plik: "lo4/statystyka.js",
         lekcje: ["Sposoby prezentowania danych", "Średnia z próby", "Mediana i moda z próby", "Kombinatoryka – powtórzenie", "Doświadczenie losowe", "Zdarzenia. Działania na zdarzeniach", "Określenie prawdopodobieństwa", "Prawdopodobieństwo klasyczne", "Doświadczenie losowe wieloetapowe"] },
