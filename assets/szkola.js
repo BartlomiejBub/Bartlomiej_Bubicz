@@ -66,7 +66,7 @@ export const KLASY = [
         lekcje: ["Bryły i ich objętość", "Zamiana jednostek", "Siatki brył", "Pole powierzchni bryły"] },
       { id: "sp6-matematyka-i-my", nr: "VII", nazwa: "Matematyka i my", opis: "Tabele, diagramy i wykresy, procenty, prędkość, droga i czas, wzory, plan, mapa i skala.", plik: "sp6/matematyka-i-my.js",
         lekcje: ["Tabele", "Diagramy i wykresy", "Procenty", "Prędkość, droga, czas", "Korzystanie ze wzorów", "Plan, mapa i skala"] },
-      { id: "sp6-na-co-dzien", nr: "VIII", nazwa: "Matematyka na co dzień", opis: "Zakupy, działki i mieszkania, podróże, odżywianie.",
+      { id: "sp6-na-co-dzien", nr: "VIII", nazwa: "Matematyka na co dzień", opis: "Zakupy, działki i mieszkania, podróże, odżywianie.", plik: "sp6/na-co-dzien.js",
         lekcje: ["Zakupy", "Działki, domy, mieszkania", "Podróż", "Odżywianie"] },
     ],
   },
