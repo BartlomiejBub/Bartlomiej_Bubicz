@@ -160,7 +160,7 @@ export const KLASY = [
         lekcje: ["Ułamek algebraiczny. Skracanie i rozszerzanie", "Mnożenie i dzielenie ułamków algebraicznych", "Równania wymierne", "Zadania tekstowe prowadzące do równań wymiernych", "Funkcja homograficzna"] },
       { id: "lo3-ciagi", nr: "2", nazwa: "Ciągi liczbowe", opis: "Określenie i monotoniczność ciągu, ciąg arytmetyczny i geometryczny, sumy, lokaty i kredyty.", plik: "lo3/ciagi.js",
         lekcje: ["Określenie ciągu. Sposoby opisywania ciągów", "Monotoniczność ciągów", "Ciąg arytmetyczny", "Suma początkowych wyrazów ciągu arytmetycznego", "Ciąg geometryczny", "Suma początkowych wyrazów ciągu geometrycznego", "Ciąg arytmetyczny i geometryczny – zadania różne", "Lokaty pieniężne i kredyty bankowe"] },
-      { id: "lo3-kombinatoryka", nr: "3", nazwa: "Kombinatoryka", opis: "Reguła mnożenia i reguła dodawania, zadania kombinatoryczne.",
+      { id: "lo3-kombinatoryka", nr: "3", nazwa: "Kombinatoryka", opis: "Reguła mnożenia i reguła dodawania, zadania kombinatoryczne.", plik: "lo3/kombinatoryka.js",
         lekcje: ["Reguła mnożenia i reguła dodawania", "Zadania kombinatoryczne"] },
       { id: "lo3-czworokaty", nr: "4", nazwa: "Geometria płaska – czworokąty", opis: "Podział czworokątów, trapezy i równoległoboki, wielokąty foremne, czworokąty podobne.",
         lekcje: ["Podział czworokątów. Trapezoidy", "Trapezy", "Równoległoboki", "Wielokąty. Wielokąt foremny", "Podobieństwo. Czworokąty podobne"] },
