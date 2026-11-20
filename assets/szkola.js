@@ -162,7 +162,7 @@ export const KLASY = [
         lekcje: ["Określenie ciągu. Sposoby opisywania ciągów", "Monotoniczność ciągów", "Ciąg arytmetyczny", "Suma początkowych wyrazów ciągu arytmetycznego", "Ciąg geometryczny", "Suma początkowych wyrazów ciągu geometrycznego", "Ciąg arytmetyczny i geometryczny – zadania różne", "Lokaty pieniężne i kredyty bankowe"] },
       { id: "lo3-kombinatoryka", nr: "3", nazwa: "Kombinatoryka", opis: "Reguła mnożenia i reguła dodawania, zadania kombinatoryczne.", plik: "lo3/kombinatoryka.js",
         lekcje: ["Reguła mnożenia i reguła dodawania", "Zadania kombinatoryczne"] },
-      { id: "lo3-czworokaty", nr: "4", nazwa: "Geometria płaska – czworokąty", opis: "Podział czworokątów, trapezy i równoległoboki, wielokąty foremne, czworokąty podobne.",
+      { id: "lo3-czworokaty", nr: "4", nazwa: "Geometria płaska – czworokąty", opis: "Podział czworokątów, trapezy i równoległoboki, wielokąty foremne, czworokąty podobne.", plik: "lo3/czworokaty.js",
         lekcje: ["Podział czworokątów. Trapezoidy", "Trapezy", "Równoległoboki", "Wielokąty. Wielokąt foremny", "Podobieństwo. Czworokąty podobne"] },
       { id: "lo3-pola", nr: "5", nazwa: "Geometria płaska – pole czworokąta", opis: "Pola prostokąta, równoległoboku, rombu i trapezu, pola figur podobnych, skala mapy.",
         lekcje: ["Pole prostokąta. Pole kwadratu", "Pole równoległoboku. Pole rombu", "Pole trapezu", "Pole czworokąta – zadania różne", "Pola figur podobnych", "Mapa. Skala mapy"] },
