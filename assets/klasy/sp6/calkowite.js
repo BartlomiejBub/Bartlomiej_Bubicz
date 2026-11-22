@@ -14,6 +14,72 @@ const lw = (n, a, b, c) => `${n} ${mn(n, a, b, c)}`;
 /** Liczba całkowita, ujemna w nawiasie: 5, (-5). */
 const nw = (n) => (n < 0 ? `(${n})` : `${n}`);
 
+// --- Rysunki: oś liczbowa (zero w środku, 22 punkty na jedną liczbę), skoki strzałkami, termometr, schemat znaków.
+// Współrzędne liczy kod, więc rysunki są dokładne.
+const um = (n) => String(n).replace("-", "−");
+const zl = (x) => Math.round(x * 10) / 10;
+const OX = 150, SK = 22;
+const ox = (v) => OX + v * SK;
+
+/** Oś liczbowa z kreskami i podpisami od `od` do `dop` na wysokości y. */
+function osRzad(y, od = -6, dop = 6) {
+  let s = `<line class="l" x1="${ox(od) - 10}" y1="${y}" x2="${ox(dop) + 12}" y2="${y}"/>`;
+  s += `<polyline class="l" points="${ox(dop) + 6},${y - 4} ${ox(dop) + 12},${y} ${ox(dop) + 6},${y + 4}"/>`;
+  for (let v = od; v <= dop; v++) {
+    s += `<line class="l" x1="${ox(v)}" y1="${y - 4}" x2="${ox(v)}" y2="${y + 4}"/>`;
+    s += `<text class="${v === 0 ? "ta" : "tm"}" x="${ox(v)}" y="${y + 17}" text-anchor="middle">${um(v)}</text>`;
+  }
+  return s;
+}
+
+/** Skok (łuk ze strzałką) nad osią z liczby a do liczby b; wys – wysokość łuku. */
+function skok(a, b, y, wys, podpis) {
+  const x1 = ox(a), x2 = ox(b), m = (x1 + x2) / 2, dx = x2 - m, dy = 2 * wys, d = Math.hypot(dx, dy);
+  const ux = dx / d, uy = dy / d, bx = x2 - 7 * ux, by = y - 7 * uy;
+  const p1 = `${zl(bx - 4 * uy)},${zl(by + 4 * ux)}`, p2 = `${zl(bx + 4 * uy)},${zl(by - 4 * ux)}`;
+  return `<path class="a" d="M ${x1} ${y} Q ${m} ${y - 2 * wys} ${x2} ${y}"/><polyline class="a" points="${p1} ${x2},${y} ${p2}"/>`
+    + `<circle class="k" cx="${x1}" cy="${y}" r="3.5"/><text class="ta" x="${m}" y="${y - wys - 4}" text-anchor="middle">${podpis}</text>`;
+}
+const napis = (x, y, kl, t, kotwica = "middle") => `<text class="${kl}" x="${x}" y="${y}" text-anchor="${kotwica}">${t}</text>`;
+
+const RYS_OS = `<svg viewBox="0 0 300 70">${osRzad(28)}${napis(8, 64, "tm", "← liczby ujemne", "start")}${napis(292, 64, "tm", "liczby dodatnie →", "end")}</svg>`;
+
+const RYS_PRZECIWNE = `<svg viewBox="0 0 300 86">${napis(150, 12, "ta", "−4 i 4 to liczby przeciwne")}${osRzad(58)}`
+  + `${skok(0, -4, 58, 20, "4 kroki")}${skok(0, 4, 58, 20, "4 kroki")}`
+  + `<circle class="k" cx="${ox(-4)}" cy="58" r="3.5"/><circle class="k" cx="${ox(4)}" cy="58" r="3.5"/></svg>`;
+
+const RYS_ODLEGLOSC = `<svg viewBox="0 0 300 86">${napis(150, 12, "ta", "odległość od zera: 6")}${osRzad(58)}`
+  + `${skok(0, -6, 58, 20, "6 kroków")}${skok(0, 6, 58, 20, "6 kroków")}</svg>`;
+
+const RYS_DODAWANIE = `<svg viewBox="0 0 300 168">${napis(150, 12, "ta", "3 + (−5) = −2")}${osRzad(60)}${skok(3, -2, 60, 20, "−5")}`
+  + `${napis(150, 100, "ta", "−2 + 6 = 4")}${osRzad(148)}${skok(-2, 4, 148, 20, "+6")}</svg>`;
+
+const RYS_ODEJM1 = `<svg viewBox="0 0 300 80">${napis(150, 12, "ta", "5 − 8 = 5 + (−8) = −3")}${osRzad(60)}${skok(5, -3, 60, 20, "−8")}</svg>`;
+
+const RYS_ROZNICA = `<svg viewBox="0 0 300 80">${napis(150, 12, "ta", "od −3 do 5: 5 − (−3) = 8")}${osRzad(60)}${skok(-3, 5, 60, 20, "8 kroków")}</svg>`;
+
+/** Termometr: wysokość kreski v stopni; płyn sięga do −5°C. */
+const RYS_TERMOMETR = (() => {
+  const ty = (v) => 90 - 7.5 * v;
+  let s = `<rect class="w" x="55" y="${ty(-5)}" width="10" height="${zl(172 - ty(-5))}"/><circle class="w" cx="60" cy="178" r="11"/>`
+    + `<path class="l" d="M 54 168.8 L 54 12 Q 54 6 60 6 Q 66 6 66 12 L 66 168.8 A 11 11 0 1 1 54 168.8"/>`;
+  for (const v of [10, 5, 0, -5, -10]) {
+    s += `<line class="l" x1="66" y1="${ty(v)}" x2="74" y2="${ty(v)}"/>` + napis(80, ty(v) + 5, v === 0 ? "ta" : "tm", `${um(v)}°C`, "start");
+  }
+  s += `<line class="p" x1="80" y1="${ty(0)}" x2="290" y2="${ty(0)}"/>`
+    + napis(150, ty(5) + 4, "t", "cieplej: liczby dodatnie", "start")
+    + napis(150, ty(-3), "t", "zimniej: liczby ujemne", "start")
+    + napis(150, ty(0) - 5, "tm", "zero: woda zamarza", "start");
+  return `<svg viewBox="0 0 300 192">${s}</svg>`;
+})();
+
+/** Schemat znaków iloczynu: cztery możliwości. */
+const RYS_ZNAKI = `<svg viewBox="0 0 220 112">`
+  + `<rect class="w" x="5" y="6" width="100" height="36"/><rect class="w2" x="115" y="6" width="100" height="36"/>`
+  + `<rect class="w2" x="5" y="48" width="100" height="36"/><rect class="w" x="115" y="48" width="100" height="36"/>`
+  + `${napis(55, 29, "ta", "+ · + = +")}${napis(165, 29, "ta", "+ · − = −")}${napis(55, 71, "ta", "− · + = −")}${napis(165, 71, "ta", "− · − = +")}`
+  + `${napis(110, 103, "tm", "takie same znaki: plus, różne: minus")}</svg>`;
+
 /** Kroki rozwiązania dodawania dwóch liczb całkowitych różnych od zera (a + b). */
 function sumaKroki(a, b) {
   const w = a + b, pa = Math.abs(a), pb = Math.abs(b);
@@ -39,7 +105,7 @@ export default {
       sciaga: [
         {
           nazwa: "Liczby całkowite",
-          slownie: "Liczby całkowite to liczby naturalne, zero i liczby do nich przeciwne. Używamy ich tam, gdzie coś może być „poniżej zera”: przy temperaturze, piętrach, wysokości, długach.",
+          slownie: "Liczby całkowite to liczby naturalne ($1$, $2$, $3$, …), zero i liczby ujemne ($-1$, $-2$, $-3$, …). Liczba ujemna to liczba mniejsza od zera. Używamy takich liczb tam, gdzie coś może być „poniżej zera”: przy temperaturze, piętrach, wysokości, długach.",
           tex: "\\ldots,-2,-1,0,1,2,\\ldots",
           przyklad: "$-5$°C to $5$ stopni poniżej zera. Wysokość $-20$ m to $20$ m poniżej poziomu morza. Dług $30$ zł to $-30$ zł. Piętro $-2$ to drugi poziom garażu pod ziemią.",
           uwaga: "Zero nie jest ani dodatnie, ani ujemne. Liczba $2{,}5$ nie jest całkowita, bo leży między $2$ a $3$.",
@@ -50,6 +116,15 @@ export default {
           tex: "\\ldots<-2<-1<0<1<2<\\ldots",
           przyklad: "Od $-3$ do $2$ idziemy przez liczby $-3$, $-2$, $-1$, $0$, $1$, $2$. Między $-3$ a $2$ (bez tych dwóch liczb) leżą cztery liczby całkowite: $-2$, $-1$, $0$, $1$.",
           uwaga: "Przy liczeniu liczb całkowitych między dwiema liczbami nie zapomnij o zerze.",
+          rysunek: RYS_OS,
+        },
+        {
+          nazwa: "Termometr",
+          slownie: "Termometr to oś liczbowa postawiona pionowo. Im wyżej, tym cieplej, więc liczba jest większa. Im niżej, tym zimniej, więc liczba jest mniejsza. Przy $0$°C woda zamarza. Poniżej zera jest mróz.",
+          tex: "-8<-3<0<4",
+          przyklad: "Rano było $-5$°C, a w południe $3$°C. Liczba $3$ leży wyżej na termometrze niż $-5$, więc w południe było cieplej.",
+          uwaga: "Gdy robi się zimniej, liczba się zmniejsza: z $-2$°C na $-6$°C to większy mróz, a $-6 < -2$.",
+          rysunek: RYS_TERMOMETR,
         },
         {
           nazwa: "Porównywanie liczb",
@@ -64,12 +139,14 @@ export default {
           tex: "7\\text{ i }-7\\qquad -12\\text{ i }12",
           przyklad: "Przeciwna do $15$ to $-15$. Przeciwna do $-8$ to $8$. Suma liczb przeciwnych jest równa zero: $9 + (-9) = 0$.",
           uwaga: "Liczba przeciwna do ujemnej jest dodatnia. Przeciwna do $-8$ to $8$, a nie $-8$.",
+          rysunek: RYS_PRZECIWNE,
         },
         {
           nazwa: "Odległość od zera",
           slownie: "Odległość liczby od zera to liczba kroków na osi od zera do tej liczby. Odległość nigdy nie jest ujemna. Liczby przeciwne mają taką samą odległość od zera.",
-          przyklad: "Liczba $-7$ leży $7$ kroków od zera. Liczby $-7$ i $7$ mają tę samą odległość od zera. W odległości $3$ od zera leżą dwie liczby: $-3$ i $3$.",
-          uwaga: "Odległość od zera nie ma minusa. Liczba $-7$ jest w odległości $7$ od zera, a nie $-7$.",
+          przyklad: "Liczba $-6$ leży $6$ kroków od zera. Liczby $-6$ i $6$ mają tę samą odległość od zera. W odległości $3$ od zera leżą dwie liczby: $-3$ i $3$.",
+          uwaga: "Odległość od zera nie ma minusa. Liczba $-6$ jest w odległości $6$ od zera, a nie $-6$.",
+          rysunek: RYS_ODLEGLOSC,
         },
       ],
       jak: [
@@ -77,6 +154,7 @@ export default {
         "Porównując, szukaj liczby bardziej na prawo. Z dwóch liczb ujemnych większa jest ta, która jest bliżej zera.",
         "Liczbę przeciwną dostajesz, zmieniając znak liczby. Odległość od zera to liczba bez znaku.",
         "Zadania o piętrach i temperaturach: narysuj małą oś i zaznacz na niej liczby.",
+        "Termometr to oś liczbowa postawiona pionowo: wyżej jest cieplej, czyli liczba jest większa.",
       ],
       zadania: [
         {
@@ -105,6 +183,18 @@ export default {
         },
         {
           nr: "5",
+          tresc: "Ile liczb całkowitych leży w odległości $6$ od zera? **Wybierz właściwą odpowiedź.**",
+          opcje: ["jedna: $6$", "jedna: $-6$", "dwie: $-6$ i $6$", "trzy: $-6$, $0$ i $6$"],
+          poprawna: 2,
+        },
+        {
+          nr: "6",
+          tresc: "Którą z liczb można wstawić w miejsce kropek, aby nierówność $-7 < \\ldots < -4$ była prawdziwa? **Wybierz właściwą odpowiedź.**",
+          opcje: ["$-8$", "$-5$", "$-3$", "$5$"],
+          poprawna: 1,
+        },
+        {
+          nr: "7",
           tresc: "Oceń zdania. **Dla każdego zdania wybierz P, jeśli jest prawdziwe, albo F, jeśli jest fałszywe.**",
           czesci: [
             { tekst: "Liczba $-10$ leży bliżej zera niż liczba $-4$.", litery: "PF", poprawna: 1 },
@@ -115,16 +205,22 @@ export default {
       ],
       otwarte: [
         {
-          nr: "6",
+          nr: "8",
           punkty: 2,
           tresc: "Na osi liczbowej zaznaczono liczby $-5$, $3$, $-1$, $-8$, $6$ i $2$. Ustaw je od najmniejszej do największej. Która z nich leży najbliżej zera, a która najdalej od zera? **Zapisz obliczenia.**",
           rozwiazanie: "Liczby ujemne to $-5$, $-1$ i $-8$. Z ujemnych najmniejsza jest ta, która leży najdalej od zera: $-8 < -5 < -1$.\n\nLiczby dodatnie ustawiamy zwyczajnie: $2 < 3 < 6$.\n\nWszystkie razem: $-8 < -5 < -1 < 2 < 3 < 6$.\n\nOdległości od zera to kolejno $5$, $3$, $1$, $8$, $6$, $2$. Najmniejsza jest $1$ (liczba $-1$), a największa $8$ (liczba $-8$).\n\nOdpowiedź: Od najmniejszej: $-8$, $-5$, $-1$, $2$, $3$, $6$. Najbliżej zera leży $-1$, a najdalej $-8$.",
         },
         {
-          nr: "7",
+          nr: "9",
           punkty: 2,
           tresc: "Ewa zaparkowała samochód na piętrze garażu oznaczonym $-3$. Jej mieszkanie jest na piętrze o numerze przeciwnym do numeru piętra garażu. Na którym piętrze jest mieszkanie? Ile pięter pokona winda, jadąc z garażu do mieszkania? **Zapisz obliczenia.**",
           rozwiazanie: "Liczba przeciwna do $-3$ to $3$, więc mieszkanie jest na piętrze $3$.\n\nWinda jedzie z piętra $-3$ na parter ($0$): to $3$ piętra.\n\nPotem z parteru na piętro $3$: jeszcze $3$ piętra.\n\nRazem: $3 + 3 = 6$.\n\nOdpowiedź: Mieszkanie jest na piętrze $3$, a winda pokona $6$ pięter.",
+        },
+        {
+          nr: "10",
+          punkty: 2,
+          tresc: "W pięciu miastach zmierzono temperaturę: Warszawa $-4$°C, Kraków $1$°C, Gdańsk $-7$°C, Zakopane $-10$°C, Wrocław $0$°C. Ustaw miasta od najzimniejszego do najcieplejszego. Gdzie jest cieplej: w Gdańsku czy w Warszawie? **Zapisz obliczenia.**",
+          rozwiazanie: "Zimniej jest tam, gdzie liczba jest mniejsza, czyli leży bardziej na lewo na osi.\n\nUstawiamy temperatury: $-10 < -7 < -4 < 0 < 1$.\n\nZ liczb ujemnych mniejsza jest ta, która leży dalej od zera, więc $-10 < -7 < -4$.\n\nMiasta od najzimniejszego: Zakopane, Gdańsk, Warszawa, Wrocław, Kraków.\n\nPorównanie: $-4 > -7$, bo $-4$ leży bliżej zera.\n\nOdpowiedź: Cieplej jest w Warszawie ($-4$°C) niż w Gdańsku ($-7$°C).",
         },
       ],
       generatory: [
@@ -228,6 +324,30 @@ export default {
             };
           },
         },
+        {
+          id: "blizej-dalej-od-zera",
+          nazwa: "Bliżej i dalej od zera",
+          opis: "Wskaż spośród czterech liczb tę, która leży najbliżej zera albo najdalej od zera.",
+          generuj(r) {
+            let n;
+            do {
+              n = Array.from({ length: 4 }, () => r.int(-20, 20));
+            } while (new Set(n.map(Math.abs)).size < 4 || !n.some((x) => x < 0) || !n.some((x) => x > 0));
+            const blisko = r.chance(0.5);
+            const wg = [...n].sort((x, y) => Math.abs(x) - Math.abs(y));
+            const w = blisko ? wg[0] : wg[3];
+            return {
+              tresc: `Która z liczb ${n.map((x) => `$${x}$`).join(", ")} leży ${blisko ? "najbliżej" : "najdalej od"} zera?`,
+              pola: [{ id: "w", typ: "wybor", etykieta: blisko ? "Najbliżej zera" : "Najdalej od zera", opcje: n.map((x) => `$${x}$`) }],
+              odpowiedz: { w: n.indexOf(w) },
+              wynik: `$${w}$`,
+              rozwiazanie: [
+                `Odległości od zera to: ${n.map((x) => `$${Math.abs(x)}$ (dla $${x}$)`).join(", ")}.`,
+                `${blisko ? "Najmniejszą" : "Największą"} odległość ma liczba $${w}$.`,
+              ],
+            };
+          },
+        },
       ],
     },
 
@@ -242,6 +362,14 @@ export default {
           tex: "3+(-5)=-2",
           przyklad: "$-2 + 6$: zaczynamy w $-2$ i idziemy $6$ kroków w prawo. Dochodzimy do $4$. Dalej: $3 + (-5)$: zaczynamy w $3$ i idziemy $5$ kroków w lewo, dochodzimy do $-2$.",
           uwaga: "Liczbę ujemną w sumie zapisujemy w nawiasie, np. $3 + (-5)$. Bez nawiasu dwa znaki stoją obok siebie i łatwo się pomylić.",
+          rysunek: RYS_DODAWANIE,
+        },
+        {
+          nazwa: "Nazwy w dodawaniu i odejmowaniu",
+          slownie: "Liczby, które dodajemy, to składniki. Wynik dodawania to suma. Wynik odejmowania to różnica.",
+          tex: "-3+(-4)=-7\\qquad 5-8=-3",
+          przyklad: "W działaniu $-3 + (-4) = -7$ składniki to $-3$ i $-4$, a suma to $-7$. W działaniu $5 - 8 = -3$ różnica to $-3$.",
+          uwaga: "Suma to wynik dodawania, a nie odejmowania. Suma może być ujemna, np. suma liczb $-3$ i $-4$ to $-7$.",
         },
         {
           nazwa: "Liczby o takich samych znakach",
@@ -277,40 +405,53 @@ export default {
         "Takie same znaki: dodaj odległości od zera. Wynik ma ten sam znak.",
         "Różne znaki: odejmij mniejszą odległość od większej. Znak wyniku jest taki jak znak liczby leżącej dalej od zera.",
         "Gdy się pogubisz, narysuj oś liczbową i policz kroki w prawo albo w lewo.",
+        "Sprawdź na termometrze, czy wynik ma sens: zrobiło się cieplej czy zimniej?",
       ],
       zadania: [
         {
-          nr: "8",
+          nr: "11",
           tresc: "Ile to jest $-7 + 12$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$5$", "$-5$", "$19$", "$-19$"],
           poprawna: 0,
         },
         {
-          nr: "9",
+          nr: "12",
           tresc: "Ile to jest $-9 + (-6)$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$-3$", "$3$", "$15$", "$-15$"],
           poprawna: 3,
         },
         {
-          nr: "10",
+          nr: "13",
           tresc: "Rano na termometrze było $-4$°C. Do południa temperatura wzrosła o $11$ stopni, a wieczorem spadła o $9$ stopni. Ile stopni było wieczorem? **Wybierz właściwą odpowiedź.**",
           opcje: ["$2$°C", "$-24$°C", "$-2$°C", "$16$°C"],
           poprawna: 2,
         },
         {
-          nr: "11",
+          nr: "14",
           tresc: "Które z działań ma wynik $-3$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$8 + (-5)$", "$-8 + 5$", "$-8 + (-5)$", "$-5 + 8$"],
           poprawna: 1,
         },
         {
-          nr: "12",
+          nr: "15",
           tresc: "Ile wynosi $-15 + 8 + (-6) + 20$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$19$", "$-7$", "$-49$", "$7$"],
           poprawna: 3,
         },
         {
-          nr: "13",
+          nr: "16",
+          tresc: "Jaką liczbę trzeba dodać do $-8$, aby otrzymać $-3$? **Wybierz właściwą odpowiedź.**",
+          opcje: ["$5$", "$-5$", "$-11$", "$11$"],
+          poprawna: 0,
+        },
+        {
+          nr: "17",
+          tresc: "Na osi liczbowej stoisz na liczbie $4$ i idziesz $9$ kroków w lewo. Na której liczbie staniesz? **Wybierz właściwą odpowiedź.**",
+          opcje: ["$13$", "$-13$", "$5$", "$-5$"],
+          poprawna: 3,
+        },
+        {
+          nr: "18",
           tresc: "Oceń zdania. **Dla każdego zdania wybierz P, jeśli jest prawdziwe, albo F, jeśli jest fałszywe.**",
           czesci: [
             { tekst: "$6 + (-9) = 3$", litery: "PF", poprawna: 1 },
@@ -321,13 +462,13 @@ export default {
       ],
       otwarte: [
         {
-          nr: "14",
+          nr: "19",
           punkty: 2,
           tresc: "Zosia ma $24$ zł, ale jest winna bratu $40$ zł. Dług zapisujemy jako liczbę ujemną. Ile wynosi stan pieniędzy Zosi, czyli suma jej pieniędzy i długu? Potem mama dała Zosi $30$ zł. Jaki jest teraz jej stan pieniędzy? **Zapisz obliczenia.**",
           rozwiazanie: "Pieniądze i dług: $24 + (-40)$. Liczby mają różne znaki, odległości od zera to $24$ i $40$. Dalej od zera leży $-40$, więc wynik jest ujemny: $40 - 24 = 16$, czyli $-16$.\n\nPo otrzymaniu $30$ zł: $-16 + 30$. Dalej od zera leży $30$ (liczba dodatnia), więc wynik jest dodatni: $30 - 16 = 14$.\n\nOdpowiedź: Najpierw stan Zosi to $-16$ zł (jest $16$ zł na minusie), a po pieniądzach od mamy $14$ zł.",
         },
         {
-          nr: "15",
+          nr: "20",
           punkty: 2,
           tresc: "Nurek zanurzył się na głębokość $15$ m pod powierzchnią wody (poziom $-15$ m). Potem wynurzył się o $6$ m, a następnie zanurzył się o $4$ m. Na jakiej głębokości jest teraz? **Zapisz obliczenia.**",
           rozwiazanie: "Wynurzenie o $6$ m to dodanie $6$: $-15 + 6$. Dalej od zera leży $-15$, więc wynik jest ujemny: $15 - 6 = 9$, czyli $-9$.\n\nZanurzenie o $4$ m to dodanie $-4$: $-9 + (-4)$. Obie liczby są ujemne, więc dodajemy odległości: $9 + 4 = 13$, czyli $-13$.\n\nOdpowiedź: Nurek jest na poziomie $-13$ m, czyli $13$ m pod powierzchnią wody.",
@@ -402,6 +543,53 @@ export default {
             return { tresc, pola: [{ id: "w", typ: "liczba", etykieta: pole }], odpowiedz: { w: f }, wynik, rozwiazanie: kroki };
           },
         },
+        {
+          id: "skoki-na-osi",
+          nazwa: "Skoki na osi liczbowej",
+          opis: "Stoisz na osi liczbowej na pewnej liczbie i idziesz kilka kroków w prawo albo w lewo. Na której liczbie staniesz?",
+          generuj(r) {
+            let s, k, prawo, w;
+            do {
+              s = r.intBez(-12, 12, 0);
+              k = r.int(2, 15);
+              prawo = r.chance(0.5);
+              w = prawo ? s + k : s - k;
+            } while (Math.abs(w) > 20);
+            return {
+              tresc: `Na osi liczbowej stoisz na liczbie $${s}$ i idziesz $${k}$ ${mn(k, "krok", "kroki", "kroków")} w ${prawo ? "prawo" : "lewo"}. Na której liczbie staniesz?`,
+              pola: [{ id: "w", typ: "liczba", etykieta: "Liczba, na której staniesz" }],
+              odpowiedz: { w },
+              wynik: `$${w}$`,
+              rozwiazanie: [
+                `Krok w ${prawo ? "prawo" : "lewo"} to dodanie ${prawo ? "liczby dodatniej" : "liczby ujemnej"}: $${s} + ${nw(prawo ? k : -k)}$.`,
+                ...sumaKroki(s, prawo ? k : -k),
+              ],
+            };
+          },
+        },
+        {
+          id: "brakujacy-skladnik",
+          nazwa: "Brakujący składnik",
+          opis: "Jaką liczbę trzeba dodać do danej liczby, aby otrzymać wskazaną sumę? Policz, ile kroków na osi dzieli te liczby.",
+          generuj(r) {
+            let a, w;
+            do {
+              a = r.intBez(-20, 20, 0);
+              w = r.intBez(-20, 20, 0);
+            } while (a === w);
+            const x = w - a;
+            return {
+              tresc: r.pick([`Jaką liczbę trzeba dodać do $${a}$, aby otrzymać $${w}$?`, `Do liczby $${a}$ dodano pewną liczbę i wyszło $${w}$. Jaką liczbę dodano?`]),
+              pola: [{ id: "w", typ: "liczba", etykieta: "Dodana liczba" }],
+              odpowiedz: { w: x },
+              wynik: `$${x}$`,
+              rozwiazanie: [
+                `Na osi liczbowej idziemy od $${a}$ do $${w}$. To $${Math.abs(x)}$ ${mn(Math.abs(x), "krok", "kroki", "kroków")} w ${x > 0 ? "prawo" : "lewo"}.`,
+                `Krok w ${x > 0 ? "prawo" : "lewo"} to dodanie liczby ${x > 0 ? "dodatniej" : "ujemnej"}: $${a} + ${nw(x)} = ${w}$. Szukana liczba to $${x}$.`,
+              ],
+            };
+          },
+        },
       ],
     },
 
@@ -416,6 +604,14 @@ export default {
           tex: "(+)\\cdot(+)=+\\qquad (-)\\cdot(-)=+\\qquad (+)\\cdot(-)=-\\qquad (-)\\cdot(+)=-",
           przyklad: "$(-6) \\cdot 4$: $6 \\cdot 4 = 24$, znaki różne, więc $-24$. Dalej: $(-5) \\cdot (-3)$: $5 \\cdot 3 = 15$, znaki takie same, więc $15$.",
           uwaga: "$(-5) \\cdot (-3)$ nie jest równe $-15$. Minus razy minus daje plus.",
+          rysunek: RYS_ZNAKI,
+        },
+        {
+          nazwa: "Nazwy w mnożeniu i dzieleniu",
+          slownie: "Liczby, które mnożymy, to czynniki. Wynik mnożenia to iloczyn. Wynik dzielenia to iloraz.",
+          tex: "(-3)\\cdot 4=-12\\qquad (-12):4=-3",
+          przyklad: "W działaniu $(-3) \\cdot 4 = -12$ czynniki to $-3$ i $4$, a iloczyn to $-12$. W działaniu $(-12) : 4 = -3$ iloraz to $-3$.",
+          uwaga: "Iloczyn to wynik mnożenia, a nie dodawania. Iloczyn dwóch liczb ujemnych jest dodatni.",
         },
         {
           nazwa: "Dlaczego tak jest?",
@@ -454,37 +650,49 @@ export default {
       ],
       zadania: [
         {
-          nr: "16",
+          nr: "21",
           tresc: "Ile to jest $(-7) \\cdot 6$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$42$", "$-13$", "$-42$", "$13$"],
           poprawna: 2,
         },
         {
-          nr: "17",
+          nr: "22",
           tresc: "Ile to jest $(-8) \\cdot (-5)$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$-40$", "$40$", "$-13$", "$3$"],
           poprawna: 1,
         },
         {
-          nr: "18",
+          nr: "23",
           tresc: "Ile to jest $(-56) : 7$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$-8$", "$8$", "$-49$", "$49$"],
           poprawna: 0,
         },
         {
-          nr: "19",
+          nr: "24",
           tresc: "Ile wynosi iloczyn $(-2) \\cdot 3 \\cdot (-4) \\cdot (-5)$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$120$", "$-14$", "$-60$", "$-120$"],
           poprawna: 3,
         },
         {
-          nr: "20",
+          nr: "25",
           tresc: "Rano było $2$°C. Przez $4$ godziny temperatura spadała o $3$ stopnie na godzinę. Ile stopni było po tych $4$ godzinach? **Wybierz właściwą odpowiedź.**",
           opcje: ["$-12$°C", "$14$°C", "$-10$°C", "$10$°C"],
           poprawna: 2,
         },
         {
-          nr: "21",
+          nr: "26",
+          tresc: "Które z działań ma dodatni wynik? **Wybierz właściwą odpowiedź.**",
+          opcje: ["$5 \\cdot (-2)$", "$(-6) : 3$", "$(-12) : (-4)$", "$(-3) \\cdot 4$"],
+          poprawna: 2,
+        },
+        {
+          nr: "27",
+          tresc: "Ile to jest $0 : (-9)$? **Wybierz właściwą odpowiedź.**",
+          opcje: ["$0$", "$-9$", "$9$", "tego nie da się obliczyć"],
+          poprawna: 0,
+        },
+        {
+          nr: "28",
           tresc: "Oceń zdania. **Dla każdego zdania wybierz P, jeśli jest prawdziwe, albo F, jeśli jest fałszywe.**",
           czesci: [
             { tekst: "$(-30) : (-5) = -6$", litery: "PF", poprawna: 1 },
@@ -495,16 +703,22 @@ export default {
       ],
       otwarte: [
         {
-          nr: "22",
+          nr: "29",
           punkty: 2,
           tresc: "Co dzień poziom wody w basenie obniża się o $4$ cm. Zmianę poziomu o $4$ cm w dół zapisujemy jako $-4$. Policz, jaka jest zmiana poziomu wody po $6$ dniach. Jak wysoko będzie sięgać woda po $6$ dniach, jeśli dziś sięga $120$ cm? **Zapisz obliczenia.**",
           rozwiazanie: "Zmiana w ciągu $6$ dni: $6 \\cdot (-4)$. Znaki są różne, więc wynik jest ujemny: $6 \\cdot 4 = 24$, czyli $-24$.\n\nPoziom wody po $6$ dniach: $120 + (-24) = 96$.\n\nOdpowiedź: Poziom zmieni się o $-24$ cm, czyli woda obniży się o $24$ cm. Będzie sięgać $96$ cm.",
         },
         {
-          nr: "23",
+          nr: "30",
           punkty: 2,
           tresc: "Oblicz $(-3) \\cdot (-4) \\cdot (-2)$ oraz $(-48) : (-6) \\cdot (-1)$. Który z dwóch wyników jest mniejszy? **Zapisz obliczenia.**",
           rozwiazanie: "Pierwszy iloczyn: są $3$ liczby ujemne, więc wynik jest ujemny. $3 \\cdot 4 \\cdot 2 = 24$, czyli $-24$.\n\nDrugi wynik liczymy od lewej strony: $(-48) : (-6) = 8$ (takie same znaki, więc plus).\n\nPotem $8 \\cdot (-1) = -8$.\n\nPorównujemy: $-24 < -8$, bo $-24$ leży dalej od zera.\n\nOdpowiedź: Pierwszy wynik to $-24$, drugi to $-8$. Mniejszy jest pierwszy, czyli $-24$.",
+        },
+        {
+          nr: "31",
+          punkty: 2,
+          tresc: "Temperatura spada co godzinę o $3$ stopnie. Zmianę temperatury o $3$ stopnie w dół zapisujemy jako $-3$. Jaka jest zmiana temperatury po $5$ godzinach? Po ilu godzinach zmiana temperatury wyniesie $-21$ stopni? **Zapisz obliczenia.**",
+          rozwiazanie: "Zmiana po $5$ godzinach: $5 \\cdot (-3)$. Znaki są różne, więc wynik jest ujemny: $5 \\cdot 3 = 15$, czyli $-15$.\n\nSzukamy liczby godzin: $(-21) : (-3)$. Znaki są takie same, więc wynik jest dodatni: $21 : 3 = 7$.\n\nSprawdzenie: $7 \\cdot (-3) = -21$.\n\nOdpowiedź: Po $5$ godzinach temperatura zmieni się o $-15$ stopni (spadnie o $15$ stopni). Zmiana wyniesie $-21$ stopni po $7$ godzinach.",
         },
       ],
       generatory: [
@@ -597,6 +811,29 @@ export default {
             };
           },
         },
+        {
+          id: "znak-wyniku",
+          nazwa: "Znak wyniku",
+          opis: "Nie licz, tylko sprawdź znaki: czy wynik mnożenia lub dzielenia jest dodatni, czy ujemny?",
+          generuj(r) {
+            const dziel = r.chance(0.4);
+            const k = dziel ? 2 : r.pick([2, 3, 3, 4]);
+            const f = Array.from({ length: k }, () => r.intBez(-20, 20, 0));
+            const neg = f.filter((x) => x < 0).length;
+            const dodatni = neg % 2 === 0;
+            const zapis = f.map(nw).join(dziel ? " : " : " \\cdot ");
+            return {
+              tresc: `Czy wynik działania $${zapis}$ jest dodatni, czy ujemny? Nie musisz liczyć, wystarczy sprawdzić znaki.`,
+              pola: [{ id: "w", typ: "wybor", etykieta: "Wynik jest", opcje: ["dodatni", "ujemny"] }],
+              odpowiedz: { w: dodatni ? 0 : 1 },
+              wynik: dodatni ? "dodatni" : "ujemny",
+              rozwiazanie: [
+                `Liczb ujemnych jest $${neg}$. To liczba ${neg % 2 === 0 ? "parzysta" : "nieparzysta"}.`,
+                `${dodatni ? "Parzyście wiele minusów daje plus" : "Nieparzyście wiele minusów daje minus"}, więc wynik jest ${dodatni ? "dodatni" : "ujemny"}.`,
+              ],
+            };
+          },
+        },
       ],
     },
 
@@ -612,6 +849,14 @@ export default {
           litery: "$a$ i $b$ to dowolne liczby całkowite.",
           przyklad: "$5 - 8 = 5 + (-8) = -3$. Sprawdzenie: $-3 + 8 = 5$.",
           uwaga: "$5 - 8$ nie jest równe $3$. Od mniejszej liczby odejmujemy większą, więc wynik jest ujemny.",
+          rysunek: RYS_ODEJM1,
+        },
+        {
+          nazwa: "Dodawanie liczby ujemnej",
+          slownie: "Dodać liczbę ujemną to to samo co odjąć liczbę dodatnią. Odejmowanie i dodawanie liczby przeciwnej dają ten sam wynik.",
+          tex: "5+(-3)=5-3=2\\qquad 5-(-3)=5+3=8",
+          przyklad: "$9 + (-4) = 9 - 4 = 5$. Dalej: $-2 + (-7) = -2 - 7 = -9$.",
+          uwaga: "$5 + (-3)$ i $5 - (-3)$ to dwa różne działania. Pierwsze daje $2$, drugie $8$.",
         },
         {
           nazwa: "Odejmowanie liczby ujemnej",
@@ -625,7 +870,7 @@ export default {
           slownie: "Gdy od liczby ujemnej odejmujemy liczbę dodatnią, idziemy na osi w lewo, więc wynik jest jeszcze mniejszy. Zamieniamy to na dodawanie dwóch liczb ujemnych.",
           tex: "-3-5=-3+(-5)=-8",
           przyklad: "$-6 - 4 = -6 + (-4) = -10$. W temperaturze: było $-6$°C, spadło o $4$ stopnie, jest $-10$°C.",
-          uwaga: "$-6 - 4$ nie jest równe $-2$. Nie odejmujemy tu odległości od zera, tylko dodajemy liczbę ujemną.",
+          uwaga: "$-6 - 4$ nie jest równe $-2$. Zimniej niż $-6$°C jest przy $-10$°C, więc wynik musi być mniejszy od $-6$.",
         },
         {
           nazwa: "Różnica liczb",
@@ -633,6 +878,7 @@ export default {
           tex: "5-(-3)=5+3=8",
           przyklad: "Najwyższa temperatura była $4$°C, a najniższa $-6$°C. Różnica: $4 - (-6) = 4 + 6 = 10$ stopni.",
           uwaga: "Gdy od mniejszej liczby odejmiemy większą, wyjdzie liczba ujemna. Pytanie „o ile różnią się liczby” ma zawsze odpowiedź dodatnią.",
+          rysunek: RYS_ROZNICA,
         },
         {
           nazwa: "Kilka działań po kolei",
@@ -650,37 +896,37 @@ export default {
       ],
       zadania: [
         {
-          nr: "24",
+          nr: "32",
           tresc: "Ile to jest $6 - 10$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$4$", "$16$", "$-16$", "$-4$"],
           poprawna: 3,
         },
         {
-          nr: "25",
+          nr: "33",
           tresc: "Ile to jest $-3 - 8$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$-11$", "$11$", "$5$", "$-5$"],
           poprawna: 0,
         },
         {
-          nr: "26",
+          nr: "34",
           tresc: "Ile to jest $9 - (-4)$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$5$", "$-5$", "$13$", "$-13$"],
           poprawna: 2,
         },
         {
-          nr: "27",
+          nr: "35",
           tresc: "Rano było $-5$°C, a w południe $7$°C. O ile stopni wzrosła temperatura? **Wybierz właściwą odpowiedź.**",
           opcje: ["$2$ stopnie", "$12$ stopni", "$-12$ stopni", "$-2$ stopnie"],
           poprawna: 1,
         },
         {
-          nr: "28",
+          nr: "36",
           tresc: "Które z działań ma taki sam wynik jak $-4 - (-6)$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$-4 - 6$", "$-4 + (-6)$", "$4 + 6$", "$-4 + 6$"],
           poprawna: 3,
         },
         {
-          nr: "29",
+          nr: "37",
           tresc: "Oceń zdania. **Dla każdego zdania wybierz P, jeśli jest prawdziwe, albo F, jeśli jest fałszywe.**",
           czesci: [
             { tekst: "$2 - 9 = 7$", litery: "PF", poprawna: 1 },
@@ -688,19 +934,37 @@ export default {
             { tekst: "$-2 - (-8) = 6$", litery: "PF", poprawna: 0 },
           ],
         },
+        {
+          nr: "38",
+          tresc: "Temperatura spadła z $3$°C do $-5$°C. O ile stopni spadła? **Wybierz właściwą odpowiedź.**",
+          opcje: ["$2$ stopnie", "$8$ stopni", "$-8$ stopni", "$-2$ stopnie"],
+          poprawna: 1,
+        },
+        {
+          nr: "39",
+          tresc: "Jaką liczbę trzeba odjąć od $2$, aby otrzymać $9$? **Wybierz właściwą odpowiedź.**",
+          opcje: ["$7$", "$-7$", "$11$", "$-11$"],
+          poprawna: 1,
+        },
       ],
       otwarte: [
         {
-          nr: "30",
+          nr: "40",
           punkty: 2,
           tresc: "Szczyt góry leży na wysokości $320$ m nad poziomem morza. Dno jeziora u jej stóp leży na wysokości $-45$ m (czyli $45$ m poniżej poziomu morza). O ile metrów szczyt jest wyżej niż dno jeziora? **Zapisz obliczenia.**",
           rozwiazanie: "Od większej wysokości odejmujemy mniejszą: $320 - (-45)$.\n\nOdejmowanie zamieniamy na dodawanie liczby przeciwnej: $320 - (-45) = 320 + 45 = 365$.\n\nOdpowiedź: Szczyt jest wyżej niż dno jeziora o $365$ m.",
         },
         {
-          nr: "31",
+          nr: "41",
           punkty: 2,
           tresc: "Oblicz $-5 - 7 - (-12) - 4$. Zamień każde odejmowanie na dodawanie liczby przeciwnej i zapisz kolejne kroki. **Zapisz obliczenia.**",
           rozwiazanie: "Zamieniamy odejmowanie na dodawanie liczby przeciwnej: $-5 - 7 - (-12) - 4 = -5 + (-7) + 12 + (-4)$.\n\nLiczymy od lewej strony: $-5 + (-7) = -12$.\n\nPotem $-12 + 12 = 0$ (liczby przeciwne), a na końcu $0 + (-4) = -4$.\n\nOdpowiedź: Wynik to $-4$.",
+        },
+        {
+          nr: "42",
+          punkty: 2,
+          tresc: "Oblicz trzy różnice: $4 - 9$, $4 - (-9)$ oraz $-4 - (-9)$. Ustaw wyniki od najmniejszego do największego. **Zapisz obliczenia.**",
+          rozwiazanie: "Pierwsza różnica: $4 - 9 = 4 + (-9) = -5$.\n\nDruga różnica: $4 - (-9) = 4 + 9 = 13$.\n\nTrzecia różnica: $-4 - (-9) = -4 + 9 = 5$.\n\nUstawiamy wyniki: $-5 < 5 < 13$.\n\nOdpowiedź: Różnice to $-5$, $13$ i $5$. Od najmniejszego: $-5$, $5$, $13$.",
         },
       ],
       generatory: [
@@ -764,6 +1028,31 @@ export default {
             };
           },
         },
+        {
+          id: "trzy-dzialania",
+          nazwa: "Dodawanie i odejmowanie po kolei",
+          opis: "Oblicz wynik trzech liczb połączonych dodawaniem i odejmowaniem, zamieniając odejmowanie na dodawanie liczby przeciwnej.",
+          generuj(r) {
+            let a, b, c, w;
+            do {
+              a = r.intBez(-15, 15, 0);
+              b = r.intBez(-15, 15, 0);
+              c = r.intBez(-15, 15, 0);
+              w = a - b + c;
+            } while (Math.abs(w) > 30 || a - b === 0);
+            return {
+              tresc: r.pick([`Oblicz $${a} - ${nw(b)} + ${nw(c)}$.`, `Ile to jest $${a} - ${nw(b)} + ${nw(c)}$?`]),
+              pola: [{ id: "w", typ: "liczba", etykieta: "Wynik" }],
+              odpowiedz: { w },
+              wynik: `$${w}$`,
+              rozwiazanie: [
+                `Zamieniamy odejmowanie na dodawanie liczby przeciwnej: $${a} + ${nw(-b)} + ${nw(c)}$.`,
+                `Liczymy od lewej strony. Najpierw $${a} + ${nw(-b)} = ${a - b}$.`,
+                `Potem $${a - b} + ${nw(c)} = ${w}$.`,
+              ],
+            };
+          },
+        },
       ],
     },
 
@@ -778,7 +1067,7 @@ export default {
           tex: "a+b=b+a\\qquad a\\cdot b=b\\cdot a\\qquad (a+b)+c=a+(b+c)",
           litery: "$a$, $b$, $c$ – dowolne liczby całkowite.",
           przyklad: "$-17 + 9 + 17 + (-4)$: łączymy $-17$ i $17$, ich suma to $0$. Zostaje $9 + (-4) = 5$. Dalej: $(-5) \\cdot 7 \\cdot (-2)$: łatwiej $(-5) \\cdot (-2) = 10$, a potem $10 \\cdot 7 = 70$.",
-          uwaga: "Odejmowanie i dzielenie nie są przemienne: $3 - 5 \\neq 5 - 3$.",
+          uwaga: "Odejmowanie i dzielenie nie są przemienne. Na przykład $3 - 5 = -2$, ale $5 - 3 = 2$. Dzielenie też: $6 : 2 = 3$, ale $2 : 6$ nie jest liczbą całkowitą.",
         },
         {
           nazwa: "Rozdzielność mnożenia",
@@ -792,7 +1081,7 @@ export default {
           nazwa: "Kolejność wykonywania działań",
           slownie: "Najpierw liczymy w nawiasach. Potem mnożymy i dzielimy (od lewej do prawej). Na końcu dodajemy i odejmujemy (od lewej do prawej).",
           tex: "2+3\\cdot(-4)=2+(-12)=-10",
-          przyklad: "$-6 + 4 \\cdot (-3)$: najpierw mnożenie $4 \\cdot (-3) = -12$, potem $-6 + (-12) = -18$. Dalej: $(-6 + 4) \\cdot (-3) = (-2) \\cdot (-3) = 6$.",
+          przyklad: "$-6 + 4 \\cdot (-3)$: najpierw mnożenie $4 \\cdot (-3) = -12$, potem $-6 + (-12) = -18$. Dalej: $(-6 + 4) \\cdot (-3) = (-2) \\cdot (-3) = 6$. Dzielenie i mnożenie liczymy od lewej: $12 : (-3) \\cdot 2$, czyli $(-4) \\cdot 2 = -8$.",
           uwaga: "$2 + 3 \\cdot (-4)$ to nie $5 \\cdot (-4)$. Mnożenie liczymy przed dodawaniem.",
         },
         {
@@ -819,37 +1108,49 @@ export default {
       ],
       zadania: [
         {
-          nr: "32",
+          nr: "43",
           tresc: "Ile wynosi $-4 + 3 \\cdot (-2)$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$2$", "$-10$", "$-14$", "$10$"],
           poprawna: 1,
         },
         {
-          nr: "33",
+          nr: "44",
           tresc: "Ile wynosi $(-6 + 2) \\cdot (-5)$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$-20$", "$-16$", "$20$", "$-4$"],
           poprawna: 2,
         },
         {
-          nr: "34",
+          nr: "45",
           tresc: "Który zapis jest równy $12 - (5 - 9)$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$12 - 5 + 9$", "$12 - 5 - 9$", "$12 + 5 - 9$", "$12 + 5 + 9$"],
           poprawna: 0,
         },
         {
-          nr: "35",
+          nr: "46",
           tresc: "Ile wynosi $-48 + 27 + 48 + (-7)$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$34$", "$-20$", "$-14$", "$20$"],
           poprawna: 3,
         },
         {
-          nr: "36",
+          nr: "47",
           tresc: "Ile wynosi $(-4) \\cdot 17 + (-4) \\cdot 3$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$80$", "$-80$", "$-68$", "$-20$"],
           poprawna: 1,
         },
         {
-          nr: "37",
+          nr: "48",
+          tresc: "Który zapis jest równy $7 - (-2 + 5)$? **Wybierz właściwą odpowiedź.**",
+          opcje: ["$7 + 2 + 5$", "$7 + 2 - 5$", "$7 - 2 - 5$", "$7 - 2 + 5$"],
+          poprawna: 1,
+        },
+        {
+          nr: "49",
+          tresc: "Ile wynosi $20 : (-4) + 3 \\cdot (-2)$? **Wybierz właściwą odpowiedź.**",
+          opcje: ["$-11$", "$4$", "$-1$", "$11$"],
+          poprawna: 0,
+        },
+        {
+          nr: "50",
           tresc: "Oceń zdania. **Dla każdego zdania wybierz P, jeśli jest prawdziwe, albo F, jeśli jest fałszywe.**",
           czesci: [
             { tekst: "$8 + (-3) = (-3) + 8$", litery: "PF", poprawna: 0 },
@@ -860,16 +1161,22 @@ export default {
       ],
       otwarte: [
         {
-          nr: "38",
+          nr: "51",
           punkty: 2,
           tresc: "Oblicz $(-3) \\cdot (-2 + 7) - 4 \\cdot (6 - 9)$. Zapisz kolejność działań. **Zapisz obliczenia.**",
           rozwiazanie: "Najpierw liczymy w nawiasach: $-2 + 7 = 5$ oraz $6 - 9 = -3$.\n\nWyrażenie ma teraz postać $(-3) \\cdot 5 - 4 \\cdot (-3)$.\n\nPotem mnożymy: $(-3) \\cdot 5 = -15$ oraz $4 \\cdot (-3) = -12$.\n\nNa końcu odejmujemy: $-15 - (-12) = -15 + 12 = -3$.\n\nOdpowiedź: Wynik to $-3$.",
         },
         {
-          nr: "39",
+          nr: "52",
           punkty: 2,
           tresc: "W zeszycie zapisano: $15 - (8 - 20) = 15 - 8 - 20 = -13$. Znajdź błąd i podaj poprawny wynik. **Zapisz obliczenia.**",
           rozwiazanie: "Błąd jest przy opuszczaniu nawiasu. Przed nawiasem stoi minus, więc oba składniki zmieniają znak. Znak przy $20$ powinien zmienić się na plus: $15 - (8 - 20) = 15 - 8 + 20$.\n\nPoprawne obliczenie: $15 - 8 + 20 = 7 + 20 = 27$.\n\nSprawdzenie: $8 - 20 = -12$, więc $15 - (-12) = 15 + 12 = 27$.\n\nOdpowiedź: Poprawny wynik to $27$.",
+        },
+        {
+          nr: "53",
+          punkty: 2,
+          tresc: "Oblicz wygodnie $17 + (-23) + (-17) + 23 + 5$ oraz $(-5) \\cdot (-7) \\cdot (-2)$. Napisz, które liczby połączyłeś lub połączyłaś w pary. **Zapisz obliczenia.**",
+          rozwiazanie: "W pierwszej sumie łączymy liczby przeciwne: $17 + (-17) = 0$ oraz $-23 + 23 = 0$.\n\nZostaje tylko $5$, więc suma jest równa $5$.\n\nW iloczynie łatwiej pomnożyć najpierw $(-5) \\cdot (-2) = 10$. Znaki są takie same, więc wynik jest dodatni.\n\nPotem $10 \\cdot (-7) = -70$.\n\nSprawdzenie: są trzy liczby ujemne, więc wynik jest ujemny.\n\nOdpowiedź: Suma to $5$, a iloczyn to $-70$.",
         },
       ],
       generatory: [
@@ -963,6 +1270,37 @@ export default {
                 `Dodajemy: $${k * a} + ${nw(k * b)} = ${w}$.`,
               ],
             };
+          },
+        },
+        {
+          id: "minus-przed-nawiasem",
+          nazwa: "Minus przed nawiasem",
+          opis: "Opuść nawias, zmieniając znaki, gdy stoi przed nim minus, i oblicz wartość wyrażenia.",
+          generuj(r) {
+            const znak = (x) => (x < 0 ? "-" : "+");
+            for (;;) {
+              const a = r.intBez(-15, 15, 0), b = r.intBez(-12, 12, 0), c = r.intBez(-12, 12, 0);
+              const minus = r.chance(0.7);
+              const s = b + c;
+              const w = minus ? a - s : a + s;
+              if (Math.abs(w) > 40) continue;
+              const wNaw = `${b} ${znak(c)} ${Math.abs(c)}`;
+              const s1 = minus ? -1 : 1;
+              const bezNaw = `${a} ${znak(s1 * b)} ${Math.abs(b)} ${znak(s1 * c)} ${Math.abs(c)}`;
+              const zapis = `${a} ${minus ? "-" : "+"} (${wNaw})`;
+              return {
+                tresc: r.pick([`Oblicz $${zapis}$.`, `Opuść nawias i oblicz $${zapis}$.`]),
+                pola: [{ id: "w", typ: "liczba", etykieta: "Wynik" }],
+                odpowiedz: { w },
+                wynik: `$${w}$`,
+                rozwiazanie: [
+                  minus
+                    ? `Przed nawiasem stoi minus, więc oba składniki w nawiasie zmieniają znak: $${zapis} = ${bezNaw}$.`
+                    : `Przed nawiasem stoi plus, więc znaki w nawiasie się nie zmieniają: $${zapis} = ${bezNaw}$.`,
+                  `Sprawdzenie drugą drogą: w nawiasie jest $${s}$, więc $${a} ${minus ? "-" : "+"} ${nw(s)} = ${w}$.`,
+                ],
+              };
+            }
           },
         },
       ],
