@@ -66,6 +66,20 @@ function pokaz() {
   );
 }
 
+/** Wzór dzielony w \qquad na najwyższym poziomie – części łamią się do kolejnych linii (jak na kartach w ćwiczeniach). */
+function czesciWzoru(tex) {
+  const czesci = [];
+  let glebokosc = 0, start = 0;
+  for (const m of tex.matchAll(/\\begin\{[^}]*\}|\\end\{[^}]*\}|\\qquad|[{}]/g)) {
+    const t = m[0];
+    if (t === "{" || t.startsWith("\\begin")) glebokosc++;
+    else if (t === "}" || t.startsWith("\\end")) glebokosc--;
+    else if (glebokosc === 0) { czesci.push(tex.slice(start, m.index)); start = m.index + t.length; }
+  }
+  czesci.push(tex.slice(start));
+  return czesci.map((c) => c.trim()).filter(Boolean);
+}
+
 function pokazSciage() {
   const tematy = d.wzory.filter((t) => t.wzory.length);
   const pole = (klasa, t) => t && wstaw(el("div", { class: klasa }), t);
@@ -84,7 +98,7 @@ function pokazSciage() {
         ...t.wzory.map((w) => el("div", { class: "sciaga-karta" },
           wstaw(el("p", { class: "wzor-nazwa" }), w.nazwa, { akapity: false }),
           pole("wzor-slownie", w.slownie),
-          w.tex && wstaw(el("div", { class: "wzor-tex" }), `$${w.tex.replace(/\\qquad/g, "\\quad\\quad ")}$`),
+          w.tex && el("div", { class: "wzor-tex" }, ...czesciWzoru(w.tex).map((t) => wstaw(el("div", { class: "wzor-czesc" }), `$${t}$`))),
           rysunekKarty(w),
           pole("wzor-litery", w.litery),
           pole("wzor-przyklad", w.przyklad && `**Przykład:** ${w.przyklad}`),
