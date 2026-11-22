@@ -107,19 +107,19 @@ export default {
       zadania: [
         {
           nr: "1",
-          tresc: "Dane są punkty $A = (-2, 1)$ i $B = (4, 9)$. Długość odcinka $AB$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Dane są punkty $A = (-2, 1)$ i $B = (4, 9)$. Długość odcinka $AB$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$14$", "$10$", "$100$", "$\\sqrt{104}$"],
           poprawna: 1,
         },
         {
           nr: "2",
-          tresc: "Dane są punkty $A = (-4, 7)$ i $B = (10, -3)$. Środek odcinka $AB$ ma współrzędne. **Wybierz właściwą odpowiedź.**",
+          tresc: "Dane są punkty $A = (-4, 7)$ i $B = (10, -3)$. Środek odcinka $AB$ ma współrzędne: **Wybierz właściwą odpowiedź.**",
           opcje: ["$(6, 4)$", "$(7, -5)$", "$(-3, -2)$", "$(3, 2)$"],
           poprawna: 3,
         },
         {
           nr: "3",
-          tresc: "Punkt $S = (2, -1)$ jest środkiem odcinka $AB$, gdzie $A = (-3, 4)$. Punkt $B$ ma współrzędne. **Wybierz właściwą odpowiedź.**",
+          tresc: "Punkt $S = (2, -1)$ jest środkiem odcinka $AB$, gdzie $A = (-3, 4)$. Punkt $B$ ma współrzędne: **Wybierz właściwą odpowiedź.**",
           opcje: ["$(-1, 3)$", "$(5, -5)$", "$(7, -6)$", "$(-8, 9)$"],
           poprawna: 2,
         },
@@ -134,7 +134,7 @@ export default {
         },
         {
           nr: "5",
-          tresc: "Dane są punkty $A = (2, 1)$ i $B = (7, y)$, gdzie $y > 1$. Odcinek $AB$ ma długość $13$. Liczba $y$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Dane są punkty $A = (2, 1)$ i $B = (7, y)$, gdzie $y > 1$. Odcinek $AB$ ma długość $13$. Liczba $y$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$13$", "$12$", "$-11$", "$144$"],
           poprawna: 0,
         },
@@ -264,19 +264,19 @@ export default {
       zadania: [
         {
           nr: "8",
-          tresc: "Prosta przechodzi przez punkty $A = (-1, 4)$ i $B = (3, -2)$. Jej współczynnik kierunkowy jest równy. **Wybierz właściwą odpowiedź.**",
+          tresc: "Prosta przechodzi przez punkty $A = (-1, 4)$ i $B = (3, -2)$. Jej współczynnik kierunkowy jest równy: **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\frac{3}{2}$", "$-\\frac{2}{3}$", "$-\\frac{3}{2}$", "$\\frac{2}{3}$"],
           poprawna: 2,
         },
         {
           nr: "9",
-          tresc: "Prosta o równaniu $y = -2x + 6$ przecina oś $OX$ w punkcie. **Wybierz właściwą odpowiedź.**",
+          tresc: "Prosta o równaniu $y = -2x + 6$ przecina oś $OX$ w punkcie: **Wybierz właściwą odpowiedź.**",
           opcje: ["$(0, 6)$", "$(6, 0)$", "$(-3, 0)$", "$(3, 0)$"],
           poprawna: 3,
         },
         {
           nr: "10",
-          tresc: "Prosta równoległa do prostej $y = 3x - 4$ i przechodząca przez punkt $P = (1, 5)$ ma równanie. **Wybierz właściwą odpowiedź.**",
+          tresc: "Prosta równoległa do prostej $y = 3x - 4$ i przechodząca przez punkt $P = (1, 5)$ ma równanie: **Wybierz właściwą odpowiedź.**",
           opcje: ["$y = 3x + 2$", "$y = 3x + 5$", "$y = -\\frac{1}{3}x + \\frac{16}{3}$", "$y = 3x - 4$"],
           poprawna: 0,
         },
@@ -291,7 +291,7 @@ export default {
         },
         {
           nr: "12",
-          tresc: "Prosta $y = (2m - 1)x + 3$ jest prostopadła do prostej $y = -\\frac{1}{2}x + 1$. Liczba $m$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Prosta $y = (2m - 1)x + 3$ jest prostopadła do prostej $y = -\\frac{1}{2}x + 1$. Liczba $m$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\frac{1}{4}$", "$\\frac{3}{2}$", "$\\frac{3}{4}$", "$-\\frac{1}{2}$"],
           poprawna: 1,
         },
@@ -419,19 +419,19 @@ export default {
       zadania: [
         {
           nr: "15",
-          tresc: "Prosta o równaniu $4x - 2y + 6 = 0$ ma w postaci kierunkowej równanie. **Wybierz właściwą odpowiedź.**",
+          tresc: "Prosta o równaniu $4x - 2y + 6 = 0$ ma w postaci kierunkowej równanie: **Wybierz właściwą odpowiedź.**",
           opcje: ["$y = -2x + 3$", "$y = 2x - 3$", "$y = 2x + 3$", "$y = -2x - 3$"],
           poprawna: 2,
         },
         {
           nr: "16",
-          tresc: "Prosta $2x + 5y - 10 = 0$ przecina oś $OX$ i oś $OY$ odpowiednio w punktach. **Wybierz właściwą odpowiedź.**",
+          tresc: "Prosta $2x + 5y - 10 = 0$ przecina oś $OX$ i oś $OY$ odpowiednio w punktach: **Wybierz właściwą odpowiedź.**",
           opcje: ["$(2, 0)$ i $(0, 5)$", "$(5, 0)$ i $(0, 2)$", "$(-5, 0)$ i $(0, -2)$", "$(10, 0)$ i $(0, 10)$"],
           poprawna: 1,
         },
         {
           nr: "17",
-          tresc: "Prostą o równaniu $y = -\\frac{3}{4}x + 2$ opisuje również równanie. **Wybierz właściwą odpowiedź.**",
+          tresc: "Prostą o równaniu $y = -\\frac{3}{4}x + 2$ opisuje również równanie: **Wybierz właściwą odpowiedź.**",
           opcje: ["$3x - 4y + 8 = 0$", "$4x + 3y - 8 = 0$", "$3x + 4y + 2 = 0$", "$3x + 4y - 8 = 0$"],
           poprawna: 3,
         },
@@ -446,7 +446,7 @@ export default {
         },
         {
           nr: "19",
-          tresc: "Proste $mx + 2y - 1 = 0$ oraz $3x - y + 4 = 0$ są prostopadłe. Liczba $m$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Proste $mx + 2y - 1 = 0$ oraz $3x - y + 4 = 0$ są prostopadłe. Liczba $m$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\frac{2}{3}$", "$-6$", "$\\frac{3}{2}$", "$6$"],
           poprawna: 0,
         },
@@ -574,19 +574,19 @@ export default {
       zadania: [
         {
           nr: "22",
-          tresc: "Okrąg ma środek w punkcie $S = (-3, 2)$ i promień $5$. Jego równanie to. **Wybierz właściwą odpowiedź.**",
+          tresc: "Okrąg ma środek w punkcie $S = (-3, 2)$ i promień $5$. Jego równanie to: **Wybierz właściwą odpowiedź.**",
           opcje: ["$(x - 3)^2 + (y + 2)^2 = 25$", "$(x + 3)^2 + (y - 2)^2 = 5$", "$(x + 3)^2 + (y - 2)^2 = 25$", "$(x + 3)^2 + (y + 2)^2 = 25$"],
           poprawna: 2,
         },
         {
           nr: "23",
-          tresc: "Okrąg ma równanie $(x - 4)^2 + (y + 1)^2 = 36$. Środek i promień tego okręgu to. **Wybierz właściwą odpowiedź.**",
+          tresc: "Okrąg ma równanie $(x - 4)^2 + (y + 1)^2 = 36$. Środek i promień tego okręgu to: **Wybierz właściwą odpowiedź.**",
           opcje: ["$S = (4, -1)$, $r = 6$", "$S = (-4, 1)$, $r = 6$", "$S = (4, -1)$, $r = 36$", "$S = (-4, 1)$, $r = 36$"],
           poprawna: 0,
         },
         {
           nr: "24",
-          tresc: "Odcinek $AB$, gdzie $A = (-1, 2)$ i $B = (5, 10)$, jest średnicą okręgu. Równanie tego okręgu to. **Wybierz właściwą odpowiedź.**",
+          tresc: "Odcinek $AB$, gdzie $A = (-1, 2)$ i $B = (5, 10)$, jest średnicą okręgu. Równanie tego okręgu to: **Wybierz właściwą odpowiedź.**",
           opcje: ["$(x - 2)^2 + (y - 6)^2 = 100$", "$(x - 2)^2 + (y - 6)^2 = 25$", "$(x - 4)^2 + (y - 12)^2 = 25$", "$(x + 2)^2 + (y + 6)^2 = 25$"],
           poprawna: 1,
         },

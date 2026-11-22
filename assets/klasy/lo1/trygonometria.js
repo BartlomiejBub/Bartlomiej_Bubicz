@@ -115,13 +115,13 @@ export default {
       zadania: [
         {
           nr: "1",
-          tresc: "W trójkącie prostokątnym $ABC$ kąt prosty jest przy wierzchołku $C$, a $|AC| = 6$, $|BC| = 8$, $|AB| = 10$. Sinus kąta $A$ jest równy. **Wybierz właściwą odpowiedź.**",
+          tresc: "W trójkącie prostokątnym $ABC$ kąt prosty jest przy wierzchołku $C$, a $|AC| = 6$, $|BC| = 8$, $|AB| = 10$. Sinus kąta $A$ jest równy: **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\frac{3}{5}$", "$\\frac{4}{5}$", "$\\frac{4}{3}$", "$\\frac{3}{4}$"],
           poprawna: 1,
         },
         {
           nr: "2",
-          tresc: "W trójkącie prostokątnym $ABC$ z kątem prostym przy wierzchołku $C$ mamy $|AC| = 5$ i $|BC| = 12$. Tangens kąta $B$ jest równy. **Wybierz właściwą odpowiedź.**",
+          tresc: "W trójkącie prostokątnym $ABC$ z kątem prostym przy wierzchołku $C$ mamy $|AC| = 5$ i $|BC| = 12$. Tangens kąta $B$ jest równy: **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\frac{12}{5}$", "$\\frac{5}{13}$", "$\\frac{5}{12}$", "$\\frac{12}{13}$"],
           poprawna: 2,
         },
@@ -136,7 +136,7 @@ export default {
         },
         {
           nr: "4",
-          tresc: "Jedna z przyprostokątnych trójkąta prostokątnego ma długość $7$, a przeciwprostokątna ma długość $25$. Kąt ostry $\\alpha$ leży naprzeciw przyprostokątnej o długości $7$. Cosinus kąta $\\alpha$ jest równy. **Wybierz właściwą odpowiedź.**",
+          tresc: "Jedna z przyprostokątnych trójkąta prostokątnego ma długość $7$, a przeciwprostokątna ma długość $25$. Kąt ostry $\\alpha$ leży naprzeciw przyprostokątnej o długości $7$. Cosinus kąta $\\alpha$ jest równy: **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\frac{7}{25}$", "$\\frac{7}{24}$", "$\\frac{24}{7}$", "$\\frac{24}{25}$"],
           poprawna: 3,
         },
@@ -289,19 +289,19 @@ export default {
       zadania: [
         {
           nr: "8",
-          tresc: "Wartość wyrażenia $2\\sin 30^\\circ + \\operatorname{tg} 45^\\circ$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Wartość wyrażenia $2\\sin 30^\\circ + \\operatorname{tg} 45^\\circ$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$2$", "$\\frac{3}{2}$", "$1$", "$\\sqrt{3} + 1$"],
           poprawna: 0,
         },
         {
           nr: "9",
-          tresc: "Wartość wyrażenia $\\sin^2 60^\\circ + \\cos^2 45^\\circ$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Wartość wyrażenia $\\sin^2 60^\\circ + \\cos^2 45^\\circ$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$2$", "$\\frac{\\sqrt{3} + \\sqrt{2}}{2}$", "$\\frac{5}{4}$", "$\\frac{3}{4}$"],
           poprawna: 2,
         },
         {
           nr: "10",
-          tresc: "Kąt ostry $\\alpha$ spełnia warunek $\\cos\\alpha = \\frac{\\sqrt{3}}{2}$. Miara kąta $\\alpha$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Kąt ostry $\\alpha$ spełnia warunek $\\cos\\alpha = \\frac{\\sqrt{3}}{2}$. Miara kąta $\\alpha$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$45^\\circ$", "$30^\\circ$", "$60^\\circ$", "$90^\\circ$"],
           poprawna: 1,
         },
@@ -316,7 +316,7 @@ export default {
         },
         {
           nr: "12",
-          tresc: "W trójkącie prostokątnym jeden z kątów ostrych ma miarę $30^\\circ$, a przeciwprostokątna ma długość $10$. Przyprostokątna leżąca naprzeciw kąta $30^\\circ$ ma długość. **Wybierz właściwą odpowiedź.**",
+          tresc: "W trójkącie prostokątnym jeden z kątów ostrych ma miarę $30^\\circ$, a przeciwprostokątna ma długość $10$. Przyprostokątna leżąca naprzeciw kąta $30^\\circ$ ma długość: **Wybierz właściwą odpowiedź.**",
           opcje: ["$5\\sqrt{3}$", "$10\\sqrt{3}$", "$\\frac{10\\sqrt{3}}{3}$", "$5$"],
           poprawna: 3,
         },
@@ -457,19 +457,19 @@ export default {
       zadania: [
         {
           nr: "15",
-          tresc: "Kąt ostry $\\alpha$ spełnia warunek $\\sin\\alpha = \\frac{5}{13}$. Wtedy $\\cos\\alpha$ jest równy. **Wybierz właściwą odpowiedź.**",
+          tresc: "Kąt ostry $\\alpha$ spełnia warunek $\\sin\\alpha = \\frac{5}{13}$. Wtedy $\\cos\\alpha$ jest równy: **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\frac{5}{12}$", "$\\frac{8}{13}$", "$\\frac{12}{13}$", "$\\frac{13}{12}$"],
           poprawna: 2,
         },
         {
           nr: "16",
-          tresc: "Kąt ostry $\\alpha$ spełnia warunek $\\sin\\alpha = 0{,}6$. Wtedy $\\operatorname{tg}\\alpha$ jest równy. **Wybierz właściwą odpowiedź.**",
+          tresc: "Kąt ostry $\\alpha$ spełnia warunek $\\sin\\alpha = 0{,}6$. Wtedy $\\operatorname{tg}\\alpha$ jest równy: **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\frac{4}{3}$", "$\\frac{3}{4}$", "$\\frac{3}{5}$", "$0{,}4$"],
           poprawna: 1,
         },
         {
           nr: "17",
-          tresc: "Liczba $\\sin 25^\\circ$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Liczba $\\sin 25^\\circ$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\cos 25^\\circ$", "$\\operatorname{tg} 65^\\circ$", "$\\cos 75^\\circ$", "$\\cos 65^\\circ$"],
           poprawna: 3,
         },
@@ -484,7 +484,7 @@ export default {
         },
         {
           nr: "19",
-          tresc: "Wartość wyrażenia $\\sin^2 20^\\circ + \\cos^2 20^\\circ + \\operatorname{tg}20^\\circ \\cdot \\operatorname{ctg}20^\\circ$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Wartość wyrażenia $\\sin^2 20^\\circ + \\cos^2 20^\\circ + \\operatorname{tg}20^\\circ \\cdot \\operatorname{ctg}20^\\circ$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$2$", "$1$", "$0$", "$\\operatorname{tg}40^\\circ$"],
           poprawna: 0,
         },
@@ -614,19 +614,19 @@ export default {
       zadania: [
         {
           nr: "22",
-          tresc: "W trójkącie prostokątnym kąt ostry ma miarę $60^\\circ$, a przyprostokątna przyległa do tego kąta ma długość $7$. Przeciwprostokątna ma długość. **Wybierz właściwą odpowiedź.**",
+          tresc: "W trójkącie prostokątnym kąt ostry ma miarę $60^\\circ$, a przyprostokątna przyległa do tego kąta ma długość $7$. Przeciwprostokątna ma długość: **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\frac{7}{2}$", "$7\\sqrt{3}$", "$14$", "$\\frac{14\\sqrt{3}}{3}$"],
           poprawna: 2,
         },
         {
           nr: "23",
-          tresc: "Drabina o długości $6$ m jest oparta o pionową ścianę i tworzy z poziomym podłożem kąt $45^\\circ$. Górny koniec drabiny znajduje się na wysokości. **Wybierz właściwą odpowiedź.**",
+          tresc: "Drabina o długości $6$ m jest oparta o pionową ścianę i tworzy z poziomym podłożem kąt $45^\\circ$. Górny koniec drabiny znajduje się na wysokości: **Wybierz właściwą odpowiedź.**",
           opcje: ["$3$ m", "$3\\sqrt{3}$ m", "$6\\sqrt{2}$ m", "$3\\sqrt{2}$ m"],
           poprawna: 3,
         },
         {
           nr: "24",
-          tresc: "Przyprostokątne trójkąta prostokątnego mają długości $5$ i $5\\sqrt{3}$. Kąt ostry leżący naprzeciw krótszej przyprostokątnej ma miarę. **Wybierz właściwą odpowiedź.**",
+          tresc: "Przyprostokątne trójkąta prostokątnego mają długości $5$ i $5\\sqrt{3}$. Kąt ostry leżący naprzeciw krótszej przyprostokątnej ma miarę: **Wybierz właściwą odpowiedź.**",
           opcje: ["$60^\\circ$", "$30^\\circ$", "$45^\\circ$", "$15^\\circ$"],
           poprawna: 1,
         },
@@ -641,7 +641,7 @@ export default {
         },
         {
           nr: "26",
-          tresc: "Rampa o długości $12$ m jest nachylona do poziomu pod kątem $30^\\circ$. Jej wyższy koniec znajduje się na wysokości. **Wybierz właściwą odpowiedź.**",
+          tresc: "Rampa o długości $12$ m jest nachylona do poziomu pod kątem $30^\\circ$. Jej wyższy koniec znajduje się na wysokości: **Wybierz właściwą odpowiedź.**",
           opcje: ["$6$ m", "$6\\sqrt{3}$ m", "$4\\sqrt{3}$ m", "$12\\sqrt{3}$ m"],
           poprawna: 0,
         },

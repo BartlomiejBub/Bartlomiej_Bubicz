@@ -102,13 +102,13 @@ export default {
       zadania: [
         {
           nr: "1",
-          tresc: "W trójkącie $ABC$ dane są $|AC| = 5$, $|BC| = 8$ oraz $\\angle ACB = 60^\\circ$. Długość boku $AB$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "W trójkącie $ABC$ dane są $|AC| = 5$, $|BC| = 8$ oraz $\\angle ACB = 60^\\circ$. Długość boku $AB$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\sqrt{129}$", "$7$", "$3$", "$\\sqrt{89}$"],
           poprawna: 1,
         },
         {
           nr: "2",
-          tresc: "Boki trójkąta mają długości $3$, $5$ i $7$. Kąt leżący naprzeciw najdłuższego boku ma miarę. **Wybierz właściwą odpowiedź.**",
+          tresc: "Boki trójkąta mają długości $3$, $5$ i $7$. Kąt leżący naprzeciw najdłuższego boku ma miarę: **Wybierz właściwą odpowiedź.**",
           opcje: ["$60^\\circ$", "$150^\\circ$", "$135^\\circ$", "$120^\\circ$"],
           poprawna: 3,
         },
@@ -123,13 +123,13 @@ export default {
         },
         {
           nr: "4",
-          tresc: "Boki równoległoboku mają długości $8$ i $15$, a jego kąt ostry ma miarę $60^\\circ$. Krótsza przekątna tego równoległoboku ma długość. **Wybierz właściwą odpowiedź.**",
+          tresc: "Boki równoległoboku mają długości $8$ i $15$, a jego kąt ostry ma miarę $60^\\circ$. Krótsza przekątna tego równoległoboku ma długość: **Wybierz właściwą odpowiedź.**",
           opcje: ["$13$", "$\\sqrt{409}$", "$23$", "$7$"],
           poprawna: 0,
         },
         {
           nr: "5",
-          tresc: "W trójkącie $ABC$ dane są $|AC| = 2$, $|BC| = 3\\sqrt{3}$ oraz $\\angle ACB = 150^\\circ$. Długość boku $AB$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "W trójkącie $ABC$ dane są $|AC| = 2$, $|BC| = 3\\sqrt{3}$ oraz $\\angle ACB = 150^\\circ$. Długość boku $AB$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\sqrt{31}$", "$\\sqrt{13}$", "$7$", "$2 + 3\\sqrt{3}$"],
           poprawna: 2,
         },
@@ -274,25 +274,25 @@ export default {
       zadania: [
         {
           nr: "8",
-          tresc: "Równoległobok ma boki długości $6$ cm i $10$ cm, a kąt między nimi ma miarę $30^\\circ$. Pole tego równoległoboku jest równe. **Wybierz właściwą odpowiedź.**",
+          tresc: "Równoległobok ma boki długości $6$ cm i $10$ cm, a kąt między nimi ma miarę $30^\\circ$. Pole tego równoległoboku jest równe: **Wybierz właściwą odpowiedź.**",
           opcje: ["$30\\ \\text{cm}^2$", "$60\\ \\text{cm}^2$", "$15\\ \\text{cm}^2$", "$30\\sqrt{3}\\ \\text{cm}^2$"],
           poprawna: 0,
         },
         {
           nr: "9",
-          tresc: "Trójkąt ma boki długości $8$ i $9$, a kąt między nimi ma miarę $135^\\circ$. Pole tego trójkąta jest równe. **Wybierz właściwą odpowiedź.**",
+          tresc: "Trójkąt ma boki długości $8$ i $9$, a kąt między nimi ma miarę $135^\\circ$. Pole tego trójkąta jest równe: **Wybierz właściwą odpowiedź.**",
           opcje: ["$18\\sqrt{3}$", "$36\\sqrt{2}$", "$18\\sqrt{2}$", "$-18\\sqrt{2}$"],
           poprawna: 2,
         },
         {
           nr: "10",
-          tresc: "Romb ma przekątne długości $10$ i $14$. Pole tego rombu jest równe. **Wybierz właściwą odpowiedź.**",
+          tresc: "Romb ma przekątne długości $10$ i $14$. Pole tego rombu jest równe: **Wybierz właściwą odpowiedź.**",
           opcje: ["$140$", "$70$", "$24$", "$35$"],
           poprawna: 1,
         },
         {
           nr: "11",
-          tresc: "Wysokość trójkąta równobocznego ma długość $3\\sqrt{3}$. Pole tego trójkąta jest równe. **Wybierz właściwą odpowiedź.**",
+          tresc: "Wysokość trójkąta równobocznego ma długość $3\\sqrt{3}$. Pole tego trójkąta jest równe: **Wybierz właściwą odpowiedź.**",
           opcje: ["$9\\sqrt{3}$", "$18\\sqrt{3}$", "$\\frac{27\\sqrt{3}}{4}$", "$\\frac{9\\sqrt{3}}{2}$"],
           poprawna: 0,
         },
@@ -307,7 +307,7 @@ export default {
         },
         {
           nr: "13",
-          tresc: "Przekątna prostokąta ma długość $10$ i tworzy z dłuższym bokiem kąt $30^\\circ$. Pole tego prostokąta jest równe. **Wybierz właściwą odpowiedź.**",
+          tresc: "Przekątna prostokąta ma długość $10$ i tworzy z dłuższym bokiem kąt $30^\\circ$. Pole tego prostokąta jest równe: **Wybierz właściwą odpowiedź.**",
           opcje: ["$25$", "$50$", "$\\frac{25\\sqrt{3}}{2}$", "$25\\sqrt{3}$"],
           poprawna: 3,
         },
@@ -512,19 +512,19 @@ export default {
       zadania: [
         {
           nr: "16",
-          tresc: "Trójkąt równoramienny ma podstawę długości $10$ i ramiona długości $13$. Pole tego trójkąta jest równe. **Wybierz właściwą odpowiedź.**",
+          tresc: "Trójkąt równoramienny ma podstawę długości $10$ i ramiona długości $13$. Pole tego trójkąta jest równe: **Wybierz właściwą odpowiedź.**",
           opcje: ["$60$", "$30$", "$120$", "$65$"],
           poprawna: 0,
         },
         {
           nr: "17",
-          tresc: "W trójkącie prostokątnym przyprostokątne mają długości $5$ i $12$. Promień okręgu wpisanego w ten trójkąt jest równy. **Wybierz właściwą odpowiedź.**",
+          tresc: "W trójkącie prostokątnym przyprostokątne mają długości $5$ i $12$. Promień okręgu wpisanego w ten trójkąt jest równy: **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\frac{13}{2}$", "$1$", "$\\frac{30}{13}$", "$2$"],
           poprawna: 3,
         },
         {
           nr: "18",
-          tresc: "Trójkąt o bokach $13$, $14$, $15$ ma pole $84$. Promień okręgu opisanego na tym trójkącie jest równy. **Wybierz właściwą odpowiedź.**",
+          tresc: "Trójkąt o bokach $13$, $14$, $15$ ma pole $84$. Promień okręgu opisanego na tym trójkącie jest równy: **Wybierz właściwą odpowiedź.**",
           opcje: ["$4$", "$\\frac{65}{8}$", "$\\frac{15}{2}$", "$\\frac{65}{4}$"],
           poprawna: 1,
         },
@@ -539,13 +539,13 @@ export default {
         },
         {
           nr: "20",
-          tresc: "W trójkącie bok ma długość $12$, a wysokość opuszczona na ten bok ma długość $6$. Wysokość opuszczona na bok długości $8$ ma długość. **Wybierz właściwą odpowiedź.**",
+          tresc: "W trójkącie bok ma długość $12$, a wysokość opuszczona na ten bok ma długość $6$. Wysokość opuszczona na bok długości $8$ ma długość: **Wybierz właściwą odpowiedź.**",
           opcje: ["$4$", "$12$", "$9$", "$\\frac{9}{2}$"],
           poprawna: 2,
         },
         {
           nr: "21",
-          tresc: "Pole trójkąta jest równe $30$, a jego obwód też jest równy $30$. Promień okręgu wpisanego w ten trójkąt jest równy. **Wybierz właściwą odpowiedź.**",
+          tresc: "Pole trójkąta jest równe $30$, a jego obwód też jest równy $30$. Promień okręgu wpisanego w ten trójkąt jest równy: **Wybierz właściwą odpowiedź.**",
           opcje: ["$1$", "$4$", "$15$", "$2$"],
           poprawna: 3,
         },
@@ -666,19 +666,19 @@ export default {
       zadania: [
         {
           nr: "24",
-          tresc: "Trójkąt $T_2$ jest podobny do trójkąta $T_1$ w skali $3$. Pole trójkąta $T_1$ jest równe $8$. Pole trójkąta $T_2$ jest równe. **Wybierz właściwą odpowiedź.**",
+          tresc: "Trójkąt $T_2$ jest podobny do trójkąta $T_1$ w skali $3$. Pole trójkąta $T_1$ jest równe $8$. Pole trójkąta $T_2$ jest równe: **Wybierz właściwą odpowiedź.**",
           opcje: ["$9$", "$72$", "$24$", "$\\frac{8}{9}$"],
           poprawna: 1,
         },
         {
           nr: "25",
-          tresc: "Pola dwóch podobnych trójkątów są równe $20$ i $45$. Skala podobieństwa większego trójkąta do mniejszego jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Pola dwóch podobnych trójkątów są równe $20$ i $45$. Skala podobieństwa większego trójkąta do mniejszego jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\frac{3}{2}$", "$\\frac{9}{4}$", "$\\frac{2}{3}$", "$\\frac{4}{9}$"],
           poprawna: 0,
         },
         {
           nr: "26",
-          tresc: "Trójkąt o obwodzie $24$ i polu $48$ jest podobny do trójkąta o obwodzie $36$. Pole drugiego trójkąta jest równe. **Wybierz właściwą odpowiedź.**",
+          tresc: "Trójkąt o obwodzie $24$ i polu $48$ jest podobny do trójkąta o obwodzie $36$. Pole drugiego trójkąta jest równe: **Wybierz właściwą odpowiedź.**",
           opcje: ["$72$", "$162$", "$32$", "$108$"],
           poprawna: 3,
         },
@@ -693,13 +693,13 @@ export default {
         },
         {
           nr: "28",
-          tresc: "W trójkącie $ABC$ punkt $D$ leży na boku $AB$, a punkt $E$ na boku $BC$, przy czym $DE \\parallel AC$. Wiadomo, że $|BD| = 4$, $|AB| = 10$, a pole trójkąta $ABC$ jest równe $50$. Pole trójkąta $DBE$ jest równe. **Wybierz właściwą odpowiedź.**",
+          tresc: "W trójkącie $ABC$ punkt $D$ leży na boku $AB$, a punkt $E$ na boku $BC$, przy czym $DE \\parallel AC$. Wiadomo, że $|BD| = 4$, $|AB| = 10$, a pole trójkąta $ABC$ jest równe $50$. Pole trójkąta $DBE$ jest równe: **Wybierz właściwą odpowiedź.**",
           opcje: ["$20$", "$8$", "$25$", "$42$"],
           poprawna: 1,
         },
         {
           nr: "29",
-          tresc: "Działka na planie w skali $1:500$ ma pole $40\\ \\text{cm}^2$. Rzeczywiste pole tej działki jest równe. **Wybierz właściwą odpowiedź.**",
+          tresc: "Działka na planie w skali $1:500$ ma pole $40\\ \\text{cm}^2$. Rzeczywiste pole tej działki jest równe: **Wybierz właściwą odpowiedź.**",
           opcje: ["$1000\\ \\text{m}^2$", "$2\\ \\text{m}^2$", "$20\\ \\text{m}^2$", "$100\\ \\text{m}^2$"],
           poprawna: 0,
         },
@@ -852,19 +852,19 @@ export default {
       zadania: [
         {
           nr: "32",
-          tresc: "Średnica koła ma długość $10$. Pole tego koła jest równe. **Wybierz właściwą odpowiedź.**",
+          tresc: "Średnica koła ma długość $10$. Pole tego koła jest równe: **Wybierz właściwą odpowiedź.**",
           opcje: ["$10\\pi$", "$100\\pi$", "$50\\pi$", "$25\\pi$"],
           poprawna: 3,
         },
         {
           nr: "33",
-          tresc: "Obwód koła jest równy $16\\pi$. Pole tego koła jest równe. **Wybierz właściwą odpowiedź.**",
+          tresc: "Obwód koła jest równy $16\\pi$. Pole tego koła jest równe: **Wybierz właściwą odpowiedź.**",
           opcje: ["$64\\pi$", "$256\\pi$", "$16\\pi$", "$32\\pi$"],
           poprawna: 0,
         },
         {
           nr: "34",
-          tresc: "Wycinek koła o promieniu $12$ ma kąt środkowy $150^\\circ$. Pole tego wycinka jest równe. **Wybierz właściwą odpowiedź.**",
+          tresc: "Wycinek koła o promieniu $12$ ma kąt środkowy $150^\\circ$. Pole tego wycinka jest równe: **Wybierz właściwą odpowiedź.**",
           opcje: ["$72\\pi$", "$60\\pi$", "$30\\pi$", "$120\\pi$"],
           poprawna: 1,
         },
@@ -879,13 +879,13 @@ export default {
         },
         {
           nr: "36",
-          tresc: "Dwa współśrodkowe koła mają promienie $9$ i $7$. Pole pierścienia kołowego między ich brzegami jest równe. **Wybierz właściwą odpowiedź.**",
+          tresc: "Dwa współśrodkowe koła mają promienie $9$ i $7$. Pole pierścienia kołowego między ich brzegami jest równe: **Wybierz właściwą odpowiedź.**",
           opcje: ["$4\\pi$", "$130\\pi$", "$32\\pi$", "$2\\pi$"],
           poprawna: 2,
         },
         {
           nr: "37",
-          tresc: "Wycinek koła o promieniu $8$ ma łuk o długości $4\\pi$. Pole tego wycinka jest równe. **Wybierz właściwą odpowiedź.**",
+          tresc: "Wycinek koła o promieniu $8$ ma łuk o długości $4\\pi$. Pole tego wycinka jest równe: **Wybierz właściwą odpowiedź.**",
           opcje: ["$32\\pi$", "$8\\pi$", "$16\\pi$", "$64\\pi$"],
           poprawna: 2,
         },
@@ -1082,19 +1082,19 @@ export default {
       zadania: [
         {
           nr: "40",
-          tresc: "Punkt $D$ leży na boku $BC$ trójkąta $ABC$ i dzieli go w stosunku $|BD|:|DC| = 3:5$. Pole trójkąta $ABD$ jest równe $18$. Pole trójkąta $ABC$ jest równe. **Wybierz właściwą odpowiedź.**",
+          tresc: "Punkt $D$ leży na boku $BC$ trójkąta $ABC$ i dzieli go w stosunku $|BD|:|DC| = 3:5$. Pole trójkąta $ABD$ jest równe $18$. Pole trójkąta $ABC$ jest równe: **Wybierz właściwą odpowiedź.**",
           opcje: ["$30$", "$72$", "$48$", "$108$"],
           poprawna: 2,
         },
         {
           nr: "41",
-          tresc: "Przekątne równoległoboku $ABCD$ o polu $60$ przecinają się w punkcie $S$. Pole trójkąta $ABS$ jest równe. **Wybierz właściwą odpowiedź.**",
+          tresc: "Przekątne równoległoboku $ABCD$ o polu $60$ przecinają się w punkcie $S$. Pole trójkąta $ABS$ jest równe: **Wybierz właściwą odpowiedź.**",
           opcje: ["$30$", "$20$", "$15$", "$10$"],
           poprawna: 2,
         },
         {
           nr: "42",
-          tresc: "Przyprostokątne trójkąta prostokątnego mają długości $5$ i $12$. Wysokość opuszczona na przeciwprostokątną ma długość. **Wybierz właściwą odpowiedź.**",
+          tresc: "Przyprostokątne trójkąta prostokątnego mają długości $5$ i $12$. Wysokość opuszczona na przeciwprostokątną ma długość: **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\frac{30}{13}$", "$\\frac{60}{13}$", "$\\frac{13}{2}$", "$6$"],
           poprawna: 1,
         },
@@ -1109,7 +1109,7 @@ export default {
         },
         {
           nr: "44",
-          tresc: "Trójkąt równoboczny ma bok długości $6\\sqrt{3}$. Punkt $S$ leży wewnątrz tego trójkąta, a jego odległości od dwóch boków wynoszą $2$ i $4$. Odległość punktu $S$ od trzeciego boku jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Trójkąt równoboczny ma bok długości $6\\sqrt{3}$. Punkt $S$ leży wewnątrz tego trójkąta, a jego odległości od dwóch boków wynoszą $2$ i $4$. Odległość punktu $S$ od trzeciego boku jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$3$", "$12$", "$6\\sqrt{3} - 6$", "$9$"],
           poprawna: 0,
         },

@@ -111,13 +111,13 @@ export default {
       zadania: [
         {
           nr: "1",
-          tresc: "Wierzchołek paraboli będącej wykresem funkcji $f(x) = 3(x + 2)^2 - 7$ ma współrzędne. **Wybierz właściwą odpowiedź.**",
+          tresc: "Wierzchołek paraboli będącej wykresem funkcji $f(x) = 3(x + 2)^2 - 7$ ma współrzędne: **Wybierz właściwą odpowiedź.**",
           opcje: ["$(2, -7)$", "$(-2, 7)$", "$(-2, -7)$", "$(3, -7)$"],
           poprawna: 2,
         },
         {
           nr: "2",
-          tresc: "Zbiorem wartości funkcji $f(x) = -(x - 3)^2 + 4$ jest. **Wybierz właściwą odpowiedź.**",
+          tresc: "Zbiorem wartości funkcji $f(x) = -(x - 3)^2 + 4$ jest: **Wybierz właściwą odpowiedź.**",
           opcje: ["$(-\\infty, 4\\rangle$", "$\\langle 4, \\infty)$", "$(-\\infty, 3\\rangle$", "$\\langle 3, \\infty)$"],
           poprawna: 0,
         },
@@ -132,13 +132,13 @@ export default {
         },
         {
           nr: "4",
-          tresc: "Do wykresu funkcji $f(x) = ax^2$ należy punkt $(3, -18)$. Współczynnik $a$ jest równy. **Wybierz właściwą odpowiedź.**",
+          tresc: "Do wykresu funkcji $f(x) = ax^2$ należy punkt $(3, -18)$. Współczynnik $a$ jest równy: **Wybierz właściwą odpowiedź.**",
           opcje: ["$-6$", "$-2$", "$2$", "$-\\frac{1}{2}$"],
           poprawna: 1,
         },
         {
           nr: "5",
-          tresc: "Osią symetrii paraboli będącej wykresem funkcji $f(x) = -(x - 5)^2 + 1$ jest prosta o równaniu. **Wybierz właściwą odpowiedź.**",
+          tresc: "Osią symetrii paraboli będącej wykresem funkcji $f(x) = -(x - 5)^2 + 1$ jest prosta o równaniu: **Wybierz właściwą odpowiedź.**",
           opcje: ["$x = -5$", "$y = 1$", "$x = 1$", "$x = 5$"],
           poprawna: 3,
         },
@@ -249,13 +249,13 @@ export default {
       zadania: [
         {
           nr: "8",
-          tresc: "Najmniejsza wartość funkcji $f(x) = -(x - 2)^2 + 9$ w przedziale $\\langle 0, 5\\rangle$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Najmniejsza wartość funkcji $f(x) = -(x - 2)^2 + 9$ w przedziale $\\langle 0, 5\\rangle$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$9$", "$5$", "$0$", "$-9$"],
           poprawna: 2,
         },
         {
           nr: "9",
-          tresc: "Funkcja kwadratowa $f$ spełnia warunek $f(-1) = f(5)$. Osią symetrii wykresu tej funkcji jest prosta o równaniu. **Wybierz właściwą odpowiedź.**",
+          tresc: "Funkcja kwadratowa $f$ spełnia warunek $f(-1) = f(5)$. Osią symetrii wykresu tej funkcji jest prosta o równaniu: **Wybierz właściwą odpowiedź.**",
           opcje: ["$x = 3$", "$x = 2$", "$x = 4$", "$x = -2$"],
           poprawna: 1,
         },
@@ -270,13 +270,13 @@ export default {
         },
         {
           nr: "11",
-          tresc: "Suma dwóch liczb jest równa $12$. Największa możliwa wartość iloczynu tych liczb jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Suma dwóch liczb jest równa $12$. Największa możliwa wartość iloczynu tych liczb jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$12$", "$24$", "$72$", "$36$"],
           poprawna: 3,
         },
         {
           nr: "12",
-          tresc: "Wysokość (w metrach) piłki rzuconej pionowo w górę po $t$ sekundach opisuje wzór $h(t) = -5t^2 + 20t$. Największa wysokość, jaką osiąga piłka, jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Wysokość (w metrach) piłki rzuconej pionowo w górę po $t$ sekundach opisuje wzór $h(t) = -5t^2 + 20t$. Największa wysokość, jaką osiąga piłka, jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$20$ m", "$40$ m", "$15$ m", "$2$ m"],
           poprawna: 0,
         },
@@ -437,13 +437,13 @@ export default {
       zadania: [
         {
           nr: "15",
-          tresc: "Wykres funkcji $f(x) = \\frac{a}{x}$ przechodzi przez punkt $(-4, 3)$. Współczynnik $a$ jest równy. **Wybierz właściwą odpowiedź.**",
+          tresc: "Wykres funkcji $f(x) = \\frac{a}{x}$ przechodzi przez punkt $(-4, 3)$. Współczynnik $a$ jest równy: **Wybierz właściwą odpowiedź.**",
           opcje: ["$-\\frac{3}{4}$", "$-12$", "$12$", "$-1$"],
           poprawna: 1,
         },
         {
           nr: "16",
-          tresc: "Dziedziną funkcji $f(x) = \\frac{-5}{x}$ jest zbiór. **Wybierz właściwą odpowiedź.**",
+          tresc: "Dziedziną funkcji $f(x) = \\frac{-5}{x}$ jest zbiór: **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\mathbb{R}$", "$(0, \\infty)$", "$\\mathbb{R} \\setminus \\{-5\\}$", "$\\mathbb{R} \\setminus \\{0\\}$"],
           poprawna: 3,
         },
@@ -464,7 +464,7 @@ export default {
         },
         {
           nr: "19",
-          tresc: "Dana jest funkcja $f(x) = \\frac{12}{x}$. Wartość wyrażenia $f(-4) + f(3)$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Dana jest funkcja $f(x) = \\frac{12}{x}$. Wartość wyrażenia $f(-4) + f(3)$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$1$", "$-1$", "$7$", "$-7$"],
           poprawna: 0,
         },
@@ -664,13 +664,13 @@ export default {
       zadania: [
         {
           nr: "22",
-          tresc: "Dana jest funkcja $f(x) = \\left(\\frac{1}{3}\\right)^x$. Wartość $f(-2)$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Dana jest funkcja $f(x) = \\left(\\frac{1}{3}\\right)^x$. Wartość $f(-2)$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\frac{1}{9}$", "$-\\frac{2}{3}$", "$9$", "$-9$"],
           poprawna: 2,
         },
         {
           nr: "23",
-          tresc: "Wykres funkcji wykładniczej $f(x) = a^x$ przechodzi przez punkt $(2, 25)$. Podstawa $a$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Wykres funkcji wykładniczej $f(x) = a^x$ przechodzi przez punkt $(2, 25)$. Podstawa $a$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$-5$", "$5$", "$\\frac{25}{2}$", "$625$"],
           poprawna: 1,
         },
@@ -696,7 +696,7 @@ export default {
         },
         {
           nr: "26",
-          tresc: "Dana jest funkcja $f(x) = 4^x$. Wartość $f\\left(\\frac{3}{2}\\right)$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Dana jest funkcja $f(x) = 4^x$. Wartość $f\\left(\\frac{3}{2}\\right)$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$8$", "$6$", "$16$", "$2$"],
           poprawna: 0,
         },
@@ -839,13 +839,13 @@ export default {
       zadania: [
         {
           nr: "29",
-          tresc: "Wykres funkcji $f(x) = \\log_a x$ przechodzi przez punkt $(9, 2)$. Podstawa $a$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Wykres funkcji $f(x) = \\log_a x$ przechodzi przez punkt $(9, 2)$. Podstawa $a$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$81$", "$\\frac{9}{2}$", "$-3$", "$3$"],
           poprawna: 3,
         },
         {
           nr: "30",
-          tresc: "Miejscem zerowym funkcji $f(x) = \\log_4 x$ jest liczba. **Wybierz właściwą odpowiedź.**",
+          tresc: "Miejscem zerowym funkcji $f(x) = \\log_4 x$ jest liczba: **Wybierz właściwą odpowiedź.**",
           opcje: ["$0$", "$1$", "$4$", "$\\frac{1}{4}$"],
           poprawna: 1,
         },
@@ -871,7 +871,7 @@ export default {
         },
         {
           nr: "33",
-          tresc: "Dana jest funkcja $f(x) = \\log_2 x$. Wartość wyrażenia $f\\left(\\frac{1}{8}\\right) + f(4)$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Dana jest funkcja $f(x) = \\log_2 x$. Wartość wyrażenia $f\\left(\\frac{1}{8}\\right) + f(4)$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$-5$", "$1$", "$-1$", "$5$"],
           poprawna: 2,
         },

@@ -77,19 +77,19 @@ export default {
       zadania: [
         {
           nr: "1",
-          tresc: "Czworokąt ma wszystkie boki równej długości, jego przeciwległe boki są równoległe, ale kąty nie są proste. Ten czworokąt to. **Wybierz właściwą odpowiedź.**",
+          tresc: "Czworokąt ma wszystkie boki równej długości, jego przeciwległe boki są równoległe, ale kąty nie są proste. Ten czworokąt to: **Wybierz właściwą odpowiedź.**",
           opcje: ["prostokąt", "romb", "kwadrat", "trapez równoramienny"],
           poprawna: 1,
         },
         {
           nr: "2",
-          tresc: "Kąty czworokąta pozostają w stosunku $1 : 2 : 3 : 4$. Miara największego z nich jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Kąty czworokąta pozostają w stosunku $1 : 2 : 3 : 4$. Miara największego z nich jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$36^\\circ$", "$72^\\circ$", "$144^\\circ$", "$160^\\circ$"],
           poprawna: 2,
         },
         {
           nr: "3",
-          tresc: "Trzy kąty czworokąta mają miary $100^\\circ$, $90^\\circ$ i $60^\\circ$. Czwarty kąt ma miarę. **Wybierz właściwą odpowiedź.**",
+          tresc: "Trzy kąty czworokąta mają miary $100^\\circ$, $90^\\circ$ i $60^\\circ$. Czwarty kąt ma miarę: **Wybierz właściwą odpowiedź.**",
           opcje: ["$170^\\circ$", "$250^\\circ$", "$70^\\circ$", "$110^\\circ$"],
           poprawna: 3,
         },
@@ -104,7 +104,7 @@ export default {
         },
         {
           nr: "5",
-          tresc: "Deltoid $ABCD$ ma boki $|AB| = |AD| = 6$ i $|CB| = |CD| = 9$. Obwód tego deltoidu jest równy. **Wybierz właściwą odpowiedź.**",
+          tresc: "Deltoid $ABCD$ ma boki $|AB| = |AD| = 6$ i $|CB| = |CD| = 9$. Obwód tego deltoidu jest równy: **Wybierz właściwą odpowiedź.**",
           opcje: ["$30$", "$15$", "$21$", "$36$"],
           poprawna: 0,
         },
@@ -268,25 +268,25 @@ export default {
       zadania: [
         {
           nr: "8",
-          tresc: "W trapezie $ABCD$ boki $AB$ i $CD$ są równoległe. Kąt $A$ ma miarę $72^\\circ$, a kąt $C$ miarę $115^\\circ$. Kąt $D$ ma miarę. **Wybierz właściwą odpowiedź.**",
+          tresc: "W trapezie $ABCD$ boki $AB$ i $CD$ są równoległe. Kąt $A$ ma miarę $72^\\circ$, a kąt $C$ miarę $115^\\circ$. Kąt $D$ ma miarę: **Wybierz właściwą odpowiedź.**",
           opcje: ["$108^\\circ$", "$115^\\circ$", "$72^\\circ$", "$65^\\circ$"],
           poprawna: 0,
         },
         {
           nr: "9",
-          tresc: "Podstawy trapezu mają długości $18$ i $10$. Odcinek łączący środki ramion tego trapezu ma długość. **Wybierz właściwą odpowiedź.**",
+          tresc: "Podstawy trapezu mają długości $18$ i $10$. Odcinek łączący środki ramion tego trapezu ma długość: **Wybierz właściwą odpowiedź.**",
           opcje: ["$4$", "$14$", "$8$", "$28$"],
           poprawna: 1,
         },
         {
           nr: "10",
-          tresc: "Odcinek łączący środki ramion trapezu ma długość $9$, a jedna z podstaw ma długość $12$. Druga podstawa ma długość. **Wybierz właściwą odpowiedź.**",
+          tresc: "Odcinek łączący środki ramion trapezu ma długość $9$, a jedna z podstaw ma długość $12$. Druga podstawa ma długość: **Wybierz właściwą odpowiedź.**",
           opcje: ["$10{,}5$", "$3$", "$21$", "$6$"],
           poprawna: 3,
         },
         {
           nr: "11",
-          tresc: "Podstawy trapezu równoramiennego mają długości $18$ i $8$, a ramię ma długość $13$. Wysokość tego trapezu jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Podstawy trapezu równoramiennego mają długości $18$ i $8$, a ramię ma długość $13$. Wysokość tego trapezu jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$5$", "$\\sqrt{69}$", "$12$", "$\\sqrt{105}$"],
           poprawna: 2,
         },
@@ -442,7 +442,7 @@ export default {
       zadania: [
         {
           nr: "15",
-          tresc: "W równoległoboku $ABCD$ kąt $A$ ma miarę $68^\\circ$. Kąt $B$ ma miarę. **Wybierz właściwą odpowiedź.**",
+          tresc: "W równoległoboku $ABCD$ kąt $A$ ma miarę $68^\\circ$. Kąt $B$ ma miarę: **Wybierz właściwą odpowiedź.**",
           opcje: ["$68^\\circ$", "$112^\\circ$", "$22^\\circ$", "$292^\\circ$"],
           poprawna: 1,
         },
@@ -457,19 +457,19 @@ export default {
         },
         {
           nr: "17",
-          tresc: "Przekątne rombu mają długości $10$ i $24$. Bok tego rombu ma długość. **Wybierz właściwą odpowiedź.**",
+          tresc: "Przekątne rombu mają długości $10$ i $24$. Bok tego rombu ma długość: **Wybierz właściwą odpowiedź.**",
           opcje: ["$17$", "$26$", "$34$", "$13$"],
           poprawna: 3,
         },
         {
           nr: "18",
-          tresc: "Boki prostokąta mają długości $9$ i $12$. Przekątna tego prostokąta ma długość. **Wybierz właściwą odpowiedź.**",
+          tresc: "Boki prostokąta mają długości $9$ i $12$. Przekątna tego prostokąta ma długość: **Wybierz właściwą odpowiedź.**",
           opcje: ["$15$", "$21$", "$3\\sqrt{7}$", "$108$"],
           poprawna: 0,
         },
         {
           nr: "19",
-          tresc: "Boki równoległoboku mają długości $12$ i $8$, a jego kąt ostry ma miarę $30^\\circ$. Wysokość opuszczona na dłuższy bok jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Boki równoległoboku mają długości $12$ i $8$, a jego kąt ostry ma miarę $30^\\circ$. Wysokość opuszczona na dłuższy bok jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$6$", "$4\\sqrt{3}$", "$4$", "$8$"],
           poprawna: 2,
         },
@@ -648,25 +648,25 @@ export default {
       zadania: [
         {
           nr: "22",
-          tresc: "Suma kątów wewnętrznych ośmiokąta wypukłego jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Suma kątów wewnętrznych ośmiokąta wypukłego jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$720^\\circ$", "$1080^\\circ$", "$1260^\\circ$", "$1440^\\circ$"],
           poprawna: 1,
         },
         {
           nr: "23",
-          tresc: "Kąt wewnętrzny dwunastokąta foremnego ma miarę. **Wybierz właściwą odpowiedź.**",
+          tresc: "Kąt wewnętrzny dwunastokąta foremnego ma miarę: **Wybierz właściwą odpowiedź.**",
           opcje: ["$150^\\circ$", "$30^\\circ$", "$135^\\circ$", "$120^\\circ$"],
           poprawna: 0,
         },
         {
           nr: "24",
-          tresc: "Liczba przekątnych dziewięciokąta wypukłego jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Liczba przekątnych dziewięciokąta wypukłego jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$18$", "$54$", "$27$", "$36$"],
           poprawna: 2,
         },
         {
           nr: "25",
-          tresc: "Kąt wewnętrzny pewnego wielokąta foremnego ma miarę $140^\\circ$. Ten wielokąt ma. **Wybierz właściwą odpowiedź.**",
+          tresc: "Kąt wewnętrzny pewnego wielokąta foremnego ma miarę $140^\\circ$. Ten wielokąt ma: **Wybierz właściwą odpowiedź.**",
           opcje: ["$7$ boków", "$10$ boków", "$8$ boków", "$9$ boków"],
           poprawna: 3,
         },
@@ -840,7 +840,7 @@ export default {
       zadania: [
         {
           nr: "29",
-          tresc: "Czworokąt o bokach $6$, $8$, $10$, $12$ jest podobny do czworokąta, którego najkrótszy bok ma długość $9$. Najdłuższy bok drugiego czworokąta ma długość. **Wybierz właściwą odpowiedź.**",
+          tresc: "Czworokąt o bokach $6$, $8$, $10$, $12$ jest podobny do czworokąta, którego najkrótszy bok ma długość $9$. Najdłuższy bok drugiego czworokąta ma długość: **Wybierz właściwą odpowiedź.**",
           opcje: ["$15$", "$21$", "$24$", "$18$"],
           poprawna: 3,
         },
@@ -852,7 +852,7 @@ export default {
         },
         {
           nr: "31",
-          tresc: "Obwód czworokąta jest równy $36$. Czworokąt podobny do niego w skali $\\frac{2}{3}$ ma obwód równy. **Wybierz właściwą odpowiedź.**",
+          tresc: "Obwód czworokąta jest równy $36$. Czworokąt podobny do niego w skali $\\frac{2}{3}$ ma obwód równy: **Wybierz właściwą odpowiedź.**",
           opcje: ["$54$", "$12$", "$34$", "$24$"],
           poprawna: 3,
         },
@@ -867,7 +867,7 @@ export default {
         },
         {
           nr: "33",
-          tresc: "Przekątne trapezu $ABCD$ ($AB \\parallel CD$) przecinają się w punkcie $P$. Wiadomo, że $|AB| = 20$, $|CD| = 12$ i $|AP| = 15$. Długość odcinka $PC$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Przekątne trapezu $ABCD$ ($AB \\parallel CD$) przecinają się w punkcie $P$. Wiadomo, że $|AB| = 20$, $|CD| = 12$ i $|AP| = 15$. Długość odcinka $PC$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$9$", "$25$", "$8$", "$12$"],
           poprawna: 0,
         },

@@ -111,13 +111,13 @@ export default {
       zadania: [
         {
           nr: "1",
-          tresc: "Dane są zbiory $A=\\{1,2,3,5,8\\}$ i $B=\\{2,3,4,5,6\\}$. Zbiór $A\\cap B$ jest równy. **Wybierz właściwą odpowiedź.**",
+          tresc: "Dane są zbiory $A=\\{1,2,3,5,8\\}$ i $B=\\{2,3,4,5,6\\}$. Zbiór $A\\cap B$ jest równy: **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\{1,2,3,4,5,6,8\\}$", "$\\{1,8\\}$", "$\\{2,3,5\\}$", "$\\{4,6\\}$"],
           poprawna: 2,
         },
         {
           nr: "2",
-          tresc: "Dane są zbiory $A=\\{1,3,5,7,9\\}$ i $B=\\{3,6,9,12\\}$. Zbiór $(A\\cup B)\\setminus(A\\cap B)$ jest równy. **Wybierz właściwą odpowiedź.**",
+          tresc: "Dane są zbiory $A=\\{1,3,5,7,9\\}$ i $B=\\{3,6,9,12\\}$. Zbiór $(A\\cup B)\\setminus(A\\cap B)$ jest równy: **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\{1,5,7\\}$", "$\\{3,9\\}$", "$\\{1,3,5,6,7,9,12\\}$", "$\\{1,5,6,7,12\\}$"],
           poprawna: 3,
         },
@@ -132,13 +132,13 @@ export default {
         },
         {
           nr: "4",
-          tresc: "Niech $X=\\{1,2,3,4,5,6,7,8\\}$ i niech $A$ będzie zbiorem liczb parzystych należących do $X$. Dopełnienie $A'$ zbioru $A$ w zbiorze $X$ jest równe. **Wybierz właściwą odpowiedź.**",
+          tresc: "Niech $X=\\{1,2,3,4,5,6,7,8\\}$ i niech $A$ będzie zbiorem liczb parzystych należących do $X$. Dopełnienie $A'$ zbioru $A$ w zbiorze $X$ jest równe: **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\{1,3,5,7\\}$", "$\\{2,4,6,8\\}$", "$\\{1,3,5,7,9\\}$", "$\\{0,1,3,5,7\\}$"],
           poprawna: 0,
         },
         {
           nr: "5",
-          tresc: "W grupie $30$ uczniów $18$ uczy się angielskiego, $14$ niemieckiego, a $5$ uczy się obu tych języków. Liczba uczniów, którzy nie uczą się żadnego z tych języków, jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "W grupie $30$ uczniów $18$ uczy się angielskiego, $14$ niemieckiego, a $5$ uczy się obu tych języków. Liczba uczniów, którzy nie uczą się żadnego z tych języków, jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$27$", "$3$", "$13$", "$9$"],
           poprawna: 1,
         },
@@ -296,7 +296,7 @@ export default {
       zadania: [
         {
           nr: "8",
-          tresc: "Liczbą niewymierną jest. **Wybierz właściwą odpowiedź.**",
+          tresc: "Liczbą niewymierną jest: **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\sqrt{49}$", "$\\frac{22}{7}$", "$\\sqrt{20}$", "$0{,}(3)$"],
           poprawna: 2,
         },
@@ -308,7 +308,7 @@ export default {
         },
         {
           nr: "10",
-          tresc: "Liczba $0{,}(45)$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Liczba $0{,}(45)$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\frac{5}{11}$", "$\\frac{9}{20}$", "$\\frac{45}{9}$", "$\\frac{1}{2}$"],
           poprawna: 0,
         },
@@ -323,7 +323,7 @@ export default {
         },
         {
           nr: "12",
-          tresc: "Wartość wyrażenia $17\\cdot48+17\\cdot52$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Wartość wyrażenia $17\\cdot48+17\\cdot52$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$1600$", "$1000$", "$17\\,000$", "$1700$"],
           poprawna: 3,
         },
@@ -461,19 +461,19 @@ export default {
       zadania: [
         {
           nr: "15",
-          tresc: "Zbiór $\\{x\\in\\mathbb{R}:\\,-3\\le x<2\\}$ jest równy przedziałowi. **Wybierz właściwą odpowiedź.**",
+          tresc: "Zbiór $\\{x\\in\\mathbb{R}:\\,-3\\le x<2\\}$ jest równy przedziałowi: **Wybierz właściwą odpowiedź.**",
           opcje: ["$(-3,2)$", "$\\langle-3,2)$", "$(-3,2\\rangle$", "$\\langle-3,2\\rangle$"],
           poprawna: 1,
         },
         {
           nr: "16",
-          tresc: "Przedział $(-\\infty,4\\rangle$ to zbiór liczb rzeczywistych $x$ spełniających warunek. **Wybierz właściwą odpowiedź.**",
+          tresc: "Przedział $(-\\infty,4\\rangle$ to zbiór liczb rzeczywistych $x$ spełniających warunek: **Wybierz właściwą odpowiedź.**",
           opcje: ["$x<4$", "$x>4$", "$x\\le4$", "$x\\ge4$"],
           poprawna: 2,
         },
         {
           nr: "17",
-          tresc: "Dane są przedziały $A=\\langle-4,1)$ i $B=(-1,6\\rangle$. Zbiór $A\\cap B$ jest równy. **Wybierz właściwą odpowiedź.**",
+          tresc: "Dane są przedziały $A=\\langle-4,1)$ i $B=(-1,6\\rangle$. Zbiór $A\\cap B$ jest równy: **Wybierz właściwą odpowiedź.**",
           opcje: ["$(-1,1)$", "$\\langle-1,1)$", "$\\langle-4,6\\rangle$", "$(-1,1\\rangle$"],
           poprawna: 0,
         },
@@ -488,7 +488,7 @@ export default {
         },
         {
           nr: "19",
-          tresc: "Liczba liczb całkowitych należących do przedziału $(-3{,}2;\\,4\\rangle$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Liczba liczb całkowitych należących do przedziału $(-3{,}2;\\,4\\rangle$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$7$", "$9$", "$6$", "$8$"],
           poprawna: 3,
         },
@@ -656,7 +656,7 @@ export default {
       zadania: [
         {
           nr: "22",
-          tresc: "Rozwiązaniem równania $4x-7=2x+9$ jest liczba. **Wybierz właściwą odpowiedź.**",
+          tresc: "Rozwiązaniem równania $4x-7=2x+9$ jest liczba: **Wybierz właściwą odpowiedź.**",
           opcje: ["$1$", "$16$", "$8$", "$-8$"],
           poprawna: 2,
         },
@@ -668,13 +668,13 @@ export default {
         },
         {
           nr: "24",
-          tresc: "Rozwiązaniem równania $\\frac{x+1}{2}-\\frac{x}{3}=2$ jest liczba. **Wybierz właściwą odpowiedź.**",
+          tresc: "Rozwiązaniem równania $\\frac{x+1}{2}-\\frac{x}{3}=2$ jest liczba: **Wybierz właściwą odpowiedź.**",
           opcje: ["$-1$", "$11$", "$\\frac{9}{5}$", "$9$"],
           poprawna: 3,
         },
         {
           nr: "25",
-          tresc: "Równanie $(x-3)(2x+4)=0$ ma rozwiązania. **Wybierz właściwą odpowiedź.**",
+          tresc: "Równanie $(x-3)(2x+4)=0$ ma rozwiązania: **Wybierz właściwą odpowiedź.**",
           opcje: ["$3$ i $-2$", "$-3$ i $2$", "$3$ i $2$", "$-3$ i $-2$"],
           poprawna: 0,
         },
@@ -849,19 +849,19 @@ export default {
       zadania: [
         {
           nr: "29",
-          tresc: "Zbiorem rozwiązań nierówności $5-2x>-3$ jest. **Wybierz właściwą odpowiedź.**",
+          tresc: "Zbiorem rozwiązań nierówności $5-2x>-3$ jest: **Wybierz właściwą odpowiedź.**",
           opcje: ["$(4,\\infty)$", "$(-\\infty,4)$", "$(-\\infty,-4)$", "$(-\\infty,4\\rangle$"],
           poprawna: 1,
         },
         {
           nr: "30",
-          tresc: "Najmniejszą liczbą całkowitą spełniającą nierówność $3x+1>10$ jest. **Wybierz właściwą odpowiedź.**",
+          tresc: "Najmniejszą liczbą całkowitą spełniającą nierówność $3x+1>10$ jest: **Wybierz właściwą odpowiedź.**",
           opcje: ["$3$", "$2$", "$9$", "$4$"],
           poprawna: 3,
         },
         {
           nr: "31",
-          tresc: "Nierówność $2(x-1)\\le4x+6$ jest równoważna nierówności. **Wybierz właściwą odpowiedź.**",
+          tresc: "Nierówność $2(x-1)\\le4x+6$ jest równoważna nierówności: **Wybierz właściwą odpowiedź.**",
           opcje: ["$x\\ge-4$", "$x\\le-4$", "$x\\ge-2$", "$x\\le4$"],
           poprawna: 0,
         },
@@ -876,7 +876,7 @@ export default {
         },
         {
           nr: "33",
-          tresc: "Zbiorem rozwiązań nierówności $-3\\le2x-1<5$ jest przedział. **Wybierz właściwą odpowiedź.**",
+          tresc: "Zbiorem rozwiązań nierówności $-3\\le2x-1<5$ jest przedział: **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\langle-2,6)$", "$(-1,3\\rangle$", "$\\langle-1,3)$", "$\\langle-1,3\\rangle$"],
           poprawna: 2,
         },
@@ -995,19 +995,19 @@ export default {
       zadania: [
         {
           nr: "36",
-          tresc: "Liczba $35\\%$ liczby $240$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Liczba $35\\%$ liczby $240$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$840$", "$84$", "$8{,}4$", "$205$"],
           poprawna: 1,
         },
         {
           nr: "37",
-          tresc: "Cenę towaru obniżono o $20\\%$, a następnie nową cenę podwyższono o $20\\%$. Cena końcowa jest w porównaniu z początkową. **Wybierz właściwą odpowiedź.**",
+          tresc: "Cenę towaru obniżono o $20\\%$, a następnie nową cenę podwyższono o $20\\%$. Cena końcowa jest w porównaniu z początkową: **Wybierz właściwą odpowiedź.**",
           opcje: ["wyższa o $4\\%$", "niższa o $2\\%$", "taka sama", "niższa o $4\\%$"],
           poprawna: 3,
         },
         {
           nr: "38",
-          tresc: "Liczba $18$ stanowi $p\\%$ liczby $24$. Liczba $p$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Liczba $18$ stanowi $p\\%$ liczby $24$. Liczba $p$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$75$", "$25$", "$133\\frac{1}{3}$", "$6$"],
           poprawna: 0,
         },
@@ -1022,7 +1022,7 @@ export default {
         },
         {
           nr: "40",
-          tresc: "Odcinek o długości $50$ cm zmierzono z błędem i otrzymano $48$ cm. Błąd względny tego pomiaru jest równy. **Wybierz właściwą odpowiedź.**",
+          tresc: "Odcinek o długości $50$ cm zmierzono z błędem i otrzymano $48$ cm. Błąd względny tego pomiaru jest równy: **Wybierz właściwą odpowiedź.**",
           opcje: ["$2\\%$", "$\\frac{25}{6}\\%$", "$4\\%$", "$0{,}4\\%$"],
           poprawna: 2,
         },

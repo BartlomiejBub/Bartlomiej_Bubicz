@@ -103,19 +103,19 @@ export default {
       zadania: [
         {
           nr: "1",
-          tresc: "Liczba $3^4 \\cdot 3^2 : 3^5$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Liczba $3^4 \\cdot 3^2 : 3^5$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$3^{5}$", "$3$", "$9$", "$1$"],
           poprawna: 1,
         },
         {
           nr: "2",
-          tresc: "Wartość wyrażenia $(-2)^3 + (-3)^2 - 2^4$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Wartość wyrażenia $(-2)^3 + (-3)^2 - 2^4$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$17$", "$1$", "$-33$", "$-15$"],
           poprawna: 3,
         },
         {
           nr: "3",
-          tresc: "Wyrażenie $\\left(x^3\\right)^4 \\cdot x^2 : x^5$ jest równe. **Wybierz właściwą odpowiedź.**",
+          tresc: "Wyrażenie $\\left(x^3\\right)^4 \\cdot x^2 : x^5$ jest równe: **Wybierz właściwą odpowiedź.**",
           opcje: ["$x^{4}$", "$x^{19}$", "$x^{9}$", "$x^{14}$"],
           poprawna: 2,
         },
@@ -130,13 +130,13 @@ export default {
         },
         {
           nr: "5",
-          tresc: "Liczba $\\sqrt{49} + \\sqrt[3]{-27}$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Liczba $\\sqrt{49} + \\sqrt[3]{-27}$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$-2$", "$4$", "$10$", "nie istnieje"],
           poprawna: 1,
         },
         {
           nr: "6",
-          tresc: "Liczba $\\sqrt{18}\\cdot\\sqrt{2}$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Liczba $\\sqrt{18}\\cdot\\sqrt{2}$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$6$", "$\\sqrt{20}$", "$3\\sqrt{2}$", "$36$"],
           poprawna: 0,
         },
@@ -295,19 +295,19 @@ export default {
       zadania: [
         {
           nr: "9",
-          tresc: "Wyrażenie $(x+4)^2 - (x-4)^2$ jest równe. **Wybierz właściwą odpowiedź.**",
+          tresc: "Wyrażenie $(x+4)^2 - (x-4)^2$ jest równe: **Wybierz właściwą odpowiedź.**",
           opcje: ["$16x$", "$0$", "$8x$", "$32$"],
           poprawna: 0,
         },
         {
           nr: "10",
-          tresc: "Wyrażenie $(2x-3)^2$ jest równe. **Wybierz właściwą odpowiedź.**",
+          tresc: "Wyrażenie $(2x-3)^2$ jest równe: **Wybierz właściwą odpowiedź.**",
           opcje: ["$4x^2-9$", "$4x^2-6x+9$", "$4x^2-12x+9$", "$2x^2-12x+9$"],
           poprawna: 2,
         },
         {
           nr: "11",
-          tresc: "Wartość wyrażenia $103^2 - 97^2$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Wartość wyrażenia $103^2 - 97^2$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$36$", "$200$", "$2400$", "$1200$"],
           poprawna: 3,
         },
@@ -322,13 +322,13 @@ export default {
         },
         {
           nr: "13",
-          tresc: "Liczby $a$ i $b$ spełniają warunki $a + b = 7$ oraz $ab = 10$. Wtedy $a^2 + b^2$ jest równe. **Wybierz właściwą odpowiedź.**",
+          tresc: "Liczby $a$ i $b$ spełniają warunki $a + b = 7$ oraz $ab = 10$. Wtedy $a^2 + b^2$ jest równe: **Wybierz właściwą odpowiedź.**",
           opcje: ["$39$", "$29$", "$69$", "$49$"],
           poprawna: 1,
         },
         {
           nr: "14",
-          tresc: "Po uproszczeniu wyrażenie $(x-2)(x+2) - (x-1)^2$ jest równe. **Wybierz właściwą odpowiedź.**",
+          tresc: "Po uproszczeniu wyrażenie $(x-2)(x+2) - (x-1)^2$ jest równe: **Wybierz właściwą odpowiedź.**",
           opcje: ["$-5$", "$2x-3$", "$-2x-5$", "$2x-5$"],
           poprawna: 3,
         },
@@ -483,25 +483,25 @@ export default {
       zadania: [
         {
           nr: "17",
-          tresc: "Liczba $2^{-3} + 2^{-1}$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Liczba $2^{-3} + 2^{-1}$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$-10$", "$\\frac{1}{16}$", "$\\frac{5}{8}$", "$\\frac{1}{10}$"],
           poprawna: 2,
         },
         {
           nr: "18",
-          tresc: "Liczba $\\left(\\frac{2}{3}\\right)^{-3}$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Liczba $\\left(\\frac{2}{3}\\right)^{-3}$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\frac{27}{8}$", "$\\frac{8}{27}$", "$-\\frac{8}{27}$", "$-2$"],
           poprawna: 0,
         },
         {
           nr: "19",
-          tresc: "Liczba $16^{\\frac{3}{4}}$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Liczba $16^{\\frac{3}{4}}$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$12$", "$64$", "$8$", "$4$"],
           poprawna: 2,
         },
         {
           nr: "20",
-          tresc: "Liczba $25^{-\\frac{1}{2}} \\cdot 8^{\\frac{2}{3}}$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Liczba $25^{-\\frac{1}{2}} \\cdot 8^{\\frac{2}{3}}$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$20$", "$\\frac{4}{25}$", "$\\frac{5}{4}$", "$\\frac{4}{5}$"],
           poprawna: 3,
         },
@@ -516,7 +516,7 @@ export default {
         },
         {
           nr: "22",
-          tresc: "Liczba $\\left(3^{\\sqrt{2}}\\right)^{\\sqrt{2}}$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Liczba $\\left(3^{\\sqrt{2}}\\right)^{\\sqrt{2}}$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$3^{2\\sqrt{2}}$", "$9$", "$3^{\\sqrt{2}}$", "$6$"],
           poprawna: 1,
         },
@@ -720,25 +720,25 @@ export default {
       zadania: [
         {
           nr: "25",
-          tresc: "Liczba $\\log_3 81$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Liczba $\\log_3 81$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$27$", "$4$", "$3$", "$\\frac{1}{4}$"],
           poprawna: 1,
         },
         {
           nr: "26",
-          tresc: "Liczba $\\log_2 \\frac{1}{8}$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Liczba $\\log_2 \\frac{1}{8}$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$3$", "$\\frac{1}{3}$", "$-3$", "$-6$"],
           poprawna: 2,
         },
         {
           nr: "27",
-          tresc: "Liczba $\\log_5 10 + \\log_5 \\frac{5}{2}$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Liczba $\\log_5 10 + \\log_5 \\frac{5}{2}$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\log_5 12{,}5$", "$3$", "$2$", "$\\log_5 4$"],
           poprawna: 2,
         },
         {
           nr: "28",
-          tresc: "Liczba $2\\log_3 6 - \\log_3 4$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Liczba $2\\log_3 6 - \\log_3 4$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\log_3 8$", "$\\log_3 32$", "$\\log_3 18$", "$2$"],
           poprawna: 3,
         },
@@ -753,7 +753,7 @@ export default {
         },
         {
           nr: "30",
-          tresc: "Rozwiązaniem równania $\\log_x 16 = 4$, gdzie $x > 0$ i $x \\neq 1$, jest liczba. **Wybierz właściwą odpowiedź.**",
+          tresc: "Rozwiązaniem równania $\\log_x 16 = 4$, gdzie $x > 0$ i $x \\neq 1$, jest liczba: **Wybierz właściwą odpowiedź.**",
           opcje: ["$2$", "$4$", "$-2$", "$64$"],
           poprawna: 0,
         },
@@ -940,19 +940,19 @@ export default {
       zadania: [
         {
           nr: "33",
-          tresc: "Zaprzeczeniem nierówności $x \\geq 2$ jest. **Wybierz właściwą odpowiedź.**",
+          tresc: "Zaprzeczeniem nierówności $x \\geq 2$ jest: **Wybierz właściwą odpowiedź.**",
           opcje: ["$x \\leq 2$", "$x > 2$", "$x < 2$", "$x \\leq -2$"],
           poprawna: 2,
         },
         {
           nr: "34",
-          tresc: "Zaprzeczeniem zdania „$x > 1$ i $x < 5$” jest zdanie. **Wybierz właściwą odpowiedź.**",
+          tresc: "Zaprzeczeniem zdania „$x > 1$ i $x < 5$” jest zdanie: **Wybierz właściwą odpowiedź.**",
           opcje: ["$x \\leq 1$ lub $x \\geq 5$", "$x \\leq 1$ i $x \\geq 5$", "$x < 1$ lub $x > 5$", "$x \\leq 1$ lub $x < 5$"],
           poprawna: 0,
         },
         {
           nr: "35",
-          tresc: "Zaprzeczeniem zdania „Każda liczba pierwsza jest nieparzysta” jest zdanie. **Wybierz właściwą odpowiedź.**",
+          tresc: "Zaprzeczeniem zdania „Każda liczba pierwsza jest nieparzysta” jest zdanie: **Wybierz właściwą odpowiedź.**",
           opcje: [
             "Każda liczba pierwsza jest parzysta.",
             "Istnieje liczba pierwsza nieparzysta.",
@@ -983,7 +983,7 @@ export default {
         },
         {
           nr: "38",
-          tresc: "Aby obalić twierdzenie „Jeśli liczba jest podzielna przez $3$, to jest podzielna przez $6$”, wystarczy wskazać liczbę. **Wybierz właściwą odpowiedź.**",
+          tresc: "Aby obalić twierdzenie „Jeśli liczba jest podzielna przez $3$, to jest podzielna przez $6$”, wystarczy wskazać liczbę: **Wybierz właściwą odpowiedź.**",
           opcje: ["$12$", "$10$", "$9$", "$18$"],
           poprawna: 2,
         },
@@ -1135,19 +1135,19 @@ export default {
       zadania: [
         {
           nr: "41",
-          tresc: "Ze wzoru $P = \\frac{(a+b)\\cdot h}{2}$ wynika, że $h$ jest równe. **Wybierz właściwą odpowiedź.**",
+          tresc: "Ze wzoru $P = \\frac{(a+b)\\cdot h}{2}$ wynika, że $h$ jest równe: **Wybierz właściwą odpowiedź.**",
           opcje: ["$2P-(a+b)$", "$\\frac{P}{2(a+b)}$", "$\\frac{2P}{a+b}$", "$\\frac{2(a+b)}{P}$"],
           poprawna: 2,
         },
         {
           nr: "42",
-          tresc: "Ze wzoru $v = v_0 + at$ wynika, że $t$ jest równe. **Wybierz właściwą odpowiedź.**",
+          tresc: "Ze wzoru $v = v_0 + at$ wynika, że $t$ jest równe: **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\frac{v}{a}-v_0$", "$\\frac{v-v_0}{a}$", "$a(v-v_0)$", "$v-v_0-a$"],
           poprawna: 1,
         },
         {
           nr: "43",
-          tresc: "Ze wzoru $y = 3x - 2z$ wynika, że $x$ jest równe. **Wybierz właściwą odpowiedź.**",
+          tresc: "Ze wzoru $y = 3x - 2z$ wynika, że $x$ jest równe: **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\frac{y-2z}{3}$", "$3y+2z$", "$y+\\frac{2z}{3}$", "$\\frac{y+2z}{3}$"],
           poprawna: 3,
         },
@@ -1162,13 +1162,13 @@ export default {
         },
         {
           nr: "45",
-          tresc: "Obwód prostokąta wyraża się wzorem $O = 2(a + b)$. Obwód prostokąta jest równy $30$, a jeden bok ma długość $a = 4$. Długość drugiego boku $b$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Obwód prostokąta wyraża się wzorem $O = 2(a + b)$. Obwód prostokąta jest równy $30$, a jeden bok ma długość $a = 4$. Długość drugiego boku $b$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$26$", "$7{,}5$", "$11$", "$22$"],
           poprawna: 2,
         },
         {
           nr: "46",
-          tresc: "Ze wzoru $\\frac{1}{f} = \\frac{1}{x} + \\frac{1}{y}$ (gdzie $f$, $x$, $y$ są dodatnie) wynika, że $y$ jest równe. **Wybierz właściwą odpowiedź.**",
+          tresc: "Ze wzoru $\\frac{1}{f} = \\frac{1}{x} + \\frac{1}{y}$ (gdzie $f$, $x$, $y$ są dodatnie) wynika, że $y$ jest równe: **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\frac{1}{f}-\\frac{1}{x}$", "$\\frac{fx}{x-f}$", "$f-x$", "$\\frac{x-f}{fx}$"],
           poprawna: 1,
         },

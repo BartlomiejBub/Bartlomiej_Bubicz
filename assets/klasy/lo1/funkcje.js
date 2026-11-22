@@ -131,7 +131,7 @@ export default {
       zadania: [
         {
           nr: "1",
-          tresc: "Funkcja $f$ jest określona wzorem $f(x)=x^2-3x+1$. Wartość $f(-2)$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Funkcja $f$ jest określona wzorem $f(x)=x^2-3x+1$. Wartość $f(-2)$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$-1$", "$11$", "$3$", "$-9$"],
           poprawna: 1,
         },
@@ -157,13 +157,13 @@ export default {
         },
         {
           nr: "4",
-          tresc: "Funkcję $f$ opisano tabelką: dla argumentów $-2$, $-1$, $0$, $1$, $2$ przyjmuje ona kolejno wartości $5$, $2$, $1$, $2$, $5$. Wartość wyrażenia $f(-1)+f(2)-f(0)$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Funkcję $f$ opisano tabelką: dla argumentów $-2$, $-1$, $0$, $1$, $2$ przyjmuje ona kolejno wartości $5$, $2$, $1$, $2$, $5$. Wartość wyrażenia $f(-1)+f(2)-f(0)$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$6$", "$8$", "$3$", "$-4$"],
           poprawna: 0,
         },
         {
           nr: "5",
-          tresc: "Do wykresu funkcji $f(x)=x^2+mx$ należy punkt $(2,10)$. Liczba $m$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Do wykresu funkcji $f(x)=x^2+mx$ należy punkt $(2,10)$. Liczba $m$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$6$", "$5$", "$-7$", "$3$"],
           poprawna: 3,
         },
@@ -327,19 +327,19 @@ export default {
       zadania: [
         {
           nr: "8",
-          tresc: "Dziedziną funkcji $f(x)=\\frac{x+4}{2x-6}$ jest zbiór. **Wybierz właściwą odpowiedź.**",
+          tresc: "Dziedziną funkcji $f(x)=\\frac{x+4}{2x-6}$ jest zbiór: **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\mathbb{R}\\setminus\\{-4\\}$", "$\\mathbb{R}\\setminus\\{6\\}$", "$\\mathbb{R}\\setminus\\{3\\}$", "$\\mathbb{R}\\setminus\\{-3\\}$"],
           poprawna: 2,
         },
         {
           nr: "9",
-          tresc: "Dziedziną funkcji $f(x)=\\sqrt{5-2x}$ jest przedział. **Wybierz właściwą odpowiedź.**",
+          tresc: "Dziedziną funkcji $f(x)=\\sqrt{5-2x}$ jest przedział: **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\left(-\\infty,\\frac{5}{2}\\right)$", "$\\left(-\\infty,\\frac{5}{2}\\right\\rangle$", "$\\left\\langle\\frac{5}{2},\\infty\\right)$", "$\\left\\langle-\\frac{5}{2},\\infty\\right)$"],
           poprawna: 1,
         },
         {
           nr: "10",
-          tresc: "Dziedziną funkcji $f(x)=\\frac{1}{\\sqrt{x+2}}$ jest zbiór. **Wybierz właściwą odpowiedź.**",
+          tresc: "Dziedziną funkcji $f(x)=\\frac{1}{\\sqrt{x+2}}$ jest zbiór: **Wybierz właściwą odpowiedź.**",
           opcje: ["$(-2,\\infty)$", "$\\langle-2,\\infty)$", "$\\mathbb{R}\\setminus\\{-2\\}$", "$(2,\\infty)$"],
           poprawna: 0,
         },
@@ -354,7 +354,7 @@ export default {
         },
         {
           nr: "12",
-          tresc: "Dziedziną funkcji $f(x)=\\sqrt{x-1}+\\frac{1}{x-4}$ jest zbiór. **Wybierz właściwą odpowiedź.**",
+          tresc: "Dziedziną funkcji $f(x)=\\sqrt{x-1}+\\frac{1}{x-4}$ jest zbiór: **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\langle1,\\infty)$", "$(1,\\infty)\\setminus\\{4\\}$", "$\\mathbb{R}\\setminus\\{4\\}$", "$\\langle1,\\infty)\\setminus\\{4\\}$"],
           poprawna: 3,
         },
@@ -485,19 +485,19 @@ export default {
       zadania: [
         {
           nr: "15",
-          tresc: "Funkcja $f$ jest określona wzorem $f(x)=x^2-1$ dla $x\\in\\{-2,-1,0,1,2\\}$. Zbiorem wartości funkcji $f$ jest. **Wybierz właściwą odpowiedź.**",
+          tresc: "Funkcja $f$ jest określona wzorem $f(x)=x^2-1$ dla $x\\in\\{-2,-1,0,1,2\\}$. Zbiorem wartości funkcji $f$ jest: **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\{0,3\\}$", "$\\{-1,0,3\\}$", "$\\{-2,-1,0,1,2\\}$", "$\\{-1,0,1,3\\}$"],
           poprawna: 1,
         },
         {
           nr: "16",
-          tresc: "Zbiorem wartości funkcji $f(x)=x^2+4$ określonej dla wszystkich liczb rzeczywistych jest. **Wybierz właściwą odpowiedź.**",
+          tresc: "Zbiorem wartości funkcji $f(x)=x^2+4$ określonej dla wszystkich liczb rzeczywistych jest: **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\mathbb{R}$", "$(4,\\infty)$", "$\\langle0,\\infty)$", "$\\langle4,\\infty)$"],
           poprawna: 3,
         },
         {
           nr: "17",
-          tresc: "Najmniejsza wartość funkcji $f(x)=-3x+2$ w przedziale $\\langle-1,4\\rangle$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Najmniejsza wartość funkcji $f(x)=-3x+2$ w przedziale $\\langle-1,4\\rangle$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$-10$", "$5$", "$-1$", "$4$"],
           poprawna: 0,
         },
@@ -512,7 +512,7 @@ export default {
         },
         {
           nr: "19",
-          tresc: "Największa wartość funkcji $f(x)=5-(x-3)^2$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Największa wartość funkcji $f(x)=5-(x-3)^2$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$3$", "$0$", "$5$", "$-4$"],
           poprawna: 2,
         },
@@ -655,19 +655,19 @@ export default {
       zadania: [
         {
           nr: "22",
-          tresc: "Miejscem zerowym funkcji $f(x)=-4x+10$ jest liczba. **Wybierz właściwą odpowiedź.**",
+          tresc: "Miejscem zerowym funkcji $f(x)=-4x+10$ jest liczba: **Wybierz właściwą odpowiedź.**",
           opcje: ["$-\\frac{5}{2}$", "$\\frac{5}{2}$", "$10$", "$\\frac{2}{5}$"],
           poprawna: 1,
         },
         {
           nr: "23",
-          tresc: "Miejscami zerowymi funkcji $f(x)=(x-3)(2x+5)$ są liczby. **Wybierz właściwą odpowiedź.**",
+          tresc: "Miejscami zerowymi funkcji $f(x)=(x-3)(2x+5)$ są liczby: **Wybierz właściwą odpowiedź.**",
           opcje: ["$3$ i $\\frac{5}{2}$", "$-3$ i $-\\frac{5}{2}$", "$3$ i $-\\frac{5}{2}$", "$3$ i $-5$"],
           poprawna: 2,
         },
         {
           nr: "24",
-          tresc: "Funkcja $f(x)=\\frac{x^2-25}{x+5}$ ma. **Wybierz właściwą odpowiedź.**",
+          tresc: "Funkcja $f(x)=\\frac{x^2-25}{x+5}$ ma: **Wybierz właściwą odpowiedź.**",
           opcje: ["tylko jedno miejsce zerowe: liczbę $5$", "dwa miejsca zerowe: liczby $5$ i $-5$", "tylko jedno miejsce zerowe: liczbę $-5$", "brak miejsc zerowych"],
           poprawna: 0,
         },
@@ -682,7 +682,7 @@ export default {
         },
         {
           nr: "26",
-          tresc: "Wykres funkcji $f(x)=2x+m$ przecina oś $OX$ w punkcie $(3,0)$. Liczba $m$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Wykres funkcji $f(x)=2x+m$ przecina oś $OX$ w punkcie $(3,0)$. Liczba $m$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$3$", "$6$", "$-3$", "$-6$"],
           poprawna: 3,
         },
@@ -849,7 +849,7 @@ export default {
       zadania: [
         {
           nr: "29",
-          tresc: "Funkcja $f(x)=-\\frac{1}{2}x+3$ jest. **Wybierz właściwą odpowiedź.**",
+          tresc: "Funkcja $f(x)=-\\frac{1}{2}x+3$ jest: **Wybierz właściwą odpowiedź.**",
           opcje: [
             "rosnąca w zbiorze $\\mathbb{R}$",
             "malejąca w zbiorze $\\mathbb{R}$",
@@ -860,7 +860,7 @@ export default {
         },
         {
           nr: "30",
-          tresc: "Wykres funkcji $f$ jest łamaną o kolejnych wierzchołkach $(-3,2)$, $(0,-1)$, $(2,-1)$, $(4,3)$. Funkcja $f$ jest malejąca w przedziale. **Wybierz właściwą odpowiedź.**",
+          tresc: "Wykres funkcji $f$ jest łamaną o kolejnych wierzchołkach $(-3,2)$, $(0,-1)$, $(2,-1)$, $(4,3)$. Funkcja $f$ jest malejąca w przedziale: **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\langle-3,0\\rangle$", "$\\langle-3,2\\rangle$", "$\\langle0,2\\rangle$", "$\\langle2,4\\rangle$"],
           poprawna: 0,
         },
@@ -886,7 +886,7 @@ export default {
         },
         {
           nr: "33",
-          tresc: "Funkcja $f$ jest malejąca w zbiorze $\\mathbb{R}$ i $f(2)=7$. Wtedy. **Wybierz właściwą odpowiedź.**",
+          tresc: "Funkcja $f$ jest malejąca w zbiorze $\\mathbb{R}$ i $f(2)=7$. Wtedy: **Wybierz właściwą odpowiedź.**",
           opcje: ["$f(5)>7$", "$f(-1)<7$", "$f(0)>7$", "$f(3)>7$"],
           poprawna: 2,
         },
@@ -1045,13 +1045,13 @@ export default {
       zadania: [
         {
           nr: "36",
-          tresc: "Wykres funkcji $f$ jest łamaną o kolejnych wierzchołkach $(-3,1)$, $(-1,4)$, $(2,-2)$, $(5,0)$. Zbiorem wartości funkcji $f$ jest. **Wybierz właściwą odpowiedź.**",
+          tresc: "Wykres funkcji $f$ jest łamaną o kolejnych wierzchołkach $(-3,1)$, $(-1,4)$, $(2,-2)$, $(5,0)$. Zbiorem wartości funkcji $f$ jest: **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\langle-3,5\\rangle$", "$\\langle-2,4\\rangle$", "$\\langle-3,4\\rangle$", "$\\langle-2,5\\rangle$"],
           poprawna: 1,
         },
         {
           nr: "37",
-          tresc: "Wykres funkcji $g$ jest łamaną o kolejnych wierzchołkach $(-4,-2)$, $(-1,3)$, $(2,3)$, $(4,-1)$. Funkcja $g$ jest stała w przedziale. **Wybierz właściwą odpowiedź.**",
+          tresc: "Wykres funkcji $g$ jest łamaną o kolejnych wierzchołkach $(-4,-2)$, $(-1,3)$, $(2,3)$, $(4,-1)$. Funkcja $g$ jest stała w przedziale: **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\langle-4,-1\\rangle$", "$\\langle-4,4\\rangle$", "$\\langle-1,2\\rangle$", "$\\langle2,4\\rangle$"],
           poprawna: 2,
         },
@@ -1066,13 +1066,13 @@ export default {
         },
         {
           nr: "39",
-          tresc: "Wykres przedstawia drogę $s$ (w km) przebytą przez rowerzystę w zależności od czasu $t$ (w godzinach). Jest łamaną o kolejnych wierzchołkach $(0,0)$, $(2,36)$, $(3,36)$, $(5,66)$. Rowerzysta jechał w ostatnim etapie (od $t=3$ do $t=5$) z prędkością. **Wybierz właściwą odpowiedź.**",
+          tresc: "Wykres przedstawia drogę $s$ (w km) przebytą przez rowerzystę w zależności od czasu $t$ (w godzinach). Jest łamaną o kolejnych wierzchołkach $(0,0)$, $(2,36)$, $(3,36)$, $(5,66)$. Rowerzysta jechał w ostatnim etapie (od $t=3$ do $t=5$) z prędkością: **Wybierz właściwą odpowiedź.**",
           opcje: ["$13{,}2$ km/h", "$15$ km/h", "$33$ km/h", "$30$ km/h"],
           poprawna: 1,
         },
         {
           nr: "40",
-          tresc: "Temperatura powietrza w ciągu doby (w °C) w zależności od godziny $t$ jest opisana łamaną o kolejnych wierzchołkach $(0,-3)$, $(6,-5)$, $(14,7)$, $(24,-1)$. Temperatura rosła przez. **Wybierz właściwą odpowiedź.**",
+          tresc: "Temperatura powietrza w ciągu doby (w °C) w zależności od godziny $t$ jest opisana łamaną o kolejnych wierzchołkach $(0,-3)$, $(6,-5)$, $(14,7)$, $(24,-1)$. Temperatura rosła przez: **Wybierz właściwą odpowiedź.**",
           opcje: ["$14$ godzin", "$10$ godzin", "$8$ godzin", "$18$ godzin"],
           poprawna: 2,
         },

@@ -135,13 +135,13 @@ export default {
       zadania: [
         {
           nr: "1",
-          tresc: "Para liczb $(2, -1)$ jest rozwiązaniem równania. **Wybierz właściwą odpowiedź.**",
+          tresc: "Para liczb $(2, -1)$ jest rozwiązaniem równania: **Wybierz właściwą odpowiedź.**",
           opcje: ["$3x - 2y = 4$", "$x + y = 3$", "$3x + 2y = 4$", "$2x - y = 3$"],
           poprawna: 2,
         },
         {
           nr: "2",
-          tresc: "Po wyznaczeniu $y$ z równania $4x - 2y = 10$ otrzymujemy. **Wybierz właściwą odpowiedź.**",
+          tresc: "Po wyznaczeniu $y$ z równania $4x - 2y = 10$ otrzymujemy: **Wybierz właściwą odpowiedź.**",
           opcje: ["$y = 2x - 5$", "$y = 2x + 5$", "$y = -2x + 5$", "$y = -2x - 5$"],
           poprawna: 0,
         },
@@ -156,13 +156,13 @@ export default {
         },
         {
           nr: "4",
-          tresc: "Para $(3, a)$ jest rozwiązaniem równania $2x + 3y = 3$. Liczba $a$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Para $(3, a)$ jest rozwiązaniem równania $2x + 3y = 3$. Liczba $a$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$1$", "$-1$", "$3$", "$-3$"],
           poprawna: 1,
         },
         {
           nr: "5",
-          tresc: "Prosta o równaniu $2x - y = 4$ przecina oś $Oy$ w punkcie. **Wybierz właściwą odpowiedź.**",
+          tresc: "Prosta o równaniu $2x - y = 4$ przecina oś $Oy$ w punkcie: **Wybierz właściwą odpowiedź.**",
           opcje: ["$(2, 0)$", "$(0, 4)$", "$(-4, 0)$", "$(0, -4)$"],
           poprawna: 3,
         },
@@ -275,7 +275,7 @@ export default {
       zadania: [
         {
           nr: "8",
-          tresc: "Rozwiązaniem układu równań $\\begin{cases} x + y = 4 \\\\ 2x - y = 2 \\end{cases}$ jest para. **Wybierz właściwą odpowiedź.**",
+          tresc: "Rozwiązaniem układu równań $\\begin{cases} x + y = 4 \\\\ 2x - y = 2 \\end{cases}$ jest para: **Wybierz właściwą odpowiedź.**",
           opcje: ["$(3, 1)$", "$(2, 2)$", "$(1, 3)$", "$(0, 4)$"],
           poprawna: 1,
         },
@@ -302,7 +302,7 @@ export default {
         },
         {
           nr: "12",
-          tresc: "Układ równań $\\begin{cases} y = ax + 1 \\\\ y = 3x - 2 \\end{cases}$ nie ma rozwiązań dla $a$ równego. **Wybierz właściwą odpowiedź.**",
+          tresc: "Układ równań $\\begin{cases} y = ax + 1 \\\\ y = 3x - 2 \\end{cases}$ nie ma rozwiązań dla $a$ równego: **Wybierz właściwą odpowiedź.**",
           opcje: ["$3$", "$-3$", "$\\frac{1}{3}$", "$-2$"],
           poprawna: 0,
         },
@@ -426,19 +426,19 @@ export default {
       zadania: [
         {
           nr: "15",
-          tresc: "Układ $\\begin{cases} y = 3x - 2 \\\\ 2x + y = 8 \\end{cases}$ po podstawieniu pierwszego równania do drugiego prowadzi do równania. **Wybierz właściwą odpowiedź.**",
+          tresc: "Układ $\\begin{cases} y = 3x - 2 \\\\ 2x + y = 8 \\end{cases}$ po podstawieniu pierwszego równania do drugiego prowadzi do równania: **Wybierz właściwą odpowiedź.**",
           opcje: ["$5x - 2 = 8$", "$5x + 2 = 8$", "$2x + 3x = 8$", "$-x - 2 = 8$"],
           poprawna: 0,
         },
         {
           nr: "16",
-          tresc: "Rozwiązaniem układu równań $\\begin{cases} x = y + 3 \\\\ 2x + y = 9 \\end{cases}$ jest para $(x, y)$ równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Rozwiązaniem układu równań $\\begin{cases} x = y + 3 \\\\ 2x + y = 9 \\end{cases}$ jest para $(x, y)$ równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$(1, 4)$", "$(5, 2)$", "$(4, 1)$", "$(3, 0)$"],
           poprawna: 2,
         },
         {
           nr: "17",
-          tresc: "Dla układu $\\begin{cases} 2x - y = 5 \\\\ x + 3y = 6 \\end{cases}$ niewiadoma $x$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Dla układu $\\begin{cases} 2x - y = 5 \\\\ x + 3y = 6 \\end{cases}$ niewiadoma $x$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$1$", "$3$", "$\\frac{11}{7}$", "$21$"],
           poprawna: 1,
         },
@@ -584,19 +584,19 @@ export default {
       zadania: [
         {
           nr: "22",
-          tresc: "Po dodaniu stronami równań układu $\\begin{cases} 2x + 3y = 13 \\\\ 5x - 3y = 1 \\end{cases}$ otrzymujemy równanie. **Wybierz właściwą odpowiedź.**",
+          tresc: "Po dodaniu stronami równań układu $\\begin{cases} 2x + 3y = 13 \\\\ 5x - 3y = 1 \\end{cases}$ otrzymujemy równanie: **Wybierz właściwą odpowiedź.**",
           opcje: ["$7x + 6y = 14$", "$7x = 14$", "$-3x + 6y = 12$", "$7x = 12$"],
           poprawna: 1,
         },
         {
           nr: "23",
-          tresc: "Rozwiązaniem układu równań $\\begin{cases} 3x + y = 10 \\\\ x - y = 2 \\end{cases}$ jest para. **Wybierz właściwą odpowiedź.**",
+          tresc: "Rozwiązaniem układu równań $\\begin{cases} 3x + y = 10 \\\\ x - y = 2 \\end{cases}$ jest para: **Wybierz właściwą odpowiedź.**",
           opcje: ["$(3, 1)$", "$(1, 3)$", "$(2, 4)$", "$(4, -2)$"],
           poprawna: 0,
         },
         {
           nr: "24",
-          tresc: "W układzie $\\begin{cases} x + 2y = 5 \\\\ 3x + y = 10 \\end{cases}$ pierwsze równanie mnożymy przez liczbę $k$, a następnie dodajemy stronami do drugiego tak, aby zniknęła niewiadoma $x$. Liczba $k$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "W układzie $\\begin{cases} x + 2y = 5 \\\\ 3x + y = 10 \\end{cases}$ pierwsze równanie mnożymy przez liczbę $k$, a następnie dodajemy stronami do drugiego tak, aby zniknęła niewiadoma $x$. Liczba $k$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$3$", "$-\\frac{1}{3}$", "$-3$", "$-2$"],
           poprawna: 2,
         },
@@ -611,7 +611,7 @@ export default {
         },
         {
           nr: "26",
-          tresc: "Rozwiązaniem układu równań $\\begin{cases} 3x + 2y = 13 \\\\ 2x - y = 4 \\end{cases}$ jest para $(x, y)$. Iloczyn $x \\cdot y$ jest równy. **Wybierz właściwą odpowiedź.**",
+          tresc: "Rozwiązaniem układu równań $\\begin{cases} 3x + 2y = 13 \\\\ 2x - y = 4 \\end{cases}$ jest para $(x, y)$. Iloczyn $x \\cdot y$ jest równy: **Wybierz właściwą odpowiedź.**",
           opcje: ["$5$", "$1$", "$9$", "$6$"],
           poprawna: 3,
         },
@@ -734,7 +734,7 @@ export default {
       zadania: [
         {
           nr: "29",
-          tresc: "Suma dwóch liczb jest równa $40$, a ich różnica jest równa $12$. Mniejsza z tych liczb jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Suma dwóch liczb jest równa $40$, a ich różnica jest równa $12$. Mniejsza z tych liczb jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$26$", "$14$", "$28$", "$20$"],
           poprawna: 1,
         },
@@ -751,7 +751,7 @@ export default {
         },
         {
           nr: "31",
-          tresc: "Obwód prostokąta jest równy $36$ cm, a jeden z jego boków jest o $6$ cm dłuższy od drugiego. Pole tego prostokąta jest równe. **Wybierz właściwą odpowiedź.**",
+          tresc: "Obwód prostokąta jest równy $36$ cm, a jeden z jego boków jest o $6$ cm dłuższy od drugiego. Pole tego prostokąta jest równe: **Wybierz właściwą odpowiedź.**",
           opcje: ["$72$ cm$^2$", "$108$ cm$^2$", "$81$ cm$^2$", "$66$ cm$^2$"],
           poprawna: 0,
         },
@@ -766,7 +766,7 @@ export default {
         },
         {
           nr: "33",
-          tresc: "Za $2$ kg jabłek i $3$ kg gruszek zapłacono $19$ zł, a za $3$ kg jabłek i $2$ kg gruszek zapłacono $16$ zł. Kilogram jabłek kosztuje. **Wybierz właściwą odpowiedź.**",
+          tresc: "Za $2$ kg jabłek i $3$ kg gruszek zapłacono $19$ zł, a za $3$ kg jabłek i $2$ kg gruszek zapłacono $16$ zł. Kilogram jabłek kosztuje: **Wybierz właściwą odpowiedź.**",
           opcje: ["$5$ zł", "$3$ zł", "$4$ zł", "$2$ zł"],
           poprawna: 3,
         },

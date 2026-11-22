@@ -100,19 +100,19 @@ export default {
       zadania: [
         {
           nr: "1",
-          tresc: "Wierzchołkiem paraboli o równaniu $y=2(x+3)^2-5$ jest punkt. **Wybierz właściwą odpowiedź.**",
+          tresc: "Wierzchołkiem paraboli o równaniu $y=2(x+3)^2-5$ jest punkt: **Wybierz właściwą odpowiedź.**",
           opcje: ["$(3,-5)$", "$(-3,5)$", "$(-3,-5)$", "$(3,5)$"],
           poprawna: 2,
         },
         {
           nr: "2",
-          tresc: "Współrzędna $p$ wierzchołka paraboli $y=x^2-8x+7$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Współrzędna $p$ wierzchołka paraboli $y=x^2-8x+7$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$-4$", "$8$", "$-8$", "$4$"],
           poprawna: 3,
         },
         {
           nr: "3",
-          tresc: "Postać kanoniczna funkcji $f(x)=x^2+6x+4$ to. **Wybierz właściwą odpowiedź.**",
+          tresc: "Postać kanoniczna funkcji $f(x)=x^2+6x+4$ to: **Wybierz właściwą odpowiedź.**",
           opcje: ["$(x-3)^2-5$", "$(x+3)^2-5$", "$(x+3)^2+4$", "$(x+6)^2-32$"],
           poprawna: 1,
         },
@@ -127,7 +127,7 @@ export default {
         },
         {
           nr: "5",
-          tresc: "Funkcję $f(x)=3(x-1)^2-2$ zapisano w postaci ogólnej. Jest to. **Wybierz właściwą odpowiedź.**",
+          tresc: "Funkcję $f(x)=3(x-1)^2-2$ zapisano w postaci ogólnej. Jest to: **Wybierz właściwą odpowiedź.**",
           opcje: ["$3x^2-6x-2$", "$3x^2+6x+1$", "$3x^2-6x+1$", "$3x^2-2x+1$"],
           poprawna: 2,
         },
@@ -250,13 +250,13 @@ export default {
       zadania: [
         {
           nr: "8",
-          tresc: "Wyróżnik trójmianu $f(x)=2x^2-3x-5$ jest równy. **Wybierz właściwą odpowiedź.**",
+          tresc: "Wyróżnik trójmianu $f(x)=2x^2-3x-5$ jest równy: **Wybierz właściwą odpowiedź.**",
           opcje: ["$29$", "$-31$", "$49$", "$-49$"],
           poprawna: 2,
         },
         {
           nr: "9",
-          tresc: "Miejscami zerowymi funkcji $f(x)=x^2-x-12$ są liczby. **Wybierz właściwą odpowiedź.**",
+          tresc: "Miejscami zerowymi funkcji $f(x)=x^2-x-12$ są liczby: **Wybierz właściwą odpowiedź.**",
           opcje: ["$4$ i $-3$", "$-4$ i $3$", "$12$ i $-1$", "$6$ i $-2$"],
           poprawna: 0,
         },
@@ -277,13 +277,13 @@ export default {
         },
         {
           nr: "12",
-          tresc: "Postać iloczynowa funkcji $f(x)=2x^2-8x-24$ to. **Wybierz właściwą odpowiedź.**",
+          tresc: "Postać iloczynowa funkcji $f(x)=2x^2-8x-24$ to: **Wybierz właściwą odpowiedź.**",
           opcje: ["$2(x+6)(x-2)$", "$2(x-6)(x+2)$", "$(x-6)(x+2)$", "$2(x-12)(x+4)$"],
           poprawna: 1,
         },
         {
           nr: "13",
-          tresc: "Funkcja $f(x)=x^2-4x+m$ ma dokładnie jedno miejsce zerowe. Wtedy liczba $m$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Funkcja $f(x)=x^2-4x+m$ ma dokładnie jedno miejsce zerowe. Wtedy liczba $m$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$16$", "$-4$", "$4$", "$8$"],
           poprawna: 2,
         },
@@ -410,25 +410,25 @@ export default {
       zadania: [
         {
           nr: "16",
-          tresc: "Zbiorem wartości funkcji $f(x)=-(x-3)^2+4$ jest. **Wybierz właściwą odpowiedź.**",
+          tresc: "Zbiorem wartości funkcji $f(x)=-(x-3)^2+4$ jest: **Wybierz właściwą odpowiedź.**",
           opcje: ["$(-\\infty,3\\rangle$", "$\\langle 4,+\\infty)$", "$(-\\infty,4\\rangle$", "$\\langle 3,+\\infty)$"],
           poprawna: 2,
         },
         {
           nr: "17",
-          tresc: "Osią symetrii wykresu funkcji $f(x)=2(x+1)^2-8$ jest prosta o równaniu. **Wybierz właściwą odpowiedź.**",
+          tresc: "Osią symetrii wykresu funkcji $f(x)=2(x+1)^2-8$ jest prosta o równaniu: **Wybierz właściwą odpowiedź.**",
           opcje: ["$x=1$", "$x=-1$", "$x=-8$", "$x=8$"],
           poprawna: 1,
         },
         {
           nr: "18",
-          tresc: "Funkcja $f(x)=x^2-4x+3$ jest malejąca w przedziale. **Wybierz właściwą odpowiedź.**",
+          tresc: "Funkcja $f(x)=x^2-4x+3$ jest malejąca w przedziale: **Wybierz właściwą odpowiedź.**",
           opcje: ["$(-\\infty,2\\rangle$", "$\\langle 2,+\\infty)$", "$\\langle -2,+\\infty)$", "$(-\\infty,3\\rangle$"],
           poprawna: 0,
         },
         {
           nr: "19",
-          tresc: "Wykres funkcji kwadratowej ma wierzchołek w punkcie $W=(2,-3)$ i przechodzi przez punkt $(0,5)$. Wzór tej funkcji to. **Wybierz właściwą odpowiedź.**",
+          tresc: "Wykres funkcji kwadratowej ma wierzchołek w punkcie $W=(2,-3)$ i przechodzi przez punkt $(0,5)$. Wzór tej funkcji to: **Wybierz właściwą odpowiedź.**",
           opcje: ["$f(x)=(x-2)^2-3$", "$f(x)=2(x+2)^2-3$", "$f(x)=2(x-2)^2-3$", "$f(x)=2(x-2)^2+3$"],
           poprawna: 2,
         },
@@ -443,7 +443,7 @@ export default {
         },
         {
           nr: "21",
-          tresc: "Funkcja kwadratowa ma miejsca zerowe $1$ i $5$, a jej wykres przechodzi przez punkt $(3,-8)$. Wzór tej funkcji to. **Wybierz właściwą odpowiedź.**",
+          tresc: "Funkcja kwadratowa ma miejsca zerowe $1$ i $5$, a jej wykres przechodzi przez punkt $(3,-8)$. Wzór tej funkcji to: **Wybierz właściwą odpowiedź.**",
           opcje: ["$f(x)=(x-1)(x-5)$", "$f(x)=2(x+1)(x+5)$", "$f(x)=-2(x-1)(x-5)$", "$f(x)=2(x-1)(x-5)$"],
           poprawna: 3,
         },
@@ -586,31 +586,31 @@ export default {
       zadania: [
         {
           nr: "24",
-          tresc: "Najmniejsza wartość funkcji $f(x)=x^2-6x+5$ w przedziale $\\langle 0,4\\rangle$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Najmniejsza wartość funkcji $f(x)=x^2-6x+5$ w przedziale $\\langle 0,4\\rangle$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$-3$", "$-4$", "$5$", "$-9$"],
           poprawna: 1,
         },
         {
           nr: "25",
-          tresc: "Największa wartość funkcji $f(x)=-x^2+4x+1$ w przedziale $\\langle -1,1\\rangle$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Największa wartość funkcji $f(x)=-x^2+4x+1$ w przedziale $\\langle -1,1\\rangle$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$5$", "$-4$", "$4$", "$1$"],
           poprawna: 2,
         },
         {
           nr: "26",
-          tresc: "Zbiorem wartości funkcji $f(x)=2x^2-4x+3$ określonej w przedziale $\\langle 2,4\\rangle$ jest. **Wybierz właściwą odpowiedź.**",
+          tresc: "Zbiorem wartości funkcji $f(x)=2x^2-4x+3$ określonej w przedziale $\\langle 2,4\\rangle$ jest: **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\langle 1,19\\rangle$", "$\\langle 3,19\\rangle$", "$\\langle 1,3\\rangle$", "$\\langle 3,11\\rangle$"],
           poprawna: 1,
         },
         {
           nr: "27",
-          tresc: "Suma dwóch liczb rzeczywistych jest równa $12$. Największa możliwa wartość iloczynu tych liczb jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Suma dwóch liczb rzeczywistych jest równa $12$. Największa możliwa wartość iloczynu tych liczb jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$24$", "$35$", "$36$", "$72$"],
           poprawna: 2,
         },
         {
           nr: "28",
-          tresc: "Wysokość piłki rzuconej w górę (w metrach) po $t$ sekundach opisuje wzór $h(t)=-5t^2+20t+1$, gdzie $t\\geq 0$. Największa wysokość, na jaką wzniesie się piłka, wynosi. **Wybierz właściwą odpowiedź.**",
+          tresc: "Wysokość piłki rzuconej w górę (w metrach) po $t$ sekundach opisuje wzór $h(t)=-5t^2+20t+1$, gdzie $t\\geq 0$. Największa wysokość, na jaką wzniesie się piłka, wynosi: **Wybierz właściwą odpowiedź.**",
           opcje: ["$41$ m", "$20$ m", "$1$ m", "$21$ m"],
           poprawna: 3,
         },
@@ -811,19 +811,19 @@ export default {
       zadania: [
         {
           nr: "32",
-          tresc: "Rozwiązaniami równania $2x^2-5x-3=0$ są liczby. **Wybierz właściwą odpowiedź.**",
+          tresc: "Rozwiązaniami równania $2x^2-5x-3=0$ są liczby: **Wybierz właściwą odpowiedź.**",
           opcje: ["$3$ i $-\\frac{1}{2}$", "$-3$ i $\\frac{1}{2}$", "$3$ i $\\frac{1}{2}$", "$-3$ i $-\\frac{1}{2}$"],
           poprawna: 0,
         },
         {
           nr: "33",
-          tresc: "Równanie $3x^2-12x+12=0$ ma. **Wybierz właściwą odpowiedź.**",
+          tresc: "Równanie $3x^2-12x+12=0$ ma: **Wybierz właściwą odpowiedź.**",
           opcje: ["dwa rozwiązania: $2$ i $-2$", "jedno rozwiązanie: $x=-2$", "jedno rozwiązanie: $x=2$", "brak rozwiązań"],
           poprawna: 2,
         },
         {
           nr: "34",
-          tresc: "Zbiorem rozwiązań równania $3x^2-12x=0$ jest. **Wybierz właściwą odpowiedź.**",
+          tresc: "Zbiorem rozwiązań równania $3x^2-12x=0$ jest: **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\{4\\}$", "$\\{0,-4\\}$", "$\\{-4,4\\}$", "$\\{0,4\\}$"],
           poprawna: 3,
         },
@@ -838,13 +838,13 @@ export default {
         },
         {
           nr: "36",
-          tresc: "Równanie $x^2-6x+m=0$ ma dwa różne rozwiązania rzeczywiste wtedy i tylko wtedy, gdy. **Wybierz właściwą odpowiedź.**",
+          tresc: "Równanie $x^2-6x+m=0$ ma dwa różne rozwiązania rzeczywiste wtedy i tylko wtedy, gdy: **Wybierz właściwą odpowiedź.**",
           opcje: ["$m>9$", "$m<9$", "$m<-9$", "$m=9$"],
           poprawna: 1,
         },
         {
           nr: "37",
-          tresc: "Suma rozwiązań równania $x^2-7x+10=0$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Suma rozwiązań równania $x^2-7x+10=0$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$-7$", "$10$", "$7$", "$3$"],
           poprawna: 2,
         },
@@ -1017,19 +1017,19 @@ export default {
       zadania: [
         {
           nr: "40",
-          tresc: "Zbiorem rozwiązań nierówności $x^2-3x-4<0$ jest. **Wybierz właściwą odpowiedź.**",
+          tresc: "Zbiorem rozwiązań nierówności $x^2-3x-4<0$ jest: **Wybierz właściwą odpowiedź.**",
           opcje: ["$(-\\infty,-1)\\cup(4,+\\infty)$", "$(-1,4)$", "$\\langle -1,4\\rangle$", "$(-4,1)$"],
           poprawna: 1,
         },
         {
           nr: "41",
-          tresc: "Zbiorem rozwiązań nierówności $-x^2+4x\\geq 0$ jest. **Wybierz właściwą odpowiedź.**",
+          tresc: "Zbiorem rozwiązań nierówności $-x^2+4x\\geq 0$ jest: **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\langle 0,4\\rangle$", "$(0,4)$", "$\\langle -4,0\\rangle$", "$(-\\infty,0\\rangle\\cup\\langle 4,+\\infty)$"],
           poprawna: 0,
         },
         {
           nr: "42",
-          tresc: "Zbiorem rozwiązań nierówności $x^2-6x+9>0$ jest. **Wybierz właściwą odpowiedź.**",
+          tresc: "Zbiorem rozwiązań nierówności $x^2-6x+9>0$ jest: **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\mathbb{R}\\setminus\\{3\\}$", "$\\mathbb{R}$", "$(3,+\\infty)$", "zbiór pusty"],
           poprawna: 0,
         },

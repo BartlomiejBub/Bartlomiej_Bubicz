@@ -86,7 +86,7 @@ export default {
       zadania: [
         {
           nr: "1",
-          tresc: "Wielkość $y$ jest wprost proporcjonalna do $x$, a dla $x=4$ mamy $y=10$. Współczynnik proporcjonalności jest równy. **Wybierz właściwą odpowiedź.**",
+          tresc: "Wielkość $y$ jest wprost proporcjonalna do $x$, a dla $x=4$ mamy $y=10$. Współczynnik proporcjonalności jest równy: **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\frac{2}{5}$", "$6$", "$\\frac{5}{2}$", "$40$"],
           poprawna: 2,
         },
@@ -103,7 +103,7 @@ export default {
         },
         {
           nr: "3",
-          tresc: "Samochód jedzie ze stałą prędkością i w ciągu $2$ godzin przejeżdża $150$ km. Droga jest wprost proporcjonalna do czasu. W ciągu $5$ godzin samochód przejedzie. **Wybierz właściwą odpowiedź.**",
+          tresc: "Samochód jedzie ze stałą prędkością i w ciągu $2$ godzin przejeżdża $150$ km. Droga jest wprost proporcjonalna do czasu. W ciągu $5$ godzin samochód przejedzie: **Wybierz właściwą odpowiedź.**",
           opcje: ["$153$ km", "$300$ km", "$750$ km", "$375$ km"],
           poprawna: 3,
         },
@@ -118,7 +118,7 @@ export default {
         },
         {
           nr: "5",
-          tresc: "Wykres funkcji $y=ax$ przechodzi przez punkt $(3,-12)$. Wzór tej funkcji to. **Wybierz właściwą odpowiedź.**",
+          tresc: "Wykres funkcji $y=ax$ przechodzi przez punkt $(3,-12)$. Wzór tej funkcji to: **Wybierz właściwą odpowiedź.**",
           opcje: ["$y=-4x$", "$y=4x$", "$y=-\\frac{1}{4}x$", "$y=x-15$"],
           poprawna: 0,
         },
@@ -263,19 +263,19 @@ export default {
       zadania: [
         {
           nr: "8",
-          tresc: "Miejscem zerowym funkcji $f(x)=3x-12$ jest liczba. **Wybierz właściwą odpowiedź.**",
+          tresc: "Miejscem zerowym funkcji $f(x)=3x-12$ jest liczba: **Wybierz właściwą odpowiedź.**",
           opcje: ["$-4$", "$4$", "$-12$", "$\\frac{1}{4}$"],
           poprawna: 1,
         },
         {
           nr: "9",
-          tresc: "Wykres funkcji $f(x)=-2x+5$ przecina oś $OY$ w punkcie. **Wybierz właściwą odpowiedź.**",
+          tresc: "Wykres funkcji $f(x)=-2x+5$ przecina oś $OY$ w punkcie: **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\left(\\frac{5}{2},0\\right)$", "$(0,-2)$", "$(5,0)$", "$(0,5)$"],
           poprawna: 3,
         },
         {
           nr: "10",
-          tresc: "Punkt $P=(k,7)$ należy do wykresu funkcji $f(x)=2x-3$. Wtedy $k$ jest równe. **Wybierz właściwą odpowiedź.**",
+          tresc: "Punkt $P=(k,7)$ należy do wykresu funkcji $f(x)=2x-3$. Wtedy $k$ jest równe: **Wybierz właściwą odpowiedź.**",
           opcje: ["$2$", "$11$", "$5$", "$4$"],
           poprawna: 2,
         },
@@ -290,7 +290,7 @@ export default {
         },
         {
           nr: "12",
-          tresc: "Miejscem zerowym funkcji $f(x)=-\\frac{2}{3}x+4$ jest liczba. **Wybierz właściwą odpowiedź.**",
+          tresc: "Miejscem zerowym funkcji $f(x)=-\\frac{2}{3}x+4$ jest liczba: **Wybierz właściwą odpowiedź.**",
           opcje: ["$6$", "$-6$", "$\\frac{8}{3}$", "$4$"],
           poprawna: 0,
         },
@@ -415,19 +415,19 @@ export default {
       zadania: [
         {
           nr: "15",
-          tresc: "Funkcja liniowa $f(x)=(3-m)x+2$ jest rosnąca dla. **Wybierz właściwą odpowiedź.**",
+          tresc: "Funkcja liniowa $f(x)=(3-m)x+2$ jest rosnąca dla: **Wybierz właściwą odpowiedź.**",
           opcje: ["$m>3$", "$m<3$", "$m>-3$", "$m<-3$"],
           poprawna: 1,
         },
         {
           nr: "16",
-          tresc: "Wykres funkcji $f(x)=2x+5$ jest równoległy do wykresu funkcji. **Wybierz właściwą odpowiedź.**",
+          tresc: "Wykres funkcji $f(x)=2x+5$ jest równoległy do wykresu funkcji: **Wybierz właściwą odpowiedź.**",
           opcje: ["$g(x)=-2x+5$", "$g(x)=\\frac{1}{2}x+5$", "$g(x)=2x-1$", "$g(x)=5x+2$"],
           poprawna: 2,
         },
         {
           nr: "17",
-          tresc: "Prosta prostopadła do prostej $y=-4x+1$ ma równanie. **Wybierz właściwą odpowiedź.**",
+          tresc: "Prosta prostopadła do prostej $y=-4x+1$ ma równanie: **Wybierz właściwą odpowiedź.**",
           opcje: ["$y=\\frac{1}{4}x-3$", "$y=-\\frac{1}{4}x+3$", "$y=4x-3$", "$y=-4x+3$"],
           poprawna: 0,
         },
@@ -442,7 +442,7 @@ export default {
         },
         {
           nr: "19",
-          tresc: "Funkcja $f(x)=(k-2)x+4$ jest stała dla $k$ równego. **Wybierz właściwą odpowiedź.**",
+          tresc: "Funkcja $f(x)=(k-2)x+4$ jest stała dla $k$ równego: **Wybierz właściwą odpowiedź.**",
           opcje: ["$0$", "$-2$", "$4$", "$2$"],
           poprawna: 3,
         },
@@ -569,25 +569,25 @@ export default {
       zadania: [
         {
           nr: "22",
-          tresc: "Wykres funkcji liniowej przechodzi przez punkty $A=(1,2)$ i $B=(3,8)$. Wzór tej funkcji to. **Wybierz właściwą odpowiedź.**",
+          tresc: "Wykres funkcji liniowej przechodzi przez punkty $A=(1,2)$ i $B=(3,8)$. Wzór tej funkcji to: **Wybierz właściwą odpowiedź.**",
           opcje: ["$y=3x+1$", "$y=\\frac{1}{3}x+\\frac{5}{3}$", "$y=3x-1$", "$y=6x-4$"],
           poprawna: 2,
         },
         {
           nr: "23",
-          tresc: "Funkcja liniowa $f$ spełnia warunki $f(-1)=7$ i $f(2)=-2$. Wzór funkcji $f$ to. **Wybierz właściwą odpowiedź.**",
+          tresc: "Funkcja liniowa $f$ spełnia warunki $f(-1)=7$ i $f(2)=-2$. Wzór funkcji $f$ to: **Wybierz właściwą odpowiedź.**",
           opcje: ["$f(x)=-3x+4$", "$f(x)=-3x-4$", "$f(x)=3x+10$", "$f(x)=-\\frac{1}{3}x+\\frac{20}{3}$"],
           poprawna: 0,
         },
         {
           nr: "24",
-          tresc: "Prosta równoległa do prostej $y=-2x+3$ i przechodząca przez punkt $(1,5)$ ma równanie. **Wybierz właściwą odpowiedź.**",
+          tresc: "Prosta równoległa do prostej $y=-2x+3$ i przechodząca przez punkt $(1,5)$ ma równanie: **Wybierz właściwą odpowiedź.**",
           opcje: ["$y=-2x+5$", "$y=-2x+3$", "$y=\\frac{1}{2}x+\\frac{9}{2}$", "$y=-2x+7$"],
           poprawna: 3,
         },
         {
           nr: "25",
-          tresc: "Funkcja liniowa $f(x)=-2x+8$ przyjmuje wartości dodatnie dla. **Wybierz właściwą odpowiedź.**",
+          tresc: "Funkcja liniowa $f(x)=-2x+8$ przyjmuje wartości dodatnie dla: **Wybierz właściwą odpowiedź.**",
           opcje: ["$x>4$", "$x<4$", "$x>-4$", "$x<-4$"],
           poprawna: 1,
         },
@@ -722,19 +722,19 @@ export default {
       zadania: [
         {
           nr: "29",
-          tresc: "Za kurs taksówką płaci się $8$ zł opłaty początkowej oraz $3$ zł za każdy przejechany kilometr. Koszt przejazdu $x$ kilometrów opisuje wzór. **Wybierz właściwą odpowiedź.**",
+          tresc: "Za kurs taksówką płaci się $8$ zł opłaty początkowej oraz $3$ zł za każdy przejechany kilometr. Koszt przejazdu $x$ kilometrów opisuje wzór: **Wybierz właściwą odpowiedź.**",
           opcje: ["$K(x)=8x+3$", "$K(x)=11x$", "$K(x)=3x+8$", "$K(x)=\\frac{x}{3}+8$"],
           poprawna: 2,
         },
         {
           nr: "30",
-          tresc: "W zbiorniku jest $90$ litrów wody. Z otwartego kranu wypływają z niego $3$ litry na minutę. Po $20$ minutach w zbiorniku zostanie. **Wybierz właściwą odpowiedź.**",
+          tresc: "W zbiorniku jest $90$ litrów wody. Z otwartego kranu wypływają z niego $3$ litry na minutę. Po $20$ minutach w zbiorniku zostanie: **Wybierz właściwą odpowiedź.**",
           opcje: ["$150$ l", "$87$ l", "$60$ l", "$30$ l"],
           poprawna: 3,
         },
         {
           nr: "31",
-          tresc: "Temperatura wody wynosi na początku $15^\\circ$C i rośnie o $2^\\circ$C na minutę. Temperatura $45^\\circ$C zostanie osiągnięta po. **Wybierz właściwą odpowiedź.**",
+          tresc: "Temperatura wody wynosi na początku $15^\\circ$C i rośnie o $2^\\circ$C na minutę. Temperatura $45^\\circ$C zostanie osiągnięta po: **Wybierz właściwą odpowiedź.**",
           opcje: ["$15$ min", "$30$ min", "$22{,}5$ min", "$60$ min"],
           poprawna: 0,
         },
@@ -749,7 +749,7 @@ export default {
         },
         {
           nr: "33",
-          tresc: "Koszt $K$ usługi zależy liniowo od liczby godzin $x$. Za $2$ godziny zapłacono $50$ zł, a za $5$ godzin – $95$ zł. Opłata stała (wartość $K(0)$) jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Koszt $K$ usługi zależy liniowo od liczby godzin $x$. Za $2$ godziny zapłacono $50$ zł, a za $5$ godzin – $95$ zł. Opłata stała (wartość $K(0)$) jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$15$ zł", "$20$ zł", "$35$ zł", "$25$ zł"],
           poprawna: 1,
         },

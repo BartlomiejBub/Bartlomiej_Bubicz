@@ -80,13 +80,13 @@ export default {
       zadania: [
         {
           nr: "1",
-          tresc: "Wartość wyrażenia $|-7| - |2 - 5|$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Wartość wyrażenia $|-7| - |2 - 5|$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$-4$", "$10$", "$4$", "$-10$"],
           poprawna: 2,
         },
         {
           nr: "2",
-          tresc: "Liczba $|\\sqrt{2} - 3|$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Liczba $|\\sqrt{2} - 3|$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\sqrt{2} - 3$", "$3 - \\sqrt{2}$", "$3 + \\sqrt{2}$", "$-\\sqrt{2} - 3$"],
           poprawna: 1,
         },
@@ -101,13 +101,13 @@ export default {
         },
         {
           nr: "4",
-          tresc: "Wyrażenie $\\sqrt{(2 - \\sqrt{5})^2}$ jest równe. **Wybierz właściwą odpowiedź.**",
+          tresc: "Wyrażenie $\\sqrt{(2 - \\sqrt{5})^2}$ jest równe: **Wybierz właściwą odpowiedź.**",
           opcje: ["$2 - \\sqrt{5}$", "$\\sqrt{5} + 2$", "$-2 - \\sqrt{5}$", "$\\sqrt{5} - 2$"],
           poprawna: 3,
         },
         {
           nr: "5",
-          tresc: "Dla $x < -1$ wyrażenie $|x + 1|$ jest równe. **Wybierz właściwą odpowiedź.**",
+          tresc: "Dla $x < -1$ wyrażenie $|x + 1|$ jest równe: **Wybierz właściwą odpowiedź.**",
           opcje: ["$-x - 1$", "$x + 1$", "$-x + 1$", "$x - 1$"],
           poprawna: 0,
         },
@@ -261,19 +261,19 @@ export default {
       zadania: [
         {
           nr: "8",
-          tresc: "Odległość między punktami osi liczbowej o współrzędnych $-3$ i $5$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Odległość między punktami osi liczbowej o współrzędnych $-3$ i $5$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$2$", "$8$", "$15$", "$5$"],
           poprawna: 1,
         },
         {
           nr: "9",
-          tresc: "Zbiorem wszystkich liczb, których odległość od liczby $2$ na osi liczbowej jest równa $5$, jest. **Wybierz właściwą odpowiedź.**",
+          tresc: "Zbiorem wszystkich liczb, których odległość od liczby $2$ na osi liczbowej jest równa $5$, jest: **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\{-3,\\,7\\}$", "$\\{-5,\\,5\\}$", "$\\{-7,\\,3\\}$", "$\\{7\\}$"],
           poprawna: 0,
         },
         {
           nr: "10",
-          tresc: "Wyrażenie $|x + 3|$ oznacza odległość liczby $x$ od liczby. **Wybierz właściwą odpowiedź.**",
+          tresc: "Wyrażenie $|x + 3|$ oznacza odległość liczby $x$ od liczby: **Wybierz właściwą odpowiedź.**",
           opcje: ["$3$", "$4$", "$-3$", "$-4$"],
           poprawna: 2,
         },
@@ -288,7 +288,7 @@ export default {
         },
         {
           nr: "12",
-          tresc: "Liczba jednakowo oddalona od liczb $-7$ i $3$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Liczba jednakowo oddalona od liczb $-7$ i $3$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$-4$", "$2$", "$5$", "$-2$"],
           poprawna: 3,
         },
@@ -426,13 +426,13 @@ export default {
       zadania: [
         {
           nr: "15",
-          tresc: "Zbiorem rozwiązań równania $|x - 5| = 3$ jest. **Wybierz właściwą odpowiedź.**",
+          tresc: "Zbiorem rozwiązań równania $|x - 5| = 3$ jest: **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\{-8,\\,-2\\}$", "$\\{3,\\,5\\}$", "$\\{2,\\,8\\}$", "$\\{8\\}$"],
           poprawna: 2,
         },
         {
           nr: "16",
-          tresc: "Rozwiązaniami równania $|2x + 1| = 7$ są liczby. **Wybierz właściwą odpowiedź.**",
+          tresc: "Rozwiązaniami równania $|2x + 1| = 7$ są liczby: **Wybierz właściwą odpowiedź.**",
           opcje: ["$x = 3$", "$x = 3$ lub $x = -3$", "$x = 4$ lub $x = -3$", "$x = 3$ lub $x = -4$"],
           poprawna: 3,
         },
@@ -453,7 +453,7 @@ export default {
         },
         {
           nr: "19",
-          tresc: "Najmniejszym rozwiązaniem równania $2|x - 1| - 3 = 5$ jest liczba. **Wybierz właściwą odpowiedź.**",
+          tresc: "Najmniejszym rozwiązaniem równania $2|x - 1| - 3 = 5$ jest liczba: **Wybierz właściwą odpowiedź.**",
           opcje: ["$1$", "$-3$", "$-7$", "$-5$"],
           poprawna: 1,
         },

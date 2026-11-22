@@ -163,19 +163,19 @@ export default {
       zadania: [
         {
           nr: "1",
-          tresc: "W trójkącie prostokątnym $ABC$ kąt prosty jest przy wierzchołku $C$, $|AC| = 8$ i $|AB| = 17$. Cosinus kąta $B$ jest równy. **Wybierz właściwą odpowiedź.**",
+          tresc: "W trójkącie prostokątnym $ABC$ kąt prosty jest przy wierzchołku $C$, $|AC| = 8$ i $|AB| = 17$. Cosinus kąta $B$ jest równy: **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\frac{8}{17}$", "$\\frac{8}{15}$", "$\\frac{15}{17}$", "$\\frac{15}{8}$"],
           poprawna: 2,
         },
         {
           nr: "2",
-          tresc: "Kąt ostry $\\alpha$ spełnia warunek $\\sin\\alpha = \\frac{5}{13}$. Wtedy $\\operatorname{tg}\\alpha$ jest równy. **Wybierz właściwą odpowiedź.**",
+          tresc: "Kąt ostry $\\alpha$ spełnia warunek $\\sin\\alpha = \\frac{5}{13}$. Wtedy $\\operatorname{tg}\\alpha$ jest równy: **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\frac{5}{12}$", "$\\frac{12}{5}$", "$\\frac{12}{13}$", "$\\frac{5}{13}$"],
           poprawna: 0,
         },
         {
           nr: "3",
-          tresc: "Wartość wyrażenia $\\sin 60^\\circ\\cdot\\cos 30^\\circ - \\operatorname{tg}45^\\circ$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Wartość wyrażenia $\\sin 60^\\circ\\cdot\\cos 30^\\circ - \\operatorname{tg}45^\\circ$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\frac{1}{4}$", "$-\\frac{1}{4}$", "$-\\frac{1}{2}$", "$\\frac{\\sqrt{3}-2}{2}$"],
           poprawna: 1,
         },
@@ -190,7 +190,7 @@ export default {
         },
         {
           nr: "5",
-          tresc: "W trójkącie prostokątnym jeden z kątów ostrych ma miarę $30^\\circ$, a przeciwprostokątna ma długość $18$. Przyprostokątna przyległa do kąta $30^\\circ$ ma długość. **Wybierz właściwą odpowiedź.**",
+          tresc: "W trójkącie prostokątnym jeden z kątów ostrych ma miarę $30^\\circ$, a przeciwprostokątna ma długość $18$. Przyprostokątna przyległa do kąta $30^\\circ$ ma długość: **Wybierz właściwą odpowiedź.**",
           opcje: ["$9$", "$18\\sqrt{3}$", "$6\\sqrt{3}$", "$9\\sqrt{3}$"],
           poprawna: 3,
         },
@@ -362,19 +362,19 @@ export default {
       zadania: [
         {
           nr: "8",
-          tresc: "Punkt $P=(-5,12)$ leży na końcowym ramieniu kąta $\\alpha$ (początkowe ramię leży na dodatniej półosi $OX$). Cosinus kąta $\\alpha$ jest równy. **Wybierz właściwą odpowiedź.**",
+          tresc: "Punkt $P=(-5,12)$ leży na końcowym ramieniu kąta $\\alpha$ (początkowe ramię leży na dodatniej półosi $OX$). Cosinus kąta $\\alpha$ jest równy: **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\frac{5}{13}$", "$-\\frac{5}{13}$", "$-\\frac{5}{12}$", "$-\\frac{12}{13}$"],
           poprawna: 1,
         },
         {
           nr: "9",
-          tresc: "Końcowe ramię kąta $\\alpha$ przechodzi przez punkt $(6,-8)$. Tangens kąta $\\alpha$ jest równy. **Wybierz właściwą odpowiedź.**",
+          tresc: "Końcowe ramię kąta $\\alpha$ przechodzi przez punkt $(6,-8)$. Tangens kąta $\\alpha$ jest równy: **Wybierz właściwą odpowiedź.**",
           opcje: ["$-\\frac{3}{4}$", "$\\frac{4}{3}$", "$-\\frac{4}{3}$", "$-\\frac{4}{5}$"],
           poprawna: 2,
         },
         {
           nr: "10",
-          tresc: "Kąt $\\alpha$ ma miarę $230^\\circ$. Wtedy. **Wybierz właściwą odpowiedź.**",
+          tresc: "Kąt $\\alpha$ ma miarę $230^\\circ$. Wtedy: **Wybierz właściwą odpowiedź.**",
           opcje: [
             "$\\sin\\alpha<0$ i $\\cos\\alpha<0$",
             "$\\sin\\alpha>0$ i $\\cos\\alpha<0$",
@@ -394,7 +394,7 @@ export default {
         },
         {
           nr: "12",
-          tresc: "Punkt $P=(x,-4)$, gdzie $x<0$, leży na końcowym ramieniu kąta $\\alpha$ i $|OP| = 5$. Tangens kąta $\\alpha$ jest równy. **Wybierz właściwą odpowiedź.**",
+          tresc: "Punkt $P=(x,-4)$, gdzie $x<0$, leży na końcowym ramieniu kąta $\\alpha$ i $|OP| = 5$. Tangens kąta $\\alpha$ jest równy: **Wybierz właściwą odpowiedź.**",
           opcje: ["$-\\frac{4}{3}$", "$\\frac{3}{4}$", "$-\\frac{3}{4}$", "$\\frac{4}{3}$"],
           poprawna: 3,
         },
@@ -536,19 +536,19 @@ export default {
       zadania: [
         {
           nr: "15",
-          tresc: "Kąt $\\alpha$ jest rozwarty i $\\sin\\alpha = \\frac{3}{5}$. Wtedy $\\cos\\alpha$ jest równy. **Wybierz właściwą odpowiedź.**",
+          tresc: "Kąt $\\alpha$ jest rozwarty i $\\sin\\alpha = \\frac{3}{5}$. Wtedy $\\cos\\alpha$ jest równy: **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\frac{4}{5}$", "$-\\frac{4}{5}$", "$-\\frac{3}{4}$", "$\\frac{16}{25}$"],
           poprawna: 1,
         },
         {
           nr: "16",
-          tresc: "Kąt $\\alpha$ leży w III ćwiartce układu współrzędnych i $\\cos\\alpha = -\\frac{5}{13}$. Wtedy $\\sin\\alpha$ jest równy. **Wybierz właściwą odpowiedź.**",
+          tresc: "Kąt $\\alpha$ leży w III ćwiartce układu współrzędnych i $\\cos\\alpha = -\\frac{5}{13}$. Wtedy $\\sin\\alpha$ jest równy: **Wybierz właściwą odpowiedź.**",
           opcje: ["$-\\frac{12}{13}$", "$\\frac{12}{13}$", "$-\\frac{8}{13}$", "$-\\frac{12}{5}$"],
           poprawna: 0,
         },
         {
           nr: "17",
-          tresc: "Dla pewnego kąta $\\alpha$ prawdziwe są równości $\\sin\\alpha = -0{,}6$ i $\\cos\\alpha = 0{,}8$. Wtedy $\\operatorname{tg}\\alpha$ jest równy. **Wybierz właściwą odpowiedź.**",
+          tresc: "Dla pewnego kąta $\\alpha$ prawdziwe są równości $\\sin\\alpha = -0{,}6$ i $\\cos\\alpha = 0{,}8$. Wtedy $\\operatorname{tg}\\alpha$ jest równy: **Wybierz właściwą odpowiedź.**",
           opcje: ["$-\\frac{4}{3}$", "$\\frac{3}{4}$", "$-\\frac{3}{4}$", "$-0{,}6$"],
           poprawna: 2,
         },
@@ -563,7 +563,7 @@ export default {
         },
         {
           nr: "19",
-          tresc: "Wyrażenie $(\\sin\\alpha+\\cos\\alpha)^2-2\\sin\\alpha\\cos\\alpha$ jest równe. **Wybierz właściwą odpowiedź.**",
+          tresc: "Wyrażenie $(\\sin\\alpha+\\cos\\alpha)^2-2\\sin\\alpha\\cos\\alpha$ jest równe: **Wybierz właściwą odpowiedź.**",
           opcje: ["$2$", "$1+2\\sin\\alpha\\cos\\alpha$", "$0$", "$1$"],
           poprawna: 3,
         },
@@ -699,19 +699,19 @@ export default {
       zadania: [
         {
           nr: "22",
-          tresc: "Liczba $\\sin 150^\\circ$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Liczba $\\sin 150^\\circ$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$-\\frac{1}{2}$", "$\\frac{\\sqrt{3}}{2}$", "$-\\frac{\\sqrt{3}}{2}$", "$\\frac{1}{2}$"],
           poprawna: 3,
         },
         {
           nr: "23",
-          tresc: "Liczba $\\cos 240^\\circ$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Liczba $\\cos 240^\\circ$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\frac{1}{2}$", "$-\\frac{\\sqrt{3}}{2}$", "$-\\frac{1}{2}$", "$\\frac{\\sqrt{3}}{2}$"],
           poprawna: 2,
         },
         {
           nr: "24",
-          tresc: "Liczba $\\operatorname{tg}315^\\circ$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Liczba $\\operatorname{tg}315^\\circ$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$1$", "$-1$", "$-\\frac{\\sqrt{3}}{3}$", "$\\sqrt{3}$"],
           poprawna: 1,
         },
@@ -726,7 +726,7 @@ export default {
         },
         {
           nr: "26",
-          tresc: "Wartość wyrażenia $\\sin 150^\\circ + \\cos 120^\\circ + \\operatorname{tg}135^\\circ$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Wartość wyrażenia $\\sin 150^\\circ + \\cos 120^\\circ + \\operatorname{tg}135^\\circ$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$-1$", "$1$", "$0$", "$-2$"],
           poprawna: 0,
         },

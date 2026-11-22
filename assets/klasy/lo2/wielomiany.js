@@ -89,13 +89,13 @@ export default {
       zadania: [
         {
           nr: "1",
-          tresc: "Stopień wielomianu $W(x)=5x^3-x^4+2x-7$ jest równy. **Wybierz właściwą odpowiedź.**",
+          tresc: "Stopień wielomianu $W(x)=5x^3-x^4+2x-7$ jest równy: **Wybierz właściwą odpowiedź.**",
           opcje: ["$3$", "$4$", "$5$", "$7$"],
           poprawna: 1,
         },
         {
           nr: "2",
-          tresc: "Wartość wielomianu $W(x)=2x^3-3x^2+x-4$ dla $x=-1$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Wartość wielomianu $W(x)=2x^3-3x^2+x-4$ dla $x=-1$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$-6$", "$4$", "$-10$", "$-4$"],
           poprawna: 2,
         },
@@ -238,25 +238,25 @@ export default {
       zadania: [
         {
           nr: "8",
-          tresc: "Dane są wielomiany $W(x)=x^2-3x+1$ i $P(x)=2x^2+x-4$. Wielomian $W(x)+P(x)$ jest równy. **Wybierz właściwą odpowiedź.**",
+          tresc: "Dane są wielomiany $W(x)=x^2-3x+1$ i $P(x)=2x^2+x-4$. Wielomian $W(x)+P(x)$ jest równy: **Wybierz właściwą odpowiedź.**",
           opcje: ["$3x^4-2x^2-3$", "$3x^2-4x-3$", "$3x^2-2x+5$", "$3x^2-2x-3$"],
           poprawna: 3,
         },
         {
           nr: "9",
-          tresc: "Dane są wielomiany $W(x)=x^2-3x+1$ i $P(x)=2x^2+x-4$. Wielomian $W(x)-P(x)$ jest równy. **Wybierz właściwą odpowiedź.**",
+          tresc: "Dane są wielomiany $W(x)=x^2-3x+1$ i $P(x)=2x^2+x-4$. Wielomian $W(x)-P(x)$ jest równy: **Wybierz właściwą odpowiedź.**",
           opcje: ["$-x^2-4x+5$", "$-x^2-2x-3$", "$x^2+4x-5$", "$-x^2-4x-3$"],
           poprawna: 0,
         },
         {
           nr: "10",
-          tresc: "Wielomian $(x-3)(x^2+2x-1)$ jest równy. **Wybierz właściwą odpowiedź.**",
+          tresc: "Wielomian $(x-3)(x^2+2x-1)$ jest równy: **Wybierz właściwą odpowiedź.**",
           opcje: ["$x^3-x^2-7x-3$", "$x^3-x^2-5x+3$", "$x^3-x^2-7x+3$", "$x^3+x^2-7x+3$"],
           poprawna: 2,
         },
         {
           nr: "11",
-          tresc: "Stopień wielomianu $W(x)=(x^3-2x)(x^2+5)-x^5$ jest równy. **Wybierz właściwą odpowiedź.**",
+          tresc: "Stopień wielomianu $W(x)=(x^3-2x)(x^2+5)-x^5$ jest równy: **Wybierz właściwą odpowiedź.**",
           opcje: ["$3$", "$5$", "$6$", "$1$"],
           poprawna: 0,
         },
@@ -377,13 +377,13 @@ export default {
       zadania: [
         {
           nr: "15",
-          tresc: "Wielomiany $W(x)=ax^3+(b+1)x^2-4x$ i $P(x)=2x^3+3x^2-4x$ są równe. Wtedy. **Wybierz właściwą odpowiedź.**",
+          tresc: "Wielomiany $W(x)=ax^3+(b+1)x^2-4x$ i $P(x)=2x^3+3x^2-4x$ są równe. Wtedy: **Wybierz właściwą odpowiedź.**",
           opcje: ["$a=2,\\ b=3$", "$a=2,\\ b=2$", "$a=2,\\ b=4$", "$a=3,\\ b=2$"],
           poprawna: 1,
         },
         {
           nr: "16",
-          tresc: "Wielomiany $W(x)=(x+2)(x-a)$ i $P(x)=x^2-5x-14$ są równe. Liczba $a$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Wielomiany $W(x)=(x+2)(x-a)$ i $P(x)=x^2-5x-14$ są równe. Liczba $a$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$-7$", "$5$", "$7$", "$-5$"],
           poprawna: 2,
         },
@@ -398,13 +398,13 @@ export default {
         },
         {
           nr: "18",
-          tresc: "Wielomian $W(x)=x^3+ax^2+bx+2$ jest równy wielomianowi $P(x)=(x+1)(x^2+x+2)$. Wtedy. **Wybierz właściwą odpowiedź.**",
+          tresc: "Wielomian $W(x)=x^3+ax^2+bx+2$ jest równy wielomianowi $P(x)=(x+1)(x^2+x+2)$. Wtedy: **Wybierz właściwą odpowiedź.**",
           opcje: ["$a=1,\\ b=2$", "$a=2,\\ b=2$", "$a=1,\\ b=3$", "$a=2,\\ b=3$"],
           poprawna: 3,
         },
         {
           nr: "19",
-          tresc: "Wielomian $W(x)=(a-1)x^2+(b+3)x+c$ jest równy wielomianowi $P(x)=5x-4$. Wtedy. **Wybierz właściwą odpowiedź.**",
+          tresc: "Wielomian $W(x)=(a-1)x^2+(b+3)x+c$ jest równy wielomianowi $P(x)=5x-4$. Wtedy: **Wybierz właściwą odpowiedź.**",
           opcje: ["$a=0,\\ b=2,\\ c=-4$", "$a=1,\\ b=8,\\ c=-4$", "$a=1,\\ b=2,\\ c=-4$", "$a=1,\\ b=2,\\ c=4$"],
           poprawna: 2,
         },
@@ -525,19 +525,19 @@ export default {
       zadania: [
         {
           nr: "22",
-          tresc: "Pierwiastkiem wielomianu $W(x)=x^3-2x^2-5x+6$ jest liczba. **Wybierz właściwą odpowiedź.**",
+          tresc: "Pierwiastkiem wielomianu $W(x)=x^3-2x^2-5x+6$ jest liczba: **Wybierz właściwą odpowiedź.**",
           opcje: ["$-1$", "$2$", "$1$", "$-3$"],
           poprawna: 2,
         },
         {
           nr: "23",
-          tresc: "Pierwiastkami wielomianu $W(x)=(x-4)(2x+6)(x+1)$ są liczby. **Wybierz właściwą odpowiedź.**",
+          tresc: "Pierwiastkami wielomianu $W(x)=(x-4)(2x+6)(x+1)$ są liczby: **Wybierz właściwą odpowiedź.**",
           opcje: ["$4$, $-3$, $-1$", "$-4$, $3$, $-1$", "$4$, $6$, $-1$", "$4$, $3$, $1$"],
           poprawna: 0,
         },
         {
           nr: "24",
-          tresc: "Liczba $2$ jest pierwiastkiem wielomianu $W(x)=x^3+ax^2-3x+2$. Liczba $a$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Liczba $2$ jest pierwiastkiem wielomianu $W(x)=x^3+ax^2-3x+2$. Liczba $a$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$-2$", "$1$", "$0$", "$-1$"],
           poprawna: 3,
         },
@@ -552,7 +552,7 @@ export default {
         },
         {
           nr: "26",
-          tresc: "Wielomian $W(x)=x^3-2x^2+kx-6$ jest podzielny przez dwumian $x-3$. Liczba $k$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Wielomian $W(x)=x^3-2x^2+kx-6$ jest podzielny przez dwumian $x-3$. Liczba $k$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$k=-1$", "$k=1$", "$k=3$", "$k=-3$"],
           poprawna: 0,
         },
@@ -673,25 +673,25 @@ export default {
       zadania: [
         {
           nr: "29",
-          tresc: "Wielomian $W(x)=2x^3-8x$ jest równy. **Wybierz właściwą odpowiedź.**",
+          tresc: "Wielomian $W(x)=2x^3-8x$ jest równy: **Wybierz właściwą odpowiedź.**",
           opcje: ["$2x(x-2)^2$", "$2x(x+2)^2$", "$2x(x^2+4)$", "$2x(x-2)(x+2)$"],
           poprawna: 3,
         },
         {
           nr: "30",
-          tresc: "Wielomian $W(x)=x^3-3x^2-x+3$ jest równy. **Wybierz właściwą odpowiedź.**",
+          tresc: "Wielomian $W(x)=x^3-3x^2-x+3$ jest równy: **Wybierz właściwą odpowiedź.**",
           opcje: ["$(x-3)(x-1)^2$", "$(x-3)(x-1)(x+1)$", "$(x+3)(x-1)(x+1)$", "$(x-3)(x^2+1)$"],
           poprawna: 1,
         },
         {
           nr: "31",
-          tresc: "Wielomian $W(x)=x^4-16$ jest równy. **Wybierz właściwą odpowiedź.**",
+          tresc: "Wielomian $W(x)=x^4-16$ jest równy: **Wybierz właściwą odpowiedź.**",
           opcje: ["$(x-4)(x+4)(x^2+1)$", "$(x^2-4)^2$", "$(x-2)(x+2)(x^2+4)$", "$(x-2)^2(x+2)^2$"],
           poprawna: 2,
         },
         {
           nr: "32",
-          tresc: "Wielomian $W(x)=2x^2-x-6$ jest równy. **Wybierz właściwą odpowiedź.**",
+          tresc: "Wielomian $W(x)=2x^2-x-6$ jest równy: **Wybierz właściwą odpowiedź.**",
           opcje: ["$(x+2)(2x-3)$", "$(x-2)\\left(x+\\frac{3}{2}\\right)$", "$(2x-2)(x+3)$", "$(x-2)(2x+3)$"],
           poprawna: 3,
         },
@@ -815,19 +815,19 @@ export default {
       zadania: [
         {
           nr: "36",
-          tresc: "Zbiorem wszystkich rozwiązań równania $x^3-9x=0$ jest. **Wybierz właściwą odpowiedź.**",
+          tresc: "Zbiorem wszystkich rozwiązań równania $x^3-9x=0$ jest: **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\{-3,3\\}$", "$\\{0,9\\}$", "$\\{-3,0,3\\}$", "$\\{0,3\\}$"],
           poprawna: 2,
         },
         {
           nr: "37",
-          tresc: "Zbiorem wszystkich rozwiązań równania $(x-1)(2x+3)(x^2+5)=0$ jest. **Wybierz właściwą odpowiedź.**",
+          tresc: "Zbiorem wszystkich rozwiązań równania $(x-1)(2x+3)(x^2+5)=0$ jest: **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\left\\{1,-\\frac{3}{2}\\right\\}$", "$\\left\\{-1,\\frac{3}{2}\\right\\}$", "$\\left\\{1,\\frac{3}{2}\\right\\}$", "$\\left\\{1,-\\frac{3}{2},-\\sqrt{5},\\sqrt{5}\\right\\}$"],
           poprawna: 0,
         },
         {
           nr: "38",
-          tresc: "Suma wszystkich rozwiązań równania $x^3+2x^2-x-2=0$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Suma wszystkich rozwiązań równania $x^3+2x^2-x-2=0$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$-1$", "$-2$", "$2$", "$0$"],
           poprawna: 1,
         },
@@ -842,13 +842,13 @@ export default {
         },
         {
           nr: "40",
-          tresc: "Iloczyn trzech kolejnych liczb naturalnych jest $5$ razy większy od ich sumy. Najmniejsza z tych liczb jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Iloczyn trzech kolejnych liczb naturalnych jest $5$ razy większy od ich sumy. Najmniejsza z tych liczb jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$4$", "$2$", "$3$", "$5$"],
           poprawna: 2,
         },
         {
           nr: "41",
-          tresc: "Prostopadłościan ma w podstawie kwadrat o boku $x$, a jego wysokość jest o $3$ większa od boku podstawy. Objętość tego prostopadłościanu jest liczbowo równa polu jego powierzchni bocznej. Bok podstawy jest równy. **Wybierz właściwą odpowiedź.**",
+          tresc: "Prostopadłościan ma w podstawie kwadrat o boku $x$, a jego wysokość jest o $3$ większa od boku podstawy. Objętość tego prostopadłościanu jest liczbowo równa polu jego powierzchni bocznej. Bok podstawy jest równy: **Wybierz właściwą odpowiedź.**",
           opcje: ["$2$", "$3$", "$7$", "$4$"],
           poprawna: 3,
         },

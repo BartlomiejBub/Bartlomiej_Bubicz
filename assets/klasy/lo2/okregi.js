@@ -88,7 +88,7 @@ export default {
       zadania: [
         {
           nr: "1",
-          tresc: "Okrąg ma promień $6$, a prosta $k$ leży w odległości $6$ od jego środka. Liczba punktów wspólnych prostej $k$ i okręgu jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Okrąg ma promień $6$, a prosta $k$ leży w odległości $6$ od jego środka. Liczba punktów wspólnych prostej $k$ i okręgu jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$0$", "$1$", "$2$", "nieskończenie wiele"],
           poprawna: 1,
         },
@@ -105,7 +105,7 @@ export default {
         },
         {
           nr: "3",
-          tresc: "Okrąg ma promień $10$, a jego cięciwa $AB$ ma długość $16$. Odległość środka okręgu od cięciwy $AB$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Okrąg ma promień $10$, a jego cięciwa $AB$ ma długość $16$. Odległość środka okręgu od cięciwy $AB$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$2$", "$8$", "$12$", "$6$"],
           poprawna: 3,
         },
@@ -120,7 +120,7 @@ export default {
         },
         {
           nr: "5",
-          tresc: "W trójkącie prostokątnym $ABC$ kąt prosty jest przy wierzchołku $C$, a $|AC|=6$ i $|BC|=8$. Okrąg o środku $C$ jest styczny do prostej $AB$. Promień tego okręgu jest równy. **Wybierz właściwą odpowiedź.**",
+          tresc: "W trójkącie prostokątnym $ABC$ kąt prosty jest przy wierzchołku $C$, a $|AC|=6$ i $|BC|=8$. Okrąg o środku $C$ jest styczny do prostej $AB$. Promień tego okręgu jest równy: **Wybierz właściwą odpowiedź.**",
           opcje: ["$4{,}8$", "$5$", "$3{,}6$", "$7$"],
           poprawna: 0,
         },
@@ -265,13 +265,13 @@ export default {
       zadania: [
         {
           nr: "8",
-          tresc: "Okręgi o promieniach $7$ i $3$ mają środki oddalone o $10$. Te okręgi są. **Wybierz właściwą odpowiedź.**",
+          tresc: "Okręgi o promieniach $7$ i $3$ mają środki oddalone o $10$. Te okręgi są: **Wybierz właściwą odpowiedź.**",
           opcje: ["rozłączne zewnętrznie", "styczne zewnętrznie", "przecinające się w dwóch punktach", "styczne wewnętrznie"],
           poprawna: 1,
         },
         {
           nr: "9",
-          tresc: "Okręgi o promieniach $9$ i $4$ mają środki oddalone o $5$. Te okręgi są. **Wybierz właściwą odpowiedź.**",
+          tresc: "Okręgi o promieniach $9$ i $4$ mają środki oddalone o $5$. Te okręgi są: **Wybierz właściwą odpowiedź.**",
           opcje: [
             "przecinające się w dwóch punktach",
             "styczne zewnętrznie",
@@ -282,7 +282,7 @@ export default {
         },
         {
           nr: "10",
-          tresc: "Okręgi o promieniach $6$ i $2$ przecinają się w dwóch punktach. Odległość ich środków może być równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Okręgi o promieniach $6$ i $2$ przecinają się w dwóch punktach. Odległość ich środków może być równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$4$", "$8$", "$10$", "$6$"],
           poprawna: 3,
         },
@@ -297,7 +297,7 @@ export default {
         },
         {
           nr: "12",
-          tresc: "Dwa okręgi o promieniach $5$ i $12$ są styczne zewnętrznie. Odległość ich środków jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Dwa okręgi o promieniach $5$ i $12$ są styczne zewnętrznie. Odległość ich środków jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$17$", "$7$", "$13$", "$60$"],
           poprawna: 0,
         },
@@ -458,19 +458,19 @@ export default {
       zadania: [
         {
           nr: "15",
-          tresc: "Kąt wpisany $ACB$ oparty na łuku $AB$ ma miarę $38^\\circ$. Kąt środkowy $AOB$ oparty na tym samym łuku ma miarę. **Wybierz właściwą odpowiedź.**",
+          tresc: "Kąt wpisany $ACB$ oparty na łuku $AB$ ma miarę $38^\\circ$. Kąt środkowy $AOB$ oparty na tym samym łuku ma miarę: **Wybierz właściwą odpowiedź.**",
           opcje: ["$19^\\circ$", "$38^\\circ$", "$76^\\circ$", "$142^\\circ$"],
           poprawna: 2,
         },
         {
           nr: "16",
-          tresc: "Punkty $A$, $B$, $C$ leżą na okręgu o środku $O$, przy czym $C$ leży na większym łuku $AB$ i $\\angle AOB=140^\\circ$. Kąt $ACB$ ma miarę. **Wybierz właściwą odpowiedź.**",
+          tresc: "Punkty $A$, $B$, $C$ leżą na okręgu o środku $O$, przy czym $C$ leży na większym łuku $AB$ i $\\angle AOB=140^\\circ$. Kąt $ACB$ ma miarę: **Wybierz właściwą odpowiedź.**",
           opcje: ["$140^\\circ$", "$70^\\circ$", "$280^\\circ$", "$110^\\circ$"],
           poprawna: 1,
         },
         {
           nr: "17",
-          tresc: "Odcinek $AB$ jest średnicą okręgu, punkt $C$ leży na okręgu i $\\angle CAB=28^\\circ$. Kąt $ABC$ ma miarę. **Wybierz właściwą odpowiedź.**",
+          tresc: "Odcinek $AB$ jest średnicą okręgu, punkt $C$ leży na okręgu i $\\angle CAB=28^\\circ$. Kąt $ABC$ ma miarę: **Wybierz właściwą odpowiedź.**",
           opcje: ["$152^\\circ$", "$56^\\circ$", "$28^\\circ$", "$62^\\circ$"],
           poprawna: 3,
         },
@@ -485,7 +485,7 @@ export default {
         },
         {
           nr: "19",
-          tresc: "Prosta $k$ jest styczna do okręgu o środku $O$ w punkcie $A$. Cięciwa $AB$ tworzy z prostą $k$ kąt ostry $50^\\circ$. Kąt środkowy $AOB$ ma miarę. **Wybierz właściwą odpowiedź.**",
+          tresc: "Prosta $k$ jest styczna do okręgu o środku $O$ w punkcie $A$. Cięciwa $AB$ tworzy z prostą $k$ kąt ostry $50^\\circ$. Kąt środkowy $AOB$ ma miarę: **Wybierz właściwą odpowiedź.**",
           opcje: ["$100^\\circ$", "$50^\\circ$", "$25^\\circ$", "$130^\\circ$"],
           poprawna: 0,
         },
@@ -657,19 +657,19 @@ export default {
       zadania: [
         {
           nr: "22",
-          tresc: "Z punktu $P$ odległego o $10$ od środka okręgu o promieniu $6$ poprowadzono styczną do okręgu w punkcie $A$. Długość odcinka $PA$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Z punktu $P$ odległego o $10$ od środka okręgu o promieniu $6$ poprowadzono styczną do okręgu w punkcie $A$. Długość odcinka $PA$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$16$", "$4$", "$8$", "$\\sqrt{136}$"],
           poprawna: 2,
         },
         {
           nr: "23",
-          tresc: "Z punktu $P$ poprowadzono styczną do okręgu w punkcie $A$ oraz sieczną przecinającą okrąg w punktach $B$ i $C$, przy czym $|PB|=3$ i $|PC|=12$. Długość odcinka $PA$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Z punktu $P$ poprowadzono styczną do okręgu w punkcie $A$ oraz sieczną przecinającą okrąg w punktach $B$ i $C$, przy czym $|PB|=3$ i $|PC|=12$. Długość odcinka $PA$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$4{,}5$", "$6$", "$9$", "$7{,}5$"],
           poprawna: 1,
         },
         {
           nr: "24",
-          tresc: "Z punktu $P$ poprowadzono styczną $PA$ o długości $10$ oraz sieczną przecinającą okrąg w punktach $B$ i $C$, przy czym $|PB|=4$. Długość cięciwy $BC$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Z punktu $P$ poprowadzono styczną $PA$ o długości $10$ oraz sieczną przecinającą okrąg w punktach $B$ i $C$, przy czym $|PB|=4$. Długość cięciwy $BC$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$6$", "$25$", "$2{,}5$", "$21$"],
           poprawna: 3,
         },
@@ -684,7 +684,7 @@ export default {
         },
         {
           nr: "26",
-          tresc: "Z punktu $P$ poprowadzono dwie sieczne okręgu. Pierwsza przecina okrąg w punktach $A$ i $B$, gdzie $|PA|=4$ i $|PB|=10$. Druga przecina okrąg w punktach $C$ i $D$, gdzie $|PC|=5$. Długość odcinka $PD$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Z punktu $P$ poprowadzono dwie sieczne okręgu. Pierwsza przecina okrąg w punktach $A$ i $B$, gdzie $|PA|=4$ i $|PB|=10$. Druga przecina okrąg w punktach $C$ i $D$, gdzie $|PC|=5$. Długość odcinka $PD$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$8$", "$3$", "$12{,}5$", "$14$"],
           poprawna: 0,
         },
@@ -867,19 +867,19 @@ export default {
       zadania: [
         {
           nr: "29",
-          tresc: "Na trójkącie prostokątnym o przyprostokątnych długości $9$ i $12$ opisano okrąg. Promień tego okręgu jest równy. **Wybierz właściwą odpowiedź.**",
+          tresc: "Na trójkącie prostokątnym o przyprostokątnych długości $9$ i $12$ opisano okrąg. Promień tego okręgu jest równy: **Wybierz właściwą odpowiedź.**",
           opcje: ["$15$", "$7{,}5$", "$6$", "$10{,}5$"],
           poprawna: 1,
         },
         {
           nr: "30",
-          tresc: "Środek okręgu opisanego na trójkącie jest punktem przecięcia. **Wybierz właściwą odpowiedź.**",
+          tresc: "Środek okręgu opisanego na trójkącie jest punktem przecięcia: **Wybierz właściwą odpowiedź.**",
           opcje: ["dwusiecznych kątów trójkąta", "wysokości trójkąta", "symetralnych boków trójkąta", "środkowych trójkąta"],
           poprawna: 2,
         },
         {
           nr: "31",
-          tresc: "Wysokość trójkąta równobocznego ma długość $12$. Promień okręgu opisanego na tym trójkącie jest równy. **Wybierz właściwą odpowiedź.**",
+          tresc: "Wysokość trójkąta równobocznego ma długość $12$. Promień okręgu opisanego na tym trójkącie jest równy: **Wybierz właściwą odpowiedź.**",
           opcje: ["$4$", "$6$", "$12$", "$8$"],
           poprawna: 3,
         },
@@ -894,7 +894,7 @@ export default {
         },
         {
           nr: "33",
-          tresc: "Trójkąt równoramienny ma podstawę długości $12$ i wysokość opuszczoną na podstawę równą $9$. Promień okręgu opisanego na tym trójkącie jest równy. **Wybierz właściwą odpowiedź.**",
+          tresc: "Trójkąt równoramienny ma podstawę długości $12$ i wysokość opuszczoną na podstawę równą $9$. Promień okręgu opisanego na tym trójkącie jest równy: **Wybierz właściwą odpowiedź.**",
           opcje: ["$6{,}5$", "$7{,}5$", "$9$", "$7$"],
           poprawna: 0,
         },
@@ -1063,19 +1063,19 @@ export default {
       zadania: [
         {
           nr: "36",
-          tresc: "W trójkąt prostokątny o bokach długości $6$, $8$, $10$ wpisano okrąg. Promień tego okręgu jest równy. **Wybierz właściwą odpowiedź.**",
+          tresc: "W trójkąt prostokątny o bokach długości $6$, $8$, $10$ wpisano okrąg. Promień tego okręgu jest równy: **Wybierz właściwą odpowiedź.**",
           opcje: ["$2$", "$2{,}4$", "$4$", "$5$"],
           poprawna: 0,
         },
         {
           nr: "37",
-          tresc: "Środek okręgu wpisanego w trójkąt jest punktem przecięcia. **Wybierz właściwą odpowiedź.**",
+          tresc: "Środek okręgu wpisanego w trójkąt jest punktem przecięcia: **Wybierz właściwą odpowiedź.**",
           opcje: ["symetralnych boków trójkąta", "dwusiecznych kątów trójkąta", "wysokości trójkąta", "środkowych trójkąta"],
           poprawna: 1,
         },
         {
           nr: "38",
-          tresc: "Trójkąt ma boki długości $13$, $14$, $15$ i pole równe $84$. Promień okręgu wpisanego w ten trójkąt jest równy. **Wybierz właściwą odpowiedź.**",
+          tresc: "Trójkąt ma boki długości $13$, $14$, $15$ i pole równe $84$. Promień okręgu wpisanego w ten trójkąt jest równy: **Wybierz właściwą odpowiedź.**",
           opcje: ["$3{,}5$", "$6$", "$7$", "$4$"],
           poprawna: 3,
         },
@@ -1090,7 +1090,7 @@ export default {
         },
         {
           nr: "40",
-          tresc: "W trójkąt o bokach długości $7$, $8$ i $9$ wpisano okrąg. Punkt styczności dzieli bok o długości $9$ na odcinki o długościach. **Wybierz właściwą odpowiedź.**",
+          tresc: "W trójkąt o bokach długości $7$, $8$ i $9$ wpisano okrąg. Punkt styczności dzieli bok o długości $9$ na odcinki o długościach: **Wybierz właściwą odpowiedź.**",
           opcje: ["$3$ i $6$", "$4{,}5$ i $4{,}5$", "$4$ i $5$", "$2$ i $7$"],
           poprawna: 2,
         },

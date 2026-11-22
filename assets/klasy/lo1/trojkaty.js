@@ -83,13 +83,13 @@ export default {
       zadania: [
         {
           nr: "1",
-          tresc: "Dwie proste przecinają się, tworząc cztery kąty. Jeden z nich ma miarę $38^\\circ$. Największy z tych czterech kątów ma miarę. **Wybierz właściwą odpowiedź.**",
+          tresc: "Dwie proste przecinają się, tworząc cztery kąty. Jeden z nich ma miarę $38^\\circ$. Największy z tych czterech kątów ma miarę: **Wybierz właściwą odpowiedź.**",
           opcje: ["$38^\\circ$", "$52^\\circ$", "$142^\\circ$", "$322^\\circ$"],
           poprawna: 2,
         },
         {
           nr: "2",
-          tresc: "Kąt wypukły ma miarę $84^\\circ$. Dwusieczna tego kąta tworzy z jego ramieniem kąt o mierze. **Wybierz właściwą odpowiedź.**",
+          tresc: "Kąt wypukły ma miarę $84^\\circ$. Dwusieczna tego kąta tworzy z jego ramieniem kąt o mierze: **Wybierz właściwą odpowiedź.**",
           opcje: ["$42^\\circ$", "$84^\\circ$", "$168^\\circ$", "$48^\\circ$"],
           poprawna: 0,
         },
@@ -104,13 +104,13 @@ export default {
         },
         {
           nr: "4",
-          tresc: "Punkt $P$ leży w odległości $12$ od prostej $k$, a punkt $Q$ leży na prostej $k$. Długość odcinka $PQ$ może być równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Punkt $P$ leży w odległości $12$ od prostej $k$, a punkt $Q$ leży na prostej $k$. Długość odcinka $PQ$ może być równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$5$", "$9$", "$11$", "$13$"],
           poprawna: 3,
         },
         {
           nr: "5",
-          tresc: "Dwa kąty przyległe mają miary w stosunku $2:3$. Mniejszy z tych kątów ma miarę. **Wybierz właściwą odpowiedź.**",
+          tresc: "Dwa kąty przyległe mają miary w stosunku $2:3$. Mniejszy z tych kątów ma miarę: **Wybierz właściwą odpowiedź.**",
           opcje: ["$36^\\circ$", "$72^\\circ$", "$108^\\circ$", "$60^\\circ$"],
           poprawna: 1,
         },
@@ -306,19 +306,19 @@ export default {
       zadania: [
         {
           nr: "8",
-          tresc: "W trójkącie dwa kąty mają miary $48^\\circ$ i $67^\\circ$. Trzeci kąt tego trójkąta ma miarę. **Wybierz właściwą odpowiedź.**",
+          tresc: "W trójkącie dwa kąty mają miary $48^\\circ$ i $67^\\circ$. Trzeci kąt tego trójkąta ma miarę: **Wybierz właściwą odpowiedź.**",
           opcje: ["$115^\\circ$", "$65^\\circ$", "$132^\\circ$", "$75^\\circ$"],
           poprawna: 1,
         },
         {
           nr: "9",
-          tresc: "Kąt zewnętrzny trójkąta $ABC$ przy wierzchołku $A$ ma miarę $110^\\circ$, a kąt wewnętrzny przy wierzchołku $B$ ma miarę $40^\\circ$. Kąt wewnętrzny przy wierzchołku $C$ ma miarę. **Wybierz właściwą odpowiedź.**",
+          tresc: "Kąt zewnętrzny trójkąta $ABC$ przy wierzchołku $A$ ma miarę $110^\\circ$, a kąt wewnętrzny przy wierzchołku $B$ ma miarę $40^\\circ$. Kąt wewnętrzny przy wierzchołku $C$ ma miarę: **Wybierz właściwą odpowiedź.**",
           opcje: ["$70^\\circ$", "$30^\\circ$", "$110^\\circ$", "$140^\\circ$"],
           poprawna: 0,
         },
         {
           nr: "10",
-          tresc: "Suma kątów wewnętrznych ośmiokąta wypukłego jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Suma kątów wewnętrznych ośmiokąta wypukłego jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$720^\\circ$", "$1260^\\circ$", "$1080^\\circ$", "$1440^\\circ$"],
           poprawna: 2,
         },
@@ -333,13 +333,13 @@ export default {
         },
         {
           nr: "12",
-          tresc: "Proste równoległe $k$ i $l$ przecięto prostą $m$. Jeden z utworzonych kątów ma miarę $65^\\circ$. Kąt jednostronny do niego ma miarę. **Wybierz właściwą odpowiedź.**",
+          tresc: "Proste równoległe $k$ i $l$ przecięto prostą $m$. Jeden z utworzonych kątów ma miarę $65^\\circ$. Kąt jednostronny do niego ma miarę: **Wybierz właściwą odpowiedź.**",
           opcje: ["$65^\\circ$", "$25^\\circ$", "$125^\\circ$", "$115^\\circ$"],
           poprawna: 3,
         },
         {
           nr: "13",
-          tresc: "Kąt wewnętrzny wielokąta foremnego ma miarę $140^\\circ$. Ten wielokąt ma. **Wybierz właściwą odpowiedź.**",
+          tresc: "Kąt wewnętrzny wielokąta foremnego ma miarę $140^\\circ$. Ten wielokąt ma: **Wybierz właściwą odpowiedź.**",
           opcje: ["$8$ boków", "$9$ boków", "$10$ boków", "$12$ boków"],
           poprawna: 1,
         },
@@ -545,13 +545,13 @@ export default {
       zadania: [
         {
           nr: "16",
-          tresc: `${TALES} Wiadomo, że $|OA|=4$, $|AB|=6$ i $|OC|=6$. Długość odcinka $CD$ jest równa. **Wybierz właściwą odpowiedź.**`,
+          tresc: `${TALES} Wiadomo, że $|OA|=4$, $|AB|=6$ i $|OC|=6$. Długość odcinka $CD$ jest równa: **Wybierz właściwą odpowiedź.**`,
           opcje: ["$4$", "$9$", "$10$", "$15$"],
           poprawna: 1,
         },
         {
           nr: "17",
-          tresc: `${TALES} Wiadomo, że $|OA|=3$, $|OB|=9$ i $|OC|=5$. Długość odcinka $CD$ jest równa. **Wybierz właściwą odpowiedź.**`,
+          tresc: `${TALES} Wiadomo, że $|OA|=3$, $|OB|=9$ i $|OC|=5$. Długość odcinka $CD$ jest równa: **Wybierz właściwą odpowiedź.**`,
           opcje: ["$15$", "$6$", "$5$", "$10$"],
           poprawna: 3,
         },
@@ -566,13 +566,13 @@ export default {
         },
         {
           nr: "19",
-          tresc: "Trzy proste równoległe przecinają dwie inne proste. Na pierwszej z nich wyznaczają odcinki o długościach $4$ i $6$, a na drugiej pierwszy odcinek ma długość $10$. Drugi odcinek na drugiej prostej ma długość. **Wybierz właściwą odpowiedź.**",
+          tresc: "Trzy proste równoległe przecinają dwie inne proste. Na pierwszej z nich wyznaczają odcinki o długościach $4$ i $6$, a na drugiej pierwszy odcinek ma długość $10$. Drugi odcinek na drugiej prostej ma długość: **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\frac{20}{3}$", "$12$", "$15$", "$16$"],
           poprawna: 2,
         },
         {
           nr: "20",
-          tresc: `${TALES} Wiadomo, że $|OA|=5$, $|AB|=10$ i $|OC|=4$. Długość odcinka $OD$ jest równa. **Wybierz właściwą odpowiedź.**`,
+          tresc: `${TALES} Wiadomo, że $|OA|=5$, $|AB|=10$ i $|OC|=4$. Długość odcinka $OD$ jest równa: **Wybierz właściwą odpowiedź.**`,
           opcje: ["$12$", "$8$", "$20$", "$6$"],
           poprawna: 0,
         },
@@ -708,19 +708,19 @@ export default {
       zadania: [
         {
           nr: "23",
-          tresc: "Z odcinków o długościach $5$, $7$ i $x$ można zbudować trójkąt. Liczba $x$ może być równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Z odcinków o długościach $5$, $7$ i $x$ można zbudować trójkąt. Liczba $x$ może być równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$12$", "$2$", "$13$", "$6$"],
           poprawna: 3,
         },
         {
           nr: "24",
-          tresc: "Boki trójkąta mają długości $7$, $8$ i $12$. Ten trójkąt jest. **Wybierz właściwą odpowiedź.**",
+          tresc: "Boki trójkąta mają długości $7$, $8$ i $12$. Ten trójkąt jest: **Wybierz właściwą odpowiedź.**",
           opcje: ["ostrokątny", "prostokątny", "rozwartokątny", "równoramienny"],
           poprawna: 2,
         },
         {
           nr: "25",
-          tresc: "Przekątna prostokąta ma długość $13$, a jeden z jego boków ma długość $5$. Drugi bok ma długość. **Wybierz właściwą odpowiedź.**",
+          tresc: "Przekątna prostokąta ma długość $13$, a jeden z jego boków ma długość $5$. Drugi bok ma długość: **Wybierz właściwą odpowiedź.**",
           opcje: ["$8$", "$12$", "$\\sqrt{194}$", "$18$"],
           poprawna: 1,
         },
@@ -735,13 +735,13 @@ export default {
         },
         {
           nr: "27",
-          tresc: "Obwód trójkąta $ABC$ jest równy $30$. Punkty $D$, $E$, $F$ są środkami boków tego trójkąta. Obwód trójkąta $DEF$ jest równy. **Wybierz właściwą odpowiedź.**",
+          tresc: "Obwód trójkąta $ABC$ jest równy $30$. Punkty $D$, $E$, $F$ są środkami boków tego trójkąta. Obwód trójkąta $DEF$ jest równy: **Wybierz właściwą odpowiedź.**",
           opcje: ["$15$", "$30$", "$10$", "$60$"],
           poprawna: 0,
         },
         {
           nr: "28",
-          tresc: "Trójkąt równoramienny ma podstawę długości $16$ i ramię długości $17$. Wysokość poprowadzona do podstawy ma długość. **Wybierz właściwą odpowiedź.**",
+          tresc: "Trójkąt równoramienny ma podstawę długości $16$ i ramię długości $17$. Wysokość poprowadzona do podstawy ma długość: **Wybierz właściwą odpowiedź.**",
           opcje: ["$8$", "$9$", "$15$", "$\\sqrt{353}$"],
           poprawna: 2,
         },
@@ -936,19 +936,19 @@ export default {
       zadania: [
         {
           nr: "31",
-          tresc: "Środkowa trójkąta ma długość $18$. Odległość środka ciężkości tego trójkąta od wierzchołka, z którego wychodzi ta środkowa, jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Środkowa trójkąta ma długość $18$. Odległość środka ciężkości tego trójkąta od wierzchołka, z którego wychodzi ta środkowa, jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$6$", "$9$", "$12$", "$15$"],
           poprawna: 2,
         },
         {
           nr: "32",
-          tresc: "Wysokość trójkąta równobocznego o boku długości $8$ jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Wysokość trójkąta równobocznego o boku długości $8$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$4\\sqrt{3}$", "$4$", "$8\\sqrt{3}$", "$2\\sqrt{3}$"],
           poprawna: 0,
         },
         {
           nr: "33",
-          tresc: "Wysokość trójkąta równobocznego ma długość $6\\sqrt{3}$. Pole tego trójkąta jest równe. **Wybierz właściwą odpowiedź.**",
+          tresc: "Wysokość trójkąta równobocznego ma długość $6\\sqrt{3}$. Pole tego trójkąta jest równe: **Wybierz właściwą odpowiedź.**",
           opcje: ["$18\\sqrt{3}$", "$36\\sqrt{3}$", "$36$", "$72\\sqrt{3}$"],
           poprawna: 1,
         },
@@ -963,7 +963,7 @@ export default {
         },
         {
           nr: "35",
-          tresc: "Przyprostokątne trójkąta prostokątnego mają długości $6$ i $8$. Wysokość opuszczona na przeciwprostokątną ma długość. **Wybierz właściwą odpowiedź.**",
+          tresc: "Przyprostokątne trójkąta prostokątnego mają długości $6$ i $8$. Wysokość opuszczona na przeciwprostokątną ma długość: **Wybierz właściwą odpowiedź.**",
           opcje: ["$5$", "$7$", "$2{,}4$", "$4{,}8$"],
           poprawna: 3,
         },
@@ -1105,19 +1105,19 @@ export default {
       zadania: [
         {
           nr: "38",
-          tresc: "Trójkąty $ABC$ i $A'B'C'$ są podobne w skali $3$ (trójkąt $A'B'C'$ jest większy). Bok $AB$ ma długość $4$. Odpowiadający mu bok $A'B'$ ma długość. **Wybierz właściwą odpowiedź.**",
+          tresc: "Trójkąty $ABC$ i $A'B'C'$ są podobne w skali $3$ (trójkąt $A'B'C'$ jest większy). Bok $AB$ ma długość $4$. Odpowiadający mu bok $A'B'$ ma długość: **Wybierz właściwą odpowiedź.**",
           opcje: ["$7$", "$12$", "$\\frac{4}{3}$", "$3$"],
           poprawna: 1,
         },
         {
           nr: "39",
-          tresc: "Trójkąt o kątach $40^\\circ$ i $75^\\circ$ jest podobny do trójkąta o kątach. **Wybierz właściwą odpowiedź.**",
+          tresc: "Trójkąt o kątach $40^\\circ$ i $75^\\circ$ jest podobny do trójkąta o kątach: **Wybierz właściwą odpowiedź.**",
           opcje: ["$75^\\circ$ i $75^\\circ$", "$50^\\circ$ i $65^\\circ$", "$40^\\circ$ i $65^\\circ$", "$40^\\circ$ i $100^\\circ$"],
           poprawna: 2,
         },
         {
           nr: "40",
-          tresc: "Trójkąt o bokach $6$, $8$, $10$ jest podobny do trójkąta o bokach. **Wybierz właściwą odpowiedź.**",
+          tresc: "Trójkąt o bokach $6$, $8$, $10$ jest podobny do trójkąta o bokach: **Wybierz właściwą odpowiedź.**",
           opcje: ["$9$, $12$, $14$", "$7$, $9$, $11$", "$12$, $14$, $16$", "$9$, $12$, $15$"],
           poprawna: 3,
         },
@@ -1132,13 +1132,13 @@ export default {
         },
         {
           nr: "42",
-          tresc: "Pionowy patyk o wysokości $2$ m rzuca cień o długości $1{,}5$ m. W tej samej chwili drzewo rzuca cień o długości $9$ m. Wysokość drzewa jest równa. **Wybierz właściwą odpowiedź.**",
+          tresc: "Pionowy patyk o wysokości $2$ m rzuca cień o długości $1{,}5$ m. W tej samej chwili drzewo rzuca cień o długości $9$ m. Wysokość drzewa jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$6{,}75$ m", "$9{,}5$ m", "$12$ m", "$18$ m"],
           poprawna: 2,
         },
         {
           nr: "43",
-          tresc: "Obwód trójkąta $ABC$ jest równy $20$. Trójkąt $A'B'C'$ jest do niego podobny w skali $1{,}5$. Obwód trójkąta $A'B'C'$ jest równy. **Wybierz właściwą odpowiedź.**",
+          tresc: "Obwód trójkąta $ABC$ jest równy $20$. Trójkąt $A'B'C'$ jest do niego podobny w skali $1{,}5$. Obwód trójkąta $A'B'C'$ jest równy: **Wybierz właściwą odpowiedź.**",
           opcje: ["$30$", "$22{,}5$", "$21{,}5$", "$40$"],
           poprawna: 0,
         },
