@@ -267,7 +267,11 @@ export function zbudujWykresy(kontener) {
   function odswiezListe() {
     const zostaja = new Set(stan.wiersze.map((w) => w.id));
     for (const id of widokiWierszy.keys()) if (!zostaja.has(id)) widokiWierszy.delete(id);
-    lista.replaceChildren(...stan.wiersze.map((w) => {
+    // Wiersze aktualizujemy na miejscu; listę układamy od nowa tylko, gdy wiersz doszedł, zniknął albo zmienił miejsce.
+    // (Wyjęcie pola z dokumentu zabiera mu kursor – wtedy przywracamy fokus i zaznaczenie.)
+    const aktywny = document.activeElement;
+    const zaznaczenie = aktywny?.selectionStart != null ? [aktywny.selectionStart, aktywny.selectionEnd] : null;
+    const wiersze = stan.wiersze.map((w) => {
       let v = widokiWierszy.get(w.id);
       if (!v) { v = widokWiersza(w); widokiWierszy.set(w.id, v); }
       if (v.pole.value !== w.tekst) v.pole.value = w.tekst;
@@ -298,7 +302,15 @@ export function zbudujWykresy(kontener) {
         v.info.append(suwak, opis);
       }
       return v.wiersz;
-    }));
+    });
+    const teraz = [...lista.children];
+    if (teraz.length !== wiersze.length || teraz.some((n, i) => n !== wiersze[i])) {
+      lista.replaceChildren(...wiersze);
+      if (aktywny && aktywny.isConnected && document.activeElement !== aktywny) {
+        aktywny.focus({ preventScroll: true });
+        if (zaznaczenie) aktywny.setSelectionRange(...zaznaczenie);
+      }
+    }
   }
 
   function przelicz({ bezListy = false } = {}) {
