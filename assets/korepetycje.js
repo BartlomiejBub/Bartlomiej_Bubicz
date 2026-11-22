@@ -1,6 +1,7 @@
 import { el } from "./dom.js";
 import { MATURY } from "./matury.js";
 import { OSMOKLASISTY } from "./osmoklasisty.js";
+import { kafelkiGier } from "./gry/lista.js";
 
 const TYPY = {
   glowna: "Matura główna",
@@ -107,3 +108,4 @@ function listaArkuszy(id, arkusze, typy, grupa) {
 
 listaArkuszy("matury-list", MATURY, TYPY, (m) => (m.miesiac ? String(m.rok) : "Arkusz przykładowy (formuła 2023)"));
 listaArkuszy("e8-list", OSMOKLASISTY, TYPY_E8, (m) => String(m.rok));
+document.getElementById("gry-lista").append(kafelkiGier());
