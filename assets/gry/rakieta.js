@@ -2,7 +2,7 @@
 // z rzędu daje mnożnik ×2, ×3. Bez poziomów trudności: zadania same robią się trudniejsze, gdy idzie dobrze,
 // a pomylone działanie wraca po kilku pytaniach. Na końcu lista „do powtórki” z poprawnymi wynikami.
 import { el } from "../dom.js";
-import { losuj, wybierz, liczba, ekranStartu, ekranKonca, zapiszRekord } from "./wspolne.js";
+import { losuj, wybierz, liczba, ekranStartu, ekranKonca, zapiszRekord, odliczanie, przewinDoGry } from "./wspolne.js";
 
 const CZAS = 60;
 const KM_ZA_ODPOWIEDZ = 5;
@@ -195,20 +195,20 @@ export function uruchom(kontener) {
       odpowiedz.classList.toggle("pusta", !stan.wpisane);
     };
     function wpisz(c) {
-      if (stan.koniec) return;
+      if (stan.koniec || !stan.pytanie) return;
       if (c === "-") stan.wpisane = stan.wpisane.startsWith("-") ? stan.wpisane.slice(1) : `-${stan.wpisane}`;
       else if (stan.wpisane.replace("-", "").length < 4) stan.wpisane = stan.wpisane === "0" ? c : stan.wpisane === "-0" ? `-${c}` : stan.wpisane + c;
       pokazWpisane();
       if (Number(stan.wpisane) === stan.pytanie.wynik && stan.wpisane !== "-") sprawdz();   // dobry wynik – od razu dalej
     }
     function usun() {
-      if (stan.koniec) return;
+      if (stan.koniec || !stan.pytanie) return;
       stan.wpisane = stan.wpisane.slice(0, -1);
       pokazWpisane();
     }
 
     function sprawdz() {
-      if (stan.koniec || !stan.wpisane || stan.wpisane === "-") return;
+      if (stan.koniec || !stan.pytanie || !stan.wpisane || stan.wpisane === "-") return;
       const p = stan.pytanie;
       if (Number(stan.wpisane) === p.wynik) {
         stan.dobre++;
@@ -261,11 +261,16 @@ export function uruchom(kontener) {
       else return;
       e.preventDefault();
     }
-    document.addEventListener("keydown", klawisze);
-
-    const poczatek = performance.now();
     const pasek = zegar.firstChild;
-    let ramka = requestAnimationFrame(function tik(teraz) {
+    let poczatek = 0, ramka = 0;
+    function start() {
+      if (!kontener.isConnected) return;
+      document.addEventListener("keydown", klawisze);
+      poczatek = performance.now();
+      nastepne();
+      ramka = requestAnimationFrame(tik);
+    }
+    function tik(teraz) {
       if (!kontener.isConnected) return document.removeEventListener("keydown", klawisze);
       const zostalo = Math.max(0, CZAS - (teraz - poczatek) / 1000);
       sekundy.textContent = String(Math.ceil(zostalo));
@@ -274,7 +279,7 @@ export function uruchom(kontener) {
       zegar.classList.toggle("malo", zostalo <= 10);
       if (zostalo > 0) ramka = requestAnimationFrame(tik);
       else koniec();
-    });
+    }
 
     function koniec() {
       stan.koniec = true;
@@ -299,6 +304,9 @@ export function uruchom(kontener) {
     }
 
     odswiez();
-    nastepne();
+    tresc.textContent = "?";
+    const ekran = kontener.firstElementChild;
+    przewinDoGry(ekran);
+    odliczanie(ekran).then(start);
   }
 }

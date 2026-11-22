@@ -2,7 +2,7 @@
 // Kliknięcie albo dotknięcie stawia znacznik (można go przeciągać, a klawiaturą przesuwać strzałkami), „Strzelam!”
 // pokazuje, gdzie naprawdę leży liczba, ile zabrakło i krótko wyjaśnia, jak ją znaleźć. Najwyżej 100 punktów za rundę.
 import { el } from "../dom.js";
-import { losuj, wybierz, liczba, ulamek, ekranStartu, ekranKonca, zapiszRekord } from "./wspolne.js";
+import { losuj, wybierz, liczba, ulamek, ekranStartu, ekranKonca, zapiszRekord, odliczanie, przewinDoGry } from "./wspolne.js";
 
 const RUND = 10;
 const ZAKRESY = [
@@ -189,7 +189,7 @@ export function uruchom(kontener) {
     }
 
     function ustaw(v) {
-      if (oddany) return;
+      if (!runda || oddany) return;
       strzal = Math.min(runda.do, Math.max(runda.od, v));
       przycisk.disabled = false;
       os.setAttribute("aria-valuenow", String(strzal));
@@ -230,7 +230,7 @@ export function uruchom(kontener) {
       return wartX(((e.clientX - r.left) / r.width) * W);
     };
     os.addEventListener("pointerdown", (e) => {
-      if (oddany) return;
+      if (!runda || oddany) return;
       ciagnie = true;
       os.setPointerCapture(e.pointerId);
       ustaw(zPozycji(e));
@@ -240,6 +240,7 @@ export function uruchom(kontener) {
     os.addEventListener("pointerup", pusc);
     os.addEventListener("pointercancel", pusc);
     os.addEventListener("keydown", (e) => {
+      if (!runda) return;
       const zakresOsi = runda.do - runda.od;
       const krok = (e.shiftKey ? 0.1 : 0.01) * zakresOsi;
       const start = strzal ?? (runda.od + runda.do) / 2;
@@ -275,6 +276,9 @@ export function uruchom(kontener) {
       }));
     }
 
-    nowaRunda();
+    cel.textContent = "…";
+    const ekran = kontener.firstElementChild;
+    przewinDoGry(ekran);
+    odliczanie(ekran).then(() => { nowaRunda(); os.focus({ preventScroll: true }); });
   }
 }

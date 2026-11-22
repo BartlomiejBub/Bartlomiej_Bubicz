@@ -1838,3 +1838,68 @@ body.szuflada-pelna .narzedzia-przyciski { display: none; }
 @media print {
   .wzor-wykres-przycisk { display: none !important; }
 }
+
+/* --- Gry: odliczanie przed startem i dopasowanie planszy do ekranu */
+.gra-ekran { position: relative; }
+.gra-odliczanie {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  display: grid;
+  place-items: center;
+  border-radius: inherit;
+  background: color-mix(in srgb, var(--surface) 80%, transparent);
+  backdrop-filter: blur(2px);
+}
+.gra-odliczanie-napis { color: var(--gra-jasny); font-size: clamp(4.5rem, 20vw, 8rem); font-weight: 800; line-height: 1; animation: odliczanie 0.7s ease-out; }
+.gra-odliczanie-napis.start { font-size: clamp(3rem, 12vw, 5rem); }
+@keyframes odliczanie { from { opacity: 0; transform: scale(1.7); } 35% { opacity: 1; transform: scale(1); } to { opacity: 0.9; transform: scale(0.96); } }
+@media (prefers-reduced-motion: reduce) {
+  .gra-odliczanie-napis { animation: none; }
+}
+@media (max-width: 700px) {
+  .rakieta-niebo { height: 150px; }
+  .rakieta-panel { gap: 10px; }
+  .rakieta-pytanie { padding: 10px; font-size: clamp(2rem, 9vw, 2.6rem); }
+  .rakieta-klawiatura { gap: 6px; }
+  .rakieta-klawiatura .kalk-klawisz { min-height: 44px; }
+  .gra-liczniki { gap: 4px 18px; }
+  .gra-licznik-wartosc { font-size: 1.2rem; }
+}
+
+/* Zgadnij kąt */
+.kat { display: grid; grid-template-columns: minmax(0, 420px) minmax(0, 1fr); align-items: center; gap: 24px; }
+.kat-plansza { display: grid; place-items: center; min-height: min(62vh, 440px); border-radius: var(--radius-sm); background: var(--surface-2); }
+.kat-rysunek { width: 100%; }
+.kat-rysunek svg { display: block; width: 100%; height: auto; max-height: min(62vh, 440px); margin: 0 auto; }
+.kat-ramie { stroke: var(--ink); stroke-width: 4; stroke-linecap: round; }
+.kat-wierzcholek { fill: var(--ink); }
+.kat-luk { fill: color-mix(in srgb, var(--gra-kolor) 22%, transparent); stroke: var(--gra-jasny); stroke-width: 2.5; stroke-linejoin: round; }
+.kat-podzialka { stroke: var(--muted); stroke-width: 1.5; }
+.kat-podzialka.w-kacie { stroke: var(--ink); stroke-width: 2; }
+.kat-skala { fill: var(--muted); font: 600 13px "Plus Jakarta Sans", system-ui, sans-serif; }
+.kat-odpowiedz { stroke: var(--zle); stroke-width: 3; stroke-dasharray: 8 6; stroke-linecap: round; }
+.kat-odpowiedz-napis { fill: var(--zle); font: 700 14px "Plus Jakarta Sans", system-ui, sans-serif; paint-order: stroke; stroke: var(--surface-2); stroke-width: 4px; }
+.kat-miara { fill: var(--ok); font: 800 18px "Plus Jakarta Sans", system-ui, sans-serif; paint-order: stroke; stroke: var(--surface-2); stroke-width: 4px; }
+.kat-panel { display: grid; align-content: center; justify-items: start; gap: 14px; }
+.kat-pytanie { display: grid; gap: 8px; color: var(--ink); font-size: 1.2rem; font-weight: 700; }
+.kat-wpis { display: inline-flex; align-items: baseline; gap: 4px; }
+.kat-pole { width: 4.2ch; padding: 6px 10px !important; font-size: 2rem !important; font-weight: 800; text-align: center; font-variant-numeric: tabular-nums; }
+.kat-stopnie { color: var(--ink); font-size: 2rem; font-weight: 800; }
+.kat-sprawdz { padding: 10px 26px; font-size: 16px; }
+.kat-wynik { display: grid; gap: 4px; min-height: 6em; }
+.kat-wynik p { margin: 0; }
+.kat-ocena { font-size: 1.3rem; font-weight: 800; }
+.kat-ocena.dobrze { color: var(--ok); }
+.kat-ocena.srednio { color: var(--uwaga); }
+.kat-ocena.zle { color: var(--zle); }
+.kat-rodzaj { color: var(--muted); }
+.kat-uwaga { color: var(--zle); font-weight: 600; }
+@media (max-width: 760px) {
+  .kat { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .kat-rysunek svg { max-height: 42vh; }
+  .kat-plansza { min-height: 42vh; }
+  .kat-panel { justify-items: stretch; }
+  .kat-pytanie { grid-template-columns: 1fr auto; align-items: center; font-size: 1.05rem; }
+  .kat-wynik { min-height: 0; }
+}

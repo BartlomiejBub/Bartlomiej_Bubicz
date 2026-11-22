@@ -3,7 +3,7 @@
 // każda z kart (jako ułamek), a znalezione pary zapisuje jako równości, np. ¾ = 0,75 = 75%.
 // Wynik to liczba ruchów (mniej = lepiej).
 import { el } from "../dom.js";
-import { wybierz, tasuj, liczba, ulamek, ekranStartu, ekranKonca, zapiszRekord } from "./wspolne.js";
+import { wybierz, tasuj, liczba, ulamek, ekranStartu, ekranKonca, zapiszRekord, odliczanie, przewinDoGry } from "./wspolne.js";
 
 const PAR = 8;
 const ZAKRESY = [
@@ -76,7 +76,7 @@ export function uruchom(kontener) {
       return [{ para: i, w, ...postac(a, w), rodzaj: a }, { para: i, w, ...postac(b, w), rodzaj: b }];
     }));
     let odkryte = [], ruchy = 0, znalezione = 0, blokada = false;
-    const poczatek = Date.now();
+    let poczatek = Date.now(), gotowe = false;
 
     const licznikRuchow = el("span", { class: "gra-licznik-wartosc" }, "0");
     const licznikPar = el("span", { class: "gra-licznik-wartosc" }, `0 z ${PAR}`);
@@ -99,6 +99,9 @@ export function uruchom(kontener) {
       el("div", { class: "pary-plansza" }, ...przyciski),
       komunikat,
       rownosci));
+    const ekran = kontener.firstElementChild;
+    przewinDoGry(ekran);
+    odliczanie(ekran).then(() => { gotowe = true; poczatek = Date.now(); });
 
     const opisKarty = (k) => (k.rodzaj === "rysunek" ? `koło, zamalowane ${k.w.l} z ${k.w.m} części`
       : k.rodzaj === "ulamek" ? `${k.w.l} przez ${k.w.m}` : k.b.querySelector(".pary-przod").textContent);
@@ -107,7 +110,7 @@ export function uruchom(kontener) {
 
     function odkryj(i) {
       const k = karty[i];
-      if (blokada || k.znaleziona || odkryte.includes(k)) return;
+      if (!gotowe || blokada || k.znaleziona || odkryte.includes(k)) return;
       k.b.classList.add("odkryta");
       k.b.setAttribute("aria-label", `Karta ${i + 1}: ${opisKarty(k)}`);
       odkryte.push(k);

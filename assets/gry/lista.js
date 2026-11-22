@@ -33,6 +33,15 @@ export const GRY = [
     ikona: ikona('<circle cx="20" cy="20" r="11"/><path d="M28 28l13 13"/><path d="M16 17h8M16 23h5"/>'),
   },
   {
+    id: "kat",
+    nazwa: "Zgadnij kąt",
+    opis: "Na ekranie pojawia się kąt, a Ty zgadujesz na oko, ile ma stopni. Potem przykładamy kątomierz i widać, o ile się pomyliłeś.",
+    uczy: "miara kąta, kąt ostry, prosty, rozwarty i wklęsły",
+    klasy: "klasy 4–6",
+    kolor: "#c2255c",
+    ikona: ikona('<path d="M8 40h32M8 40L32 10"/><path d="M20 40a12 12 0 0 0-4.5-9.4"/><path d="M36 40v-3M38.6 30l-2.6 1.5M34.3 21.5l-2 2"/>'),
+  },
+  {
     id: "pary",
     nazwa: "Pary",
     opis: "Odkrywasz po dwie karty i szukasz tych, które znaczą to samo: ½ i 0,5, ¾ i 75%, ułamek i jego rysunek. Wygrywa ten, kto znajdzie wszystkie pary w jak najmniej ruchach.",

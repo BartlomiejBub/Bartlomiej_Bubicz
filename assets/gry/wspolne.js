@@ -75,6 +75,33 @@ export function ekranStartu({ zasady, zakresy, wybrany, opisRekordu, onStart }) 
   );
 }
 
+/** Przewija stronę tak, żeby ekran gry zaczynał się tuż pod nagłówkiem – widać całą planszę, a nie tytuł strony. */
+export function przewinDoGry(ekran) {
+  requestAnimationFrame(() => {
+    const naglowek = document.querySelector(".site-header")?.offsetHeight ?? 0;
+    const gora = ekran.getBoundingClientRect().top + window.scrollY - naglowek - 8;
+    window.scrollTo({ top: Math.max(0, gora), behavior: bezRuchu() ? "auto" : "smooth" });
+  });
+}
+
+/** Odliczanie 3, 2, 1, Start! na planszy gry; obietnica kończy się, gdy można grać. */
+export function odliczanie(ekran) {
+  return new Promise((gotowe) => {
+    const nakladka = el("div", { class: "gra-odliczanie", role: "status", "aria-live": "assertive" });
+    ekran.append(nakladka);
+    const kroki = ["3", "2", "1", "Start!"];
+    let i = 0;
+    const krok = () => {
+      // po starcie jeszcze raz ustawiamy planszę – pierwsza runda mogła zmienić jej wysokość
+      if (i === kroki.length) { nakladka.remove(); gotowe(); przewinDoGry(ekran); return; }
+      nakladka.replaceChildren(el("span", { class: `gra-odliczanie-napis${i === kroki.length - 1 ? " start" : ""}` }, kroki[i]));
+      i++;
+      setTimeout(krok, i === kroki.length ? 450 : 700);
+    };
+    krok();
+  });
+}
+
 /** Ekran końca: wynik, informacja o rekordzie, szczegóły (np. co powtórzyć) i przyciski. */
 export function ekranKonca({ tytul, wynik, nowyRekord, szczegoly = [], onZnowu, onZmien }) {
   const znowu = el("button", { type: "button", class: "btn btn-primary" }, "Jeszcze raz");

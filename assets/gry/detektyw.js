@@ -3,7 +3,7 @@
 // dodatkową wskazówkę, o 2 za zły strzał i o 3 za podpowiedź „Pokaż, co pasuje”. Zły strzał gra wyjaśnia:
 // której wskazówce ta liczba przeczy i dlaczego (np. suma cyfr, dzielenie z resztą, rozkład na czynniki).
 import { el } from "../dom.js";
-import { losuj, wybierz, tasuj, ekranStartu, ekranKonca, zapiszRekord } from "./wspolne.js";
+import { losuj, wybierz, tasuj, ekranStartu, ekranKonca, zapiszRekord, odliczanie, przewinDoGry } from "./wspolne.js";
 
 const ZAGADEK = 5;
 const KLUCZ = "detektyw";
@@ -204,7 +204,7 @@ export function uruchom(kontener) {
     }
 
     function strzal(m, b) {
-      if (rozwiazana || b.classList.contains("skreslone")) return;
+      if (!z || rozwiazana || b.classList.contains("skreslone")) return;
       if (m === z.n) {
         rozwiazana = true;
         wyniki.push(zaZagadke());
@@ -250,6 +250,10 @@ export function uruchom(kontener) {
       }));
     }
 
-    nowaZagadka();
+    nastepna.disabled = true;
+    pokaz.disabled = true;
+    const ekran = kontener.firstElementChild;
+    przewinDoGry(ekran);
+    odliczanie(ekran).then(nowaZagadka);
   }
 }
