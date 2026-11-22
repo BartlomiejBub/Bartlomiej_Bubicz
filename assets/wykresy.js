@@ -1,21 +1,25 @@
 // Kalkulator graficzny w wysuwanym panelu (assets/narzedzia.js).
 // Każdy wiersz to jedno z: wykres funkcji (y = 2x + 1, albo samo 2x + 1), funkcja z nazwą (f(x) = x² − 4),
-// prosta pionowa (x = 3), punkt ((2; 3) albo (2, 3)) i suwak (a = 1 – litera, której używają inne wiersze).
+// prosta pionowa (x = 3), punkt ((2; 3) albo (2, 3)), suwak (a = 1 – litera, której używają inne wiersze)
+// i równanie z x i y w dowolnej kolejności (x + y = 4, 2x − 3y = 6, x² + y² = 9). Równanie liniowe względem y
+// zamieniamy na funkcję (ma wtedy miejsca zerowe i punkty przecięcia), inne rysujemy jako krzywą.
+// Osobny rodzaj wiersza to tabelka x | y: wartości y wpisane ręcznie albo wyliczone z wybranego wykresu.
 // Wykres można przesuwać (przeciąganie), przybliżać (kółko myszy, dwa palce, przyciski + i −).
 // Na wykresie zaznaczamy miejsca zerowe, przecięcia z osią OY, wierzchołki (ekstrema) i punkty przecięcia wykresów.
 import { el } from "./dom.js";
 import { parsuj, kompiluj, formatuj, BladWyrazenia } from "./wyrazenia.js";
 
 const KLUCZ = "wykresy-v1";
-const KOLORY = ["#0f766e", "#1f5fae", "#c2410c", "#6b3fc2", "#b8322a", "#157347", "#a16207", "#0e7490"];
-// W ciemnym motywie te same kolory w jaśniejszej wersji (na ciemnym tle ciemny morski prawie znika).
+// Kolory wykresów: mocne i wyraźnie różne od siebie i od morskiego koloru strony (niebieski, czerwony, zielony…).
+const KOLORY = ["#2563eb", "#dc2626", "#16a34a", "#9333ea", "#ea580c", "#0891b2", "#db2777", "#475569"];
+// W ciemnym motywie te same kolory w jaśniejszej wersji – ciemne linie na ciemnym tle byłyby słabo widoczne.
 const NA_CIEMNE = {
-  "#0f766e": "#2dd4bf", "#1f5fae": "#60a5fa", "#c2410c": "#fb923c", "#6b3fc2": "#a78bfa",
-  "#b8322a": "#f87171", "#157347": "#4ade80", "#a16207": "#facc15", "#0e7490": "#22d3ee",
+  "#2563eb": "#60a5fa", "#dc2626": "#f87171", "#16a34a": "#4ade80", "#9333ea": "#c084fc",
+  "#ea580c": "#fb923c", "#0891b2": "#22d3ee", "#db2777": "#f472b6", "#475569": "#cbd5e1",
 };
 const ciemny = () => document.documentElement.dataset.motyw === "ciemny";
 const naEkran = (kolor) => (ciemny() ? NA_CIEMNE[kolor] ?? kolor : kolor);
-const PRZYKLADY = ["y = 2x − 3", "y = x² − 2x − 3", "y = a(x − p)² + q", "f(x) = |x − 1|", "y = 1/x", "(2; 3)", "x = −1"];
+const PRZYKLADY = ["y = 2x − 3", "y = x² − 2x − 3", "y = a(x − p)² + q", "f(x) = |x − 1|", "y = 1/x", "x + y = 4", "x² + y² = 9", "(2; 3)", "x = −1"];
 const ZAREZERWOWANE = new Set(["x", "y", "e"]);
 const SKALA_START = 30;
 
@@ -65,6 +69,7 @@ function analizuj(wiersze, stopnie) {
   const parametry = {};
   const nazwane = new Map();   // f → id wiersza
   const wstepne = wiersze.map((w) => {
+    if (w.typ === "tabela") return { w, rodzaj: "tabela" };
     const t = w.tekst.trim();
     if (!t) return { w, rodzaj: "pusty" };
     const pkt = czesciPunktu(t);
@@ -74,12 +79,12 @@ function analizuj(wiersze, stopnie) {
     const lewa = t.slice(0, rowne).trim(), prawa = t.slice(rowne + 1).trim();
     if (prawa.includes("=")) return { w, rodzaj: "blad", blad: "W wierszu może być tylko jeden znak „=”." };
     if (!prawa) return { w, rodzaj: "blad", blad: "Po „=” wpisz wzór." };
-    if (lewa === "y") return { w, rodzaj: "funkcja", prawa };
+    if (lewa === "y") return /y/.test(prawa) ? { w, rodzaj: "rownanie", lewa, prawa } : { w, rodzaj: "funkcja", prawa };
     const nazwa = lewa.match(/^([a-df-wz])\s*\(\s*x\s*\)$/);
     if (nazwa) return { w, rodzaj: "funkcja", prawa, nazwa: nazwa[1] };
-    if (lewa === "x") return { w, rodzaj: "pionowa", prawa };
+    if (lewa === "x") return /[xy]/.test(prawa) ? { w, rodzaj: "rownanie", lewa, prawa } : { w, rodzaj: "pionowa", prawa };
     if (/^[a-zA-Z]$/.test(lewa) && !ZAREZERWOWANE.has(lewa)) return { w, rodzaj: "suwak", nazwa: lewa, prawa };
-    return { w, rodzaj: "blad", blad: "Zacznij od „y =”, „f(x) =”, „x =” albo litery suwaka, np. „a = 2”." };
+    return { w, rodzaj: "rownanie", lewa, prawa };
   });
 
   // suwaki: wartość to liczba (bez liter)
@@ -107,6 +112,17 @@ function analizuj(wiersze, stopnie) {
     if (wyniki.has(o.w.id)) continue;
     try {
       if (o.rodzaj === "pusty") { wyniki.set(o.w.id, { rodzaj: "pusty" }); continue; }
+      if (o.rodzaj === "tabela") { wyniki.set(o.w.id, { rodzaj: "tabela", w: o.w, punkty: [] }); continue; }
+      if (o.rodzaj === "rownanie") {
+        const L = kompiluj(parsuj(o.lewa, { funkcje: funkcjeNazwane }), { stopnie });
+        const R = kompiluj(parsuj(o.prawa, { funkcje: funkcjeNazwane }), { stopnie });
+        const zm = new Set([...L.zmienne, ...R.zmienne]);
+        if (!zm.has("x") && !zm.has("y")) throw new BladWyrazenia("Zacznij od „y =”, „f(x) =”, „x =” albo litery suwaka, np. „a = 2”. Równanie musi mieć x albo y.");
+        const brak = brakujace(zm, new Set(["x", "y"]));
+        if (brak.length) { wyniki.set(o.w.id, { rodzaj: "blad", blad: `Nie znam litery ${brak.map((b) => `„${b}”`).join(", ")}.`, brakujace: brak }); continue; }
+        wyniki.set(o.w.id, { rodzaj: "rownanie", gl: L.fn, gp: R.fn });
+        continue;
+      }
       if (o.rodzaj === "blad") { wyniki.set(o.w.id, { rodzaj: "blad", blad: o.blad }); continue; }
       if (o.rodzaj === "funkcja") {
         const { fn, zmienne, wywolania } = kompiluj(parsuj(o.prawa, { funkcje: funkcjeNazwane }), { stopnie });
@@ -156,16 +172,83 @@ function analizuj(wiersze, stopnie) {
     if (r.rodzaj === "funkcja") { const fn = r.fn; r.f = (x) => fn({ ...stanBazowy, x }); }
     if (r.rodzaj === "pionowa") r.x = r.fn(stanBazowy);
     if (r.rodzaj === "punkt") { r.x = r.fx(stanBazowy); r.y = r.fy(stanBazowy); }
+    if (r.rodzaj === "rownanie") zamienRownanie(r, stanBazowy);
   }
+  // tabelki na końcu – mogą brać y z funkcji z innych wierszy
+  for (const r of wyniki.values()) if (r.rodzaj === "tabela") policzTabele(r, wyniki, stanBazowy, stopnie);
   return wyniki;
 }
+
+/** Równanie G(x, y) = 0 (G = lewa − prawa). Jeśli G jest liniowe względem y (x + y = 4, 2x − 3y = 6, xy = 1),
+ *  wyliczamy y = −G(x, 0) / (G(x, 1) − G(x, 0)) i to jest zwykła funkcja; w innym razie krzywa (x² + y² = 9). */
+function zamienRownanie(r, baza) {
+  const G = (x, y) => r.gl({ ...baza, x, y }) - r.gp({ ...baza, x, y });
+  let liniowa = true, zalezyOdY = false, probki = 0;
+  for (const x of [-3.7, -1.3, 0.6, 2.2, 4.9, 7.3]) {
+    const g0 = G(x, 0), g1 = G(x, 1), g2 = G(x, 2), g3 = G(x, -3);
+    if (![g0, g1, g2, g3].every(Number.isFinite)) continue;
+    probki++;
+    const a = g1 - g0, skala = 1 + Math.abs(g0) + Math.abs(g1) + Math.abs(g2) + Math.abs(g3);
+    if (Math.abs(a) > 1e-9 * skala) zalezyOdY = true;
+    if (Math.abs(g2 - g0 - 2 * a) > 1e-9 * skala || Math.abs(g3 - g0 + 3 * a) > 1e-9 * skala) liniowa = false;
+  }
+  if (probki && liniowa && zalezyOdY) {
+    r.rodzaj = "funkcja";
+    r.zRownania = true;
+    r.f = (x) => { const g0 = G(x, 0), a = G(x, 1) - g0; return Math.abs(a) < 1e-12 ? NaN : -g0 / a; };
+  } else {
+    r.rodzaj = "krzywa";
+    r.G = G;
+  }
+}
+
+/** Punkty tabelki: x z komórek, y z komórek albo z wybranej funkcji. Pusta komórka – null, błędna – NaN. */
+function policzTabele(r, wyniki, baza, stopnie) {
+  const w = r.w;
+  const liczba = (tekst) => {
+    if (!String(tekst ?? "").trim()) return null;
+    try {
+      const { fn, zmienne } = kompiluj(parsuj(String(tekst)), { stopnie });
+      if ([...zmienne].some((n) => !(n in baza))) return NaN;
+      const v = fn(baza);
+      return Number.isFinite(v) ? v : NaN;
+    } catch { return NaN; }
+  };
+  const zrodlo = w.zrodlo ? wyniki.get(w.zrodlo) : null;
+  const f = zrodlo?.rodzaj === "funkcja" ? zrodlo.f : null;
+  r.zFunkcji = Boolean(f);
+  r.punkty = w.xs.map((tx, i) => {
+    const x = liczba(tx);
+    const y = f ? (x === null || Number.isNaN(x) ? null : f(x)) : liczba(w.ys[i]);
+    return { x, y };
+  });
+}
+
+/** Zapisany wiersz → wiersz w stanie (kolory sprzed zmiany palety dostają nowe). */
+function wczytajWiersz(w, i) {
+  const kolor = KOLORY.includes(w.kolor) ? w.kolor : KOLORY[i % KOLORY.length];
+  const id = typeof w.id === "string" && w.id ? w.id : noweId();
+  if (w.typ === "tabela") {
+    const xs = Array.isArray(w.xs) ? w.xs.map(String) : [""];
+    const ys = Array.isArray(w.ys) ? w.ys.map(String) : [];
+    while (ys.length < xs.length) ys.push("");
+    return { id, typ: "tabela", tekst: "", kolor, ukryty: !!w.ukryty, xs, ys: ys.slice(0, xs.length), zrodlo: w.zrodlo ?? null };
+  }
+  return { id, tekst: String(w.tekst ?? ""), kolor, ukryty: !!w.ukryty };
+}
+const doZapisu = (w) => (w.typ === "tabela"
+  ? { id: w.id, typ: "tabela", kolor: w.kolor, ukryty: w.ukryty, xs: w.xs, ys: w.ys, zrodlo: w.zrodlo }
+  : { id: w.id, tekst: w.tekst, kolor: w.kolor, ukryty: w.ukryty });
 
 export function zbudujWykresy(kontener) {
   const zapis = wczytaj();
   const stan = {
     wiersze: Array.isArray(zapis?.wiersze) && zapis.wiersze.length
-      ? zapis.wiersze.map((w, i) => ({ id: noweId(), tekst: String(w.tekst ?? ""), kolor: w.kolor ?? KOLORY[i % KOLORY.length], ukryty: !!w.ukryty }))
+      ? zapis.wiersze.map(wczytajWiersz)
       : [{ id: noweId(), tekst: "", kolor: KOLORY[0], ukryty: false }],
+    // wiersze ucznia schowane, gdy pokazaliśmy wzór z zadania („Przywróć moje wiersze”)
+    poprzednie: Array.isArray(zapis?.poprzednie) && zapis.poprzednie.length ? zapis.poprzednie.map(wczytajWiersz) : null,
+    zWzoru: !!zapis?.zWzoru,
     stopnie: !!zapis?.stopnie,
     widok: zapis?.widok && Number.isFinite(zapis.widok.skala) ? zapis.widok : { cx: 0, cy: 0, skala: SKALA_START },
   };
@@ -176,7 +259,8 @@ export function zbudujWykresy(kontener) {
   const zapisz = () => {
     try {
       localStorage.setItem(KLUCZ, JSON.stringify({
-        wiersze: stan.wiersze.map(({ tekst, kolor, ukryty }) => ({ tekst, kolor, ukryty })), stopnie: stan.stopnie, widok: stan.widok,
+        wiersze: stan.wiersze.map(doZapisu), poprzednie: stan.poprzednie?.map(doZapisu) ?? null, zWzoru: stan.zWzoru,
+        stopnie: stan.stopnie, widok: stan.widok,
       }));
     } catch { /* prywatne okno */ }
   };
@@ -206,13 +290,26 @@ export function zbudujWykresy(kontener) {
     });
     jednostki.append(b);
   }
-  const dodaj = el("button", { type: "button", class: "btn btn-small" }, "+ Dodaj wiersz");
+  const dodaj = el("button", { type: "button", class: "btn btn-small" }, "+ Wiersz");
   dodaj.addEventListener("click", () => { const w = dodajWiersz(""); przelicz(); fokus(w); });
+  const dodajTabelke = el("button", { type: "button", class: "btn btn-small", title: "Tabelka wartości x i y – punkty pojawią się na wykresie" }, "+ Tabelka");
+  dodajTabelke.addEventListener("click", () => { const w = dodajTabele(); przelicz(); zapisz(); fokus(w); });
+  const przywroc = el("button", { type: "button", class: "btn btn-small wyk-przywroc", hidden: true, title: "Zamień na wiersze sprzed pokazania wzoru z zadania (i z powrotem)" }, "↶ Poprzednie wiersze");
+  przywroc.addEventListener("click", () => {
+    if (!stan.poprzednie) return;
+    // zamiana w obie strony – bieżące wiersze nie giną, można do nich wrócić tym samym przyciskiem
+    const teraz = stan.wiersze.filter((w) => w.typ === "tabela" || w.tekst.trim());
+    stan.wiersze = stan.poprzednie;
+    stan.poprzednie = teraz.length ? teraz : null;
+    stan.zWzoru = false;
+    przelicz();
+    zapisz();
+  });
+  const pustyWiersz = () => stan.wiersze.find((w) => w.typ !== "tabela" && !w.tekst.trim());
   const przyklady = el("p", { class: "wyk-przyklady" }, "Przykłady: ", ...PRZYKLADY.flatMap((p, i) => {
     const b = el("button", { type: "button", class: "wyk-przyklad" }, p);
     b.addEventListener("click", () => {
-      const pusty = stan.wiersze.find((w) => !w.tekst.trim());
-      const w = pusty ?? dodajWiersz("");
+      const w = pustyWiersz() ?? dodajWiersz("");
       w.tekst = p;
       if (p.includes("a(x − p)")) for (const [n, v] of [["a", "1"], ["p", "2"], ["q", "−1"]]) if (!stan.wiersze.some((x) => x.tekst.replace(/\s/g, "").startsWith(`${n}=`))) dodajWiersz(`${n} = ${v}`);
       przelicz();
@@ -225,6 +322,9 @@ export function zbudujWykresy(kontener) {
     el("ul", {},
       el("li", {}, "Wykres funkcji: y = 2x − 3 albo samo 2x − 3. Potęga: x^2 albo x², pierwiastek: √x albo sqrt(x), wartość bezwzględna: |x|."),
       el("li", {}, "Funkcja z nazwą: f(x) = x² − 4, a potem np. y = f(x − 2) + 1. Prosta pionowa: x = 3. Punkt: (2; 3)."),
+      el("li", {}, "Równanie z x i y w dowolnej kolejności: x + y = 4, 2x − 3y = 6, x = y² albo okrąg x² + y² = 9."),
+      el("li", {}, "„+ Tabelka” dodaje tabelkę x | y. Wartości y wpisujesz sam albo wybierasz wykres, z którego mają się policzyć – punkty od razu widać na wykresie."),
+      el("li", {}, "Przy wzorach funkcji w zadaniach i na kartach jest ikonka wykresu – kliknij ją (albo sam wzór), a funkcja pokaże się tutaj."),
       el("li", {}, "Litera inna niż x (np. a) to suwak: wpisz a = 1 albo kliknij „Dodaj suwak”. Przesuwaj suwak i patrz, jak zmienia się wykres."),
       el("li", {}, "Szare kropki to miejsca zerowe, przecięcia z osią OY, wierzchołki i punkty przecięcia wykresów – najedź albo dotknij, żeby zobaczyć współrzędne."),
       el("li", {}, "Wykres przesuwasz, przeciągając go. Przybliżasz kółkiem myszy, dwoma palcami albo przyciskami + i −.")));
@@ -232,18 +332,33 @@ export function zbudujWykresy(kontener) {
   kontener.append(el("div", { class: "wyk" },
     obszar,
     el("div", { class: "wyk-dol" },
-      el("div", { class: "wyk-pasek" }, jednostki, dodaj),
+      el("div", { class: "wyk-pasek" }, jednostki, el("div", { class: "wyk-pasek-przyciski" }, przywroc, dodajTabelke, dodaj)),
       lista, przyklady, pomoc)));
 
   // --- Wiersze
   const widokiWierszy = new Map();
-  function dodajWiersz(tekst) {
+  const wolnyKolor = () => {
     const uzyte = new Set(stan.wiersze.map((w) => w.kolor));
-    const w = { id: noweId(), tekst, kolor: KOLORY.find((k) => !uzyte.has(k)) ?? KOLORY[stan.wiersze.length % KOLORY.length], ukryty: false };
+    return KOLORY.find((k) => !uzyte.has(k)) ?? KOLORY[stan.wiersze.length % KOLORY.length];
+  };
+  function dodajWiersz(tekst) {
+    const w = { id: noweId(), tekst, kolor: wolnyKolor(), ukryty: false };
     stan.wiersze.push(w);
     return w;
   }
-  function fokus(w) { widokiWierszy.get(w.id)?.pole.focus(); }
+  /** Tabelka x | y; jeśli jest jakiś wykres funkcji, od razu liczy z niego y (tabelka wartości funkcji). */
+  function dodajTabele() {
+    const zrodlo = stan.wiersze.find((x) => x.typ !== "tabela" && !x.ukryty && wyniki.get(x.id)?.rodzaj === "funkcja");
+    const w = { id: noweId(), typ: "tabela", tekst: "", kolor: wolnyKolor(), ukryty: false, xs: ["−2", "−1", "0", "1", "2"], ys: ["", "", "", "", ""], zrodlo: zrodlo?.id ?? null };
+    stan.wiersze.push(w);
+    stan.zWzoru = false;
+    return w;
+  }
+  function fokus(w) {
+    const v = widokiWierszy.get(w.id);
+    if (v?.pole) v.pole.focus();
+    else v?.fokus?.();
+  }
 
   function widokWiersza(w) {
     const kropka = el("button", { type: "button", class: "wyk-kolor", "aria-pressed": String(!w.ukryty), title: "Pokaż albo ukryj wykres", "aria-label": "Pokaż albo ukryj wykres" });
@@ -252,7 +367,7 @@ export function zbudujWykresy(kontener) {
     const info = el("div", { class: "wyk-info" });
     const wiersz = el("div", { class: "wyk-wiersz" }, kropka, pole, usun, info);
     kropka.addEventListener("click", () => { w.ukryty = !w.ukryty; przelicz(); zapisz(); });
-    pole.addEventListener("input", () => { w.tekst = pole.value; przelicz(); zapisz(); });
+    pole.addEventListener("input", () => { w.tekst = pole.value; stan.zWzoru = false; przelicz(); zapisz(); });
     pole.addEventListener("keydown", (e) => {
       if (e.key === "Enter") {
         e.preventDefault();
@@ -271,6 +386,93 @@ export function zbudujWykresy(kontener) {
     return { wiersz, kropka, pole, info };
   }
 
+  function widokTabeli(w) {
+    const kropka = el("button", { type: "button", class: "wyk-kolor", "aria-pressed": String(!w.ukryty), title: "Pokaż albo ukryj punkty", "aria-label": "Pokaż albo ukryj punkty tabelki" });
+    const usun = el("button", { type: "button", class: "wyk-usun", "aria-label": "Usuń tabelkę", title: "Usuń tabelkę" }, "×");
+    const zrodlo = el("select", { class: "wyk-tabela-zrodlo", "aria-label": "Skąd brać wartości y" });
+    const cialo = el("tbody");
+    const tabela = el("table", { class: "wyk-tabela" },
+      el("thead", {}, el("tr", {}, el("th", { scope: "col" }, "x"), el("th", { scope: "col" }, "y"), el("th", {}, el("span", { class: "visually-hidden" }, "Usuń")))),
+      cialo);
+    const dodajW = el("button", { type: "button", class: "btn btn-small" }, "+ wiersz tabelki");
+    const info = el("div", { class: "wyk-info wyk-tabela-info" },
+      el("label", { class: "wyk-tabela-wybor" }, el("span", {}, "Wartości y:"), zrodlo), tabela, dodajW);
+    const wiersz = el("div", { class: "wyk-wiersz wyk-wiersz-tabela" }, kropka, el("span", { class: "wyk-tabela-tytul" }, "Tabelka"), usun, info);
+    let komorki = [];
+    const zmiana = () => { stan.zWzoru = false; przelicz(); zapisz(); };
+
+    function zbudujWiersze() {
+      komorki = w.xs.map((_, i) => {
+        const wx = el("input", { type: "text", class: "wyk-komorka", value: w.xs[i], spellcheck: "false", autocomplete: "off", "aria-label": `x w wierszu ${i + 1}` });
+        const wy = el("input", { type: "text", class: "wyk-komorka", value: w.ys[i] ?? "", spellcheck: "false", autocomplete: "off", "aria-label": `y w wierszu ${i + 1}` });
+        const x = el("button", { type: "button", class: "wyk-usun wyk-usun-maly", "aria-label": `Usuń wiersz ${i + 1} tabelki`, title: "Usuń wiersz" }, "×");
+        wx.addEventListener("input", () => { w.xs[i] = wx.value; zmiana(); });
+        wy.addEventListener("input", () => { w.ys[i] = wy.value; zmiana(); });
+        for (const [pole, kolumna] of [[wx, "wx"], [wy, "wy"]]) {
+          pole.addEventListener("keydown", (e) => {
+            if (e.key !== "Enter") return;
+            e.preventDefault();
+            if (i === w.xs.length - 1) dodajWierszTabelki();
+            komorki[i + 1]?.[kolumna].focus();
+          });
+        }
+        x.addEventListener("click", () => {
+          w.xs.splice(i, 1);
+          w.ys.splice(i, 1);
+          if (!w.xs.length) { w.xs.push(""); w.ys.push(""); }
+          zbudujWiersze();
+          zmiana();
+        });
+        return { wx, wy, tr: el("tr", {}, el("td", {}, wx), el("td", {}, wy), el("td", {}, x)) };
+      });
+      cialo.replaceChildren(...komorki.map((k) => k.tr));
+    }
+    function dodajWierszTabelki() {
+      const ostatni = wyniki.get(w.id)?.punkty?.at(-1)?.x;
+      w.xs.push(Number.isFinite(ostatni) ? formatuj(ostatni + 1) : "");
+      w.ys.push("");
+      zbudujWiersze();
+      zmiana();
+    }
+    dodajW.addEventListener("click", () => { dodajWierszTabelki(); komorki.at(-1)?.wx.focus(); });
+    zrodlo.addEventListener("change", () => { w.zrodlo = zrodlo.value || null; zmiana(); });
+    kropka.addEventListener("click", () => { w.ukryty = !w.ukryty; przelicz(); zapisz(); });
+    usun.addEventListener("click", () => {
+      stan.wiersze = stan.wiersze.filter((x) => x !== w);
+      if (!stan.wiersze.length) dodajWiersz("");
+      przelicz();
+      zapisz();
+    });
+    zbudujWiersze();
+
+    /** Po każdym przeliczeniu: lista wykresów do wyboru i wyliczone y (komórek nie budujemy od nowa – zostaje kursor). */
+    function odswiez(r, funkcje) {
+      const sygnatura = funkcje.map((f) => `${f.id}:${f.tekst}`).join("|");
+      if (zrodlo.dataset.sygnatura !== sygnatura) {
+        zrodlo.replaceChildren(el("option", { value: "" }, "wpisuję sam"),
+          ...funkcje.map((f) => el("option", { value: f.id }, `liczę z: ${f.tekst}`)));
+        zrodlo.dataset.sygnatura = sygnatura;
+      }
+      zrodlo.value = w.zrodlo && funkcje.some((f) => f.id === w.zrodlo) ? w.zrodlo : "";
+      komorki.forEach((k, i) => {
+        const p = r?.punkty?.[i];
+        k.wx.classList.toggle("zla", Number.isNaN(p?.x));
+        if (r?.zFunkcji) {
+          k.wy.readOnly = true;
+          k.wy.classList.add("wyliczona");
+          k.wy.value = p?.x == null || Number.isNaN(p.x) ? "" : Number.isFinite(p.y) ? wsp(p.y) : "brak";
+          k.wy.classList.remove("zla");
+        } else {
+          k.wy.readOnly = false;
+          k.wy.classList.remove("wyliczona");
+          if (document.activeElement !== k.wy && k.wy.value !== (w.ys[i] ?? "")) k.wy.value = w.ys[i] ?? "";
+          k.wy.classList.toggle("zla", Number.isNaN(p?.y));
+        }
+      });
+    }
+    return { wiersz, kropka, pole: null, info, odswiez, fokus: () => komorki[0]?.wx.focus() };
+  }
+
   function odswiezListe() {
     const zostaja = new Set(stan.wiersze.map((w) => w.id));
     for (const id of widokiWierszy.keys()) if (!zostaja.has(id)) widokiWierszy.delete(id);
@@ -278,14 +480,18 @@ export function zbudujWykresy(kontener) {
     // (Wyjęcie pola z dokumentu zabiera mu kursor – wtedy przywracamy fokus i zaznaczenie.)
     const aktywny = document.activeElement;
     const zaznaczenie = aktywny?.selectionStart != null ? [aktywny.selectionStart, aktywny.selectionEnd] : null;
+    const funkcjeDoTabel = stan.wiersze
+      .filter((x) => x.typ !== "tabela" && wyniki.get(x.id)?.rodzaj === "funkcja")
+      .map((x) => ({ id: x.id, tekst: x.tekst.trim() }));
     const wiersze = stan.wiersze.map((w) => {
       let v = widokiWierszy.get(w.id);
-      if (!v) { v = widokWiersza(w); widokiWierszy.set(w.id, v); }
-      if (v.pole.value !== w.tekst) v.pole.value = w.tekst;
+      if (!v) { v = w.typ === "tabela" ? widokTabeli(w) : widokWiersza(w); widokiWierszy.set(w.id, v); }
       const r = wyniki.get(w.id);
       v.wiersz.style.setProperty("--kolor", naEkran(w.kolor));
       v.kropka.setAttribute("aria-pressed", String(!w.ukryty));
       v.wiersz.classList.toggle("ukryty", w.ukryty);
+      if (w.typ === "tabela") { v.odswiez(r, funkcjeDoTabel); return v.wiersz; }
+      if (v.pole.value !== w.tekst) v.pole.value = w.tekst;
       v.wiersz.classList.toggle("z-bledem", r?.rodzaj === "blad");
       v.info.replaceChildren();
       if (r?.rodzaj === "blad") {
@@ -323,6 +529,7 @@ export function zbudujWykresy(kontener) {
   function przelicz({ bezListy = false } = {}) {
     wyniki = analizuj(stan.wiersze, stan.stopnie);
     if (!bezListy) odswiezListe();
+    przywroc.hidden = !stan.poprzednie;
     rysuj();
   }
 
@@ -423,7 +630,7 @@ export function zbudujWykresy(kontener) {
 
   function wykresFunkcji(f, kolor) {
     ctx.strokeStyle = kolor;
-    ctx.lineWidth = 2.25;
+    ctx.lineWidth = 2.5;
     ctx.lineJoin = "round";
     ctx.beginPath();
     let pioro = false, poprzX = 0, poprzY = 0;
@@ -447,6 +654,41 @@ export function zbudujWykresy(kontener) {
       pioro = true;
       poprzX = p;
       poprzY = q;
+    }
+    ctx.stroke();
+  }
+
+  /** Krzywa G(x, y) = 0 (np. okrąg): siatka co 4 px, w każdej kratce, gdzie G zmienia znak, odcinek
+   *  (marching squares). Pomijamy kratki przy biegunach – tam G skacze, ale krzywej nie ma. */
+  function krzywaNiejawna(G, kolor) {
+    const k = 4, nx = Math.ceil(W / k) + 1, ny = Math.ceil(H / k) + 1;
+    const v = new Float64Array(nx * ny);
+    for (let j = 0; j < ny; j++) {
+      const y = yz(j * k);
+      for (let i = 0; i < nx; i++) v[j * nx + i] = G(xz(i * k), y);
+    }
+    const punktNaKrawedzi = (x0, y0, g0, x1, y1, g1) => {
+      if (!((g0 < 0) !== (g1 < 0)) || !Number.isFinite(g0) || !Number.isFinite(g1)) return null;
+      const t = g0 / (g0 - g1);
+      const xm = x0 + (x1 - x0) * t, ym = y0 + (y1 - y0) * t;
+      const gm = G(xz(xm), yz(ym));
+      if (!Number.isFinite(gm) || Math.abs(gm) > Math.max(Math.abs(g0), Math.abs(g1))) return null;   // biegun, nie krzywa
+      return [xm, ym];
+    };
+    ctx.strokeStyle = kolor;
+    ctx.lineWidth = 2.5;
+    ctx.lineJoin = "round";
+    ctx.beginPath();
+    for (let j = 0; j < ny - 1; j++) {
+      for (let i = 0; i < nx - 1; i++) {
+        const a = v[j * nx + i], b = v[j * nx + i + 1], c = v[(j + 1) * nx + i + 1], d = v[(j + 1) * nx + i];
+        const x0 = i * k, y0 = j * k, x1 = x0 + k, y1 = y0 + k;
+        const p = [
+          punktNaKrawedzi(x0, y0, a, x1, y0, b), punktNaKrawedzi(x1, y0, b, x1, y1, c),
+          punktNaKrawedzi(x1, y1, c, x0, y1, d), punktNaKrawedzi(x0, y1, d, x0, y0, a),
+        ].filter(Boolean);
+        for (let m = 0; m + 1 < p.length; m += 2) { ctx.moveTo(p[m][0], p[m][1]); ctx.lineTo(p[m + 1][0], p[m + 1][1]); }
+      }
     }
     ctx.stroke();
   }
@@ -527,8 +769,9 @@ export function zbudujWykresy(kontener) {
     const funkcje = [];
     for (const { w, r } of obiekty) {
       if (r.rodzaj === "funkcja") { wykresFunkcji(r.f, naEkran(w.kolor)); funkcje.push({ f: r.f, kolor: naEkran(w.kolor) }); }
+      if (r.rodzaj === "krzywa") krzywaNiejawna(r.G, naEkran(w.kolor));
       if (r.rodzaj === "pionowa" && Number.isFinite(r.x)) {
-        ctx.strokeStyle = naEkran(w.kolor); ctx.lineWidth = 2.25;
+        ctx.strokeStyle = naEkran(w.kolor); ctx.lineWidth = 2.5;
         ctx.beginPath(); ctx.moveTo(px(r.x), 0); ctx.lineTo(px(r.x), H); ctx.stroke();
       }
     }
@@ -536,6 +779,14 @@ export function zbudujWykresy(kontener) {
     for (const p of punktySpecjalne) {
       ctx.fillStyle = P.tlo; ctx.strokeStyle = P.punkt; ctx.lineWidth = 1.5;
       ctx.beginPath(); ctx.arc(px(p.x), py(p.y), 3.5, 0, 2 * Math.PI); ctx.fill(); ctx.stroke();
+    }
+    for (const { w, r } of obiekty) {
+      if (r.rodzaj !== "tabela") continue;
+      ctx.fillStyle = naEkran(w.kolor);
+      for (const p of r.punkty) {
+        if (!Number.isFinite(p.x) || !Number.isFinite(p.y)) continue;
+        ctx.beginPath(); ctx.arc(px(p.x), py(p.y), 5, 0, 2 * Math.PI); ctx.fill();
+      }
     }
     for (const { w, r } of obiekty) {
       if (r.rodzaj !== "punkt" || !Number.isFinite(r.x) || !Number.isFinite(r.y)) continue;
@@ -564,6 +815,13 @@ export function zbudujWykresy(kontener) {
         if (r.rodzaj === "punkt") {
           const d = Math.hypot(px(r.x) - mx, py(r.y) - my);
           if (d < odl) { odl = d; najlepszy = { x: r.x, y: r.y, opis: "punkt", kolor: naEkran(w.kolor) }; }
+        }
+        if (r.rodzaj === "tabela") {
+          for (const p of r.punkty) {
+            if (!Number.isFinite(p.x) || !Number.isFinite(p.y)) continue;
+            const d = Math.hypot(px(p.x) - mx, py(p.y) - my);
+            if (d < odl) { odl = d; najlepszy = { x: p.x, y: p.y, opis: "z tabelki", kolor: naEkran(w.kolor) }; }
+          }
         }
         if (r.rodzaj !== "funkcja") continue;
         const y = r.f(x);
@@ -653,11 +911,15 @@ export function zbudujWykresy(kontener) {
     przybliz(Math.exp(-e.deltaY * (e.deltaMode === 1 ? 0.05 : 0.0015)), mx, my);
   }, { passive: false });
 
-  /** Wykres z karty wzoru („Otwórz w kalkulatorze graficznym”): dopisuje jego funkcje, proste i punkty,
-   *  a dotychczasowe wiersze ucznia ukrywa (nie usuwa), i ustawia widok jak na karcie. */
+  /** Wzór z zadania (opis.wiersze, assets/tex-wykres.js) albo wykres z karty wzoru (funkcje, proste, punkty, x, y):
+   *  wiersze ucznia odkładamy na bok („↶ Poprzednie wiersze” je przywraca) i pokazujemy tylko ten wzór.
+   *  Bez zakresu x i y widok dobieramy sami, tak żeby było widać ważną część wykresu. */
   function pokazOpis(opis) {
-    stan.wiersze = stan.wiersze.filter((w) => w.tekst.trim());
-    for (const w of stan.wiersze) w.ukryty = true;
+    const swoje = stan.wiersze.filter((w) => w.typ === "tabela" || w.tekst.trim());
+    if (swoje.length && !stan.zWzoru) stan.poprzednie = swoje;
+    stan.wiersze = [];
+    stan.zWzoru = true;
+    for (const t of opis.wiersze ?? []) dodajWiersz(t);
     const liczba = (v) => formatuj(v, 8);
     for (const f of opis.funkcje ?? []) dodajWiersz(`y = ${f.wzor}`);
     for (const p of opis.proste ?? []) dodajWiersz(p.x !== undefined ? `x = ${liczba(p.x)}` : `y = ${liczba(p.y)}`);
@@ -666,15 +928,45 @@ export function zbudujWykresy(kontener) {
     stan.stopnie = !!opis.stopnie;
     for (const b of jednostki.children) b.setAttribute("aria-pressed", String((b.textContent === "stopnie") === stan.stopnie));
     wymiary();
-    const [x0, x1] = opis.x, [y0, y1] = opis.y;
-    stan.widok = { cx: (x0 + x1) / 2, cy: (y0 + y1) / 2, skala: Math.min(W / (x1 - x0), H / (y1 - y0)) * 0.95 };
+    if (opis.x && opis.y) {
+      const [x0, x1] = opis.x, [y0, y1] = opis.y;
+      stan.widok = { cx: (x0 + x1) / 2, cy: (y0 + y1) / 2, skala: Math.min(W / (x1 - x0), H / (y1 - y0)) * 0.95 };
+    } else {
+      wyniki = analizuj(stan.wiersze, stan.stopnie);
+      dopasujWidok();
+    }
     przelicz();
     zapisz();
+  }
+
+  /** Widok dla wzoru bez podanego zakresu: jak w zwykłym układzie, x i y od −10 do 10. Tylko gdy wykres prawie się
+   *  w nim nie mieści (np. y = x² + 20), dobieramy y tak, żeby była widać większość wartości i oś Ox. */
+  function dopasujWidok() {
+    const x0 = -10, x1 = 10, ys = [];
+    for (const { r } of widoczne()) {
+      if (r.rodzaj === "funkcja") {
+        for (let i = 0; i <= 200; i++) { const y = r.f(x0 + ((x1 - x0) * i) / 200); if (Number.isFinite(y) && Math.abs(y) < 1e6) ys.push(y); }
+      }
+      if (r.rodzaj === "punkt" && Number.isFinite(r.y)) ys.push(r.y);
+    }
+    let y0 = -10, y1 = 10;
+    const widac = ys.filter((y) => Math.abs(y) <= 10).length;
+    if (ys.length && widac < 0.15 * ys.length) {
+      ys.sort((a, b) => a - b);
+      const kw = (p) => ys[Math.floor(p * (ys.length - 1))];
+      y0 = Math.min(0, kw(0.05));
+      y1 = Math.max(0, kw(0.95));
+      if (y1 - y0 < 4) { y0 -= 2; y1 += 2; }
+      const zapas = (y1 - y0) * 0.12;
+      y0 -= zapas;
+      y1 += zapas;
+    }
+    stan.widok = { cx: (x0 + x1) / 2, cy: (y0 + y1) / 2, skala: Math.min(W / (x1 - x0), H / (y1 - y0)) };
   }
 
   new ResizeObserver(() => { wymiary(); rysuj(); }).observe(obszar);
   window.addEventListener("motyw:zmiana", () => { P = null; przelicz(); });
   wymiary();
   przelicz();
-  return { pokaz: pokazOpis, fokus: () => { const pusty = stan.wiersze.find((w) => !w.tekst.trim()) ?? stan.wiersze[0]; if (!matchMedia("(pointer: coarse)").matches) fokus(pusty); } };
+  return { pokaz: pokazOpis, fokus: () => { const pusty = pustyWiersz() ?? stan.wiersze[0]; if (!matchMedia("(pointer: coarse)").matches) fokus(pusty); } };
 }

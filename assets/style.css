@@ -128,7 +128,11 @@ body {
 a { color: var(--link); text-underline-offset: 2px; }
 :focus-visible { outline: 2.5px solid var(--accent); outline-offset: 2px; }
 
-.wrap { width: min(100% - 32px, 1280px); margin-inline: auto; }
+/* Szeroko – prawie do brzegów okna (na bardzo szerokich ekranach najwyżej 1760 px) */
+.wrap { width: min(100% - 48px, 1760px); margin-inline: auto; }
+@media (max-width: 520px) {
+  .wrap { width: calc(100% - 28px); }
+}
 
 /* --- Nagłówek i nawigacja */
 
@@ -599,10 +603,12 @@ input[type="radio"] { width: 18px; height: 18px; margin: 0; accent-color: var(--
 .pasek-wyboru > .grupa + .grupa,
 .panel-ucznia-wybor > .grupa:not([hidden]) ~ .grupa { margin-left: 20px; padding-left: 20px; border-left: 1px solid var(--line); }
 
-/* Panel ucznia: powitanie i wylogowanie u góry, pod linią wybór trybu i klasy (albo działu) */
+/* Panel ucznia: w jednym wierszu powitanie, wybór trybu i klasy (albo działu) oraz wylogowanie.
+   Gdy się nie mieści, wybór schodzi pod spód (pod linię), a powitanie i „Wyloguj” zostają u góry. */
 .panel-ucznia { margin-bottom: 20px; }
-.student-bar { display: flex; align-items: center; gap: 12px; padding: 12px 16px; }
-.student-bar h2 { margin: 0; font-size: 1.3rem; }
+.student-bar { display: flex; align-items: center; gap: 12px 20px; padding: 12px 16px; }   /* jeden wiersz; wybór kurczy się, a działy łamią się w nim */
+.powitanie { display: flex; flex: none; align-items: center; gap: 12px; }
+.student-bar h2 { margin: 0; font-size: 1.3rem; white-space: nowrap; }
 .student-bar .wyloguj { margin-left: auto; }
 .awatar {
   display: grid;
@@ -616,13 +622,18 @@ input[type="radio"] { width: 18px; height: 18px; margin: 0; accent-color: var(--
   font-size: 17px;
   font-weight: 800;
 }
-.panel-ucznia-wybor { display: flex; padding: 12px 16px 14px; border-top: 1px solid var(--line); }
+.panel-ucznia-wybor { display: flex; flex: 0 1 auto; min-width: 0; padding-left: 20px; border-left: 1px solid var(--line); }
 .panel-ucznia-wybor > #grupa-trybu { flex: none; }
 .panel-ucznia-wybor > #grupa-dzialu { flex: 1 1 auto; }
 #dzialy-wybor { flex-wrap: wrap; }
 /* nic do wyboru (jeden tryb, jedna klasa) – zostaje samo powitanie */
 .panel-ucznia-wybor:not(:has(.tabs:not([hidden]), .przelacznik:not([hidden]))) { display: none; }
 
+@media (max-width: 1100px) {
+  .student-bar { flex-wrap: wrap; }
+  .student-bar .wyloguj { order: 2; }
+  .panel-ucznia-wybor { order: 3; flex-basis: 100%; padding: 12px 0 2px; border-top: 1px solid var(--line); border-left: 0; }
+}
 @media (max-width: 700px) {
   .pasek-wyboru, .panel-ucznia-wybor { flex-direction: column; gap: 12px; }
   .pasek-wyboru > .grupa + .grupa,
@@ -672,7 +683,7 @@ input[type="radio"] { width: 18px; height: 18px; margin: 0; accent-color: var(--
   .student-bar { gap: 10px; padding: 10px 12px; }
   .student-bar h2 { font-size: 1.15rem; }
   .awatar { width: 32px; height: 32px; font-size: 15px; }
-  .panel-ucznia-wybor { padding: 10px 12px 12px; }
+  .panel-ucznia-wybor { padding: 10px 0 2px; }
   .dzial-opis { display: none; }
 }
 
@@ -1203,6 +1214,11 @@ input.zle { border-color: var(--zle); background: var(--zle-bg); }
 /* --- Narzędzia wysuwane z prawej: kalkulator graficzny i kalkulator (assets/narzedzia.js) */
 body { transition: padding-right 0.25s ease; }
 body.z-szuflada { padding-right: var(--szuflada-szer, 0px); }
+/* miejsce na przyciski narzędzi przy prawej krawędzi, żeby nie zasłaniały treści (na telefonie są na dole) */
+@media (min-width: 761px) {
+  html.z-wykresami body { padding-right: 70px; }
+  html.z-wykresami body.z-szuflada { padding-right: calc(var(--szuflada-szer, 0px) + 70px); }
+}
 body.szuflada-ciagniecie, body.szuflada-ciagniecie * { transition: none !important; cursor: ew-resize !important; user-select: none; }
 
 .narzedzia-przyciski {
@@ -1762,4 +1778,63 @@ body.z-szuflada .narzedzia-przyciski { right: var(--szuflada-szer, 0px); }
 .pary-mini .pary-rysunek { width: 100%; }
 @media (prefers-reduced-motion: reduce) {
   .pary-strona { transition: none; }
+}
+
+/* --- Kalkulator graficzny: przyciski pod wykresem, tabelka, pełny ekran */
+.wyk-pasek-przyciski { display: flex; flex-wrap: wrap; gap: 6px; }
+.szuflada-akcje { display: flex; gap: 6px; }
+.szuflada-pelny { display: grid; place-items: center; }
+.szuflada-pelny svg { width: 18px; height: 18px; }
+.szuflada.pelny { width: 100vw; border-left: 0; z-index: 60; }
+.szuflada.pelny .szuflada-uchwyt { display: none; }
+body.szuflada-pelna { overflow: hidden; }
+body.szuflada-pelna .narzedzia-przyciski { display: none; }
+.szuflada.pelny .wyk { display: grid; grid-template-columns: minmax(320px, 420px) minmax(0, 1fr); height: 100%; }
+.szuflada.pelny .wyk-obszar { grid-column: 2; grid-row: 1; height: auto; min-height: 0; border-bottom: 0; border-left: 1px solid var(--line); }
+.szuflada.pelny .wyk-dol { grid-column: 1; grid-row: 1; }
+@media (max-width: 760px) {
+  .szuflada-pelny { display: none; }
+}
+
+.wyk-wiersz-tabela { grid-template-columns: auto 1fr auto; }
+.wyk-tabela-tytul { padding: 5px 6px; color: var(--ink); font-weight: 700; }
+.wyk-tabela-info { display: grid; gap: 8px; justify-items: start; }
+.wyk-tabela-wybor { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; color: var(--muted); }
+.wyk-tabela-zrodlo { max-width: 100%; padding: 4px 8px; border: 1px solid var(--field-line); border-radius: var(--radius-sm); background: var(--surface); color: var(--ink); font: inherit; font-size: 13px; }
+.wyk-tabela { border-collapse: collapse; font-size: 14px; }
+.wyk-tabela th { padding: 2px 6px; border-bottom: 2px solid var(--kolor); color: var(--ink); font-style: italic; text-align: center; }
+.wyk-tabela td { padding: 2px; border-bottom: 1px solid var(--line); }
+.wyk-tabela td + td { border-left: 1px solid var(--line); }
+.wyk-komorka { width: 6.5em; padding: 4px 6px !important; border: 1px solid transparent !important; border-radius: 6px !important; background: transparent !important; text-align: center; font-variant-numeric: tabular-nums; }
+.wyk-komorka:focus { border-color: var(--accent) !important; background: var(--surface) !important; outline: none !important; }
+.wyk-komorka.wyliczona { color: var(--muted); }
+.wyk-komorka.zla { background: var(--zle-bg) !important; color: var(--zle); }
+.wyk-usun-maly { width: 24px; height: 24px; font-size: 16px; }
+
+/* --- Przycisk „Pokaż na wykresie” przy wzorach funkcji (assets/matematyka.js) – tylko na stronach z kalkulatorem */
+.wzor-wykres-przycisk { display: none; }
+.z-wykresami .wzor-wykres { border-radius: 4px; cursor: pointer; }
+.z-wykresami .wzor-wykres:hover { background: color-mix(in srgb, var(--accent) 10%, transparent); }
+.z-wykresami label .wzor-wykres { cursor: inherit; }
+.z-wykresami label .wzor-wykres:hover { background: none; }
+.z-wykresami .wzor-wykres-przycisk {
+  display: inline-grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  margin: 0 2px 0 4px;
+  padding: 0;
+  border: 1px solid var(--accent-line);
+  border-radius: 6px;
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+  vertical-align: middle;
+  cursor: pointer;
+}
+.z-wykresami .wzor-wykres-przycisk:hover { border-color: var(--accent); background: var(--accent); color: var(--accent-contrast); }
+.wzor-wykres-przycisk svg { width: 15px; height: 15px; }
+.wzor > .wzor-wykres { display: flex; align-items: center; gap: 4px; }
+.wzor > .wzor-wykres > .katex-display { flex: 1 1 auto; min-width: 0; }
+@media print {
+  .wzor-wykres-przycisk { display: none !important; }
 }

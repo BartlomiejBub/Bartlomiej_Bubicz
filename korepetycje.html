@@ -100,19 +100,21 @@
       <div id="cwiczenia-uczen" hidden>
         <div class="nawigacja panel-ucznia">
           <div class="student-bar">
-            <span class="awatar" aria-hidden="true" data-inicjal></span>
-            <h2>Cześć, <span data-imie></span>!</h2>
+            <div class="powitanie">
+              <span class="awatar" aria-hidden="true" data-inicjal></span>
+              <h2>Cześć, <span data-imie></span>!</h2>
+            </div>
+            <div class="panel-ucznia-wybor" id="wybor-ucznia">
+              <div class="grupa" id="grupa-trybu">
+                <span class="grupa-etykieta" aria-hidden="true">Jak się uczysz</span>
+                <div class="egzaminy tryby przelacznik" id="tryb-wybor" role="group" aria-label="Jak chcesz się uczyć" hidden></div>
+              </div>
+              <div class="grupa" id="grupa-dzialu">
+                <span class="grupa-etykieta" aria-hidden="true" id="dzialy-etykieta">Dział</span>
+                <div class="tabs" id="dzialy-wybor" role="group" aria-label="Dział"></div>
+              </div>
+            </div>
             <button class="btn btn-small wyloguj" type="button" id="wyloguj">Wyloguj</button>
-          </div>
-          <div class="panel-ucznia-wybor" id="wybor-ucznia">
-            <div class="grupa" id="grupa-trybu">
-              <span class="grupa-etykieta" aria-hidden="true">Jak się uczysz</span>
-              <div class="egzaminy tryby przelacznik" id="tryb-wybor" role="group" aria-label="Jak chcesz się uczyć" hidden></div>
-            </div>
-            <div class="grupa" id="grupa-dzialu">
-              <span class="grupa-etykieta" aria-hidden="true" id="dzialy-etykieta">Dział</span>
-              <div class="tabs" id="dzialy-wybor" role="group" aria-label="Dział"></div>
-            </div>
           </div>
         </div>
         <div class="uklad">
