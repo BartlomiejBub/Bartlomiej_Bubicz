@@ -1,9 +1,11 @@
 // Karta pracy do druku: karta.html?dzial=liczby&nr=2 (stała) albo ?dzial=liczby&ziarno=123 (wylosowana);
 // zamiast działu może być rozdział z widoku „Do szkoły”: karta.html?rozdzial=sp5-ulamki-zwykle&nr=1 (zadania z jego generatorów).
+// Ściąga do druku: karta.html?rozdzial=…&sciaga=1 (albo ?dzial=…&sciaga=1) – wszystkie karty wzorów z rysunkami i „Jak rozwiązywać”.
 import { el } from "./dom.js";
 import { zalogowany, ma, maRozdzial, tematyRozdzialuUcznia } from "./dostep.js";
 import { dzial as znajdzDzial, rozdzial as znajdzRozdzial, wczytajRozdzial, przytnij, egzamin, zadaniaKarty, KARTY } from "./dzialy.js";
 import { wstaw } from "./matematyka.js";
+import { rysunekKarty } from "./rysunki.js";
 
 const parametry = new URLSearchParams(location.search);
 const uczen = zalogowany();
@@ -64,18 +66,55 @@ function pokaz() {
   );
 }
 
+function pokazSciage() {
+  const tematy = d.wzory.filter((t) => t.wzory.length);
+  const pole = (klasa, t) => t && wstaw(el("div", { class: klasa }), t);
+  document.title = `Ściąga – ${d.nazwa}`;
+  karta.classList.add("sheet-sciaga");
+  karta.replaceChildren(
+    el("header", { class: "sheet-head" },
+      el("div", {},
+        el("p", { class: "eyebrow" }, `${d.nazwa} · ${podpis}`),
+        el("h1", {}, r ? "Ściąga z rozdziału" : "Wzory z działu"),
+      ),
+    ),
+    ...tematy.map((t) => el("section", { class: "sciaga-temat" },
+      el("h2", {}, t.nazwa),
+      el("div", { class: "sciaga-karty" },
+        ...t.wzory.map((w) => el("div", { class: "sciaga-karta" },
+          wstaw(el("p", { class: "wzor-nazwa" }), w.nazwa, { akapity: false }),
+          pole("wzor-slownie", w.slownie),
+          w.tex && wstaw(el("div", { class: "wzor-tex" }), `$${w.tex.replace(/\\qquad/g, "\\quad\\quad ")}$`),
+          rysunekKarty(w),
+          pole("wzor-litery", w.litery),
+          pole("wzor-przyklad", w.przyklad && `**Przykład:** ${w.przyklad}`),
+          pole("wzor-uwaga", w.uwaga),
+        )),
+      ),
+      t.jak?.length > 0 && el("div", { class: "jak" },
+        el("h3", {}, "Jak rozwiązywać"),
+        el("ol", {}, ...t.jak.map((k) => wstaw(el("li"), k, { akapity: false })))),
+    )),
+  );
+}
+
 document.getElementById("drukuj").addEventListener("click", () => print());
 document.getElementById("nowa").addEventListener("click", (e) => {
   e.preventDefault();
   location.href = `karta.html?${skad}&ziarno=${crypto.getRandomValues(new Uint32Array(1))[0]}`;
 });
 
-if (!d || !d.generatory.length || !((nr >= 1 && nr <= KARTY.ile) || /^\d+$/.test(ziarno))) {
+const sciaga = parametry.has("sciaga");
+const istnieje = d && (sciaga ? d.wzory.some((t) => t.wzory.length) : d.generatory.length && ((nr >= 1 && nr <= KARTY.ile) || /^\d+$/.test(ziarno)));
+if (!istnieje) {
   komunikat("Nie ma takiej karty", "Sprawdź link albo wybierz kartę z listy w ćwiczeniach.");
 } else if (!uczen) {
   komunikat("Zaloguj się", "Karty pracy są dostępne po zalogowaniu kodem ucznia.");
 } else if (r ? !maRozdzial(uczen, r.rozdzial.id) : !ma(uczen, d.id, "karty")) {
   komunikat("Brak dostępu", `Nie masz dostępu do kart pracy z tego ${r ? "rozdziału" : "działu"}.`);
+} else if (sciaga) {
+  document.getElementById("nowa").hidden = true;
+  pokazSciage();
 } else {
   pokaz();
 }

@@ -117,6 +117,14 @@ function uruchom() {
   WASKI.addEventListener("change", () => { if (otwarte) ustawSzerokosc(otwarte); });
   window.addEventListener("resize", () => { if (otwarte) ustawSzerokosc(otwarte); });
 
+  // „Otwórz w kalkulatorze graficznym” z karty wzoru: window.dispatchEvent(new CustomEvent("narzedzia:wykres", { detail: opisWykresu }))
+  window.addEventListener("narzedzia:wykres", async (e) => {
+    const n = NARZEDZIA.find((x) => x.id === "wykresy");
+    if (otwarte !== n) await otworz(n, { bezFokusu: true });
+    else if (!n.api) return;
+    n.api?.pokaz?.(e.detail);
+  });
+
   // po przejściu na inną stronę panel zostaje otwarty (np. kalkulator przy przechodzeniu między tematami); na telefonie nie
   const poprzedni = NARZEDZIA.find((n) => n.id === zapis.otwarte);
   if (poprzedni && !WASKI.matches) otworz(poprzedni, { bezFokusu: true });

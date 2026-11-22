@@ -4,13 +4,13 @@ import { ELEMENTY, ATRYBUTY, svgWykresu } from "../assets/rysunki.js";
 import { parsuj, kompiluj, BladWyrazenia } from "../assets/wyrazenia.js";
 
 /** Lista błędów rysunku SVG (pusta, gdy wszystko w porządku). */
-export function bledyRysunku(svg) {
+export function bledyRysunku(svg, { limit = 12000 } = {}) {
   const b = [];
   if (typeof svg !== "string" || !svg.trim()) return ["pusty rysunek"];
   const s = svg.trim();
   if (!s.startsWith("<svg") || !s.endsWith("</svg>")) b.push("rysunek musi zaczynać się od <svg i kończyć na </svg>");
   if (!/^<svg[^>]*\sviewBox="0 0 \d+ \d+"/.test(s)) b.push('brak viewBox="0 0 szerokość wysokość" w <svg>');
-  if (s.length > 12000) b.push(`rysunek za długi (${s.length} znaków, maks. 12000)`);
+  if (limit && s.length > limit) b.push(`rysunek za długi (${s.length} znaków, maks. ${limit})`);
   if (/[^\u0009\u000a\u000d -￿]/.test(s)) b.push("niedozwolone znaki sterujące");
   const stos = [];
   for (const m of s.matchAll(/<(\/?)([a-zA-Z][\w:-]*)([^>]*?)(\/?)>/g)) {
@@ -70,6 +70,7 @@ export function bledyWykresu(w) {
     else if (p.x < w.x[0] || p.x > w.x[1] || p.y < w.y[0] || p.y > w.y[1]) b.push(`punkt (${p.x}; ${p.y}) poza zakresem osi`);
   }
   for (const p of w.proste ?? []) if (!(liczba(p.x) || liczba(p.y)) || (p.x !== undefined && p.y !== undefined)) b.push("prosta: { x: liczba } albo { y: liczba }");
-  if (!b.length) b.push(...bledyRysunku(svgWykresu(w)).map((x) => `wygenerowany wykres: ${x}`));
+  // wykres rysuje strona – nie leży w pliku, więc bez limitu długości
+  if (!b.length) b.push(...bledyRysunku(svgWykresu(w), { limit: 0 }).map((x) => `wygenerowany wykres: ${x}`));
   return b;
 }

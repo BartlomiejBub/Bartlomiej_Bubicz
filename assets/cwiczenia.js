@@ -163,6 +163,8 @@ function pokazDzial(uczen, d, przyciski) {
 // więc są osobną pozycją na końcu listy tematów.
 
 const KARTY_DZIALU = "__karty";
+const POWTORKA = "__powtorka";
+const ILE_W_POWTORCE = 10;
 
 /** Zakładki tematu (tylko te, w których coś jest). dt – dział przycięty do jednego tematu. */
 function zakladkiTematu(d, dt, t, widzi) {
@@ -194,7 +196,10 @@ function widokTematow(d, widzi, { klucz, spis: boczny = null }) {
     .map((x) => ({ ...x, zakladki: zakladkiTematu(d, x.dt, x.t, widzi) }))
     .filter((x) => x.zakladki.length);
   const karty = widzi("karty") && { t: { id: KARTY_DZIALU, nazwa: d.rozdzial ? "Karty pracy z rozdziału" : "Karty pracy do druku" } };
-  const pozycje = [...tematy, karty].filter(Boolean);
+  const powtorka = widzi("generator") && new Set(d.generatory.map((g) => g.temat)).size > 1
+    && { t: { id: POWTORKA, nazwa: d.rozdzial ? "Powtórka z rozdziału" : "Powtórka z działu" } };
+  const specjalna = (x) => x === karty || x === powtorka;
+  const pozycje = [...tematy, powtorka, karty].filter(Boolean);
 
   const tresc = el("div", { class: "temat" });
   if (!pozycje.length) {
@@ -204,8 +209,8 @@ function widokTematow(d, widzi, { klucz, spis: boczny = null }) {
 
   // Lista w bocznej kolumnie (komputer) i rozwijana lista / przyciski nad treścią (telefon).
   const przyciskiBoczne = pozycje.map((x, i) => {
-    const b = el("button", { class: `spis-temat${x === karty ? " spis-karty" : ""}`, type: "button", "data-temat": x.t.id },
-      x === karty ? x.t.nazwa : el("span", {}, el("span", { class: "spis-nr" }, `${i + 1}.`), ` ${x.t.nazwa}`));
+    const b = el("button", { class: `spis-temat${specjalna(x) ? " spis-karty" : ""}`, type: "button", "data-temat": x.t.id },
+      specjalna(x) ? x.t.nazwa : el("span", {}, el("span", { class: "spis-nr" }, `${i + 1}.`), ` ${x.t.nazwa}`));
     b.addEventListener("click", () => wybierz(x, { przewin: true }));
     return b;
   });
@@ -214,7 +219,7 @@ function widokTematow(d, widzi, { klucz, spis: boczny = null }) {
     boczny.hidden = false;
   }
   const lista = el("select", { class: "temat-select", "aria-label": "Temat" },
-    ...pozycje.map((x, i) => el("option", { value: x.t.id }, x === karty ? `— ${x.t.nazwa}` : `${i + 1}. ${x.t.nazwa}`)));
+    ...pozycje.map((x, i) => el("option", { value: x.t.id }, specjalna(x) ? `— ${x.t.nazwa}` : `${i + 1}. ${x.t.nazwa}`)));
   lista.addEventListener("change", () => wybierz(pozycje.find((x) => x.t.id === lista.value)));
   const malo = pozycje.length <= 6;
   const chipy = pozycje.map((x) => {
@@ -236,6 +241,8 @@ function widokTematow(d, widzi, { klucz, spis: boczny = null }) {
     }
     if (x === karty) {
       tresc.replaceChildren(blokKart(d));
+    } else if (x === powtorka) {
+      tresc.replaceChildren(blokPowtorki(d));
     } else {
       const i = tematy.indexOf(x);
       const zapisana = przypomnij(KLUCZ_ZAKLADKI);
@@ -388,6 +395,13 @@ function czesciWzoru(tex) {
 const poleKarty = (klasa, t) =>
   (t.includes("\n\n") ? wstaw(el("div", { class: `${klasa} wzor-akapity` }), t) : wstaw(el("p", { class: klasa }), t, { akapity: false }));
 
+/** Przycisk pod wykresem na karcie: otwiera ten wykres w kalkulatorze graficznym (assets/narzedzia.js), żeby go przesuwać i zmieniać. */
+function przyciskWykresu(opis) {
+  const b = el("button", { class: "btn btn-small rys-otworz", type: "button" }, "Otwórz w kalkulatorze graficznym");
+  b.addEventListener("click", () => window.dispatchEvent(new CustomEvent("narzedzia:wykres", { detail: opis })));
+  return el("div", { class: "rys-akcje" }, b);
+}
+
 function blokWzorow(d) {
   let temat = d.wzory[0];
   const tresc = el("div", { class: "wzory-tresc" });
@@ -400,6 +414,7 @@ function blokWzorow(d) {
           w.slownie && poleKarty("wzor-slownie", w.slownie),
           w.tex && el("div", { class: "wzor-tex" }, ...czesciWzoru(w.tex).map((t) => wstaw(el("div", { class: "wzor-czesc" }), `$${t}$`))),
           rysunekKarty(w),
+          w.wykres && przyciskWykresu(w.wykres),
           w.litery && poleKarty("wzor-litery", w.litery),
           w.przyklad && poleKarty("wzor-przyklad", `**Przykład:** ${w.przyklad}`),
           w.uwaga && poleKarty("wzor-uwaga", w.uwaga),
@@ -694,7 +709,7 @@ function klawisze(form) {
   );
 }
 
-function widokZadania(z, { temat, poprawne, nastepne }) {
+function widokZadania(z, { temat, poprawne, nastepne, napisNastepne = "Nowe zadanie" }) {
   const tresc = wstaw(el("div", { class: "gen-tresc", tabindex: "-1", "aria-label": `Zadanie: ${temat}` }), z.tresc);
   const pola = new Map(z.pola.map((p) => [p.id, widokPola(p)]));
   const form = el("form", { class: "gen-form", novalidate: true },
@@ -704,7 +719,7 @@ function widokZadania(z, { temat, poprawne, nastepne }) {
 
   const sprawdzPrzycisk = el("button", { class: "btn btn-primary", type: "submit" }, "Sprawdź");
   const rozwPrzycisk = el("button", { class: "btn", type: "button", "aria-expanded": "false" }, "Pokaż rozwiązanie");
-  const nowePrzycisk = el("button", { class: "btn", type: "button" }, "Nowe zadanie");
+  const nowePrzycisk = el("button", { class: "btn", type: "button" }, napisNastepne);
   form.append(el("div", { class: "gen-actions" }, sprawdzPrzycisk, rozwPrzycisk, nowePrzycisk));
 
   const info = el("p", { class: "feedback", role: "status" });
@@ -747,6 +762,63 @@ function widokZadania(z, { temat, poprawne, nastepne }) {
   return [tresc, form, info, rozwiazanie];
 }
 
+// --- Powtórka: kilka zadań z generatorów całego rozdziału (działu), z każdego tematu po trochu, w losowej kolejności
+
+function blokPowtorki(d) {
+  const nazwyTematow = new Map(d.tematy.map((t) => [t.id, t.nazwa]));
+  const karta = el("div", { class: "gen-card" });
+  const postep = el("span", { class: "gen-count", "aria-live": "polite" });
+  let zestaw = [], i = 0, rozwiazane = 0;
+
+  function losuj() {
+    const r = losownik(losoweZiarno());
+    const wgTematu = new Map();
+    for (const g of d.generatory) wgTematu.set(g.temat, [...(wgTematu.get(g.temat) ?? []), g]);
+    const grupy = r.shuffle([...wgTematu.values()].map((l) => r.shuffle([...l])));
+    zestaw = Array.from({ length: ILE_W_POWTORCE }, (_, k) => {
+      const grupa = grupy[k % grupy.length];
+      return grupa[Math.floor(k / grupy.length) % grupa.length];
+    });
+    zestaw = r.shuffle(zestaw);
+    i = 0;
+    rozwiazane = 0;
+    pokaz({ fokus: false });
+  }
+
+  function pokaz({ fokus = true } = {}) {
+    if (i >= zestaw.length) {
+      postep.textContent = "";
+      const nowa = el("button", { class: "btn btn-primary", type: "button" }, "Nowa powtórka");
+      nowa.addEventListener("click", () => losuj());
+      karta.replaceChildren(el("div", { class: "powtorka-koniec" },
+        el("strong", {}, "Koniec powtórki"),
+        el("p", {}, `Dobrze rozwiązane bez podglądania rozwiązania: ${rozwiazane} z ${zestaw.length}. Każda powtórka ma inne zadania.`),
+        nowa));
+      nowa.focus({ preventScroll: true });
+      return;
+    }
+    const g = zestaw[i];
+    const zadanie = g.generuj(losownik(losoweZiarno()));
+    postep.textContent = `Zadanie ${i + 1} z ${zestaw.length}`;
+    karta.replaceChildren(
+      el("p", { class: "powtorka-temat" }, `${nazwyTematow.get(g.temat) ?? ""} · ${g.nazwa}`),
+      ...widokZadania(zadanie, {
+        temat: g.nazwa,
+        poprawne: () => { rozwiazane++; },
+        nastepne: () => { i++; pokaz(); },
+        napisNastepne: i + 1 < zestaw.length ? "Następne zadanie" : "Zakończ powtórkę",
+      }));
+    if (fokus) karta.querySelector(".gen-tresc")?.focus({ preventScroll: true });
+  }
+
+  losuj();
+  return el("section", { class: "blok" },
+    el("div", { class: "blok-head" }, el("h3", {}, d.rozdzial ? "Powtórka z rozdziału" : "Powtórka z działu"), postep),
+    el("p", { class: "blok-intro" }, `${ILE_W_POWTORCE} zadań z różnych tematów, za każdym razem innych. Dobre przed sprawdzianem: rozwiąż je po kolei, a gdy utkniesz, zajrzyj do rozwiązania.`),
+    karta,
+  );
+}
+
 // --- Karty pracy
 
 function blokKart(d) {
@@ -761,6 +833,9 @@ function blokKart(d) {
   return el("section", { class: "blok" },
     el("h3", {}, "Karty pracy"),
     el("p", { class: "blok-intro" }, "Zestawy do wydrukowania. Odpowiedzi są zawsze na ostatniej stronie."),
+    d.wzory.some((t) => t.wzory.length) && el("h4", { class: "blok-sub" }, d.rozdzial ? "Ściąga do druku" : "Wzory do druku"),
+    d.wzory.some((t) => t.wzory.length) && el("ul", { class: "sheet-list" },
+      link(`karta.html?${skad}&sciaga=1`, d.rozdzial ? "Ściąga z całego rozdziału" : "Wzory z całego działu", "wzory, rysunki i przykłady ze wszystkich tematów")),
     d.pdf.length > 0 && el("h4", { class: "blok-sub" }, "Gotowe karty (PDF)"),
     d.pdf.length > 0 && el("ul", { class: "sheet-list" }, ...d.pdf.map((k) => link(k.plik, k.nazwa, k.opis))),
     d.generatory.length > 0 && el("h4", { class: "blok-sub" }, "Karty z generatora"),

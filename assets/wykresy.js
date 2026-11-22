@@ -622,8 +622,27 @@ export function zbudujWykresy(kontener) {
     przybliz(Math.exp(-e.deltaY * (e.deltaMode === 1 ? 0.05 : 0.0015)), mx, my);
   }, { passive: false });
 
+  /** Wykres z karty wzoru („Otwórz w kalkulatorze graficznym”): dopisuje jego funkcje, proste i punkty,
+   *  a dotychczasowe wiersze ucznia ukrywa (nie usuwa), i ustawia widok jak na karcie. */
+  function pokazOpis(opis) {
+    stan.wiersze = stan.wiersze.filter((w) => w.tekst.trim());
+    for (const w of stan.wiersze) w.ukryty = true;
+    const liczba = (v) => formatuj(v, 8);
+    for (const f of opis.funkcje ?? []) dodajWiersz(`y = ${f.wzor}`);
+    for (const p of opis.proste ?? []) dodajWiersz(p.x !== undefined ? `x = ${liczba(p.x)}` : `y = ${liczba(p.y)}`);
+    for (const p of opis.punkty ?? []) dodajWiersz(`(${liczba(p.x)}; ${liczba(p.y)})`);
+    if (!stan.wiersze.length) dodajWiersz("");
+    stan.stopnie = !!opis.stopnie;
+    for (const b of jednostki.children) b.setAttribute("aria-pressed", String((b.textContent === "stopnie") === stan.stopnie));
+    wymiary();
+    const [x0, x1] = opis.x, [y0, y1] = opis.y;
+    stan.widok = { cx: (x0 + x1) / 2, cy: (y0 + y1) / 2, skala: Math.min(W / (x1 - x0), H / (y1 - y0)) * 0.95 };
+    przelicz();
+    zapisz();
+  }
+
   new ResizeObserver(() => { wymiary(); rysuj(); }).observe(obszar);
   wymiary();
   przelicz();
-  return { fokus: () => { const pusty = stan.wiersze.find((w) => !w.tekst.trim()) ?? stan.wiersze[0]; if (!matchMedia("(pointer: coarse)").matches) fokus(pusty); } };
+  return { pokaz: pokazOpis, fokus: () => { const pusty = stan.wiersze.find((w) => !w.tekst.trim()) ?? stan.wiersze[0]; if (!matchMedia("(pointer: coarse)").matches) fokus(pusty); } };
 }

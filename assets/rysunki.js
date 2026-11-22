@@ -105,7 +105,7 @@ export function svgWykresu(opis) {
     const { fn } = kompiluj(parsuj(f.wzor), { stopnie: !!opis.stopnie });
     const kolor = KOLORY[i % KOLORY.length];
     let d = "", pioro = false, poprz = null, ostatni = null;
-    const N = 640;
+    const N = 320;
     for (let j = 0; j <= N; j++) {
       const x = x0 + ((x1 - x0) * j) / N, y = fn({ x });
       if (!Number.isFinite(y) || y < y0 - (y1 - y0) * 3 || y > y1 + (y1 - y0) * 3) { pioro = false; poprz = null; continue; }

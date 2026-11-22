@@ -46,6 +46,9 @@
 
 html { -webkit-text-size-adjust: 100%; }
 
+/* atrybut hidden ma zawsze ukrywać, także elementy z własnym display (przyciski .btn, dymek wykresu) */
+[hidden] { display: none !important; }
+
 body {
   margin: 0;
   background: var(--bg);
@@ -1341,3 +1344,30 @@ body.z-szuflada .narzedzia-przyciski { right: var(--szuflada-szer, 0px); }
 .rys .siatka { fill: none; stroke: #e3e9f0; stroke-width: 1; }
 .rys .os { fill: none; stroke: var(--muted); stroke-width: 1.3; }
 .rys .wykres { fill: none; stroke-width: 2.4; stroke-linejoin: round; }
+
+/* --- Przycisk „Otwórz w kalkulatorze graficznym” pod wykresem na karcie */
+.rys-akcje { display: flex; justify-content: center; margin: -2px 0 6px; }
+
+/* --- Powtórka z rozdziału */
+.powtorka-temat { margin: 0 0 6px; font-size: 13px; font-weight: 600; color: var(--muted); }
+.powtorka-koniec { display: grid; justify-items: start; gap: 8px; }
+.powtorka-koniec strong { font-size: 18px; color: var(--ink); }
+.powtorka-koniec p { margin: 0; }
+
+/* --- Ściąga do druku (karta.html?…&sciaga=1) */
+.sheet-sciaga .sciaga-temat { margin-top: 18px; }
+.sheet-sciaga .sciaga-temat h2 { margin: 0 0 8px; font-size: 18px; color: var(--ink); border-bottom: 2px solid var(--accent-line); padding-bottom: 3px; }
+.sheet-sciaga .sciaga-karty { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 10px; }
+.sheet-sciaga .sciaga-karta { padding: 8px 12px; border: 1px solid var(--line); border-radius: 8px; break-inside: avoid; font-size: 14px; }
+.sheet-sciaga .sciaga-karta > * { margin: 4px 0; }
+.sheet-sciaga .wzor-nazwa { font-weight: 700; color: var(--accent-strong); }
+.sheet-sciaga .wzor-tex { text-align: center; }
+.sheet-sciaga .wzor-litery, .sheet-sciaga .wzor-uwaga { font-size: 13px; color: var(--muted); }
+.sheet-sciaga .jak { margin-top: 8px; font-size: 14px; break-inside: avoid; }
+.sheet-sciaga .jak h3 { margin: 0; font-size: 15px; }
+@media print {
+  .sheet-sciaga .sciaga-karty { grid-template-columns: 1fr 1fr; gap: 6px; }
+  .sheet-sciaga .sciaga-karta { font-size: 10.5pt; padding: 5px 8px; }
+  .sheet-sciaga .rys svg { max-width: 220px; }
+  .sheet-sciaga .sciaga-temat { break-inside: auto; }
+}
