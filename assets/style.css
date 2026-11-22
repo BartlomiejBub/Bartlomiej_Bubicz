@@ -39,7 +39,74 @@
   --radius: 12px;
   --radius-sm: 9px;
 
+  /* rysunki na kartach i kalkulator graficzny (assets/rysunki.js, assets/wykresy.js) */
+  --halo: #ffffff;
+  --siatka: #e3e9f0;
+  --wyk-k2: #1f5fae; --wyk-k3: #c2410c; --wyk-k4: #6b3fc2;
+  --wyk-tlo: #ffffff;
+  --wyk-siatka-drobna: #eef2f6;
+  --wyk-siatka: #d7dee7;
+  --wyk-os: #5b6b7e;
+  --wyk-podpis: #4b5a6c;
+  --wyk-tekst: #2a3646;
+  --wyk-podpis-tlo: rgba(255, 255, 255, 0.85);
+  --wyk-punkt: #7b8a9c;
+
   color-scheme: light;
+}
+
+/* Ciemny motyw (przełącznik w nagłówku, assets/motyw.js). Tylko na ekranie – wydruk jest zawsze jasny. */
+@media screen {
+  :root[data-motyw="ciemny"] {
+    --bg: #0e141b;
+    --surface: #151d27;
+    --surface-2: #1b2531;
+    --surface-3: #263241;
+    --text: #cfd8e3;
+    --muted: #97a5b6;
+    --ink: #eef3f8;
+    --line: #2b3746;
+    --line-strong: #3d4b5d;
+
+    --accent: #2bb3a5;
+    --accent-strong: #62d6c9;
+    --accent-soft: #12302e;
+    --accent-line: #256b63;
+    --accent-contrast: #04211e;
+    --link: #62d6c9;
+
+    --warm: #f0a35e;
+    --warm-bg: #2c2215;
+    --warm-line: #7a5326;
+
+    --shadow-sm: 0 1px 2px rgb(0 0 0 / 35%);
+    --shadow: 0 1px 2px rgb(0 0 0 / 35%), 0 6px 18px rgb(0 0 0 / 28%);
+
+    --b-glowna: #62d6c9;      --b-glowna-bg: #12302e;
+    --b-dodatkowy: #82b3f2;   --b-dodatkowy-bg: #172639;
+    --b-poprawka: #f0a35e;    --b-poprawka-bg: #2c2215;
+    --b-probna: #b79df2;      --b-probna-bg: #251c39;
+    --b-przykladowy: #a9b6c5; --b-przykladowy-bg: #1f2833;
+
+    --field-line: #4b5b6e;
+    --ok: #4fc68d;    --ok-bg: #11291e;
+    --zle: #f2847b;   --zle-bg: #35191a;
+    --uwaga: #f0a35e; --uwaga-bg: #2c2215;
+
+    --halo: var(--surface);
+    --siatka: #263140;
+    --wyk-k2: #60a5fa; --wyk-k3: #fb923c; --wyk-k4: #a78bfa;
+    --wyk-tlo: #10171f;
+    --wyk-siatka-drobna: #18212b;
+    --wyk-siatka: #2a3543;
+    --wyk-os: #8a99ab;
+    --wyk-podpis: #a3b1c1;
+    --wyk-tekst: #e1e8f0;
+    --wyk-podpis-tlo: rgba(16, 23, 31, 0.85);
+    --wyk-punkt: #8a99ab;
+
+    color-scheme: dark;
+  }
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -101,7 +168,7 @@ a { color: var(--link); text-underline-offset: 2px; }
   letter-spacing: 0.02em;
 }
 
-.nav { display: flex; gap: 4px; }
+.nav { display: flex; align-items: center; gap: 4px; }
 .nav a {
   padding: 7px 14px;
   border: 1.5px solid transparent;
@@ -114,8 +181,30 @@ a { color: var(--link); text-underline-offset: 2px; }
 .nav a:hover { color: var(--ink); background: var(--surface-2); }
 .nav a[aria-current="page"] { border-color: var(--accent-line); background: var(--accent-soft); color: var(--accent-strong); }
 
+/* Przełącznik motywu (dokładany przez assets/motyw.js na końcu nawigacji) */
+.motyw-przycisk {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: 8px;
+  padding: 6px 12px;
+  border: 1.5px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--muted);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.motyw-przycisk:hover { border-color: var(--accent); color: var(--ink); }
+.motyw-przycisk svg { flex: none; }
+.bez-przejsc, .bez-przejsc * { transition: none !important; }
+
 @media (max-width: 520px) {
   .brand-name { display: none; }
+  .motyw-napis { display: none; }
+  .motyw-przycisk { margin-left: 4px; padding: 6px 8px; }
 }
 
 /* --- Wstęp strony: delikatny pas pod nagłówkiem */
@@ -346,8 +435,7 @@ body[data-egzamin="e8"] [data-tylko="matura"] { display: none !important; }
 .tab[aria-selected="true"],
 .tab[aria-pressed="true"] {
   border-color: var(--accent);
-  background: var(--surface);
-  box-shadow: var(--shadow-sm);
+  background: var(--accent-soft);
   color: var(--accent-strong);
 }
 
@@ -491,21 +579,56 @@ input[type="radio"] { width: 18px; height: 18px; margin: 0; accent-color: var(--
 .login-row { display: flex; gap: 8px; }
 .login-row input { flex: 1; }
 
-.student-bar {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-}
-.student-bar h2 { margin: 0; }
-#dzialy-wybor { margin: 20px 0 16px; }
-.tryby { margin-top: 20px; }
 .egzaminy[hidden] { display: none; }
 
-/* Góra strony: przełącznik egzaminu i zakładki w jednym rzędzie */
-.pasek-wyboru { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; margin: 20px 0 28px; }
-.pasek-wyboru .tabs { margin: 0; }
+/* Nawigacja korepetycji: wyraźne panele w ramce, a w nich grupy z etykietą (Egzamin, Materiały, Jak się uczysz, Klasa).
+   Grupy obok siebie oddziela pionowa linia; na wąskim ekranie stoją jedna pod drugą, oddzielone poziomą. */
+/* Panele nawigacji są płaskie (bez cienia) – osadzone w stronie, w odróżnieniu od kart z treścią. */
+.nawigacja {
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+.grupa { display: grid; align-content: start; gap: 6px; min-width: 0; }
+.grupa-etykieta { color: var(--muted); font-size: 13px; font-weight: 600; line-height: 1.2; }
+.grupa .tabs, .grupa .egzaminy.przelacznik { margin: 0; }
+/* grupa bez widocznego wyboru (np. uczeń ma jedną klasę) znika razem z etykietą */
+.grupa:has(> .tabs[hidden], > .przelacznik[hidden]) { display: none; }
+
+.pasek-wyboru { display: flex; margin: 20px 0 16px; padding: 12px 16px 14px; }
+.pasek-wyboru > .grupa + .grupa,
+.panel-ucznia-wybor > .grupa:not([hidden]) ~ .grupa { margin-left: 20px; padding-left: 20px; border-left: 1px solid var(--line); }
+
+/* Panel ucznia: powitanie i wylogowanie u góry, pod linią wybór trybu i klasy (albo działu) */
+.panel-ucznia { margin-bottom: 20px; }
+.student-bar { display: flex; align-items: center; gap: 12px; padding: 12px 16px; }
+.student-bar h2 { margin: 0; font-size: 1.3rem; }
+.student-bar .wyloguj { margin-left: auto; }
+.awatar {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--accent-contrast);
+  font-size: 17px;
+  font-weight: 800;
+}
+.panel-ucznia-wybor { display: flex; padding: 12px 16px 14px; border-top: 1px solid var(--line); }
+.panel-ucznia-wybor > #grupa-trybu { flex: none; }
+.panel-ucznia-wybor > #grupa-dzialu { flex: 1 1 auto; }
+#dzialy-wybor { flex-wrap: wrap; }
+/* nic do wyboru (jeden tryb, jedna klasa) – zostaje samo powitanie */
+.panel-ucznia-wybor:not(:has(.tabs:not([hidden]), .przelacznik:not([hidden]))) { display: none; }
+
+@media (max-width: 700px) {
+  .pasek-wyboru, .panel-ucznia-wybor { flex-direction: column; gap: 12px; }
+  .pasek-wyboru > .grupa + .grupa,
+  .panel-ucznia-wybor > .grupa:not([hidden]) ~ .grupa { margin-left: 0; padding-left: 0; padding-top: 12px; border-left: 0; border-top: 1px solid var(--line); }
+  #dzialy-wybor { flex-wrap: nowrap; }
+}
 
 /* Przełącznik (egzamin, tryb nauki): segmenty w jednej ramce; zaznaczony – biały z ramką akcentu */
 .egzaminy.przelacznik {
@@ -526,7 +649,7 @@ input[type="radio"] { width: 18px; height: 18px; margin: 0; accent-color: var(--
 .przelacznik .egzamin small { display: none; }
 .przelacznik .egzamin:hover { border-color: transparent; }
 .przelacznik .egzamin:hover strong { color: var(--accent-strong); }
-.przelacznik .egzamin[aria-pressed="true"] { border-color: var(--accent); background: var(--surface); box-shadow: var(--shadow-sm); }
+.przelacznik .egzamin[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-soft); }
 @media (max-width: 520px) {
   .przelacznik .egzamin { padding: 6px 10px; }
   .przelacznik .egzamin strong { font-size: 14px; }
@@ -537,8 +660,6 @@ input[type="radio"] { width: 18px; height: 18px; margin: 0; accent-color: var(--
 .karta-cke p { margin: 0; color: var(--text); }
 .karta-cke div { flex: 1 1 320px; }
 
-/* Pasek ucznia: powitanie, tryb nauki, wylogowanie */
-.student-bar .wyloguj { margin-left: auto; }
 .tabs { scrollbar-width: thin; }
 
 /* Telefon: mniej miejsca nad materiałami */
@@ -547,10 +668,11 @@ input[type="radio"] { width: 18px; height: 18px; margin: 0; accent-color: var(--
   .hero-compact { padding-bottom: 4px; }
   .hero h1 { margin-bottom: 8px; font-size: 1.9rem; }
   .hero .lead { font-size: 1rem; }
-  .pasek-wyboru { gap: 8px; margin: 14px 0 20px; }
-  .student-bar { gap: 8px 10px; }
-  .student-bar h2 { font-size: 1.25rem; }
-  #dzialy-wybor { margin: 14px 0 12px; }
+  .pasek-wyboru { margin: 14px 0 14px; padding: 10px 12px 12px; }
+  .student-bar { gap: 10px; padding: 10px 12px; }
+  .student-bar h2 { font-size: 1.15rem; }
+  .awatar { width: 32px; height: 32px; font-size: 15px; }
+  .panel-ucznia-wybor { padding: 10px 12px 12px; }
   .dzial-opis { display: none; }
 }
 
@@ -560,14 +682,27 @@ input[type="radio"] { width: 18px; height: 18px; margin: 0; accent-color: var(--
 .boczny { min-width: 0; }
 .spis[hidden] { display: none; }
 .boczny .spis { display: none; }
-.spis-tytul { margin: 0; padding: 0 12px 4px; color: var(--muted); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+/* Spis z boku – jak spis treści w podręczniku: tytuł na zabarwionym pasku, pozycje oddzielone liniami,
+   numer w osobnej kolumnie, bieżąca pozycja z paskiem akcentu i tłem. */
+.spis-tytul {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  margin: 0;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--line-strong);
+  background: var(--surface-2);
+  color: var(--ink);
+  font-size: 0.95rem;
+  font-weight: 700;
+}
 .spis-temat {
   display: block;
   width: 100%;
-  padding: 7px 12px;
+  padding: 9px 14px 9px 11px;
   border: 0;
   border-left: 3px solid transparent;
-  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  border-radius: 0;
   background: transparent;
   color: var(--text);
   font: inherit;
@@ -576,22 +711,27 @@ input[type="radio"] { width: 18px; height: 18px; margin: 0; accent-color: var(--
   text-align: left;
   cursor: pointer;
 }
-.spis-temat:hover { background: var(--surface); color: var(--ink); }
-.spis-temat[aria-current="true"] { border-left-color: var(--accent); background: var(--surface); color: var(--accent-strong); font-weight: 700; box-shadow: var(--shadow-sm); }
+.spis-temat + .spis-temat { border-top: 1px solid var(--line); }
+.spis-temat > span:only-child { display: grid; grid-template-columns: 1.9em 1fr; }
+.spis-temat:hover { background: var(--surface-2); color: var(--ink); }
+.spis-temat[aria-current="true"] { border-left-color: var(--accent); background: var(--accent-soft); color: var(--accent-strong); font-weight: 700; }
 .spis-nr { color: var(--muted); font-variant-numeric: tabular-nums; }
-.spis-temat[aria-current="true"] .spis-nr { color: var(--accent); }
+.spis-temat[aria-current="true"] .spis-nr { color: var(--accent-strong); }
 .spis-temat:disabled { color: var(--muted); opacity: 0.6; cursor: default; }
 .spis-temat:disabled:hover { background: transparent; }
-.spis-uwaga { margin: 10px 12px 0; color: var(--muted); font-size: 0.8rem; line-height: 1.4; }
+.spis-uwaga { margin: 0; padding: 10px 14px 12px; border-top: 1px solid var(--line-strong); color: var(--muted); font-size: 0.8rem; line-height: 1.4; }
 .rozdzial-opis { max-width: 80ch; margin: 6px 0 0; color: var(--muted); }
 .rozdzial .temat { margin-top: 8px; }
 .rozdzial .temat .temat-tytul { font-size: 1.25rem; }
-.spis-karty { margin-top: 8px; padding-top: 9px; border-top: 1px solid var(--line); border-radius: 0; }
-.spis-karty[aria-current="true"] { border-radius: 0 var(--radius-sm) var(--radius-sm) 0; }
+/* Powtórka i karty pracy – za grubszą linią, bo to nie są tematy, tylko coś z całego działu */
+.spis-temat:not(.spis-karty) + .spis-karty { border-top: 2px solid var(--line-strong); }
 
 /* Wybór tematu nad treścią (telefon) i nagłówek tematu */
 .wybor-tematu { display: grid; gap: 4px; max-width: 520px; margin: 0 0 16px; }
-.chips.wybor-tematu { display: flex; max-width: none; }
+/* Tematy rozdziału jako przyciski – w zabarwionej ramce z podpisem; powtórka i karty pracy za kreską */
+.tematy-pasek { max-width: none; gap: 8px; margin: 14px 0 22px; padding: 12px 14px; border: 1px solid var(--line-strong); border-radius: var(--radius); background: var(--surface-2); }
+.tematy-pasek .chips { margin: 0; }
+.chips-kreska { align-self: stretch; width: 1px; margin: 2px 4px; background: var(--line-strong); }
 .temat-select {
   width: 100%;
   padding: 9px 12px;
@@ -608,10 +748,29 @@ input[type="radio"] { width: 18px; height: 18px; margin: 0; accent-color: var(--
 .temat-glowa { margin: 4px 0 14px; }
 .temat-nr { margin: 0; color: var(--accent); font-size: 12.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
 .temat-tytul { margin: 2px 0 0; color: var(--ink); font-size: clamp(1.35rem, 3vw, 1.7rem); line-height: 1.25; }
-.tabs.zakladki { margin: 0 0 6px; }
+/* Zakładki tematu (Ściąga, Zadania, Generator): klasyczne karty z podkreśleniem, przyklejone do treści pod spodem –
+   inne niż przełączniki trybu w panelach nawigacji, bo przełączają widok jednego tematu. Linia pod nimi to cień
+   w tle paska, żeby podkreślenie wybranej karty mogło na niej leżeć. */
+.tabs.zakladki {
+  width: 100%;
+  gap: 2px;
+  margin: 0 0 6px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: inset 0 -2px 0 var(--line);
+}
+.zakladki .tab {
+  padding: 9px 18px 11px;
+  border: 0;
+  border-bottom: 3px solid transparent;
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+}
+.zakladki .tab:hover { background: var(--surface-2); }
+.zakladki .tab[aria-pressed="true"] { border-bottom-color: var(--accent); background: transparent; box-shadow: none; color: var(--accent-strong); }
 @media (max-width: 520px) {
-  .tabs.zakladki { width: 100%; }
-  .zakladki .tab { flex: 1 1 auto; padding: 8px 10px; font-size: 14px; }
+  .zakladki .tab { flex: 1 1 auto; padding: 8px 10px 10px; font-size: 14px; }
 }
 .tab-licznik {
   margin-left: 6px;
@@ -635,25 +794,24 @@ input[type="radio"] { width: 18px; height: 18px; margin: 0; accent-color: var(--
 @media (min-width: 1080px) {
   .uklad {
     display: grid;
-    grid-template-columns: 260px minmax(0, 1fr);
-    gap: 36px;
+    grid-template-columns: 270px minmax(0, 1fr);
+    gap: 32px;
     align-items: start;
-    margin-top: 20px;
   }
   .boczny {
     position: sticky;
     top: 80px;
     max-height: calc(100vh - 96px);
     overflow-y: auto;
-    padding: 12px 8px 12px 0;
-    border: 1px solid var(--line);
+    border: 1px solid var(--line-strong);
     border-radius: var(--radius);
-    background: var(--surface-2);
+    background: var(--surface);
+    scrollbar-width: thin;
   }
   .boczny .spis { display: block; }
   .boczny .spis[hidden] { display: none; }
   /* Bez listy tematów (np. widok „Do szkoły”) materiały zajmują całą szerokość */
-  .uklad:has(.spis[hidden]) { display: block; margin-top: 0; }
+  .uklad:has(.spis[hidden]) { display: block; }
   .uklad:has(.spis[hidden]) > .boczny { display: none; }
   .wybor-tematu.z-boku { display: none; }
   /* Działy egzaminu ósmoklasisty mają długie nazwy – na komputerze zawijają się do drugiego rzędu zamiast przewijać */
@@ -663,7 +821,6 @@ input[type="radio"] { width: 18px; height: 18px; margin: 0; accent-color: var(--
 
 /* Do szkoły: klasa i rozdziały klasy */
 .tematy-rozdzialu { display: grid; gap: 2px; margin: 2px 0 6px 24px; font-size: 0.92em; }
-.tabs-etykieta { align-self: center; padding: 0 6px 0 10px; color: var(--muted); font-size: 15px; font-weight: 600; }
 .chip:disabled { border-style: dashed; color: var(--muted); cursor: default; }
 .chip:disabled:hover { border-color: var(--field-line); }
 .egzamin:disabled { opacity: 0.55; cursor: default; }
@@ -1208,7 +1365,7 @@ body.z-szuflada .narzedzia-przyciski { right: var(--szuflada-szer, 0px); }
 
 /* kalkulator graficzny */
 .wyk { display: flex; flex-direction: column; height: 100%; }
-.wyk-obszar { position: relative; flex: 0 0 auto; height: min(58vh, 520px); min-height: 240px; border-bottom: 1px solid var(--line); background: #fff; overflow: hidden; }
+.wyk-obszar { position: relative; flex: 0 0 auto; height: min(58vh, 520px); min-height: 240px; border-bottom: 1px solid var(--line); background: var(--wyk-tlo); overflow: hidden; }
 .wyk-plotno { display: block; touch-action: none; cursor: crosshair; }
 .wyk-plotno.przesuwanie { cursor: grabbing; }
 .wyk-sterowanie { position: absolute; top: 8px; right: 8px; display: grid; gap: 4px; }
@@ -1217,7 +1374,7 @@ body.z-szuflada .narzedzia-przyciski { right: var(--szuflada-szer, 0px); }
   height: 32px;
   border: 1px solid var(--line-strong);
   border-radius: var(--radius-sm);
-  background: rgb(255 255 255 / 92%);
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
   color: var(--ink);
   font: inherit;
   font-size: 18px;
@@ -1234,7 +1391,7 @@ body.z-szuflada .narzedzia-przyciski { right: var(--szuflada-szer, 0px); }
   padding: 4px 8px;
   border-radius: 6px;
   background: var(--ink);
-  color: #fff;
+  color: var(--bg);
   font-size: 13px;
   font-weight: 600;
   white-space: nowrap;
@@ -1331,17 +1488,17 @@ body.z-szuflada .narzedzia-przyciski { right: var(--szuflada-szer, 0px); }
 .rys { margin: 6px 0 8px; display: grid; gap: 8px; }
 .rys svg { display: block; width: 100%; max-width: 340px; height: auto; margin: 0 auto; overflow: visible; }
 .rys svg.wyk-svg { overflow: hidden; }
-.rys svg text { font-family: "Plus Jakarta Sans", "Segoe UI", system-ui, sans-serif; font-size: 14px; fill: var(--ink); paint-order: stroke; stroke: #fff; stroke-width: 3px; stroke-linejoin: round; }   /* biała obwódka: podpis czytelny także na linii */
+.rys svg text { font-family: "Plus Jakarta Sans", "Segoe UI", system-ui, sans-serif; font-size: 14px; fill: var(--ink); paint-order: stroke; stroke: var(--halo); stroke-width: 3px; stroke-linejoin: round; }   /* biała obwódka: podpis czytelny także na linii */
 .rys .l { fill: none; stroke: var(--ink); stroke-width: 1.8; stroke-linejoin: round; stroke-linecap: round; }
 .rys .a { fill: none; stroke: var(--accent); stroke-width: 2.2; stroke-linejoin: round; stroke-linecap: round; }
 .rys .p { fill: none; stroke: var(--muted); stroke-width: 1.3; stroke-dasharray: 5 4; }
 .rys .w { fill: var(--accent-soft); stroke: none; }
-.rys .w2 { fill: #fff1e0; stroke: none; }
+.rys .w2 { fill: var(--uwaga-bg); stroke: none; }
 .rys .k { fill: var(--ink); stroke: none; }
 .rys text.t { font-size: 14px; font-style: italic; }
 .rys text.ta { font-size: 14px; font-style: italic; font-weight: 700; fill: var(--accent-strong); }
 .rys text.tm { font-size: 11px; fill: var(--muted); }
-.rys .siatka { fill: none; stroke: #e3e9f0; stroke-width: 1; }
+.rys .siatka { fill: none; stroke: var(--siatka); stroke-width: 1; }
 .rys .os { fill: none; stroke: var(--muted); stroke-width: 1.3; }
 .rys .wykres { fill: none; stroke-width: 2.4; stroke-linejoin: round; }
 

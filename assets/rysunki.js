@@ -22,7 +22,7 @@ export const ATRYBUTY = new Set([
   "dx", "dy", "transform", "fill", "stroke", "stroke-width", "stroke-dasharray", "stroke-linecap", "stroke-linejoin",
   "font-size", "font-style", "font-weight", "text-anchor", "dominant-baseline", "opacity", "fill-opacity", "role", "aria-label",
 ]);
-const KOLORY = ["var(--accent)", "#1f5fae", "#c2410c", "#6b3fc2"];
+const KOLORY = ["var(--accent)", "var(--wyk-k2)", "var(--wyk-k3)", "var(--wyk-k4)"];   // style.css – inne w ciemnym motywie
 
 function czyscSvg(tekst) {
   // bez xmlns przeglądarka nie rozpozna elementów SVG (narysowałaby sam tekst) – dopisujemy go, gdy go brakuje

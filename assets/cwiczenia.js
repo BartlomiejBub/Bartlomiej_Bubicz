@@ -23,6 +23,7 @@ const poleKodu = document.getElementById("kod");
 const blad = document.getElementById("login-error");
 const wyborTrybu = document.getElementById("tryb-wybor");
 const wyborDzialu = document.getElementById("dzialy-wybor");
+const etykietaDzialu = document.getElementById("dzialy-etykieta");
 const widok = document.getElementById("dzial");
 const spis = document.getElementById("spis");   // lista tematów w bocznej kolumnie (na komputerze)
 
@@ -82,6 +83,7 @@ function pokazUcznia(uczen) {
   logowanie.hidden = true;
   panel.hidden = false;
   panel.querySelector("[data-imie]").textContent = uczen.imie;
+  panel.querySelector("[data-inicjal]").textContent = uczen.imie.trim().charAt(0).toUpperCase();
 
   const widzi = (d, r) => ma(uczen, d.id, r) && maMaterialy(d, r);
   const wszystkie = DZIALY
@@ -142,6 +144,7 @@ function pokazTryb(uczen, dostepne, swojeKlasy, tryb) {
     return b;
   });
   wyborDzialu.setAttribute("aria-label", "Dział");
+  etykietaDzialu.textContent = "Dział";
   wyborDzialu.replaceChildren(...przyciski);
   wyborDzialu.hidden = dostepne.length < 2;
   const zapisany = dostepne.find((d) => d.id === przypomnij(kluczDzialu()));
@@ -227,8 +230,15 @@ function widokTematow(d, widzi, { klucz, spis: boczny = null }) {
     b.addEventListener("click", () => wybierz(x));
     return b;
   });
+  // powtórka i karty pracy (na końcu listy) oddzielone kreską od tematów
+  const pierwszaSpecjalna = pozycje.findIndex(specjalna);
+  const chipyZKreska = pierwszaSpecjalna > 0
+    ? [...chipy.slice(0, pierwszaSpecjalna), el("span", { class: "chips-kreska", "aria-hidden": "true" }), ...chipy.slice(pierwszaSpecjalna)]
+    : chipy;
   const wyborTematu = malo && !boczny
-    ? el("div", { class: "chips wybor-tematu", role: "group", "aria-label": "Temat" }, ...chipy)
+    ? el("div", { class: "wybor-tematu tematy-pasek" },
+      el("span", { class: "grupa-etykieta", "aria-hidden": "true" }, d.rozdzial ? "Tematy rozdziału" : "Tematy"),
+      el("div", { class: "chips", role: "group", "aria-label": "Temat" }, ...chipyZKreska))
     : el("label", { class: `wybor-tematu${boczny ? " z-boku" : ""}` }, el("span", { class: "field-label" }, "Temat"), lista);
 
   function wybierz(x, { przewin = false } = {}) {
@@ -298,7 +308,8 @@ function pokazKlasy(uczen, lista) {
     return b;
   });
   wyborDzialu.setAttribute("aria-label", "Klasa");
-  wyborDzialu.replaceChildren(el("span", { class: "tabs-etykieta", "aria-hidden": "true" }, "Klasa"), ...przyciski);
+  etykietaDzialu.textContent = "Klasa";
+  wyborDzialu.replaceChildren(...przyciski);
   wyborDzialu.hidden = lista.length < 2;
   const zapisana = lista.find((x) => x.k.id === przypomnij(`${KLUCZ_KLASY}.${biezacyEgzamin().id}`));
   pokazKlase(uczen, zapisana ?? lista[0], przyciski);

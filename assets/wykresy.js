@@ -8,6 +8,13 @@ import { parsuj, kompiluj, formatuj, BladWyrazenia } from "./wyrazenia.js";
 
 const KLUCZ = "wykresy-v1";
 const KOLORY = ["#0f766e", "#1f5fae", "#c2410c", "#6b3fc2", "#b8322a", "#157347", "#a16207", "#0e7490"];
+// W ciemnym motywie te same kolory w jaśniejszej wersji (na ciemnym tle ciemny morski prawie znika).
+const NA_CIEMNE = {
+  "#0f766e": "#2dd4bf", "#1f5fae": "#60a5fa", "#c2410c": "#fb923c", "#6b3fc2": "#a78bfa",
+  "#b8322a": "#f87171", "#157347": "#4ade80", "#a16207": "#facc15", "#0e7490": "#22d3ee",
+};
+const ciemny = () => document.documentElement.dataset.motyw === "ciemny";
+const naEkran = (kolor) => (ciemny() ? NA_CIEMNE[kolor] ?? kolor : kolor);
 const PRZYKLADY = ["y = 2x − 3", "y = x² − 2x − 3", "y = a(x − p)² + q", "f(x) = |x − 1|", "y = 1/x", "(2; 3)", "x = −1"];
 const ZAREZERWOWANE = new Set(["x", "y", "e"]);
 const SKALA_START = 30;
@@ -276,7 +283,7 @@ export function zbudujWykresy(kontener) {
       if (!v) { v = widokWiersza(w); widokiWierszy.set(w.id, v); }
       if (v.pole.value !== w.tekst) v.pole.value = w.tekst;
       const r = wyniki.get(w.id);
-      v.wiersz.style.setProperty("--kolor", w.kolor);
+      v.wiersz.style.setProperty("--kolor", naEkran(w.kolor));
       v.kropka.setAttribute("aria-pressed", String(!w.ukryty));
       v.wiersz.classList.toggle("ukryty", w.ukryty);
       v.wiersz.classList.toggle("z-bledem", r?.rodzaj === "blad");
@@ -321,6 +328,17 @@ export function zbudujWykresy(kontener) {
 
   // --- Rysowanie
   const ctx = plotno.getContext("2d");
+  // Kolory płótna z CSS (--wyk-…), żeby pasowały do motywu; odczytujemy je raz i po każdej zmianie motywu.
+  let P = null;
+  function paleta() {
+    const s = getComputedStyle(obszar);
+    const v = (nazwa, zapas) => s.getPropertyValue(nazwa).trim() || zapas;
+    return {
+      tlo: v("--wyk-tlo", "#ffffff"), drobna: v("--wyk-siatka-drobna", "#eef2f6"), siatka: v("--wyk-siatka", "#d7dee7"),
+      os: v("--wyk-os", "#5b6b7e"), podpis: v("--wyk-podpis", "#4b5a6c"), tekst: v("--wyk-tekst", "#2a3646"),
+      podpisTlo: v("--wyk-podpis-tlo", "rgba(255,255,255,0.85)"), punkt: v("--wyk-punkt", "#7b8a9c"),
+    };
+  }
   let W = 0, H = 0, dpr = 1;
   const px = (x) => W / 2 + (x - stan.widok.cx) * stan.widok.skala;
   const py = (y) => H / 2 - (y - stan.widok.cy) * stan.widok.skala;
@@ -352,10 +370,10 @@ export function zbudujWykresy(kontener) {
       for (let y = Math.ceil(y0 / k) * k; y <= y1; y += k) { const p = Math.round(py(y)) + 0.5; ctx.moveTo(0, p); ctx.lineTo(W, p); }
       ctx.stroke();
     };
-    if (drobny * stan.widok.skala >= 8) linie(drobny, "#eef2f6");
-    linie(krok, "#d7dee7");
+    if (drobny * stan.widok.skala >= 8) linie(drobny, P.drobna);
+    linie(krok, P.siatka);
     // osie
-    ctx.strokeStyle = "#5b6b7e";
+    ctx.strokeStyle = P.os;
     ctx.lineWidth = 1.5;
     ctx.beginPath();
     const ox = px(0), oy = py(0);
@@ -363,7 +381,7 @@ export function zbudujWykresy(kontener) {
     if (oy >= 0 && oy <= H) { ctx.moveTo(0, oy); ctx.lineTo(W, oy); }
     ctx.stroke();
     // podpisy
-    ctx.fillStyle = "#4b5a6c";
+    ctx.fillStyle = P.podpis;
     ctx.font = "12px 'Plus Jakarta Sans', system-ui, sans-serif";
     const etX = Math.min(Math.max(oy + 4, 2), H - 16);
     ctx.textAlign = "center";
@@ -384,7 +402,7 @@ export function zbudujWykresy(kontener) {
       podpis(formatuj(Math.round(y / krok) * krok, 6), naLewo || ox < 0 ? etY : etY, p, naLewo ? "right" : "left");
     }
     if (ox >= 0 && ox <= W && oy >= 0 && oy <= H) podpis("0", ox - 6, oy + 4, "right", "top");
-    ctx.fillStyle = "#2a3646";
+    ctx.fillStyle = P.tekst;
     ctx.font = "italic 13px 'Plus Jakarta Sans', system-ui, sans-serif";
     if (oy >= 0 && oy <= H) { ctx.textAlign = "right"; ctx.textBaseline = "bottom"; ctx.fillText("x", W - 6, oy - 4); }
     if (ox >= 0 && ox <= W) { ctx.textAlign = "left"; ctx.textBaseline = "top"; ctx.fillText("y", ox + 6, 4); }
@@ -397,7 +415,7 @@ export function zbudujWykresy(kontener) {
     const lx = wyrownanie === "center" ? x - w / 2 : wyrownanie === "right" ? x - w + 2 : x - 2;
     const ly = ctx.textBaseline === "top" ? y - 1 : ctx.textBaseline === "middle" ? y - 8 : y - 15;
     ctx.save();
-    ctx.fillStyle = "rgba(255,255,255,0.85)";
+    ctx.fillStyle = P.podpisTlo;
     ctx.fillRect(lx, ly, w, 16);
     ctx.restore();
     ctx.fillText(tekst, x, y);
@@ -492,42 +510,43 @@ export function zbudujWykresy(kontener) {
     }
     for (let i = 0; i < funkcje.length; i++) for (let j = i + 1; j < funkcje.length; j++) {
       const f = funkcje[i].f, g = funkcje[j].f;
-      zera((x) => f(x) - g(x), (x) => dodajPunkt(x, f(x), "punkt przecięcia", "#4b5a6c"));
+      zera((x) => f(x) - g(x), (x) => dodajPunkt(x, f(x), "punkt przecięcia", P.podpis));
     }
     return wynik;
   }
 
   function rysuj() {
     if (!W || !H) return;
+    P ??= paleta();
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     ctx.clearRect(0, 0, W, H);
-    ctx.fillStyle = "#ffffff";
+    ctx.fillStyle = P.tlo;
     ctx.fillRect(0, 0, W, H);
     siatka();
     const obiekty = widoczne();
     const funkcje = [];
     for (const { w, r } of obiekty) {
-      if (r.rodzaj === "funkcja") { wykresFunkcji(r.f, w.kolor); funkcje.push({ f: r.f, kolor: w.kolor }); }
+      if (r.rodzaj === "funkcja") { wykresFunkcji(r.f, naEkran(w.kolor)); funkcje.push({ f: r.f, kolor: naEkran(w.kolor) }); }
       if (r.rodzaj === "pionowa" && Number.isFinite(r.x)) {
-        ctx.strokeStyle = w.kolor; ctx.lineWidth = 2.25;
+        ctx.strokeStyle = naEkran(w.kolor); ctx.lineWidth = 2.25;
         ctx.beginPath(); ctx.moveTo(px(r.x), 0); ctx.lineTo(px(r.x), H); ctx.stroke();
       }
     }
     punktySpecjalne = znajdzPunkty(funkcje);
     for (const p of punktySpecjalne) {
-      ctx.fillStyle = "#ffffff"; ctx.strokeStyle = "#7b8a9c"; ctx.lineWidth = 1.5;
+      ctx.fillStyle = P.tlo; ctx.strokeStyle = P.punkt; ctx.lineWidth = 1.5;
       ctx.beginPath(); ctx.arc(px(p.x), py(p.y), 3.5, 0, 2 * Math.PI); ctx.fill(); ctx.stroke();
     }
     for (const { w, r } of obiekty) {
       if (r.rodzaj !== "punkt" || !Number.isFinite(r.x) || !Number.isFinite(r.y)) continue;
-      ctx.fillStyle = w.kolor;
+      ctx.fillStyle = naEkran(w.kolor);
       ctx.beginPath(); ctx.arc(px(r.x), py(r.y), 5, 0, 2 * Math.PI); ctx.fill();
-      ctx.fillStyle = "#2a3646";
+      ctx.fillStyle = P.tekst;
       ctx.font = "13px 'Plus Jakarta Sans', system-ui, sans-serif";
       podpis(`(${wsp(r.x)}; ${wsp(r.y)})`, px(r.x) + 8, py(r.y) - 8, "left", "bottom");
     }
     if (wskazany) {
-      ctx.fillStyle = wskazany.kolor; ctx.strokeStyle = "#ffffff"; ctx.lineWidth = 2;
+      ctx.fillStyle = wskazany.kolor; ctx.strokeStyle = P.tlo; ctx.lineWidth = 2;
       ctx.beginPath(); ctx.arc(px(wskazany.x), py(wskazany.y), 5.5, 0, 2 * Math.PI); ctx.fill(); ctx.stroke();
     }
   }
@@ -544,13 +563,13 @@ export function zbudujWykresy(kontener) {
       for (const { w, r } of widoczne()) {
         if (r.rodzaj === "punkt") {
           const d = Math.hypot(px(r.x) - mx, py(r.y) - my);
-          if (d < odl) { odl = d; najlepszy = { x: r.x, y: r.y, opis: "punkt", kolor: w.kolor }; }
+          if (d < odl) { odl = d; najlepszy = { x: r.x, y: r.y, opis: "punkt", kolor: naEkran(w.kolor) }; }
         }
         if (r.rodzaj !== "funkcja") continue;
         const y = r.f(x);
         if (!Number.isFinite(y)) continue;
         const d = Math.abs(py(y) - my);
-        if (d < odl) { odl = d; najlepszy = { x, y, opis: null, kolor: w.kolor }; }
+        if (d < odl) { odl = d; najlepszy = { x, y, opis: null, kolor: naEkran(w.kolor) }; }
       }
     }
     wskazany = najlepszy;
@@ -654,6 +673,7 @@ export function zbudujWykresy(kontener) {
   }
 
   new ResizeObserver(() => { wymiary(); rysuj(); }).observe(obszar);
+  window.addEventListener("motyw:zmiana", () => { P = null; przelicz(); });
   wymiary();
   przelicz();
   return { pokaz: pokazOpis, fokus: () => { const pusty = stan.wiersze.find((w) => !w.tekst.trim()) ?? stan.wiersze[0]; if (!matchMedia("(pointer: coarse)").matches) fokus(pusty); } };
