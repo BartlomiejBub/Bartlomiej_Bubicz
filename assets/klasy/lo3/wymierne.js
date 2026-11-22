@@ -685,6 +685,154 @@ function genMonotonicznosc(r) {
   };
 }
 
+/** Proporcja a/(x + u) = (x + v)/(kx - w): po pomnożeniu na krzyż powstaje trójmian kwadratowy (jak w przykładzie z karty). */
+function genProporcjaTrojmian(r) {
+  const { a, u, v, k, w, B, C, delta, s, r1, r2 } = szukaj(() => {
+    const aa = r.int(1, 6);
+    const uu = r.intBez(-6, 6, 0);
+    const vv = r.intBez(-6, 6, 0);
+    const kk = r.int(1, 3);
+    const ww = r.intBez(-6, 6, 0);
+    if (ww === -uu * kk || ww === -vv * kk) return null;   // wtedy mianowniki byłyby proporcjonalne
+    const BB = uu + vv - aa * kk;
+    const CC = uu * vv + aa * ww;
+    const dd = BB * BB - 4 * CC;
+    if (dd <= 0) return null;
+    const ss = Math.round(Math.sqrt(dd));
+    if (ss * ss !== dd || (-BB + ss) % 2 !== 0) return null;
+    const x1 = (-BB - ss) / 2;
+    const x2 = (-BB + ss) / 2;
+    if (Math.abs(x1) > 15 || Math.abs(x2) > 15) return null;
+    return { a: aa, u: uu, v: vv, k: kk, w: ww, B: BB, C: CC, delta: dd, s: ss, r1: x1, r2: x2 };
+  });
+  const mian2 = wielomianTex([k, -w]);
+  const zero2 = new Q(w, k);
+  const sol = [r1, r2].filter((x) => !zero2.eq(x) && x !== -u);
+  return {
+    tresc: `Rozwiąż równanie $${fr(a, xp(u))}=${fr(xp(v), mian2)}$. Podaj wszystkie rozwiązania.`,
+    pola: [{ id: "x", typ: "zbior", ile: sol.length, etykieta: "Rozwiązania" }],
+    odpowiedz: { x: sol.map(odp) },
+    wynik: wynikX(sol),
+    rozwiazanie: [
+      `Dziedzina: ${zalozenia([-u, zero2])}.`,
+      `Mnożymy na krzyż: $${mn(a, mian2)}=(${xp(v)})(${xp(u)})$.`,
+      `Opuszczamy nawiasy: $${wielomianTex([a * k, -a * w])}=${wielomianTex([1, u + v, u * v])}$.`,
+      `Porządkujemy: $${wielomianTex([1, B, C])}=0$, $\\Delta=${delta}$, $\\sqrt{\\Delta}=${s}$, więc $x=${r1}$ lub $x=${r2}$.`,
+      sol.length === 2 ? "Obie liczby należą do dziedziny, więc są rozwiązaniami." : "Jedna z liczb nie należy do dziedziny – odrzucamy ją.",
+    ],
+  };
+}
+
+/** Dwóch pracowników: drugi potrzebuje d dni dłużej niż pierwszy, razem pracują t dni – oblicz czas pierwszego. */
+function genPracaRownanie(r) {
+  const { x0, d, t } = szukaj(() => {
+    const x = r.int(2, 60);
+    const dd = r.int(2, 24);
+    const l = x * (x + dd);
+    const m = 2 * x + dd;
+    if (l % m !== 0) return null;
+    const tt = l / m;
+    return tt >= 2 && tt <= 40 ? { x0: x, d: dd, t: tt } : null;
+  });
+  const B = d - 2 * t;
+  const delta = d * d + 4 * t * t;
+  const drugi = 2 * t - d - x0;
+  const kontekst = r.pick([
+    { jedn: (n) => `${n} dni`, w: "dni", tresc: `Pierwszy pracownik wykonałby pewną pracę sam w pewnej liczbie dni, a drugi – o ${d} dni dłużej. Pracując razem, wykonują tę pracę w ${t} dni. Oblicz, w ile dni wykonałby tę pracę sam pierwszy pracownik.`, kto: "pierwszego pracownika", drugi: "drugiego pracownika" },
+    { jedn: godz, w: "godzin", tresc: `Pierwsza rura napełnia basen sama w pewnej liczbie godzin, a druga – o ${godz(d)} dłużej. Gdy działają obie rury jednocześnie, basen napełnia się w ${godz(t)}. Oblicz, w ile godzin napełnia basen sama pierwsza rura.`, kto: "pierwszej rury", drugi: "drugiej rury" },
+    { jedn: godz, w: "godzin", tresc: `Pierwszy malarz pomalowałby halę sam w pewnej liczbie godzin, a drugi – o ${godz(d)} dłużej. Pracując razem, malują halę w ${godz(t)}. Oblicz, w ile godzin pomalowałby halę sam pierwszy malarz.`, kto: "pierwszego malarza", drugi: "drugiego malarza" },
+  ]);
+  return {
+    tresc: kontekst.tresc,
+    pola: [{ id: "x", typ: "liczba", etykieta: `Liczba ${kontekst.w}` }],
+    odpowiedz: { x: odp(x0) },
+    wynik: `$${x0}$ ${kontekst.jedn(x0).replace(/^\d+ /, "")}`,
+    rozwiazanie: [
+      `Niech $x$ będzie czasem pracy ${kontekst.kto} (liczba ${kontekst.w}), $x>0$. Czas pracy ${kontekst.drugi} to $x+${d}$.`,
+      `W jednostce czasu wykonują $\\frac{1}{x}$ i $\\frac{1}{x+${d}}$ pracy, a razem $\\frac{1}{${t}}$: $\\frac{1}{x}+\\frac{1}{x+${d}}=\\frac{1}{${t}}$.`,
+      `Mnożymy przez $${t}x(x+${d})$: $${t}(x+${d})+${t}x=x(x+${d})$, czyli $${wielomianTex([1, B, -t * d])}=0$.`,
+      `$\\Delta=${delta}$, $\\sqrt{\\Delta}=${2 * x0 + d}$, więc $x=${x0}$ lub $x=${drugi}$.`,
+      `Czas jest dodatni, więc odrzucamy $${drugi}$. Odpowiedź: $${x0}$ ${kontekst.jedn(x0).replace(/^\d+ /, "")}.`,
+    ],
+  };
+}
+
+// --- Dodatkowe generatory funkcji homograficznej
+
+/** Proporcjonalność odwrotna: z jednej pary (x, y) wyznacz a i oblicz y dla innego x. */
+function genOdwrotna(r) {
+  const a = r.pick([12, 18, 20, 24, 30, 36, 40, 48, 60]);
+  const dz = [];
+  for (let d = 1; d <= a; d++) if (a % d === 0) dz.push(d);
+  const x1 = r.pick(dz);
+  const x2d = szukaj(() => { const d = r.pick(dz); return d !== x1 ? d : null; });
+  const x2 = r.chance(0.3) ? -x2d : x2d;
+  const y1 = a / x1;
+  const y2 = a / x2;
+  return {
+    tresc: `Wielkości $x$ i $y$ są odwrotnie proporcjonalne. Dla $x=${x1}$ jest $y=${y1}$. Ile wynosi $y$ dla $x=${x2}$?`,
+    pola: [{ id: "y", typ: "liczba", etykieta: `$y$ dla $x=${x2}$` }],
+    odpowiedz: { y: odp(y2) },
+    wynik: `$y=${y2}$`,
+    rozwiazanie: [
+      `Wielkości są odwrotnie proporcjonalne, więc $y=\\frac{a}{x}$, czyli $a=x\\cdot y$.`,
+      `Z pierwszej pary: $a=${x1}\\cdot ${y1}=${a}$.`,
+      `Dla $x=${x2}$: $y=\\frac{${a}}{${x2 < 0 ? `(${x2})` : x2}}=${y2}$.`,
+    ],
+  };
+}
+
+/** Sprowadzenie (kx + b)/(x - p) do postaci kanonicznej a/(x - p) + q. */
+function genKanoniczna(r) {
+  const { k, p, b, a } = szukaj(() => {
+    const kk = r.intBez(-5, 5, 0);
+    const pp = r.intBez(-6, 6, 0);
+    const aa = r.intBez(-9, 9, 0);
+    const bb = aa - kk * pp;
+    return Math.abs(bb) <= 20 && bb !== 0 ? { k: kk, p: pp, b: bb, a: aa } : null;
+  });
+  const licz = wielomianTex([k, b]);
+  return {
+    tresc: `Funkcja $f$ jest określona wzorem $f(x)=${fr(licz, lin(p))}$. Zapisz ją w postaci $f(x)=\\frac{a}{x-p}+q$ i podaj liczby $a$, $p$, $q$.`,
+    pola: [
+      { id: "a", typ: "liczba", etykieta: "$a =$" },
+      { id: "p", typ: "liczba", etykieta: "$p =$" },
+      { id: "q", typ: "liczba", etykieta: "$q =$" },
+    ],
+    odpowiedz: { a: odp(a), p: odp(p), q: odp(k) },
+    wynik: `$a=${a}$, $p=${p}$, $q=${k}$`,
+    rozwiazanie: [
+      `Licznik zapisujemy przez mianownik: $${licz}=${mulLin(k, p)} ${plusMinus(a)}$.`,
+      `Dzielimy przez $${lin(p)}$: $f(x)=${fHom(a, p, k)}$.`,
+      `Stąd $a=${a}$, $p=${p}$, $q=${k}$ (asymptoty: $x=${p}$ i $y=${k}$).`,
+    ],
+  };
+}
+
+/** Wzór funkcji z asymptot i jednego punktu: a = (x_A − p)(y_A − q). */
+function genWzorZAsymptot(r) {
+  const { p, qq, d, e, a } = szukaj(() => {
+    const pp = r.int(-5, 5);
+    const q2 = r.int(-5, 5);
+    const dd = r.intBez(-4, 4, 0);
+    const ee = r.intBez(-4, 4, 0);
+    return { p: pp, qq: q2, d: dd, e: ee, a: dd * ee };
+  });
+  const xA = p + d;
+  const yA = qq + e;
+  return {
+    tresc: `Wykres funkcji $f(x)=\\frac{a}{x-p}+q$ ma asymptoty $x=${p}$ i $y=${qq}$ oraz przechodzi przez punkt $A=(${xA},${yA})$. Wyznacz $a$.`,
+    pola: [{ id: "a", typ: "liczba", etykieta: "$a =$" }],
+    odpowiedz: { a: odp(a) },
+    wynik: `$a=${a}$, $f(x)=${fHom(a, p, qq)}$`,
+    rozwiazanie: [
+      `Asymptota pionowa $x=p$ daje $p=${p}$, a pozioma $y=q$ daje $q=${qq}$. Wzór: $f(x)=\\frac{a}{${lin(p)}}${qq === 0 ? "" : ` ${plusMinus(qq)}`}$.`,
+      `Punkt $A$ leży na wykresie, więc $f(${xA})=${yA}$: $${aNad(d)}${qq === 0 ? "" : ` ${plusMinus(qq)}`}=${yA}$.`,
+      `Stąd $${aNad(d)}=${e}$${d === 1 ? "" : `, czyli $a=${a}$`}.`,
+    ],
+  };
+}
+
 // --- Tematy
 
 export default {
@@ -701,6 +849,7 @@ export default {
           litery: "$W(x)$ – licznik, $V(x)$ – mianownik. Dziedzina to wszystkie liczby rzeczywiste, dla których $V(x)\\neq 0$.",
           przyklad: "Dla $\\frac{x+1}{x-3}$ mianownik jest zerem, gdy $x=3$. Dziedzina: $x\\in\\mathbb{R}\\setminus\\{3\\}$.",
           uwaga: "Licznik może być zerem, mianownik nie. Dziedzinę wyznaczamy z ułamka danego na początku, zanim cokolwiek skrócimy.",
+          rysunek: `<svg viewBox="0 0 300 60"><line class="a" x1="14" y1="30" x2="162" y2="30"/><line class="a" x1="170" y1="30" x2="288" y2="30"/><polyline class="a" points="280,25 288,30 280,35"/><circle class="l" cx="166" cy="30" r="4"/><line class="l" x1="30" y1="26" x2="30" y2="34"/><line class="l" x1="64" y1="26" x2="64" y2="34"/><line class="l" x1="98" y1="26" x2="98" y2="34"/><line class="l" x1="132" y1="26" x2="132" y2="34"/><line class="l" x1="200" y1="26" x2="200" y2="34"/><line class="l" x1="234" y1="26" x2="234" y2="34"/><line class="l" x1="268" y1="26" x2="268" y2="34"/><text class="tm" x="30" y="50" text-anchor="middle">−1</text><text class="tm" x="64" y="50" text-anchor="middle">0</text><text class="tm" x="98" y="50" text-anchor="middle">1</text><text class="tm" x="132" y="50" text-anchor="middle">2</text><text class="tm" x="166" y="50" text-anchor="middle">3</text><text class="tm" x="200" y="50" text-anchor="middle">4</text><text class="tm" x="234" y="50" text-anchor="middle">5</text><text class="tm" x="268" y="50" text-anchor="middle">6</text><text class="ta" x="166" y="15" text-anchor="middle">x ≠ 3</text><text class="t" x="296" y="50" text-anchor="end">x</text></svg>`,
         },
         {
           nazwa: "Skracanie ułamka",
@@ -723,6 +872,14 @@ export default {
           slownie: "Aby skracać, rozkładamy wyrażenia na czynniki: wyłączamy wspólny czynnik albo używamy wzorów skróconego mnożenia.",
           tex: "a^2-b^2=(a-b)(a+b)\\qquad (a\\pm b)^2=a^2\\pm 2ab+b^2",
           przyklad: "$\\frac{x^2+6x+9}{x^2-9}=\\frac{(x+3)^2}{(x-3)(x+3)}=\\frac{x+3}{x-3}$ dla $x\\neq 3$ i $x\\neq -3$. Wspólny czynnik: $2x+6=2(x+3)$.",
+        },
+        {
+          nazwa: "Wyrażenia przeciwne: a − b i b − a",
+          slownie: "Wyrażenia $a-b$ i $b-a$ różnią się tylko znakiem. Gdy w ułamku stoi $3-x$ zamiast $x-3$, wyłączamy minus przed nawias i dopiero skracamy.",
+          tex: "b-a=-(a-b)\\qquad \\frac{b-a}{a-b}=-1",
+          litery: "$a$, $b$ – liczby lub wyrażenia, $a\\neq b$.",
+          przyklad: "$\\frac{6-2x}{x-3}=\\frac{-2(x-3)}{x-3}=-2$ dla $x\\neq 3$.",
+          uwaga: "Błąd: $\\frac{3-x}{x-3}=1$. To są wyrażenia przeciwne, więc wynik to $-1$.",
         },
       ],
       jak: [
@@ -771,10 +928,16 @@ export default {
           opcje: ["$-5$", "$5$", "$-2$", "$2$"],
           poprawna: 1,
         },
+        {
+          nr: "7",
+          tresc: "Dla $x\\neq 3$ wyrażenie $\\frac{6-2x}{x-3}$ jest równe: **Wybierz właściwą odpowiedź.**",
+          opcje: ["$-2$", "$2$", "$-3$", "$6$"],
+          poprawna: 0,
+        },
       ],
       otwarte: [
         {
-          nr: "7",
+          nr: "8",
           punkty: 2,
           tresc: "Wyznacz dziedzinę i skróć ułamek $\\frac{2x^2-8}{x^2-4x+4}$. **Zapisz obliczenia.**",
           rozwiazanie:
@@ -784,7 +947,7 @@ export default {
             "Odpowiedź: dziedzina to $x\\neq 2$, a po skróceniu ułamek jest równy $\\frac{2(x+2)}{x-2}$.",
         },
         {
-          nr: "8",
+          nr: "9",
           punkty: 2,
           tresc: "Skróć ułamek $\\frac{x^2-6x+9}{x^2-9}$ i oblicz jego wartość dla $x=5$. **Zapisz obliczenia.**",
           rozwiazanie:
@@ -836,25 +999,25 @@ export default {
       ],
       zadania: [
         {
-          nr: "9",
+          nr: "10",
           tresc: "Dla $x\\neq 2$ i $x\\neq -4$ iloczyn $\\frac{x+1}{x-2}\\cdot\\frac{x-2}{x+4}$ jest równy: **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\frac{x+1}{x+4}$", "$\\frac{x-2}{x+4}$", "$\\frac{x+1}{x-2}$", "$\\frac{1}{x+4}$"],
           poprawna: 0,
         },
         {
-          nr: "10",
+          nr: "11",
           tresc: "Dla $x\\neq 0$, $x\\neq -3$ i $x\\neq -5$ iloraz $\\frac{x}{x+3}:\\frac{x}{x+5}$ jest równy: **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\frac{x+3}{x+5}$", "$1$", "$\\frac{x+5}{x+3}$", "$\\frac{x^2}{(x+3)(x+5)}$"],
           poprawna: 2,
         },
         {
-          nr: "11",
+          nr: "12",
           tresc: "Dla jakich liczb $x$ wyrażenie $\\frac{x+1}{x-4}:\\frac{x-2}{x+3}$ jest określone? **Wybierz właściwą odpowiedź.**",
           opcje: [`Dla $x\\in\\mathbb{R}\\setminus\\{-3,\\,4\\}$`, `Dla $x\\in\\mathbb{R}\\setminus\\{-3,\\,2,\\,4\\}$`, `Dla $x\\in\\mathbb{R}\\setminus\\{-1,\\,2\\}$`, `Dla $x\\in\\mathbb{R}\\setminus\\{-3,\\,-1,\\,2,\\,4\\}$`],
           poprawna: 1,
         },
         {
-          nr: "12",
+          nr: "13",
           tresc: "**Dla każdego zdania wybierz P, jeśli jest prawdziwe, albo F, jeśli jest fałszywe.**",
           czesci: [
             { tekst: "Dla $x\\neq 0$ prawdziwa jest równość $\\frac{2}{x}\\cdot\\frac{x^2}{6}=\\frac{x}{3}$.", litery: "PF", poprawna: 0 },
@@ -863,7 +1026,7 @@ export default {
           ],
         },
         {
-          nr: "13",
+          nr: "14",
           tresc: "Oblicz wartość wyrażenia $\\frac{x^2-9}{x}\\cdot\\frac{2x}{x+3}$ dla $x=5$. **Wybierz właściwą odpowiedź.**",
           opcje: ["$8$", "$2$", "$4$", "$16$"],
           poprawna: 2,
@@ -871,7 +1034,7 @@ export default {
       ],
       otwarte: [
         {
-          nr: "14",
+          nr: "15",
           punkty: 2,
           tresc: "Zapisz założenia i uprość wyrażenie $\\frac{x^2-4}{x+5}\\cdot\\frac{x+5}{x^2+4x+4}$. **Zapisz obliczenia.**",
           rozwiazanie:
@@ -881,7 +1044,7 @@ export default {
             "Odpowiedź: $\\frac{x-2}{x+2}$ dla $x\\neq -5$ i $x\\neq -2$.",
         },
         {
-          nr: "15",
+          nr: "16",
           punkty: 3,
           tresc: "Zapisz założenia i uprość wyrażenie $\\frac{x^2-1}{x+4}:\\frac{x-1}{3x+12}$. **Zapisz obliczenia.**",
           rozwiazanie:
@@ -929,6 +1092,23 @@ export default {
           przyklad: "$\\frac{x+2}{x-3}=\\frac{5}{x-3}$. Dziedzina: $x\\neq 3$. Z równości liczników $x+2=5$, czyli $x=3$ – ale $3$ nie należy do dziedziny. Równanie nie ma rozwiązań.",
           uwaga: "Nie wolno zostawić „$x=3$” jako odpowiedzi tylko dlatego, że wyszło z rachunków.",
         },
+        {
+          nazwa: "Odrzucanie rozwiązań spoza dziedziny",
+          slownie: "Po przekształceniu mogą wyjść liczby, dla których mianownik byłby zerem. Takie liczby odrzucamy. Zostają tylko te, które należą do dziedziny.",
+          tex: "x\\notin D\\ \\Rightarrow\\ \\text{odrzucamy}",
+          litery: "$D$ – dziedzina równania (liczby spełniające założenia).",
+          przyklad: "$\\frac{x^2}{x-2}=\\frac{4}{x-2}$. Dziedzina: $x\\neq 2$. Mnożymy przez $x-2$: $x^2=4$, czyli $x=-2$ lub $x=2$. Liczbę $2$ odrzucamy, więc rozwiązaniem jest tylko $x=-2$.",
+          uwaga: "Nie wystarczy sprawdzić, że liczba pasuje do równania po przekształceniu. Porównaj ją z założeniami zapisanymi na początku.",
+          rysunek: `<svg viewBox="0 0 300 60"><line class="a" x1="14" y1="30" x2="206" y2="30"/><line class="a" x1="214" y1="30" x2="288" y2="30"/><polyline class="a" points="280,25 288,30 280,35"/><circle class="k" cx="90" cy="30" r="4"/><circle class="l" cx="210" cy="30" r="4"/><line class="l" x1="30" y1="26" x2="30" y2="34"/><line class="l" x1="60" y1="26" x2="60" y2="34"/><line class="l" x1="120" y1="26" x2="120" y2="34"/><line class="l" x1="150" y1="26" x2="150" y2="34"/><line class="l" x1="180" y1="26" x2="180" y2="34"/><line class="l" x1="240" y1="26" x2="240" y2="34"/><line class="l" x1="270" y1="26" x2="270" y2="34"/><text class="tm" x="30" y="50" text-anchor="middle">−4</text><text class="tm" x="60" y="50" text-anchor="middle">−3</text><text class="tm" x="90" y="50" text-anchor="middle">−2</text><text class="tm" x="120" y="50" text-anchor="middle">−1</text><text class="tm" x="150" y="50" text-anchor="middle">0</text><text class="tm" x="180" y="50" text-anchor="middle">1</text><text class="tm" x="210" y="50" text-anchor="middle">2</text><text class="tm" x="240" y="50" text-anchor="middle">3</text><text class="tm" x="270" y="50" text-anchor="middle">4</text><text class="ta" x="90" y="15" text-anchor="middle">x = −2</text><text class="tm" x="210" y="15" text-anchor="middle">odpada</text><text class="t" x="296" y="50" text-anchor="end">x</text></svg>`,
+        },
+        {
+          nazwa: "Proporcja, z której wychodzi trójmian",
+          slownie: "Gdy po obu stronach stoi ułamek z niewiadomą w liczniku i w mianowniku, po pomnożeniu na krzyż zwykle powstaje równanie kwadratowe. Rozwiązujemy je wzorem z deltą i każdy pierwiastek porównujemy z założeniami.",
+          tex: "\\frac{a}{b}=\\frac{c}{d}\\ \\Rightarrow\\ a\\cdot d=b\\cdot c",
+          litery: "$a$, $c$ – liczniki, $b$, $d$ – mianowniki (wyrażenia z $x$, różne od zera).",
+          przyklad: "$\\frac{5}{x+1}=\\frac{x+3}{2x-1}$. Założenia: $x\\neq -1$ i $x\\neq \\frac{1}{2}$. Na krzyż: $5(2x-1)=(x+3)(x+1)$, czyli $10x-5=x^2+4x+3$, więc $x^2-6x+8=0$. $\\Delta=4$, stąd $x=2$ lub $x=4$. Obie liczby spełniają założenia.",
+          uwaga: "Po wymnożeniu przenieś wszystko na jedną stronę, zanim policzysz deltę. Każdy pierwiastek sprawdź z założeniami.",
+        },
       ],
       jak: [
         "Zapisz dziedzinę: każdy mianownik różny od zera.",
@@ -939,19 +1119,19 @@ export default {
       ],
       zadania: [
         {
-          nr: "16",
+          nr: "17",
           tresc: "Rozwiąż równanie $\\frac{x-1}{x+3}=2$. **Wybierz właściwą odpowiedź.**",
           opcje: ["$x=-4$", "$x=-7$", "$x=5$", "$x=7$"],
           poprawna: 1,
         },
         {
-          nr: "17",
+          nr: "18",
           tresc: "Rozwiąż równanie $\\frac{3}{x}=\\frac{2}{x-1}$. **Wybierz właściwą odpowiedź.**",
           opcje: ["$x=3$", "$x=-2$", "$x=1$", "$x=-3$"],
           poprawna: 0,
         },
         {
-          nr: "18",
+          nr: "19",
           tresc: "Dane jest równanie $\\frac{x+2}{x-3}=\\frac{5}{x-3}$. **Dla każdego zdania wybierz P, jeśli jest prawdziwe, albo F, jeśli jest fałszywe.**",
           czesci: [
             { tekst: "Liczba $3$ jest rozwiązaniem tego równania.", litery: "PF", poprawna: 1 },
@@ -960,27 +1140,39 @@ export default {
           ],
         },
         {
-          nr: "19",
+          nr: "20",
           tresc: "Ile rozwiązań ma równanie $\\frac{(x-2)(x+5)}{x-2}=0$? **Wybierz właściwą odpowiedź.**",
           opcje: ["Dwa.", "Żadnego.", "Jedno.", "Trzy."],
           poprawna: 2,
         },
         {
-          nr: "20",
+          nr: "21",
           tresc: "Rozwiąż równanie $\\frac{2x-1}{x}=4$. **Wybierz właściwą odpowiedź.**",
           opcje: ["$x=\\frac{5}{2}$", "$x=\\frac{1}{2}$", "$x=-\\frac{5}{2}$", "$x=-\\frac{1}{2}$"],
           poprawna: 3,
         },
         {
-          nr: "21",
+          nr: "22",
           tresc: "Rozwiąż równanie $\\frac{x+6}{x}=x$. **Wybierz właściwą odpowiedź.**",
           opcje: ["$x=2$ lub $x=-3$", "$x=-2$ lub $x=3$", "$x=3$", "$x=-2$"],
           poprawna: 1,
         },
+        {
+          nr: "23",
+          tresc: "Rozwiąż równanie $\\frac{3}{x+2}=\\frac{x+1}{2x}$. **Wybierz właściwą odpowiedź.**",
+          opcje: ["$x=1$ lub $x=2$", "$x=-1$ lub $x=-2$", "$x=1$", "$x=2$ lub $x=3$"],
+          poprawna: 0,
+        },
+        {
+          nr: "24",
+          tresc: "Rozwiąż równanie $\\frac{x^2}{x-5}=\\frac{25}{x-5}$. **Wybierz właściwą odpowiedź.**",
+          opcje: ["$x=-5$", "$x=5$", "$x=-5$ lub $x=5$", "brak rozwiązań"],
+          poprawna: 0,
+        },
       ],
       otwarte: [
         {
-          nr: "22",
+          nr: "25",
           punkty: 3,
           tresc: "Rozwiąż równanie $\\frac{6}{x+2}=\\frac{x+1}{2x-1}$. **Zapisz obliczenia.**",
           rozwiazanie:
@@ -992,7 +1184,7 @@ export default {
             "Odpowiedź: $x=1$ lub $x=8$.",
         },
         {
-          nr: "23",
+          nr: "26",
           punkty: 2,
           tresc: "Rozwiąż równanie $\\frac{x}{x+2}=\\frac{x-1}{x}$. **Zapisz obliczenia.**",
           rozwiazanie:
@@ -1002,6 +1194,17 @@ export default {
             "Liczba $2$ należy do dziedziny (sprawdzenie: obie strony są równe $\\frac{1}{2}$).\n\n" +
             "Odpowiedź: $x=2$.",
         },
+        {
+          nr: "27",
+          punkty: 2,
+          tresc: "Rozwiąż równanie $\\frac{x^2}{x-3}=\\frac{2x+3}{x-3}$. **Zapisz obliczenia.**",
+          rozwiazanie:
+            "Dziedzina: $x-3\\neq 0$, czyli $x\\neq 3$.\n\n" +
+            "Mianowniki są takie same, więc porównujemy liczniki: $x^2=2x+3$, czyli $x^2-2x-3=0$.\n\n" +
+            "$\\Delta=4+12=16$, więc $x=\\frac{2-4}{2}=-1$ lub $x=\\frac{2+4}{2}=3$.\n\n" +
+            "Liczba $3$ nie należy do dziedziny – odrzucamy ją. Sprawdzenie dla $x=-1$: obie strony są równe $-\\frac{1}{4}$.\n\n" +
+            "Odpowiedź: $x=-1$.",
+        },
       ],
       generatory: [
         { id: "rownanie-z-liczba", nazwa: "Ułamek równy liczbie", opis: "Równanie z jednym ułamkiem po lewej stronie i liczbą po prawej; trzeba sprawdzić dziedzinę.", generuj: genRownanieLiczba },
@@ -1009,6 +1212,7 @@ export default {
         { id: "rownanie-pulapka", nazwa: "Czy jest rozwiązanie?", opis: "Równanie, w którym otrzymane rozwiązanie bywa spoza dziedziny – wybierz zbiór rozwiązań.", generuj: genPulapka },
         { id: "iloczyn-w-liczniku", nazwa: "Iloczyn w liczniku", opis: "Ułamek równy zero z iloczynem w liczniku; czasem jeden czynnik odpada przez dziedzinę.", generuj: genIloczynLicznik },
         { id: "rownanie-kwadratowe", nazwa: "Wychodzi trójmian", opis: "Po pomnożeniu na krzyż powstaje równanie kwadratowe; trzeba sprawdzić oba pierwiastki.", generuj: genRownanieKwadratowe },
+        { id: "proporcja-trojmian", nazwa: "Proporcja z trójmianem", opis: "Równanie „ułamek = ułamek” z niewiadomą w obu mianownikach; po pomnożeniu na krzyż powstaje trójmian.", generuj: genProporcjaTrojmian },
       ],
     },
 
@@ -1039,6 +1243,13 @@ export default {
           uwaga: "Czas razem jest krótszy od każdego z czasów osobno; nie jest ich średnią.",
         },
         {
+          nazwa: "Praca razem, gdy czasy zależą od x",
+          slownie: "Gdy czasy pracy osobno to $x$ i $x+d$, a razem $t$, ten sam pomysł daje równanie wymierne. Mnożymy je przez wspólny mianownik i dostajemy równanie kwadratowe. Dodatnie $x$ to szukany czas.",
+          tex: "\\frac{1}{x}+\\frac{1}{x+d}=\\frac{1}{t}\\qquad x>0",
+          litery: "$x$ – czas pierwszego pracownika, $x+d$ – czas drugiego, $t$ – czas pracy razem.",
+          przyklad: "Czasy $x$ i $x+6$ dni, razem $4$ dni: $\\frac{1}{x}+\\frac{1}{x+6}=\\frac{1}{4}$. Mnożymy przez $4x(x+6)$: $4(x+6)+4x=x(x+6)$, czyli $x^2-2x-24=0$, $x=6$ lub $x=-4$. Odpowiedź: $6$ dni i $12$ dni.",
+        },
+        {
           nazwa: "Sprawdzenie warunków zadania",
           slownie: "Po rozwiązaniu równania sprawdź dziedzinę i warunki z treści: prędkość i czas są dodatnie, liczba osób jest całkowita.",
           przyklad: "Równanie kwadratowe dało $x=30$ lub $x=-40$. Prędkość nie może być ujemna, więc odpowiedź to $30$ km/h.",
@@ -1053,31 +1264,31 @@ export default {
       ],
       zadania: [
         {
-          nr: "24",
+          nr: "28",
           tresc: "Rowerzysta jedzie z prędkością $v+3$ km/h. Który wzór opisuje czas (w godzinach) przejechania $36$ km? **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\frac{v+3}{36}$", "$\\frac{36}{v}+3$", "$\\frac{36}{v+3}$", "$36(v+3)$"],
           poprawna: 2,
         },
         {
-          nr: "25",
+          nr: "29",
           tresc: "Mianownik ułamka jest o $4$ większy od jego licznika $x$. Gdy licznik zwiększymy o $3$, a mianownik o $1$, otrzymamy ułamek $\\frac{2}{3}$. Które równanie opisuje tę sytuację? **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\frac{x+3}{x+4}=\\frac{2}{3}$", "$\\frac{x+3}{x+5}=\\frac{2}{3}$", "$\\frac{x+3}{x+4}+1=\\frac{2}{3}$", "$\\frac{x+3}{x+1}=\\frac{2}{3}$"],
           poprawna: 1,
         },
         {
-          nr: "26",
+          nr: "30",
           tresc: "Pierwsza rura napełnia basen w $4$ godziny, a druga w $12$ godzin. W jakim czasie napełnią basen, gdy będą otwarte jednocześnie obie rury? **Wybierz właściwą odpowiedź.**",
           opcje: ["$3$ godziny", "$8$ godzin", "$12$ godzin", "$16$ godzin"],
           poprawna: 0,
         },
         {
-          nr: "27",
+          nr: "31",
           tresc: "Mianownik ułamka jest o $5$ większy od licznika. Gdy licznik zwiększymy o $4$, a mianownik zostawimy bez zmian, otrzymamy ułamek $\\frac{5}{6}$. Wskaż licznik pierwotnego ułamka. **Wybierz właściwą odpowiedź.**",
           opcje: ["$4$", "$1$", "$5$", "$6$"],
           poprawna: 1,
         },
         {
-          nr: "28",
+          nr: "32",
           tresc: "Samochód ma przejechać $120$ km. Gdyby jechał z prędkością o $20$ km/h większą, jechałby o $1$ godzinę krócej. Niech $v$ oznacza prędkość samochodu w km/h; wtedy $\\frac{120}{v}-\\frac{120}{v+20}=1$, a po przekształceniu $v^2+20v-2400=0$, czyli $v=40$ lub $v=-60$. **Dla każdego zdania wybierz P, jeśli jest prawdziwe, albo F, jeśli jest fałszywe.**",
           czesci: [
             { tekst: "Prędkość $40$ km/h spełnia warunki zadania.", litery: "PF", poprawna: 0 },
@@ -1085,10 +1296,16 @@ export default {
             { tekst: "Z prędkością $40$ km/h samochód przejedzie tę trasę w $3$ godziny.", litery: "PF", poprawna: 0 },
           ],
         },
+        {
+          nr: "33",
+          tresc: "Jeden pracownik wykonuje pewną pracę w $x$ dni, a drugi w $x+6$ dni. Pracując razem, wykonują ją w $4$ dni. Które równanie opisuje tę sytuację? **Wybierz właściwą odpowiedź.**",
+          opcje: ["$\\frac{1}{x}+\\frac{1}{x+6}=\\frac{1}{4}$", "$x+(x+6)=4$", "$\\frac{1}{x}+\\frac{1}{x+6}=4$", "$\\frac{x}{4}+\\frac{x+6}{4}=1$"],
+          poprawna: 0,
+        },
       ],
       otwarte: [
         {
-          nr: "29",
+          nr: "34",
           punkty: 3,
           tresc: "Rowerzysta ma do przejechania $60$ km. Gdyby zwiększył prędkość o $5$ km/h, przejechałby tę trasę o $1$ godzinę krócej. Oblicz, z jaką prędkością jedzie rowerzysta. **Zapisz obliczenia.**",
           rozwiazanie:
@@ -1100,7 +1317,7 @@ export default {
             "Odpowiedź: rowerzysta jedzie z prędkością $15$ km/h.",
         },
         {
-          nr: "30",
+          nr: "35",
           punkty: 3,
           tresc: "Grupa uczniów kupiła prezent za $240$ zł; koszt podzielono po równo. Gdyby uczniów było o $2$ mniej, każdy zapłaciłby o $4$ zł więcej. Ilu uczniów jest w grupie? **Zapisz obliczenia.**",
           rozwiazanie:
@@ -1111,11 +1328,24 @@ export default {
             "Liczba uczniów jest dodatnia, więc $n=12$. Sprawdzenie: $\\frac{240}{12}=20$ zł, $\\frac{240}{10}=24$ zł – różnica $4$ zł.\n\n" +
             "Odpowiedź: w grupie jest $12$ uczniów.",
         },
+        {
+          nr: "36",
+          punkty: 3,
+          tresc: "Dwie rury napełniają zbiornik razem w $12$ godzin. Pierwsza rura napełnia go sama o $10$ godzin krócej niż druga. W ile godzin napełnia zbiornik sama pierwsza rura? **Zapisz obliczenia.**",
+          rozwiazanie:
+            "Niech $x$ godzin to czas napełniania przez pierwszą rurę, $x>0$. Druga rura potrzebuje $x+10$ godzin.\n\n" +
+            "W ciągu godziny napełniają $\\frac{1}{x}$ i $\\frac{1}{x+10}$ zbiornika, a razem $\\frac{1}{12}$: $\\frac{1}{x}+\\frac{1}{x+10}=\\frac{1}{12}$.\n\n" +
+            "Mnożymy przez $12x(x+10)$: $12(x+10)+12x=x(x+10)$, czyli $24x+120=x^2+10x$.\n\n" +
+            "$x^2-14x-120=0$, $\\Delta=196+480=676$, $\\sqrt{\\Delta}=26$, więc $x=\\frac{14-26}{2}=-6$ lub $x=\\frac{14+26}{2}=20$.\n\n" +
+            "Czas jest dodatni, więc $x=20$. Sprawdzenie: $\\frac{1}{20}+\\frac{1}{30}=\\frac{3}{60}+\\frac{2}{60}=\\frac{1}{12}$.\n\n" +
+            "Odpowiedź: pierwsza rura napełnia zbiornik sama w $20$ godzin.",
+        },
       ],
       generatory: [
         { id: "ulamek-z-warunkiem", nazwa: "Zadanie o ułamku", opis: "Mianownik większy od licznika; po zmianie licznika i mianownika ułamek ma daną wartość – oblicz licznik.", generuj: genUlamekWarunek },
         { id: "droga-i-czas", nazwa: "Droga i czas", opis: "Większa prędkość skraca czas przejazdu – oblicz prędkość początkową (równanie kwadratowe, jedno rozwiązanie odpada).", generuj: genDrogaCzas },
         { id: "praca-razem", nazwa: "Praca razem", opis: "Czas wykonania pracy przez dwie osoby (albo dwie rury) działające razem.", generuj: genPracaRazem },
+        { id: "praca-rownanie", nazwa: "Praca razem – czas osobno", opis: "Drugi pracownik potrzebuje o kilka dni więcej; znając czas wspólnej pracy, oblicz czas pierwszego (równanie kwadratowe).", generuj: genPracaRownanie },
       ],
     },
 
@@ -1138,6 +1368,24 @@ export default {
           tex: "D_f=\\mathbb{R}\\setminus\\{0\\}\\qquad ZW_f=\\mathbb{R}\\setminus\\{0\\}",
           litery: "$D_f$ – dziedzina, $ZW_f$ – zbiór wartości funkcji $f(x)=\\frac{a}{x}$.",
           przyklad: "Dla $f(x)=\\frac{6}{x}$ wykres przechodzi przez punkty $(1,6)$, $(2,3)$, $(3,2)$, $(6,1)$ oraz $(-2,-3)$.",
+          wykres: {
+            x: [-6, 6], y: [-6, 6],
+            funkcje: [{ wzor: "6/x" }],
+            punkty: [{ x: 2, y: 3, podpis: "(2; 3)", gdzie: "prawo-gora" }, { x: -2, y: -3, podpis: "(−2; −3)", gdzie: "lewo-dol" }],
+          },
+        },
+        {
+          nazwa: "Wykres y = a/x dla a < 0",
+          slownie: "Dla ujemnego $a$ gałęzie hiperboli leżą w II i IV ćwiartce. Dziedzina i zbiór wartości są takie jak dla $a>0$: wszystkie liczby oprócz zera.",
+          tex: "a<0:\\ \\text{II i IV ćwiartka}\\qquad D_f=ZW_f=\\mathbb{R}\\setminus\\{0\\}",
+          litery: "$a$ – liczba w liczniku we wzorze $f(x)=\\frac{a}{x}$.",
+          przyklad: "$f(x)=-\\frac{6}{x}$: dla $x=2$ jest $y=-3$ (IV ćwiartka), a dla $x=-2$ jest $y=3$ (II ćwiartka).",
+          uwaga: "Iloczyn $x\\cdot y$ jest równy $a$, więc dla $a<0$ liczby $x$ i $y$ mają różne znaki.",
+          wykres: {
+            x: [-6, 6], y: [-6, 6],
+            funkcje: [{ wzor: "-6/x" }],
+            punkty: [{ x: 2, y: -3, podpis: "(2; −3)", gdzie: "prawo-dol" }, { x: -2, y: 3, podpis: "(−2; 3)", gdzie: "lewo-gora" }],
+          },
         },
         {
           nazwa: "Monotoniczność y = a/x",
@@ -1152,7 +1400,17 @@ export default {
           tex: "f(x)=\\frac{a}{x-p}+q\\qquad D_f=\\mathbb{R}\\setminus\\{p\\}\\qquad ZW_f=\\mathbb{R}\\setminus\\{q\\}",
           litery: "Asymptota pionowa $x=p$, pozioma $y=q$. Monotoniczność jak dla $\\frac{a}{x}$, w przedziałach $(-\\infty,p)$ i $(p,+\\infty)$.",
           przyklad: "$f(x)=\\frac{2}{x+1}-3$: $p=-1$, $q=-3$. Asymptoty: $x=-1$ i $y=-3$; $D_f=\\mathbb{R}\\setminus\\{-1\\}$, $ZW_f=\\mathbb{R}\\setminus\\{-3\\}$; $a=2>0$, więc funkcja maleje w $(-\\infty,-1)$ i w $(-1,+\\infty)$.",
-          uwaga: "Znak: w $\\frac{2}{x+1}$ jest $p=-1$, bo $x+1=x-(-1)$.",
+          uwaga: "Znak: w $\\frac{2}{x+1}$ jest $p=-1$, bo $x+1=x-(-1)$. Punkt $S=(p,q)$, w którym przecinają się asymptoty, jest środkiem symetrii hiperboli.",
+          wykres: {
+            x: [-6, 4], y: [-8, 3],
+            funkcje: [{ wzor: "2/(x+1)-3" }],
+            punkty: [
+              { x: -1, y: -3, podpis: "S(−1; −3)", gdzie: "lewo-gora" },
+              { x: 1, y: -2, podpis: "(1; −2)", gdzie: "prawo-gora" },
+              { x: -3, y: -4, podpis: "(−3; −4)", gdzie: "lewo-dol" },
+            ],
+            proste: [{ x: -1, podpis: "x = −1" }, { y: -3, podpis: "y = −3" }],
+          },
         },
         {
           nazwa: "Miejsce zerowe i współczynnik a",
@@ -1160,8 +1418,39 @@ export default {
           tex: "x_0=p-\\frac{a}{q}\\qquad q\\neq 0",
           przyklad: "$f(x)=\\frac{2}{x+1}-3=0$: $\\frac{2}{x+1}=3$, $2=3(x+1)$, $x=-\\frac{1}{3}$ (różne od $-1$, więc należy do dziedziny).",
         },
+        {
+          nazwa: "Wzór funkcji homograficznej",
+          slownie: "Funkcja homograficzna to ułamek, w którym i licznik, i mianownik są wyrażeniami pierwszego stopnia. Dziedzina to wszystkie liczby oprócz tej, która zeruje mianownik. Wykres to hiperbola.",
+          tex: "f(x)=\\frac{ax+b}{cx+d}\\qquad c\\neq 0",
+          litery: "$a$, $b$, $c$, $d$ – liczby; licznik nie jest wielokrotnością mianownika (inaczej ułamek się skraca).",
+          przyklad: "$f(x)=\\frac{2x+1}{x-3}$: mianownik jest zerem dla $x=3$, więc $D_f=\\mathbb{R}\\setminus\\{3\\}$. Miejsce zerowe: $2x+1=0$, czyli $x=-\\frac{1}{2}$. Przecięcie z osią $OY$: $f(0)=\\frac{1}{-3}=-\\frac{1}{3}$.",
+          uwaga: "Dla $x=0$ jest $f(0)=\\frac{b}{d}$, a miejsce zerowe to $x=-\\frac{b}{a}$, o ile należy do dziedziny.",
+        },
+        {
+          nazwa: "Sprowadzanie do postaci a/(x − p) + q",
+          slownie: "Gdy mianownik to $x-p$, zapisz licznik jako liczbę razy mianownik plus reszta. Ułamek rozpada się wtedy na liczbę i prosty ułamek z samą resztą w liczniku.",
+          tex: "\\frac{ax+b}{x-p}=a+\\frac{ap+b}{x-p}",
+          litery: "$a$ – liczba przy $x$ w liczniku, $b$ – wyraz wolny licznika, $x-p$ – mianownik.",
+          przyklad: "$\\frac{3x+1}{x+2}$: licznik $3x+1=3(x+2)-5$, więc $\\frac{3(x+2)-5}{x+2}=3-\\frac{5}{x+2}$. Asymptoty: $x=-2$ i $y=3$.",
+          uwaga: "Gdy mianownik ma postać $2x-1$, zapisz licznik jako $2(2x-1)$ plus reszta: $\\frac{4x+3}{2x-1}=2+\\frac{5}{2x-1}$. Asymptoty: $x=\\frac{1}{2}$ i $y=2$.",
+        },
+        {
+          nazwa: "Wzór funkcji z asymptot i punktu",
+          slownie: "Asymptoty dają $p$ i $q$. Liczbę $a$ dostajemy, mnożąc odległość punktu od asymptoty pionowej przez odległość od poziomej, ze znakiem.",
+          tex: "a=(x_A-p)(y_A-q)",
+          litery: "$x=p$, $y=q$ – asymptoty, $(x_A,y_A)$ – punkt należący do wykresu.",
+          przyklad: "Asymptoty $x=2$ i $y=-1$, punkt $A=(3,1)$: $a=(3-2)(1+1)=2$, więc $f(x)=\\frac{2}{x-2}-1$. Sprawdzenie: $f(3)=\\frac{2}{1}-1=1$.",
+          uwaga: "Gdy gałęzie leżą w prawej górnej i lewej dolnej części (względem asymptot), to $a>0$; w pozostałych dwóch $a<0$.",
+          wykres: {
+            x: [-2, 6], y: [-5, 4],
+            funkcje: [{ wzor: "2/(x-2)-1" }],
+            punkty: [{ x: 3, y: 1, podpis: "A(3; 1)", gdzie: "prawo-gora" }],
+            proste: [{ x: 2, podpis: "x = 2" }, { y: -1, podpis: "y = −1" }],
+          },
+        },
       ],
       jak: [
+        "Gdy wzór ma postać $\\frac{ax+b}{x-p}$, zapisz licznik jako liczbę razy mianownik plus reszta i sprowadź go do postaci $\\frac{a}{x-p}+q$.",
         "Zapisz wzór w postaci $\\frac{a}{x-p}+q$ i odczytaj $a$, $p$, $q$ (uważaj na znak $p$).",
         "Asymptoty: pionowa $x=p$, pozioma $y=q$.",
         "Dziedzina: $\\mathbb{R}\\setminus\\{p\\}$; zbiór wartości: $\\mathbb{R}\\setminus\\{q\\}$.",
@@ -1170,25 +1459,25 @@ export default {
       ],
       zadania: [
         {
-          nr: "31",
+          nr: "37",
           tresc: "Wielkości $x$ i $y$ są odwrotnie proporcjonalne. Dla $x=3$ jest $y=8$. Ile wynosi $y$ dla $x=6$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$16$", "$11$", "$4$", "$48$"],
           poprawna: 2,
         },
         {
-          nr: "32",
+          nr: "38",
           tresc: "Zbiorem wartości funkcji $f(x)=\\frac{4}{x}$ jest: **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\mathbb{R}$", "$(0,+\\infty)$", D(4), D(0)],
           poprawna: 3,
         },
         {
-          nr: "33",
+          nr: "39",
           tresc: "Asymptotami wykresu funkcji $f(x)=\\frac{3}{x-2}+1$ są proste: **Wybierz właściwą odpowiedź.**",
           opcje: ["$x=2$ i $y=1$", "$x=-2$ i $y=1$", "$x=1$ i $y=2$", "$x=2$ i $y=-1$"],
           poprawna: 0,
         },
         {
-          nr: "34",
+          nr: "40",
           tresc: "Funkcja $f(x)=-\\frac{5}{x}$ jest: **Wybierz właściwą odpowiedź.**",
           opcje: [
             "malejąca w każdym z przedziałów $(-\\infty,0)$ i $(0,+\\infty)$",
@@ -1199,7 +1488,7 @@ export default {
           poprawna: 1,
         },
         {
-          nr: "35",
+          nr: "41",
           tresc: "Dana jest funkcja $g(x)=\\frac{2}{x+3}-4$. **Dla każdego zdania wybierz P, jeśli jest prawdziwe, albo F, jeśli jest fałszywe.**",
           czesci: [
             { tekst: "Prosta $x=-3$ jest asymptotą pionową wykresu funkcji $g$.", litery: "PF", poprawna: 0 },
@@ -1208,15 +1497,39 @@ export default {
           ],
         },
         {
-          nr: "36",
+          nr: "42",
           tresc: "Miejscem zerowym funkcji $f(x)=\\frac{6}{x-1}-3$ jest liczba: **Wybierz właściwą odpowiedź.**",
           opcje: ["$1$", "$\\frac{7}{3}$", "$3$", "$-1$"],
           poprawna: 2,
         },
+        {
+          nr: "43",
+          tresc: "Wykres funkcji $f(x)=-\\frac{6}{x}$ leży w ćwiartkach: **Wybierz właściwą odpowiedź.**",
+          opcje: ["I i III", "II i IV", "I i II", "III i IV"],
+          poprawna: 1,
+        },
+        {
+          nr: "44",
+          tresc: "Który punkt należy do wykresu funkcji $f(x)=\\frac{12}{x}$? **Wybierz właściwą odpowiedź.**",
+          opcje: ["$(3,-4)$", "$(-3,-4)$", "$(4,-3)$", "$(6,6)$"],
+          poprawna: 1,
+        },
+        {
+          nr: "45",
+          tresc: "Asymptotami wykresu funkcji $f(x)=\\frac{2x+1}{x-1}$ są proste: **Wybierz właściwą odpowiedź.**",
+          opcje: ["$x=1$ i $y=3$", "$x=-1$ i $y=2$", "$x=1$ i $y=2$", "$x=2$ i $y=1$"],
+          poprawna: 2,
+        },
+        {
+          nr: "46",
+          tresc: "Wykres funkcji homograficznej ma asymptoty $x=2$ i $y=-1$ oraz przechodzi przez punkt $(3,1)$. Wskaż wzór tej funkcji. **Wybierz właściwą odpowiedź.**",
+          opcje: ["$f(x)=\\frac{2}{x-2}-1$", "$f(x)=\\frac{2}{x+2}-1$", "$f(x)=\\frac{1}{x-2}-1$", "$f(x)=\\frac{2}{x-2}+1$"],
+          poprawna: 0,
+        },
       ],
       otwarte: [
         {
-          nr: "37",
+          nr: "47",
           punkty: 3,
           tresc: "Dana jest funkcja $f(x)=-\\frac{4}{x-1}+2$. Podaj jej dziedzinę, zbiór wartości, równania asymptot i przedziały monotoniczności oraz oblicz miejsce zerowe. **Zapisz obliczenia.**",
           rozwiazanie:
@@ -1227,7 +1540,7 @@ export default {
             "Odpowiedź: $D_f=\\mathbb{R}\\setminus\\{1\\}$, $ZW_f=\\mathbb{R}\\setminus\\{2\\}$, asymptoty $x=1$ i $y=2$, funkcja rosnąca w $(-\\infty,1)$ i w $(1,+\\infty)$, miejsce zerowe $x=3$.",
         },
         {
-          nr: "38",
+          nr: "48",
           punkty: 2,
           tresc: "Wykres funkcji $f(x)=\\frac{a}{x-p}+q$ ma asymptoty $x=-2$ i $y=3$ oraz przechodzi przez punkt $(-1,5)$. Wyznacz $a$ i zapisz wzór funkcji $f$. **Zapisz obliczenia.**",
           rozwiazanie:
@@ -1236,8 +1549,23 @@ export default {
             "Stąd $a=2$.\n\n" +
             "Odpowiedź: $a=2$, $f(x)=\\frac{2}{x+2}+3$.",
         },
+        {
+          nr: "49",
+          punkty: 3,
+          tresc: "Dana jest funkcja $f(x)=\\frac{2x+5}{x+1}$. Zapisz jej wzór w postaci $\\frac{a}{x-p}+q$, podaj asymptoty, dziedzinę, zbiór wartości i przedziały monotoniczności oraz oblicz miejsce zerowe i $f(0)$. **Zapisz obliczenia.**",
+          rozwiazanie:
+            "Licznik zapisujemy przez mianownik: $2x+5=2(x+1)+3$, więc $f(x)=\\frac{2(x+1)+3}{x+1}=2+\\frac{3}{x+1}=\\frac{3}{x+1}+2$.\n\n" +
+            "Zatem $a=3$, $p=-1$, $q=2$. Asymptoty: pionowa $x=-1$, pozioma $y=2$.\n\n" +
+            "$D_f=\\mathbb{R}\\setminus\\{-1\\}$, $ZW_f=\\mathbb{R}\\setminus\\{2\\}$. Ponieważ $a>0$, funkcja jest malejąca w każdym z przedziałów $(-\\infty,-1)$ i $(-1,+\\infty)$.\n\n" +
+            "Miejsce zerowe: $2x+5=0$, czyli $x=-\\frac{5}{2}$. Liczba ta jest różna od $-1$, więc należy do dziedziny.\n\n" +
+            "$f(0)=\\frac{5}{1}=5$.\n\n" +
+            "Odpowiedź: $f(x)=\\frac{3}{x+1}+2$, asymptoty $x=-1$ i $y=2$, $D_f=\\mathbb{R}\\setminus\\{-1\\}$, $ZW_f=\\mathbb{R}\\setminus\\{2\\}$, funkcja malejąca w $(-\\infty,-1)$ i w $(-1,+\\infty)$, miejsce zerowe $x=-\\frac{5}{2}$, $f(0)=5$.",
+        },
       ],
       generatory: [
+        { id: "odwrotna-proporcjonalnosc", nazwa: "Proporcjonalność odwrotna", opis: "Z jednej pary $(x,y)$ wyznacz stały iloczyn $a$ i oblicz $y$ dla innego $x$.", generuj: genOdwrotna },
+        { id: "postac-kanoniczna", nazwa: "Postać kanoniczna", opis: "Zapisz funkcję $\\frac{kx+b}{x-p}$ w postaci $\\frac{a}{x-p}+q$.", generuj: genKanoniczna },
+        { id: "wzor-z-asymptot", nazwa: "Wzór z asymptot i punktu", opis: "Znając asymptoty i punkt wykresu, wyznacz współczynnik $a$.", generuj: genWzorZAsymptot },
         { id: "odczyt-p-q", nazwa: "Odczytaj p i q", opis: "Z wzoru $\\frac{a}{x-p}+q$ odczytaj przesunięcie, czyli równania asymptot.", generuj: genOdczyt },
         { id: "dziedzina-zbior-wartosci", nazwa: "Dziedzina i zbiór wartości", opis: "Wybierz dziedzinę i zbiór wartości funkcji homograficznej danej wzorem.", generuj: genDziedzinaZW },
         { id: "monotonicznosc", nazwa: "Monotoniczność", opis: "Wybierz prawdziwe zdanie o monotoniczności funkcji $\\frac{a}{x-p}+q$.", generuj: genMonotonicznosc },
