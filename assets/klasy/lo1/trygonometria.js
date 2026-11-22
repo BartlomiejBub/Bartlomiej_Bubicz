@@ -88,6 +88,7 @@ export default {
           nazwa: "Sinus i cosinus",
           slownie: "Sinus to stosunek przyprostokątnej przeciwległej do przeciwprostokątnej, cosinus – przyprostokątnej przyległej do przeciwprostokątnej.",
           tex: "\\sin\\alpha=\\frac{a}{c}\\qquad\\cos\\alpha=\\frac{b}{c}",
+          rysunek: `<svg viewBox="0 0 300 170"><polygon class="w" points="30,140 250,140 250,30"/><path class="l" d="M30 140H250M250 140L30 140L250 30"/><path class="a" d="M250 140V30"/><path class="l" d="M237 140V127H250"/><path class="l" d="M64 140A34 34 0 0 0 60.4 124.8"/><text class="t" x="72" y="134">α</text><text class="ta" x="260" y="92">a</text><text class="t" x="140" y="160" text-anchor="middle">b</text><text class="t" x="130" y="76" text-anchor="middle">c</text><text class="tm" x="20" y="152">A</text><text class="tm" x="256" y="152">C</text><text class="tm" x="256" y="28">B</text></svg>`,
           litery: "$a$ – przyprostokątna przeciwległa, $b$ – przyległa, $c$ – przeciwprostokątna.",
           przyklad: "Dla boków $3$, $4$, $5$ i kąta naprzeciw boku $3$: $\\sin\\alpha=\\frac{3}{5}$, $\\cos\\alpha=\\frac{4}{5}$.",
           uwaga: "Sinus i cosinus kąta ostrego są zawsze mniejsze od $1$, bo przeciwprostokątna jest najdłuższym bokiem.",

@@ -7,6 +7,7 @@ import {
 } from "./dzialy.js";
 import { losownik, sprawdz } from "./generatory/wspolne.js";
 import { wstaw } from "./matematyka.js";
+import { rysunekKarty } from "./rysunki.js";
 
 const KLUCZ_DZIALU = "korepetycje.dzial";   // + "." + egzamin; dla matury bez przyrostka, jak dawniej
 const KLUCZ_TRYBU = "korepetycje.tryb";     // "egzamin" (działy egzaminu) albo "szkola" (klasy i rozdziały)
@@ -398,6 +399,7 @@ function blokWzorow(d) {
           wstaw(el("p", { class: "wzor-nazwa" }), w.nazwa, { akapity: false }),
           w.slownie && poleKarty("wzor-slownie", w.slownie),
           w.tex && el("div", { class: "wzor-tex" }, ...czesciWzoru(w.tex).map((t) => wstaw(el("div", { class: "wzor-czesc" }), `$${t}$`))),
+          rysunekKarty(w),
           w.litery && poleKarty("wzor-litery", w.litery),
           w.przyklad && poleKarty("wzor-przyklad", `**Przykład:** ${w.przyklad}`),
           w.uwaga && poleKarty("wzor-uwaga", w.uwaga),

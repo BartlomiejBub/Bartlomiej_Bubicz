@@ -21,6 +21,7 @@
 import { readdir } from "node:fs/promises";
 import { czesciTekstu } from "../assets/generatory/wspolne.js";
 import { TEMATY } from "../assets/arkusze/tematy.js";
+import { bledyRysunku, bledyWykresu } from "./sprawdz-rysunek.mjs";
 
 const folder = new URL("../assets/wzory/", import.meta.url);
 const pliki = process.argv[2] ? [`${process.argv[2]}.js`] : (await readdir(folder)).filter((f) => f.endsWith(".js"));
@@ -63,7 +64,9 @@ for (const plik of pliki) {
         try { katex.renderToString(w.tex, { throwOnError: true, displayMode: true }); } catch (e) { blad(`${gw} tex`, `KaTeX: ${e.message}`); }
       }
       for (const pole of ["litery", "przyklad", "uwaga"]) if (w[pole] !== undefined) tekst(`${gw} ${pole}`, w[pole]);
-      for (const pole of Object.keys(w)) if (!["nazwa", "slownie", "tex", "litery", "przyklad", "uwaga"].includes(pole)) blad(gw, `nieznane pole ${pole}`);
+      for (const pole of Object.keys(w)) if (!["nazwa", "slownie", "tex", "litery", "przyklad", "uwaga", "rysunek", "wykres"].includes(pole)) blad(gw, `nieznane pole ${pole}`);
+      if (w.rysunek !== undefined) for (const x of bledyRysunku(w.rysunek)) blad(`${gw} rysunek`, x);
+      if (w.wykres !== undefined) for (const x of bledyWykresu(w.wykres)) blad(`${gw} wykres`, x);
     }
     for (const [i, k] of (t.jak ?? []).entries()) tekst(`${g} jak ${i + 1}`, k);
   }

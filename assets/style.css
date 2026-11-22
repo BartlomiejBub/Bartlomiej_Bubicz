@@ -1323,3 +1323,21 @@ body.z-szuflada .narzedzia-przyciski { right: var(--szuflada-szer, 0px); }
   .narzedzia-przyciski, .szuflada { display: none !important; }
   body.z-szuflada { padding-right: 0; }
 }
+
+/* --- Rysunki i wykresy na kartach wzorów (assets/rysunki.js). Klasy: l a p w w2 k t ta tm; wykres: siatka os wykres */
+.rys { margin: 6px 0 8px; display: grid; gap: 8px; }
+.rys svg { display: block; width: 100%; max-width: 340px; height: auto; margin: 0 auto; overflow: visible; }
+.rys svg.wyk-svg { overflow: hidden; }
+.rys svg text { font-family: "Plus Jakarta Sans", "Segoe UI", system-ui, sans-serif; font-size: 14px; fill: var(--ink); }
+.rys .l { fill: none; stroke: var(--ink); stroke-width: 1.8; stroke-linejoin: round; stroke-linecap: round; }
+.rys .a { fill: none; stroke: var(--accent); stroke-width: 2.2; stroke-linejoin: round; stroke-linecap: round; }
+.rys .p { fill: none; stroke: var(--muted); stroke-width: 1.3; stroke-dasharray: 5 4; }
+.rys .w { fill: var(--accent-soft); stroke: none; }
+.rys .w2 { fill: #fff1e0; stroke: none; }
+.rys .k { fill: var(--ink); stroke: none; }
+.rys text.t { font-size: 14px; font-style: italic; }
+.rys text.ta { font-size: 14px; font-style: italic; font-weight: 700; fill: var(--accent-strong); }
+.rys text.tm { font-size: 11px; fill: var(--muted); }
+.rys .siatka { fill: none; stroke: #e3e9f0; stroke-width: 1; }
+.rys .os { fill: none; stroke: var(--muted); stroke-width: 1.3; }
+.rys .wykres { fill: none; stroke-width: 2.4; stroke-linejoin: round; }

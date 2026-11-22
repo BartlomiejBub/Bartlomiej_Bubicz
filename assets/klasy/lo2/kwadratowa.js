@@ -382,6 +382,12 @@ export default {
           nazwa: "Szkic paraboli",
           slownie: "Zaznacz wierzchołek, miejsca zerowe (jeśli są) oraz punkt $(0,c)$ i jego odbicie względem osi symetrii. Poprowadź przez nie gładką krzywą.",
           tex: "p=\\frac{x_1+x_2}{2}",
+          wykres: {
+            x: [-3, 5], y: [-6, 6],
+            funkcje: [{ wzor: "x^2-2x-3", podpis: "f(x) = x² − 2x − 3" }],
+            punkty: [{ x: 1, y: -4, podpis: "W = (1, −4)", gdzie: "prawo-dol" }, { x: -1, y: 0, podpis: "x₁ = −1", gdzie: "lewo-dol" }, { x: 3, y: 0, podpis: "x₂ = 3", gdzie: "prawo-dol" }, { x: 0, y: -3 }, { x: 2, y: -3 }],
+            proste: [{ x: 1, podpis: "oś symetrii x = 1" }],
+          },
           litery: "$x_1$, $x_2$ – miejsca zerowe; wierzchołek leży w środku między nimi.",
           przyklad: "Dla $f(x)=x^2-2x-3$: $W=(1,-4)$, miejsca zerowe $-1$ i $3$, punkty $(0,-3)$ i $(2,-3)$.",
         },

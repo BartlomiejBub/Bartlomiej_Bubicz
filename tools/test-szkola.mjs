@@ -10,7 +10,7 @@
 //   export default {
 //     tematy: [{
 //       id: "rodzaje-katow", nazwa: "Rodzaje kątów",
-//       sciaga: [{ nazwa, slownie?, tex?, litery?, przyklad?, uwaga? }],   // karty ściągi: nazwa i (slownie albo tex)
+//       sciaga: [{ nazwa, slownie?, tex?, litery?, przyklad?, uwaga?, rysunek?, wykres? }],   // karty ściągi: nazwa i (slownie albo tex); rysunek i wykres: opis w assets/rysunki.js
 //       jak: ["krok 1", "krok 2"],                                           // opcjonalnie: jak rozwiązywać typowe zadania
 //       zadania: [{ nr, tresc, opcje: [4 albo 5], poprawna }],              // zamknięte (format jak assets/zadania/*.js, bez dzial/temat)
 //       otwarte: [{ nr, punkty, tresc, rozwiazanie }],                      // otwarte z rozwiązaniem
@@ -20,6 +20,7 @@
 import { access } from "node:fs/promises";
 import { KLASY } from "../assets/szkola.js";
 import { sprawdzGeneratory, bledyTekstu, ladnaPodstawowka, ladnaLiceum } from "./sprawdz-generator.mjs";
+import { bledyRysunku, bledyWykresu } from "./sprawdz-rysunek.mjs";
 
 const TYLKO = process.argv[2] && isNaN(process.argv[2]) ? process.argv[2] : null;
 const ILE = Number([...process.argv.slice(2)].find((a) => !isNaN(a)) ?? 200);
@@ -35,7 +36,7 @@ const tekst = (gdzie, s) => {
 };
 
 const ID = /^[a-z0-9]+(-[a-z0-9]+)*$/;
-const POLA_KARTY = ["nazwa", "slownie", "tex", "litery", "przyklad", "uwaga"];
+const POLA_KARTY = ["nazwa", "slownie", "tex", "litery", "przyklad", "uwaga", "rysunek", "wykres"];
 const POLA_TEMATU = ["id", "nazwa", "sciaga", "jak", "zadania", "otwarte", "generatory"];
 
 // --- Lista klas i rozdziałów
@@ -84,6 +85,8 @@ for (const k of KLASY) {
         if (!w.nazwa || !(w.slownie || w.tex)) blad(gw, "karta potrzebuje nazwy i opisu słownego albo wzoru");
         for (const p of ["nazwa", "slownie", "litery", "przyklad", "uwaga"]) if (w[p] !== undefined) tekst(gw, w[p]);
         if (w.tex !== undefined) tekst(gw, `$${w.tex}$`);
+        if (w.rysunek !== undefined) for (const x of bledyRysunku(w.rysunek)) blad(gw, x);
+        if (w.wykres !== undefined) for (const x of bledyWykresu(w.wykres)) blad(gw, x);
         kart++;
       }
       for (const s of t.jak ?? []) tekst(`${gt} jak`, s);
