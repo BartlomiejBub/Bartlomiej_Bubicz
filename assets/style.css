@@ -220,6 +220,9 @@ a { color: var(--link); text-underline-offset: 2px; }
   .brand-name { display: none; }
   .motyw-napis { display: none; }
   .motyw-przycisk { margin-left: 4px; padding: 6px 8px; }
+  .site-header .wrap { gap: 8px; }
+  .nav { gap: 2px; }
+  .nav a { padding: 6px 9px; font-size: 14px; }
 }
 
 /* --- Wstęp strony: delikatny pas pod nagłówkiem */
@@ -596,60 +599,68 @@ input[type="radio"] { width: 18px; height: 18px; margin: 0; accent-color: var(--
 
 .egzaminy[hidden] { display: none; }
 
-/* Nawigacja korepetycji: wyraźne panele w ramce, a w nich grupy z etykietą (Egzamin, Materiały, Jak się uczysz, Klasa).
-   Grupy obok siebie oddziela pionowa linia; na wąskim ekranie stoją jedna pod drugą, oddzielone poziomą. */
-/* Panele nawigacji są płaskie (bez cienia) – osadzone w stronie, w odróżnieniu od kart z treścią. */
+/* Menu korepetycji: jeden zwarty panel w ramce tuż pod nagłówkiem strony. W pierwszym wierszu szkoła
+   (średnia / podstawowa), materiały i – po zalogowaniu, w ćwiczeniach – powitanie z „Wyloguj”; w drugim, za linią,
+   tryb nauki i klasa (albo dział). Podpis grupy stoi przed przyciskami, grupy oddziela pionowa kreska.
+   Na wąskim ekranie grupy stoją jedna pod drugą, z podpisem nad przyciskami.
+   Panel jest płaski (bez cienia) – osadzony w stronie, w odróżnieniu od kart z treścią. */
 .nawigacja {
   border: 1px solid var(--line-strong);
   border-radius: var(--radius);
   background: var(--surface);
 }
-.grupa { display: grid; align-content: start; gap: 6px; min-width: 0; }
-.grupa-etykieta { color: var(--muted); font-size: 13px; font-weight: 600; line-height: 1.2; }
+.grupa { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.grupa-etykieta { flex: none; color: var(--muted); font-size: 13px; font-weight: 600; line-height: 1.2; }
 .grupa .tabs, .grupa .egzaminy.przelacznik { margin: 0; }
 /* grupa bez widocznego wyboru (np. uczeń ma jedną klasę) znika razem z etykietą */
 .grupa:has(> .tabs[hidden], > .przelacznik[hidden]) { display: none; }
 
-.pasek-wyboru { display: flex; margin: 20px 0 16px; padding: 12px 16px 14px; }
-.pasek-wyboru > .grupa + .grupa,
-.panel-ucznia-wybor > .grupa:not([hidden]) ~ .grupa { margin-left: 20px; padding-left: 20px; border-left: 1px solid var(--line); }
+.pasek-wyboru { margin: 14px 0 18px; padding: 0 14px; }
+.menu-wiersz { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 0; min-width: 0; padding: 8px 0; }
+.menu-wiersz + .menu-wiersz { border-top: 1px solid var(--line); }
+/* kreska przed każdą następną grupą – ale nie wtedy, gdy grupa przed nią jest ukryta (jeden tryb nauki) */
+.menu-wiersz > .grupa + .grupa { margin-left: 16px; padding-left: 16px; border-left: 1px solid var(--line); }
+.menu-wiersz > .grupa:has(> .tabs[hidden], > .przelacznik[hidden]) + .grupa { margin-left: 0; padding-left: 0; border-left: 0; }
+/* drugi wiersz się nie łamie: długa lista działów zawija się w swojej grupie, obok „Jak się uczysz” */
+.panel-ucznia-wybor.menu-wiersz { flex-wrap: nowrap; }
+.pasek-wyboru .tabs, .pasek-wyboru .egzaminy.przelacznik { padding: 3px; }
+.pasek-wyboru .tab { padding: 5px 13px; }
+.pasek-wyboru .przelacznik .egzamin { padding: 5px 13px; }
 
-/* Panel ucznia: w jednym wierszu powitanie, wybór trybu i klasy (albo działu) oraz wylogowanie.
-   O ułożeniu decyduje szerokość samego panelu (zapytanie @container), a nie okna – więc liczy się też otwarty
-   kalkulator z boku. Gdy wiersz się nie mieści, wybór schodzi pod linię, a powitanie i „Wyloguj” zostają u góry. */
-.panel-ucznia { margin-bottom: 20px; container-type: inline-size; }
-.student-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; padding: 12px 16px; }
-.powitanie { display: flex; flex: none; align-items: center; gap: 10px; }
-.student-bar h2 { margin: 0; font-size: 1.3rem; white-space: nowrap; }
-.student-bar .wyloguj { order: 2; margin-left: auto; }
+/* Powitanie ucznia i „Wyloguj” – na prawym końcu pierwszego wiersza */
+.menu-uczen { display: none; flex: none; align-items: center; gap: 10px; margin-left: auto; padding-left: 16px; border-left: 1px solid var(--line); }
+.menu-imie { margin: 0; color: var(--ink); font-size: 1rem; white-space: nowrap; }
 .awatar {
   display: grid;
   flex: none;
   place-items: center;
-  width: 38px;
-  height: 38px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   background: var(--accent);
   color: var(--accent-contrast);
-  font-size: 17px;
+  font-size: 14px;
   font-weight: 800;
 }
-.panel-ucznia-wybor { display: flex; order: 3; flex-basis: 100%; min-width: 0; padding: 12px 0 2px; border-top: 1px solid var(--line); }
+.pasek-wyboru > .panel-ucznia-wybor { display: none; }
 .panel-ucznia-wybor > #grupa-trybu { flex: none; }
 .panel-ucznia-wybor > #grupa-dzialu { flex: 1 1 auto; min-width: 0; }
-.panel-ucznia-wybor > .grupa:not([hidden]) ~ .grupa { margin-left: 16px; padding-left: 16px; }
 #dzialy-wybor { flex-wrap: wrap; }
-/* nic do wyboru (jeden tryb, jedna klasa) – zostaje samo powitanie */
-.panel-ucznia-wybor:not(:has(.tabs:not([hidden]), .przelacznik:not([hidden]))) { display: none; }
-@container (min-width: 860px) {
-  .student-bar { flex-wrap: nowrap; }
-  .student-bar .wyloguj { order: 0; }
-  .panel-ucznia-wybor { order: 0; flex: 0 1 auto; padding: 0 0 0 16px; border-top: 0; border-left: 1px solid var(--line); }
-}
+/* uczeń zalogowany i otwarte ćwiczenia: powitanie i drugi wiersz (o ile jest w nim coś do wyboru) */
+body:has(#cwiczenia-uczen:not([hidden])):has(#panel-cwiczenia:not([hidden])) .menu-uczen { display: flex; }
+body:has(#cwiczenia-uczen:not([hidden])):has(#panel-cwiczenia:not([hidden])) .pasek-wyboru > .panel-ucznia-wybor:has(.tabs:not([hidden]), .przelacznik:not([hidden])) { display: flex; }
+
 @media (max-width: 700px) {
-  .pasek-wyboru, .panel-ucznia-wybor { flex-direction: column; gap: 12px; }
-  .pasek-wyboru > .grupa + .grupa,
-  .panel-ucznia-wybor > .grupa:not([hidden]) ~ .grupa { margin-left: 0; padding-left: 0; padding-top: 12px; border-left: 0; border-top: 1px solid var(--line); }
+  .pasek-wyboru { padding: 0 12px; }
+  .menu-wiersz { flex-direction: column; flex-wrap: nowrap; align-items: stretch; gap: 0; padding: 0; }
+  .menu-wiersz > * { padding: 7px 0; }
+  /* przyciski mówią same za siebie („Szkoła średnia”, „Ćwiczenia”, „Do szkoły”) – podpis zostaje tylko przy klasie/dziale */
+  .grupa-etykieta { display: none; }
+  #dzialy-etykieta { display: block; }
+  .menu-wiersz > .grupa + .grupa { margin-left: 0; padding-left: 0; border-left: 0; border-top: 1px solid var(--line); }
+  .menu-wiersz > .grupa:has(> .tabs[hidden], > .przelacznik[hidden]) + .grupa { border-top: 0; }
+  .menu-uczen { order: -1; margin-left: 0; padding-left: 0; border-left: 0; border-bottom: 1px solid var(--line); }
+  .menu-uczen .wyloguj { margin-left: auto; }
   #dzialy-wybor { flex-wrap: nowrap; }
 }
 
@@ -691,11 +702,6 @@ input[type="radio"] { width: 18px; height: 18px; margin: 0; accent-color: var(--
   .hero-compact { padding-bottom: 4px; }
   .hero h1 { margin-bottom: 8px; font-size: 1.9rem; }
   .hero .lead { font-size: 1rem; }
-  .pasek-wyboru { margin: 14px 0 14px; padding: 10px 12px 12px; }
-  .student-bar { gap: 10px; padding: 10px 12px; }
-  .student-bar h2 { font-size: 1.15rem; }
-  .awatar { width: 32px; height: 32px; font-size: 15px; }
-  .panel-ucznia-wybor { padding: 10px 0 2px; }
   .dzial-opis { display: none; }
 }
 
@@ -1223,52 +1229,45 @@ input.zle { border-color: var(--zle); background: var(--zle-bg); }
 .tematy-dzial legend { padding: 0 4px; font-weight: 600; }
 .tematy-opcja { display: block; white-space: nowrap; }
 
-/* --- Narzędzia wysuwane z prawej: kalkulator graficzny i kalkulator (assets/narzedzia.js) */
-body { transition: padding-right 0.25s ease; }
-body.z-szuflada { padding-right: var(--szuflada-szer, 0px); }
-/* miejsce na przyciski narzędzi przy prawej krawędzi, żeby nie zasłaniały treści (na telefonie są na dole) */
-@media (min-width: 761px) {
-  html.z-wykresami body { padding-right: 70px; }
-  html.z-wykresami body.z-szuflada { padding-right: calc(var(--szuflada-szer, 0px) + 70px); }
-}
+/* --- Narzędzia wysuwane z prawej: kalkulator graficzny i kalkulator (assets/narzedzia.js).
+   Przyciski stoją w górnym pasku strony, panel wysuwa się pod paskiem (pasek zostaje widoczny).
+   Otwarty panel zwęża treść: main i stopka dostają odstęp z prawej, o tyle, o ile panel wchodzi na treść
+   (na szerokim ekranie część panelu mieści się na pustym marginesie). */
+:root { --naglowek-wys: 61px; }   /* .site-header: 60 px + 1 px ramki */
+main, .site-footer > .wrap { transition: padding-right 0.25s ease; }
+body.z-szuflada > main,
+body.z-szuflada > .site-footer > .wrap { padding-right: max(0px, var(--szuflada-szer, 0px) + 20px - max(24px, (100% - 1760px) / 2)); }
 body.szuflada-ciagniecie, body.szuflada-ciagniecie * { transition: none !important; cursor: ew-resize !important; user-select: none; }
 
 .narzedzia-przyciski {
-  position: fixed;
-  top: 50%;
-  right: 0;
-  z-index: 30;
-  display: grid;
+  display: flex;
   gap: 6px;
-  transform: translateY(-50%);
-  transition: right 0.25s ease;
+  margin-left: auto;
+  padding-right: 14px;
+  border-right: 1px solid var(--line);
 }
-body.z-szuflada .narzedzia-przyciski { right: var(--szuflada-szer, 0px); }
 .narzedzie {
-  display: grid;
-  justify-items: center;
-  gap: 2px;
-  width: 66px;
-  padding: 9px 4px 7px;
-  border: 1px solid var(--line-strong);
-  border-right: 0;
-  border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border: 1.5px solid var(--line-strong);
+  border-radius: 999px;
   background: var(--surface);
   color: var(--ink);
-  box-shadow: var(--shadow);
   font: inherit;
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
 }
-.narzedzie svg { width: 24px; height: 24px; color: var(--accent); }
-.narzedzie:hover { background: var(--accent-soft); }
+.narzedzie svg { flex: none; width: 18px; height: 18px; color: var(--accent); }
+.narzedzie:hover { border-color: var(--accent); background: var(--accent-soft); }
 .narzedzie[aria-expanded="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-contrast); }
 .narzedzie[aria-expanded="true"] svg { color: var(--accent-contrast); }
 
 .szuflada {
   position: fixed;
-  top: 0;
+  top: var(--naglowek-wys);
   right: 0;
   bottom: 0;
   z-index: 40;
@@ -1495,21 +1494,20 @@ body.z-szuflada .narzedzia-przyciski { right: var(--szuflada-szer, 0px); }
 }
 .wyk-przyklad:hover { border-color: var(--accent); color: var(--accent-strong); }
 
-/* telefon: panel na cały ekran, przyciski w prawym dolnym rogu */
+/* telefon: panel na cały ekran pod paskiem; w pasku same ikony narzędzi */
 @media (max-width: 760px) {
-  body.z-szuflada { padding-right: 0; overflow: hidden; }
+  body.z-szuflada { overflow: hidden; }
   .szuflada { width: 100vw; border-left: 0; }
   .szuflada-uchwyt { display: none; }
-  .narzedzia-przyciski { top: auto; bottom: 12px; right: 12px; grid-auto-flow: column; transform: none; }
-  body.z-szuflada .narzedzia-przyciski { display: none; }
-  .narzedzie { width: auto; grid-auto-flow: column; align-items: center; gap: 6px; padding: 8px 12px; border: 1px solid var(--line-strong); border-radius: 999px; font-size: 13px; }
-  .narzedzie svg { width: 20px; height: 20px; }
+  .narzedzia-przyciski { gap: 4px; padding-right: 8px; }
+  .narzedzie { padding: 6px 8px; }
+  .narzedzie span { display: none; }
   .wyk-obszar { height: 48vh; }
 }
 
 @media print {
   .narzedzia-przyciski, .szuflada { display: none !important; }
-  body.z-szuflada { padding-right: 0; }
+  body.z-szuflada > main, body.z-szuflada > .site-footer > .wrap { padding-right: 0; }
 }
 
 /* --- Rysunki i wykresy na kartach wzorów (assets/rysunki.js). Klasy: l a p w w2 k t ta tm; wykres: siatka os wykres */
@@ -1797,10 +1795,9 @@ body.z-szuflada .narzedzia-przyciski { right: var(--szuflada-szer, 0px); }
 .szuflada-akcje { display: flex; gap: 6px; }
 .szuflada-pelny { display: grid; place-items: center; }
 .szuflada-pelny svg { width: 18px; height: 18px; }
-.szuflada.pelny { width: 100vw; border-left: 0; z-index: 60; }
+.szuflada.pelny { top: 0; width: 100vw; border-left: 0; z-index: 60; }
 .szuflada.pelny .szuflada-uchwyt { display: none; }
 body.szuflada-pelna { overflow: hidden; }
-body.szuflada-pelna .narzedzia-przyciski { display: none; }
 .szuflada.pelny .wyk { display: grid; grid-template-columns: minmax(320px, 420px) minmax(0, 1fr); height: 100%; }
 .szuflada.pelny .wyk-obszar { grid-column: 2; grid-row: 1; height: auto; min-height: 0; border-bottom: 0; border-left: 1px solid var(--line); }
 .szuflada.pelny .wyk-dol { grid-column: 1; grid-row: 1; }

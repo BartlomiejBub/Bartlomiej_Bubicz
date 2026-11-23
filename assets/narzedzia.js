@@ -1,5 +1,6 @@
 // Wysuwane z prawej narzędzia: kalkulator graficzny (assets/wykresy.js) i kalkulator (assets/kalkulator.js).
-// Na komputerze panel przesuwa treść strony w lewo (body dostaje odstęp z prawej), na telefonie zakrywa ekran.
+// Przyciski są w górnym pasku strony, a panel wysuwa się pod nim. Na komputerze panel zwęża treść strony
+// (main i stopka dostają odstęp z prawej), na telefonie zakrywa ekran pod paskiem.
 // Szerokość panelu można zmienić, przeciągając jego lewą krawędź; zapamiętujemy ją w przeglądarce.
 // Kalkulator graficzny można też otworzyć na cały ekran. Wzory funkcji w treści (assets/matematyka.js) mają
 // przycisk „Pokaż na wykresie” – kliknięcie wzoru albo przycisku otwiera go w kalkulatorze graficznym.
@@ -28,8 +29,11 @@ function uruchom() {
   let otwarte = null;
   const zapisz = () => { try { localStorage.setItem(KLUCZ, JSON.stringify({ szerokosci, otwarte: otwarte?.id ?? null })); } catch { /* prywatne okno */ } };
 
+  // przyciski w górnym pasku strony, przed nawigacją (nic nie wisi nad treścią); panel otwiera się pod paskiem
   const przyciski = el("div", { class: "narzedzia-przyciski", role: "group", "aria-label": "Narzędzia" });
-  document.body.append(przyciski);
+  const nawigacja = document.querySelector(".site-header .nav");
+  if (nawigacja) nawigacja.before(przyciski);
+  else document.body.append(przyciski);
   document.documentElement.classList.add("z-wykresami");   // pokazuje przyciski „Pokaż na wykresie” przy wzorach
 
   const maksSzer = () => Math.max(320, Math.min(960, window.innerWidth - 380));

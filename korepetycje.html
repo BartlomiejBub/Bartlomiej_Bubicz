@@ -29,31 +29,44 @@
   </header>
 
   <main class="wrap">
-    <section class="hero hero-compact">
-      <p class="eyebrow" data-tylko="matura">Matematyka · poziom podstawowy</p>
-      <p class="eyebrow" data-tylko="e8">Matematyka · szkoła podstawowa</p>
-      <h1>Korepetycje</h1>
-      <p class="lead" data-tylko="matura">Materiały do matury z matematyki na poziomie podstawowym w nowej formule (od 2023 roku).</p>
-      <p class="lead" data-tylko="e8">Materiały do egzaminu ósmoklasisty z matematyki, a do tego podstawy: działania pisemne, ułamki i liczby ujemne.</p>
-    </section>
+    <h1 class="visually-hidden">Korepetycje z matematyki</h1>
 
     <div class="pasek-wyboru nawigacja">
-      <div class="grupa">
-        <span class="grupa-etykieta" aria-hidden="true">Egzamin</span>
-        <div class="egzaminy przelacznik" role="group" aria-label="Egzamin">
-          <button class="egzamin" type="button" data-egzamin="matura" aria-pressed="true"><strong>Matura</strong><small>poziom podstawowy</small></button>
-          <button class="egzamin" type="button" data-egzamin="e8" aria-pressed="false"><strong>Egzamin ósmoklasisty</strong><small>szkoła podstawowa</small></button>
+      <div class="menu-wiersz">
+        <div class="grupa">
+          <span class="grupa-etykieta" aria-hidden="true">Szkoła</span>
+          <div class="egzaminy przelacznik" role="group" aria-label="Szkoła">
+            <button class="egzamin" type="button" data-egzamin="matura" aria-pressed="true"><strong>Szkoła średnia</strong><small>matura</small></button>
+            <button class="egzamin" type="button" data-egzamin="e8" aria-pressed="false"><strong>Szkoła podstawowa</strong><small>egzamin ósmoklasisty</small></button>
+          </div>
+        </div>
+
+        <div class="grupa">
+          <span class="grupa-etykieta" aria-hidden="true">Materiały</span>
+          <div class="tabs strony" role="tablist" aria-label="Materiały">
+            <button class="tab" type="button" role="tab" id="tab-cwiczenia" data-tab="cwiczenia" data-tylko="matura" aria-controls="panel-cwiczenia" aria-selected="true">Ćwiczenia</button>
+            <button class="tab" type="button" role="tab" id="tab-matury" data-tab="matury" data-tylko="matura" aria-controls="panel-matury" aria-selected="false" tabindex="-1">Arkusze CKE</button>
+            <button class="tab" type="button" role="tab" id="tab-e8-cwiczenia" data-tab="e8-cwiczenia" data-tylko="e8" aria-controls="panel-cwiczenia" aria-selected="false" tabindex="-1">Ćwiczenia</button>
+            <button class="tab" type="button" role="tab" id="tab-e8-arkusze" data-tab="e8-arkusze" data-tylko="e8" aria-controls="panel-e8-arkusze" aria-selected="false" tabindex="-1">Arkusze CKE</button>
+            <button class="tab" type="button" role="tab" id="tab-e8-gry" data-tab="e8-gry" data-tylko="e8" aria-controls="panel-e8-gry" aria-selected="false" tabindex="-1">Gry</button>
+          </div>
+        </div>
+
+        <div class="menu-uczen">
+          <span class="awatar" aria-hidden="true" data-inicjal></span>
+          <h2 class="menu-imie">Cześć, <span data-imie></span>!</h2>
+          <button class="btn btn-small wyloguj" type="button" id="wyloguj">Wyloguj</button>
         </div>
       </div>
 
-      <div class="grupa">
-        <span class="grupa-etykieta" aria-hidden="true">Materiały</span>
-        <div class="tabs strony" role="tablist" aria-label="Materiały">
-          <button class="tab" type="button" role="tab" id="tab-cwiczenia" data-tab="cwiczenia" data-tylko="matura" aria-controls="panel-cwiczenia" aria-selected="true">Ćwiczenia</button>
-          <button class="tab" type="button" role="tab" id="tab-matury" data-tab="matury" data-tylko="matura" aria-controls="panel-matury" aria-selected="false" tabindex="-1">Arkusze CKE</button>
-          <button class="tab" type="button" role="tab" id="tab-e8-cwiczenia" data-tab="e8-cwiczenia" data-tylko="e8" aria-controls="panel-cwiczenia" aria-selected="false" tabindex="-1">Ćwiczenia</button>
-          <button class="tab" type="button" role="tab" id="tab-e8-arkusze" data-tab="e8-arkusze" data-tylko="e8" aria-controls="panel-e8-arkusze" aria-selected="false" tabindex="-1">Arkusze CKE</button>
-          <button class="tab" type="button" role="tab" id="tab-e8-gry" data-tab="e8-gry" data-tylko="e8" aria-controls="panel-e8-gry" aria-selected="false" tabindex="-1">Gry</button>
+      <div class="panel-ucznia-wybor menu-wiersz" id="wybor-ucznia">
+        <div class="grupa" id="grupa-trybu">
+          <span class="grupa-etykieta" aria-hidden="true">Jak się uczysz</span>
+          <div class="egzaminy tryby przelacznik" id="tryb-wybor" role="group" aria-label="Jak chcesz się uczyć" hidden></div>
+        </div>
+        <div class="grupa" id="grupa-dzialu">
+          <span class="grupa-etykieta" aria-hidden="true" id="dzialy-etykieta">Dział</span>
+          <div class="tabs" id="dzialy-wybor" role="group" aria-label="Dział"></div>
         </div>
       </div>
     </div>
@@ -98,25 +111,6 @@
       </div>
 
       <div id="cwiczenia-uczen" hidden>
-        <div class="nawigacja panel-ucznia">
-          <div class="student-bar">
-            <div class="powitanie">
-              <span class="awatar" aria-hidden="true" data-inicjal></span>
-              <h2>Cześć, <span data-imie></span>!</h2>
-            </div>
-            <div class="panel-ucznia-wybor" id="wybor-ucznia">
-              <div class="grupa" id="grupa-trybu">
-                <span class="grupa-etykieta" aria-hidden="true">Jak się uczysz</span>
-                <div class="egzaminy tryby przelacznik" id="tryb-wybor" role="group" aria-label="Jak chcesz się uczyć" hidden></div>
-              </div>
-              <div class="grupa" id="grupa-dzialu">
-                <span class="grupa-etykieta" aria-hidden="true" id="dzialy-etykieta">Dział</span>
-                <div class="tabs" id="dzialy-wybor" role="group" aria-label="Dział"></div>
-              </div>
-            </div>
-            <button class="btn btn-small wyloguj" type="button" id="wyloguj">Wyloguj</button>
-          </div>
-        </div>
         <div class="uklad">
           <aside class="boczny">
             <nav class="spis" id="spis" aria-label="Tematy" hidden></nav>

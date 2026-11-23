@@ -82,8 +82,8 @@ document.getElementById("wyloguj").addEventListener("click", () => {
 function pokazUcznia(uczen) {
   logowanie.hidden = true;
   panel.hidden = false;
-  panel.querySelector("[data-imie]").textContent = uczen.imie;
-  panel.querySelector("[data-inicjal]").textContent = uczen.imie.trim().charAt(0).toUpperCase();
+  document.querySelector("[data-imie]").textContent = uczen.imie;
+  document.querySelector("[data-inicjal]").textContent = uczen.imie.trim().charAt(0).toUpperCase();
 
   const widzi = (d, r) => ma(uczen, d.id, r) && maMaterialy(d, r);
   const wszystkie = DZIALY
