@@ -1,15 +1,21 @@
-/* Jasna paleta: białe tło, chłodne szarości do podziału strony i jeden kolor akcentu (morski) do przycisków,
-   wybranych elementów i kart wzorów. Bursztyn tylko do uwag i ostrzeżeń. Strona jest zawsze jasna. */
+/* Jasna paleta: strona na chłodnym szarym tle, treść na białych kartach. Kolor akcentu (morski) do przycisków,
+   wybranych elementów, zadań i sposobów rozwiązywania. Każdy rodzaj treści ma swój stały kolor i kształt jak
+   w podręczniku: teoria (ściąga) – niebieski, generator – fioletowy, uwagi – bursztyn, przykłady – szare pole. */
 :root {
-  --bg: #ffffff;
+  --bg: #e8edf3;
   --surface: #ffffff;
-  --surface-2: #f3f6f9;
-  --surface-3: #e8eef4;
-  --text: #2a3646;
-  --muted: #5b6b7e;
-  --ink: #0f1d2e;
-  --line: #d3dce6;
-  --line-strong: #b4c2d1;
+  --surface-2: #f2f5f9;
+  --surface-3: #e2e8ef;
+  --text: #1f2a38;
+  --muted: #4e5c6d;
+  --ink: #0c1828;
+  --line: #cfd8e2;
+  --line-strong: #a5b4c5;
+
+  --teoria: #1d5aa8; --teoria-mocny: #154785; --teoria-bg: #e9f1fc; --teoria-line: #a8c3e8;
+  --teoria-naglowek: #1d5aa8; --teoria-naglowek-tekst: #ffffff;
+  --gen: #6b3fc2; --gen-bg: #f3eefd; --gen-line: #c9b6ef;
+  --etykieta: #1f2f45; --etykieta-tekst: #ffffff;
 
   --accent: #0f766e;
   --accent-strong: #0a5c55;
@@ -19,11 +25,11 @@
   --link: #0b6b63;
 
   --warm: #a2520c;
-  --warm-bg: #fff6eb;
-  --warm-line: #f0c38f;
+  --warm-bg: #fff3e3;
+  --warm-line: #ebb878;
 
-  --shadow-sm: 0 1px 2px rgb(15 29 46 / 6%);
-  --shadow: 0 1px 2px rgb(15 29 46 / 6%), 0 6px 18px rgb(15 29 46 / 7%);
+  --shadow-sm: 0 1px 2px rgb(15 29 46 / 8%);
+  --shadow: 0 1px 2px rgb(15 29 46 / 8%), 0 4px 14px rgb(15 29 46 / 8%);
 
   --b-glowna: #0a5c55;      --b-glowna-bg: #e7f4f2;
   --b-dodatkowy: #1f5fae;   --b-dodatkowy-bg: #e8f0fb;
@@ -58,15 +64,20 @@
 /* Ciemny motyw (przełącznik w nagłówku, assets/motyw.js). Tylko na ekranie – wydruk jest zawsze jasny. */
 @media screen {
   :root[data-motyw="ciemny"] {
-    --bg: #0e141b;
-    --surface: #151d27;
-    --surface-2: #1b2531;
-    --surface-3: #263241;
-    --text: #cfd8e3;
-    --muted: #97a5b6;
-    --ink: #eef3f8;
-    --line: #2b3746;
-    --line-strong: #3d4b5d;
+    --bg: #0f151d;
+    --surface: #19222d;
+    --surface-2: #202a37;
+    --surface-3: #2a3544;
+    --text: #d3dce6;
+    --muted: #9eacbd;
+    --ink: #f1f5f9;
+    --line: #313d4c;
+    --line-strong: #485769;
+
+    --teoria: #8cb6f2; --teoria-mocny: #b3cff7; --teoria-bg: #17263a; --teoria-line: #35567f;
+    --teoria-naglowek: #22426b; --teoria-naglowek-tekst: #e6efff;
+    --gen: #b79df2; --gen-bg: #241c39; --gen-line: #4e3f7e;
+    --etykieta: #3a4a5f; --etykieta-tekst: #f1f5f9;
 
     --accent: #2bb3a5;
     --accent-strong: #62d6c9;
@@ -1903,4 +1914,208 @@ body.szuflada-pelna .narzedzia-przyciski { display: none; }
   .kat-panel { justify-items: stretch; }
   .kat-pytanie { grid-template-columns: 1fr auto; align-items: center; font-size: 1.05rem; }
   .kat-wynik { min-height: 0; }
+}
+
+/* --- Wyrazistość: każdy rodzaj treści ma swój kształt i kolor, jak w podręczniku.
+   Teoria (ściąga, wzory) – karta z niebieskim paskiem tytułu; przykład – szare pole z ciemną etykietą;
+   uwaga – bursztynowe pole z wykrzyknikiem; „Jak rozwiązywać” – kroki w kółkach z numerami;
+   zadanie – biała karta z ciemną etykietą w rogu i odpowiedziami jak przyciski; generator – fioletowy pasek;
+   instrukcje („kliknij…”, „wpisz…”) – drobny tekst z ikoną „i”, żeby nie udawały treści.
+   Wybrane elementy przełączników są wypełnione kolorem, a nie tylko obwiedzione. */
+
+.site-header { border-bottom-color: var(--line-strong); box-shadow: var(--shadow-sm); }
+.site-footer { background: var(--surface); }
+
+/* Etykiety nad tytułami: zwykłe litery zamiast rozstrzelonych wersalików */
+.eyebrow { color: var(--accent-strong); font-size: 15px; letter-spacing: 0; text-transform: none; }
+.contact-label { letter-spacing: 0; text-transform: none; font-size: 13px; }
+.year h3 { color: var(--ink); font-size: 1.05rem; letter-spacing: 0; text-transform: none; }
+.blok-sub { color: var(--ink); font-size: 0.95rem; font-weight: 700; letter-spacing: 0; text-transform: none; }
+.temat-nr {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+  font-size: 13px;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.temat-glowa { margin: 0 0 16px; }
+.temat-tytul { margin-top: 6px; }
+
+/* Przełączniki w panelach nawigacji: wybrany segment wypełniony akcentem */
+.tab[aria-selected="true"],
+.tab[aria-pressed="true"],
+.przelacznik .egzamin[aria-pressed="true"] { border-color: var(--accent); background: var(--accent); color: var(--accent-contrast); }
+.przelacznik .egzamin[aria-pressed="true"] strong,
+.przelacznik .egzamin[aria-pressed="true"]:hover strong { color: var(--accent-contrast); }
+.tab[aria-pressed="true"] .tab-licznik,
+.tab[aria-selected="true"] .tab-licznik { background: color-mix(in srgb, var(--accent-contrast) 22%, transparent); color: var(--accent-contrast); }
+.tabs, .egzaminy.przelacznik { border-color: var(--line-strong); }
+.grupa-etykieta { color: var(--ink); }
+
+/* Tematy rozdziału (przyciski nad treścią) – na białym, jak panele nawigacji */
+.tematy-pasek { background: var(--surface); }
+.spis-tytul { background: var(--surface-3); }
+
+/* Zakładki tematu: każda ma swój kolor i ikonę – Ściąga/Wzory niebieska, Zadania morska, Generator fioletowa */
+.zakladki .tab { --zakl: var(--accent); display: inline-flex; align-items: center; gap: 7px; font-size: 15.5px; }
+.zakladki .tab[data-zakladka="wzory"] { --zakl: var(--teoria); }
+.zakladki .tab[data-zakladka="generator"] { --zakl: var(--gen); }
+.zakladki .tab::before {
+  content: "";
+  flex: none;
+  width: 18px;
+  height: 18px;
+  background: currentColor;
+  -webkit-mask: var(--ikona) center / contain no-repeat;
+  mask: var(--ikona) center / contain no-repeat;
+}
+.zakladki .tab[data-zakladka="wzory"]::before { --ikona: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 5.5C5.5 4 8.5 4 12 6c3.5-2 6.5-2 9-.5V19c-2.5-1.5-5.5-1.5-9 .5-3.5-2-6.5-2-9-.5z'/%3E%3Cpath d='M12 6v13.5'/%3E%3C/svg%3E"); }
+.zakladki .tab[data-zakladka="zadania"]::before { --ikona: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 20l1-4L16 5l3 3L8 19z'/%3E%3Cpath d='M14 7l3 3'/%3E%3C/svg%3E"); }
+.zakladki .tab[data-zakladka="generator"]::before { --ikona: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 7h3c4 0 6 10 10 10h3M4 17h3c1.6 0 2.8-1.6 3.9-3.5M13.1 9.5C14.2 7.6 15.4 7 17 7h3'/%3E%3Cpath d='M18 4.5L20.5 7 18 9.5M18 14.5l2.5 2.5-2.5 2.5'/%3E%3C/svg%3E"); }
+.zakladki .tab[aria-pressed="true"] {
+  border-bottom-color: var(--zakl);
+  background: color-mix(in srgb, var(--zakl) 11%, transparent);
+  color: var(--zakl);
+}
+.zakladki .tab-licznik { margin-left: 0; }
+.zakladki .tab[aria-pressed="true"] .tab-licznik { background: var(--zakl); color: var(--surface); }
+.tabs.zakladki { box-shadow: inset 0 -2px 0 var(--line-strong); }
+
+/* Tytuły bloków: pasek w kolorze rodzaju treści */
+.blok:has(.wzory-grid) > h3, .blok:has(.wzory-grid) > .blok-head h3 { border-left-color: var(--teoria); }
+.blok:has(.gen-card) > h3, .blok:has(.gen-card) > .blok-head h3 { border-left-color: var(--gen); }
+
+/* Instrukcje: drobny tekst z ikoną „i” */
+.blok-intro {
+  position: relative;
+  padding-left: 28px;
+  color: var(--muted);
+  font-size: 0.93rem;
+}
+.blok-intro::before {
+  content: "i";
+  position: absolute;
+  top: 0.2em;
+  left: 0;
+  width: 19px;
+  height: 19px;
+  border-radius: 50%;
+  background: var(--surface-3);
+  color: var(--ink);
+  font: italic 800 12px/19px Georgia, "Times New Roman", serif;
+  text-align: center;
+}
+
+/* Teoria: karta z niebieskim paskiem tytułu */
+.wzor-karta { border: 1.5px solid var(--teoria-line); box-shadow: var(--shadow); }
+.wzor-nazwa {
+  border-bottom: 0;
+  background: var(--teoria-naglowek);
+  color: var(--teoria-naglowek-tekst);
+  font-size: 1rem;
+}
+.wzor-slownie { margin-bottom: 10px; }
+/* ściąga do druku: jasny pasek zamiast pełnego koloru (mniej tuszu) */
+.sheet-sciaga .wzor-nazwa { background: var(--teoria-bg); color: var(--teoria-mocny); font-size: inherit; }
+
+/* Przykład: szare pole z ciemną etykietą */
+.wzor-przyklad {
+  margin: 8px 0 6px;
+  padding: 8px 12px;
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  background: var(--surface-2);
+  color: var(--text);
+  font-size: 0.92rem;
+}
+.wzor-przyklad > strong:first-child {
+  display: inline-block;
+  margin-right: 6px;
+  padding: 0 8px;
+  border-radius: 6px;
+  background: var(--etykieta);
+  color: var(--etykieta-tekst);
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+
+/* Uwaga: bursztynowe pole z wykrzyknikiem */
+.wzor-uwaga {
+  position: relative;
+  margin: 8px 0 4px;
+  padding: 8px 12px 8px 40px;
+  border: 1px solid var(--warm-line);
+  border-radius: 8px;
+  background: var(--warm-bg);
+  font-size: 0.92rem;
+}
+.wzor-uwaga::before {
+  content: "!";
+  position: absolute;
+  top: 9px;
+  left: 11px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--warm);
+  color: var(--surface);
+  font: 800 13px/20px "Plus Jakarta Sans", system-ui, sans-serif;
+  text-align: center;
+}
+
+/* Jak rozwiązywać: kroki po kolei, numery w kółkach */
+.jak { margin-top: 8px; border: 1.5px solid var(--accent-line); box-shadow: var(--shadow-sm); }
+.jak h4 { margin-bottom: 10px; font-size: 1.05rem; }
+.jak ol { padding: 0; list-style: none; counter-reset: krok; }
+.jak li { position: relative; padding-left: 34px; counter-increment: krok; }
+.jak li + li { margin-top: 8px; }
+.jak li::before {
+  content: counter(krok);
+  position: absolute;
+  top: 1px;
+  left: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--accent-contrast);
+  font: 800 13px/24px "Plus Jakarta Sans", system-ui, sans-serif;
+  text-align: center;
+}
+
+/* Zadanie: biała karta, ciemna etykieta przyklejona w lewym górnym rogu, odpowiedzi jak przyciski */
+.abcd-card, .gen-card { box-shadow: var(--shadow); }
+.abcd-zrodlo {
+  margin: -18px 0 14px -20px;
+  padding: 5px 14px 5px 20px;
+  border-radius: var(--radius) 0 10px 0;
+  background: var(--etykieta);
+  color: var(--etykieta-tekst);
+  font-size: 13px;
+  letter-spacing: 0;
+}
+.abcd-zrodlo:empty { display: none; }
+.abcd-opcja { border-color: var(--line-strong); background: var(--surface-2); }
+.abcd-opcja:hover { background: var(--surface); }
+.abcd-litera { color: var(--accent-strong); font-weight: 800; }
+
+/* Generator: fioletowy pasek u góry karty i fioletowy wybór rodzaju zadań */
+.gen-card { border-top: 4px solid var(--gen); }
+.blok:has(.gen-card) .chip:hover { border-color: var(--gen); color: var(--gen); }
+.blok:has(.gen-card) .chip[aria-pressed="true"] { border-color: var(--gen); background: var(--gen); color: var(--surface); }
+
+@media (max-width: 520px) {
+  .zakladki .tab { gap: 5px; padding-inline: 8px; font-size: 14px; }
+  .zakladki .tab::before { width: 16px; height: 16px; }
+}
+
+@media print {
+  .wzor-nazwa { background: none; color: #000; border-bottom: 1px solid #999; }
+  .wzor-przyklad > strong:first-child { padding: 0; background: none; color: #000; }
+  .abcd-zrodlo { margin: 0 0 8px; padding: 0; background: none; color: #000; }
+  .jak li::before { background: none; color: #000; border: 1px solid #000; }
+  .wzor-uwaga::before { background: none; color: #000; border: 1px solid #000; }
 }
