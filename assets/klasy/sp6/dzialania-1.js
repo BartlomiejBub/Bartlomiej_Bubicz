@@ -120,6 +120,102 @@ function ulKroki(a, b, op) {
 
 const razem = (W, res, total) => (W > 0 ? `Razem: $${W} + ${qm(res)} = ${qm(total)}$.` : `Wynik: $${qm(total)}$.`);
 
+// --- Rysunki na kartach (współrzędne liczone w kodzie; klasy stylów jak w assets/rysunki.js)
+
+const zl = (x) => Math.round(x * 10) / 10;
+const napis = (x, y, kl, t, kotwica = "middle") => `<text${kl ? ` class="${kl}"` : ""} x="${zl(x)}" y="${zl(y)}" text-anchor="${kotwica}">${t}</text>`;
+const kreska = (x1, y1, x2, y2, kl = "l") => `<line class="${kl}" x1="${zl(x1)}" y1="${zl(y1)}" x2="${zl(x2)}" y2="${zl(y2)}"/>`;
+const kropka = (x, y) => `<circle class="k" cx="${zl(x)}" cy="${zl(y)}" r="3.5"/>`;
+
+/** Pasek podzielony na n równych części; cz = [[od, ile, klasa]] – zamalowane części; pom = liczba części pomocniczej (przerywanej) podziałki. */
+function pasek(x, y, szer, wys, n, cz = [], pom = 0) {
+  const k = szer / n;
+  let s = "";
+  for (const [od, ile, kl] of cz) s += `<rect class="${kl}" x="${zl(x + od * k)}" y="${y}" width="${zl(ile * k)}" height="${wys}"/>`;
+  for (let i = 1; i < pom; i++) s += kreska(x + (i * szer) / pom, y, x + (i * szer) / pom, y + wys, "p");
+  s += `<rect class="l" x="${x}" y="${y}" width="${szer}" height="${wys}"/>`;
+  for (let i = 1; i < n; i++) s += kreska(x + i * k, y, x + i * k, y + wys);
+  return s;
+}
+
+/** Skok na osi ze strzałką: łuk od x1 do x2 nad osią o wysokości y, wznoszący się o h. */
+function skokOsi(x1, x2, y, h) {
+  const cx = (x1 + x2) / 2, cy = y - 2 * h;
+  const dx = x2 - cx, dy = y - cy, dl = Math.hypot(dx, dy), ux = dx / dl, uy = dy / dl;
+  const bx = x2 - ux * 7, by = y - uy * 7;
+  return `<path class="a" d="M ${zl(x1)} ${y} Q ${zl(cx)} ${zl(cy)} ${zl(x2)} ${y}"/>`
+    + `<polyline class="a" points="${zl(bx - uy * 3.5)},${zl(by + ux * 3.5)} ${zl(x2)},${y} ${zl(bx + uy * 3.5)},${zl(by - ux * 3.5)}"/>`;
+}
+
+const RYS_PASKI = `<svg viewBox="0 0 300 140">`
+  + [[2, 1, "1/2"], [4, 2, "2/4"], [8, 4, "4/8"]].map(([n, ile, t], i) => napis(44, 10 + 40 * i + 19, "ta", t, "end") + pasek(52, 10 + 40 * i, 240, 28, n, [[0, ile, "w"]])).join("")
+  + `${napis(172, 134, "tm", "każdy pasek to jedna całość")}</svg>`;
+
+const RYS_OS_ULAMKOW = (() => {
+  const X = (v) => 20 + 130 * v, y = 50;
+  let s = `<svg viewBox="0 0 300 84">${kreska(12, y, 288, y)}`;
+  for (let i = 0; i <= 8; i++) s += kreska(X(i / 4), y - (i % 4 === 0 ? 7 : 4), X(i / 4), y + (i % 4 === 0 ? 7 : 4));
+  for (const v of [0, 1, 2]) s += napis(X(v), y + 24, "", String(v));
+  s += kropka(X(0.75), y) + kropka(X(1.25), y) + napis(X(0.75), y - 14, "ta", "3/4") + napis(X(1.25) + 8, y - 14, "ta", "5/4 = 1¼");
+  return `${s}${napis(150, 80, "tm", "między 0 a 1 są 4 równe części")}</svg>`;
+})();
+
+const RYS_OS_DZIESIETNYCH = (() => {
+  const X = (v) => 20 + 260 * v, y = 52;
+  let s = `<svg viewBox="0 0 300 88">${kreska(12, y, 288, y)}`;
+  for (let i = 0; i <= 10; i++) {
+    const d = i % 5 === 0 ? 8 : 5;
+    s += kreska(X(i / 10), y - d, X(i / 10), y + d) + napis(X(i / 10), y + 26, "tm", i === 0 ? "0" : i === 10 ? "1" : `0,${i}`);
+  }
+  return `${s}${kropka(X(0.3), y)}${kropka(X(0.75), y)}${napis(X(0.3), y - 16, "ta", "0,3 = 3/10")}${napis(X(0.75), y - 16, "ta", "0,75 = 3/4")}</svg>`;
+})();
+
+const RYS_PASKI_DODAWANIE = `<svg viewBox="0 0 300 152">`
+  + napis(46, 28, "ta", "1/6", "end") + pasek(52, 10, 240, 24, 6, [[0, 1, "w"]], 12)
+  + napis(172, 46, "", "+")
+  + napis(46, 68, "ta", "3/4", "end") + pasek(52, 50, 240, 24, 4, [[0, 3, "w2"]], 12)
+  + napis(172, 96, "", "=")
+  + napis(46, 118, "ta", "11/12", "end") + pasek(52, 100, 240, 24, 12, [[0, 2, "w"], [2, 9, "w2"]])
+  + `${napis(172, 146, "tm", "przerywane linie: dwunaste części")}</svg>`;
+
+const RYS_OS_MIESZANE = (() => {
+  const X = (v) => 20 + 90 * (v - 1), y = 70;
+  let s = `<svg viewBox="0 0 300 116">${napis(150, 14, "ta", "3⅕ − 1⅗ = 1⅗")}${kreska(12, y, 288, y)}`;
+  for (let i = 0; i <= 15; i++) s += kreska(X(1 + i / 5), y - (i % 5 === 0 ? 7 : 4), X(1 + i / 5), y + (i % 5 === 0 ? 7 : 4));
+  for (const v of [1, 2, 3, 4]) s += napis(X(v), y + 22, "", String(v));
+  s += skokOsi(X(3.2), X(2.2), y, 24) + napis(X(2.7), y - 31, "ta", "−1");
+  s += skokOsi(X(2.2), X(1.6), y, 16) + napis(X(1.9), y - 23, "ta", "−3/5");
+  for (const [v, t] of [[3.2, "3⅕"], [2.2, "2⅕"], [1.6, "1⅗"]]) s += kropka(X(v), y) + napis(X(v), 108, "ta", t);
+  return `${s}</svg>`;
+})();
+
+/** Działanie pisemne na ułamkach dziesiętnych: przecinek pod przecinkiem (cx – położenie przecinka). */
+const pisemne = (cx, znak, a, b, w) => {
+  const wiersz = (y, t) => { const [c, u] = t.split(","); return napis(cx - 4, y, "", c, "end") + napis(cx, y, "", ",") + napis(cx + 4, y, "", u, "start"); };
+  return kreska(cx, 8, cx, 96, "p") + wiersz(30, a) + napis(cx - 48, 54, "", znak) + wiersz(54, b)
+    + kreska(cx - 58, 62, cx + 38, 62) + wiersz(86, w);
+};
+const RYS_PISEMNE = `<svg viewBox="0 0 300 120">${pisemne(78, "+", "4,70", "2,35", "7,05")}${pisemne(218, "−", "6,20", "3,85", "2,35")}`
+  + `${napis(150, 114, "tm", "przecinek pod przecinkiem")}</svg>`;
+
+const RYS_DRZEWO = (() => {
+  const cx = (i) => 118 + 28 * i, cy = (i) => 22 + 32 * i;
+  let s = `<svg viewBox="0 0 300 176">`;
+  const zlozone = [180, 90, 45, 15], pierwsze = [2, 2, 3, 3];
+  for (let i = 0; i < 4; i++) {
+    s += kreska(cx(i), cy(i) + 5, cx(i) - 28, cy(i + 1) - 13) + kreska(cx(i), cy(i) + 5, cx(i + 1), cy(i + 1) - 13);
+    s += napis(cx(i), cy(i), "", String(zlozone[i])) + napis(cx(i) - 28, cy(i + 1), "ta", String(pierwsze[i]));
+  }
+  return `${s}${napis(cx(4), cy(4), "ta", "5")}${napis(150, 170, "ta", "180 = 2 · 2 · 3 · 3 · 5")}</svg>`;
+})();
+
+const RYS_POLKI = `<svg viewBox="0 0 300 112">`
+  + napis(56, 40, "", "1. półka", "end") + pasek(62, 24, 96, 22, 1, [[0, 1, "w"]]) + `<rect class="w2" x="158" y="24" width="48" height="22"/><rect class="l" x="158" y="24" width="48" height="22"/>`
+  + napis(110, 40, "", "12") + napis(182, 40, "ta", "+6")
+  + napis(56, 72, "", "2. półka", "end") + pasek(62, 56, 96, 22, 1, [[0, 1, "w"]]) + napis(110, 72, "", "12")
+  + kreska(158, 16, 158, 84, "p")
+  + `${napis(150, 104, "tm", "razem 30; bez tych 6 zostaje 24 = 2 równe części")}</svg>`;
+
 export default {
   tematy: [
     // ------------------------------------------------------------------------------------------------
@@ -138,12 +234,13 @@ export default {
           slownie: "Gdy w zadaniu są liczby „więcej o…” albo „razem…”, narysuj odcinki, które pokazują ilości. Z rysunku widać, co trzeba dodać, a co odjąć.",
           przyklad: "Na dwóch półkach jest razem $30$ książek. Na pierwszej jest o $6$ więcej niż na drugiej. Rysujemy dwa odcinki, pierwszy dłuższy o $6$. Gdy odejmiemy te $6$ książek, odcinki będą równe: $30 - 6 = 24$. Na drugiej półce jest $24 : 2 = 12$ książek, a na pierwszej $12 + 6 = 18$.",
           uwaga: "Pamiętaj o sprawdzeniu: $12 + 18 = 30$ i $18 - 12 = 6$. Dopiero wtedy wynik jest pewny.",
+          rysunek: RYS_POLKI,
         },
         {
           nazwa: "Tabela porządkuje dane",
           slownie: "Gdy w zadaniu jest kilka rzeczy, każda z liczbą sztuk i ceną, zapisz dane w tabelce: co, ile, po ile, razem. Potem dodaj kolumnę „razem”.",
           przyklad: "Kupiono $2$ bilety normalne po $12$ zł i $3$ ulgowe po $7$ zł. Normalne: $2$ szt., po $12$ zł, razem $24$ zł. Ulgowe: $3$ szt., po $7$ zł, razem $21$ zł. Za wszystkie bilety zapłacono $24 + 21 = 45$ zł.",
-          uwaga: "Nie mnóż liczby sztuk przez liczbę sztuk innych rzeczy. Mnóż liczbę sztuk przez cenę tej samej rzeczy.",
+          uwaga: "Mnóż liczbę sztuk przez cenę tej samej rzeczy, np. bilety normalne przez cenę biletu normalnego, a nie ulgowego.",
         },
         {
           nazwa: "Liczymy od końca",
@@ -157,6 +254,12 @@ export default {
           slownie: "Kalkulator liczy dokładnie to, co w niego wpiszesz. Zanim go użyjesz, oszacuj wynik w głowie (zaokrąglij liczby). Potem porównaj wynik z oszacowaniem. Jeśli bardzo się różnią, coś zostało źle wpisane.",
           przyklad: "$48 \\cdot 19$: szacujemy $50 \\cdot 20 = 1000$. Kalkulator pokazuje $912$, czyli wynik jest blisko $1000$ i prawdopodobnie dobry. Wynik $91{,}2$ albo $9120$ byłby podejrzany: źle wpisano liczbę albo przecinek.",
           uwaga: "Kalkulator nie sprawdzi, czy wybrano dobre działanie. Zawsze zastanów się, czy wynik pasuje do zadania.",
+        },
+        {
+          nazwa: "Kalkulator i ułamki dziesiętne",
+          slownie: "Na kalkulatorze przecinek dziesiętny wpisujesz przyciskiem z kropką albo przecinkiem. Na ekranie kropka oznacza nasz przecinek. Przy odejmowaniu i dzieleniu ważna jest kolejność liczb. Wynik sprawdź działaniem odwrotnym.",
+          przyklad: "$12{,}5 - 4{,}75$: wpisujesz $12.5 - 4.75$ i na ekranie jest $7.75$, czyli $7{,}75$. Sprawdzenie odwrotnym działaniem: $7{,}75 + 4{,}75 = 12{,}5$.",
+          uwaga: "$8 - 3 = 5$, ale $3 - 8$ to już inny wynik. Gdy zamienisz liczby miejscami, wynik będzie zły. Zawsze porównaj go z oszacowaniem.",
         },
       ],
       jak: [
@@ -257,7 +360,7 @@ export default {
             }
             kroki.push(`Szukana liczba to $${n}$. Po wykonaniu wszystkich działań na tej liczbie dostajemy $${cur}$.`);
             return {
-              tresc: `Na pewnej liczbie naturalnej wykonano kolejno działania: ${ops.map(fraza).join(", potem ")}. Otrzymano $${cur}$. Jaka to liczba?`,
+              tresc: `Pewną liczbę naturalną najpierw ${ops.map(fraza).join(", potem ")}. Otrzymano $${cur}$. Jaka to liczba?`,
               pola: [{ id: "w", typ: "liczba", etykieta: "Szukana liczba" }],
               odpowiedz: { w: n },
               wynik: `$${n}$`,
@@ -314,8 +417,8 @@ export default {
         },
         {
           nazwa: "Cechy podzielności",
-          slownie: "Przez $2$ dzielą się liczby, które kończą się cyfrą parzystą. Przez $5$ te, które kończą się na $0$ lub $5$, a przez $10$ te, które kończą się na $0$. Przez $3$ dzieli się liczba, której suma cyfr dzieli się przez $3$. Przez $9$ podobnie: suma cyfr dzieli się przez $9$. Przez $4$ dzieli się liczba, której dwie ostatnie cyfry tworzą liczbę podzielną przez $4$.",
-          przyklad: "Liczba $2358$: kończy się na $8$, więc dzieli się przez $2$. Suma cyfr to $2 + 3 + 5 + 8 = 18$, więc dzieli się przez $3$ i przez $9$. Nie dzieli się przez $5$ i $10$. Przez $4$ też nie, bo $58$ nie dzieli się przez $4$.",
+          slownie: "Przez $2$ dzielą się liczby, które kończą się cyfrą parzystą. Przez $5$ te, które kończą się na $0$ lub $5$, a przez $10$ te, które kończą się na $0$. Przez $3$ dzieli się liczba, której suma cyfr dzieli się przez $3$. Przez $9$ podobnie: suma cyfr dzieli się przez $9$. Przez $4$ dzieli się liczba, której dwie ostatnie cyfry tworzą liczbę podzielną przez $4$. Przez $6$ dzieli się liczba, która dzieli się jednocześnie przez $2$ i przez $3$.",
+          przyklad: "Liczba $2358$: kończy się na $8$, więc dzieli się przez $2$. Suma cyfr to $2 + 3 + 5 + 8 = 18$, więc dzieli się przez $3$ i przez $9$. Dzieli się też przez $6$, bo dzieli się przez $2$ i przez $3$. Nie dzieli się przez $5$ i $10$. Przez $4$ też nie, bo $58$ nie dzieli się przez $4$.",
           uwaga: "Przy cechach $3$ i $9$ dodajemy wszystkie cyfry, a nie tylko ostatnią.",
         },
         {
@@ -331,6 +434,7 @@ export default {
           tex: "180=2\\cdot2\\cdot3\\cdot3\\cdot5",
           przyklad: "$180 : 2 = 90$, $90 : 2 = 45$, $45 : 3 = 15$, $15 : 3 = 5$, $5 : 5 = 1$. Zatem $180 = 2 \\cdot 2 \\cdot 3 \\cdot 3 \\cdot 5$.",
           uwaga: "Wszystkie czynniki muszą być pierwsze. Zapis $4 \\cdot 45$ nie jest jeszcze rozkładem na czynniki pierwsze.",
+          rysunek: RYS_DRZEWO,
         },
       ],
       jak: [
@@ -693,6 +797,37 @@ export default {
       nazwa: "Ułamki",
       sciaga: [
         {
+          nazwa: "Ułamek jako część całości",
+          slownie: "Mianownik mówi, na ile równych części podzielono całość. Licznik mówi, ile takich części bierzemy. Ten sam kawałek można zapisać różnymi ułamkami: na paskach widać, że połowa to tyle samo co dwie czwarte.",
+          tex: "\\frac{1}{2}=\\frac{2}{4}=\\frac{4}{8}",
+          przyklad: "Czekoladę podzielono na $8$ równych kostek. Zjedzono $3$ kostki, czyli $\\frac{3}{8}$ tabliczki. Zostało $\\frac{5}{8}$, bo $\\frac{3}{8} + \\frac{5}{8} = 1$.",
+          uwaga: "Części muszą być równe. Jeśli kawałki mają różną wielkość, nie możemy mówić o ułamku.",
+          rysunek: RYS_PASKI,
+        },
+        {
+          nazwa: "Ułamek na osi liczbowej",
+          slownie: "Odcinek od $0$ do $1$ dzielimy na tyle równych części, ile mówi mianownik. Ułamek leży tyle kresek za zerem, ile mówi licznik. Ułamek niewłaściwy leży za jedynką. Z dwóch liczb na osi większa leży po prawej stronie.",
+          tex: "\\frac{3}{4}<1<\\frac{5}{4}=1\\frac{1}{4}",
+          przyklad: "Odcinek od $0$ do $1$ ma $4$ części. Ułamek $\\frac{3}{4}$ leży na trzeciej kresce. Ułamek $\\frac{5}{4}$ leży o jedną kreskę za jedynką, więc $\\frac{5}{4} = 1\\frac{1}{4}$.",
+          uwaga: "Licz odcinki między kreskami, a nie same kreski. Przy podziale na $4$ części między $0$ i $1$ są tylko $3$ kreski.",
+          rysunek: RYS_OS_ULAMKOW,
+        },
+        {
+          nazwa: "Ułamek dziesiętny – zapis",
+          slownie: "Po przecinku stoją kolejno dziesiąte, setne i tysięczne części. Zero dopisane na końcu nie zmienia liczby. Zero tuż po przecinku zmienia ją.",
+          tex: "0{,}3=\\frac{3}{10}\\qquad 0{,}03=\\frac{3}{100}\\qquad 0{,}003=\\frac{3}{1000}",
+          przyklad: "W liczbie $7{,}205$ jest $7$ całości, $2$ dziesiąte, $0$ setnych i $5$ tysięcznych. Mamy $1{,}30 = 1{,}3$ oraz $0{,}75 = \\frac{75}{100} = \\frac{3}{4}$.",
+          uwaga: "$0{,}05$ to nie to samo co $0{,}5$. Zero na końcu możesz skreślić albo dopisać ($0{,}5 = 0{,}50$), zero po przecinku – nie.",
+          rysunek: RYS_OS_DZIESIETNYCH,
+        },
+        {
+          nazwa: "Ułamki, które warto znać",
+          slownie: "Kilka ułamków zwykłych pojawia się bardzo często. Warto pamiętać ich zapis dziesiętny, bo ułatwia liczenie w pamięci.",
+          tex: "\\frac{1}{2}=0{,}5\\qquad \\frac{1}{4}=0{,}25\\qquad \\frac{3}{4}=0{,}75",
+          przyklad: "$\\frac{1}{5} = 0{,}2$, $\\frac{1}{10} = 0{,}1$, $\\frac{1}{8} = 0{,}125$ i $\\frac{3}{8} = 0{,}375$. Dlatego $\\frac{3}{4} + 0{,}2 = 0{,}75 + 0{,}2 = 0{,}95$.",
+          uwaga: "$\\frac{1}{4}$ to nie $0{,}4$. Ćwierć to $0{,}25$, bo $\\frac{1}{4} = \\frac{25}{100}$.",
+        },
+        {
           nazwa: "Ułamek niewłaściwy i liczba mieszana",
           slownie: "Ułamek właściwy jest mniejszy od $1$. Ułamek niewłaściwy ma licznik większy lub równy mianownikowi. Taki ułamek możemy zapisać jako liczbę mieszaną, czyli całości i ułamek. Wystarczy podzielić licznik przez mianownik.",
           tex: "\\frac{17}{5}=3\\frac{2}{5}\\qquad 3\\frac{2}{5}=\\frac{3\\cdot5+2}{5}=\\frac{17}{5}",
@@ -767,16 +902,22 @@ export default {
             { tekst: "$\\frac{12}{18} = \\frac{2}{3}$", litery: "PF", poprawna: 0 },
           ],
         },
+        {
+          nr: "27",
+          tresc: "Który ułamek zwykły jest równy liczbie $0{,}075$? **Wybierz właściwą odpowiedź.**",
+          opcje: ["$\\frac{3}{40}$", "$\\frac{3}{4}$", "$\\frac{3}{400}$", "$\\frac{75}{100}$"],
+          poprawna: 0,
+        },
       ],
       otwarte: [
         {
-          nr: "27",
+          nr: "28",
           punkty: 2,
           tresc: "Ustaw liczby $\\frac{3}{4}$, $0{,}7$, $\\frac{4}{5}$ i $\\frac{5}{8}$ od najmniejszej do największej. **Zapisz obliczenia.**",
           rozwiazanie: "Zamieniamy ułamki zwykłe na dziesiętne: $\\frac{3}{4} = \\frac{75}{100} = 0{,}75$ oraz $\\frac{4}{5} = \\frac{8}{10} = 0{,}8$.\n\nDalej $\\frac{5}{8} = \\frac{625}{1000} = 0{,}625$.\n\nDopisujemy zera: $0{,}750$, $0{,}700$, $0{,}800$, $0{,}625$. Porównujemy: $0{,}625 < 0{,}700 < 0{,}750 < 0{,}800$.\n\nOdpowiedź: $\\frac{5}{8} < 0{,}7 < \\frac{3}{4} < \\frac{4}{5}$.",
         },
         {
-          nr: "28",
+          nr: "29",
           punkty: 2,
           tresc: "Majka zjadła $\\frac{6}{15}$ tabliczki czekolady, a Bartek $\\frac{3}{8}$ tej samej tabliczki. Kto zjadł więcej? **Zapisz obliczenia.**",
           rozwiazanie: "Skracamy ułamek Majki: $\\frac{6}{15} = \\frac{2}{5}$.\n\nPorównujemy $\\frac{2}{5}$ i $\\frac{3}{8}$. Wspólny mianownik to $\\text{NWW}(5, 8) = 40$.\n\n$\\frac{2}{5} = \\frac{16}{40}$ oraz $\\frac{3}{8} = \\frac{15}{40}$. Ponieważ $16 > 15$, więcej zjadła Majka.\n\nOdpowiedź: Więcej czekolady zjadła Majka.",
@@ -900,6 +1041,44 @@ export default {
             };
           },
         },
+        {
+          id: "zamiana-ulamkow",
+          nazwa: "Ułamek zwykły i dziesiętny",
+          opis: "Zamień ułamek zwykły na dziesiętny albo ułamek dziesiętny na nieskracalny ułamek zwykły.",
+          generuj(r) {
+            const den = r.pick([2, 4, 5, 8, 10, 20, 25, 40, 50]);
+            const n = r.int(1, den - 1);
+            const m = (n * 1000) / den;
+            const pw = [10, 100, 1000].find((p) => p % den === 0);
+            const dec = fmtMilli(m);
+            if (r.chance(0.5)) {
+              return {
+                tresc: `Zapisz ułamek $${fr(n, den)}$ w postaci ułamka dziesiętnego.`,
+                pola: [{ id: "w", typ: "liczba", etykieta: "Ułamek dziesiętny" }],
+                odpowiedz: { w: q(m, 1000) },
+                wynik: `$${dec}$`,
+                rozwiazanie: [
+                  `Rozszerzamy ułamek tak, żeby mianownik był równy $${pw}$. Mnożymy licznik i mianownik przez $${pw / den}$: $${fr(n, den)} = ${fr(`${n} \\cdot ${pw / den}`, `${den} \\cdot ${pw / den}`)} = ${fr(n * (pw / den), pw)}$.`,
+                  `Zapisujemy w postaci dziesiętnej: $${fr(n * (pw / den), pw)} = ${dec}$.`,
+                ],
+              };
+            }
+            const miejsca = dec.split("{,}")[1].length;
+            const pw2 = 10 ** miejsca, x = m / (1000 / pw2);
+            const red = q(m, 1000);
+            const g = nwdf(x, pw2);
+            return {
+              tresc: `Zapisz liczbę $${dec}$ w postaci ułamka zwykłego nieskracalnego. Wpisz licznik i mianownik.`,
+              pola: [{ id: "l", typ: "liczba", etykieta: "Licznik" }, { id: "m", typ: "liczba", etykieta: "Mianownik" }],
+              odpowiedz: { l: red.n, m: red.d },
+              wynik: `$${fr(red.n, red.d)}$`,
+              rozwiazanie: [
+                `Liczba ma ${miejsca === 1 ? "jedno miejsce" : miejsca === 2 ? "dwa miejsca" : "trzy miejsca"} po przecinku, więc mianownik to $${pw2}$: $${dec} = ${fr(x, pw2)}$.`,
+                g > 1 ? `Skracamy przez $${g}$ (NWD liczb $${x}$ i $${pw2}$ to $${g}$): $${fr(x, pw2)} = ${fr(red.n, red.d)}$.` : `Ułamek $${fr(x, pw2)}$ jest już nieskracalny.`,
+              ],
+            };
+          },
+        },
       ],
     },
 
@@ -921,13 +1100,15 @@ export default {
           tex: "\\frac{1}{6}+\\frac{3}{4}\\qquad =\\frac{2}{12}+\\frac{9}{12}\\qquad =\\frac{11}{12}",
           przyklad: "$\\text{NWW}(6, 4) = 12$. Rozszerzamy: $\\frac{1}{6} = \\frac{2}{12}$ i $\\frac{3}{4} = \\frac{9}{12}$. Dodajemy: $\\frac{2}{12} + \\frac{9}{12} = \\frac{11}{12}$. Odejmowanie: $\\frac{5}{6} - \\frac{1}{4} = \\frac{10}{12} - \\frac{3}{12} = \\frac{7}{12}$.",
           uwaga: "Rozszerzaj licznik i mianownik przez tę samą liczbę. Liczniki i mianowniki z różnych ułamków nie mieszają się.",
+          rysunek: RYS_PASKI_DODAWANIE,
         },
         {
           nazwa: "Liczby mieszane",
-          slownie: "Przy dodawaniu liczb mieszanych dodajemy osobno całości i osobno ułamki. Gdy ułamki dają więcej niż $1$, dodajemy tę całość do całości. Przy odejmowaniu, gdy ułamek odjemnej jest mniejszy, zamieniamy jedną całość na ułamek.",
+          slownie: "Przy dodawaniu liczb mieszanych dodajemy osobno całości i osobno ułamki. Gdy ułamki dają więcej niż $1$, dodajemy tę całość do całości. Przy odejmowaniu, gdy ułamek w pierwszej liczbie jest mniejszy niż w drugiej, zamieniamy jedną całość na ułamek.",
           tex: "3\\frac{1}{5}-1\\frac{3}{5}\\qquad =2\\frac{6}{5}-1\\frac{3}{5}\\qquad =1\\frac{3}{5}",
           przyklad: "$2\\frac{3}{4} + 1\\frac{5}{6}$: całości $2 + 1 = 3$. Ułamki: $\\frac{9}{12} + \\frac{10}{12} = \\frac{19}{12} = 1\\frac{7}{12}$. Razem $3 + 1\\frac{7}{12} = 4\\frac{7}{12}$.",
           uwaga: "Przy $3\\frac{1}{5} - 1\\frac{3}{5}$ nie odejmuj mniejszego ułamka od większego. Pożycz całość: $3\\frac{1}{5} = 2\\frac{6}{5}$.",
+          rysunek: RYS_OS_MIESZANE,
         },
         {
           nazwa: "Ułamki dziesiętne",
@@ -935,6 +1116,21 @@ export default {
           tex: "4{,}70+2{,}35=7{,}05",
           przyklad: "$4{,}7 + 2{,}35$: dopisujemy zero, $4{,}70 + 2{,}35$. Liczymy $470 + 235 = 705$, więc wynik to $7{,}05$. Odejmowanie: $6{,}2 - 3{,}85 = 6{,}20 - 3{,}85 = 2{,}35$.",
           uwaga: "$0{,}5 + 0{,}25$ to $0{,}75$, a nie $0{,}30$. Liczby $0{,}5$ i $0{,}25$ mają różną liczbę cyfr po przecinku, więc trzeba dopisać zero: $0{,}50 + 0{,}25$.",
+          rysunek: RYS_PISEMNE,
+        },
+        {
+          nazwa: "Odejmowanie od całości",
+          slownie: "Gdy od liczby całkowitej odejmujemy ułamek albo liczbę mieszaną, zamieniamy jedną całość na ułamek o tym samym mianowniku. Gdy odejmujemy ułamek dziesiętny, dopisujemy do całości zera: $5 = 5{,}00$.",
+          tex: "4-1\\frac{3}{5}=3\\frac{5}{5}-1\\frac{3}{5}=2\\frac{2}{5}",
+          przyklad: "$4 - 1\\frac{3}{5}$: z $4$ pożyczamy jedną całość, $4 = 3\\frac{5}{5}$. Wtedy $3\\frac{5}{5} - 1\\frac{3}{5} = 2\\frac{2}{5}$. Dla dziesiętnych: $5 - 2{,}35 = 5{,}00 - 2{,}35 = 2{,}65$.",
+          uwaga: "$5 - 2{,}35$ to nie $3{,}35$. Nie wolno odjąć samych całości i przepisać części po przecinku. Dopisz zera i odejmij pisemnie.",
+        },
+        {
+          nazwa: "Sprawdzanie wyniku",
+          slownie: "Odejmowanie sprawdzamy dodawaniem, a dodawanie odejmowaniem. Możemy też oszacować wynik, zaokrąglając liczby do całości. Suma jest większa od każdego składnika, a różnica mniejsza od liczby, od której odejmujemy.",
+          tex: "a-b=c\\ \\Rightarrow\\ c+b=a",
+          przyklad: "$7{,}3 - 2{,}85 = 4{,}45$. Sprawdzenie: $4{,}45 + 2{,}85 = 7{,}30$. Oszacowanie: $7 - 3 = 4$, a wynik $4{,}45$ jest blisko $4$.",
+          uwaga: "Jeśli po odjęciu wynik jest większy od pierwszej liczby, szukaj błędu: różnica dwóch liczb dodatnich jest mniejsza niż pierwsza z nich.",
         },
         {
           nazwa: "Zwykłe i dziesiętne razem",
@@ -951,31 +1147,31 @@ export default {
       ],
       zadania: [
         {
-          nr: "29",
+          nr: "30",
           tresc: "Ile wynosi $\\frac{3}{8} + \\frac{7}{8}$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\frac{10}{16}$", "$1\\frac{1}{4}$", "$\\frac{4}{8}$", "$2\\frac{5}{8}$"],
           poprawna: 1,
         },
         {
-          nr: "30",
+          nr: "31",
           tresc: "Ile wynosi $\\frac{5}{6} - \\frac{1}{4}$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\frac{4}{2}$", "$\\frac{4}{12}$", "$\\frac{1}{2}$", "$\\frac{7}{12}$"],
           poprawna: 3,
         },
         {
-          nr: "31",
+          nr: "32",
           tresc: "Ile wynosi $4\\frac{1}{3} - 1\\frac{5}{6}$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$3\\frac{1}{2}$", "$3\\frac{1}{6}$", "$2\\frac{1}{2}$", "$2\\frac{5}{6}$"],
           poprawna: 2,
         },
         {
-          nr: "32",
+          nr: "33",
           tresc: "Ile wynosi $7{,}3 - 2{,}85$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$5{,}55$", "$4{,}45$", "$4{,}55$", "$4{,}35$"],
           poprawna: 1,
         },
         {
-          nr: "33",
+          nr: "34",
           tresc: "Oceń zdania. **Dla każdego zdania wybierz P, jeśli jest prawdziwe, albo F, jeśli jest fałszywe.**",
           czesci: [
             { tekst: "$\\frac{2}{5} + \\frac{1}{3} = \\frac{3}{8}$", litery: "PF", poprawna: 1 },
@@ -983,19 +1179,37 @@ export default {
             { tekst: "$3 - 1\\frac{1}{2} = 1\\frac{1}{2}$", litery: "PF", poprawna: 0 },
           ],
         },
+        {
+          nr: "35",
+          tresc: "Ile wynosi $5 - 2\\frac{3}{4}$? **Wybierz właściwą odpowiedź.**",
+          opcje: ["$3\\frac{1}{4}$", "$2\\frac{1}{4}$", "$2\\frac{3}{4}$", "$3\\frac{3}{4}$"],
+          poprawna: 1,
+        },
+        {
+          nr: "36",
+          tresc: "Ile wynosi $6 - 2{,}35$? **Wybierz właściwą odpowiedź.**",
+          opcje: ["$4{,}35$", "$3{,}75$", "$3{,}65$", "$4{,}65$"],
+          poprawna: 2,
+        },
       ],
       otwarte: [
         {
-          nr: "34",
+          nr: "37",
           punkty: 2,
           tresc: "Kasia kupiła $1\\frac{1}{2}$ kg jabłek i $2\\frac{3}{4}$ kg gruszek. Ile kilogramów owoców kupiła razem? O ile kilogramów więcej kupiła gruszek niż jabłek? **Zapisz obliczenia.**",
           rozwiazanie: "Razem: $1\\frac{1}{2} + 2\\frac{3}{4}$. Całości: $1 + 2 = 3$. Ułamki: $\\frac{1}{2} + \\frac{3}{4} = \\frac{2}{4} + \\frac{3}{4} = \\frac{5}{4} = 1\\frac{1}{4}$. Razem $3 + 1\\frac{1}{4} = 4\\frac{1}{4}$.\n\nRóżnica: $2\\frac{3}{4} - 1\\frac{1}{2}$. Całości: $2 - 1 = 1$. Ułamki: $\\frac{3}{4} - \\frac{2}{4} = \\frac{1}{4}$. Razem $1\\frac{1}{4}$.\n\nOdpowiedź: Kasia kupiła razem $4\\frac{1}{4}$ kg owoców, a gruszek o $1\\frac{1}{4}$ kg więcej niż jabłek.",
         },
         {
-          nr: "35",
+          nr: "38",
           punkty: 2,
           tresc: "Deska ma $3{,}2$ m długości. Pan Marek odciął z niej kawałek $1{,}45$ m, a potem jeszcze $0{,}8$ m. Ile metrów deski zostało? **Zapisz obliczenia.**",
           rozwiazanie: "Obcięte kawałki razem: $1{,}45 + 0{,}8 = 1{,}45 + 0{,}80 = 2{,}25$.\n\nZostało: $3{,}2 - 2{,}25 = 3{,}20 - 2{,}25 = 0{,}95$.\n\nSprawdzenie: $0{,}95 + 2{,}25 = 3{,}20$.\n\nOdpowiedź: Zostało $0{,}95$ m deski.",
+        },
+        {
+          nr: "39",
+          punkty: 2,
+          tresc: "Trasa rajdu rowerowego ma $5$ km. Pierwszego dnia rowerzyści przejechali $1\\frac{3}{4}$ km, a drugiego $2{,}5$ km. Ile kilometrów zostało do przejechania? **Zapisz obliczenia.**",
+          rozwiazanie: "Liczby są w różnych postaciach, więc zamieniamy je na jedną. $1\\frac{3}{4} = 1{,}75$, bo $\\frac{3}{4} = 0{,}75$.\n\nOba dni razem: $1{,}75 + 2{,}5 = 1{,}75 + 2{,}50 = 4{,}25$ km.\n\nZostało: $5 - 4{,}25 = 5{,}00 - 4{,}25 = 0{,}75$ km.\n\nSprawdzenie: $4{,}25 + 0{,}75 = 5$.\n\nOdpowiedź: Do przejechania zostało $0{,}75$ km, czyli $\\frac{3}{4}$ km.",
         },
       ],
       generatory: [
@@ -1068,6 +1282,7 @@ export default {
                 d1 === d2 ? `Mianowniki są takie same.` : `Wspólny mianownik to $${L}$: $${wyr} = ${mt(w1, e1, L)} - ${mt(w2, e2, L)}$.`,
                 `Ułamek $${fr(e1, L)}$ jest mniejszy niż $${fr(e2, L)}$, więc zamieniamy jedną całość na ułamek: $${mt(w1, e1, L)} = ${mt(w1 - 1, e1 + L, L)}$.`,
                 `Odejmujemy osobno całości: $${w1 - 1} - ${w2} = ${W}$, i liczniki: $${e1 + L} - ${e2} = ${x}$, czyli $${fr(x, L)}$.`,
+                ...(res.d !== L ? [`Skracamy: $${fr(x, L)} = ${qf(res)}$.`] : []),
                 razem(W, res, total),
               ];
             }
@@ -1137,6 +1352,56 @@ export default {
               odpowiedz: { w: q(w, 100) },
               wynik: `$${fmtDec(w)}$`,
               rozwiazanie: kr,
+            };
+          },
+        },
+        {
+          id: "od-calosci",
+          nazwa: "Odejmowanie od całości",
+          opis: "Odejmij ułamek, liczbę mieszaną albo ułamek dziesiętny od liczby całkowitej.",
+          generuj(r) {
+            const w = r.int(2, 9);
+            if (r.chance(0.5)) {
+              const d = r.pick([2, 3, 4, 5, 6, 8, 10]);
+              const n = r.int(1, d - 1);
+              const c = r.int(0, w - 1);
+              const odj = c ? mt(c, n, d) : fr(n, d);
+              const total = q(w).sub(q(c * d + n, d));
+              const W = w - 1 - c, x = d - n;
+              const res = q(x, d);
+              const kr = [
+                `Z liczby $${w}$ pożyczamy jedną całość i zamieniamy ją na ułamek o mianowniku $${d}$: $${w} = ${mt(w - 1, d, d)}$.`,
+                c ? `Odejmujemy osobno całości: $${w - 1} - ${c} = ${W}$, i liczniki: $${d} - ${n} = ${x}$, czyli $${fr(x, d)}$.` : `Całości zostają: $${W}$. Odejmujemy liczniki: $${d} - ${n} = ${x}$, czyli $${fr(x, d)}$.`,
+              ];
+              if (res.d !== d) kr.push(`Skracamy: $${fr(x, d)} = ${qf(res)}$.`);
+              kr.push(razem(W, res, total));
+              return {
+                tresc: r.pick([`Oblicz $${w} - ${odj}$.`, `Ile to jest $${w} - ${odj}$?`]),
+                pola: [{ id: "w", typ: "liczba", etykieta: "Wynik jako ułamek (np. 9/4)" }],
+                odpowiedz: { w: total },
+                wynik: `$${qm(total)}$`,
+                rozwiazanie: kr,
+              };
+            }
+            let b = r.int(5, w * 100 - 5);
+            if (b % 100 === 0) b += 5;
+            const wynik = w * 100 - b;
+            const ktx = r.int(0, 2);
+            const tresc = ktx === 0
+              ? `Oblicz $${w} - ${fmtDec(b)}$.`
+              : ktx === 1
+                ? `Kasia miała $${w}$ zł. Kupiła bułki za $${fmtDec(b, true)}$ zł. Ile złotych jej zostało?`
+                : `Deska miała długość $${w}$ m. Odcięto z niej $${fmtDec(b)}$ m. Ile metrów deski zostało?`;
+            return {
+              tresc,
+              pola: [{ id: "w", typ: "liczba", etykieta: "Wynik" }],
+              odpowiedz: { w: q(wynik, 100) },
+              wynik: `$${fmtDec(wynik)}$`,
+              rozwiazanie: [
+                `Dopisujemy zera do liczby całkowitej: $${w} = ${fmtDec(w * 100, true)}$.`,
+                `Odejmujemy pisemnie, przecinek pod przecinkiem: $${fmtDec(w * 100, true)} - ${fmtDec(b, true)} = ${fmtDec(wynik)}$.`,
+                `Sprawdzenie: $${fmtDec(wynik)} + ${fmtDec(b)} = ${w}$.`,
+              ],
             };
           },
         },
