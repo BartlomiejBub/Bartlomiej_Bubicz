@@ -55,7 +55,7 @@ export const WZORY = [
         nazwa: "Obwód i pole figury z literami",
         slownie: "Obwód to droga dookoła figury: dodajesz długości wszystkich boków, jak sznurek owinięty wokół ogródka. Pole to liczba kafelków, które pokryją powierzchnię; w prostokącie mnożysz dwa sąsiednie boki. Gdy bok jest wyrażeniem, np. $x + 3$, wstawiaj go do wzoru w nawiasie.",
         tex: "\\begin{gathered} \\text{prostokąt:} \\\\ O = 2a + 2b \\\\ P = a \\cdot b \\end{gathered} \\qquad \\begin{gathered} \\text{kwadrat:} \\\\ O = 4a \\\\ P = a^2 \\end{gathered}",
-        rysunek: `<svg viewBox="0 0 300 120"><rect class="w" x="60" y="16" width="170" height="70"/><path class="l" d="M60 16L230 16L230 86L60 86Z"/><text class="ta" x="145" y="104" text-anchor="middle">a + 2</text><text class="ta" x="44" y="56" text-anchor="middle">a</text></svg>`,
+        rysunek: `<svg viewBox="0 0 300 120"><rect class="w" x="70" y="14" width="160" height="80"/><path class="l" d="M70 14L230 14L230 94L70 94Z"/><text class="ta" x="150" y="112" text-anchor="middle">x + 3</text><text class="ta" x="56" y="59" text-anchor="middle">x</text></svg>`,
         litery: "$a$, $b$ – długości boków, $O$ – obwód, $P$ – pole",
         przyklad: "Prostokąt ma boki $x$ i $x + 3$. Obwód: $2x + 2(x + 3) = 2x + 2x + 6 = 4x + 6$. Pole: $x(x + 3)$. Dla $x = 5$ boki mają $5$ i $8$, obwód $2 \\cdot 5 + 2 \\cdot 8 = 26$ (zgadza się z $4 \\cdot 5 + 6 = 26$), a pole $5 \\cdot 8 = 40$.",
         uwaga: "Obwód prostokąta ma **dwa** boki $x$ i **dwa** boki $x + 3$, więc to $2x + 2(x + 3)$, a nie $x + (x + 3)$. Pamiętaj o nawiasie: $2(x + 3) = 2x + 6$, a nie $2x + 3$. Obwód to dodawanie boków, pole to ich mnożenie.",
