@@ -41,6 +41,7 @@ export const WZORY = [
         nazwa: "Dwa ruchy naprzeciw siebie i w pogoni",
         slownie: "Gdy dwie osoby idą naprzeciw siebie, odległość między nimi maleje z sumą ich prędkości. Gdy jedna goni drugą jadącą w tę samą stronę, odległość maleje z różnicą prędkości (szybsza minus wolniejsza).",
         tex: "s = (v_1 + v_2) \\cdot t \\qquad s = (v_1 - v_2) \\cdot t",
+        rysunek: `<svg viewBox="0 0 300 104"><path class="os" d="M20 60H280"/><circle class="k" cx="40" cy="60" r="3.5"/><circle class="k" cx="260" cy="60" r="3.5"/><path class="a" d="M44 40H120M112 34L120 40L112 46"/><path class="a" d="M256 40H180M188 34L180 40L188 46"/><text class="ta" x="82" y="30" text-anchor="middle">v₁</text><text class="ta" x="218" y="30" text-anchor="middle">v₂</text><path class="p" d="M40 78V84H260V78"/><text class="tm" x="150" y="96" text-anchor="middle">s = (v₁ + v₂) · t</text></svg>`,
         litery: "$s$ – odległość początkowa między nimi, $v_1$, $v_2$ – prędkości, $t$ – czas do spotkania (lub do dogonienia)",
         przyklad: "Dwa miasta dzieli $90$ km. Rowerzyści wyjeżdżają naprzeciw siebie z prędkościami $18$ km/h i $12$ km/h. Spotkają się po $t = \\frac{90}{18 + 12} = 3$ h. Gdyby jechali jeden za drugim, a przewaga wynosiła $12$ km, szybszy dogoniłby wolniejszego po $\\frac{12}{18 - 12} = 2$ h.",
         uwaga: "Wzór z sumą (naprzeciw siebie) i wzór z różnicą (jeden za drugim) łatwo pomylić – naszkicuj sytuację strzałkami, zanim wybierzesz wzór.",
