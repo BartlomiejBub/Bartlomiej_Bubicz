@@ -100,11 +100,25 @@ export function svgWykresu(opis) {
       if (p.podpis) czesci.push(`<text class="tm" x="${W - M - 4}" y="${r(sy(p.y) - 5)}" text-anchor="end">${esc(p.podpis)}</text>`);
     }
   }
+  // podpisy punktów: ich miejsca są ustalone (gdzie), więc najpierw one, a podpisy funkcji szukają miejsca obok
+  const zajete = [];   // prostokąty podpisów [x0, y0, x1, y1]
+  const prostokat = (x, y, tekst, kotwica) => { const w = 7.2 * tekst.length; return kotwica === "start" ? [x, y - 11, x + w, y + 3] : [x - w, y - 11, x, y + 3]; };
+  const podpisyPunktow = (opis.punkty ?? []).map((p) => {
+    if (!p.podpis) return null;
+    const cx = sx(p.x), cy = sy(p.y);
+    // gdzie: "prawo-gora" (domyślnie), "prawo-dol", "lewo-gora", "lewo-dol" – żeby podpis nie nachodził na wykres
+    const [poz, pion] = (p.gdzie ?? (cx < W - 70 ? "prawo-gora" : "lewo-gora")).split("-");
+    const prawo = poz === "prawo", gora = pion === "gora" ? cy > M + 18 : cy > H - M - 18;
+    const x = cx + (prawo ? 6 : -6), y = gora ? cy - 7 : cy + 16, kotwica = prawo ? "start" : "end";
+    zajete.push(prostokat(x, y, p.podpis, kotwica));
+    return { x, y, kotwica };
+  });
   // funkcje
-  (opis.funkcje ?? []).forEach((f, i) => {
+  const krzywe = (opis.funkcje ?? []).map((f, i) => {
     const { fn } = kompiluj(parsuj(f.wzor), { stopnie: !!opis.stopnie });
     const kolor = KOLORY[i % KOLORY.length];
-    let d = "", pioro = false, poprz = null, ostatni = null;
+    let d = "", pioro = false, poprz = null;
+    const slad = [];   // widoczne punkty krzywej w pikselach
     const N = 320;
     for (let j = 0; j <= N; j++) {
       const x = x0 + ((x1 - x0) * j) / N, y = fn({ x });
@@ -114,25 +128,37 @@ export function svgWykresu(opis) {
       d += `${pioro ? "L" : "M"}${r(sx(x))} ${r(q)}`;
       pioro = true;
       poprz = q;
-      if (y >= y0 && y <= y1) ostatni = [sx(x), sy(y)];
+      if (y >= y0 && y <= y1) slad.push([sx(x), sy(y)]);
     }
-    czesci.push(`<path class="wykres" stroke="${kolor}" d="${d}"/>`);
-    if (f.podpis && ostatni) {
-      const [lx, ly] = ostatni;
-      czesci.push(`<text class="t" fill="${kolor}" x="${r(Math.min(lx, W - M - 4))}" y="${r(Math.max(ly - 8, M + 12))}" text-anchor="end">${esc(f.podpis)}</text>`);
-    }
+    return { f, kolor, d, slad };
   });
-  // punkty
-  for (const p of opis.punkty ?? []) {
-    const cx = sx(p.x), cy = sy(p.y);
-    czesci.push(`<circle class="k" cx="${r(cx)}" cy="${r(cy)}" r="3.5"/>`);
-    if (p.podpis) {
-      // gdzie: "prawo-gora" (domyślnie), "prawo-dol", "lewo-gora", "lewo-dol" – żeby podpis nie nachodził na wykres
-      const [poz, pion] = (p.gdzie ?? (cx < W - 70 ? "prawo-gora" : "lewo-gora")).split("-");
-      const prawo = poz === "prawo", gora = pion === "gora" ? cy > M + 18 : cy > H - M - 18;
-      czesci.push(`<text class="t" x="${r(cx + (prawo ? 6 : -6))}" y="${r(gora ? cy - 7 : cy + 16)}" text-anchor="${prawo ? "start" : "end"}">${esc(p.podpis)}</text>`);
+  for (const k of krzywe) czesci.push(`<path class="wykres" stroke="${k.kolor}" d="${k.d}"/>`);
+  // podpis funkcji: wolne miejsce przy końcu krzywej, a gdy go nie ma – przy innym jej punkcie (bez nachodzenia na krzywe i podpisy)
+  const wszystkie = krzywe.flatMap((k) => k.slad);
+  const koliduje = (pr) => {
+    if (pr[0] < M || pr[2] > W - M || pr[1] < M || pr[3] > H - M) return true;
+    if (zajete.some((z) => pr[0] < z[2] + 2 && pr[2] > z[0] - 2 && pr[1] < z[3] + 1 && pr[3] > z[1] - 1)) return true;
+    return wszystkie.some(([x, y]) => x > pr[0] - 2 && x < pr[2] + 2 && y > pr[1] - 2 && y < pr[3] + 2);
+  };
+  for (const { f, kolor, slad } of krzywe) {
+    if (!f.podpis || !slad.length) continue;
+    const proby = [];
+    const n = slad.length;
+    for (const ulamek of [1, 0.92, 0.84, 0.76, 0.66, 0.5, 0.34, 0.2, 0.08]) {
+      const [px, py] = slad[Math.min(n - 1, Math.round((n - 1) * ulamek))];
+      proby.push([px + 9, py + 4, "start"], [px - 9, py + 4, "end"], [px + 9, py - 8, "start"], [px - 9, py - 8, "end"], [px + 9, py + 18, "start"], [px - 9, py + 18, "end"]);
     }
+    let miejsce = proby.find(([x, y, k]) => !koliduje(prostokat(x, y, f.podpis, k)));
+    if (!miejsce) { const [lx, ly] = slad[n - 1]; miejsce = [Math.min(lx, W - M - 4), Math.max(ly - 8, M + 12), "end"]; }
+    zajete.push(prostokat(...miejsce.slice(0, 2), f.podpis, miejsce[2]));
+    czesci.push(`<text class="t" fill="${kolor}" x="${r(miejsce[0])}" y="${r(miejsce[1])}" text-anchor="${miejsce[2]}">${esc(f.podpis)}</text>`);
   }
+  // punkty
+  (opis.punkty ?? []).forEach((p, i) => {
+    czesci.push(`<circle class="k" cx="${r(sx(p.x))}" cy="${r(sy(p.y))}" r="3.5"/>`);
+    const l = podpisyPunktow[i];
+    if (l) czesci.push(`<text class="t" x="${r(l.x)}" y="${r(l.y)}" text-anchor="${l.kotwica}">${esc(p.podpis)}</text>`);
+  });
   return `<svg xmlns="http://www.w3.org/2000/svg" class="wyk-svg" viewBox="0 0 ${W} ${H}">${czesci.join("")}</svg>`;
 }
 
