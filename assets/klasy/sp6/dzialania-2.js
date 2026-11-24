@@ -12,6 +12,7 @@ function mn(n, a, b, c) {
 }
 
 const nwdf = (a, b) => { while (b) [a, b] = [b, a % b]; return a; };
+const nwwf = (a, b) => (a / nwdf(a, b)) * b;
 
 const fr = (n, d) => `\\frac{${n}}{${d}}`;
 /** Liczba wymierna dodatnia jako ułamek, liczba mieszana albo liczba całkowita (LaTeX). */
@@ -71,6 +72,9 @@ const zamianaMieszanych = (...L) => {
   return m.length ? [`Zamieniamy ${m.length > 1 ? "liczby mieszane" : "liczbę mieszaną"} na ${m.length > 1 ? "ułamki niewłaściwe" : "ułamek niewłaściwy"}: ${m.map((x) => `$${x.tex} = ${x.impTex}$`).join(", ")}.`] : [];
 };
 
+/** Podpis pola na ułamek: przykład zapisu, który nie jest odpowiedzią. */
+const etykietaUlamek = (res) => `Wynik jako ułamek (np. ${res.n === 7 && res.d === 12 ? "5/8" : "7/12"}) albo liczba całkowita`;
+
 /** Rozwinięcie dziesiętne n/d: cyfry przed okresem i cyfry okresu. */
 function rozwin(n, d) {
   const cyfry = [], seen = new Map();
@@ -86,6 +90,148 @@ function rozwin(n, d) {
   return { pre: cyfry.slice(0, st), per: cyfry.slice(st) };
 }
 
+/** Liczba całkowita do przesuwania przecinka: p = 0 – całkowita 2..99, inaczej p cyfr po przecinku, ostatnia cyfra różna od 0. */
+function cyfryDoPrzesuwania(r, p) {
+  let A;
+  do { A = p === 0 ? r.int(2, 99) : p === 1 ? r.int(11, 99) : r.int(101, 999); } while (p > 0 && A % 10 === 0);
+  return A;
+}
+
+// --- Rysunki na kartach (współrzędne liczone w kodzie; klasy stylów jak w assets/rysunki.js)
+
+const zl = (x) => Math.round(x * 10) / 10;
+const napis = (x, y, kl, t, kotwica = "middle") => `<text${kl ? ` class="${kl}"` : ""} x="${zl(x)}" y="${zl(y)}" text-anchor="${kotwica}">${t}</text>`;
+const kreska = (x1, y1, x2, y2, kl = "l") => `<line class="${kl}" x1="${zl(x1)}" y1="${zl(y1)}" x2="${zl(x2)}" y2="${zl(y2)}"/>`;
+const kropka = (x, y) => `<circle class="k" cx="${zl(x)}" cy="${zl(y)}" r="3.5"/>`;
+const prost = (kl, x, y, w, h) => `<rect class="${kl}" x="${zl(x)}" y="${zl(y)}" width="${zl(w)}" height="${zl(h)}"/>`;
+
+/** Pasek podzielony na n równych części; cz = [[od, ile, klasa]] – zamalowane części; pom = liczba części pomocniczej (przerywanej) podziałki. */
+function pasek(x, y, szer, wys, n, cz = [], pom = 0) {
+  const k = szer / n;
+  let s = "";
+  for (const [od, ile, kl] of cz) s += prost(kl, x + od * k, y, ile * k, wys);
+  for (let i = 1; i < pom; i++) s += kreska(x + (i * szer) / pom, y, x + (i * szer) / pom, y + wys, "p");
+  s += prost("l", x, y, szer, wys);
+  for (let i = 1; i < n; i++) s += kreska(x + i * k, y, x + i * k, y + wys);
+  return s;
+}
+
+/** Mnożenie ułamków: kratki 8 x 3. Poziomo zamalowane 2 z 3 rzędów (⅔), pionowo 3 z 8 kolumn (⅜); obie części razem: 6 kratek z 24. */
+const RYS_MNOZ_POLE = (() => {
+  const x0 = 70, y0 = 24, c = 22, kol = 8, rz = 3;
+  let s = `<svg viewBox="0 0 300 140">`;
+  s += prost("w", x0, y0, kol * c, 2 * c) + prost("w2", x0, y0, 3 * c, rz * c);
+  for (let i = 1; i < kol; i++) s += kreska(x0 + i * c, y0, x0 + i * c, y0 + rz * c, "p");
+  for (let j = 1; j < rz; j++) s += kreska(x0, y0 + j * c, x0 + kol * c, y0 + j * c, "p");
+  s += prost("l", x0, y0, kol * c, rz * c) + prost("a", x0, y0, 3 * c, 2 * c);
+  s += napis(x0 - 8, y0 + c + 5, "ta", "⅔", "end") + napis(x0 + 1.5 * c, y0 - 7, "ta", "⅜");
+  s += napis(150, y0 + rz * c + 26, "ta", "⅔ · ⅜ = 6/24 = ¼");
+  return `${s}${napis(150, 134, "tm", "na obie strony zamalowano 6 kratek z 24 (ramka)")}</svg>`;
+})();
+
+/** Ułamek razy liczba naturalna: 3 paski po ⅖ to 6 kratek, a każda kratka to ⅕. */
+const RYS_MNOZ_NAT = (() => {
+  let s = `<svg viewBox="0 0 300 130">`;
+  for (let i = 0; i < 3; i++) s += napis(46, 10 + 30 * i + 18, "ta", "⅖", "end") + pasek(52, 10 + 30 * i, 150, 24, 5, [[0, 2, "w"]]);
+  s += napis(216, 34, "ta", "3 · ⅖", "start") + napis(216, 58, "ta", "= 6/5", "start") + napis(216, 82, "ta", "= 1⅕", "start");
+  return `${s}${napis(150, 116, "tm", "razem 6 zamalowanych kratek, każda to ⅕")}</svg>`;
+})();
+
+/** Mnożenie pisemne liczb dziesiętnych: dwa przykłady, liczby wyrównane do prawej. */
+const RYS_MNOZ_DZIES = (() => {
+  const blok = (e, a, b, w, dz, ile) => napis(e, 26, "", a, "end") + napis(e, 50, "", `× ${b}`, "end") + kreska(e - 52, 58, e + 4, 58)
+    + napis(e, 82, "ta", w, "end") + napis(e - 24, 106, "tm", dz) + napis(e - 24, 120, "tm", ile);
+  return `<svg viewBox="0 0 300 130">${blok(108, "2,4", "0,3", "0,72", "24 · 3 = 72", "2 cyfry po przecinku")}${blok(258, "1,2", "1,3", "1,56", "12 · 13 = 156", "2 cyfry po przecinku")}</svg>`;
+})();
+
+/** Ułamek razy ułamek na paskach: ½ z ¾ = ⅜ (pierwsze 3 ósemki to połowa z trzech czwartych). */
+const RYS_ULAMEK_ULAMKA = `<svg viewBox="0 0 300 124">`
+  + napis(46, 28, "ta", "¾", "end") + pasek(52, 10, 240, 26, 4, [[0, 3, "w"]], 8)
+  + napis(46, 72, "ta", "½ z ¾", "end") + pasek(52, 54, 240, 26, 8, [[0, 3, "w2"], [3, 3, "w"]])
+  + napis(172, 104, "ta", "½ · ¾ = ⅜")
+  + `${napis(172, 120, "tm", "połowa z sześciu ósmych to trzy ósme")}</svg>`;
+
+/** Ile razy ¼ mieści się w 3: dwanaście skoków po ¼ (po cztery w każdej całości). */
+const RYS_ILE_RAZY = (() => {
+  const X = (v) => 20 + 90 * v, y = 74;
+  let s = `<svg viewBox="0 0 300 132">${kreska(12, y, 290, y)}`;
+  for (let i = 0; i <= 12; i++) s += kreska(X(i / 4), y - (i % 4 === 0 ? 7 : 4), X(i / 4), y + (i % 4 === 0 ? 7 : 4));
+  for (let i = 0; i < 12; i++) s += `<path class="a" d="M ${zl(X(i / 4))} ${y} Q ${zl(X((i + 0.5) / 4))} ${y - 16} ${zl(X((i + 1) / 4))} ${y}"/>${napis(X((i + 0.5) / 4), y - 14, "tm", String(i + 1))}`;
+  for (const v of [0, 1, 2, 3]) s += napis(X(v), y + 22, "", String(v));
+  return `${s}${napis(150, 26, "ta", "w 3 mieści się 12 razy po ¼")}${napis(150, 120, "ta", "3 : ¼ = 3 · 4 = 12")}</svg>`;
+})();
+
+/** Dzielenie ułamków na paskach: ¾ = 6/8, a ⅜ mieści się w nim 2 razy. */
+const RYS_DZIEL_PASEK = `<svg viewBox="0 0 300 132">`
+  + napis(46, 32, "ta", "¾", "end") + pasek(52, 14, 240, 28, 8, [[0, 6, "w"]], 4)
+  + pasek(52, 62, 90, 28, 3, [[0, 3, "w2"]]) + pasek(142, 62, 90, 28, 3, [[0, 3, "w"]])
+  + napis(97, 82, "ta", "⅜") + napis(187, 82, "ta", "⅜")
+  + napis(172, 112, "ta", "¾ : ⅜ = 2")
+  + `${napis(172, 128, "tm", "¾ = 6/8, a ⅜ mieści się w tym dwa razy")}</svg>`;
+
+/** Dzielenie pisemne 7,2 : 3 = 2,4 w słupku (cyfry wyrównane do prawej). */
+const RYS_SLUPEK = `<svg viewBox="0 0 300 156">`
+  + napis(92, 30, "", "7,2", "end") + napis(104, 30, "", ": 3 = 2,4", "start")
+  + napis(80, 54, "", "−6", "end") + kreska(60, 60, 84, 60)
+  + napis(92, 82, "", "12", "end") + napis(92, 106, "", "−12", "end") + kreska(58, 112, 96, 112) + napis(92, 134, "", "0", "end")
+  + napis(112, 54, "tm", "7 : 3 = 2, reszta 1", "start") + napis(112, 72, "tm", "znosimy 2 – cyfrę po przecinku,", "start")
+  + napis(112, 86, "tm", "więc w wyniku stawiamy przecinek", "start") + napis(112, 106, "tm", "12 : 3 = 4", "start")
+  + `</svg>`;
+
+/** Dzielenie przez ułamek dziesiętny: 7,2 : 0,4 = 72 : 4 = 18. */
+const RYS_PRZECINKI = `<svg viewBox="0 0 300 130">`
+  + napis(150, 26, "", "7,2 : 0,4")
+  + kreska(150, 36, 150, 64, "a") + `<polyline class="a" points="145,57 150,65 155,57"/>`
+  + napis(164, 48, "tm", "przecinki o 1 miejsce", "start") + napis(164, 61, "tm", "w prawo (razy 10)", "start")
+  + napis(150, 92, "ta", "72 : 4 = 18")
+  + `${napis(150, 120, "tm", "dzielnik ma być liczbą naturalną")}</svg>`;
+
+/** Zaokrąglanie 3,468 do części setnych: punkt leży bliżej 3,47 niż 3,46. */
+const RYS_ZAOKR = (() => {
+  const X = (v) => 30 + 24000 * (v - 3.46), y = 66;
+  let s = `<svg viewBox="0 0 300 124">${kreska(16, y, 284, y)}`;
+  s += kreska(X(3.46), y - 7, X(3.46), y + 7) + kreska(X(3.47), y - 7, X(3.47), y + 7) + kreska(X(3.465), y - 30, X(3.465), y + 7, "p");
+  s += napis(X(3.46), y + 24, "", "3,46") + napis(X(3.47), y + 24, "", "3,47") + napis(X(3.465), y + 24, "tm", "3,465") + napis(X(3.465), y - 36, "tm", "środek");
+  s += kropka(X(3.468), y) + napis(X(3.468), y - 26, "ta", "3,468") + skokOsi(X(3.468), X(3.47), y, 10);
+  return `${s}${napis(150, 106, "tm", "3,468 jest bliżej 3,47 niż 3,46")}${napis(150, 121, "ta", "3,468 ≈ 3,47")}</svg>`;
+})();
+
+/** Skok na osi ze strzałką: łuk od x1 do x2 nad osią o wysokości y, wznoszący się o h. */
+function skokOsi(x1, x2, y, h) {
+  const cx = (x1 + x2) / 2, cy = y - 2 * h;
+  const dx = x2 - cx, dy = y - cy, dl = Math.hypot(dx, dy), ux = dx / dl, uy = dy / dl;
+  const bx = x2 - ux * 7, by = y - uy * 7;
+  return `<path class="a" d="M ${zl(x1)} ${y} Q ${zl(cx)} ${zl(cy)} ${zl(x2)} ${y}"/>`
+    + `<polyline class="a" points="${zl(bx - uy * 3.5)},${zl(by + ux * 3.5)} ${zl(x2)},${y} ${zl(bx + uy * 3.5)},${zl(by - ux * 3.5)}"/>`;
+}
+
+/** Ułamek okresowy: dzielenie 5 : 6, reszta 2 wraca. */
+const RYS_OKRES = `<svg viewBox="0 0 300 140">`
+  + napis(30, 26, "", "50 : 6 = 8, reszta 2", "start")
+  + napis(30, 50, "ta", "20 : 6 = 3, reszta 2", "start")
+  + napis(30, 74, "ta", "20 : 6 = 3, reszta 2", "start")
+  + napis(30, 98, "", "…", "start")
+  + napis(30, 124, "ta", "⅚ = 0,8(3)", "start")
+  + `${napis(150, 138, "tm", "reszta 2 wraca, więc cyfra 3 się powtarza", "middle")}</svg>`;
+
+/** Ułamek liczby: ⅗ z 40 – pasek z pięcioma częściami po 8. */
+const RYS_ULAMEK_LICZBY = (() => {
+  let s = `<svg viewBox="0 0 300 128">${napis(150, 16, "ta", "40")}${kreska(30, 24, 270, 24, "p")}`;
+  s += pasek(30, 34, 240, 32, 5, [[0, 3, "w"]]);
+  for (let i = 0; i < 5; i++) s += napis(30 + 48 * i + 24, 56, "", "8");
+  s += kreska(30, 76, 174, 76, "a") + napis(102, 96, "ta", "3 · 8 = 24");
+  return `${s}${napis(150, 120, "tm", "40 : 5 = 8 – to jedna część")}</svg>`;
+})();
+
+/** Liczba, gdy znamy jej ułamek: ⅜ liczby to 15, więc jedna ósma to 5, a cała liczba to 40. */
+const RYS_CALOSC = (() => {
+  let s = `<svg viewBox="0 0 300 134">${napis(150, 16, "ta", "całość = 8 · 5 = 40")}${kreska(30, 24, 270, 24, "p")}`;
+  s += pasek(30, 36, 240, 32, 8, [[0, 3, "w"]]);
+  for (let i = 0; i < 8; i++) s += napis(30 + 30 * i + 15, 58, "", "5");
+  s += kreska(30, 78, 120, 78, "a") + napis(75, 98, "ta", "⅜ liczby = 15");
+  return `${s}${napis(150, 124, "tm", "15 : 3 = 5 – to jedna ósma całości")}</svg>`;
+})();
+
 export default {
   tematy: [
     // ------------------------------------------------------------------------------------------------
@@ -98,22 +244,31 @@ export default {
           slownie: "Mnożymy licznik przez licznik i mianownik przez mianownik. Jeśli można, skracamy przed mnożeniem albo po nim. Wspólny mianownik nie jest potrzebny.",
           tex: "\\frac{a}{b}\\cdot\\frac{c}{d}=\\frac{a\\cdot c}{b\\cdot d}",
           litery: "$a$, $c$ – liczniki; $b$, $d$ – mianowniki.",
-          przyklad: "$\\frac{2}{3}\\cdot\\frac{3}{8}=\\frac{2\\cdot3}{3\\cdot8}=\\frac{6}{24}=\\frac{1}{4}$.",
+          przyklad: "$\\frac{2}{3}\\cdot\\frac{3}{8}=\\frac{2\\cdot3}{3\\cdot8}=\\frac{6}{24}=\\frac{1}{4}$. Na rysunku: z $24$ kratek zamalowano na obie strony $6$.",
           uwaga: "Wspólny mianownik szukamy tylko przy dodawaniu i odejmowaniu, nie przy mnożeniu.",
+          rysunek: RYS_MNOZ_POLE,
+        },
+        {
+          nazwa: "Skracanie przed mnożeniem",
+          slownie: "Liczbę z licznika możemy skrócić z liczbą z mianownika, także z drugiego ułamka. Rachunki są wtedy krótsze, a wynik jest od razu skrócony.",
+          tex: "\\frac{5}{6}\\cdot\\frac{9}{10}=\\frac{1}{2}\\cdot\\frac{3}{2}=\\frac{3}{4}",
+          przyklad: "W $\\frac{5}{6}\\cdot\\frac{9}{10}$ skracamy $5$ z $10$ przez $5$ oraz $9$ z $6$ przez $3$. Zostaje $\\frac{1\\cdot3}{2\\cdot2}=\\frac{3}{4}$.",
+          uwaga: "Skracamy licznik z mianownikiem. Dwóch liczników (albo dwóch mianowników) nie skracamy.",
         },
         {
           nazwa: "Ułamek razy liczba naturalna",
           slownie: "Liczbę naturalną zapisujemy jako ułamek z mianownikiem $1$. Mnożymy tylko licznik, mianownik zostaje taki sam.",
-          tex: "6\\cdot\\frac{5}{8}=\\frac{30}{8}=3\\frac{3}{4}",
-          przyklad: "$6\\cdot\\frac{5}{8}=\\frac{6\\cdot5}{8}=\\frac{30}{8}=\\frac{15}{4}=3\\frac{3}{4}$.",
+          tex: "3\\cdot\\frac{2}{5}=\\frac{6}{5}=1\\frac{1}{5}",
+          przyklad: "$3\\cdot\\frac{2}{5}=\\frac{3\\cdot2}{5}=\\frac{6}{5}=1\\frac{1}{5}$. Podobnie $6\\cdot\\frac{5}{8}=\\frac{30}{8}=\\frac{15}{4}=3\\frac{3}{4}$.",
           uwaga: "Nie mnóż mianownika przez liczbę naturalną.",
+          rysunek: RYS_MNOZ_NAT,
         },
         {
           nazwa: "Liczby mieszane",
           slownie: "Najpierw zamieniamy liczby mieszane na ułamki niewłaściwe. Potem mnożymy jak zwykłe ułamki i na końcu skracamy.",
           tex: "1\\frac{1}{2}\\cdot2\\frac{2}{3}=\\frac{3}{2}\\cdot\\frac{8}{3}=4",
           przyklad: "$1\\frac{1}{2}=\\frac{3}{2}$ i $2\\frac{2}{3}=\\frac{8}{3}$. Zatem $\\frac{3}{2}\\cdot\\frac{8}{3}=\\frac{24}{6}=4$.",
-          uwaga: "Nie mnóż osobno całości i osobno ułamków. Wynik byłby inny.",
+          uwaga: "Nie mnóż osobno całości i osobno ułamków. Wynik byłby zły.",
         },
         {
           nazwa: "Ułamki dziesiętne",
@@ -121,10 +276,11 @@ export default {
           tex: "2{,}4\\cdot0{,}3=0{,}72",
           przyklad: "$24\\cdot3=72$. W liczbach $2{,}4$ i $0{,}3$ jest razem $2$ cyfry po przecinku, więc wynik to $0{,}72$.",
           uwaga: "$0{,}2\\cdot0{,}3=0{,}06$, a nie $0{,}6$. Brakujące miejsce uzupełniamy zerem.",
+          rysunek: RYS_MNOZ_DZIES,
         },
         {
           nazwa: "Mnożenie przez 10, 100 i 0,1",
-          slownie: "Przy mnożeniu przez $10$, $100$, $1000$ przesuwamy przecinek w prawo o tyle miejsc, ile jest zer. Mnożenie przez $0{,}1$ przesuwa przecinek w lewo o jedno miejsce.",
+          slownie: "Przy mnożeniu przez $10$, $100$, $1000$ przesuwamy przecinek w prawo o tyle miejsc, ile jest zer. Mnożenie przez $0{,}1$ przesuwa przecinek w lewo o jedno miejsce, a przez $0{,}01$ o dwa miejsca.",
           tex: "4{,}7\\cdot10=47\\qquad4{,}7\\cdot0{,}1=0{,}47",
           przyklad: "$3{,}25\\cdot100=325$. Gdy brakuje cyfr, dopisujemy zera: $0{,}6\\cdot100=60$.",
           uwaga: "Mnożenie przez liczbę mniejszą od $1$ zmniejsza wynik.",
@@ -163,6 +319,30 @@ export default {
         },
         {
           nr: "5",
+          tresc: "Ile wynosi $\\frac{4}{9}\\cdot\\frac{3}{8}$? **Wybierz właściwą odpowiedź.**",
+          opcje: ["$\\frac{7}{17}$", "$\\frac{1}{3}$", "$\\frac{1}{6}$", "$\\frac{32}{27}$"],
+          poprawna: 2,
+        },
+        {
+          nr: "6",
+          tresc: "Ile wynosi $3\\cdot\\frac{2}{5}$? **Wybierz właściwą odpowiedź.**",
+          opcje: ["$\\frac{6}{15}$", "$1\\frac{1}{5}$", "$\\frac{2}{15}$", "$6\\frac{1}{5}$"],
+          poprawna: 1,
+        },
+        {
+          nr: "7",
+          tresc: "Ile wynosi $1{,}2\\cdot0{,}7$? **Wybierz właściwą odpowiedź.**",
+          opcje: ["$8{,}4$", "$0{,}84$", "$0{,}084$", "$1{,}9$"],
+          poprawna: 1,
+        },
+        {
+          nr: "8",
+          tresc: "Ile wynosi $6{,}4\\cdot0{,}1$? **Wybierz właściwą odpowiedź.**",
+          opcje: ["$64$", "$0{,}064$", "$0{,}64$", "$6{,}5$"],
+          poprawna: 2,
+        },
+        {
+          nr: "9",
           tresc: "Oceń zdania. **Dla każdego zdania wybierz P, jeśli jest prawdziwe, albo F, jeśli jest fałszywe.**",
           czesci: [
             { tekst: "$\\frac{2}{5}\\cdot10=4$", litery: "PF", poprawna: 0 },
@@ -173,16 +353,28 @@ export default {
       ],
       otwarte: [
         {
-          nr: "6",
+          nr: "10",
           punkty: 2,
           tresc: "Prostokątna grządka ma boki długości $2\\frac{1}{2}$ m i $1\\frac{3}{5}$ m. Jakie jest pole tej grządki? **Zapisz obliczenia.**",
           rozwiazanie: "Pole prostokąta to iloczyn długości boków. Zamieniamy liczby mieszane: $2\\frac{1}{2}=\\frac{5}{2}$ oraz $1\\frac{3}{5}=\\frac{8}{5}$.\n\nMnożymy: $\\frac{5}{2}\\cdot\\frac{8}{5}=\\frac{40}{10}=4$.\n\nOdpowiedź: Pole grządki to $4$ m$^2$.",
         },
         {
-          nr: "7",
+          nr: "11",
           punkty: 2,
           tresc: "Kilogram wiśni kosztuje $12{,}50$ zł. Pani Ewa kupiła $1{,}6$ kg wiśni i zapłaciła banknotem $50$ zł. Ile złotych reszty dostała? **Zapisz obliczenia.**",
           rozwiazanie: "Koszt wiśni: $12{,}5\\cdot1{,}6$. Mnożymy bez przecinków: $125\\cdot16=2000$. W czynnikach są razem $2$ cyfry po przecinku, więc koszt to $20{,}00$ zł, czyli $20$ zł.\n\nReszta: $50-20=30$.\n\nOdpowiedź: Pani Ewa dostała $30$ zł reszty.",
+        },
+        {
+          nr: "12",
+          punkty: 2,
+          tresc: "Ola miała $3\\frac{3}{4}$ m wstążki. Na ozdobę zużyła $\\frac{2}{5}$ tej wstążki. Ile metrów wstążki zużyła? **Zapisz obliczenia.**",
+          rozwiazanie: "Szukamy $\\frac{2}{5}$ z $3\\frac{3}{4}$, czyli mnożymy. Zamieniamy liczbę mieszaną: $3\\frac{3}{4}=\\frac{15}{4}$.\n\n$\\frac{2}{5}\\cdot\\frac{15}{4}$: skracamy $5$ z $15$ oraz $2$ z $4$. Zostaje $\\frac{1\\cdot3}{1\\cdot2}=\\frac{3}{2}=1\\frac{1}{2}$.\n\nOdpowiedź: Ola zużyła $1\\frac{1}{2}$ m wstążki.",
+        },
+        {
+          nr: "13",
+          punkty: 1,
+          tresc: "Bok kwadratowego obrazu ma $1{,}2$ m. Jakie jest pole tego obrazu? **Zapisz obliczenia.**",
+          rozwiazanie: "Pole kwadratu to bok razy bok: $1{,}2\\cdot1{,}2$.\n\nMnożymy bez przecinków: $12\\cdot12=144$. W czynnikach są razem $2$ cyfry po przecinku, więc wynik to $1{,}44$.\n\nOdpowiedź: Pole obrazu to $1{,}44$ m$^2$.",
         },
       ],
       generatory: [
@@ -207,7 +399,7 @@ export default {
                 : r.pick([`Oblicz $${A.tex} \\cdot ${B.tex}$.`, `Ile to jest $${A.tex} \\cdot ${B.tex}$?`]);
               return {
                 tresc,
-                pola: [{ id: "w", typ: "liczba", etykieta: `Wynik jako ułamek (np. ${res.d === 1 ? "7/2" : `${res.n}/${res.d}`})` }],
+                pola: [{ id: "w", typ: "liczba", etykieta: etykietaUlamek(res) }],
                 odpowiedz: { w: res },
                 wynik: `$${qm(res)}$`,
                 rozwiazanie: kr,
@@ -230,7 +422,7 @@ export default {
             const P = A * B, k = p + s;
             const res = q(P, 10 ** k);
             const a = fmtP(A, p), b = s === 0 ? `${B}` : fmtP(B, s);
-            const cena = k <= 2 && r.chance(0.4);
+            const cena = p === 2 && s === 0 && r.chance(0.5);
             const tresc = cena
               ? `Kilogram sera kosztuje $${a}$ zł. Ile złotych zapłacimy za $${b}$ kg sera?`
               : r.pick([`Oblicz $${a} \\cdot ${b}$.`, `Ile to jest $${a} \\cdot ${b}$?`]);
@@ -244,6 +436,38 @@ export default {
                 `W czynnikach jest razem $${k}$ ${mn(k, "cyfra", "cyfry", "cyfr")} po przecinku (w $${a}$ jest $${p}$, w $${b}$ jest $${s}$).`,
                 `W wyniku odliczamy $${k}$ ${mn(k, "cyfrę", "cyfry", "cyfr")} od prawej: $${fmtP(P, k)}$${fmtP(P, k) === fmtD(res) ? "" : `, czyli $${fmtD(res)}$`}.`,
               ],
+            };
+          },
+        },
+        {
+          id: "mnozenie-przez-10",
+          nazwa: "Mnożenie przez 10, 100, 1000, 0,1 i 0,01",
+          opis: "Pomnóż liczbę dziesiętną przez 10, 100, 1000, 0,1 albo 0,01, przesuwając przecinek.",
+          generuj(r) {
+            const m = r.pick([
+              { tex: "10", k: 1, prawo: true }, { tex: "100", k: 2, prawo: true }, { tex: "1000", k: 3, prawo: true },
+              { tex: "0{,}1", k: 1, prawo: false }, { tex: "0{,}01", k: 2, prawo: false },
+            ]);
+            const p = r.int(0, 2);
+            const A = cyfryDoPrzesuwania(r, p);
+            const x = q(A, 10 ** p);
+            const res = m.prawo ? q(A * 10 ** m.k, 10 ** p) : q(A, 10 ** (p + m.k));
+            const calk = Math.floor(A / 10 ** p).toString().length;
+            const kroki = m.prawo
+              ? [
+                  `Mnożymy przez $${m.tex}$, więc przesuwamy przecinek w prawo o $${m.k}$ ${mn(m.k, "miejsce", "miejsca", "miejsc")}.`,
+                  ...(m.k > p ? [`Brakujące miejsca uzupełniamy zerami.`] : []),
+                ]
+              : [
+                  `Mnożenie przez $${m.tex}$ to to samo co dzielenie przez $${10 ** m.k}$, więc przesuwamy przecinek w lewo o $${m.k}$ ${mn(m.k, "miejsce", "miejsca", "miejsc")}.`,
+                  ...(calk < m.k ? [`Gdy brakuje cyfr, dopisujemy zera z przodu.`] : []),
+                ];
+            return {
+              tresc: r.pick([`Oblicz $${fmtD(x)} \\cdot ${m.tex}$.`, `Ile to jest $${fmtD(x)} \\cdot ${m.tex}$?`]),
+              pola: [{ id: "w", typ: "liczba", etykieta: "Wynik" }],
+              odpowiedz: { w: res },
+              wynik: `$${fmtD(res)}$`,
+              rozwiazanie: [...kroki, `Wynik: $${fmtD(x)} \\cdot ${m.tex} = ${fmtD(res)}$.`],
             };
           },
         },
@@ -278,9 +502,18 @@ export default {
         },
         {
           nazwa: "Ile razy się mieści?",
-          slownie: "Dzielenie $a : b$ pytamy: ile razy $b$ mieści się w $a$. Gdy dzielimy przez ułamek mniejszy od $1$, wynik jest większy od dzielnej.",
-          przyklad: "Z $3$ m wstążki tniemy kawałki po $\\frac{1}{4}$ m. Kawałków jest $3:\\frac{1}{4}=3\\cdot4=12$.",
+          slownie: "Dzieląc $a : b$, pytamy: ile razy $b$ mieści się w $a$. Gdy dzielimy przez ułamek mniejszy od $1$, wynik jest większy od dzielnej.",
+          przyklad: "Z $3$ m wstążki tniemy kawałki po $\\frac{1}{4}$ m. W każdym metrze mieszczą się $4$ takie kawałki. Kawałków jest $3:\\frac{1}{4}=3\\cdot4=12$.",
           uwaga: "Dzielenie przez ułamek mniejszy od $1$ nie zmniejsza liczby. Zmniejsza ją dzielenie przez liczbę większą od $1$.",
+          rysunek: RYS_ILE_RAZY,
+        },
+        {
+          nazwa: "Dzielenie ułamków na paskach",
+          slownie: "Gdy ułamki mają ten sam mianownik, widać na pasku, ile razy dzielnik mieści się w dzielnej. Wystarczy porównać liczniki.",
+          tex: "\\frac{3}{4}:\\frac{3}{8}=\\frac{6}{8}:\\frac{3}{8}=2",
+          przyklad: "$\\frac{3}{4}=\\frac{6}{8}$. Pasek $\\frac{3}{8}$ mieści się w pasku $\\frac{6}{8}$ dwa razy, bo $6:3=2$. Sprawdzenie mnożeniem: $\\frac{3}{4}\\cdot\\frac{8}{3}=2$.",
+          uwaga: "Ułamki mogą mieć różne mianowniki. Wtedy najpierw je rozszerz do wspólnego mianownika albo pomnóż przez odwrotność.",
+          rysunek: RYS_DZIEL_PASEK,
         },
       ],
       jak: [
@@ -291,31 +524,43 @@ export default {
       ],
       zadania: [
         {
-          nr: "8",
+          nr: "14",
           tresc: "Ile wynosi $\\frac{5}{6}:\\frac{5}{12}$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\frac{25}{72}$", "$\\frac{1}{2}$", "$2$", "$\\frac{25}{36}$"],
           poprawna: 2,
         },
         {
-          nr: "9",
+          nr: "15",
           tresc: "Ile wynosi $4:\\frac{2}{3}$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\frac{8}{3}$", "$6$", "$\\frac{1}{6}$", "$4\\frac{2}{3}$"],
           poprawna: 1,
         },
         {
-          nr: "10",
+          nr: "16",
           tresc: "Ile wynosi $1\\frac{1}{2}:2\\frac{1}{4}$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$1\\frac{1}{2}$", "$3\\frac{3}{8}$", "$\\frac{3}{4}$", "$\\frac{2}{3}$"],
           poprawna: 3,
         },
         {
-          nr: "11",
+          nr: "17",
           tresc: "Ile szklanek o pojemności $\\frac{1}{4}$ l można napełnić $3\\frac{1}{2}$ l soku? **Wybierz właściwą odpowiedź.**",
           opcje: ["$14$", "$7$", "$\\frac{7}{8}$", "$13$"],
           poprawna: 0,
         },
         {
-          nr: "12",
+          nr: "18",
+          tresc: "Ile wynosi $\\frac{3}{4}:3$? **Wybierz właściwą odpowiedź.**",
+          opcje: ["$\\frac{9}{4}$", "$\\frac{1}{4}$", "$4$", "$3$"],
+          poprawna: 1,
+        },
+        {
+          nr: "19",
+          tresc: "Która liczba jest odwrotnością liczby $2\\frac{1}{3}$? **Wybierz właściwą odpowiedź.**",
+          opcje: ["$\\frac{3}{7}$", "$\\frac{7}{3}$", "$\\frac{3}{2}$", "$\\frac{1}{3}$"],
+          poprawna: 0,
+        },
+        {
+          nr: "20",
           tresc: "Oceń zdania. **Dla każdego zdania wybierz P, jeśli jest prawdziwe, albo F, jeśli jest fałszywe.**",
           czesci: [
             { tekst: "Odwrotnością liczby $\\frac{2}{7}$ jest liczba $\\frac{7}{2}$.", litery: "PF", poprawna: 0 },
@@ -326,16 +571,28 @@ export default {
       ],
       otwarte: [
         {
-          nr: "13",
+          nr: "21",
           punkty: 2,
           tresc: "Z kawałka tkaniny o długości $4$ m pani Basia szyje woreczki. Na jeden woreczek potrzeba $\\frac{3}{4}$ m tkaniny. Ile całych woreczków uszyje i ile metrów tkaniny zostanie? **Zapisz obliczenia.**",
           rozwiazanie: "Dzielimy: $4:\\frac{3}{4}=4\\cdot\\frac{4}{3}=\\frac{16}{3}=5\\frac{1}{3}$. Całych woreczków będzie $5$.\n\nZużyto $5\\cdot\\frac{3}{4}=\\frac{15}{4}=3\\frac{3}{4}$ m tkaniny.\n\nZostanie $4-3\\frac{3}{4}=\\frac{1}{4}$ m.\n\nOdpowiedź: Pani Basia uszyje $5$ woreczków i zostanie jej $\\frac{1}{4}$ m tkaniny.",
         },
         {
-          nr: "14",
+          nr: "22",
           punkty: 2,
           tresc: "Iloczyn dwóch liczb jest równy $\\frac{3}{5}$. Jedna z tych liczb to $\\frac{9}{10}$. Jaka jest druga liczba? **Zapisz obliczenia.**",
           rozwiazanie: "Drugą liczbę dostaniemy, dzieląc iloczyn przez pierwszą liczbę: $\\frac{3}{5}:\\frac{9}{10}$.\n\nZamieniamy na mnożenie: $\\frac{3}{5}\\cdot\\frac{10}{9}=\\frac{30}{45}=\\frac{2}{3}$.\n\nSprawdzenie: $\\frac{9}{10}\\cdot\\frac{2}{3}=\\frac{18}{30}=\\frac{3}{5}$.\n\nOdpowiedź: Druga liczba to $\\frac{2}{3}$.",
+        },
+        {
+          nr: "23",
+          punkty: 2,
+          tresc: "Pan Marek ma $5\\frac{1}{2}$ l soku. Rozlewa go do butelek po $\\frac{3}{4}$ l. Ile butelek napełni w całości i ile litrów soku zostanie? **Zapisz obliczenia.**",
+          rozwiazanie: "Dzielimy: $5\\frac{1}{2}:\\frac{3}{4}=\\frac{11}{2}\\cdot\\frac{4}{3}=\\frac{44}{6}=\\frac{22}{3}=7\\frac{1}{3}$. Całych butelek będzie $7$.\n\nZużyto $7\\cdot\\frac{3}{4}=\\frac{21}{4}=5\\frac{1}{4}$ l soku.\n\nZostanie $5\\frac{1}{2}-5\\frac{1}{4}=\\frac{1}{4}$ l.\n\nOdpowiedź: Pan Marek napełni $7$ butelek i zostanie mu $\\frac{1}{4}$ l soku.",
+        },
+        {
+          nr: "24",
+          punkty: 2,
+          tresc: "Pole prostokąta jest równe $\\frac{3}{4}$ m$^2$. Jeden bok ma długość $\\frac{3}{5}$ m. Jaką długość ma drugi bok? **Zapisz obliczenia.**",
+          rozwiazanie: "Pole to iloczyn długości boków, więc drugi bok to pole podzielone przez pierwszy bok: $\\frac{3}{4}:\\frac{3}{5}$.\n\nZamieniamy na mnożenie: $\\frac{3}{4}\\cdot\\frac{5}{3}=\\frac{15}{12}=\\frac{5}{4}=1\\frac{1}{4}$.\n\nSprawdzenie: $\\frac{3}{5}\\cdot\\frac{5}{4}=\\frac{15}{20}=\\frac{3}{4}$.\n\nOdpowiedź: Drugi bok ma $1\\frac{1}{4}$ m.",
         },
       ],
       generatory: [
@@ -361,12 +618,36 @@ export default {
                 : r.pick([`Oblicz $${A.tex} : ${B.tex}$.`, `Ile to jest $${A.tex} : ${B.tex}$?`]);
               return {
                 tresc,
-                pola: [{ id: "w", typ: "liczba", etykieta: `Wynik jako ułamek (np. ${res.d === 1 ? "7/2" : `${res.n}/${res.d}`})` }],
+                pola: [{ id: "w", typ: "liczba", etykieta: etykietaUlamek(res) }],
                 odpowiedz: { w: res },
                 wynik: `$${qm(res)}$`,
                 rozwiazanie: kr,
               };
             }
+          },
+        },
+        {
+          id: "odwrotnosc",
+          nazwa: "Odwrotność liczby",
+          opis: "Podaj odwrotność ułamka, liczby mieszanej albo liczby naturalnej. Wynik wpisz jako ułamek lub liczbę całkowitą.",
+          generuj(r) {
+            let L;
+            do { L = liczba(r, r.pick(["wl", "wl", "mie", "nat"])); } while (L.nn > 40);
+            const odw = q(L.dd, L.nn);
+            const kr = [
+              ...zamianaMieszanych(L),
+              L.dd === 1
+                ? `Liczbę $${L.tex}$ zapisujemy jako $${fr(L.nn, 1)}$. Zamieniamy miejscami licznik i mianownik: $${fr(1, L.nn)}$.`
+                : `Zamieniamy miejscami licznik i mianownik: $${L.impTex} \\to ${fr(L.dd, L.nn)}$.`,
+              `Sprawdzenie: $${L.impTex} \\cdot ${fr(L.dd, L.nn)} = 1$.`,
+            ];
+            return {
+              tresc: `Podaj odwrotność liczby $${L.tex}$.`,
+              pola: [{ id: "w", typ: "liczba", etykieta: etykietaUlamek(odw).replace("Wynik", "Odwrotność") }],
+              odpowiedz: { w: odw },
+              wynik: `$${qm(odw)}$`,
+              rozwiazanie: kr,
+            };
           },
         },
       ],
@@ -382,7 +663,8 @@ export default {
           slownie: "Dzielimy jak liczby naturalne. Gdy znosimy pierwszą cyfrę po przecinku, w wyniku stawiamy przecinek. Gdy dzielenie się nie kończy, dopisujemy zero na końcu dzielnej.",
           tex: "7{,}2:3=2{,}4",
           przyklad: "$7:3=2$, reszta $1$. Stawiamy przecinek, znosimy $2$: $12:3=4$. Wynik $2{,}4$. Dla $3:4$ dopisujemy zera: $3{,}00:4=0{,}75$.",
-          uwaga: "Gdy liczba jest za mała na dzielenie, wpisz $0$ w wyniku: $0{,}6:4$ to $0{,}60:4=0{,}15$.",
+          uwaga: "Gdy dzielna jest mniejsza od dzielnika, w wyniku piszemy $0$: $0{,}6:4$ to $0{,}60:4=0{,}15$.",
+          rysunek: RYS_SLUPEK,
         },
         {
           nazwa: "Dzielenie przez ułamek dziesiętny",
@@ -390,6 +672,7 @@ export default {
           tex: "7{,}2:0{,}4=72:4=18",
           przyklad: "$4{,}5:0{,}09$: przesuwamy przecinki o $2$ miejsca, mamy $450:9=50$.",
           uwaga: "Oba przecinki przesuwamy o tyle samo miejsc. Przesunięcie tylko jednego zmienia wynik.",
+          rysunek: RYS_PRZECINKI,
         },
         {
           nazwa: "Dzielenie przez 10, 100, 1000",
@@ -414,48 +697,87 @@ export default {
       ],
       zadania: [
         {
-          nr: "15",
+          nr: "25",
           tresc: "Ile wynosi $9{,}6:4$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$24$", "$2{,}4$", "$0{,}24$", "$2{,}04$"],
           poprawna: 1,
         },
         {
-          nr: "16",
+          nr: "26",
           tresc: "Ile wynosi $4{,}5:0{,}09$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$0{,}5$", "$5$", "$500$", "$50$"],
           poprawna: 3,
         },
         {
-          nr: "17",
+          nr: "27",
           tresc: "Ile wynosi $0{,}7:5$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$1{,}4$", "$0{,}35$", "$0{,}14$", "$0{,}014$"],
           poprawna: 2,
         },
         {
-          nr: "18",
+          nr: "28",
           tresc: "Jak zapisać ułamek $\\frac{7}{20}$ w postaci dziesiętnej? **Wybierz właściwą odpowiedź.**",
           opcje: ["$0{,}35$", "$0{,}27$", "$0{,}035$", "$0{,}7$"],
           poprawna: 0,
         },
         {
-          nr: "19",
+          nr: "29",
           tresc: "Trzy przyjaciółki zapłaciły za pizzę $40{,}50$ zł i podzieliły rachunek po równo. Ile złotych zapłaciła każda z nich? **Wybierz właściwą odpowiedź.**",
           opcje: ["$135$ zł", "$13{,}50$ zł", "$13{,}05$ zł", "$12{,}50$ zł"],
           poprawna: 1,
         },
+        {
+          nr: "30",
+          tresc: "Ile wynosi $8{,}3:10$? **Wybierz właściwą odpowiedź.**",
+          opcje: ["$83$", "$0{,}83$", "$0{,}083$", "$8{,}03$"],
+          poprawna: 1,
+        },
+        {
+          nr: "31",
+          tresc: "Ile wynosi $0{,}5:4$? **Wybierz właściwą odpowiedź.**",
+          opcje: ["$0{,}125$", "$0{,}0125$", "$1{,}25$", "$0{,}12$"],
+          poprawna: 0,
+        },
+        {
+          nr: "32",
+          tresc: "Jak zapisać ułamek $\\frac{3}{8}$ w postaci dziesiętnej? **Wybierz właściwą odpowiedź.**",
+          opcje: ["$0{,}38$", "$0{,}375$", "$0{,}125$", "$2{,}67$"],
+          poprawna: 1,
+        },
+        {
+          nr: "33",
+          tresc: "Oceń zdania. **Dla każdego zdania wybierz P, jeśli jest prawdziwe, albo F, jeśli jest fałszywe.**",
+          czesci: [
+            { tekst: "$9{,}6:0{,}8=12$", litery: "PF", poprawna: 0 },
+            { tekst: "$0{,}3:6=0{,}5$", litery: "PF", poprawna: 1 },
+            { tekst: "$\\frac{1}{4}=0{,}25$", litery: "PF", poprawna: 0 },
+          ],
+        },
       ],
       otwarte: [
         {
-          nr: "20",
+          nr: "34",
           punkty: 2,
           tresc: "Przewód ma długość $5{,}76$ m. Pocięto go na $8$ równych części. Ile metrów ma jedna część? Ile kawałków po $0{,}36$ m można by zrobić z całego przewodu? **Zapisz obliczenia.**",
-          rozwiazanie: "Jedna część: $5{,}76:8$. Dzielimy jak liczby naturalne: $57:8=7$, reszta $1$; po przecinku $16:8=2$. Wynik: $0{,}72$ m.\n\nKawałki po $0{,}36$ m: $5{,}76:0{,}36$. Przesuwamy przecinki o $2$ miejsca: $576:36=16$.\n\nSprawdzenie: $0{,}72\\cdot8=5{,}76$ oraz $0{,}36\\cdot16=5{,}76$.\n\nOdpowiedź: Jedna część ma $0{,}72$ m, a kawałków po $0{,}36$ m byłoby $16$.",
+          rozwiazanie: "Jedna część: $5{,}76:8$. Liczba $5$ jest mniejsza od $8$, więc w wyniku piszemy $0$ i przecinek. Dalej $57:8=7$, reszta $1$. Znosimy $6$: $16:8=2$. Wynik: $0{,}72$ m.\n\nKawałki po $0{,}36$ m: $5{,}76:0{,}36$. Przesuwamy przecinki o $2$ miejsca: $576:36=16$.\n\nSprawdzenie: $0{,}72\\cdot8=5{,}76$ oraz $0{,}36\\cdot16=5{,}76$.\n\nOdpowiedź: Jedna część ma $0{,}72$ m, a kawałków po $0{,}36$ m byłoby $16$.",
         },
         {
-          nr: "21",
+          nr: "35",
           punkty: 1,
           tresc: "Zapisz ułamek $\\frac{5}{8}$ w postaci dziesiętnej, dzieląc pisemnie licznik przez mianownik. Sprawdź wynik mnożeniem. **Zapisz obliczenia.**",
           rozwiazanie: "Dzielimy $5:8$. Dopisujemy zera: $5{,}000:8$. Mamy $50:8=6$, reszta $2$; $20:8=2$, reszta $4$; $40:8=5$.\n\nZatem $\\frac{5}{8}=0{,}625$. Sprawdzenie: $0{,}625\\cdot8=5$.\n\nOdpowiedź: $\\frac{5}{8}=0{,}625$.",
+        },
+        {
+          nr: "36",
+          punkty: 2,
+          tresc: "Za $3{,}5$ m wstążki zapłacono $9{,}80$ zł. Ile kosztuje $1$ metr tej wstążki? **Zapisz obliczenia.**",
+          rozwiazanie: "Cena jednego metra: $9{,}8:3{,}5$. Przesuwamy przecinki o $1$ miejsce: $98:35$.\n\nDzielimy: $98:35=2$, reszta $28$. Dopisujemy zero: $280:35=8$. Wynik: $2{,}8$.\n\nSprawdzenie: $2{,}8\\cdot3{,}5=9{,}8$.\n\nOdpowiedź: Metr wstążki kosztuje $2{,}80$ zł.",
+        },
+        {
+          nr: "37",
+          punkty: 1,
+          tresc: "Oblicz pisemnie $7{,}35:0{,}35$. Sprawdź wynik mnożeniem. **Zapisz obliczenia.**",
+          rozwiazanie: "Przesuwamy przecinki o $2$ miejsca w prawo: $7{,}35:0{,}35=735:35$.\n\nDzielimy: $73:35=2$, reszta $3$. Znosimy $5$: $35:35=1$. Wynik: $21$.\n\nSprawdzenie: $21\\cdot0{,}35=7{,}35$.\n\nOdpowiedź: $7{,}35:0{,}35=21$.",
         },
       ],
       generatory: [
@@ -473,14 +795,14 @@ export default {
               const ctx = r.chance(0.5);
               return {
                 tresc: ctx
-                  ? `Deskę o długości $${dz}$ m pocięto na $${k}$ ${mn(k, "równą część", "równe części", "równych części")}. Ile metrów ma jedna część?`
+                  ? `Linę o długości $${dz}$ m pocięto na $${k}$ ${mn(k, "równą część", "równe części", "równych części")}. Ile metrów ma jedna część?`
                   : r.pick([`Oblicz $${dz} : ${k}$.`, `Ile to jest $${dz} : ${k}$?`]),
                 pola: [{ id: "w", typ: "liczba", etykieta: ctx ? "Długość w m" : "Wynik" }],
                 odpowiedz: { w: wynik },
                 wynik: `$${fmtD(wynik)}$`,
                 rozwiazanie: [
                   `Dzielimy jak liczby naturalne, bez przecinka: $${D} : ${k} = ${R}$.`,
-                  `W dzielnej $${dz}$ są $${p}$ ${mn(p, "cyfra", "cyfry", "cyfr")} po przecinku, więc w wyniku też: $${fmtP(R, p)}$.`,
+                  `W dzielnej $${dz}$ ${p === 1 ? "jest" : "są"} $${p}$ ${mn(p, "cyfra", "cyfry", "cyfr")} po przecinku, więc w wyniku też: $${fmtP(R, p)}$.`,
                   `Sprawdzenie: $${fmtD(wynik)} \\cdot ${k} = ${fmtD(q(D, 10 ** p))}$.`,
                 ],
               };
@@ -504,6 +826,53 @@ export default {
             };
           },
         },
+        {
+          id: "dzielenie-przez-10",
+          nazwa: "Dzielenie przez 10, 100 i 1000",
+          opis: "Podziel liczbę dziesiętną przez 10, 100 albo 1000, przesuwając przecinek w lewo.",
+          generuj(r) {
+            let k, p;
+            do { k = r.int(1, 3); p = r.int(0, 2); } while (p + k > 4);
+            const A = cyfryDoPrzesuwania(r, p);
+            const x = q(A, 10 ** p);
+            const res = q(A, 10 ** (p + k));
+            const calk = Math.floor(A / 10 ** p).toString().length;
+            return {
+              tresc: r.pick([`Oblicz $${fmtD(x)} : ${10 ** k}$.`, `Ile to jest $${fmtD(x)} : ${10 ** k}$?`]),
+              pola: [{ id: "w", typ: "liczba", etykieta: "Wynik" }],
+              odpowiedz: { w: res },
+              wynik: `$${fmtD(res)}$`,
+              rozwiazanie: [
+                `Dzielimy przez $${10 ** k}$, więc przesuwamy przecinek w lewo o $${k}$ ${mn(k, "miejsce", "miejsca", "miejsc")}.`,
+                ...(calk <= k ? [`Gdy brakuje cyfr, dopisujemy zera z przodu.`] : []),
+                `Wynik: $${fmtD(x)} : ${10 ** k} = ${fmtD(res)}$.`,
+              ],
+            };
+          },
+        },
+        {
+          id: "ulamek-na-dziesietny",
+          nazwa: "Ułamek zwykły na dziesiętny",
+          opis: "Zapisz ułamek zwykły w postaci dziesiętnej, dzieląc licznik przez mianownik. Wynik wychodzi bez reszty.",
+          generuj(r) {
+            let n, d;
+            do {
+              d = r.pick([2, 4, 5, 8, 10, 20, 25, 40, 50]);
+              n = r.int(1, d - 1);
+            } while (nwdf(n, d) !== 1);
+            const res = q(n, d);
+            return {
+              tresc: r.pick([`Zapisz ułamek $${fr(n, d)}$ w postaci dziesiętnej.`, `Zamień ułamek $${fr(n, d)}$ na ułamek dziesiętny.`]),
+              pola: [{ id: "w", typ: "liczba", etykieta: "Ułamek dziesiętny" }],
+              odpowiedz: { w: res },
+              wynik: `$${fmtD(res)}$`,
+              rozwiazanie: [
+                `Kreska ułamkowa oznacza dzielenie. Dzielimy licznik przez mianownik, dopisując zera po przecinku: $${n} : ${d} = ${fmtD(res)}$.`,
+                `Sprawdzenie: $${fmtD(res)} \\cdot ${d} = ${n}$.`,
+              ],
+            };
+          },
+        },
       ],
     },
 
@@ -514,10 +883,18 @@ export default {
       sciaga: [
         {
           nazwa: "Zaokrąglanie ułamków dziesiętnych",
-          slownie: "Patrzymy na cyfrę tuż za miejscem, do którego zaokrąglamy. Jeśli to $0$, $1$, $2$, $3$ albo $4$, ostatnią zostawianą cyfrę zostawiamy. Jeśli to $5$, $6$, $7$, $8$ albo $9$, zwiększamy ją o $1$.",
+          slownie: "Patrzymy na cyfrę tuż za miejscem, do którego zaokrąglamy. Jeśli to $0$, $1$, $2$, $3$ albo $4$, ostatnia zostawiana cyfra się nie zmienia. Jeśli to $5$, $6$, $7$, $8$ albo $9$, zwiększamy ją o $1$.",
           tex: "3{,}468\\approx3{,}47\\qquad3{,}468\\approx3{,}5",
           przyklad: "$3{,}468$ do części setnych (dwie cyfry po przecinku): za $6$ stoi $8$, więc $3{,}47$. Do części dziesiątych: za $4$ stoi $6$, więc $3{,}5$.",
           uwaga: "Patrz tylko na jedną cyfrę. $2{,}449$ do części dziesiątych to $2{,}4$, a nie $2{,}5$.",
+          rysunek: RYS_ZAOKR,
+        },
+        {
+          nazwa: "Zaokrąglanie do całości",
+          slownie: "Zaokrąglając do jedności, patrzymy na pierwszą cyfrę po przecinku (części dziesiąte). Po zaokrągleniu przecinka już nie ma.",
+          tex: "6{,}49\\approx6\\qquad6{,}5\\approx7",
+          przyklad: "$12{,}38\\approx12$, bo za przecinkiem stoi $3$. $7{,}6\\approx8$, bo za przecinkiem stoi $6$.",
+          uwaga: "Nie zaokrąglaj dwa razy. $6{,}49$ do jedności to $6$: patrzymy tylko na cyfrę $4$, a nie na $9$.",
         },
         {
           nazwa: "Zaokrąglanie w życiu",
@@ -531,6 +908,14 @@ export default {
           tex: "\\frac{1}{3}=0{,}(3)\\qquad\\frac{5}{6}=0{,}8(3)",
           przyklad: "W dzieleniu $1:3$ ciągle zostaje reszta $1$, więc cyfra $3$ powtarza się: $0{,}(3)$. W dzieleniu $5:6$ pierwsza cyfra to $8$, a potem powtarza się $3$: $0{,}8(3)$.",
           uwaga: "W nawiasie piszemy tylko to, co się powtarza. Zapisy $0{,}83$ i $0{,}8(3)$ to różne liczby.",
+          rysunek: RYS_OKRES,
+        },
+        {
+          nazwa: "Okres z kilku cyfr",
+          slownie: "Okres może mieć kilka cyfr. Wtedy w nawiasie piszemy całą grupę cyfr, która się powtarza. Dzielimy tak długo, aż reszta się powtórzy.",
+          tex: "\\frac{3}{11}=0{,}(27)",
+          przyklad: "$30:11=2$, reszta $8$. $80:11=7$, reszta $3$. Reszta $3$ już była, więc grupa $27$ się powtarza: $\\frac{3}{11}=0{,}(27)$.",
+          uwaga: "$0{,}(27)$ to nie to samo co $0{,}2(7)$. W nawiasie jest cała grupa $27$.",
         },
         {
           nazwa: "Zaokrąglanie ułamka okresowego",
@@ -547,31 +932,43 @@ export default {
       ],
       zadania: [
         {
-          nr: "22",
+          nr: "38",
           tresc: "Jaki jest wynik zaokrąglenia liczby $5{,}347$ do części setnych? **Wybierz właściwą odpowiedź.**",
           opcje: ["$5{,}3$", "$5{,}34$", "$5{,}35$", "$5{,}4$"],
           poprawna: 2,
         },
         {
-          nr: "23",
+          nr: "39",
           tresc: "Jaki jest wynik zaokrąglenia liczby $8{,}449$ do części dziesiątych? **Wybierz właściwą odpowiedź.**",
           opcje: ["$8{,}5$", "$8{,}4$", "$8{,}45$", "$8{,}44$"],
           poprawna: 1,
         },
         {
-          nr: "24",
+          nr: "40",
           tresc: "Który zapis jest równy ułamkowi $\\frac{5}{6}$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$0{,}(83)$", "$0{,}83$", "$0{,}(8)$", "$0{,}8(3)$"],
           poprawna: 3,
         },
         {
-          nr: "25",
+          nr: "41",
           tresc: "Kilogram sera kosztuje $18{,}90$ zł. Ile zapłacimy za $0{,}75$ kg sera, jeśli wynik zaokrąglimy do groszy? **Wybierz właściwą odpowiedź.**",
           opcje: ["$14{,}17$ zł", "$14{,}18$ zł", "$14{,}20$ zł", "$14$ zł"],
           poprawna: 1,
         },
         {
-          nr: "26",
+          nr: "42",
+          tresc: "Jaki jest wynik zaokrąglenia liczby $6{,}49$ do jedności? **Wybierz właściwą odpowiedź.**",
+          opcje: ["$7$", "$6$", "$6{,}5$", "$6{,}4$"],
+          poprawna: 1,
+        },
+        {
+          nr: "43",
+          tresc: "Który zapis jest równy ułamkowi $\\frac{3}{11}$? **Wybierz właściwą odpowiedź.**",
+          opcje: ["$0{,}(27)$", "$0{,}2(7)$", "$0{,}27$", "$0{,}(3)$"],
+          poprawna: 0,
+        },
+        {
+          nr: "44",
           tresc: "Oceń zdania. **Dla każdego zdania wybierz P, jeśli jest prawdziwe, albo F, jeśli jest fałszywe.**",
           czesci: [
             { tekst: "$\\frac{2}{3}=0{,}(6)$", litery: "PF", poprawna: 0 },
@@ -582,27 +979,39 @@ export default {
       ],
       otwarte: [
         {
-          nr: "27",
+          nr: "45",
           punkty: 2,
           tresc: "Pan Tomek kupił $1{,}35$ kg wędliny po $29{,}90$ zł za kilogram. Ile złotych zapłacił? Wynik zaokrąglij do groszy. **Zapisz obliczenia.**",
           rozwiazanie: "Liczymy $29{,}9\\cdot1{,}35$. Mnożymy bez przecinków: $299\\cdot135=40\\,365$. W czynnikach są razem $3$ cyfry po przecinku ($1$ w liczbie $29{,}9$ i $2$ w liczbie $1{,}35$), więc wychodzi $40{,}365$ zł.\n\nZaokrąglamy do groszy, czyli do części setnych. Za $40{,}36$ stoi $5$, więc zwiększamy: $40{,}37$.\n\nOdpowiedź: Pan Tomek zapłacił około $40{,}37$ zł.",
         },
         {
-          nr: "28",
+          nr: "46",
           punkty: 2,
           tresc: "Zapisz $\\frac{7}{12}$ w postaci ułamka dziesiętnego okresowego. Następnie zaokrąglij tę liczbę do części setnych. **Zapisz obliczenia.**",
           rozwiazanie: "Dzielimy $7:12$. Mamy $70:12=5$, reszta $10$; $100:12=8$, reszta $4$; $40:12=3$, reszta $4$. Reszta $4$ się powtarza, więc cyfra $3$ powtarza się w nieskończoność.\n\nZatem $\\frac{7}{12}=0{,}58(3)$.\n\nDo części setnych: za $0{,}58$ stoi $3$, więc zostawiamy $0{,}58$.\n\nOdpowiedź: $\\frac{7}{12}=0{,}58(3)\\approx0{,}58$.",
+        },
+        {
+          nr: "47",
+          punkty: 2,
+          tresc: "Zapisz $\\frac{5}{9}$ w postaci ułamka dziesiętnego okresowego. Następnie zaokrąglij tę liczbę do części setnych. **Zapisz obliczenia.**",
+          rozwiazanie: "Dzielimy $5:9$. Mamy $50:9=5$, reszta $5$. Znów $50:9=5$, reszta $5$. Reszta się powtarza, więc cyfra $5$ powtarza się w nieskończoność.\n\nZatem $\\frac{5}{9}=0{,}(5)$.\n\nDo części setnych: za $0{,}55$ stoi $5$, więc zwiększamy ostatnią cyfrę o $1$: $0{,}56$.\n\nOdpowiedź: $\\frac{5}{9}=0{,}(5)\\approx0{,}56$.",
+        },
+        {
+          nr: "48",
+          punkty: 2,
+          tresc: "Trzy takie same batony kosztują razem $7$ zł. Ile kosztuje jeden baton? Wynik zaokrąglij do groszy. **Zapisz obliczenia.**",
+          rozwiazanie: "Dzielimy $7:3$. Mamy $7:3=2$, reszta $1$. Dopisujemy zero: $10:3=3$, reszta $1$. Znów $10:3=3$, reszta $1$. Dzielenie się nie kończy: $7:3=2{,}(3)$.\n\nDo groszy, czyli do części setnych: za $2{,}33$ stoi $3$, więc zostawiamy $2{,}33$.\n\nOdpowiedź: Jeden baton kosztuje około $2{,}33$ zł.",
         },
       ],
       generatory: [
         {
           id: "zaokraglanie",
           nazwa: "Zaokrąglanie",
-          opis: "Zaokrąglij ułamek dziesiętny do części dziesiątych albo setnych (także kwotę do groszy).",
+          opis: "Zaokrąglij ułamek dziesiętny do jedności, części dziesiątych albo setnych (także kwotę do groszy).",
           generuj(r) {
             let X;
             do { X = r.int(1001, 99999); } while (X % 10 === 0);
-            const p = r.int(1, 2);
+            const p = r.int(0, 2);
             const shift = 10 ** (3 - p);
             const baza = Math.floor(X / shift);
             const nd = Math.floor((X % shift) / (shift / 10));
@@ -610,7 +1019,7 @@ export default {
             const wynik = q(wynikX, 10 ** p);
             const x = fmtP(X, 3);
             const grosze = p === 2 && r.chance(0.4);
-            const miejsce = p === 1 ? "części dziesiątych" : "części setnych";
+            const miejsce = p === 0 ? "jedności" : p === 1 ? "części dziesiątych" : "części setnych";
             return {
               tresc: grosze
                 ? `Na kalkulatorze wyszło $${x}$ zł. Zaokrąglij tę kwotę do groszy (do części setnych).`
@@ -619,7 +1028,7 @@ export default {
               odpowiedz: { w: wynik },
               wynik: `$${fmtP(wynikX, p)}$`,
               rozwiazanie: [
-                `Zostawiamy $${p}$ ${mn(p, "cyfrę", "cyfry", "cyfr")} po przecinku: $${fmtP(baza, p)}$.`,
+                p === 0 ? `Zostawiamy część całkowitą: $${baza}$.` : `Zostawiamy $${p}$ ${mn(p, "cyfrę", "cyfry", "cyfr")} po przecinku: $${fmtP(baza, p)}$.`,
                 `Następna cyfra to $${nd}$. ${nd >= 5 ? `Jest to $5$ lub więcej, więc zwiększamy ostatnią cyfrę o $1$.` : `Jest mniejsza od $5$, więc ostatnia cyfra się nie zmienia.`}`,
                 `Wynik: $${x} \\approx ${fmtP(wynikX, p)}$.`,
               ],
@@ -682,6 +1091,7 @@ export default {
           litery: "$N$ – liczba, z której bierzemy ułamek.",
           przyklad: "$\\frac{3}{5}$ z $40$: $40:5=8$, potem $8\\cdot3=24$. To samo: $\\frac{3}{5}\\cdot40=24$.",
           uwaga: "Słowo „z” w tym zadaniu oznacza mnożenie: $\\frac{3}{5}$ z $40$ to $\\frac{3}{5}\\cdot40$.",
+          rysunek: RYS_ULAMEK_LICZBY,
         },
         {
           nazwa: "Ułamek ułamka",
@@ -689,6 +1099,7 @@ export default {
           tex: "\\frac{1}{2}\\text{ z }\\frac{3}{4}=\\frac{1}{2}\\cdot\\frac{3}{4}=\\frac{3}{8}",
           przyklad: "Tort jest podzielony tak, że zostało $\\frac{3}{4}$ tortu. Zjedzono połowę tego, co zostało: $\\frac{1}{2}\\cdot\\frac{3}{4}=\\frac{3}{8}$ całego tortu.",
           uwaga: "Wynik jest mniejszy od obu liczb, gdy oba ułamki są właściwe.",
+          rysunek: RYS_ULAMEK_ULAMKA,
         },
         {
           nazwa: "Ile zostało?",
@@ -702,6 +1113,7 @@ export default {
           tex: "\\frac{3}{8}\\text{ liczby}=15\\ \\Rightarrow\\ 15:3\\cdot8=40",
           przyklad: "$\\frac{3}{8}$ liczby to $15$. Jedna ósma to $15:3=5$. Cała liczba to $5\\cdot8=40$. Sprawdzenie: $\\frac{3}{8}\\cdot40=15$.",
           uwaga: "Nie mnóż $W$ przez ułamek. Wtedy liczysz ułamek z $W$, a nie całość.",
+          rysunek: RYS_CALOSC,
         },
       ],
       jak: [
@@ -712,31 +1124,43 @@ export default {
       ],
       zadania: [
         {
-          nr: "29",
+          nr: "49",
           tresc: "Ile wynosi $\\frac{3}{8}$ z $64$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$8$", "$40$", "$24$", "$21\\frac{1}{3}$"],
           poprawna: 2,
         },
         {
-          nr: "30",
+          nr: "50",
           tresc: "W klasie jest $28$ uczniów. Dziewczynki to $\\frac{3}{7}$ wszystkich uczniów. Ilu chłopców jest w klasie? **Wybierz właściwą odpowiedź.**",
           opcje: ["$12$", "$4$", "$21$", "$16$"],
           poprawna: 3,
         },
         {
-          nr: "31",
+          nr: "51",
           tresc: "Marek wydał $\\frac{2}{5}$ swoich pieniędzy. Zostało mu $36$ zł. Ile złotych miał na początku? **Wybierz właściwą odpowiedź.**",
           opcje: ["$60$ zł", "$72$ zł", "$24$ zł", "$14{,}40$ zł"],
           poprawna: 0,
         },
         {
-          nr: "32",
+          nr: "52",
           tresc: "Co jest większe: $\\frac{3}{4}$ z $20$ czy $\\frac{2}{3}$ z $24$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\frac{3}{4}$ z $20$, bo wynosi $16$", "$\\frac{3}{4}$ z $20$, bo wynosi $15$", "$\\frac{2}{3}$ z $24$, bo wynosi $16$", "Obie liczby są równe."],
           poprawna: 2,
         },
         {
-          nr: "33",
+          nr: "53",
+          tresc: "$\\frac{3}{5}$ książki to $45$ stron. Ile stron ma cała książka? **Wybierz właściwą odpowiedź.**",
+          opcje: ["$27$", "$75$", "$135$", "$30$"],
+          poprawna: 1,
+        },
+        {
+          nr: "54",
+          tresc: "Pani Ewa miała $60$ zł. Wydała $\\frac{1}{4}$ tej kwoty na książkę i $\\frac{1}{3}$ tej kwoty na bilet. Ile złotych jej zostało? **Wybierz właściwą odpowiedź.**",
+          opcje: ["$35$ zł", "$25$ zł", "$5$ zł", "$15$ zł"],
+          poprawna: 1,
+        },
+        {
+          nr: "55",
           tresc: "Oceń zdania. **Dla każdego zdania wybierz P, jeśli jest prawdziwe, albo F, jeśli jest fałszywe.**",
           czesci: [
             { tekst: "$\\frac{1}{2}$ z $\\frac{1}{3}$ to $\\frac{1}{6}$.", litery: "PF", poprawna: 0 },
@@ -747,16 +1171,28 @@ export default {
       ],
       otwarte: [
         {
-          nr: "34",
+          nr: "56",
           punkty: 2,
           tresc: "Książka ma $240$ stron. W sobotę Ania przeczytała $\\frac{3}{8}$ książki, a w niedzielę $\\frac{1}{4}$ książki. Ile stron jeszcze zostało jej do przeczytania? **Zapisz obliczenia.**",
           rozwiazanie: "W sobotę: $\\frac{3}{8}$ z $240$. Mamy $240:8=30$, a $30\\cdot3=90$ stron.\n\nW niedzielę: $\\frac{1}{4}$ z $240=240:4=60$ stron.\n\nPrzeczytane razem: $90+60=150$ stron. Zostało: $240-150=90$ stron.\n\nOdpowiedź: Ani zostało do przeczytania $90$ stron.",
         },
         {
-          nr: "35",
+          nr: "57",
           punkty: 3,
           tresc: "Pan Adam przejechał najpierw $\\frac{2}{5}$ trasy, a potem jeszcze $\\frac{3}{10}$ trasy. Do końca zostało mu $90$ km. Jaką długość ma cała trasa? **Zapisz obliczenia.**",
           rozwiazanie: "Przejechane części razem: $\\frac{2}{5}+\\frac{3}{10}=\\frac{4}{10}+\\frac{3}{10}=\\frac{7}{10}$ trasy.\n\nZostało $1-\\frac{7}{10}=\\frac{3}{10}$ trasy i to jest $90$ km.\n\nJedna dziesiąta trasy: $90:3=30$ km. Cała trasa: $30\\cdot10=300$ km.\n\nSprawdzenie: $\\frac{3}{10}\\cdot300=90$.\n\nOdpowiedź: Cała trasa ma $300$ km.",
+        },
+        {
+          nr: "58",
+          punkty: 2,
+          tresc: "W klasie jest $27$ uczniów. $\\frac{4}{9}$ uczniów trenuje piłkę nożną, a $\\frac{1}{3}$ uczniów pływa. Nikt nie robi obu rzeczy naraz. Ilu uczniów nie trenuje ani piłki, ani pływania? **Zapisz obliczenia.**",
+          rozwiazanie: "Piłkę nożną trenuje $\\frac{4}{9}$ z $27$. Mamy $27:9=3$, a $3\\cdot4=12$ uczniów.\n\nPływa $\\frac{1}{3}$ z $27$. Mamy $27:3=9$ uczniów.\n\nObie grupy razem: $12+9=21$ uczniów. Pozostali: $27-21=6$ uczniów.\n\nOdpowiedź: Ani piłki, ani pływania nie trenuje $6$ uczniów.",
+        },
+        {
+          nr: "59",
+          punkty: 2,
+          tresc: "Basia idzie na wycieczkę. Gdy przeszła $\\frac{3}{5}$ trasy, do mety zostało jej $12$ km. Ile kilometrów ma cała trasa? **Zapisz obliczenia.**",
+          rozwiazanie: "Zostało $1-\\frac{3}{5}=\\frac{2}{5}$ trasy i to jest $12$ km.\n\nJedna piąta trasy: $12:2=6$ km. Cała trasa: $6\\cdot5=30$ km.\n\nSprawdzenie: $\\frac{3}{5}$ z $30$ to $18$ km, a $30-18=12$ km.\n\nOdpowiedź: Cała trasa ma $30$ km.",
         },
       ],
       generatory: [
@@ -784,7 +1220,7 @@ export default {
             }
             if (t === 1) {
               return {
-                tresc: `W skrzynce jest $${N}$ jabłek. Czerwone jabłka to $${f}$ wszystkich jabłek w skrzynce. Ile jest czerwonych jabłek?`,
+                tresc: `W skrzynce jest $${N}$ ${mn(N, "jabłko", "jabłka", "jabłek")}. Czerwone jabłka to $${f}$ wszystkich jabłek w skrzynce. Ile jest czerwonych jabłek?`,
                 pola: [{ id: "w", typ: "liczba", etykieta: "Liczba jabłek" }],
                 odpowiedz: { w: a * m },
                 wynik: `$${a * m}$`,
@@ -819,6 +1255,36 @@ export default {
                 `Sprawdzenie: $${f}$ z $${N}$ to $${a * m}$.`,
               ],
             };
+          },
+        },
+        {
+          id: "ulamek-dwie-czesci",
+          nazwa: "Dwie części całości",
+          opis: "Z całości zabrano dwie części (ułamki). Oblicz, ile zostało.",
+          generuj(r) {
+            for (;;) {
+              const d1 = r.pick([2, 3, 4, 5, 8, 10]), d2 = r.pick([2, 3, 4, 5, 8, 10]);
+              const a1 = r.int(1, d1 - 1), a2 = r.int(1, d2 - 1);
+              if (nwdf(a1, d1) !== 1 || nwdf(a2, d2) !== 1) continue;
+              const S = q(a1, d1).add(q(a2, d2));
+              if (S.cmp(q(1)) >= 0) continue;
+              const L = nwwf(d1, d2), m = r.int(1, Math.max(1, Math.floor(200 / L)));
+              const N = L * m;
+              if (N < 20 || N > 400) continue;
+              const c1 = (N / d1) * a1, c2 = (N / d2) * a2, zostalo = N - c1 - c2;
+              if (zostalo <= 0) continue;
+              return {
+                tresc: `Książka ma $${N}$ ${mn(N, "stronę", "strony", "stron")}. W sobotę Ania przeczytała $${fr(a1, d1)}$ książki, a w niedzielę $${fr(a2, d2)}$ książki. Ile stron zostało jej do przeczytania?`,
+                pola: [{ id: "w", typ: "liczba", etykieta: "Liczba stron" }],
+                odpowiedz: { w: zostalo },
+                wynik: `$${zostalo}$`,
+                rozwiazanie: [
+                  `W sobotę: $${fr(a1, d1)}$ z $${N}$. Mamy $${N} : ${d1} = ${N / d1}$, a $${N / d1} \\cdot ${a1} = ${c1}$.`,
+                  `W niedzielę: $${fr(a2, d2)}$ z $${N}$. Mamy $${N} : ${d2} = ${N / d2}$, a $${N / d2} \\cdot ${a2} = ${c2}$.`,
+                  `Przeczytane razem: $${c1} + ${c2} = ${c1 + c2}$. Zostało: $${N} - ${c1 + c2} = ${zostalo}$.`,
+                ],
+              };
+            }
           },
         },
       ],
@@ -865,31 +1331,43 @@ export default {
       ],
       zadania: [
         {
-          nr: "36",
+          nr: "60",
           tresc: "Ile wynosi $\\frac{1}{2}+\\frac{1}{3}\\cdot6$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$5$", "$2\\frac{1}{2}$", "$\\frac{5}{6}$", "$2\\frac{1}{3}$"],
           poprawna: 1,
         },
         {
-          nr: "37",
+          nr: "61",
           tresc: "Ile wynosi $\\left(2\\frac{1}{2}-1\\frac{1}{4}\\right):\\frac{5}{8}$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$1\\frac{1}{4}$", "$\\frac{1}{2}$", "$2\\frac{1}{2}$", "$2$"],
           poprawna: 3,
         },
         {
-          nr: "38",
+          nr: "62",
           tresc: "Ile wynosi $8-1{,}5\\cdot4$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$26$", "$6{,}5$", "$2$", "$12$"],
           poprawna: 2,
         },
         {
-          nr: "39",
+          nr: "63",
           tresc: "Ile wynosi $6:\\frac{3}{4}\\cdot\\frac{1}{2}$? **Wybierz właściwą odpowiedź.**",
           opcje: ["$4$", "$9$", "$16$", "$\\frac{1}{4}$"],
           poprawna: 0,
         },
         {
-          nr: "40",
+          nr: "64",
+          tresc: "Ile wynosi $\\left(1{,}5+0{,}5\\right)\\cdot0{,}3$? **Wybierz właściwą odpowiedź.**",
+          opcje: ["$0{,}6$", "$1{,}65$", "$6$", "$0{,}06$"],
+          poprawna: 0,
+        },
+        {
+          nr: "65",
+          tresc: "Ile wynosi $\\frac{3}{4}-\\frac{1}{4}:\\frac{1}{2}$? **Wybierz właściwą odpowiedź.**",
+          opcje: ["$\\frac{1}{4}$", "$1$", "$\\frac{1}{8}$", "$\\frac{1}{2}$"],
+          poprawna: 0,
+        },
+        {
+          nr: "66",
           tresc: "Oceń zdania. **Dla każdego zdania wybierz P, jeśli jest prawdziwe, albo F, jeśli jest fałszywe.**",
           czesci: [
             { tekst: "$2+3\\cdot\\frac{1}{3}=3$", litery: "PF", poprawna: 0 },
@@ -900,16 +1378,22 @@ export default {
       ],
       otwarte: [
         {
-          nr: "41",
+          nr: "67",
           punkty: 2,
           tresc: "Oblicz wartość wyrażenia $\\left(3\\frac{1}{2}-1\\frac{3}{4}\\right):\\frac{7}{8}+2\\cdot\\frac{3}{4}$. **Zapisz obliczenia.**",
           rozwiazanie: "Najpierw nawias: $3\\frac{1}{2}-1\\frac{3}{4}=3\\frac{2}{4}-1\\frac{3}{4}=2\\frac{6}{4}-1\\frac{3}{4}=1\\frac{3}{4}=\\frac{7}{4}$.\n\nDzielenie: $\\frac{7}{4}:\\frac{7}{8}=\\frac{7}{4}\\cdot\\frac{8}{7}=2$.\n\nMnożenie: $2\\cdot\\frac{3}{4}=\\frac{6}{4}=1\\frac{1}{2}$.\n\nDodawanie: $2+1\\frac{1}{2}=3\\frac{1}{2}$.\n\nOdpowiedź: Wartość wyrażenia to $3\\frac{1}{2}$.",
         },
         {
-          nr: "42",
+          nr: "68",
           punkty: 3,
           tresc: "Kasia kupiła $2$ kg jabłek po $3{,}80$ zł za kilogram i $1{,}5$ kg gruszek po $4{,}60$ zł za kilogram. Zapłaciła banknotem $20$ zł. Zapisz jednym wyrażeniem, ile złotych reszty dostała, i oblicz jego wartość. **Zapisz obliczenia.**",
           rozwiazanie: "Wyrażenie: $20-(2\\cdot3{,}8+1{,}5\\cdot4{,}6)$.\n\nW nawiasie najpierw mnożenie: $2\\cdot3{,}8=7{,}6$ oraz $1{,}5\\cdot4{,}6=6{,}9$.\n\nDodajemy w nawiasie: $7{,}6+6{,}9=14{,}5$.\n\nOdejmujemy: $20-14{,}5=5{,}5$.\n\nOdpowiedź: Kasia dostała $5{,}50$ zł reszty.",
+        },
+        {
+          nr: "69",
+          punkty: 2,
+          tresc: "Oblicz wartość wyrażenia $4{,}8:(0{,}5+0{,}7)-1{,}5\\cdot2$. **Zapisz obliczenia.**",
+          rozwiazanie: "Najpierw nawias: $0{,}5+0{,}7=1{,}2$.\n\nDzielenie: $4{,}8:1{,}2=48:12=4$. Mnożenie: $1{,}5\\cdot2=3$.\n\nOdejmowanie: $4-3=1$.\n\nOdpowiedź: Wartość wyrażenia to $1$.",
         },
       ],
       generatory: [
@@ -1000,6 +1484,67 @@ export default {
                 ],
               };
             }
+          },
+        },
+        {
+          id: "kolejnosc-nawiasy-dziesietne",
+          nazwa: "Nawiasy i ułamki dziesiętne",
+          opis: "Oblicz wyrażenie z nawiasem i ułamkami dziesiętnymi, pamiętając o kolejności działań.",
+          generuj(r) {
+            const t = r.int(0, 2);
+            if (t === 2) {
+              // a : (b + c) = M
+              for (;;) {
+                const M = r.int(2, 9), s10 = r.int(12, 60);
+                const b10 = r.int(1, s10 - 1), c10 = s10 - b10;
+                const a10 = M * s10;
+                if (b10 === c10 || b10 % 10 === 0 || c10 % 10 === 0 || a10 % 10 === 0) continue;
+                const a = q(a10, 10), b = q(b10, 10), c = q(c10, 10), S = q(s10, 10);
+                return {
+                  tresc: `Oblicz $${fmtD(a)} : (${fmtD(b)} + ${fmtD(c)})$.`,
+                  pola: [{ id: "w", typ: "liczba", etykieta: "Wynik" }],
+                  odpowiedz: { w: M },
+                  wynik: `$${M}$`,
+                  rozwiazanie: [
+                    `Najpierw nawias: $${fmtD(b)} + ${fmtD(c)} = ${fmtD(S)}$.`,
+                    `Potem dzielenie: $${fmtD(a)} : ${fmtD(S)} = ${a10} : ${s10} = ${M}$.`,
+                  ],
+                };
+              }
+            }
+            const minus = r.chance(0.5);
+            let A, B;
+            do {
+              A = r.int(11, 99); B = r.int(11, 99);
+              if (minus && A <= B) [A, B] = [B, A];
+            } while (A % 10 === 0 || B % 10 === 0 || (minus && A === B));
+            const S10 = minus ? A - B : A + B;
+            const S = q(S10, 10), op = minus ? "-" : "+";
+            const a = q(A, 10), b = q(B, 10);
+            if (t === 0) {
+              const c = r.int(2, 9), res = S.mul(c);
+              return {
+                tresc: `Oblicz $\\left(${fmtD(a)} ${op} ${fmtD(b)}\\right) \\cdot ${c}$.`,
+                pola: [{ id: "w", typ: "liczba", etykieta: "Wynik" }],
+                odpowiedz: { w: res },
+                wynik: `$${fmtD(res)}$`,
+                rozwiazanie: [
+                  `Najpierw nawias: $${fmtD(a)} ${op} ${fmtD(b)} = ${fmtD(S)}$.`,
+                  `Potem mnożenie: $${fmtD(S)} \\cdot ${c} = ${fmtD(res)}$.`,
+                ],
+              };
+            }
+            const c = r.pick([2, 4, 5, 8].filter((k) => (S10 * 10) % k === 0)), res = S.div(c);   // najwyżej 2 cyfry po przecinku
+            return {
+              tresc: `Oblicz $\\left(${fmtD(a)} ${op} ${fmtD(b)}\\right) : ${c}$.`,
+              pola: [{ id: "w", typ: "liczba", etykieta: "Wynik" }],
+              odpowiedz: { w: res },
+              wynik: `$${fmtD(res)}$`,
+              rozwiazanie: [
+                `Najpierw nawias: $${fmtD(a)} ${op} ${fmtD(b)} = ${fmtD(S)}$.`,
+                `Potem dzielenie: $${fmtD(S)} : ${c} = ${fmtD(res)}$.`,
+              ],
+            };
           },
         },
       ],
