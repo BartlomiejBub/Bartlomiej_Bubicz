@@ -74,20 +74,20 @@ export function svgWykresu(opis) {
   czesci.push(`<path class="os" d="M${M} ${r(osX)}H${W - M}M${r(osY)} ${H - M}V${M}"/>`);
   czesci.push(`<path class="os" d="M${W - M - 6} ${r(osX - 3.5)}L${W - M} ${r(osX)}L${W - M - 6} ${r(osX + 3.5)}M${r(osY - 3.5)} ${M + 6}L${r(osY)} ${M}L${r(osY + 3.5)} ${M + 6}"/>`);
   czesci.push(`<text class="tm" x="${W - M - 2}" y="${r(osX - 6)}" text-anchor="end">x</text><text class="tm" x="${r(osY + 6)}" y="${M + 10}">y</text>`);
-  // liczby przy osiach (co druga, gdy gęsto)
+  // liczby przy osiach (co druga, gdy gęsto); gdy oś leży przy brzegu rysunku, liczby stoją po jej wewnętrznej stronie
   const coIle = (k, zakres, dlugosc) => Math.max(1, Math.ceil(28 / ((k / zakres) * dlugosc)));
   const nx = coIle(kx, x1 - x0, W), ny = coIle(ky, y1 - y0, H);
   for (let i = Math.ceil(x0 / kx); i * kx <= x1 + 1e-9; i++) {
     if (i === 0 || i % nx) continue;
     const p = sx(i * kx);
     if (p < M + 10 || p > W - M - 14) continue;
-    czesci.push(`<text class="tm" x="${r(p)}" y="${r(Math.min(osX + 13, H - M - 2))}" text-anchor="middle">${esc(pi ? podpisPi(i) : formatuj(i * kx, 6))}</text>`);
+    czesci.push(`<text class="tm" x="${r(p)}" y="${r(osX > H - M - 15 ? osX - 5 : osX + 13)}" text-anchor="middle">${esc(pi ? podpisPi(i) : formatuj(i * kx, 6))}</text>`);
   }
   for (let i = Math.ceil(y0 / ky); i * ky <= y1 + 1e-9; i++) {
     if (i === 0 || i % ny) continue;
     const p = sy(i * ky);
     if (p < M + 14 || p > H - M - 6) continue;
-    czesci.push(`<text class="tm" x="${r(osY - 4)}" y="${r(p + 4)}" text-anchor="end">${esc(formatuj(i * ky, 6))}</text>`);
+    czesci.push(`<text class="tm" x="${r(osY < M + 30 ? osY + 5 : osY - 4)}" y="${r(p + 4)}" text-anchor="${osY < M + 30 ? "start" : "end"}">${esc(formatuj(i * ky, 6))}</text>`);
   }
   // proste (asymptoty, oś symetrii)
   for (const p of opis.proste ?? []) {
