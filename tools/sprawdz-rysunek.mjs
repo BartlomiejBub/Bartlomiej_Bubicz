@@ -41,13 +41,14 @@ const liczba = (v) => typeof v === "number" && Number.isFinite(v);
 export function bledyWykresu(w) {
   const b = [];
   if (!w || typeof w !== "object") return ["wykres musi być obiektem"];
-  for (const p of Object.keys(w)) if (!["x", "y", "funkcje", "punkty", "proste", "podzialkaX", "podzialkaY", "wysokosc", "stopnie"].includes(p)) b.push(`nieznane pole wykresu ${p}`);
+  for (const p of Object.keys(w)) if (!["x", "y", "funkcje", "punkty", "proste", "podzialkaX", "podzialkaY", "wysokosc", "stopnie", "osie"].includes(p)) b.push(`nieznane pole wykresu ${p}`);
   for (const os of ["x", "y"]) if (!Array.isArray(w[os]) || w[os].length !== 2 || !w[os].every(liczba) || w[os][0] >= w[os][1]) b.push(`${os} musi być [od, do], od < do`);
   if (b.length) return b;
   if (w.podzialkaX !== undefined && w.podzialkaX !== "pi" && !(liczba(w.podzialkaX) && w.podzialkaX > 0)) b.push("podzialkaX: liczba > 0 albo \"pi\"");
   if (w.podzialkaY !== undefined && !(liczba(w.podzialkaY) && w.podzialkaY > 0)) b.push("podzialkaY: liczba > 0");
   const kx = w.podzialkaX === "pi" ? Math.PI / 2 : w.podzialkaX ?? 1, ky = w.podzialkaY ?? 1;
   if ((w.x[1] - w.x[0]) / kx > 40 || (w.y[1] - w.y[0]) / ky > 40) b.push("za gęsta podziałka (ponad 40 kresek na osi)");
+  if (w.osie !== undefined && !(Array.isArray(w.osie) && w.osie.length === 2 && w.osie.every((o) => typeof o === "string" && o.length >= 1 && o.length <= 4))) b.push("osie: dwa krótkie podpisy, np. [\"t\", \"N\"]");
   if (w.wysokosc !== undefined && !(liczba(w.wysokosc) && w.wysokosc >= 100 && w.wysokosc <= 320)) b.push("wysokosc: 100–320");
   const funkcje = w.funkcje ?? [];
   if (!Array.isArray(funkcje) || funkcje.length > 4) b.push("funkcje: lista 0–4 funkcji");

@@ -7,7 +7,8 @@
 //     funkcje: [{ wzor: "x^2-2x-3", podpis: "y = x² − 2x − 3" }],   1–4 funkcje zmiennej x (podpis opcjonalny)
 //     punkty: [{ x: 1, y: -4, podpis: "W(1; −4)", gdzie: "prawo-dol" }],   opcjonalnie; gdzie: prawo-gora (domyślnie), prawo-dol, lewo-gora, lewo-dol
 //     proste: [{ x: 2, podpis: "x = 2" }, { y: 1 }],     opcjonalnie: proste pionowe/poziome (przerywane, np. asymptoty, oś symetrii)
-//     podzialkaX: 1 albo "pi" (kreski co π/2), podzialkaY: 1, wysokosc: 200, stopnie: true (sin/cos w stopniach)
+//     podzialkaX: 1 albo "pi" (kreski co π/2), podzialkaY: 1, wysokosc: 200, stopnie: true (sin/cos w stopniach),
+//     osie: ["t", "N"] (podpisy osi zamiast x i y, np. czas albo numer wyrazu ciągu; wzory funkcji dalej piszemy z x)
 //   }
 //
 // Klasy stylów do rysunków SVG (style.css, „.rys”): l – linia, a – linia w kolorze akcentu, p – linia pomocnicza (przerywana),
@@ -73,7 +74,7 @@ export function svgWykresu(opis) {
   const osX = Math.min(Math.max(sy(0), M), H - M), osY = Math.min(Math.max(sx(0), M), W - M);
   czesci.push(`<path class="os" d="M${M} ${r(osX)}H${W - M}M${r(osY)} ${H - M}V${M}"/>`);
   czesci.push(`<path class="os" d="M${W - M - 6} ${r(osX - 3.5)}L${W - M} ${r(osX)}L${W - M - 6} ${r(osX + 3.5)}M${r(osY - 3.5)} ${M + 6}L${r(osY)} ${M}L${r(osY + 3.5)} ${M + 6}"/>`);
-  czesci.push(`<text class="tm" x="${W - M - 2}" y="${r(osX - 6)}" text-anchor="end">x</text><text class="tm" x="${r(osY + 6)}" y="${M + 10}">y</text>`);
+  czesci.push(`<text class="tm" x="${W - M - 2}" y="${r(osX - 6)}" text-anchor="end">${esc(opis.osie?.[0] ?? "x")}</text><text class="tm" x="${r(osY + 6)}" y="${M + 10}">${esc(opis.osie?.[1] ?? "y")}</text>`);
   // liczby przy osiach (co druga, gdy gęsto); gdy oś leży przy brzegu rysunku, liczby stoją po jej wewnętrznej stronie
   const coIle = (k, zakres, dlugosc) => Math.max(1, Math.ceil(28 / ((k / zakres) * dlugosc)));
   const nx = coIle(kx, x1 - x0, W), ny = coIle(ky, y1 - y0, H);
