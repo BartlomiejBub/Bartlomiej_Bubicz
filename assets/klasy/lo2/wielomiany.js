@@ -22,6 +22,8 @@ const suma = (t) => t.map((s, i) => (i === 0 ? s : s.startsWith("-") ? ` - ${s.s
 
 /** Czynnik liniowy x - r w postaci rozwiązywanej: liniowy(3) = "x - 3", liniowy(-2) = "x + 2", liniowy(0) = "x". */
 const liniowy = (r) => (r === 0 ? "x" : `x ${plusMinus(-r)}`);
+/** Krok rozwiązania: czynnik liniowy równy zeru (przy samym x od razu x = 0). */
+const krokLin = (r) => (r === 0 ? "Czynnik $x$ jest równy $0$ dla $x = 0$." : `$${liniowy(r)} = 0$, stąd $x = ${r}$.`);
 
 /** Wyraz jednomianu c·x^k w LaTeX. */
 const jedn = (c, k) => wt([c, ...Array(k).fill(0)]);
@@ -46,6 +48,22 @@ const jestZerem = (w) => w.every((c) => c === 0);
 /** Opis szukanego współczynnika. */
 const opisWsp = (k) => (k === 0 ? "wyraz wolny" : k === 1 ? "współczynnik przy $x$" : `współczynnik przy $x^${k}$`);
 
+/** Podstawienie x = a do wielomianu o współczynnikach w (od najwyższej potęgi): [zapis z podstawioną liczbą, zapis po obliczeniu potęg, wartość]. */
+const podstaw = (w, a) => {
+  const st = w.length - 1;
+  const skl = [];
+  const wart = [];
+  w.forEach((c, i) => {
+    if (c === 0) return;
+    const k = st - i;
+    const abs = Math.abs(c);
+    const baza = `${texNawias(a)}${k > 1 ? `^{${k}}` : ""}`;
+    skl.push(`${c < 0 ? "-" : ""}${k === 0 ? abs : `${abs === 1 ? "" : `${abs}\\cdot `}${baza}`}`);
+    wart.push(String(c * a ** k));
+  });
+  return [suma(skl), suma(wart), w.reduce((s, c) => s * a + c, 0)];
+};
+
 /** Zbiór pierwiastków w LaTeX, rosnąco. */
 const zbiorTex = (roots) => `\\{${[...roots].sort((a, b) => a.cmp(b)).map((v) => v.tex()).join(", ")}\\}`;
 
@@ -59,12 +77,27 @@ export default {
       nazwa: "Wielomiany jednej zmiennej",
       sciaga: [
         {
+          nazwa: "Jednomian i wyrazy podobne",
+          slownie: "Jednomian to liczba razy potęga $x$, na przykład $5x^3$ albo $-2x$. Wyrazy podobne mają tę samą potęgę $x$ – tylko takie wyrazy można dodać albo odjąć.",
+          tex: "ax^k",
+          litery: "$a$ – współczynnik (liczba), $k$ – wykładnik ($0$, $1$, $2$, $\\ldots$).",
+          przyklad: "$4x^2+3x^2=7x^2$, bo potęgi są takie same. Ale $4x^2+3x$ zostaje bez zmian. Liczba $5$ też jest jednomianem ($5x^0$) – to wyraz wolny.",
+          uwaga: "Nie dodawaj potęg: $x^2+x^3$ nie jest równe $x^5$.",
+        },
+        {
           nazwa: "Wielomian i jego stopień",
           slownie: "Wielomian zmiennej $x$ to suma jednomianów postaci $a_kx^k$, w których wykładnik $k$ jest liczbą naturalną. Stopień wielomianu to najwyższa potęga $x$ z niezerowym współczynnikiem.",
           tex: "W(x)=a_nx^n+\\ldots+a_1x+a_0\\qquad a_n\\neq0",
+          rysunek: `<svg viewBox="0 0 300 110"><text class="t" x="45" y="62" text-anchor="middle">3x⁴</text><text class="t" x="105" y="62" text-anchor="middle">− 2x²</text><text class="t" x="160" y="62" text-anchor="middle">+ x</text><text class="t" x="215" y="62" text-anchor="middle">− 5</text><path class="a" d="M45 48V34M45 70V84M215 70V84"/><text class="ta" x="8" y="28">współczynnik wiodący: 3</text><text class="ta" x="8" y="98">stopień: 4</text><text class="ta" x="240" y="98" text-anchor="middle">wyraz wolny: −5</text></svg>`,
           litery: "$n$ – stopień, $a_n$ – współczynnik wiodący, $a_0$ – wyraz wolny, $a_k$ – współczynnik przy $x^k$.",
           przyklad: "$W(x)=3x^4-2x^2+x-5$ ma stopień $4$, współczynnik wiodący $3$ i wyraz wolny $-5$. Brak $x^3$ oznacza współczynnik $0$.",
           uwaga: "Wyrażenia $\\frac{1}{x}$, $\\sqrt{x}$ i $2^x$ nie są wielomianami – wykładnik przy $x$ musi być liczbą naturalną.",
+        },
+        {
+          nazwa: "Zapis uporządkowany",
+          slownie: "Wielomian porządkujemy od najwyższej potęgi $x$ do najniższej. Stopień odczytujemy dopiero po uporządkowaniu i uproszczeniu, bo najwyższe wyrazy mogą się zredukować.",
+          przyklad: "$W(x)=5x^2-3x^4+1$ porządkujemy: $-3x^4+5x^2+1$. Stopień to $4$, a współczynniki to $-3$, $0$, $5$, $0$, $1$ (przy $x^3$ i przy $x$ jest $0$).",
+          uwaga: "$(x^3+x)-x^3=x$, więc stopień tego wielomianu to $1$, a nie $3$.",
         },
         {
           nazwa: "Wartość wielomianu",
@@ -120,19 +153,40 @@ export default {
           opcje: ["$m=3$", "$m=-3$", "$m=4$", "$m\\neq3$"],
           poprawna: 0,
         },
+        {
+          nr: "6",
+          tresc: "Suma współczynników wielomianu $W(x)=(x-2)(x^2+3)(x+1)$ jest równa: **Wybierz właściwą odpowiedź.**",
+          opcje: ["$-8$", "$-6$", "$8$", "$-2$"],
+          poprawna: 0,
+        },
+        {
+          nr: "7",
+          tresc: "Dany jest wielomian $W(x)=2x^3-5x+1$. **Dla każdego zdania wybierz P, jeśli jest prawdziwe, albo F, jeśli jest fałszywe.**",
+          czesci: [
+            { tekst: "Współczynnik przy $x^2$ jest równy $0$.", litery: "PF", poprawna: 0 },
+            { tekst: "Wyraz wolny jest równy $-5$.", litery: "PF", poprawna: 1 },
+            { tekst: "$W(1)=-2$", litery: "PF", poprawna: 0 },
+          ],
+        },
       ],
       otwarte: [
         {
-          nr: "6",
+          nr: "8",
           punkty: 2,
           tresc: "Dany jest wielomian $W(x)=2x^3-x^2+ax+6$. Wiadomo, że $W(2)=22$. Wyznacz $a$ i oblicz $W(-1)$. **Zapisz obliczenia.**",
           rozwiazanie: "Z warunku $W(2)=22$: $W(2)=2\\cdot2^3-2^2+2a+6=16-4+2a+6=18+2a$.\n\nZ równania $18+2a=22$ dostajemy $a=2$, więc $W(x)=2x^3-x^2+2x+6$.\n\n$W(-1)=2\\cdot(-1)^3-(-1)^2+2\\cdot(-1)+6=-2-1-2+6=1$.\n\nOdpowiedź: $a=2$, $W(-1)=1$.",
         },
         {
-          nr: "7",
+          nr: "9",
           punkty: 3,
           tresc: "Dany jest wielomian $W(x)=x^3+px^2-2x+q$. Wiadomo, że $W(0)=-4$ i $W(1)=0$. Wyznacz $p$ i $q$, a następnie oblicz $W(-1)$. **Zapisz obliczenia.**",
           rozwiazanie: "Wyraz wolny to $W(0)$, więc $q=-4$.\n\nZ warunku $W(1)=0$: $1+p-2-4=0$, czyli $p-5=0$ i $p=5$.\n\nWięc $W(x)=x^3+5x^2-2x-4$.\n\n$W(-1)=-1+5+2-4=2$.\n\nOdpowiedź: $p=5$, $q=-4$, $W(-1)=2$.",
+        },
+        {
+          nr: "10",
+          punkty: 2,
+          tresc: "Dany jest wielomian $W(x)=(m^2-4)x^3+(m+2)x^2-x+1$. Wyznacz wszystkie wartości $m$, dla których $W$ jest wielomianem stopnia drugiego. **Zapisz obliczenia.**",
+          rozwiazanie: "Wielomian ma być stopnia drugiego, więc współczynnik przy $x^3$ musi być równy $0$, a przy $x^2$ różny od $0$.\n\nZ warunku $m^2-4=0$ dostajemy $m=-2$ lub $m=2$.\n\nDla $m=-2$ współczynnik przy $x^2$ jest równy $m+2=0$, więc wielomian byłby stopnia pierwszego: $W(x)=-x+1$. Ta wartość nie pasuje.\n\nDla $m=2$ współczynnik przy $x^2$ jest równy $4\\neq0$, więc $W(x)=4x^2-x+1$ jest stopnia drugiego.\n\nOdpowiedź: $m=2$.",
         },
       ],
       generatory: [
@@ -201,6 +255,38 @@ export default {
             };
           },
         },
+        {
+          id: "pojecie-stopien",
+          nazwa: "Stopień i wyraz wolny",
+          opis: "Wielomian zapisany w nieuporządkowanej kolejności – podaj jego stopień i wyraz wolny.",
+          generuj(r) {
+            const st = r.int(3, 5);
+            const srodek = [];
+            for (let k = 1; k < st; k++) if (r.chance(0.5)) srodek.push(k);
+            if (!srodek.length) srodek.push(r.int(1, st - 1));
+            const potegi = [0, st, ...srodek];
+            const wsp0 = {};
+            potegi.forEach((k) => { wsp0[k] = r.intBez(-6, 6, 0); });
+            let kolejnosc;
+            do { kolejnosc = r.shuffle([...potegi]); } while (kolejnosc[0] === st || kolejnosc.every((k, i) => i === 0 || kolejnosc[i - 1] > k));
+            const L = r.pick(["W", "P", "Q"]);
+            const w = Array.from({ length: st + 1 }, (_, i) => wsp0[st - i] ?? 0);
+            return {
+              tresc: `Dany jest wielomian $${L}(x) = ${suma(kolejnosc.map((k) => jedn(wsp0[k], k)))}$. Podaj jego stopień i wyraz wolny.`,
+              pola: [
+                { id: "s", typ: "liczba", etykieta: "Stopień" },
+                { id: "a", typ: "liczba", etykieta: "Wyraz wolny" },
+              ],
+              odpowiedz: { s: q(st), a: q(wsp0[0]) },
+              wynik: `stopień $${st}$, wyraz wolny $${wsp0[0]}$`,
+              rozwiazanie: [
+                `Porządkujemy wielomian od najwyższej potęgi: $${L}(x) = ${wt(w)}$.`,
+                `Najwyższa potęga to $x^{${st}}$, więc stopień wielomianu jest równy $${st}$.`,
+                `Wyraz wolny to składnik bez $x$, czyli $${wsp0[0]}$.`,
+              ],
+            };
+          },
+        },
       ],
     },
 
@@ -222,6 +308,20 @@ export default {
           uwaga: "Współczynniki mnożymy, a wykładniki dodajemy: $x\\cdot x^2=x^3$. Nie pomiń żadnego iloczynu.",
         },
         {
+          nazwa: "Mnożenie w tabelce",
+          slownie: "Składniki jednego wielomianu wpisz w wierszach, a drugiego w kolumnach. W każdej komórce zapisz iloczyn dwóch składników. Potem dodaj komórki z tą samą potęgą $x$ (na rysunku mają ten sam kolor).",
+          rysunek: `<svg viewBox="0 0 300 165"><rect class="w" x="130" y="44" width="70" height="36"/><rect class="w" x="60" y="80" width="70" height="36"/><rect class="w2" x="200" y="44" width="70" height="36"/><rect class="w2" x="130" y="80" width="70" height="36"/><path class="l" d="M60 44H270M60 80H270M60 116H270M60 44V116M130 44V116M200 44V116M270 44V116"/><text class="tm" x="40" y="33" text-anchor="middle">·</text><text class="t" x="95" y="33" text-anchor="middle">x²</text><text class="t" x="165" y="33" text-anchor="middle">3x</text><text class="t" x="235" y="33" text-anchor="middle">−1</text><text class="t" x="40" y="66" text-anchor="middle">x</text><text class="t" x="40" y="102" text-anchor="middle">−2</text><text class="t" x="95" y="66" text-anchor="middle">x³</text><text class="t" x="165" y="66" text-anchor="middle">3x²</text><text class="t" x="235" y="66" text-anchor="middle">−x</text><text class="t" x="95" y="102" text-anchor="middle">−2x²</text><text class="t" x="165" y="102" text-anchor="middle">−6x</text><text class="t" x="235" y="102" text-anchor="middle">2</text><text class="ta" x="150" y="142" text-anchor="middle">x³ + x² − 7x + 2</text><text class="tm" x="150" y="158" text-anchor="middle">sumujemy komórki w tym samym kolorze</text></svg>`,
+          przyklad: "$(x-2)(x^2+3x-1)$: komórki dają $x^3$, $3x^2$, $-x$, $-2x^2$, $-6x$, $2$. Po dodaniu: $3x^2-2x^2=x^2$ i $-x-6x=-7x$, czyli $x^3+x^2-7x+2$.",
+          uwaga: "Komórek jest tyle, ile składników pierwszego wielomianu razy składników drugiego. Znak minus bierz razem ze składnikiem.",
+        },
+        {
+          nazwa: "Wzory skróconego mnożenia przy mnożeniu",
+          slownie: "Przy mnożeniu wielomianów możesz użyć wzorów skróconego mnożenia z pierwszej klasy. Szybciej dojdziesz do wyniku.",
+          tex: "(a+b)^2=a^2+2ab+b^2\\qquad(a-b)^2=a^2-2ab+b^2\\qquad(a-b)(a+b)=a^2-b^2",
+          przyklad: "$(x+3)^2=x^2+6x+9$, $(2x-1)^2=4x^2-4x+1$ oraz $(x-5)(x+5)=x^2-25$.",
+          uwaga: "$(x+3)^2$ nie jest równe $x^2+9$ – brakuje podwojonego iloczynu $6x$.",
+        },
+        {
           nazwa: "Stopień sumy i iloczynu",
           slownie: "Stopień iloczynu niezerowych wielomianów to suma ich stopni. Stopień sumy lub różnicy nie jest większy niż większy ze stopni, a bywa mniejszy, gdy najwyższe wyrazy się znoszą.",
           tex: "\\operatorname{st}(WP)=\\operatorname{st}W+\\operatorname{st}P\\qquad\\operatorname{st}(W\\pm P)\\leq\\max(\\operatorname{st}W,\\operatorname{st}P)",
@@ -237,31 +337,31 @@ export default {
       ],
       zadania: [
         {
-          nr: "8",
+          nr: "11",
           tresc: "Dane są wielomiany $W(x)=x^2-3x+1$ i $P(x)=2x^2+x-4$. Wielomian $W(x)+P(x)$ jest równy: **Wybierz właściwą odpowiedź.**",
           opcje: ["$3x^4-2x^2-3$", "$3x^2-4x-3$", "$3x^2-2x+5$", "$3x^2-2x-3$"],
           poprawna: 3,
         },
         {
-          nr: "9",
+          nr: "12",
           tresc: "Dane są wielomiany $W(x)=x^2-3x+1$ i $P(x)=2x^2+x-4$. Wielomian $W(x)-P(x)$ jest równy: **Wybierz właściwą odpowiedź.**",
           opcje: ["$-x^2-4x+5$", "$-x^2-2x-3$", "$x^2+4x-5$", "$-x^2-4x-3$"],
           poprawna: 0,
         },
         {
-          nr: "10",
+          nr: "13",
           tresc: "Wielomian $(x-3)(x^2+2x-1)$ jest równy: **Wybierz właściwą odpowiedź.**",
           opcje: ["$x^3-x^2-7x-3$", "$x^3-x^2-5x+3$", "$x^3-x^2-7x+3$", "$x^3+x^2-7x+3$"],
           poprawna: 2,
         },
         {
-          nr: "11",
+          nr: "14",
           tresc: "Stopień wielomianu $W(x)=(x^3-2x)(x^2+5)-x^5$ jest równy: **Wybierz właściwą odpowiedź.**",
           opcje: ["$3$", "$5$", "$6$", "$1$"],
           poprawna: 0,
         },
         {
-          nr: "12",
+          nr: "15",
           tresc: "Dane są wielomiany $W(x)=x^3+x$ i $P(x)=2-x^3$. **Dla każdego zdania wybierz P, jeśli jest prawdziwe, albo F, jeśli jest fałszywe.**",
           czesci: [
             { tekst: "Stopień wielomianu $W+P$ jest równy $3$.", litery: "PF", poprawna: 1 },
@@ -269,19 +369,37 @@ export default {
             { tekst: "Stopień wielomianu $W-P$ jest równy $3$.", litery: "PF", poprawna: 0 },
           ],
         },
+        {
+          nr: "16",
+          tresc: "Wielomian $(x+3)^2(x-1)$ jest równy: **Wybierz właściwą odpowiedź.**",
+          opcje: ["$x^3-x^2+9x-9$", "$x^3+5x^2+3x+9$", "$x^3+5x^2+3x-9$", "$x^3+7x^2+3x-9$"],
+          poprawna: 2,
+        },
+        {
+          nr: "17",
+          tresc: "Wielomian $(2x-1)^2-(x+2)(x-2)$ jest równy: **Wybierz właściwą odpowiedź.**",
+          opcje: ["$3x^2-4x-3$", "$3x^2+5$", "$3x^2-4x+5$", "$5x^2-4x-3$"],
+          poprawna: 2,
+        },
       ],
       otwarte: [
         {
-          nr: "13",
+          nr: "18",
           punkty: 2,
           tresc: "Wykonaj działania i uporządkuj wielomian: $(x+2)(x^2-2x+4)-(x^3-3x^2)$. Podaj stopień otrzymanego wielomianu. **Zapisz obliczenia.**",
           rozwiazanie: "$(x+2)(x^2-2x+4)=x^3-2x^2+4x+2x^2-4x+8=x^3+8$.\n\nOdejmujemy drugi wielomian, zmieniając znaki jego składników: $x^3+8-x^3+3x^2=3x^2+8$.\n\nOdpowiedź: $3x^2+8$, wielomian stopnia $2$.",
         },
         {
-          nr: "14",
+          nr: "19",
           punkty: 3,
           tresc: "Dane są wielomiany $W(x)=2x^2-x$ i $P(x)=x^2+3x-2$. Wyznacz wielomian $2W(x)-P(x)\\cdot(x-1)$ i podaj jego stopień. **Zapisz obliczenia.**",
           rozwiazanie: "$2W(x)=4x^2-2x$.\n\n$P(x)\\cdot(x-1)=x^3+3x^2-2x-x^2-3x+2=x^3+2x^2-5x+2$.\n\nOdejmujemy: $4x^2-2x-x^3-2x^2+5x-2=-x^3+2x^2+3x-2$.\n\nOdpowiedź: $-x^3+2x^2+3x-2$, wielomian stopnia $3$.",
+        },
+        {
+          nr: "20",
+          punkty: 3,
+          tresc: "Dane są wielomiany $W(x)=x^2-2x$ i $P(x)=x+3$. Wyznacz wielomian $W(x)\\cdot P(x)-(P(x))^2$, uporządkuj go i oblicz jego wartość dla $x=2$. **Zapisz obliczenia.**",
+          rozwiazanie: "$W(x)\\cdot P(x)=(x^2-2x)(x+3)=x^3+3x^2-2x^2-6x=x^3+x^2-6x$.\n\nZe wzoru na kwadrat sumy: $(P(x))^2=(x+3)^2=x^2+6x+9$.\n\nOdejmujemy: $x^3+x^2-6x-x^2-6x-9=x^3-12x-9$.\n\nWartość dla $x=2$: $2^3-12\\cdot2-9=8-24-9=-25$.\n\nOdpowiedź: $x^3-12x-9$, wartość dla $x=2$ jest równa $-25$.",
         },
       ],
       generatory: [
@@ -340,6 +458,50 @@ export default {
             }
           },
         },
+        {
+          id: "dzialania-stopien",
+          nazwa: "Stopień iloczynu i różnicy",
+          opis: "Podaj stopień iloczynu wielomianów albo stopień różnicy, w której najwyższe wyrazy się redukują.",
+          generuj(r) {
+            for (;;) {
+              const m = r.int(1, 3), n = r.int(1, 3);
+              const p = r.pick([1, 1, 2, 3]), s = r.pick([1, 1, 2, 3]);
+              const A = [p, ...Array.from({ length: m }, () => r.int(-4, 4))];
+              const B = [s, ...Array.from({ length: n }, () => r.int(-4, 4))];
+              const iloczyn = pmul(A, B);
+              const zapis = `(${wt(A)})(${wt(B)})`;
+              if (r.chance()) {
+                return {
+                  tresc: `Podaj stopień wielomianu $W(x) = ${zapis}$.`,
+                  pola: [{ id: "s", typ: "liczba", etykieta: "Stopień wielomianu" }],
+                  odpowiedz: { s: q(m + n) },
+                  wynik: `$${m + n}$`,
+                  rozwiazanie: [
+                    `Stopień pierwszego czynnika to $${m}$, a drugiego $${n}$.`,
+                    `Stopień iloczynu jest sumą stopni: $${m} + ${n} = ${m + n}$.`,
+                  ],
+                };
+              }
+              const R = psub(iloczyn, [p * s, ...Array(m + n).fill(0)]);
+              const d = R.findIndex((c) => c !== 0);
+              if (d < 0) continue;
+              const stopien = R.length - 1 - d;
+              if (stopien < 1) continue;
+              const wyraz = `${wsp(p * s)}x^{${m + n}}`;
+              return {
+                tresc: `Podaj stopień wielomianu $W(x) = ${zapis} - ${wyraz}$.`,
+                pola: [{ id: "s", typ: "liczba", etykieta: "Stopień wielomianu" }],
+                odpowiedz: { s: q(stopien) },
+                wynik: `$${stopien}$`,
+                rozwiazanie: [
+                  `Mnożymy nawiasy: $${zapis} = ${wt(iloczyn)}$.`,
+                  `Odejmujemy $${wyraz}$ – najwyższy wyraz się redukuje: $W(x) = ${wt(R)}$.`,
+                  `Najwyższa potęga, która została, to $${stopien === 1 ? "x" : `x^{${stopien}}`}$, więc stopień wielomianu jest równy $${stopien}$.`,
+                ],
+              };
+            }
+          },
+        },
       ],
     },
 
@@ -376,19 +538,19 @@ export default {
       ],
       zadania: [
         {
-          nr: "15",
+          nr: "21",
           tresc: "Wielomiany $W(x)=ax^3+(b+1)x^2-4x$ i $P(x)=2x^3+3x^2-4x$ są równe. Wtedy: **Wybierz właściwą odpowiedź.**",
           opcje: ["$a=2,\\ b=3$", "$a=2,\\ b=2$", "$a=2,\\ b=4$", "$a=3,\\ b=2$"],
           poprawna: 1,
         },
         {
-          nr: "16",
+          nr: "22",
           tresc: "Wielomiany $W(x)=(x+2)(x-a)$ i $P(x)=x^2-5x-14$ są równe. Liczba $a$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$-7$", "$5$", "$7$", "$-5$"],
           poprawna: 2,
         },
         {
-          nr: "17",
+          nr: "23",
           tresc: "**Dla każdego zdania wybierz P, jeśli jest prawdziwe, albo F, jeśli jest fałszywe.**",
           czesci: [
             { tekst: "Wielomiany $x^2-1$ i $(x-1)(x+1)$ są równe.", litery: "PF", poprawna: 0 },
@@ -397,13 +559,13 @@ export default {
           ],
         },
         {
-          nr: "18",
+          nr: "24",
           tresc: "Wielomian $W(x)=x^3+ax^2+bx+2$ jest równy wielomianowi $P(x)=(x+1)(x^2+x+2)$. Wtedy: **Wybierz właściwą odpowiedź.**",
           opcje: ["$a=1,\\ b=2$", "$a=2,\\ b=2$", "$a=1,\\ b=3$", "$a=2,\\ b=3$"],
           poprawna: 3,
         },
         {
-          nr: "19",
+          nr: "25",
           tresc: "Wielomian $W(x)=(a-1)x^2+(b+3)x+c$ jest równy wielomianowi $P(x)=5x-4$. Wtedy: **Wybierz właściwą odpowiedź.**",
           opcje: ["$a=0,\\ b=2,\\ c=-4$", "$a=1,\\ b=8,\\ c=-4$", "$a=1,\\ b=2,\\ c=-4$", "$a=1,\\ b=2,\\ c=4$"],
           poprawna: 2,
@@ -411,16 +573,22 @@ export default {
       ],
       otwarte: [
         {
-          nr: "20",
+          nr: "26",
           punkty: 3,
           tresc: "Wyznacz liczby $a$, $b$, $c$, dla których wielomiany $W(x)=(x-1)(x^2+ax+b)$ i $P(x)=x^3+2x^2-x+c$ są równe. **Zapisz obliczenia.**",
           rozwiazanie: "Wymnażamy: $(x-1)(x^2+ax+b)=x^3+ax^2+bx-x^2-ax-b=x^3+(a-1)x^2+(b-a)x-b$.\n\nPorównujemy z $P(x)=x^3+2x^2-x+c$. Przy $x^2$: $a-1=2$, więc $a=3$.\n\nPrzy $x$: $b-a=-1$, więc $b=a-1=2$.\n\nWyraz wolny: $-b=c$, więc $c=-2$.\n\nOdpowiedź: $a=3$, $b=2$, $c=-2$.",
         },
         {
-          nr: "21",
+          nr: "27",
           punkty: 2,
           tresc: "Wyznacz liczby $a$ i $b$, dla których wielomiany $W(x)=(x+a)(x-3)+b$ i $P(x)=x^2+2x+1$ są równe. **Zapisz obliczenia.**",
           rozwiazanie: "$(x+a)(x-3)+b=x^2-3x+ax-3a+b=x^2+(a-3)x+(b-3a)$.\n\nPrzy $x$: $a-3=2$, więc $a=5$.\n\nWyraz wolny: $b-3a=1$, czyli $b-15=1$ i $b=16$.\n\nOdpowiedź: $a=5$, $b=16$.",
+        },
+        {
+          nr: "28",
+          punkty: 3,
+          tresc: "Wielomiany $W(x)=(x-1)(x+2)(x+a)$ i $P(x)=x^3+bx^2-x-2$ są równe. Wyznacz $a$ i $b$. **Zapisz obliczenia.**",
+          rozwiazanie: "Wymnażamy: $(x-1)(x+2)=x^2+x-2$, a potem $(x^2+x-2)(x+a)=x^3+ax^2+x^2+ax-2x-2a=x^3+(a+1)x^2+(a-2)x-2a$.\n\nPorównujemy z $P(x)=x^3+bx^2-x-2$. Przy $x$: $a-2=-1$, więc $a=1$.\n\nWyraz wolny: $-2a=-2$, więc $a=1$ – zgadza się.\n\nPrzy $x^2$: $b=a+1=2$.\n\nOdpowiedź: $a=1$, $b=2$.",
         },
       ],
       generatory: [
@@ -503,12 +671,34 @@ export default {
           uwaga: "Czynnik $x+2=x-(-2)$ daje pierwiastek $-2$, czyli liczbę o przeciwnym znaku.",
         },
         {
+          nazwa: "Pierwiastki na wykresie",
+          slownie: "Pierwiastki wielomianu to te liczby $x$, w których wykres $y=W(x)$ przecina oś $x$ albo jej dotyka. Wyraz wolny $W(0)$ to wysokość, na której wykres przecina oś $y$.",
+          wykres: {x: [-3,4],y: [-6,9],funkcje: [{wzor: "(x+2)*(x-1)*(x-3)",podpis: "y = (x + 2)(x − 1)(x − 3)"}],punkty: [{x: -2,y: 0,podpis: "−2",gdzie: "lewo-gora"},{x: 1,y: 0,podpis: "1",gdzie: "prawo-gora"},{x: 3,y: 0,podpis: "3",gdzie: "lewo-gora"},{x: 0,y: 6,podpis: "W(0) = 6",gdzie: "prawo-gora"}],podzialkaY: 3},
+          przyklad: "$W(x)=(x+2)(x-1)(x-3)$ ma pierwiastki $-2$, $1$ i $3$, a $W(0)=2\\cdot(-1)\\cdot(-3)=6$.",
+          uwaga: "Wykres wielomianu stopnia $n$ ma z osią $x$ co najwyżej $n$ punktów wspólnych.",
+        },
+        {
+          nazwa: "Pierwiastek wielokrotny",
+          slownie: "Jeśli czynnik $x-a$ występuje w iloczynie więcej niż raz, to $a$ jest pierwiastkiem wielokrotnym. Przy kwadracie $(x-a)^2$ wykres w punkcie $a$ tylko dotyka osi $x$.",
+          tex: "(x-a)^2=0\\ \\text{daje}\\ x=a",
+          litery: "$a$ – pierwiastek dwukrotny (czynnik $x-a$ występuje dwa razy).",
+          wykres: {x: [-2,4],y: [-4,8],funkcje: [{wzor: "(x-2)^2*(x+1)",podpis: "y = (x − 2)²(x + 1)"}],punkty: [{x: -1,y: 0,podpis: "−1",gdzie: "lewo-gora"},{x: 2,y: 0,podpis: "x = 2",gdzie: "lewo-dol"}],podzialkaY: 2},
+          przyklad: "$W(x)=(x-2)^2(x+1)$ ma pierwiastki $2$ (dwukrotny) i $-1$ (jednokrotny). Wykres dotyka osi $x$ w punkcie $2$.",
+          uwaga: "Wielomian jest stopnia $3$, ale ma tylko dwa różne pierwiastki. W zbiorze pierwiastków wypisz każdy z nich jeden raz.",
+        },
+        {
+          nazwa: "Parametr z warunku W(a) = 0",
+          slownie: "Gdy wiesz, że liczba $a$ jest pierwiastkiem, podstaw $x=a$ do wzoru wielomianu i przyrównaj wynik do zera. Dostaniesz równanie z szukanym parametrem.",
+          przyklad: "Liczba $1$ jest pierwiastkiem wielomianu $W(x)=x^3+mx^2-4x+2$. Wtedy $W(1)=1+m-4+2=m-1=0$, więc $m=1$.",
+          uwaga: "Czynnik $x+3$ daje pierwiastek $-3$: podstawiasz $x=-3$, a nie $x=3$.",
+        },
+        {
           nazwa: "Twierdzenie Bezouta",
           slownie: "Liczba $a$ jest pierwiastkiem wielomianu $W$ wtedy i tylko wtedy, gdy $W(x)$ dzieli się przez dwumian $x-a$, czyli ma w rozkładzie czynnik $x-a$.",
           tex: "W(a)=0\\iff W(x)=(x-a)\\cdot P(x)",
           litery: "$P(x)$ – wielomian o stopniu o $1$ niższym niż $W$.",
           przyklad: "Dla $W(x)=x^3-x^2-4x+4$ mamy $W(1)=0$, więc $x-1$ jest czynnikiem: $W(x)=(x-1)(x^2-4)$.",
-          uwaga: "Czynnik $x-1$ odpowiada pierwiastkowi $1$, a nie $-1$.",
+          uwaga: "Czynnik $x-1$ odpowiada pierwiastkowi $1$, a nie $-1$. Dzielenie wielomianu przez $x-a$ to zakres rozszerzony – w zakresie podstawowym wystarczy sprawdzić, czy $W(a)=0$.",
         },
         {
           nazwa: "Ile może być pierwiastków",
@@ -524,25 +714,25 @@ export default {
       ],
       zadania: [
         {
-          nr: "22",
+          nr: "29",
           tresc: "Pierwiastkiem wielomianu $W(x)=x^3-2x^2-5x+6$ jest liczba: **Wybierz właściwą odpowiedź.**",
           opcje: ["$-1$", "$2$", "$1$", "$-3$"],
           poprawna: 2,
         },
         {
-          nr: "23",
+          nr: "30",
           tresc: "Pierwiastkami wielomianu $W(x)=(x-4)(2x+6)(x+1)$ są liczby: **Wybierz właściwą odpowiedź.**",
           opcje: ["$4$, $-3$, $-1$", "$-4$, $3$, $-1$", "$4$, $6$, $-1$", "$4$, $3$, $1$"],
           poprawna: 0,
         },
         {
-          nr: "24",
+          nr: "31",
           tresc: "Liczba $2$ jest pierwiastkiem wielomianu $W(x)=x^3+ax^2-3x+2$. Liczba $a$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$-2$", "$1$", "$0$", "$-1$"],
           poprawna: 3,
         },
         {
-          nr: "25",
+          nr: "32",
           tresc: "Dany jest wielomian $W(x)=x(x-2)(x+3)(x^2+1)$. **Dla każdego zdania wybierz P, jeśli jest prawdziwe, albo F, jeśli jest fałszywe.**",
           czesci: [
             { tekst: "Liczba $0$ jest pierwiastkiem wielomianu $W$.", litery: "PF", poprawna: 0 },
@@ -551,24 +741,45 @@ export default {
           ],
         },
         {
-          nr: "26",
-          tresc: "Wielomian $W(x)=x^3-2x^2+kx-6$ jest podzielny przez dwumian $x-3$. Liczba $k$ jest równa: **Wybierz właściwą odpowiedź.**",
+          nr: "33",
+          tresc: "(zakres rozszerzony) Wielomian $W(x)=x^3-2x^2+kx-6$ jest podzielny przez dwumian $x-3$. Liczba $k$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$k=-1$", "$k=1$", "$k=3$", "$k=-3$"],
           poprawna: 0,
+        },
+        {
+          nr: "34",
+          tresc: "Dany jest wielomian $W(x)=(x-2)^2(x+1)(x^2+4)$. **Dla każdego zdania wybierz P, jeśli jest prawdziwe, albo F, jeśli jest fałszywe.**",
+          czesci: [
+            { tekst: "Liczba $2$ jest pierwiastkiem wielomianu $W$.", litery: "PF", poprawna: 0 },
+            { tekst: "Wielomian $W$ ma dokładnie cztery różne pierwiastki.", litery: "PF", poprawna: 1 },
+            { tekst: "Wielomian $W$ jest stopnia piątego.", litery: "PF", poprawna: 0 },
+          ],
+        },
+        {
+          nr: "35",
+          tresc: "Liczba $-3$ jest pierwiastkiem wielomianu $W(x)=x^3+ax^2-4x-3$. Liczba $a$ jest równa: **Wybierz właściwą odpowiedź.**",
+          opcje: ["$-2$", "$1$", "$2$", "$4$"],
+          poprawna: 2,
         },
       ],
       otwarte: [
         {
-          nr: "27",
+          nr: "36",
           punkty: 2,
           tresc: "Sprawdź, które z liczb $-2$, $1$, $3$ są pierwiastkami wielomianu $W(x)=x^3-3x^2-4x+12$. **Zapisz obliczenia.**",
           rozwiazanie: "Obliczamy wartości wielomianu $W(x)=x^3-3x^2-4x+12$.\n\n$W(-2)=-8-12+8+12=0$, więc $-2$ jest pierwiastkiem.\n\n$W(1)=1-3-4+12=6\\neq0$, więc $1$ nie jest pierwiastkiem.\n\n$W(3)=27-27-12+12=0$, więc $3$ jest pierwiastkiem.\n\nOdpowiedź: pierwiastkami są liczby $-2$ i $3$.",
         },
         {
-          nr: "28",
+          nr: "37",
           punkty: 3,
           tresc: "Liczby $1$ i $-2$ są pierwiastkami wielomianu $W(x)=x^3+ax^2+bx+6$. Wyznacz $a$ i $b$. **Zapisz obliczenia.**",
           rozwiazanie: "Podstawiamy $x=1$: $W(1)=1+a+b+6=0$, czyli $a+b=-7$.\n\nPodstawiamy $x=-2$: $W(-2)=-8+4a-2b+6=0$, czyli $2a-b=1$.\n\nDodajemy równania stronami: $3a=-6$, więc $a=-2$, a stąd $b=-5$.\n\nSprawdzenie: $W(x)=x^3-2x^2-5x+6$ i $W(3)=27-18-15+6=0$, więc trzecim pierwiastkiem jest $3$.\n\nOdpowiedź: $a=-2$, $b=-5$.",
+        },
+        {
+          nr: "38",
+          punkty: 3,
+          tresc: "Liczba $2$ jest pierwiastkiem wielomianu $W(x)=(x-1)(x^2+mx+6)$. Wyznacz $m$, a następnie podaj wszystkie pierwiastki wielomianu $W$. **Zapisz obliczenia.**",
+          rozwiazanie: "Podstawiamy $x=2$: $W(2)=(2-1)(4+2m+6)=10+2m$.\n\nZ warunku $W(2)=0$: $10+2m=0$, więc $m=-5$.\n\nWielomian ma postać $W(x)=(x-1)(x^2-5x+6)$.\n\nCzynnik $x-1$ daje pierwiastek $1$.\n\nTrójmian $x^2-5x+6$: $\\Delta=25-24=1$, $x_1=\\frac{5-1}{2}=2$, $x_2=\\frac{5+1}{2}=3$.\n\nOdpowiedź: $m=-5$, pierwiastki wielomianu $W$: $1$, $2$ i $3$.",
         },
       ],
       generatory: [
@@ -593,7 +804,7 @@ export default {
                 wynik: `$x \\in ${zbiorTex(korzenie)}$`,
                 rozwiazanie: [
                   "Iloczyn jest równy $0$, gdy któryś z czynników jest równy $0$, więc każdy czynnik przyrównujemy do zera.",
-                  ...kolejnosc.map((i) => `$${tex(i)} = 0$, stąd $x = ${korzenie[i].tex()}$.`),
+                  ...kolejnosc.map((i) => (tex(i) === "x" ? "Czynnik $x$ jest równy $0$ dla $x = 0$." : `$${tex(i)} = 0$, stąd $x = ${korzenie[i].tex()}$.`)),
                 ],
               };
             }
@@ -626,6 +837,38 @@ export default {
             }
           },
         },
+        {
+          id: "pierwiastek-sprawdz",
+          nazwa: "Która liczba jest pierwiastkiem",
+          opis: "Z trzech podanych liczb wskaż tę, która jest pierwiastkiem wielomianu trzeciego stopnia.",
+          generuj(r) {
+            for (;;) {
+              const p = r.intBez(-4, 4, 0), b = r.int(-4, 4), c = r.int(-6, 6);
+              const w = pmul([1, -p], [1, b, c]);
+              const kand = [p];
+              while (kand.length < 3) {
+                const u = r.intBez(-4, 4, 0);
+                if (!kand.includes(u)) kand.push(u);
+              }
+              if (kand.slice(1).some((u) => podstaw(w, u)[2] === 0)) continue;
+              const kol = r.shuffle([...kand]);
+              return {
+                tresc: `Dany jest wielomian $W(x) = ${wt(w)}$. Która z liczb $${kol[0]}$, $${kol[1]}$, $${kol[2]}$ jest pierwiastkiem tego wielomianu? Wpisz tę liczbę.`,
+                pola: [{ id: "x", typ: "liczba", etykieta: "Pierwiastek" }],
+                odpowiedz: { x: q(p) },
+                wynik: `$${p}$`,
+                rozwiazanie: [
+                  "Liczba $a$ jest pierwiastkiem, gdy $W(a) = 0$, więc obliczamy wartość wielomianu dla każdej z liczb.",
+                  ...kol.map((u) => {
+                    const [s1, s2, v] = podstaw(w, u);
+                    return `$W(${u}) = ${s1} = ${s2} = ${v}$${v === 0 ? " – to pierwiastek." : "."}`;
+                  }),
+                  `Tylko dla $${p}$ wartość wielomianu jest równa $0$, więc pierwiastkiem jest liczba $${p}$.`,
+                ],
+              };
+            }
+          },
+        },
       ],
     },
 
@@ -638,14 +881,14 @@ export default {
           nazwa: "Wyłączanie wspólnego czynnika",
           slownie: "Wyłącz przed nawias najwyższą potęgę $x$, która występuje w każdym składniku, oraz największy wspólny dzielnik współczynników.",
           przyklad: "$6x^4-9x^3+3x^2=3x^2(2x^2-3x+1)$.",
-          uwaga: "Sprawdź, wymnażając: w nawiasie nie może zniknąć żaden składnik, a wyłączony cały składnik zostawia w nawiasie $1$.",
+          uwaga: "Sprawdź, wymnażając: w nawiasie nie może zniknąć żaden składnik, a wyłączony cały składnik zostawia w nawiasie $1$. To zakres rozszerzony – w zakresie podstawowym wielomian jest zwykle od razu podany w postaci iloczynu.",
         },
         {
           nazwa: "Grupowanie wyrazów",
           slownie: "Przy czterech wyrazach połącz je w dwie pary tak, aby po wyłączeniu z każdej pary został ten sam nawias. Potem wyłącz ten nawias.",
           tex: "ac+ad+bc+bd=(a+b)(c+d)",
           przyklad: "$x^3-2x^2-9x+18=x^2(x-2)-9(x-2)=(x-2)(x^2-9)=(x-2)(x-3)(x+3)$.",
-          uwaga: "Przy wyłączaniu liczby ujemnej zmień znaki w nawiasie: $-9x+18=-9(x-2)$.",
+          uwaga: "Przy wyłączaniu liczby ujemnej zmień znaki w nawiasie: $-9x+18=-9(x-2)$. Grupowanie wyrazów to zakres rozszerzony.",
         },
         {
           nazwa: "Wzory skróconego mnożenia",
@@ -664,6 +907,7 @@ export default {
         },
       ],
       jak: [
+        "W tym temacie wyłączanie wspólnego czynnika i grupowanie wyrazów to zakres rozszerzony. W zakresie podstawowym potrzebne są wzory skróconego mnożenia i rozkład trójmianu kwadratowego.",
         "Najpierw wyłącz wspólny czynnik (np. $x$ lub liczbę), jeśli występuje we wszystkich składnikach.",
         "Sprawdź, czy wielomian lub jego część to wzór skróconego mnożenia.",
         "Przy czterech wyrazach spróbuj grupowania, a przy trzech – rozkładu trójmianu kwadratowego.",
@@ -672,31 +916,31 @@ export default {
       ],
       zadania: [
         {
-          nr: "29",
-          tresc: "Wielomian $W(x)=2x^3-8x$ jest równy: **Wybierz właściwą odpowiedź.**",
+          nr: "39",
+          tresc: "(zakres rozszerzony) Wielomian $W(x)=2x^3-8x$ jest równy: **Wybierz właściwą odpowiedź.**",
           opcje: ["$2x(x-2)^2$", "$2x(x+2)^2$", "$2x(x^2+4)$", "$2x(x-2)(x+2)$"],
           poprawna: 3,
         },
         {
-          nr: "30",
-          tresc: "Wielomian $W(x)=x^3-3x^2-x+3$ jest równy: **Wybierz właściwą odpowiedź.**",
+          nr: "40",
+          tresc: "(zakres rozszerzony) Wielomian $W(x)=x^3-3x^2-x+3$ jest równy: **Wybierz właściwą odpowiedź.**",
           opcje: ["$(x-3)(x-1)^2$", "$(x-3)(x-1)(x+1)$", "$(x+3)(x-1)(x+1)$", "$(x-3)(x^2+1)$"],
           poprawna: 1,
         },
         {
-          nr: "31",
-          tresc: "Wielomian $W(x)=x^4-16$ jest równy: **Wybierz właściwą odpowiedź.**",
+          nr: "41",
+          tresc: "(zakres rozszerzony) Wielomian $W(x)=x^4-16$ jest równy: **Wybierz właściwą odpowiedź.**",
           opcje: ["$(x-4)(x+4)(x^2+1)$", "$(x^2-4)^2$", "$(x-2)(x+2)(x^2+4)$", "$(x-2)^2(x+2)^2$"],
           poprawna: 2,
         },
         {
-          nr: "32",
+          nr: "42",
           tresc: "Wielomian $W(x)=2x^2-x-6$ jest równy: **Wybierz właściwą odpowiedź.**",
           opcje: ["$(x+2)(2x-3)$", "$(x-2)\\left(x+\\frac{3}{2}\\right)$", "$(2x-2)(x+3)$", "$(x-2)(2x+3)$"],
           poprawna: 3,
         },
         {
-          nr: "33",
+          nr: "43",
           tresc: "**Dla każdego zdania wybierz P, jeśli jest prawdziwe, albo F, jeśli jest fałszywe.**",
           czesci: [
             { tekst: "$x^2+4=(x-2)(x+2)$", litery: "PF", poprawna: 1 },
@@ -707,15 +951,15 @@ export default {
       ],
       otwarte: [
         {
-          nr: "34",
+          nr: "44",
           punkty: 2,
-          tresc: "Rozłóż na czynniki wielomian $W(x)=x^3+2x^2-4x-8$. **Zapisz obliczenia.**",
+          tresc: "(zakres rozszerzony) Rozłóż na czynniki wielomian $W(x)=x^3+2x^2-4x-8$. **Zapisz obliczenia.**",
           rozwiazanie: "Grupujemy: $x^3+2x^2-4x-8=x^2(x+2)-4(x+2)$.\n\nWyłączamy wspólny nawias: $(x+2)(x^2-4)$.\n\nZ różnicy kwadratów: $x^2-4=(x-2)(x+2)$.\n\nOdpowiedź: $W(x)=(x+2)^2(x-2)$.",
         },
         {
-          nr: "35",
+          nr: "45",
           punkty: 3,
-          tresc: "Rozłóż na czynniki wielomian $W(x)=3x^4-12x^3-15x^2$. **Zapisz obliczenia.**",
+          tresc: "(zakres rozszerzony) Rozłóż na czynniki wielomian $W(x)=3x^4-12x^3-15x^2$. **Zapisz obliczenia.**",
           rozwiazanie: "Wyłączamy $3x^2$: $3x^4-12x^3-15x^2=3x^2(x^2-4x-5)$.\n\nTrójmian: $\\Delta=16+20=36$, $\\sqrt{\\Delta}=6$, $x_1=\\frac{4-6}{2}=-1$, $x_2=\\frac{4+6}{2}=5$.\n\nWięc $x^2-4x-5=(x+1)(x-5)$.\n\nOdpowiedź: $W(x)=3x^2(x+1)(x-5)$.",
         },
       ],
@@ -732,7 +976,7 @@ export default {
               const korzenie = [q(-p, q0), q(a), q(-a)];
               const nawias = `${wsp(q0)}x${skladnik(p)}`;
               return {
-                tresc: `Rozłóż na czynniki wielomian $W(x) = ${wt(w)}$ i podaj jego pierwiastki.`,
+                tresc: `(zakres rozszerzony) Rozłóż na czynniki wielomian $W(x) = ${wt(w)}$ i podaj jego pierwiastki.`,
                 pola: [{ id: "x", typ: "zbior", ile: 3, etykieta: "Pierwiastki wielomianu" }],
                 odpowiedz: { x: korzenie },
                 wynik: `$x \\in ${zbiorTex(korzenie)}$`,
@@ -759,7 +1003,7 @@ export default {
               const xm = m === 1 ? "x" : "x^2";
               const w = [k, k * s, k * t, ...Array(m).fill(0)];
               return {
-                tresc: `Rozłóż na czynniki wielomian $W(x) = ${wt(w)}$ i podaj jego pierwiastki.`,
+                tresc: `(zakres rozszerzony) Rozłóż na czynniki wielomian $W(x) = ${wt(w)}$ i podaj jego pierwiastki.`,
                 pola: [{ id: "x", typ: "zbior", ile: 3, etykieta: "Pierwiastki wielomianu" }],
                 odpowiedz: { x: [q(0), q(a), q(b)] },
                 wynik: `$x \\in ${zbiorTex([q(0), q(a), q(b)])}$`,
@@ -785,7 +1029,7 @@ export default {
           nazwa: "Równanie wielomianowe",
           slownie: "Równanie wielomianowe ma postać $W(x)=0$, a jego rozwiązania to pierwiastki wielomianu $W$. Przenieś wszystko na jedną stronę, rozłóż wielomian na czynniki i każdy czynnik przyrównaj do zera.",
           przyklad: "$x^3-4x=0\\iff x(x-2)(x+2)=0$, więc $x\\in\\{-2,0,2\\}$.",
-          uwaga: "Rozkładaj do końca i podaj wszystkie rozwiązania – także te, które dają czynniki takie jak $x$.",
+          uwaga: "Rozkładaj do końca i podaj wszystkie rozwiązania – także te, które dają czynniki takie jak $x$. Rozkład przez wyłączanie czynnika i grupowanie to zakres rozszerzony; w zakresie podstawowym równanie jest zwykle od razu w postaci iloczynu.",
         },
         {
           nazwa: "Iloczyn równy zero",
@@ -794,10 +1038,20 @@ export default {
           przyklad: "$(x+1)(2x-5)(x^2+4)=0$: $x=-1$ lub $x=\\frac{5}{2}$. Równanie $x^2+4=0$ nie ma rozwiązań, bo $x^2+4\\geq4>0$.",
         },
         {
+          nazwa: "Czynnik kwadratowy w iloczynie",
+          slownie: "Gdy jeden z czynników jest trójmianem kwadratowym, przyrównaj go do zera i policz deltę. Rozwiązania równania to rozwiązania wszystkich czynników razem.",
+          tex: "(x-a)(px^2+qx+r)=0",
+          litery: "Wtedy $x-a=0$ lub $px^2+qx+r=0$.",
+          wykres: {x: [-2,4],y: [-5,5],funkcje: [{wzor: "(x+1)*(x^2-4*x+3)",podpis: "y = (x + 1)(x² − 4x + 3)"}],punkty: [{x: -1,y: 0,podpis: "−1",gdzie: "lewo-gora"},{x: 1,y: 0,podpis: "1",gdzie: "prawo-gora"},{x: 3,y: 0,podpis: "3",gdzie: "lewo-gora"}]},
+          przyklad: "$(x+1)(x^2-4x+3)=0$. Z $x+1=0$ mamy $x=-1$. Z $x^2-4x+3=0$: $\\Delta=4$, więc $x=1$ lub $x=3$. Rozwiązania: $\\{-1,1,3\\}$ – to miejsca, w których wykres przecina oś $x$.",
+          uwaga: "Gdy $\\Delta<0$, czynnik kwadratowy nie daje rozwiązań i zostają tylko rozwiązania pozostałych czynników.",
+        },
+        {
           nazwa: "Nie dziel przez niewiadomą",
           slownie: "Nie skracaj równania przez $x$ ani przez inne wyrażenie z niewiadomą – możesz zgubić rozwiązanie. Zamiast tego wyłącz je przed nawias.",
           tex: "x^3=4x\\Rightarrow x(x^2-4)=0",
           przyklad: "Po podzieleniu $x^3=4x$ przez $x$ zostałoby tylko $\\pm2$, a rozwiązaniem jest też $0$.",
+          uwaga: "To zakres rozszerzony. W zakresie podstawowym ta sama zasada działa przy iloczynie: nie dziel $x(x-3)=0$ przez $x$, bo zgubisz rozwiązanie $0$.",
         },
         {
           nazwa: "Zadania tekstowe",
@@ -814,26 +1068,26 @@ export default {
       ],
       zadania: [
         {
-          nr: "36",
-          tresc: "Zbiorem wszystkich rozwiązań równania $x^3-9x=0$ jest: **Wybierz właściwą odpowiedź.**",
+          nr: "46",
+          tresc: "(zakres rozszerzony) Zbiorem wszystkich rozwiązań równania $x^3-9x=0$ jest: **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\{-3,3\\}$", "$\\{0,9\\}$", "$\\{-3,0,3\\}$", "$\\{0,3\\}$"],
           poprawna: 2,
         },
         {
-          nr: "37",
+          nr: "47",
           tresc: "Zbiorem wszystkich rozwiązań równania $(x-1)(2x+3)(x^2+5)=0$ jest: **Wybierz właściwą odpowiedź.**",
           opcje: ["$\\left\\{1,-\\frac{3}{2}\\right\\}$", "$\\left\\{-1,\\frac{3}{2}\\right\\}$", "$\\left\\{1,\\frac{3}{2}\\right\\}$", "$\\left\\{1,-\\frac{3}{2},-\\sqrt{5},\\sqrt{5}\\right\\}$"],
           poprawna: 0,
         },
         {
-          nr: "38",
-          tresc: "Suma wszystkich rozwiązań równania $x^3+2x^2-x-2=0$ jest równa: **Wybierz właściwą odpowiedź.**",
+          nr: "48",
+          tresc: "(zakres rozszerzony) Suma wszystkich rozwiązań równania $x^3+2x^2-x-2=0$ jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$-1$", "$-2$", "$2$", "$0$"],
           poprawna: 1,
         },
         {
-          nr: "39",
-          tresc: "Dane jest równanie $2x^3-8x^2+8x=0$. **Dla każdego zdania wybierz P, jeśli jest prawdziwe, albo F, jeśli jest fałszywe.**",
+          nr: "49",
+          tresc: "(zakres rozszerzony) Dane jest równanie $2x^3-8x^2+8x=0$. **Dla każdego zdania wybierz P, jeśli jest prawdziwe, albo F, jeśli jest fałszywe.**",
           czesci: [
             { tekst: "Liczba $0$ jest rozwiązaniem tego równania.", litery: "PF", poprawna: 0 },
             { tekst: "Równanie ma dokładnie trzy rozwiązania.", litery: "PF", poprawna: 1 },
@@ -841,30 +1095,60 @@ export default {
           ],
         },
         {
-          nr: "40",
-          tresc: "Iloczyn trzech kolejnych liczb naturalnych jest $5$ razy większy od ich sumy. Najmniejsza z tych liczb jest równa: **Wybierz właściwą odpowiedź.**",
+          nr: "50",
+          tresc: "(zakres rozszerzony) Iloczyn trzech kolejnych liczb naturalnych jest $5$ razy większy od ich sumy. Najmniejsza z tych liczb jest równa: **Wybierz właściwą odpowiedź.**",
           opcje: ["$4$", "$2$", "$3$", "$5$"],
           poprawna: 2,
         },
         {
-          nr: "41",
-          tresc: "Prostopadłościan ma w podstawie kwadrat o boku $x$, a jego wysokość jest o $3$ większa od boku podstawy. Objętość tego prostopadłościanu jest liczbowo równa polu jego powierzchni bocznej. Bok podstawy jest równy: **Wybierz właściwą odpowiedź.**",
+          nr: "51",
+          tresc: "(zakres rozszerzony) Prostopadłościan ma w podstawie kwadrat o boku $x$, a jego wysokość jest o $3$ większa od boku podstawy. Objętość tego prostopadłościanu jest liczbowo równa polu jego powierzchni bocznej. Bok podstawy jest równy: **Wybierz właściwą odpowiedź.**",
           opcje: ["$2$", "$3$", "$7$", "$4$"],
           poprawna: 3,
+        },
+        {
+          nr: "52",
+          tresc: "Równanie $(x-2)(x^2-4x+4)(x^2+1)=0$ ma: **Wybierz właściwą odpowiedź.**",
+          opcje: ["dokładnie jedno rozwiązanie", "dokładnie dwa rozwiązania", "dokładnie trzy rozwiązania", "dokładnie cztery rozwiązania"],
+          poprawna: 0,
+        },
+        {
+          nr: "53",
+          tresc: "Zbiorem wszystkich rozwiązań równania $(x+2)(x^2-3x-4)=0$ jest: **Wybierz właściwą odpowiedź.**",
+          opcje: ["$\\{-2,1,4\\}$", "$\\{2,-1,4\\}$", "$\\{-2,-1,4\\}$", "$\\{-2,1,-4\\}$"],
+          poprawna: 2,
+        },
+        {
+          nr: "54",
+          tresc: "Zysk firmy (w tysiącach złotych) przy sprzedaży $x$ tysięcy sztuk towaru opisuje wielomian $Z(x)=(x-2)(x^2-x-12)$, gdzie $x>0$. Suma wszystkich liczb $x$, dla których zysk jest równy zero, wynosi: **Wybierz właściwą odpowiedź.**",
+          opcje: ["$3$", "$6$", "$8$", "$9$"],
+          poprawna: 1,
         },
       ],
       otwarte: [
         {
-          nr: "42",
+          nr: "55",
           punkty: 2,
-          tresc: "Rozwiąż równanie $x^3+3x^2-4x-12=0$. **Zapisz obliczenia.**",
+          tresc: "(zakres rozszerzony) Rozwiąż równanie $x^3+3x^2-4x-12=0$. **Zapisz obliczenia.**",
           rozwiazanie: "Grupujemy wyrazy: $x^2(x+3)-4(x+3)=0$.\n\nWyłączamy nawias: $(x+3)(x^2-4)=0$, czyli $(x+3)(x-2)(x+2)=0$.\n\nKażdy czynnik przyrównujemy do zera: $x=-3$ lub $x=2$ lub $x=-2$.\n\nOdpowiedź: $x\\in\\{-3,-2,2\\}$.",
         },
         {
-          nr: "43",
+          nr: "56",
           punkty: 4,
-          tresc: "Suma sześcianów trzech kolejnych liczb całkowitych jest równa dziewięciokrotności kwadratu środkowej z nich. Znajdź wszystkie takie trójki liczb. **Zapisz obliczenia.**",
+          tresc: "(zakres rozszerzony) Suma sześcianów trzech kolejnych liczb całkowitych jest równa dziewięciokrotności kwadratu środkowej z nich. Znajdź wszystkie takie trójki liczb. **Zapisz obliczenia.**",
           rozwiazanie: "Oznaczmy liczby przez $n-1$, $n$, $n+1$.\n\nSuma sześcianów: $(n-1)^3+n^3+(n+1)^3=(n^3-3n^2+3n-1)+n^3+(n^3+3n^2+3n+1)=3n^3+6n$.\n\nRównanie: $3n^3+6n=9n^2$, czyli $3n^3-9n^2+6n=0$ i $3n(n^2-3n+2)=0$.\n\nTrójmian: $n^2-3n+2=(n-1)(n-2)$, więc $3n(n-1)(n-2)=0$ i $n\\in\\{0,1,2\\}$.\n\nWszystkie trzy wartości $n$ pasują, bo liczby mają być całkowite.\n\nOdpowiedź: trójki $(-1,0,1)$, $(0,1,2)$, $(1,2,3)$.",
+        },
+        {
+          nr: "57",
+          punkty: 3,
+          tresc: "Rozwiąż równanie $(x^2-9)(x^2-6x+5)(x^2+1)=0$. **Zapisz obliczenia.**",
+          rozwiazanie: "Iloczyn jest równy $0$, gdy któryś z czynników jest równy $0$.\n\nZ pierwszego czynnika: $x^2-9=0$, więc $x^2=9$, czyli $x=-3$ lub $x=3$.\n\nZ drugiego czynnika: $x^2-6x+5=0$, $\\Delta=36-20=16$, $\\sqrt{\\Delta}=4$, $x_1=\\frac{6-4}{2}=1$, $x_2=\\frac{6+4}{2}=5$.\n\nTrzeci czynnik: $x^2+1\\geq1>0$ dla każdej liczby $x$, więc nie daje rozwiązań.\n\nOdpowiedź: $x\\in\\{-3,1,3,5\\}$.",
+        },
+        {
+          nr: "58",
+          punkty: 3,
+          tresc: "Zysk firmy (w tysiącach złotych) przy sprzedaży $x$ tysięcy sztuk towaru opisuje wielomian $Z(x)=(x-3)(x^2-2x-8)$, gdzie $x>0$. Dla jakich wartości $x$ zysk jest równy zero? **Zapisz obliczenia.**",
+          rozwiazanie: "Zysk jest równy zero, gdy $Z(x)=0$. Iloczyn jest równy $0$, gdy któryś z czynników jest równy $0$.\n\nZ pierwszego czynnika: $x-3=0$, więc $x=3$.\n\nZ drugiego czynnika: $x^2-2x-8=0$, $\\Delta=4+32=36$, $\\sqrt{\\Delta}=6$, $x_1=\\frac{2-6}{2}=-2$, $x_2=\\frac{2+6}{2}=4$.\n\nWarunek $x>0$ spełniają tylko liczby $3$ i $4$. Liczbę $-2$ odrzucamy, bo sprzedaż nie może być ujemna.\n\nOdpowiedź: zysk jest równy zero dla $x=3$ i $x=4$ (tysięcy sztuk).",
         },
       ],
       generatory: [
@@ -881,7 +1165,7 @@ export default {
                 const stare = n === 3 ? "x" : "x^2";
                 const korzenie = [q(0), q(a), q(-a)];
                 return {
-                  tresc: `Rozwiąż równanie $x^${n} = ${kw}${stare}$.`,
+                  tresc: `(zakres rozszerzony) Rozwiąż równanie $x^${n} = ${kw}${stare}$.`,
                   pola: [{ id: "x", typ: "zbior", ile: 3, etykieta: "Rozwiązania równania" }],
                   odpowiedz: { x: korzenie },
                   wynik: `$x \\in ${zbiorTex(korzenie)}$`,
@@ -898,7 +1182,7 @@ export default {
                 if (Math.abs(p) === a) continue;
                 const korzenie = [q(-p), q(a), q(-a)];
                 return {
-                  tresc: `Rozwiąż równanie $x^3${skladnik(p, "x^2")} = ${a * a}x${skladnik(p * a * a)}$.`,
+                  tresc: `(zakres rozszerzony) Rozwiąż równanie $x^3${skladnik(p, "x^2")} = ${a * a}x${skladnik(p * a * a)}$.`,
                   pola: [{ id: "x", typ: "zbior", ile: 3, etykieta: "Rozwiązania równania" }],
                   odpowiedz: { x: korzenie },
                   wynik: `$x \\in ${zbiorTex(korzenie)}$`,
@@ -921,9 +1205,109 @@ export default {
                 wynik: `$x \\in ${zbiorTex(korzenie)}$`,
                 rozwiazanie: [
                   "Iloczyn jest równy $0$, gdy któryś z czynników jest równy $0$.",
-                  `$${liniowy(r1)} = 0$, stąd $x = ${r1}$. Podobnie $${liniowy(r2)} = 0$, stąd $x = ${r2}$.`,
+                  `${krokLin(r1)} ${krokLin(r2)}`,
                   `Czynnik $x^2 + ${c}$ nie jest równy $0$ dla żadnej liczby, bo $x^2 \\geq 0$, więc $x^2 + ${c} \\geq ${c} > 0$.`,
                   `Rozwiązania: $x = ${r1}$ i $x = ${r2}$.`,
+                ],
+              };
+            }
+          },
+        },
+        {
+          id: "rownania-czynnik-kwadratowy",
+          nazwa: "Czynnik kwadratowy",
+          opis: "Równanie w postaci iloczynu czynnika liniowego i trójmianu kwadratowego – podaj wszystkie rozwiązania.",
+          generuj(r) {
+            for (;;) {
+              const p = r.int(-6, 6);
+              let b, c, trojmian = [];
+              if (r.chance(0.75)) {
+                const u = r.int(-6, 6), v = r.int(-6, 6);
+                if (u === v || u === p || v === p) continue;
+                b = -(u + v);
+                c = u * v;
+                trojmian = [Math.min(u, v), Math.max(u, v)];
+              } else {
+                b = r.int(-4, 4);
+                c = r.int(Math.floor((b * b) / 4) + 1, 9);
+              }
+              const D = b * b - 4 * c;
+              const tr = wt([1, b, c]);
+              const korzenie = [q(p), ...trojmian.map((v) => q(v))];
+              const sq = trojmian.length ? trojmian[1] - trojmian[0] : 0;
+              return {
+                tresc: `Rozwiąż równanie $${nawiasMinus(p)}(${tr}) = 0$.`,
+                pola: [{ id: "x", typ: "zbior", ile: korzenie.length, etykieta: "Rozwiązania równania" }],
+                odpowiedz: { x: korzenie },
+                wynik: `$x \\in ${zbiorTex(korzenie)}$`,
+                rozwiazanie: [
+                  "Iloczyn jest równy $0$, gdy któryś z czynników jest równy $0$.",
+                  krokLin(p),
+                  `Drugi czynnik: $${tr} = 0$. Obliczamy deltę: $\\Delta = ${texNawias(b)}^2 - 4\\cdot ${texNawias(c)} = ${D}$.`,
+                  ...(trojmian.length
+                    ? [
+                      `$\\sqrt{\\Delta} = ${sq}$, więc $x_1 = \\frac{${-b} - ${sq}}{2} = ${trojmian[0]}$ i $x_2 = \\frac{${-b} + ${sq}}{2} = ${trojmian[1]}$.`,
+                      `Rozwiązania: $x = ${p}$, $x = ${trojmian[0]}$ i $x = ${trojmian[1]}$.`,
+                    ]
+                    : [
+                      "Delta jest ujemna, więc ten czynnik nie jest równy $0$ dla żadnej liczby.",
+                      `Jedyne rozwiązanie: $x = ${p}$.`,
+                    ]),
+                ],
+              };
+            }
+          },
+        },
+        {
+          id: "rownania-wielokrotne",
+          nazwa: "Pierwiastek wielokrotny",
+          opis: "Równanie, w którym jeden czynnik jest podniesiony do kwadratu – podaj każde rozwiązanie jeden raz.",
+          generuj(r) {
+            for (;;) {
+              const a = r.int(-6, 6), b = r.int(-6, 6), c = r.int(-6, 6);
+              const trzy = r.chance(0.4);
+              if (a === b || (trzy && (c === a || c === b))) continue;
+              const korzenie = (trzy ? [a, b, c] : [a, b]).map((v) => q(v));
+              const kw = a === 0 ? "x^2" : `(${liniowy(a)})^2`;
+              const zapis = `${kw}${nawiasMinus(b)}${trzy ? nawiasMinus(c) : ""}`;
+              return {
+                tresc: `Rozwiąż równanie $${zapis} = 0$. Każde rozwiązanie wpisz jeden raz.`,
+                pola: [{ id: "x", typ: "zbior", ile: korzenie.length, etykieta: "Rozwiązania równania" }],
+                odpowiedz: { x: korzenie },
+                wynik: `$x \\in ${zbiorTex(korzenie)}$`,
+                rozwiazanie: [
+                  "Iloczyn jest równy $0$, gdy któryś z czynników jest równy $0$.",
+                  `$${kw} = 0$, stąd $x = ${a}$. To pierwiastek dwukrotny, ale w odpowiedzi wpisujemy go jeden raz.`,
+                  krokLin(b),
+                  ...(trzy ? [krokLin(c)] : []),
+                ],
+              };
+            }
+          },
+        },
+        {
+          id: "rownania-zysk",
+          nazwa: "Zadanie tekstowe: zysk",
+          opis: "Zysk opisany wielomianem w postaci iloczynu – znajdź dodatnie liczby sprzedanych sztuk, dla których zysk jest równy zero.",
+          generuj(r) {
+            for (;;) {
+              const a = r.int(1, 8), u = r.int(1, 8), v = -r.int(1, 8);
+              if (a === u) continue;
+              const b = -(u + v), c = u * v;
+              const tr = wt([1, b, c]);
+              const towar = r.pick(["zeszytów", "długopisów", "kubków", "plecaków"]);
+              const korzenie = [q(Math.min(a, u)), q(Math.max(a, u))];
+              return {
+                tresc: `Zysk sklepu (w tysiącach złotych) ze sprzedaży $x$ tysięcy ${towar} opisuje wielomian $Z(x) = ${nawiasMinus(a)}(${tr})$, gdzie $x > 0$. Podaj wszystkie wartości $x$, dla których zysk jest równy zero.`,
+                pola: [{ id: "x", typ: "zbior", ile: 2, etykieta: "Wartości $x$" }],
+                odpowiedz: { x: korzenie },
+                wynik: `$x \\in ${zbiorTex(korzenie)}$`,
+                rozwiazanie: [
+                  "Zysk jest równy zero, gdy $Z(x) = 0$. Iloczyn jest równy $0$, gdy któryś z czynników jest równy $0$.",
+                  krokLin(a),
+                  `Drugi czynnik: $${tr} = 0$, $\\Delta = ${texNawias(b)}^2 - 4\\cdot ${texNawias(c)} = ${(u - v) ** 2}$, $\\sqrt{\\Delta} = ${u - v}$, $x_1 = \\frac{${-b} - ${u - v}}{2} = ${v}$ i $x_2 = \\frac{${-b} + ${u - v}}{2} = ${u}$.`,
+                  `Liczba sprzedanych sztuk jest dodatnia, więc odrzucamy $x = ${v}$.`,
+                  `Zysk jest równy zero dla $x = ${Math.min(a, u)}$ i $x = ${Math.max(a, u)}$.`,
                 ],
               };
             }
@@ -941,7 +1325,7 @@ export default {
               const najmniejsza = r.chance();
               const wynik = najmniejsza ? m - 1 : m + 1;
               return {
-                tresc: `Iloczyn trzech kolejnych liczb naturalnych jest ${k} razy większy od ich sumy. Znajdź ${najmniejsza ? "najmniejszą" : "największą"} z tych liczb.`,
+                tresc: `(zakres rozszerzony) Iloczyn trzech kolejnych liczb naturalnych jest ${k} razy większy od ich sumy. Znajdź ${najmniejsza ? "najmniejszą" : "największą"} z tych liczb.`,
                 pola: [{ id: "w", typ: "liczba", etykieta: najmniejsza ? "Najmniejsza liczba" : "Największa liczba" }],
                 odpowiedz: { w: q(wynik) },
                 wynik: `$${wynik}$`,
@@ -962,7 +1346,7 @@ export default {
               const opis = t === 1 ? "polu jego powierzchni bocznej" : t === 2 ? "dwukrotności pola jego powierzchni bocznej" : "trzykrotności pola jego powierzchni bocznej";
               const wynik = pytaNajwyzsza ? x + a : x;
               return {
-                tresc: `Prostopadłościan ma w podstawie kwadrat o boku $x$ cm, a jego wysokość jest o ${a} cm większa od boku podstawy. Liczbowo objętość tego prostopadłościanu (w cm³) jest równa ${opis} (w cm²). Oblicz ${nazwaSzukana} (w cm).`,
+                tresc: `(zakres rozszerzony) Prostopadłościan ma w podstawie kwadrat o boku $x$ cm, a jego wysokość jest o ${a} cm większa od boku podstawy. Liczbowo objętość tego prostopadłościanu (w cm³) jest równa ${opis} (w cm²). Oblicz ${nazwaSzukana} (w cm).`,
                 pola: [{ id: "w", typ: "liczba", etykieta: `${nazwaSzukana[0].toUpperCase()}${nazwaSzukana.slice(1)} w cm` }],
                 odpowiedz: { w: q(wynik) },
                 wynik: `$${wynik}$`,
@@ -979,7 +1363,7 @@ export default {
             const k = x + a;
             const wynik = pytaNajwyzsza ? k : x;
             return {
-              tresc: `Prostopadłościan ma w podstawie kwadrat o boku $x$ cm, a jego wysokość jest o ${a} cm większa od boku podstawy. Liczbowo objętość tego prostopadłościanu (w cm³) jest ${k} razy większa od pola jego podstawy (w cm²). Oblicz ${nazwaSzukana} (w cm).`,
+              tresc: `(zakres rozszerzony) Prostopadłościan ma w podstawie kwadrat o boku $x$ cm, a jego wysokość jest o ${a} cm większa od boku podstawy. Liczbowo objętość tego prostopadłościanu (w cm³) jest ${k} razy większa od pola jego podstawy (w cm²). Oblicz ${nazwaSzukana} (w cm).`,
               pola: [{ id: "w", typ: "liczba", etykieta: `${nazwaSzukana[0].toUpperCase()}${nazwaSzukana.slice(1)} w cm` }],
               odpowiedz: { w: q(wynik) },
               wynik: `$${wynik}$`,
